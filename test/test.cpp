@@ -5,7 +5,7 @@
 int main()
 {
 
-    //float *arr = (float *)malloc(4);
+    // float *arr = (float *)malloc(4);
     cout << "This is running" << endl;
     float arr[4] = {1, 2, 3, 4};
 

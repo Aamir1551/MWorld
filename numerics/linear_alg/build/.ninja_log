@@ -1,0 +1,5 @@
+# ninja log v5
+4	407	6275960952957274	CMakeFiles/linear_alg.dir/src/matrix.cpp.obj	95227635a3d9bed5
+409	502	6275960953916068	liblinear_alg.a	c3224ba810592165
+1	11881	6275961067421249	CMakeFiles/test.dir/test/test.cpp.obj	5717daa1043a34f7
+11884	16983	6275961118144354	test.exe	29d7eae03f1547a2
