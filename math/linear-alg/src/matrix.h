@@ -9,7 +9,7 @@ class Matrix
 {
 protected:
     real *values;
-    //each of the "cols" number of contiguous "rows" number of elements in values represents the cols row in the matrix.
+    // each of the "cols" number of contiguous "rows" number of elements in values represents the cols row in the matrix.
     int rows;
     int cols;
     std::string inline static generateError(std::string operation, Matrix const &a, Matrix const &b);
