@@ -4,9 +4,8 @@
 #include <stdio.h>
 #include <vector>
 
-//#include "../src/matrix.h"
 #include <matrix.h>
-#include "../../../catch/catch.hpp"
+#include <catch.hpp>
 #include "../../../utils/settings.h"
 
 //TODO
@@ -126,6 +125,7 @@ TEST_CASE("Matrices can be operated with", "[Operations]")
     }
 
     Matrix *a = new Matrix(a_row, a_col, &a_test_values[0]);
+    Matrix *b = new Matrix(b_row, b_col, &b_test_values[0]);
 
     SECTION("Matrix Addition")
     {

@@ -1,0 +1,24 @@
+cmake_minimum_required(VERSION 3.10)
+set(CMAKE_CXX_STANDARD 11)
+
+project(render)
+add_subdirectory("lib/glad")
+
+add_executable(cpp_demo
+    main.cpp
+)
+
+target_include_directories(
+  cpp_demo
+  PUBLIC
+    "${CMAKE_CURRENT_SOURCE_DIR}/lib/glfw-3.3.2/include/"
+)
+
+target_include_directories(
+  cpp_demo
+  PUBLIC
+    "${CMAKE_CURRENT_SOURCE_DIR}/lib/glad/include/"
+)
+
+target_link_libraries(cpp_demo "${CMAKE_CURRENT_SOURCE_DIR}/lib/glfw-3.3.2/build/src/libglfw3.a")
+target_link_libraries(cpp_demo glad)
