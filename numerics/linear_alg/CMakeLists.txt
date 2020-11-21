@@ -8,9 +8,6 @@ add_library(linear_alg
     src/matrix.cpp
 )
 
-
-
-
 target_include_directories(
   linear_alg
   PUBLIC
@@ -19,6 +16,7 @@ target_include_directories(
 
 add_executable(test
     test/test.cpp
+    test/test-main.cpp
 )
 
 target_include_directories(

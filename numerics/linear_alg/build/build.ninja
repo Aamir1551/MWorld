@@ -57,6 +57,13 @@ build CMakeFiles/test.dir/test/test.cpp.obj: CXX_COMPILER__test_ ../test/test.cp
   OBJECT_DIR = CMakeFiles\test.dir
   OBJECT_FILE_DIR = CMakeFiles\test.dir\test
 
+build CMakeFiles/test.dir/test/test-main.cpp.obj: CXX_COMPILER__test_ ../test/test-main.cpp || cmake_object_order_depends_target_test
+  DEP_FILE = CMakeFiles\test.dir\test\test-main.cpp.obj.d
+  FLAGS = -std=gnu++11
+  INCLUDES = -I../../../catch -I../include
+  OBJECT_DIR = CMakeFiles\test.dir
+  OBJECT_FILE_DIR = CMakeFiles\test.dir\test
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target test
@@ -65,7 +72,7 @@ build CMakeFiles/test.dir/test/test.cpp.obj: CXX_COMPILER__test_ ../test/test.cp
 #############################################
 # Link the executable test.exe
 
-build test.exe: CXX_EXECUTABLE_LINKER__test_ CMakeFiles/test.dir/test/test.cpp.obj | liblinear_alg.a || liblinear_alg.a
+build test.exe: CXX_EXECUTABLE_LINKER__test_ CMakeFiles/test.dir/test/test.cpp.obj CMakeFiles/test.dir/test/test-main.cpp.obj | liblinear_alg.a || liblinear_alg.a
   LINK_LIBRARIES = liblinear_alg.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\test.dir
   POST_BUILD = cd .
