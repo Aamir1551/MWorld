@@ -7,10 +7,11 @@ void framebuffer_size_callback(GLFWwindow *window, int width, int height);
 void processInput(GLFWwindow *window);
 
 const char *vertexShaderSource = "#version 330 core\n"
-                                 "layout (location = 0) in vec2 aPos;\n"
+                                 "layout (location = 0) in float xPos;\n"
+                                 "layout (location = 1) in float yPos;\n"
                                  "void main()\n"
                                  "{\n"
-                                 " gl_Position = vec4(aPos.x, aPos.y, 0, 1);\n"
+                                 " gl_Position = vec4(xPos, yPos, 0, 1);\n"
                                  "}\0";
 
 const char *fragmentShaderSource = "#version 330 core\n"
@@ -42,7 +43,9 @@ int main()
         return -1;
     }
 
-    float vertices[] = {0.5f, 0.5f, -0.5f, 0.5f, 0.5f, -0.5f};
+    float verticesX[] = {0.5f, 0.5f, -0.5f, -0.5f};
+    float verticesY[] = {0.5f, -0.5f, -0.5f, 0.5f};
+    unsigned int indices[] = {0, 1, 2, 3, 0, 2};
 
     glViewport(0, 0, 800, 600);
 
@@ -87,26 +90,37 @@ int main()
                   << infoLog << std::endl;
     }
 
-    unsigned int VBO, VAO;
+    unsigned int VAO, VBOX, VBOY, EBO;
     glGenVertexArrays(1, &VAO); // this only gives a number to the vao varialbe, doesnt acc create a buffer
-    glGenBuffers(1, &VBO);
+    glGenBuffers(1, &VBOX);
+    glGenBuffers(1, &VBOY);
+    glGenBuffers(1, &EBO);
     glBindVertexArray(VAO);
 
-    glBindBuffer(GL_ARRAY_BUFFER, VBO); //makes the vbo that is specified by the id by the variable vbo, to be the one we are currently in control of
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+    glBindBuffer(GL_ARRAY_BUFFER, VBOX); //makes the vbo that is specified by the id by the variable vbo, to be the one we are currently in control of
+    glBufferData(GL_ARRAY_BUFFER, sizeof(verticesX), verticesX, GL_STATIC_DRAW);
 
-    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void *)0);
+    glVertexAttribPointer(0, 1, GL_FLOAT, GL_FALSE, 1 * sizeof(float), (void *)0);
 
     /* each vertex attribute takes its data from memory 
     managed by a VBO and which VBO it takes its data from, is determined by the VBO currently bound to 
     GL_ARRAY_BUFFER */
 
+    glBindBuffer(GL_ARRAY_BUFFER, VBOY); //makes the vbo that is specified by the id by the variable vbo, to be the one we are currently in control of
+    glBufferData(GL_ARRAY_BUFFER, sizeof(verticesY), verticesY, GL_STATIC_DRAW);
+    glVertexAttribPointer(1, 1, GL_FLOAT, GL_FALSE, 1 * sizeof(float), (void *)0);
+
     glEnableVertexAttribArray(0);
+    glEnableVertexAttribArray(1);
+
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
     glBindBuffer(GL_ARRAY_BUFFER, 0); //unbinding vbo
     glBindVertexArray(0);             //unbinding vao
 
     glUseProgram(shaderProgram);
+    //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     while (!glfwWindowShouldClose(window))
     { // render loop -- an iteration of this main render loop is called a frame
         processInput(window);
@@ -114,7 +128,8 @@ int main()
         glClear(GL_COLOR_BUFFER_BIT);
 
         glBindVertexArray(VAO);
-        glDrawArrays(GL_TRIANGLES, 0, 3);
+        //glDrawArrays(GL_TRIANGLES, 0, 3);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
         glfwSwapBuffers(window);
 
@@ -125,7 +140,8 @@ int main()
     glDeleteShader(fragmentShader);
     glDeleteProgram(shaderProgram);
     glDeleteBuffers(1, &VAO);
-    glDeleteBuffers(1, &VBO);
+    glDeleteBuffers(1, &VBOX);
+    glDeleteBuffers(1, &VBOY);
 
     glfwTerminate();
     return 0;
