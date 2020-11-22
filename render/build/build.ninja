@@ -62,6 +62,39 @@ build cpp_demo.exe: CXX_EXECUTABLE_LINKER__cpp_demo_ CMakeFiles/cpp_demo.dir/mai
   TARGET_IMPLIB = libcpp_demo.dll.a
   TARGET_PDB = cpp_demo.exe.dbg
 
+# =============================================================================
+# Object build statements for EXECUTABLE target ans
+
+
+#############################################
+# Order-only phony target for ans
+
+build cmake_object_order_depends_target_ans: phony || cmake_object_order_depends_target_glad
+
+build CMakeFiles/ans.dir/ans.cpp.obj: CXX_COMPILER__ans_ ../ans.cpp || cmake_object_order_depends_target_ans
+  DEP_FILE = CMakeFiles\ans.dir\ans.cpp.obj.d
+  FLAGS = -std=gnu++11
+  INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glad/include
+  OBJECT_DIR = CMakeFiles\ans.dir
+  OBJECT_FILE_DIR = CMakeFiles\ans.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target ans
+
+
+#############################################
+# Link the executable ans.exe
+
+build ans.exe: CXX_EXECUTABLE_LINKER__ans_ CMakeFiles/ans.dir/ans.cpp.obj | ../lib/glfw-3.3.2/build/src/libglfw3.a lib/glad/libglad.a || lib/glad/libglad.a
+  LINK_LIBRARIES = ../lib/glfw-3.3.2/build/src/libglfw3.a  lib/glad/libglad.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\ans.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = ans.exe
+  TARGET_IMPLIB = libans.dll.a
+  TARGET_PDB = ans.exe.dbg
+
 
 #############################################
 # Utility command for edit_cache
@@ -148,6 +181,8 @@ build lib/glad/rebuild_cache: phony lib/glad/CMakeFiles/rebuild_cache.util
 # =============================================================================
 # Target aliases.
 
+build ans: phony ans.exe
+
 build cpp_demo: phony cpp_demo.exe
 
 build glad: phony lib/glad/libglad.a
@@ -162,7 +197,7 @@ build libglad.a: phony lib/glad/libglad.a
 #############################################
 # Folder: C:/Users/User/Documents/MWorld/render/build
 
-build all: phony cpp_demo.exe lib/glad/all
+build all: phony cpp_demo.exe ans.exe lib/glad/all
 
 # =============================================================================
 

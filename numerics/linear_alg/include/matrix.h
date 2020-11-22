@@ -78,6 +78,7 @@ public:
 
     void static print(Matrix const &a);
     void print() const;
+    ~Matrix() { free(values); }; // not too sure whether this is done correctly
 };
 //cpplint.exe --filter=-legal/copyright,-whitespace/braces,-whitespace/newline matrix.cpp
 #endif
