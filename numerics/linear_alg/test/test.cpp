@@ -4,6 +4,7 @@
 #include <vector>
 
 #include <matrix.h>
+// should add docker and add environment path to catch/test.h
 #include <catch.hpp>
 #include "../../../utils/settings.h"
 
