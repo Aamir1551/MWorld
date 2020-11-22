@@ -3,29 +3,7 @@
 
 #include <iostream>
 #include <math.h>
-
-const char *vertexShaderSource = "#version 330 core\n"
-                                 "layout (location = 0) in float xPos; \n"
-                                 "layout (location = 1) in float yPos;\n"
-                                 "//layout (location = 2) in vec3 color;\n"
-                                 "//out vec3 cc;\n"
-                                 "void main()\n"
-                                 "{\n"
-                                 " gl_Position = vec4(xPos, yPos, 0, 1);\n"
-                                 " //cc = color;\n"
-                                 "}\0";
-
-const char *fragmentShaderSource = "#version 330 core\n"
-                                   "out vec4 FragColors; //fragment shader requires a vec4 output\n"
-                                   "//in vec3 cc;\n"
-                                   "uniform vec3 ourColor;\n"
-                                   "void main()\n"
-                                   "{\n"
-                                   "    FragColors = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
-                                   "    //FragColors = vec4(ourColor*cc, 1);\n"
-                                   "    FragColors = vec4(ourColor, 1);\n"
-                                   "    //FragColors = vec4(cc, 1);\n"
-                                   "}\n\0";
+#include <string>
 
 void framebuffer_size_callback(GLFWwindow *window, int width, int height)
 {
@@ -40,10 +18,11 @@ void processInput(GLFWwindow *window)
     }
 }
 
-void compileCode(int shaderID, char const *sourcecode, char const *shaderName)
+void compileCode(int shaderID, std::string sourcecode, char const *shaderName)
 {
 
-    glShaderSource(shaderID, 1, &sourcecode, NULL);
+    char const *c = sourcecode.c_str();
+    glShaderSource(shaderID, 1, &(c), NULL);
     glCompileShader(shaderID);
 
     int success;
