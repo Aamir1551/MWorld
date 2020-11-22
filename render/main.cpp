@@ -34,7 +34,7 @@ int main()
 
     glViewport(0, 0, 800, 600);
 
-    Shader ourShader("../vert.glsl", "../frag.glsl");
+    Shader ourShader("../shaders/vert.glsl", "../shaders/frag.glsl");
 
     unsigned int VAO, VBOX, VBOY, EBO, VBOC;
     glGenVertexArrays(1, &VAO); // this only gives a number to the vao varialbe, doesnt acc create a buffer

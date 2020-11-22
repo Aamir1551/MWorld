@@ -71,12 +71,6 @@ public:
         glDeleteShader(frag_shader);
     };
 
-    // check if by passing string into function as parameter changes the string content, i.e
-    /* string function(string c) {
-        c.append("asdf")
-        return c //does c change?
-    }*/
-
     void use()
     {
         glUseProgram(shader_id);
