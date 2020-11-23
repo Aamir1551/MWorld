@@ -2,5 +2,6 @@
     "files.associations": {
         "xstring": "cpp",
         "string": "cpp"
-    }
+    },
+    "C_Cpp.errorSquiggles": "Enabled"
 }

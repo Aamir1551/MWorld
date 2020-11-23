@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../numerics/linear_alg/include/matrix.h
+string
+-
+stdlib.h
+-
+stdio.h
+-
+
+C:/Users/User/Documents/MWorld/numerics/linear_alg/src/matrix.cpp
+matrix.h
+-
+math.h
+-
+iostream
+-
+

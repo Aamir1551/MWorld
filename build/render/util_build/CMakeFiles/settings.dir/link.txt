@@ -1,0 +1,2 @@
+C:\MinGW\bin\ar.exe qc libsettings.a 
+C:\MinGW\bin\ranlib.exe libsettings.a

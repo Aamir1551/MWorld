@@ -1,0 +1,215 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "render/tut.exe"
+		},
+		{
+			"path" : "render/tut.pdb"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable",
+			"target_link_libraries",
+			"target_include_directories"
+		],
+		"files" : 
+		[
+			"render/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 10,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 17,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 12,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 13,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 14,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-g"
+				},
+				{
+					"fragment" : "-std=gnu++11"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 3,
+					"path" : "C:/Users/User/Documents/MWorld/render/lib/glfw-3.3.2/include"
+				},
+				{
+					"backtrace" : 4,
+					"path" : "C:/Users/User/Documents/MWorld/render/cube"
+				},
+				{
+					"backtrace" : 5,
+					"path" : "C:/Users/User/Documents/MWorld/render/lib/glm"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "C:/Users/User/Documents/MWorld/utils/."
+				},
+				{
+					"backtrace" : 2,
+					"path" : "C:/Users/User/Documents/MWorld/numerics/linear_alg/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "C:/Users/User/Documents/MWorld/render/cube/../numerics/linear_alg/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "C:/Users/User/Documents/MWorld/render/lib/glad/include"
+				}
+			],
+			"language" : "CXX",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					1
+				],
+				"standard" : "11"
+			},
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 2,
+			"id" : "glad::@e10ba5d9774b86cdaf26"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "cube::@6b703b5c3645b48568f7"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "linear_alg::@5e8b9345e304cb411321"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "utils::@8642e992d2215f4ea850"
+		}
+	],
+	"id" : "tut::@2499b95dafeadf15eafc",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "-g",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "util_build\\libutils.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "cube\\linear_alg\\liblinear_alg.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "cube\\libcube.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "lib\\glad\\libglad.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "..\\..\\render\\lib\\glfw-3.3.2\\build\\src\\libglfw3.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "cube\\linear_alg\\liblinear_alg.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "tut",
+	"nameOnDisk" : "tut.exe",
+	"paths" : 
+	{
+		"build" : "render",
+		"source" : "render"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "render/main.cpp",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "EXECUTABLE"
+}

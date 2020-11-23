@@ -1,9 +1,10 @@
 #ifndef MATRIX_H
 #define MATRIX_H
-#include "../../../utils/settings.h" //will need to provide some sort of template to the matrix file, so then no need to add settings.h and just use the template to give type real
 #include <string>
 #include <stdlib.h>
 #include <stdio.h>
+
+typedef float real;
 
 class Matrix
 {
@@ -18,7 +19,11 @@ protected:
 public:
     //try experimenting with using & instead of pointers
     Matrix(int rows, int cols);
+    Matrix(int rows, int cols, int factor);
     Matrix(int rows, int cols, real *values);
+    Matrix(const Matrix &a);            //copy constructor -- only used when object is being created
+    Matrix &operator=(const Matrix &a); //assignment operator
+
     Matrix static &createMatrixArange(int n, int m);
 
     real inline const *const getValues()

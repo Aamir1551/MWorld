@@ -1,0 +1,2 @@
+C:\MinGW\bin\ar.exe qc libcube.a CMakeFiles/cube.dir/cube.cpp.obj
+C:\MinGW\bin\ranlib.exe libcube.a

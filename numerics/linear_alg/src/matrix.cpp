@@ -18,6 +18,52 @@ Matrix::Matrix(int rows, int cols) : rows(rows), cols(cols)
     }
 }
 
+Matrix &Matrix::operator=(const Matrix &a)
+{
+
+    this->rows = a.rows;
+    this->cols = a.cols;
+    delete (this->values);
+    this->values = new real[rows * cols];
+
+    for (int i = 0; i < a.rows * a.cols; i++)
+    {
+        this->values[i] = a.values[i];
+    }
+    return *this;
+}
+
+Matrix::Matrix(int rows, int cols, int factor)
+{
+    this->rows = rows;
+    this->cols = cols;
+    this->values = new real[rows * cols];
+    for (int i = 0; i < rows * cols; i++)
+    {
+        this->values[i] = 0;
+    }
+    int t = std::min(rows, cols);
+    int j = 0;
+    for (int i = 0; i < t; i++)
+    {
+        this->values[i + cols * j] = factor;
+        j++;
+    }
+}
+
+Matrix::Matrix(const Matrix &a) //copy constructor
+{
+    this->rows = a.rows;
+    this->cols = a.cols;
+    delete (this->values);
+    this->values = new real[rows * cols];
+
+    for (int i = 0; i < a.rows * a.cols; i++)
+    {
+        this->values[i] = a.values[i];
+    }
+}
+
 // Returns the squared euclidean norm of a matrix
 real Matrix::squaredNorm(Matrix const &a)
 {
