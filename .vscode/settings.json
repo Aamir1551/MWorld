@@ -3,5 +3,7 @@
         "xstring": "cpp",
         "string": "cpp"
     },
-    "C_Cpp.errorSquiggles": "Enabled"
+    "C_Cpp.errorSquiggles": "Enabled",
+    "cmake.generator": "Ninja",
+    "C_Cpp.intelliSenseEngineFallback": "Enabled"
 }
