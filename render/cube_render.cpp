@@ -11,7 +11,6 @@
 
 #include <cube.hpp>
 #include <cube_collection.hpp>
-//#include <cube.hpp>
 
 int main()
 {
@@ -35,53 +34,15 @@ int main()
         return -1;
     }
 
-    float verticesX[] = {0.5f, 0.5f, -0.5f, -0.5f};
-    float verticesY[] = {0.5f, -0.5f, -0.5f, 0.5f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.5f, 0.5f, 0.5f}; //only first 4 elements are poitions, the rest are the colors of the 3 vertices
-    //float verticesY[] = {0.5f, -0.5f, -0.5f, 0.5f};
-    unsigned int indices[] = {0, 1, 2, 3, 0, 2};
-
     glViewport(0, 0, 800, 600);
-
     Shader ourShader("../shaders/vert.glsl", "../shaders/frag.glsl");
 
-    unsigned int vao, VBOX, VBOY, ebo, VBOC;
+    unsigned int vao, vbo, ebo;
     glGenVertexArrays(1, &vao); // this only gives a number to the vao varialbe, doesnt acc create a buffer
-    glGenBuffers(1, &VBOX);
-    glGenBuffers(1, &VBOY);
-    glGenBuffers(1, &VBOC);
+    glGenBuffers(1, &vbo);
     glGenBuffers(1, &ebo);
 
-    /*glBindVertexArray(vao);
-
-    glBindBuffer(GL_ARRAY_BUFFER, VBOX); //makes the vbo that is specified by the id by the variable vbo, to be the one we are currently in control of
-    glBufferData(GL_ARRAY_BUFFER, sizeof(verticesX), verticesX, GL_STATIC_DRAW);
-
-    glVertexAttribPointer(0, 1, GL_FLOAT, GL_FALSE, 1 * sizeof(float), (void *)0);
-
-     each vertex attribute takes its data from memory 
-    managed by a VBO and which VBO it takes its data from, is determined by the VBO currently bound to 
-    GL_ARRAY_BUFFER */
-
-    /*glBindBuffer(GL_ARRAY_BUFFER, VBOY); //makes the vbo that is specified by the id by the variable vbo, to be the one we are currently in control of
-    glBufferData(GL_ARRAY_BUFFER, 4 * sizeof(float), verticesY, GL_STATIC_DRAW);
-    glVertexAttribPointer(1, 1, GL_FLOAT, GL_FALSE, 1 * sizeof(float), (void *)0);
-
-    glBindBuffer(GL_ARRAY_BUFFER, VBOC); //makes the vbo that is specified by the id by the variable vbo, to be the one we are currently in control of
-    glBufferData(GL_ARRAY_BUFFER, sizeof(verticesY), verticesY, GL_STATIC_DRAW);
-    glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)4);
-
-    glEnableVertexAttribArray(0);
-    glEnableVertexAttribArray(1);
-    glEnableVertexAttribArray(2);
-
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-
-    glBindBuffer(GL_ARRAY_BUFFER, 0); //unbinding vbo */
-    //glBindVertexArray(0);             //unbinding vao
-
     ourShader.use();
-    //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
     glm::mat4 model = glm::mat4(1.0f);
     model = glm::rotate(model, glm::radians(-55.0f), glm::vec3(1.0f, 0.0f, 0.0f));
@@ -101,7 +62,7 @@ int main()
     c.SetModel(model_mat);
     c.SetView(view_mat);
     c.SetProject(proj_mat);
-    ShaderCubeCollection s(ourShader.shader_id, vao, VBOX, ebo);
+    ShaderCubeCollection s(ourShader.shader_id, vao, vbo, ebo);
     s.add_cube(&c);
 
     while (!glfwWindowShouldClose(window))
@@ -126,8 +87,7 @@ int main()
     }
 
     glDeleteBuffers(1, &vao);
-    glDeleteBuffers(1, &VBOX);
-    glDeleteBuffers(1, &VBOY);
+    glDeleteBuffers(1, &vbo);
     glDeleteBuffers(1, &ebo);
 
     glfwTerminate();

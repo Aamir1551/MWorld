@@ -7,7 +7,7 @@ add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/lib/glad")
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/cube")
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/../utils" "./util_build")
 
-add_executable(tut main.cpp)
+add_executable(tut cube_render.cpp)
 
 target_include_directories(tut PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/lib/glfw-3.3.2/include/")
 target_include_directories(tut PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/cube")

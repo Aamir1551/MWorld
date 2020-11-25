@@ -9,14 +9,17 @@ class ShaderCubeCollection
 private:
     std::vector<Cube *> cubes;
     unsigned int shader_id;
-    unsigned int VAO;
-    unsigned int VBO;
-    unsigned int EBO;
+    unsigned int vao;
+    unsigned int vbo;
+    unsigned int ebo;
 
 public:
-    ShaderCubeCollection(unsigned int shader_id)
+    ShaderCubeCollection(unsigned int shader_id, unsigned int vao, unsigned int vbo, unsigned int ebo)
     {
         this->shader_id = shader_id;
+        this->vao = vao;
+        this->vbo = vbo;
+        this->ebo = vao;
     };
 
     int add_cube(Cube *cube = 0) // does google style guide allow the use of null pointers???
@@ -60,7 +63,7 @@ public:
             }
         };
         return vertices;
-        }
+    }
 
     int *GetCubeElements()
     {
@@ -78,15 +81,15 @@ public:
     int AddVerticesToBuffers()
     {
 
-        glBindVertexArray(VAO);
+        glBindVertexArray(vao);
 
-        glBindBuffer(GL_ARRAY_BUFFER, VBO);
+        glBindBuffer(GL_ARRAY_BUFFER, vbo);
         real *cubes_vertices = GetCubeVertices();
         glBufferData(GL_ARRAY_BUFFER, sizeof(cubes_vertices), cubes_vertices, GL_STATIC_DRAW);
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 1 * sizeof(float), (void *)0);
         glEnableVertexAttribArray(0); //try putting this at the end of the function and see what will happen, (if it still works or not)
 
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
         int *getElements = GetCubeElements();
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(getElements), getElements, GL_STATIC_DRAW);
 
