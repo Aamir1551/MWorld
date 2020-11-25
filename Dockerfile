@@ -9,4 +9,5 @@ RUN apt install gcc -y
 
 
 COPY . /usr/src/MWorld
+
 CMD ["bash"]

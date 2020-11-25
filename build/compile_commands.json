@@ -16,7 +16,7 @@
 },
 {
   "directory": "C:/Users/User/Documents/MWorld/build",
-  "command": "C:\\MinGW\\bin\\mingw32-g++.exe -I../render/lib/glfw-3.3.2/include -I../render/cube -I../render/lib/glm -I../utils/. -I../numerics/linear_alg/include -I../render/cube/../numerics/linear_alg/include -I../render/lib/glad/include -g -std=gnu++11 -o render\\CMakeFiles\\tut.dir\\main.cpp.obj -c C:\\Users\\User\\Documents\\MWorld\\render\\main.cpp",
+  "command": "C:\\MinGW\\bin\\mingw32-g++.exe -I../render/lib/glfw-3.3.2/include -I../render/cube -I../render/lib/glm -I../utils/. -I../render/lib/glad/include -I../numerics/linear_alg/include -I../render/cube/../../numerics/linear_alg/include -g -std=gnu++11 -o render\\CMakeFiles\\tut.dir\\main.cpp.obj -c C:\\Users\\User\\Documents\\MWorld\\render\\main.cpp",
   "file": "C:/Users/User/Documents/MWorld/render/main.cpp"
 },
 {
@@ -26,7 +26,7 @@
 },
 {
   "directory": "C:/Users/User/Documents/MWorld/build",
-  "command": "C:\\MinGW\\bin\\mingw32-g++.exe -I../render/cube/../numerics/linear_alg/include -I../numerics/linear_alg/include -g -std=gnu++11 -o render\\cube\\CMakeFiles\\cube.dir\\cube.cpp.obj -c C:\\Users\\User\\Documents\\MWorld\\render\\cube\\cube.cpp",
+  "command": "C:\\MinGW\\bin\\mingw32-g++.exe -I../render/cube/../../numerics/linear_alg/include -I../render/cube -I../numerics/linear_alg/include -g -std=gnu++11 -o render\\cube\\CMakeFiles\\cube.dir\\cube.cpp.obj -c C:\\Users\\User\\Documents\\MWorld\\render\\cube\\cube.cpp",
   "file": "C:/Users/User/Documents/MWorld/render/cube/cube.cpp"
 },
 {

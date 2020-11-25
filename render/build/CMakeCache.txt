@@ -242,6 +242,9 @@ cube_LIB_DEPENDS:STATIC=general;linear_alg;
 //Value Computed by CMake
 cube_SOURCE_DIR:STATIC=C:/Users/User/Documents/MWorld/render/cube
 
+//Dependencies for the target
+cube_collection_LIB_DEPENDS:STATIC=general;linear_alg;
+
 //Value Computed by CMake
 glad_BINARY_DIR:STATIC=C:/Users/User/Documents/MWorld/render/build/lib/glad
 

@@ -41,11 +41,9 @@ build cmake_object_order_depends_target_tut: phony || cmake_object_order_depends
 build CMakeFiles/tut.dir/main.cpp.obj: CXX_COMPILER__tut_ ../main.cpp || cmake_object_order_depends_target_tut
   DEP_FILE = CMakeFiles\tut.dir\main.cpp.obj.d
   FLAGS = -std=gnu++11
-  INCLUDES = -I../lib/glfw-3.3.2/include -I../cube -I../lib/glm -IC:/Users/User/Documents/MWorld/utils/. -IC:/Users/User/Documents/MWorld/numerics/linear_alg/include -I../cube/../numerics/linear_alg/include -I../lib/glad/include
+  INCLUDES = -I../lib/glfw-3.3.2/include -I../cube -I../lib/glm -IC:/Users/User/Documents/MWorld/utils/. -I../lib/glad/include -IC:/Users/User/Documents/MWorld/numerics/linear_alg/include -I../cube/../../numerics/linear_alg/include
   OBJECT_DIR = CMakeFiles\tut.dir
   OBJECT_FILE_DIR = CMakeFiles\tut.dir
-  TARGET_COMPILE_PDB = CMakeFiles\tut.dir\
-  TARGET_PDB = tut.pdb
 
 
 # =============================================================================
@@ -55,15 +53,14 @@ build CMakeFiles/tut.dir/main.cpp.obj: CXX_COMPILER__tut_ ../main.cpp || cmake_o
 #############################################
 # Link the executable tut.exe
 
-build tut.exe: CXX_EXECUTABLE_LINKER__tut_ CMakeFiles/tut.dir/main.cpp.obj | util_build/libutils.a cube/linear_alg/liblinear_alg.a cube/libcube.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a cube/linear_alg/liblinear_alg.a || cube/libcube.a cube/linear_alg/liblinear_alg.a lib/glad/libglad.a util_build/libutils.a
-  LINK_LIBRARIES = util_build/libutils.a  cube/linear_alg/liblinear_alg.a  cube/libcube.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  cube/linear_alg/liblinear_alg.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+build tut.exe: CXX_EXECUTABLE_LINKER__tut_ CMakeFiles/tut.dir/main.cpp.obj | util_build/libutils.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a cube/linear_alg/liblinear_alg.a ../lib/glfw-3.3.2/build/src/libglfw3.a cube/libcube.a cube/linear_alg/liblinear_alg.a || cube/libcube.a cube/linear_alg/liblinear_alg.a lib/glad/libglad.a util_build/libutils.a
+  LINK_LIBRARIES = util_build/libutils.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  cube/linear_alg/liblinear_alg.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  cube/libcube.a  cube/linear_alg/liblinear_alg.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\tut.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_COMPILE_PDB = CMakeFiles\tut.dir\
   TARGET_FILE = tut.exe
   TARGET_IMPLIB = libtut.dll.a
-  TARGET_PDB = tut.pdb
+  TARGET_PDB = tut.exe.dbg
 
 
 #############################################
@@ -108,8 +105,6 @@ build lib/glad/CMakeFiles/glad.dir/src/glad.c.obj: C_COMPILER__glad_ ../lib/glad
   INCLUDES = -I../lib/glad/include
   OBJECT_DIR = lib\glad\CMakeFiles\glad.dir
   OBJECT_FILE_DIR = lib\glad\CMakeFiles\glad.dir\src
-  TARGET_COMPILE_PDB = lib\glad\CMakeFiles\glad.dir\glad.pdb
-  TARGET_PDB = lib\glad\libglad.pdb
 
 
 # =============================================================================
@@ -123,9 +118,8 @@ build lib/glad/libglad.a: C_STATIC_LIBRARY_LINKER__glad_ lib/glad/CMakeFiles/gla
   OBJECT_DIR = lib\glad\CMakeFiles\glad.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_COMPILE_PDB = lib\glad\CMakeFiles\glad.dir\glad.pdb
   TARGET_FILE = lib\glad\libglad.a
-  TARGET_PDB = lib\glad\libglad.pdb
+  TARGET_PDB = glad.a.dbg
 
 
 #############################################
@@ -180,11 +174,9 @@ build cmake_object_order_depends_target_cube: phony || cmake_object_order_depend
 build cube/CMakeFiles/cube.dir/cube.cpp.obj: CXX_COMPILER__cube_ ../cube/cube.cpp || cmake_object_order_depends_target_cube
   DEP_FILE = cube\CMakeFiles\cube.dir\cube.cpp.obj.d
   FLAGS = -std=gnu++11
-  INCLUDES = -I../cube/../numerics/linear_alg/include -IC:/Users/User/Documents/MWorld/numerics/linear_alg/include
+  INCLUDES = -I../cube/../../numerics/linear_alg/include -I../cube -IC:/Users/User/Documents/MWorld/numerics/linear_alg/include
   OBJECT_DIR = cube\CMakeFiles\cube.dir
   OBJECT_FILE_DIR = cube\CMakeFiles\cube.dir
-  TARGET_COMPILE_PDB = cube\CMakeFiles\cube.dir\cube.pdb
-  TARGET_PDB = cube\libcube.pdb
 
 
 # =============================================================================
@@ -198,9 +190,8 @@ build cube/libcube.a: CXX_STATIC_LIBRARY_LINKER__cube_ cube/CMakeFiles/cube.dir/
   OBJECT_DIR = cube\CMakeFiles\cube.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_COMPILE_PDB = cube\CMakeFiles\cube.dir\cube.pdb
   TARGET_FILE = cube\libcube.a
-  TARGET_PDB = cube\libcube.pdb
+  TARGET_PDB = cube.a.dbg
 
 
 #############################################
@@ -246,8 +237,6 @@ build cube/linear_alg/CMakeFiles/test.dir/test/test.cpp.obj: CXX_COMPILER__test_
   INCLUDES = -IC:/Users/User/Documents/MWorld/numerics/linear_alg/../../catch -IC:/Users/User/Documents/MWorld/numerics/linear_alg/include
   OBJECT_DIR = cube\linear_alg\CMakeFiles\test.dir
   OBJECT_FILE_DIR = cube\linear_alg\CMakeFiles\test.dir\test
-  TARGET_COMPILE_PDB = cube\linear_alg\CMakeFiles\test.dir\
-  TARGET_PDB = cube\linear_alg\test.pdb
 
 build cube/linear_alg/CMakeFiles/test.dir/test/test-main.cpp.obj: CXX_COMPILER__test_ C$:/Users/User/Documents/MWorld/numerics/linear_alg/test/test-main.cpp || cmake_object_order_depends_target_test
   DEP_FILE = cube\linear_alg\CMakeFiles\test.dir\test\test-main.cpp.obj.d
@@ -255,8 +244,6 @@ build cube/linear_alg/CMakeFiles/test.dir/test/test-main.cpp.obj: CXX_COMPILER__
   INCLUDES = -IC:/Users/User/Documents/MWorld/numerics/linear_alg/../../catch -IC:/Users/User/Documents/MWorld/numerics/linear_alg/include
   OBJECT_DIR = cube\linear_alg\CMakeFiles\test.dir
   OBJECT_FILE_DIR = cube\linear_alg\CMakeFiles\test.dir\test
-  TARGET_COMPILE_PDB = cube\linear_alg\CMakeFiles\test.dir\
-  TARGET_PDB = cube\linear_alg\test.pdb
 
 
 # =============================================================================
@@ -271,10 +258,9 @@ build cube/linear_alg/test.exe: CXX_EXECUTABLE_LINKER__test_ cube/linear_alg/CMa
   OBJECT_DIR = cube\linear_alg\CMakeFiles\test.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_COMPILE_PDB = cube\linear_alg\CMakeFiles\test.dir\
   TARGET_FILE = cube\linear_alg\test.exe
   TARGET_IMPLIB = cube\linear_alg\libtest.dll.a
-  TARGET_PDB = cube\linear_alg\test.pdb
+  TARGET_PDB = test.exe.dbg
 
 # =============================================================================
 # Object build statements for STATIC_LIBRARY target linear_alg
@@ -291,8 +277,6 @@ build cube/linear_alg/CMakeFiles/linear_alg.dir/src/matrix.cpp.obj: CXX_COMPILER
   INCLUDES = -IC:/Users/User/Documents/MWorld/numerics/linear_alg/include
   OBJECT_DIR = cube\linear_alg\CMakeFiles\linear_alg.dir
   OBJECT_FILE_DIR = cube\linear_alg\CMakeFiles\linear_alg.dir\src
-  TARGET_COMPILE_PDB = cube\linear_alg\CMakeFiles\linear_alg.dir\linear_alg.pdb
-  TARGET_PDB = cube\linear_alg\liblinear_alg.pdb
 
 
 # =============================================================================
@@ -306,9 +290,8 @@ build cube/linear_alg/liblinear_alg.a: CXX_STATIC_LIBRARY_LINKER__linear_alg_ cu
   OBJECT_DIR = cube\linear_alg\CMakeFiles\linear_alg.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_COMPILE_PDB = cube\linear_alg\CMakeFiles\linear_alg.dir\linear_alg.pdb
   TARGET_FILE = cube\linear_alg\liblinear_alg.a
-  TARGET_PDB = cube\linear_alg\liblinear_alg.pdb
+  TARGET_PDB = linear_alg.a.dbg
 
 
 #############################################
@@ -360,9 +343,8 @@ build util_build/libsettings.a: CXX_STATIC_LIBRARY_LINKER__settings_
   OBJECT_DIR = util_build\CMakeFiles\settings.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_COMPILE_PDB = util_build\CMakeFiles\settings.dir\settings.pdb
   TARGET_FILE = util_build\libsettings.a
-  TARGET_PDB = util_build\libsettings.pdb
+  TARGET_PDB = settings.a.dbg
 
 # =============================================================================
 # Object build statements for STATIC_LIBRARY target utils
@@ -379,8 +361,6 @@ build util_build/CMakeFiles/utils.dir/utils.cpp.obj: CXX_COMPILER__utils_ C$:/Us
   INCLUDES = -IC:/Users/User/Documents/MWorld/utils/.
   OBJECT_DIR = util_build\CMakeFiles\utils.dir
   OBJECT_FILE_DIR = util_build\CMakeFiles\utils.dir
-  TARGET_COMPILE_PDB = util_build\CMakeFiles\utils.dir\utils.pdb
-  TARGET_PDB = util_build\libutils.pdb
 
 
 # =============================================================================
@@ -394,9 +374,8 @@ build util_build/libutils.a: CXX_STATIC_LIBRARY_LINKER__utils_ util_build/CMakeF
   OBJECT_DIR = util_build\CMakeFiles\utils.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_COMPILE_PDB = util_build\CMakeFiles\utils.dir\utils.pdb
   TARGET_FILE = util_build\libutils.a
-  TARGET_PDB = util_build\libutils.pdb
+  TARGET_PDB = utils.a.dbg
 
 
 #############################################
@@ -484,14 +463,14 @@ build util_build/all: phony util_build/libsettings.a util_build/libutils.a
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | ../CMakeLists.txt ../cube/CMakeLists.txt ../lib/glad/CMakeLists.txt C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeCCompiler.cmake.in C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeCCompilerABI.c C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeCInformation.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeCXXCompiler.cmake.in C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeCXXCompilerABI.cpp C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeCompilerIdDetection.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeDetermineCCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeDetermineCXXCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeDetermineCompileFeatures.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeDetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeDetermineCompilerABI.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeDetermineCompilerId.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeDetermineRCCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeDetermineSystem.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeFindBinUtils.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeNinjaFindMake.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeParseImplicitIncludeInfo.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeParseImplicitLinkInfo.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeRCCompiler.cmake.in C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeRCInformation.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeSystem.cmake.in C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeTestCCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeTestCXXCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeTestCompilerCommon.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeTestRCCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/ADSP-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/ARMCC-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/ARMClang-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/AppleClang-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/Borland-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/Bruce-C-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/Clang-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/Clang-DetermineCompilerInternal.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/Comeau-CXX-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/Compaq-C-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/Cray-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/Embarcadero-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/Fujitsu-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/GHS-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/GNU-C-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/GNU-FindBinUtils.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/GNU.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/HP-C-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/HP-CXX-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/IAR-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/Intel-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/IntelClang-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/IntelDPCPP-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/MSVC-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/NVIDIA-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/PGI-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/PathScale-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/SCO-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/SDCC-C-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/SunPro-C-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/TI-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/TinyCC-C-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/VisualAge-C-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/Watcom-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/XL-C-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/XL-CXX-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/XLClang-C-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/zOS-C-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Internal/CMakeCheckCompilerFlag.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Internal/FeatureTesting.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Platform/Windows-Determine-CXX.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Platform/Windows.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Platform/WindowsPaths.cmake C$:/Users/User/Documents/MWorld/numerics/linear_alg/CMakeLists.txt C$:/Users/User/Documents/MWorld/utils/CMakeLists.txt CMakeCache.txt CMakeFiles/3.19.0-rc3/CMakeCCompiler.cmake CMakeFiles/3.19.0-rc3/CMakeCXXCompiler.cmake CMakeFiles/3.19.0-rc3/CMakeRCCompiler.cmake CMakeFiles/3.19.0-rc3/CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | ../CMakeLists.txt ../cube/CMakeLists.txt ../lib/glad/CMakeLists.txt C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeCInformation.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeRCInformation.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/GNU.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Internal/CMakeCheckCompilerFlag.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Platform/Windows.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Platform/WindowsPaths.cmake C$:/Users/User/Documents/MWorld/numerics/linear_alg/CMakeLists.txt C$:/Users/User/Documents/MWorld/utils/CMakeLists.txt CMakeCache.txt CMakeFiles/3.19.0-rc3/CMakeCCompiler.cmake CMakeFiles/3.19.0-rc3/CMakeCXXCompiler.cmake CMakeFiles/3.19.0-rc3/CMakeRCCompiler.cmake CMakeFiles/3.19.0-rc3/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build ../CMakeLists.txt ../cube/CMakeLists.txt ../lib/glad/CMakeLists.txt C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeCCompiler.cmake.in C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeCCompilerABI.c C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeCInformation.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeCXXCompiler.cmake.in C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeCXXCompilerABI.cpp C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeCompilerIdDetection.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeDetermineCCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeDetermineCXXCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeDetermineCompileFeatures.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeDetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeDetermineCompilerABI.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeDetermineCompilerId.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeDetermineRCCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeDetermineSystem.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeFindBinUtils.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeNinjaFindMake.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeParseImplicitIncludeInfo.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeParseImplicitLinkInfo.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeRCCompiler.cmake.in C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeRCInformation.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeSystem.cmake.in C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeTestCCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeTestCXXCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeTestCompilerCommon.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeTestRCCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/ADSP-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/ARMCC-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/ARMClang-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/AppleClang-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/Borland-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/Bruce-C-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/Clang-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/Clang-DetermineCompilerInternal.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/Comeau-CXX-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/Compaq-C-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/Cray-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/Embarcadero-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/Fujitsu-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/GHS-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/GNU-C-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/GNU-FindBinUtils.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/GNU.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/HP-C-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/HP-CXX-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/IAR-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/Intel-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/IntelClang-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/IntelDPCPP-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/MSVC-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/NVIDIA-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/PGI-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/PathScale-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/SCO-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/SDCC-C-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/SunPro-C-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/TI-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/TinyCC-C-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/VisualAge-C-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/Watcom-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/XL-C-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/XL-CXX-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/XLClang-C-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/zOS-C-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Internal/CMakeCheckCompilerFlag.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Internal/FeatureTesting.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Platform/Windows-Determine-CXX.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Platform/Windows.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Platform/WindowsPaths.cmake C$:/Users/User/Documents/MWorld/numerics/linear_alg/CMakeLists.txt C$:/Users/User/Documents/MWorld/utils/CMakeLists.txt CMakeCache.txt CMakeFiles/3.19.0-rc3/CMakeCCompiler.cmake CMakeFiles/3.19.0-rc3/CMakeCXXCompiler.cmake CMakeFiles/3.19.0-rc3/CMakeRCCompiler.cmake CMakeFiles/3.19.0-rc3/CMakeSystem.cmake: phony
+build ../CMakeLists.txt ../cube/CMakeLists.txt ../lib/glad/CMakeLists.txt C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeCInformation.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeRCInformation.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Compiler/GNU.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Internal/CMakeCheckCompilerFlag.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Platform/Windows.cmake C$:/Program$ Files/CMake/share/cmake-3.19/Modules/Platform/WindowsPaths.cmake C$:/Users/User/Documents/MWorld/numerics/linear_alg/CMakeLists.txt C$:/Users/User/Documents/MWorld/utils/CMakeLists.txt CMakeCache.txt CMakeFiles/3.19.0-rc3/CMakeCCompiler.cmake CMakeFiles/3.19.0-rc3/CMakeCXXCompiler.cmake CMakeFiles/3.19.0-rc3/CMakeRCCompiler.cmake CMakeFiles/3.19.0-rc3/CMakeSystem.cmake: phony
 
 
 #############################################

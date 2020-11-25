@@ -3,7 +3,8 @@
         {
             "name": "Win32",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/numerics/linear_alg/include"
             ],
             "defines": [
                 "_DEBUG",
@@ -22,7 +23,7 @@
                 ],
                 "limitSymbolsToIncludedHeaders": true
             },
-            "configurationProvider": "ms-vscode.cmake-tools"
+            "configurationProvider": "ms-vsocode.cmake-tools"
         },
         {
             "name": "config1",

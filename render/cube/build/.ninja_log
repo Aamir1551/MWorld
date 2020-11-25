@@ -1,0 +1,18 @@
+# ninja log v5
+1	157	6280187451663411	CMakeFiles/cube.dir/cube.cpp.obj	2d026f252055c8ac
+747	859	6280187458683443	libcube.a	953e6e4efba8fb5e
+2	330	6280238655684774	build.ninja	b75e86644c1125a5
+8	572	6280210324667670	linear_alg/CMakeFiles/linear_alg.dir/src/matrix.cpp.obj	4aa2d5d5b9c7ba8e
+4	872	6280210327667638	linear_alg/CMakeFiles/test.dir/test/test.cpp.obj	d786e0bdc0a5175c
+873	6639	6280210381499931	linear_alg/test.exe	6429729e80174891
+573	717	6280210326157646	linear_alg/liblinear_alg.a	f8187d4c7007b1db
+8	12711	6280187576921391	linear_alg/CMakeFiles/test.dir/test/test-main.cpp.obj	f3863ca1be8a74f6
+3	334	6280213424066853	CMakeFiles/cube_collection.dir/cube_collection.cpp.obj	74d3eb490bb773c8
+335	791	6280213426311791	cube_collection.exe	c2eaa069bce6b72e
+7	293	6280238676420480	CMakeFiles/cube_collection.dir/cube_collection.cpp.obj	74d3eb490bb773c8
+16	529	6280238678668810	linear_alg/CMakeFiles/linear_alg.dir/src/matrix.cpp.obj	4aa2d5d5b9c7ba8e
+530	682	6280238680238489	linear_alg/liblinear_alg.a	f8187d4c7007b1db
+682	911	6280238682348446	cube_collection.exe	c2eaa069bce6b72e
+685	5904	6280238732110011	linear_alg/test.exe	6429729e80174891
+1	302	6280252519838579	build.ninja	b75e86644c1125a5
+8	813	6280252528617760	libcube_collection.a	f343fcf9a66cb0e3

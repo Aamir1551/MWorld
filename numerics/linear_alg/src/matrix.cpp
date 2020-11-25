@@ -1,4 +1,3 @@
-//#include "./matrix.h"
 #include <matrix.h>
 #include <math.h>
 #include <iostream>
@@ -183,7 +182,11 @@ Matrix::Matrix(int rows, int cols, real *values) : rows(rows),
 {
     this->rows = rows;
     this->cols = cols;
-    this->values = values;
+    this->values = new real[rows * cols];
+    for (int i = 0; i < rows * cols; i++)
+    {
+        this->values[i] = values[i];
+    }
 };
 
 int Matrix::transpose()
