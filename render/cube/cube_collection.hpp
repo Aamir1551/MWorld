@@ -60,7 +60,7 @@ public:
             }
         };
         return vertices;
-    }
+        }
 
     int *GetCubeElements()
     {

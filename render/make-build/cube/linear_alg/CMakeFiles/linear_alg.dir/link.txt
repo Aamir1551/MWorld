@@ -1,2 +1,0 @@
-C:/MinGW/bin/ar.exe qc liblinear_alg.a CMakeFiles/linear_alg.dir/src/matrix.cpp.obj
-C:/MinGW/bin/ranlib.exe liblinear_alg.a
