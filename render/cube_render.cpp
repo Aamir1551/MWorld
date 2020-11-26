@@ -24,7 +24,11 @@ float lastX = 400, lastY = 300; //needed for mouse initial values
 bool firstMouse = false;
 float yaw = -90.0f;
 float pitch = 0.0f;
-
+// TODO:
+// 1) Go over mouse controls and understand properly how they work, also how cameraFront works
+// so read again from page 97
+// 2) Organise code layout properly, and sort out cmakelists files for the full render directory
+// 3) Please get notion
 int main()
 {
     glfwInit();
