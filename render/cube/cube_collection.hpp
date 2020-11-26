@@ -1,8 +1,9 @@
+#ifndef CUBE_COLLECTION_H
+#define CUBE_COLLECTION_H
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <cube.hpp>
 #include <vector>
-#include <iostream>
 
 class ShaderCubeCollection
 {
@@ -94,3 +95,4 @@ public:
         return 0;
     }
 };
+#endif
