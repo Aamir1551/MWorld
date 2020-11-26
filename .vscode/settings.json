@@ -2,7 +2,11 @@
     "files.associations": {
         "xstring": "cpp",
         "string": "cpp",
-        "tuple": "cpp"
+        "tuple": "cpp",
+        "*.tcc": "cpp",
+        "ostream": "cpp",
+        "sstream": "cpp",
+        "utility": "cpp"
     },
     "C_Cpp.errorSquiggles": "Enabled",
     "cmake.generator": "Ninja",

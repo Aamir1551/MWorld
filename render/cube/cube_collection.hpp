@@ -2,7 +2,6 @@
 #include <GLFW/glfw3.h>
 #include <cube.hpp>
 #include <vector>
-#include <matrix.h>
 #include <iostream>
 
 class ShaderCubeCollection
@@ -29,8 +28,6 @@ public:
         return 0;
     }
 
-    Matrix GetCordinates(){};
-
     int ApplyUniforms()
     {
         for (int i = 0; i < this->cubes.size(); i++)
@@ -39,19 +36,20 @@ public:
             int view_loc = glGetUniformLocation(shader_id, "view");
             int proj_loc = glGetUniformLocation(shader_id, "proj");
 
-            glUniformMatrix4fv(model_loc, 1, GL_FALSE, this->cubes.at(i)->GetModel().getValues());
-            glUniformMatrix4fv(view_loc, 1, GL_FALSE, this->cubes.at(i)->GetView().getValues());
-            glUniformMatrix4fv(proj_loc, 1, GL_FALSE, this->cubes.at(i)->GetProject().getValues());
+            Cube *current_cube = this->cubes.at(i);
+            glUniformMatrix4fv(model_loc, 1, GL_FALSE, glm::value_ptr(*current_cube->model));
+            glUniformMatrix4fv(view_loc, 1, GL_FALSE, glm::value_ptr(*current_cube->view));
+            glUniformMatrix4fv(proj_loc, 1, GL_FALSE, glm::value_ptr(*current_cube->project));
         }
         return 0;
     }
 
-    real *GetCubeVertices()
+    float *GetCubeVertices()
     {
-        real *vertices = new real[this->cubes.size() * 8 * 3];
+        float *vertices = new float[this->cubes.size() * 8 * 3];
         for (int i = 0; i < this->cubes.size(); i++)
         {
-            real const *const cube_vertices = this->cubes.at(i)->GetVertices();
+            float const *const cube_vertices = this->cubes.at(i)->GetVertices();
             for (int j = 0; j < 8; j++)
             {
                 vertices[0 + i * 24 + j] = cube_vertices[j];
@@ -79,61 +77,20 @@ public:
     int AddVerticesToBuffers()
     {
 
+        float *cubes_vertices = GetCubeVertices();
+        int *get_indexes = GetCubeElements();
+
         glBindVertexArray(vao);
 
         glBindBuffer(GL_ARRAY_BUFFER, vbo);
-
-        real *cubes_vertices = GetCubeVertices();
-        int *get_indexes = GetCubeElements();
-
-        //remember the sizeof(cube_vertices) is not 8
-        // 24 since 8*3, where 8 is the number of vertices and 3 points each
-        //glBufferData(GL_ARRAY_BUFFER, 24, cubes_vertices, GL_STATIC_DRAW);
-
-        //code below commented out - multi line
-        //24 * 4 for the 4 bytes
-        glBufferData(GL_ARRAY_BUFFER, 24 * 4, cubes_vertices, GL_STATIC_DRAW);
+        glBufferData(GL_ARRAY_BUFFER, 8 * 3 * sizeof(float), cubes_vertices, GL_STATIC_DRAW);
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
-        glEnableVertexAttribArray(0); //try putting this at the end of the function and see what will happen, (if it still works or not)
+        glBindBuffer(GL_ARRAY_BUFFER, 0); // unbinding vbo
 
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, 36 * 4, get_indexes, GL_STATIC_DRAW);
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, 36 * sizeof(float), get_indexes, GL_STATIC_DRAW);
 
-        glBindBuffer(GL_ARRAY_BUFFER, 0); //unbinding vbo --
-        //do u also need to unbind gl_element_array_buffer
+        glEnableVertexAttribArray(0);
         return 0;
-
-        /*for (int i = 0; i < 4; i++)
-        {
-            for (int j = 0; j < 3; j++)
-            {
-                std::cout << cubes_vertices[j + i * 3] << " ";
-            }
-            std::cout << std::endl;
-        }
-
-        float vertices[] = {
-            0.5f, 0.5f, 0.0f,   // top right
-            0.5f, -0.5f, 0.0f,  // bottom right
-            -0.5f, -0.5f, 0.0f, // bottom left
-            -0.5f, 0.5f, 0.0f   // top left
-        };
-
-        unsigned int indices[] = {
-            // note that we start from 0!
-            0, 1, 3, // first Triangle
-            1, 2, 3  // second Triangle
-        };
-
-        std::cout << sizeof(vertices) << std::endl;
-        glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
-        glEnableVertexAttribArray(0); //try putting this at the end of the function and see what will happen, (if it still works or not)
-
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-        glBindBuffer(GL_ARRAY_BUFFER, 0); //unbinding vbo --
-        //do u also need to unbind gl_element_array_buffer
-        return 0;*/
     }
 };
