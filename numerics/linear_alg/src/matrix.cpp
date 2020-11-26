@@ -219,7 +219,7 @@ Matrix &Matrix::Transpose(Matrix const &a)
     }
     int t = a.cols;
 
-    Matrix *res = new Matrix(a.rows, a.cols, new_values);
+    Matrix *res = new Matrix(a.cols, a.rows, new_values);
     return *res;
 }
 
