@@ -10,7 +10,6 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #include <cube.hpp>
-#include <cube_collection.hpp>
 
 void processInput(GLFWwindow *window);
 void framebuffer_size_callback(GLFWwindow *window, int width, int height);
@@ -48,33 +47,27 @@ int main()
     glGenBuffers(1, &ebo);
 
     glm::mat4 id = glm::mat4(1.0f);
-    glm::mat4 model_cube1 = glm::rotate(id, glm::radians(10.0f), glm::vec3(0.0f, 0.0f, 1.0f));
-    glm::mat4 model_cube2 = glm::rotate(id, glm::radians(10.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+
     glm::mat4 view = glm::translate(id, glm::vec3(0.0f, 0.0f, -4.0f)); //translating the scene in reverse direction
     glm::mat4 projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
 
-    std::vector<glm::vec3 *> models;
+    std::vector<glm::vec3 *> positions;
 
     auto a = glm::vec3(0.0f, 0.0f, 0.0f);
     auto b = glm::vec3(2.0f, 5.0f, -15.0f);
 
-    //models.push_back(&model_cube1);
-    //models.push_back(&model_cube2);
-    models.push_back(&a);
-    models.push_back(&b);
+    positions.push_back(&a);
+    positions.push_back(&b);
 
-    Cube c1(1.0f, ourShader.shader_id, &model_cube1);
-    Cube c2(1.0f, ourShader.shader_id, &model_cube2);
-    c1.view = &view;
-    c1.project = &projection;
+    Cube c1 = Cube();
+    Cube c2 = Cube();
+    Cube::InitializeCube(2.0f, vao, vbo, ebo, &view, &projection);
+    Cube::AddVerticesToBuffers();
 
-    c2.view = &view;
-    c2.project = &projection;
-
-    ShaderCubeCollection s(ourShader.shader_id, vao, vbo, ebo);
-    s.add_cube(&c1);
-    //s.add_cube(&c2);
-    s.AddVerticesToBuffers();
+    //ShaderCubeCollection s(ourShader.shader_id, vao, vbo, ebo);
+    std::vector<Cube *> cubes;
+    cubes.push_back(&c1);
+    cubes.push_back(&c2);
 
     glBindVertexArray(vao);
     glEnable(GL_DEPTH_TEST);
@@ -90,11 +83,10 @@ int main()
 
         for (int i = 0; i < 2; i++)
         {
-
-            //model_cube1 = glm::rotate(id, glm::radians((float)glfwGetTime() * 20), glm::vec3(0.2f, 0.8f, 0.3f));
-            model_cube1 = glm::translate(id, *models.at(i));
-            model_cube1 = glm::rotate(model_cube1, glm::radians((float)glfwGetTime() * 20), glm::vec3(0.2f, 0.8f, 0.3f));
-            s.ApplyUniforms();
+            glm::mat4 model = glm::translate(id, *positions.at(i));
+            model = glm::rotate(model, glm::radians((float)glfwGetTime() * 20 * (i + 1)), glm::vec3(0.2f, 0.8f, 0.3f));
+            cubes.at(i)->model = &model;
+            cubes.at(i)->ApplyUniforms();
             glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
         }
 

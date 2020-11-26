@@ -1,21 +1,29 @@
+#ifndef CUBE_RE_H
+#define CUBE_RE_H
+
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 #include <math.h>
+#include <vector>
 
-#ifndef CUBE_H
-#define CUBE_H
 class Cube
 {
 
 private:
-    float vertices[24];
-    float cube_length;
+    static float vertices[24];
+    static float cube_length;
+    static unsigned int shader_id;
 
 public:
     glm::mat4 *model;
-    glm::mat4 *view;
-    glm::mat4 *project;
+    static glm::mat4 *view;
+    static glm::mat4 *project;
+    static int vao;
+    static int vbo;
+    static int ebo;
 
-    unsigned int indices[36] = {
+    static unsigned int constexpr indices[36] = {
         6, 2, 3,
         6, 7, 3, //top square
 
@@ -36,31 +44,50 @@ public:
     };
 
     //position is the origin of the cube
-    Cube(float cube_length, unsigned int shader_id, glm::mat4 *model)
+    Cube(){};
 
+    void static inline InitializeCube(float cube_length, unsigned int vao, unsigned int vbo, unsigned int ebo, glm::mat4 *view, glm::mat4 *project)
     {
-        this->model = model;
-        this->cube_length = cube_length;
         float diff = cube_length / 2;
-
         for (unsigned int i = 0; i < 8; i++)
         {
-            this->vertices[i * 3] = (i % 2 == 0 ? -diff : diff);
-            this->vertices[i * 3 + 1] = (((int)std::floor(i / 2)) % 2 == 0 ? -diff : diff);
-            this->vertices[i * 3 + 2] = (((int)std::floor(i / 4)) % 2 == 0 ? -diff : diff);
+            Cube::vertices[i * 3] = (i % 2 == 0 ? -diff : diff);
+            Cube::vertices[i * 3 + 1] = (((int)std::floor(i / 2)) % 2 == 0 ? -diff : diff);
+            Cube::vertices[i * 3 + 2] = (((int)std::floor(i / 4)) % 2 == 0 ? -diff : diff);
         }
-    };
 
-    float const *const GetVertices()
-    {
-        return this->vertices;
+        Cube::vao = vao;
+        Cube::vbo = vbo;
+        Cube::ebo = ebo;
+
+        Cube::view = view;
+        Cube::project = project;
     }
 
-    void IdentityInitializeCube()
+    void ApplyUniforms()
     {
-        this->model = new glm::mat4(1);
-        this->view = new glm::mat4(1);
-        this->project = new glm::mat4(1);
+        int model_loc = glGetUniformLocation(shader_id, "model");
+        int view_loc = glGetUniformLocation(shader_id, "view");
+        int proj_loc = glGetUniformLocation(shader_id, "proj");
+
+        glUniformMatrix4fv(model_loc, 1, GL_FALSE, glm::value_ptr(*this->model));
+        glUniformMatrix4fv(view_loc, 1, GL_FALSE, glm::value_ptr(*Cube::view));
+        glUniformMatrix4fv(proj_loc, 1, GL_FALSE, glm::value_ptr(*Cube::project));
+    }
+
+    void static inline AddVerticesToBuffers()
+    {
+        glBindVertexArray(Cube::vao);
+
+        glBindBuffer(GL_ARRAY_BUFFER, Cube::vbo);
+        glBufferData(GL_ARRAY_BUFFER, 8 * 3 * sizeof(float), Cube::vertices, GL_STATIC_DRAW);
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
+        glBindBuffer(GL_ARRAY_BUFFER, 0); // unbinding vbo
+
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, Cube::ebo);
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, 36 * sizeof(float), Cube::indices, GL_STATIC_DRAW);
+
+        glEnableVertexAttribArray(0);
     }
 };
 #endif

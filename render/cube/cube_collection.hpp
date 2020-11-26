@@ -1,4 +1,4 @@
-#ifndef CUBE_COLLECTION_H
+/*#ifndef CUBE_COLLECTION_H
 #define CUBE_COLLECTION_H
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -95,4 +95,4 @@ public:
         return 0;
     }
 };
-#endif
+#endif*/
