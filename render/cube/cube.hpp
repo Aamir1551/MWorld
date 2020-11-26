@@ -48,7 +48,6 @@ public:
             v[i * 3 + 2] = z + (((int)std::floor(i / 4)) % 2 ? -diff : diff);
         }
         this->vertices = Matrix(3, 8, v);
-        this->vertices.print();
         //this->vertices = initial_vertices; //add a move operator in matrix
     };
 
