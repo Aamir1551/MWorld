@@ -1,15 +1,14 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include <iostream>
-#include <math.h>
-#include "./shader.hpp"
-#include <vector>
-
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include <iostream>
 
+#include <math.h>
+#include "./shader.hpp"
 #include <cube.hpp>
+#include <vector>
 
 void processInput(GLFWwindow *window);
 void framebuffer_size_callback(GLFWwindow *window, int width, int height);
@@ -63,25 +62,11 @@ int main()
         glm::vec3(1.5f, 0.2f, -1.5f),
         glm::vec3(-1.3f, 1.0f, -1.5f)};
 
-    //auto a = glm::vec3(0.0f, 0.0f, 0.0f);
-    //auto b = glm::vec3(2.0f, 5.0f, -15.0f);
+    Cubes::InitializeCube(1.0f, vao, vbo, ebo, &view, &projection, ourShader.shader_id);
 
-    //positions.push_back(&a);
-    //positions.push_back(&b);
+    Cubes::AddVerticesToBuffers();
 
-    Cube *c1 = new Cube();
-    Cube *c2 = new Cube();
-    Cube::InitializeCube(1.0f, vao, vbo, ebo, &view, &projection, ourShader.shader_id);
-
-    Cube::AddVerticesToBuffers();
-
-    std::vector<Cube *> cubes;
-    for (int i = 0; i < 10; i++)
-    {
-        cubes.push_back(new Cube());
-    }
-    //cubes.push_back(c1);
-    //cubes.push_back(c2);
+    Cubes cubes;
 
     glBindVertexArray(vao);
     glEnable(GL_DEPTH_TEST);
@@ -99,11 +84,12 @@ int main()
         {
             glm::mat4 model = glm::translate(id, positions[i]);
             model = glm::rotate(model, glm::radians((float)glfwGetTime() * 20 * (i + 1)), glm::vec3(0.2f, 0.8f, 0.3f));
-            cubes.at(i)->model = &model;
-            cubes.at(i)->ApplyUniforms();
+            cubes.models.push_back(&model);
+            cubes.ApplyUniforms(i);
 
             glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
         }
+        cubes.models.clear();
 
         glfwSwapBuffers(window);
         glfwPollEvents(); //checks if any events are triggered, and calls their respective handlers

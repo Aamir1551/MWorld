@@ -7,12 +7,12 @@
 #include <math.h>
 #include <vector>
 
-class Cube
+class Cubes
 {
 
 public:
     static float cube_length;
-    glm::mat4 *model;
+    std::vector<glm::mat4 *> models;
     static glm::mat4 *view;
     static glm::mat4 *project;
     static int vao;
@@ -24,40 +24,40 @@ public:
     static unsigned int indices[36];
 
     //position is the origin of the cube
-    Cube(){};
+    Cubes(){};
 
     void static InitializeCube(float cube_length, unsigned int vao, unsigned int vbo, unsigned int ebo, glm::mat4 *view, glm::mat4 *project, unsigned int shader_id)
     {
         float diff = cube_length / 2;
         for (unsigned int i = 0; i < 8; i++)
         {
-            Cube::vertices[i * 3] = (i % 2 == 0 ? -diff : diff);
-            Cube::vertices[i * 3 + 1] = (((int)std::floor(i / 2)) % 2 == 0 ? -diff : diff);
-            Cube::vertices[i * 3 + 2] = (((int)std::floor(i / 4)) % 2 == 0 ? -diff : diff);
+            Cubes::vertices[i * 3] = (i % 2 == 0 ? -diff : diff);
+            Cubes::vertices[i * 3 + 1] = (((int)std::floor(i / 2)) % 2 == 0 ? -diff : diff);
+            Cubes::vertices[i * 3 + 2] = (((int)std::floor(i / 4)) % 2 == 0 ? -diff : diff);
         }
 
-        Cube::shader_id = shader_id;
-        Cube::vao = vao;
-        Cube::vbo = vbo;
-        Cube::ebo = ebo;
+        Cubes::shader_id = shader_id;
+        Cubes::vao = vao;
+        Cubes::vbo = vbo;
+        Cubes::ebo = ebo;
 
-        Cube::view = view;
-        Cube::project = project;
+        Cubes::view = view;
+        Cubes::project = project;
     }
 
-    void ApplyUniforms();
+    void ApplyUniforms(int model_id);
 
     void static AddVerticesToBuffers()
     {
-        glBindVertexArray(Cube::vao);
+        glBindVertexArray(Cubes::vao);
 
-        glBindBuffer(GL_ARRAY_BUFFER, Cube::vbo);
-        glBufferData(GL_ARRAY_BUFFER, 8 * 3 * sizeof(float), Cube::vertices, GL_STATIC_DRAW);
+        glBindBuffer(GL_ARRAY_BUFFER, Cubes::vbo);
+        glBufferData(GL_ARRAY_BUFFER, 8 * 3 * sizeof(float), Cubes::vertices, GL_STATIC_DRAW);
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
         glBindBuffer(GL_ARRAY_BUFFER, 0); // unbinding vbo
 
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, Cube::ebo);
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, 36 * sizeof(float), Cube::indices, GL_STATIC_DRAW);
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, Cubes::ebo);
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, 36 * sizeof(float), Cubes::indices, GL_STATIC_DRAW);
 
         glEnableVertexAttribArray(0);
     }
