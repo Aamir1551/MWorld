@@ -4,15 +4,19 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <iostream>
+#include <cstdlib> //for the rand function
 
 #include <math.h>
 #include "./shader.hpp"
 #include <cube.hpp>
 #include <vector>
+#include <time.h>
 
 void processInput(GLFWwindow *window);
 void framebuffer_size_callback(GLFWwindow *window, int width, int height);
 void mouse_callback(GLFWwindow *window, double xpos, double ypos);
+std::vector<glm::vec3> *GeneratePosition(int num_cubes);
+std::vector<glm::vec3> *GenerateRotationsAxis(int num_cubes);
 
 glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
 glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
@@ -70,17 +74,9 @@ int main()
 
     glm::mat4 projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
 
-    glm::vec3 positions[] = {
-        glm::vec3(0.0f, 0.0f, 0.0f),
-        glm::vec3(2.0f, 5.0f, -15.0f),
-        glm::vec3(-1.5f, -2.2f, -2.5f),
-        glm::vec3(-3.8f, -2.0f, -12.3f),
-        glm::vec3(2.4f, -0.4f, -3.5f),
-        glm::vec3(-1.7f, 3.0f, -7.5f),
-        glm::vec3(1.3f, -2.0f, -2.5f),
-        glm::vec3(1.5f, 2.0f, -2.5f),
-        glm::vec3(1.5f, 0.2f, -1.5f),
-        glm::vec3(-1.3f, 1.0f, -1.5f)};
+    int num_cubes = 10;
+    std::vector<glm::vec3> *positions = GeneratePosition(num_cubes);
+    std::vector<glm::vec3> *rotations = GenerateRotationsAxis(num_cubes);
 
     Cubes::InitializeCube(1.0f, vao, vbo, ebo, &view, &projection, shader.shader_id);
 
@@ -93,7 +89,8 @@ int main()
     glDepthFunc(GL_LESS);
     glUseProgram(shader.shader_id);
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-    glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+    //glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+    glClearColor(0.0f, 0.0f, 0.0f, 0.0f); //using black
     while (!glfwWindowShouldClose(window))
     { // render loop -- an iteration of this main render loop is called a frame
         processInput(window);
@@ -105,10 +102,10 @@ int main()
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        for (int i = 0; i < 9; i++)
+        for (int i = 0; i < num_cubes; i++)
         {
-            glm::mat4 model = glm::translate(id, positions[i]);
-            model = glm::rotate(model, glm::radians((float)glfwGetTime() * 20 * (i + 1)), glm::vec3(0.2f, 0.8f, 0.3f));
+            glm::mat4 model = glm::translate(id, positions->at(i));
+            model = glm::rotate(model, glm::radians((float)glfwGetTime() * 20 * (i + 1)), rotations->at(i));
             cubes.models.push_back(&model);
 
             view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
@@ -138,12 +135,43 @@ void framebuffer_size_callback(GLFWwindow *window, int width, int height)
 
 void processInput(GLFWwindow *window)
 {
+
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
     {
         glfwSetWindowShouldClose(window, true);
     }
 
-    float cameraSpeed = 4.0f * deltaTime; //change 2.5 if you want it to move at a different speed
+    float cameraSpeed = 4.0f * deltaTime;               //change 2.5 if you want it to move at a different speed
+    int present = glfwJoystickPresent(GLFW_JOYSTICK_1); //get player 1 inputs
+    if (present)
+    {
+        int axescount;
+        int buttoncount;
+        //float const *axes;
+        float const *axes = glfwGetJoystickAxes(GLFW_JOYSTICK_1, &axescount);
+        char unsigned const *b = glfwGetJoystickButtons(GLFW_JOYSTICK_1, &buttoncount);
+        //std::cout << axescount << std::endl;
+        cameraSpeed += cameraSpeed * (axes[4] + 1) * 0.5;
+        std::cout << axes[4] << std ::endl;
+        cameraPos -= cameraSpeed * cameraFront * axes[1];
+        cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) *
+                     cameraSpeed * axes[0]; // use right hand rule to figure this out
+
+        float xoffset = axes[2];
+        float yoffset = -axes[3];
+        float sensitivity = 0.01f;
+        xoffset *= sensitivity;
+        yoffset *= sensitivity;
+        yaw += xoffset;
+        pitch += yoffset;
+
+        glm::vec3 direction;
+        direction.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
+        direction.y = sin(glm::radians(pitch));
+        direction.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
+        cameraFront = glm::normalize(direction);
+    }
+
     if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
         cameraPos += cameraSpeed * cameraFront;
     if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
@@ -158,6 +186,7 @@ void processInput(GLFWwindow *window)
 
 void mouse_callback(GLFWwindow *window, double xpos, double ypos)
 {
+    std::cout << xpos << std::endl;
     if (firstMouse)
     {
         lastX = xpos;
@@ -168,7 +197,7 @@ void mouse_callback(GLFWwindow *window, double xpos, double ypos)
     float yoffset = lastY - ypos;
     lastX = xpos;
     lastY = ypos;
-    float sensitivity = 0.1f;
+    float sensitivity = 0.03f;
     xoffset *= sensitivity;
     yoffset *= sensitivity;
     yaw += xoffset;
@@ -182,4 +211,26 @@ void mouse_callback(GLFWwindow *window, double xpos, double ypos)
     direction.y = sin(glm::radians(pitch));
     direction.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
     cameraFront = glm::normalize(direction);
+}
+
+std::vector<glm::vec3> *GeneratePosition(int num_cubes)
+{
+    srand((unsigned)time(NULL)); //NULL???
+    std::vector<glm::vec3> *positions = new std::vector<glm::vec3>;
+    for (int i = 0; i < num_cubes; i++)
+    {
+        positions->push_back(glm::vec3(rand() % 10, rand() % 10, rand() % 10)); //try this without a pointer to see if it'l work.
+    }
+    return positions;
+}
+
+std::vector<glm::vec3> *GenerateRotationsAxis(int num_cubes)
+{
+    srand((unsigned)time(NULL)); //NULL???
+    std::vector<glm::vec3> *rotations = new std::vector<glm::vec3>;
+    for (int i = 0; i < num_cubes; i++)
+    {
+        rotations->push_back(glm::vec3(rand() % 5 - 2, rand() % 5 - 2, rand() % 5 - 2)); //try this without a pointer to see if it'l work.
+    }
+    return rotations;
 }
