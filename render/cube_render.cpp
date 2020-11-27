@@ -33,6 +33,8 @@ float pitch = 0.0f;
 // so read again from page 97
 // 2) Organise code layout properly, and sort out cmakelists files for the full render directory
 // 3) Please get notion
+// 4) read over random numbers in c++
+// 5) statics and linking and why static variables should be in header file only, and why u'll get linking errors if you don't
 int main()
 {
     glfwInit();
