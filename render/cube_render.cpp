@@ -35,12 +35,15 @@ float pitch = 0.0f;
 // 3) Please get notion
 // 4) read over random numbers in c++
 // 5) statics and linking and why static variables should be in header file only, and why u'll get linking errors if you don't
+// 6) Learn to add a colour using element buffer objects
 int main()
 {
+    std::cout << "Rendering started" << std::endl;
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    std::cout << "GLFW initialised" << std::endl;
 
     GLFWwindow *window = glfwCreateWindow(800, 600, "Cube Renderer", NULL, NULL);
     if (window == NULL)
@@ -50,18 +53,21 @@ int main()
     }
     glfwMakeContextCurrent(window);
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+    std::cout << "GLFW successfully intialised" << std::endl;
 
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
     {
         std::cout << "Failed to initialize GLAD" << std::endl;
         return -1;
     }
+    std::cout << "GLAD successfully intialised" << std::endl;
 
     glViewport(0, 0, 800, 600);
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
     Shader shader("../shaders/vert.glsl", "../shaders/frag.glsl");
     shader.use();
+    std::cout << "Shaders successfully initialised" << std::endl;
 
     unsigned int vao, vbo, ebo;
     glGenVertexArrays(1, &vao); // this only gives a number to the vao varialbe, doesnt acc create a buffer
@@ -76,7 +82,7 @@ int main()
 
     glm::mat4 projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
 
-    int num_cubes = 10;
+    int num_cubes = 1000;
     std::vector<glm::vec3> *positions = GeneratePosition(num_cubes);
     std::vector<glm::vec3> *rotations = GenerateRotationsAxis(num_cubes);
 
@@ -93,6 +99,7 @@ int main()
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     //glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
     glClearColor(0.0f, 0.0f, 0.0f, 0.0f); //using black
+    std::cout << "Entering Main Loop" << std::endl;
     while (!glfwWindowShouldClose(window))
     { // render loop -- an iteration of this main render loop is called a frame
         processInput(window);
@@ -145,23 +152,26 @@ void processInput(GLFWwindow *window)
 
     float cameraSpeed = 4.0f * deltaTime;               //change 2.5 if you want it to move at a different speed
     int present = glfwJoystickPresent(GLFW_JOYSTICK_1); //get player 1 inputs
+    std::cout << "134came here" << std::endl;
     if (present)
     {
+        std::cout << "came here" << std::endl;
         int axescount;
         int buttoncount;
-        //float const *axes;
         float const *axes = glfwGetJoystickAxes(GLFW_JOYSTICK_1, &axescount);
         char unsigned const *b = glfwGetJoystickButtons(GLFW_JOYSTICK_1, &buttoncount);
-        //std::cout << axescount << std::endl;
-        cameraSpeed += cameraSpeed * (axes[4] + 1) * 0.5;
-        std::cout << axes[4] << std ::endl;
+        if (b[4] == 1)
+        {
+            glfwSetWindowShouldClose(window, true);
+        }
+        cameraSpeed += cameraSpeed * (axes[4] * 2 + 1) * 0.5; //Allow r1 to make it even faster
         cameraPos -= cameraSpeed * cameraFront * axes[1];
         cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) *
                      cameraSpeed * axes[0]; // use right hand rule to figure this out
 
         float xoffset = axes[2];
         float yoffset = -axes[3];
-        float sensitivity = 0.01f;
+        float sensitivity = 0.03f;
         xoffset *= sensitivity;
         yoffset *= sensitivity;
         yaw += xoffset;
@@ -188,7 +198,6 @@ void processInput(GLFWwindow *window)
 
 void mouse_callback(GLFWwindow *window, double xpos, double ypos)
 {
-    std::cout << xpos << std::endl;
     if (firstMouse)
     {
         lastX = xpos;
@@ -219,9 +228,12 @@ std::vector<glm::vec3> *GeneratePosition(int num_cubes)
 {
     srand((unsigned)time(NULL)); //NULL???
     std::vector<glm::vec3> *positions = new std::vector<glm::vec3>;
+    float world_size = 100;
+    float const scale = world_size / ((float)RAND_MAX / 2.0);
+    auto get_coord = [scale, world_size]() -> float { return scale * (rand() - RAND_MAX / 2); };
     for (int i = 0; i < num_cubes; i++)
     {
-        positions->push_back(glm::vec3(rand() % 10, rand() % 10, rand() % 10)); //try this without a pointer to see if it'l work.
+        positions->push_back(glm::vec3(get_coord(), get_coord(), get_coord())); //try this without a pointer to see if it'l work.
     }
     return positions;
 }
