@@ -80,9 +80,9 @@ int main()
     view = glm::lookAt(glm::vec3(0.0f, 0.0f, 10.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
     //camera position, camera target, world space up
 
-    glm::mat4 projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
+    glm::mat4 projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 400.0f);
 
-    int num_cubes = 1000;
+    int num_cubes = 300;
     std::vector<glm::vec3> *positions = GeneratePosition(num_cubes);
     std::vector<glm::vec3> *rotations = GenerateRotationsAxis(num_cubes);
 
@@ -114,7 +114,7 @@ int main()
         for (int i = 0; i < num_cubes; i++)
         {
             glm::mat4 model = glm::translate(id, positions->at(i));
-            model = glm::rotate(model, glm::radians((float)glfwGetTime() * 20 * (i + 1)), rotations->at(i));
+            model = glm::rotate(model, glm::radians((float)glfwGetTime() * 20 * ((i + 1) % 20)), rotations->at(i));
             cubes.models.push_back(&model);
 
             view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
@@ -150,12 +150,10 @@ void processInput(GLFWwindow *window)
         glfwSetWindowShouldClose(window, true);
     }
 
-    float cameraSpeed = 4.0f * deltaTime;               //change 2.5 if you want it to move at a different speed
+    float cameraSpeed = 10.0f * deltaTime;              //change 2.5 if you want it to move at a different speed
     int present = glfwJoystickPresent(GLFW_JOYSTICK_1); //get player 1 inputs
-    std::cout << "134came here" << std::endl;
     if (present)
     {
-        std::cout << "came here" << std::endl;
         int axescount;
         int buttoncount;
         float const *axes = glfwGetJoystickAxes(GLFW_JOYSTICK_1, &axescount);
@@ -164,7 +162,7 @@ void processInput(GLFWwindow *window)
         {
             glfwSetWindowShouldClose(window, true);
         }
-        cameraSpeed += cameraSpeed * (axes[4] * 2 + 1) * 0.5; //Allow r1 to make it even faster
+        cameraSpeed += cameraSpeed * (axes[5] * 2 + 1) * 0.5; //Allow r1 to make it even faster
         cameraPos -= cameraSpeed * cameraFront * axes[1];
         cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) *
                      cameraSpeed * axes[0]; // use right hand rule to figure this out
@@ -172,6 +170,7 @@ void processInput(GLFWwindow *window)
         float xoffset = axes[2];
         float yoffset = -axes[3];
         float sensitivity = 0.03f;
+        sensitivity += sensitivity * (axes[4] * 2 + 1) * 0.5; //Allow l1 to make it even faster
         xoffset *= sensitivity;
         yoffset *= sensitivity;
         yaw += xoffset;
