@@ -82,7 +82,7 @@ int main()
 
     glm::mat4 projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 400.0f);
 
-    int num_cubes = 300;
+    int num_cubes = 3000;
     std::vector<glm::vec3> *positions = GeneratePosition(num_cubes);
     std::vector<glm::vec3> *rotations = GenerateRotationsAxis(num_cubes);
 
@@ -150,7 +150,7 @@ void processInput(GLFWwindow *window)
         glfwSetWindowShouldClose(window, true);
     }
 
-    float cameraSpeed = 10.0f * deltaTime;              //change 2.5 if you want it to move at a different speed
+    float cameraSpeed = 15.0f * deltaTime;              //change 2.5 if you want it to move at a different speed
     int present = glfwJoystickPresent(GLFW_JOYSTICK_1); //get player 1 inputs
     if (present)
     {
@@ -162,15 +162,15 @@ void processInput(GLFWwindow *window)
         {
             glfwSetWindowShouldClose(window, true);
         }
-        cameraSpeed += cameraSpeed * (axes[5] * 2 + 1) * 0.5; //Allow r1 to make it even faster
+        cameraSpeed += cameraSpeed * (axes[4] * 2 + 1) * 0.5; //Allow r1 to make it even faster
         cameraPos -= cameraSpeed * cameraFront * axes[1];
         cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) *
                      cameraSpeed * axes[0]; // use right hand rule to figure this out
 
         float xoffset = axes[2];
         float yoffset = -axes[3];
-        float sensitivity = 0.03f;
-        sensitivity += sensitivity * (axes[4] * 2 + 1) * 0.5; //Allow l1 to make it even faster
+        float sensitivity = 0.05f;
+        sensitivity += sensitivity * (axes[5] * 2 + 1) * 0.5; //Allow l1 to make it even faster
         xoffset *= sensitivity;
         yoffset *= sensitivity;
         yaw += xoffset;
@@ -227,7 +227,7 @@ std::vector<glm::vec3> *GeneratePosition(int num_cubes)
 {
     srand((unsigned)time(NULL)); //NULL???
     std::vector<glm::vec3> *positions = new std::vector<glm::vec3>;
-    float world_size = 100;
+    float world_size = 500;
     float const scale = world_size / ((float)RAND_MAX / 2.0);
     auto get_coord = [scale, world_size]() -> float { return scale * (rand() - RAND_MAX / 2); };
     for (int i = 0; i < num_cubes; i++)
