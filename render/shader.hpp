@@ -4,7 +4,7 @@
 #include <string>
 #include <iostream>
 #include <fstream>
-#include <utils.h>
+#include <util_functions.h>
 
 class Shader
 {
@@ -54,8 +54,9 @@ public:
     {
         std::string vertex_shader_sourcecode;
         std::string frag_shader_sourcecode;
-        read_from_file(vert_file, vertex_shader_sourcecode);
-        read_from_file(frag_file, frag_shader_sourcecode);
+
+        util_functions::read_from_file(vert_file, vertex_shader_sourcecode);
+        util_functions::read_from_file(frag_file, frag_shader_sourcecode);
 
         unsigned int vertex_shader = glCreateShader(GL_VERTEX_SHADER);
         char const *vp = "vertex";

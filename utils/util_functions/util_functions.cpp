@@ -1,8 +1,8 @@
 #include <fstream>
 #include <iostream>
-#include <utils.h>
+#include <util_functions.h>
 
-int read_from_file(std::string file_name, std::string &contents)
+int util_functions::read_from_file(std::string file_name, std::string &contents)
 {
     std::ifstream file;
     file.open(file_name);

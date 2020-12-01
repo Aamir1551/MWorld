@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-typedef float real;
+typedef float real; //remove this. Now using settings::real
 
 class Matrix
 {

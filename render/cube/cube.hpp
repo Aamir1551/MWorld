@@ -23,11 +23,11 @@ public:
 
     static unsigned int indices[36];
 
-    //position is the origin of the cube
     Cubes(){};
 
     void static InitializeCube(float cube_length, unsigned int vao, unsigned int vbo, unsigned int ebo, glm::mat4 *view, glm::mat4 *project, unsigned int shader_id)
     {
+        Cubes::shader_id = shader_id;
         float diff = cube_length / 2;
         for (unsigned int i = 0; i < 8; i++)
         {
@@ -36,7 +36,6 @@ public:
             Cubes::vertices[i * 3 + 2] = (((int)std::floor(i / 4)) % 2 == 0 ? -diff : diff);
         }
 
-        Cubes::shader_id = shader_id;
         Cubes::vao = vao;
         Cubes::vbo = vbo;
         Cubes::ebo = ebo;
