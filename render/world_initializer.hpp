@@ -8,6 +8,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include <windows.h>
 
 #include <shader.hpp>
 
@@ -50,6 +51,8 @@ WorldProperties *world_intializer()
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
     //Shader shader("  ../shaders/vert.glsl", "../shaders/frag.glsl"); //with respect to current
+    char result[MAX_PATH];
+    std::cout << std::string(result, GetModuleFileName(NULL, result, MAX_PATH)) << std::endl;
     Shader shader("../../render/shaders/vert.glsl", "../../render/shaders/frag.glsl"); //with respect to root build
 
     shader.use();

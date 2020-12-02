@@ -10,7 +10,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include <cube.hpp>
+#include <cubes_collection_render.hpp>
 #include <camera.hpp>
 #include <world_initializer.hpp>
 

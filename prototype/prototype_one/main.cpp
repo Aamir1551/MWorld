@@ -2,9 +2,11 @@
 #include <iostream>
 
 using namespace std;
+//TODO
+//set render/lib -> lib in root directory
 int main()
 {
-    cout << "heyyyy " << endl;
+    cout << "Running Prototype 1" << endl;
     Cube c;
     real coordinates[] = {3, 2, 1};
     real force_coordinates[] = {0, 0, 1};
