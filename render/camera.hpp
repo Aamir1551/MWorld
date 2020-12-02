@@ -1,3 +1,5 @@
+#ifndef MWORLD_RENDER_CAMERA_H
+#define MWORLD_RENDER_CAMERA_H
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
@@ -123,3 +125,4 @@ public:
         return b;
     }*/
 };
+#endif

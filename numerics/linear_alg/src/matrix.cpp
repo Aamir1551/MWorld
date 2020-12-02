@@ -2,12 +2,6 @@
 #include <math.h>
 #include <iostream>
 
-#if defined(__GNUC__) || defined(__ICL) || defined(__clang__)
-#define EXPECT(x, y) (__builtin_expect((x), (y)))
-#else
-#define EXPECT(x, y) (x)
-#endif
-
 Matrix::Matrix(int rows, int cols) : rows(rows), cols(cols)
 {
     this->values = new real[rows * cols];
@@ -54,7 +48,7 @@ Matrix::Matrix(const Matrix &a) //copy constructor
 {
     this->rows = a.rows;
     this->cols = a.cols;
-    delete (this->values);
+    //delete (this->values);
     this->values = new real[rows * cols];
 
     for (int i = 0; i < a.rows * a.cols; i++)
@@ -110,19 +104,6 @@ std::string Matrix::generateError(std::string operation, Matrix const &a)
 
     return msg + " " + a_shape;
 }
-
-real Matrix::operator()(int row, int col)
-{
-    if (EXPECT(row < this->rows && col < this->cols, true))
-    {
-        return this->values[row * this->cols + col];
-    }
-    else
-    {
-        throw std::invalid_argument(
-            generateError("Invalid index", *this));
-    }
-};
 
 int Matrix::MatMul(Matrix const &a)
 {

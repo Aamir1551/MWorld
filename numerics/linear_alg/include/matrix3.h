@@ -1,5 +1,5 @@
-#ifndef MATRIX3_H
-#define MATRIX3_H
+#ifndef MWORLD_NUMERICS_LINEAR_ALG_MATRIX3_H
+#define MWORLD_NUMERICS_LINEAR_ALG_MATRIX3_H
 //matrix3 is a 3x3 matrix
 //matrix3 is a faster option to use instead of matrix for multiplication/manipulation/operations/inverse on 3x3 matrices
 

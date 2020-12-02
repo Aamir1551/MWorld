@@ -25,6 +25,7 @@ std::vector<glm::vec3> *GenerateRotationsAxis(int num_cubes);
 // 4) read over random numbers in c++
 // 5) statics and linking and why static variables should be in header file only, and why u'll get linking errors if you don't
 // 6) Learn to add a colour using element buffer objects
+// 7) Learn about cmake install and export and apply it to project if its useful
 int main()
 {
 
@@ -45,8 +46,7 @@ int main()
     std::vector<glm::vec3> *positions = GeneratePosition(num_cubes);
     std::vector<glm::vec3> *rotations = GenerateRotationsAxis(num_cubes);
 
-    Cubes::InitializeCube(4.0f, vao, vbo, ebo, &view, &projection, world_properties->shader_id);
-
+    Cubes::InitializeCubes(4.0f, vao, vbo, ebo, &view, &projection, world_properties->shader_id);
     Cubes::AddVerticesToBuffers();
 
     Cubes cubes;

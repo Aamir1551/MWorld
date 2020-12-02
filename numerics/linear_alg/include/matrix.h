@@ -1,8 +1,16 @@
-#ifndef MATRIX_H
-#define MATRIX_H
+#ifndef MWORLD_NUMERICS_LINEAR_ALG_MATRIX_H
+#define MWORLD_NUMERICS_LINEAR_ALG_MATRIX_H
+
+#if defined(__GNUC__) || defined(__ICL) || defined(__clang__)
+#define EXPECT(x, y) (__builtin_expect((x), (y)))
+#else
+#define EXPECT(x, y) (x)
+#endif
+
 #include <string>
 #include <stdlib.h>
 #include <stdio.h>
+#include <iostream>
 
 typedef float real; //remove this. Now using settings::real
 
@@ -13,8 +21,8 @@ protected:
     // each of the "cols" number of contiguous "rows" number of elements in values represents the cols row in the matrix.
     int rows;
     int cols;
-    std::string inline static generateError(std::string operation, Matrix const &a, Matrix const &b);
-    std::string inline static generateError(std::string operation, Matrix const &a);
+    std::string static generateError(std::string operation, Matrix const &a, Matrix const &b);
+    std::string static generateError(std::string operation, Matrix const &a);
 
 public:
     //try experimenting with using & instead of pointers
@@ -30,6 +38,7 @@ public:
     {
         return values;
     };
+
     int get_num_rows()
     {
         return this->rows;
@@ -38,7 +47,19 @@ public:
     {
         return this->cols;
     }
-    real inline operator()(int row, int col);
+
+    real inline operator()(int row, int col)
+    {
+        if (EXPECT(row < this->rows && col < this->cols, true))
+        {
+            return this->values[row * this->cols + col];
+        }
+        else
+        {
+            throw std::invalid_argument(
+                generateError("Invalid index", *this));
+        }
+    };
 
     bool operator==(Matrix const &a) const;
     bool static inline same_shape(Matrix const &a, Matrix const &b)

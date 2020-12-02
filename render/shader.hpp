@@ -1,3 +1,6 @@
+#ifndef MWORLD_RENDER_SHADER_H
+#define MWORLD_RENDER_SHADER_H
+
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
@@ -100,3 +103,4 @@ public:
         glDeleteShader(shader_id);
     }
 };
+#endif

@@ -1,4 +1,7 @@
+#ifndef MWORLD_RENDER_WORLD_INITIALIZER_H
+#define MWORLD_RENDER_WORLD_INITIALIZER_H
 #include <iostream>
+#include <string>
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -46,9 +49,12 @@ WorldProperties *world_intializer()
     glViewport(0, 0, 800, 600);
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
-    Shader shader("../shaders/vert.glsl", "../shaders/frag.glsl");
+    //Shader shader("  ../shaders/vert.glsl", "../shaders/frag.glsl"); //with respect to current
+    Shader shader("../../render/shaders/vert.glsl", "../../render/shaders/frag.glsl"); //with respect to root build
+
     shader.use();
     std::cout << "Shaders successfully initialised" << std::endl;
     WorldProperties *world_properties = new WorldProperties({window, shader.shader_id});
     return world_properties;
 }
+#endif

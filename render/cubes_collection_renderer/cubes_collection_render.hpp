@@ -1,5 +1,5 @@
-#ifndef CUBE_H
-#define CUBE_H
+#ifndef MWORLD_RENDER_CUBE_CUBE_H
+#define MWORLD_RENDER_CUBE_CUBE_H
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -25,7 +25,7 @@ public:
 
     Cubes(){};
 
-    void static InitializeCube(float cube_length, unsigned int vao, unsigned int vbo, unsigned int ebo, glm::mat4 *view, glm::mat4 *project, unsigned int shader_id)
+    void static InitializeCubes(float cube_length, unsigned int vao, unsigned int vbo, unsigned int ebo, glm::mat4 *view, glm::mat4 *project, unsigned int shader_id)
     {
         Cubes::shader_id = shader_id;
         float diff = cube_length / 2;
