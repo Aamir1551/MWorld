@@ -230,17 +230,28 @@ Matrix &Quaternion::GetMatrixTransformation(Quaternion &a)
     settings::real qy = a.i;
     settings::real qz = a.j;
     settings::real qw = a.k;
-    settings::real *values = new settings::real[9];
+    settings::real *values = new settings::real[16];
     values[0] = 1.0f - 2.0f * qy * qy - 2.0f * qz * qz;
     values[1] = 2.0f * qx * qy - 2.0f * qz * qw;
     values[2] = 2.0f * qx * qz + 2.0f * qy * qw;
-    values[3] = 2.0f * qx * qy + 2.0f * qz * qw;
-    values[4] = 1.0f - 2.0f * qx * qx - 2.0f * qz * qz;
-    values[5] = 2.0f * qy * qz - 2.0f * qx * qw;
-    values[6] = 2.0f * qx * qz - 2.0f * qy * qw;
-    values[7] = 2.0f * qy * qz + 2.0f * qx * qw;
-    values[8] = 1.0f - 2.0f * qx * qx - 2.0f * qy * qy;
-    Matrix *result = new Matrix(3, 3, values);
+    values[3] = 0.0f;
+
+    values[4] = 2.0f * qx * qy + 2.0f * qz * qw;
+    values[5] = 1.0f - 2.0f * qx * qx - 2.0f * qz * qz;
+    values[6] = 2.0f * qy * qz - 2.0f * qx * qw;
+    values[7] = 0.0f;
+
+    values[8] = 2.0f * qx * qz - 2.0f * qy * qw;
+    values[9] = 2.0f * qy * qz + 2.0f * qx * qw;
+    values[10] = 1.0f - 2.0f * qx * qx - 2.0f * qy * qy;
+    values[11] = 0.0f;
+
+    values[12] = 0.0f;
+    values[13] = 0.0f;
+    values[14] = 0.0f;
+    values[15] = 1.0f;
+
+    Matrix *result = new Matrix(4, 4, values);
     return *result;
 };
 

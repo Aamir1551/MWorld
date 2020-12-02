@@ -46,10 +46,10 @@ int main()
     std::vector<glm::vec3> *positions = GeneratePosition(num_cubes);
     std::vector<glm::vec3> *rotations = GenerateRotationsAxis(num_cubes);
 
-    Cubes::InitializeCubes(4.0f, vao, vbo, ebo, &view, &projection, world_properties->shader_id);
-    Cubes::AddVerticesToBuffers();
+    CubesCollection::InitializeCubes(4.0f, vao, vbo, ebo, &view, &projection, world_properties->shader_id);
+    CubesCollection::AddVerticesToBuffers();
 
-    Cubes cubes;
+    CubesCollection cubes;
 
     glBindVertexArray(vao);
     glEnable(GL_DEPTH_TEST);

@@ -6,17 +6,17 @@
 
 #include <cubes_collection_render.hpp>
 
-int Cubes::vao;
-int Cubes::vbo;
-int Cubes::ebo;
-float Cubes::cube_length;
-unsigned int Cubes::shader_id;
+int CubesCollection::vao;
+int CubesCollection::vbo;
+int CubesCollection::ebo;
+float CubesCollection::cube_length;
+unsigned int CubesCollection::shader_id;
 
-float Cubes::vertices[24];
-glm::mat4 *Cubes::view;
-glm::mat4 *Cubes::project;
+float CubesCollection::vertices[24];
+glm::mat4 *CubesCollection::view;
+glm::mat4 *CubesCollection::project;
 
-unsigned int Cubes::indices[] = {
+unsigned int CubesCollection::indices[] = {
     6, 2, 3,
     6, 7, 3, //top square
 
@@ -36,13 +36,13 @@ unsigned int Cubes::indices[] = {
     6, 2, 0 //left-side square
 };
 
-void Cubes::ApplyUniforms(int model_id)
+void CubesCollection::ApplyUniforms(int model_id)
 {
-    int model_loc = glGetUniformLocation(Cubes::shader_id, "model");
-    int view_loc = glGetUniformLocation(Cubes::shader_id, "view");
-    int proj_loc = glGetUniformLocation(Cubes::shader_id, "proj");
+    int model_loc = glGetUniformLocation(CubesCollection::shader_id, "model");
+    int view_loc = glGetUniformLocation(CubesCollection::shader_id, "view");
+    int proj_loc = glGetUniformLocation(CubesCollection::shader_id, "proj");
 
     glUniformMatrix4fv(model_loc, 1, GL_FALSE, glm::value_ptr(*this->models.at(model_id)));
-    glUniformMatrix4fv(view_loc, 1, GL_FALSE, glm::value_ptr(*Cubes::view));
-    glUniformMatrix4fv(proj_loc, 1, GL_FALSE, glm::value_ptr(*Cubes::project));
+    glUniformMatrix4fv(view_loc, 1, GL_FALSE, glm::value_ptr(*CubesCollection::view));
+    glUniformMatrix4fv(proj_loc, 1, GL_FALSE, glm::value_ptr(*CubesCollection::project));
 }
