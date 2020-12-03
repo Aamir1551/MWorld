@@ -2,6 +2,7 @@
 
 #include <quaternion.hpp>
 #include <settings.hpp>
+#include <matrix.hpp>
 
 namespace numerics
 {
