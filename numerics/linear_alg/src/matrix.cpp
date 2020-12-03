@@ -3,520 +3,524 @@
 #include <iostream>
 #include <settings.hpp>
 
-Matrix::Matrix(int rows, int cols) : rows(rows), cols(cols)
+namespace numerics
 {
-    this->values = new settings::real[rows * cols];
-    for (int i = 0; i < rows * cols; i++)
+    Matrix::Matrix(int rows, int cols) : rows(rows), cols(cols)
     {
-        this->values[i] = 0;
-    }
-}
-
-Matrix &Matrix::operator=(const Matrix &a)
-{
-
-    this->rows = a.rows;
-    this->cols = a.cols;
-    delete (this->values);
-    this->values = new settings::real[rows * cols];
-
-    for (int i = 0; i < a.rows * a.cols; i++)
-    {
-        this->values[i] = a.values[i];
-    }
-    return *this;
-}
-
-Matrix::Matrix(int rows, int cols, int factor)
-{
-    this->rows = rows;
-    this->cols = cols;
-    this->values = new settings::real[rows * cols];
-    for (int i = 0; i < rows * cols; i++)
-    {
-        this->values[i] = 0;
-    }
-    int t = std::min(rows, cols);
-    int j = 0;
-    for (int i = 0; i < t; i++)
-    {
-        this->values[i + cols * j] = factor;
-        j++;
-    }
-}
-
-Matrix::Matrix(const Matrix &a) //copy constructor
-{
-    this->rows = a.rows;
-    this->cols = a.cols;
-    //delete (this->values);
-    this->values = new settings::real[rows * cols];
-
-    for (int i = 0; i < a.rows * a.cols; i++)
-    {
-        this->values[i] = a.values[i];
-    }
-}
-
-Matrix &Matrix::reshape(Matrix a, int new_row, int new_cols)
-{
-    if (a.rows * a.cols != new_row * new_cols)
-    {
-        throw std::invalid_argument("Matrix Shape does not conform for reshape");
-    }
-    Matrix *b = new Matrix(new_row, new_cols);
-    for (int i = 0; i < a.rows * a.cols; i++)
-    {
-        b->values[i] = a.values[i];
-    }
-};
-
-// Returns the squared euclidean norm of a matrix
-settings::real Matrix::squaredNorm(Matrix const &a)
-{
-    settings::real sum = 0;
-    for (int i = 0; i < a.rows * a.cols; i++)
-    {
-        sum += a.values[i] * a.values[i];
-    }
-    return (sum);
-};
-
-/* returns the euclidean norm of a matrix. Function havn't used a function call 
-to norm since that would add too many function calls, and norm is used allot, 
-hence would become a bottleneck in calculations and slow down simulation. */
-settings::real Matrix::norm(Matrix const &a)
-{
-    settings::real sum = 0;
-    for (int i = 0; i < a.rows * a.cols; i++)
-    {
-        sum += a.values[i] * a.values[i];
-    }
-    return sqrt(sum);
-};
-
-std::string Matrix::generateError(std::string operation,
-                                  Matrix const &a, Matrix const &b)
-{
-    std::string msg = "Matrix shapes do not conform for " +
-                      operation + ".";
-
-    std::string a_shape = "A has shape=(" + std::to_string(a.rows) + "," +
-                          std::to_string(a.cols) + ").";
-
-    std::string b_shape = "B has shape=(" + std::to_string(b.rows) + "," +
-                          std::to_string(b.cols) + ").";
-
-    return msg + " " + a_shape + " " + b_shape;
-}
-
-std::string Matrix::generateError(std::string operation, Matrix const &a)
-{
-    std::string msg = "Matrix shapes do not conform for " + operation + ".";
-    std::string a_shape = "This has shape=(" + std::to_string(a.rows) + "," +
-                          std::to_string(a.cols) + ").";
-
-    return msg + " " + a_shape;
-}
-
-int Matrix::MatMul(Matrix const &a)
-{
-    if (this->cols != a.rows)
-    {
-        throw std::invalid_argument(
-            generateError("Matrix Multiplication", *this, a));
-    }
-
-    settings::real *new_values = new settings::real[this->rows * a.cols];
-    for (int i = 0; i < this->rows * a.cols; i++)
-    {
-        new_values[i] = 0;
-    }
-
-    for (int k = 0; k < a.rows; k++)
-    {
-        for (int c = 0; c < this->rows * a.cols; c++)
+        this->values = new settings::real[rows * cols];
+        for (int i = 0; i < rows * cols; i++)
         {
-            // make sure this rounds down
-            int i = c / a.cols;
-            int j = c % a.cols;
-            new_values[c] += this->values[i * this->cols + k] *
-                             a.values[a.cols * k + j];
+            this->values[i] = 0;
         }
     }
-    delete[] this->values;
-    this->values = new_values;
-    this->cols = a.cols;
-    return 0;
-};
 
-void Matrix::print(Matrix const &a)
-{
-    for (int i = 0; i < a.rows; i++)
+    Matrix &Matrix::operator=(const Matrix &a)
     {
-        for (int j = 0; j < a.cols; j++)
+
+        this->rows = a.rows;
+        this->cols = a.cols;
+        delete (this->values);
+        this->values = new settings::real[rows * cols];
+
+        for (int i = 0; i < a.rows * a.cols; i++)
         {
-            std::cout << a.values[i * a.cols + j] << " ";
+            this->values[i] = a.values[i];
         }
-        std::cout << std::endl;
+        return *this;
     }
-}
 
-Matrix &Matrix::createMatrixArange(int n, int m)
-{
-    Matrix *a = new Matrix(n, m);
-    for (int i = 0; i < m * n; i++)
+    Matrix::Matrix(int rows, int cols, int factor)
     {
-        a->values[i] = i;
-    }
-    return *a;
-};
-
-Matrix::Matrix(int rows, int cols, settings::real *values) : rows(rows),
-                                                             cols(cols), values(values)
-{
-    this->rows = rows;
-    this->cols = cols;
-    this->values = new settings::real[rows * cols];
-    for (int i = 0; i < rows * cols; i++)
-    {
-        this->values[i] = values[i];
-    }
-};
-
-int Matrix::transpose()
-{
-    settings::real *new_values = new settings::real[this->cols * this->rows];
-    for (int i = 0; i < this->rows; i++)
-    {
-        for (int j = 0; j < this->cols; j++)
+        this->rows = rows;
+        this->cols = cols;
+        this->values = new settings::real[rows * cols];
+        for (int i = 0; i < rows * cols; i++)
         {
-            new_values[j * this->rows + i] = new_values[i * this->cols + j];
+            this->values[i] = 0;
+        }
+        int t = std::min(rows, cols);
+        int j = 0;
+        for (int i = 0; i < t; i++)
+        {
+            this->values[i + cols * j] = factor;
+            j++;
         }
     }
-    int t = this->cols;
 
-    this->cols = this->rows;
-    this->rows = t;
-    this->values = new_values;
-    return 0;
-}
-
-Matrix &Matrix::Transpose(Matrix const &a)
-{
-    settings::real *new_values = new settings::real[a.cols * a.rows];
-    for (int i = 0; i < a.rows; i++)
+    Matrix::Matrix(const Matrix &a) //copy constructor
     {
-        for (int j = 0; j < a.cols; j++)
+        this->rows = a.rows;
+        this->cols = a.cols;
+        //delete (this->values);
+        this->values = new settings::real[rows * cols];
+
+        for (int i = 0; i < a.rows * a.cols; i++)
         {
-            new_values[j * a.rows + i] = a.values[i * a.cols + j];
+            this->values[i] = a.values[i];
         }
     }
-    int t = a.cols;
 
-    Matrix *res = new Matrix(a.cols, a.rows, new_values);
-    return *res;
-}
-
-Matrix &Matrix::MatMul(Matrix const &a, Matrix const &b)
-{
-    if (a.cols != b.rows)
+    Matrix &Matrix::reshape(Matrix a, int new_row, int new_cols)
     {
-        throw std::invalid_argument(generateError("Multiplication", a, b));
-    }
-
-    settings::real *new_values = new settings::real[a.rows * b.cols];
-    for (int i = 0; i < a.rows * b.cols; i++)
-    {
-        new_values[i] = 0;
-    }
-
-    for (int k = 0; k < b.rows; k++)
-    {
-        for (int c = 0; c < a.rows * b.cols; c++)
+        if (a.rows * a.cols != new_row * new_cols)
         {
-            // make sure this rounds down
-            int i = c / b.cols;
-            int j = c % b.cols;
-            new_values[c] += a.values[i * a.cols + k] *
-                             b.values[b.cols * k + j];
+            throw std::invalid_argument("Matrix Shape does not conform for reshape");
+        }
+        Matrix *b = new Matrix(new_row, new_cols);
+        for (int i = 0; i < a.rows * a.cols; i++)
+        {
+            b->values[i] = a.values[i];
         }
     };
 
-    Matrix *res = new Matrix(a.rows, b.cols, new_values);
-    return *res;
-}
-
-Matrix &Matrix::operator+(Matrix const &a) const
-{
-    if (!Matrix::same_shape(*this, a))
+    // Returns the squared euclidean norm of a matrix
+    settings::real Matrix::squaredNorm(Matrix const &a)
     {
-        throw std::invalid_argument(generateError("Addition", *this, a));
+        settings::real sum = 0;
+        for (int i = 0; i < a.rows * a.cols; i++)
+        {
+            sum += a.values[i] * a.values[i];
+        }
+        return (sum);
+    };
+
+    /* returns the euclidean norm of a matrix. Function havn't used a function call 
+to norm since that would add too many function calls, and norm is used allot, 
+hence would become a bottleneck in calculations and slow down simulation. */
+    settings::real Matrix::norm(Matrix const &a)
+    {
+        settings::real sum = 0;
+        for (int i = 0; i < a.rows * a.cols; i++)
+        {
+            sum += a.values[i] * a.values[i];
+        }
+        return sqrt(sum);
+    };
+
+    std::string Matrix::generateError(std::string operation,
+                                      Matrix const &a, Matrix const &b)
+    {
+        std::string msg = "Matrix shapes do not conform for " +
+                          operation + ".";
+
+        std::string a_shape = "A has shape=(" + std::to_string(a.rows) + "," +
+                              std::to_string(a.cols) + ").";
+
+        std::string b_shape = "B has shape=(" + std::to_string(b.rows) + "," +
+                              std::to_string(b.cols) + ").";
+
+        return msg + " " + a_shape + " " + b_shape;
     }
 
-    settings::real *new_values = new settings::real[a.cols * a.rows];
-    for (int i = 0; i < a.cols * a.rows; i++)
+    std::string Matrix::generateError(std::string operation, Matrix const &a)
     {
-        new_values[i] = this->values[i] + a.values[i];
+        std::string msg = "Matrix shapes do not conform for " + operation + ".";
+        std::string a_shape = "This has shape=(" + std::to_string(a.rows) + "," +
+                              std::to_string(a.cols) + ").";
+
+        return msg + " " + a_shape;
     }
 
-    Matrix *res = new Matrix(this->rows, this->cols, new_values);
-    return *res;
-};
-
-Matrix &Matrix::operator-(Matrix const &a) const
-{
-    if (!Matrix::same_shape(*this, a))
+    int Matrix::MatMul(Matrix const &a)
     {
-        generateError("Subtraction", *this, a);
+        if (this->cols != a.rows)
+        {
+            throw std::invalid_argument(
+                generateError("Matrix Multiplication", *this, a));
+        }
+
+        settings::real *new_values = new settings::real[this->rows * a.cols];
+        for (int i = 0; i < this->rows * a.cols; i++)
+        {
+            new_values[i] = 0;
+        }
+
+        for (int k = 0; k < a.rows; k++)
+        {
+            for (int c = 0; c < this->rows * a.cols; c++)
+            {
+                // make sure this rounds down
+                int i = c / a.cols;
+                int j = c % a.cols;
+                new_values[c] += this->values[i * this->cols + k] *
+                                 a.values[a.cols * k + j];
+            }
+        }
+        delete[] this->values;
+        this->values = new_values;
+        this->cols = a.cols;
+        return 0;
+    };
+
+    void Matrix::print(Matrix const &a)
+    {
+        for (int i = 0; i < a.rows; i++)
+        {
+            for (int j = 0; j < a.cols; j++)
+            {
+                std::cout << a.values[i * a.cols + j] << " ";
+            }
+            std::cout << std::endl;
+        }
     }
 
-    settings::real *new_values = new settings::real[a.cols * a.rows];
-    for (int i = 0; i < a.cols * a.rows; i++)
+    Matrix &Matrix::createMatrixArange(int n, int m)
     {
-        new_values[i] = this->values[i] - a.values[i];
+        Matrix *a = new Matrix(n, m);
+        for (int i = 0; i < m * n; i++)
+        {
+            a->values[i] = i;
+        }
+        return *a;
+    };
+
+    Matrix::Matrix(int rows, int cols, settings::real *values) : rows(rows),
+                                                                 cols(cols), values(values)
+    {
+        this->rows = rows;
+        this->cols = cols;
+        this->values = new settings::real[rows * cols];
+        for (int i = 0; i < rows * cols; i++)
+        {
+            this->values[i] = values[i];
+        }
+    };
+
+    int Matrix::transpose()
+    {
+        settings::real *new_values = new settings::real[this->cols * this->rows];
+        for (int i = 0; i < this->rows; i++)
+        {
+            for (int j = 0; j < this->cols; j++)
+            {
+                new_values[j * this->rows + i] = new_values[i * this->cols + j];
+            }
+        }
+        int t = this->cols;
+
+        this->cols = this->rows;
+        this->rows = t;
+        this->values = new_values;
+        return 0;
     }
 
-    Matrix *res = new Matrix(this->rows, this->cols, new_values);
-    return *res;
-}
-
-Matrix &Matrix::operator*(Matrix const &a) const
-{
-    if (!Matrix::same_shape(*this, a))
+    Matrix &Matrix::Transpose(Matrix const &a)
     {
-        throw std::invalid_argument(
-            generateError("Elementwise Multiplication", *this, a));
+        settings::real *new_values = new settings::real[a.cols * a.rows];
+        for (int i = 0; i < a.rows; i++)
+        {
+            for (int j = 0; j < a.cols; j++)
+            {
+                new_values[j * a.rows + i] = a.values[i * a.cols + j];
+            }
+        }
+        int t = a.cols;
+
+        Matrix *res = new Matrix(a.cols, a.rows, new_values);
+        return *res;
     }
 
-    settings::real *new_values = new settings::real[a.cols * a.rows];
-    for (int i = 0; i < a.cols * a.rows; i++)
+    Matrix &Matrix::MatMul(Matrix const &a, Matrix const &b)
     {
-        new_values[i] = this->values[i] * a.values[i];
-    }
-    Matrix *res = new Matrix(this->rows, this->cols, new_values);
-    return *res;
-}
+        if (a.cols != b.rows)
+        {
+            throw std::invalid_argument(generateError("Multiplication", a, b));
+        }
 
-Matrix &Matrix::operator/(Matrix const &a) const
-{
-    if (!Matrix::same_shape(*this, a))
-    {
-        std::invalid_argument(generateError("Division", *this, a));
-    }
+        settings::real *new_values = new settings::real[a.rows * b.cols];
+        for (int i = 0; i < a.rows * b.cols; i++)
+        {
+            new_values[i] = 0;
+        }
 
-    settings::real *new_values = new settings::real[a.cols * a.rows];
-    for (int i = 0; i < a.cols * a.rows; i++)
-    {
-        new_values[i] = this->values[i] / a.values[i];
-    }
-    Matrix *res = new Matrix(this->rows, this->cols, new_values);
-    return *res;
-};
+        for (int k = 0; k < b.rows; k++)
+        {
+            for (int c = 0; c < a.rows * b.cols; c++)
+            {
+                // make sure this rounds down
+                int i = c / b.cols;
+                int j = c % b.cols;
+                new_values[c] += a.values[i * a.cols + k] *
+                                 b.values[b.cols * k + j];
+            }
+        };
 
-Matrix &Matrix::operator+=(Matrix const &a)
-{
-    if (!Matrix::same_shape(*this, a))
-    {
-        std::invalid_argument(generateError("Addition", *this, a));
+        Matrix *res = new Matrix(a.rows, b.cols, new_values);
+        return *res;
     }
 
-    for (int i = 0; i < a.cols * a.rows; i++)
+    Matrix &Matrix::operator+(Matrix const &a) const
     {
-        this->values[i] += a.values[i];
-    }
-    return *this;
-}
+        if (!Matrix::same_shape(*this, a))
+        {
+            throw std::invalid_argument(generateError("Addition", *this, a));
+        }
 
-Matrix &Matrix::operator-=(Matrix const &a)
-{
-    if (!Matrix::same_shape(*this, a))
-    {
-        std::invalid_argument(generateError("Subtraction", *this, a));
-    }
+        settings::real *new_values = new settings::real[a.cols * a.rows];
+        for (int i = 0; i < a.cols * a.rows; i++)
+        {
+            new_values[i] = this->values[i] + a.values[i];
+        }
 
-    for (int i = 0; i < a.cols * a.rows; i++)
-    {
-        this->values[i] -= a.values[i];
-    }
-    return *this;
-}
+        Matrix *res = new Matrix(this->rows, this->cols, new_values);
+        return *res;
+    };
 
-Matrix &Matrix::operator/=(Matrix const &a)
-{
-    if (!Matrix::same_shape(*this, a))
+    Matrix &Matrix::operator-(Matrix const &a) const
     {
-        std::invalid_argument(generateError("Division", *this, a));
-    }
+        if (!Matrix::same_shape(*this, a))
+        {
+            generateError("Subtraction", *this, a);
+        }
 
-    for (int i = 0; i < a.cols * a.rows; i++)
-    {
-        this->values[i] /= a.values[i];
-    }
-    return *this;
-}
+        settings::real *new_values = new settings::real[a.cols * a.rows];
+        for (int i = 0; i < a.cols * a.rows; i++)
+        {
+            new_values[i] = this->values[i] - a.values[i];
+        }
 
-Matrix &Matrix::operator*=(Matrix const &a)
-{
-    if (!Matrix::same_shape(*this, a))
-    {
-        throw std::invalid_argument(
-            generateError("elementwise-multiplication", *this, a));
+        Matrix *res = new Matrix(this->rows, this->cols, new_values);
+        return *res;
     }
 
-    for (int i = 0; i < a.cols * a.rows; i++)
+    Matrix &Matrix::operator*(Matrix const &a) const
     {
-        this->values[i] *= a.values[i];
-    }
-    return *this;
-}
+        if (!Matrix::same_shape(*this, a))
+        {
+            throw std::invalid_argument(
+                generateError("Elementwise Multiplication", *this, a));
+        }
 
-bool Matrix::operator==(Matrix const &a) const
-{
-    if (!Matrix::same_shape(*this, a))
-    {
-        return false;
+        settings::real *new_values = new settings::real[a.cols * a.rows];
+        for (int i = 0; i < a.cols * a.rows; i++)
+        {
+            new_values[i] = this->values[i] * a.values[i];
+        }
+        Matrix *res = new Matrix(this->rows, this->cols, new_values);
+        return *res;
     }
 
-    for (int i = 0; i < a.cols * a.rows; i++)
+    Matrix &Matrix::operator/(Matrix const &a) const
     {
-        if (this->values[i] != a.values[i])
+        if (!Matrix::same_shape(*this, a))
+        {
+            std::invalid_argument(generateError("Division", *this, a));
+        }
+
+        settings::real *new_values = new settings::real[a.cols * a.rows];
+        for (int i = 0; i < a.cols * a.rows; i++)
+        {
+            new_values[i] = this->values[i] / a.values[i];
+        }
+        Matrix *res = new Matrix(this->rows, this->cols, new_values);
+        return *res;
+    };
+
+    Matrix &Matrix::operator+=(Matrix const &a)
+    {
+        if (!Matrix::same_shape(*this, a))
+        {
+            std::invalid_argument(generateError("Addition", *this, a));
+        }
+
+        for (int i = 0; i < a.cols * a.rows; i++)
+        {
+            this->values[i] += a.values[i];
+        }
+        return *this;
+    }
+
+    Matrix &Matrix::operator-=(Matrix const &a)
+    {
+        if (!Matrix::same_shape(*this, a))
+        {
+            std::invalid_argument(generateError("Subtraction", *this, a));
+        }
+
+        for (int i = 0; i < a.cols * a.rows; i++)
+        {
+            this->values[i] -= a.values[i];
+        }
+        return *this;
+    }
+
+    Matrix &Matrix::operator/=(Matrix const &a)
+    {
+        if (!Matrix::same_shape(*this, a))
+        {
+            std::invalid_argument(generateError("Division", *this, a));
+        }
+
+        for (int i = 0; i < a.cols * a.rows; i++)
+        {
+            this->values[i] /= a.values[i];
+        }
+        return *this;
+    }
+
+    Matrix &Matrix::operator*=(Matrix const &a)
+    {
+        if (!Matrix::same_shape(*this, a))
+        {
+            throw std::invalid_argument(
+                generateError("elementwise-multiplication", *this, a));
+        }
+
+        for (int i = 0; i < a.cols * a.rows; i++)
+        {
+            this->values[i] *= a.values[i];
+        }
+        return *this;
+    }
+
+    bool Matrix::operator==(Matrix const &a) const
+    {
+        if (!Matrix::same_shape(*this, a))
         {
             return false;
         }
-    }
-    return true;
-}
 
-Matrix &Matrix::vectorProduct(Matrix const &a, Matrix const &b)
-{
-    if (a.rows != 3 || a.cols != 1)
-    {
-        throw std::invalid_argument(generateError("vector product", a));
-    }
-
-    if (b.rows != 3 || b.cols != 1)
-    {
-        generateError("vector product", b);
-    }
-
-    Matrix *c = new Matrix(3, 1);
-    c->values[0] = a.values[1] * b.values[2] - a.values[2] * b.values[1];
-    c->values[1] = a.values[2] * b.values[0] - a.values[0] * b.values[2];
-    c->values[2] = a.values[0] * b.values[1] - a.values[1] * b.values[0];
-    return *c;
-};
-settings::real Matrix::dotProduct(Matrix const &a, Matrix const &b)
-{
-    if (!same_shape(a, b))
-    {
-        throw std::invalid_argument(generateError("Dot Product", a, b));
-    }
-
-    settings::real c = 0;
-    for (int i = 0; i < a.rows; i++)
-    {
-        c += a.values[i] + b.values[i];
-    }
-    return c;
-}
-
-Matrix &Matrix::operator+=(settings::real a)
-{
-    for (int i = 0; i < this->cols * this->rows; i++)
-    {
-        this->values[i] += a;
-    }
-    return *this;
-};
-
-Matrix &Matrix::operator-=(settings::real a)
-{
-    for (int i = 0; i < this->cols * this->rows; i++)
-    {
-        this->values[i] -= a;
-    }
-    return *this;
-};
-
-Matrix &Matrix::operator*=(settings::real a)
-{
-    for (int i = 0; i < this->cols * this->rows; i++)
-    {
-        this->values[i] *= a;
-    }
-    return *this;
-};
-
-Matrix &Matrix::operator/=(settings::real a)
-{
-    for (int i = 0; i < this->cols * this->rows; i++)
-    {
-        this->values[i] /= a;
-    }
-    return *this;
-};
-
-Matrix &Matrix::operator+(settings::real a) const
-{
-    Matrix *c = new Matrix(this->rows, this->cols);
-    for (int i = 0; i < this->cols * this->rows; i++)
-    {
-        c->values[i] = values[i] + a;
-    }
-    return *c;
-}
-
-Matrix &Matrix::operator-(settings::real a) const
-{
-    Matrix *c = new Matrix(this->rows, this->cols);
-    for (int i = 0; i < this->cols * this->rows; i++)
-    {
-        c->values[i] = values[i] - a;
-    }
-    return *c;
-}
-
-Matrix &Matrix::operator*(settings::real a) const
-{
-    Matrix *c = new Matrix(this->rows, this->cols);
-    for (int i = 0; i < this->cols * this->rows; i++)
-    {
-        c->values[i] = values[i] * a;
-    }
-    return *c;
-}
-
-Matrix &Matrix::operator/(settings::real a) const
-{
-    Matrix *c = new Matrix(this->rows, this->cols);
-    for (int i = 0; i < this->cols * this->rows; i++)
-    {
-        c->values[i] = values[i] / a;
-    }
-    return *c;
-}
-
-void Matrix::print() const
-{
-    for (int i = 0; i < this->rows; i++)
-    {
-        for (int j = 0; j < this->cols; j++)
+        for (int i = 0; i < a.cols * a.rows; i++)
         {
-            std::cout << this->values[i * this->cols + j] << " ";
+            if (this->values[i] != a.values[i])
+            {
+                return false;
+            }
         }
-        std::cout << std::endl;
+        return true;
     }
-};
 
-/* Returns 0 if success, otherwise it throws an error or 
+    Matrix &Matrix::vectorProduct(Matrix const &a, Matrix const &b)
+    {
+        if (a.rows != 3 || a.cols != 1)
+        {
+            throw std::invalid_argument(generateError("vector product", a));
+        }
+
+        if (b.rows != 3 || b.cols != 1)
+        {
+            generateError("vector product", b);
+        }
+
+        Matrix *c = new Matrix(3, 1);
+        c->values[0] = a.values[1] * b.values[2] - a.values[2] * b.values[1];
+        c->values[1] = a.values[2] * b.values[0] - a.values[0] * b.values[2];
+        c->values[2] = a.values[0] * b.values[1] - a.values[1] * b.values[0];
+        return *c;
+    };
+    settings::real Matrix::dotProduct(Matrix const &a, Matrix const &b)
+    {
+        if (!same_shape(a, b))
+        {
+            throw std::invalid_argument(generateError("Dot Product", a, b));
+        }
+
+        settings::real c = 0;
+        for (int i = 0; i < a.rows; i++)
+        {
+            c += a.values[i] + b.values[i];
+        }
+        return c;
+    }
+
+    Matrix &Matrix::operator+=(settings::real a)
+    {
+        for (int i = 0; i < this->cols * this->rows; i++)
+        {
+            this->values[i] += a;
+        }
+        return *this;
+    };
+
+    Matrix &Matrix::operator-=(settings::real a)
+    {
+        for (int i = 0; i < this->cols * this->rows; i++)
+        {
+            this->values[i] -= a;
+        }
+        return *this;
+    };
+
+    Matrix &Matrix::operator*=(settings::real a)
+    {
+        for (int i = 0; i < this->cols * this->rows; i++)
+        {
+            this->values[i] *= a;
+        }
+        return *this;
+    };
+
+    Matrix &Matrix::operator/=(settings::real a)
+    {
+        for (int i = 0; i < this->cols * this->rows; i++)
+        {
+            this->values[i] /= a;
+        }
+        return *this;
+    };
+
+    Matrix &Matrix::operator+(settings::real a) const
+    {
+        Matrix *c = new Matrix(this->rows, this->cols);
+        for (int i = 0; i < this->cols * this->rows; i++)
+        {
+            c->values[i] = values[i] + a;
+        }
+        return *c;
+    }
+
+    Matrix &Matrix::operator-(settings::real a) const
+    {
+        Matrix *c = new Matrix(this->rows, this->cols);
+        for (int i = 0; i < this->cols * this->rows; i++)
+        {
+            c->values[i] = values[i] - a;
+        }
+        return *c;
+    }
+
+    Matrix &Matrix::operator*(settings::real a) const
+    {
+        Matrix *c = new Matrix(this->rows, this->cols);
+        for (int i = 0; i < this->cols * this->rows; i++)
+        {
+            c->values[i] = values[i] * a;
+        }
+        return *c;
+    }
+
+    Matrix &Matrix::operator/(settings::real a) const
+    {
+        Matrix *c = new Matrix(this->rows, this->cols);
+        for (int i = 0; i < this->cols * this->rows; i++)
+        {
+            c->values[i] = values[i] / a;
+        }
+        return *c;
+    }
+
+    void Matrix::print() const
+    {
+        for (int i = 0; i < this->rows; i++)
+        {
+            for (int j = 0; j < this->cols; j++)
+            {
+                std::cout << this->values[i * this->cols + j] << " ";
+            }
+            std::cout << std::endl;
+        }
+    };
+
+    /* Returns 0 if success, otherwise it throws an error or 
 if an element is nan, it returns 1 */
-int Matrix::inv()
-{
-    return 0;
-}
+    int Matrix::inv()
+    {
+        return 0;
+    }
 
-int Matrix::determinant() const
-{
-    return 0;
-}
+    int Matrix::determinant() const
+    {
+        return 0;
+    }
+
+} // namespace numerics

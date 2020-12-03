@@ -6,19 +6,22 @@
 #include <matrix.hpp>
 #include <settings.hpp>
 
-class Matrix3 : public Matrix
+namespace numerics
 {
-public:
-    Matrix3();
+    class Matrix3 : public Matrix
+    {
+    public:
+        Matrix3();
 
-    settings::real norm(Matrix const &a);        //returns the euclidean norm of a matrix
-    settings::real squaredNorm(Matrix const &a); //returns the euclidean norm of a matrix
+        settings::real norm(Matrix const &a);        //returns the euclidean norm of a matrix
+        settings::real squaredNorm(Matrix const &a); //returns the euclidean norm of a matrix
 
-    Matrix static &MatMul(Matrix const &a, Matrix const &b); // returns the matrix if success, otherwise it throws an error or if an element is nan, it returns 1
-    int MatMul(Matrix const &a);                             // returns 0 if success, otherwise it throws an error or if an element is nan, it returns 1
-    int inv();                                               // returns 0 if success, otherwise it throws an error or if an element is nan, it returns 1
-    int determinant() const;
-    ~Matrix3() { free(values); };
-};
+        Matrix static &MatMul(Matrix const &a, Matrix const &b); // returns the matrix if success, otherwise it throws an error or if an element is nan, it returns 1
+        int MatMul(Matrix const &a);                             // returns 0 if success, otherwise it throws an error or if an element is nan, it returns 1
+        int inv();                                               // returns 0 if success, otherwise it throws an error or if an element is nan, it returns 1
+        int determinant() const;
+        ~Matrix3() { free(values); };
+    };
 
+} // namespace numerics
 #endif

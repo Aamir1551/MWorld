@@ -2,6 +2,8 @@
 
 #include <matrix.hpp>
 #include <quaternion.hpp>
+
+using namespace numerics;
 class Cube
 {
 public:

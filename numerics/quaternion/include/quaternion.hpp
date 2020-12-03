@@ -3,16 +3,19 @@
 
 #include <matrix.hpp>
 #include <settings.hpp>
-class Quaternion
+
+namespace numerics
 {
+   class Quaternion
+   {
 
-public:
-    settings::real r;
-    settings::real i;
-    settings::real j;
-    settings::real k;
+   public:
+      settings::real r;
+      settings::real i;
+      settings::real j;
+      settings::real k;
 
-    /**
+      /**
      * @brief Construct a new quaternion object
      * 
      * @param r The settings::real part of the quaternion
@@ -20,238 +23,262 @@ public:
      * @param j The j part of quaternion
      * @param k The k part of quaternion
      */
-    Quaternion(settings::real r, settings::real i, settings::real j, settings::real k);
+      Quaternion(settings::real r, settings::real i, settings::real j, settings::real k);
 
-    /**
+      /**
      * @brief Construct a new quaternion object. Uses the copy constructor to achieve this
      * 
      * @param q Quaternion to copy.
      */
-    Quaternion(const Quaternion &q);
+      Quaternion(const Quaternion &q);
 
-    void print() const
-    {
-        std::cout << this->r << "+" << this->i << "i+" << this->j << "j+" << this->k << "k" << std::endl;
-    };
+      void print() const
+      {
+         std::cout << this->r << "+" << this->i << "i+" << this->j << "j+" << this->k << "k" << std::endl;
+      };
 
-    /**
+      /**
      * @brief Compares two quaternion. If all values are equal, then returns true
      * 
      * @param a The quaternion to value compare with
      * @return true or false
      */
-    bool operator==(Quaternion &a);
+      bool operator==(Quaternion &a);
 
-    /**
+      /**
      * @brief Adds two quaternion objects together
      * 
      * @param a A quaternion to add. 
      * @return Quaternion& 
      */
-    Quaternion &operator+(Quaternion &a);
+      Quaternion &operator+(Quaternion &a);
 
-    /**
+      /**
      * @brief Subtracts two quaternion objects together
      * 
      * @param a A quaternion to subtract. 
      * @return Quaternion& 
      */
-    Quaternion &operator-(Quaternion &a);
+      Quaternion &operator-(Quaternion &a);
 
-    /**
+      /**
      * @brief Multiplies two quaternion objects together
      * 
      * @param a A quaternion to multiply 
      * @return Quaternion& 
      */
-    Quaternion &operator*(Quaternion &a);
+      Quaternion &operator*(Quaternion &a);
 
-    /**
+      /**
      * @brief Divides two quaternion objects
      * 
      * @param a A quaternion to divide 
      * @return Quaternion& 
      */
-    Quaternion &operator/(Quaternion &a);
+      Quaternion &operator/(Quaternion &a);
 
-    /**
+      /**
      * @brief Adds a quaternion to the existing one 
      * 
      * @param a A quaternion to add 
      * @return Quaternion& 
      */
-    Quaternion &operator+=(Quaternion &a);
+      Quaternion &operator+=(Quaternion &a);
 
-    /**
+      /**
      * @brief Subtracts a quaternion form the existing one 
      * 
      * @param a A quaternion to subtract 
      * @return Quaternion& 
      */
-    Quaternion &operator-=(Quaternion &a);
+      Quaternion &operator-=(Quaternion &a);
 
-    /**
+      /**
      * @brief Multiples existing quaternion with given quaternion 
      * 
      * @param a A quaternion to multiply with 
      * @return Quaternion&
      */
-    Quaternion &operator*=(Quaternion &a);
+      Quaternion &operator*=(Quaternion &a);
 
-    /**
+      /**
      * @brief Divides existing quaternion by a 
      * 
      * @param a A quaternion to divide with
      * @return Quaternion& 
      */
-    Quaternion &operator/=(Quaternion &a);
+      Quaternion &operator/=(Quaternion &a);
 
-    /**
+      /**
      * @brief Add a settings::real to a quaternion
      * 
      * @param a A settings::real number to add to quaternion
      * @return Quaternion& 
      */
-    Quaternion &operator+(settings::real a);
+      Quaternion &operator+(settings::real a);
 
-    /**
+      /**
      * @brief Subtracts quaternion from settings::real
      * 
      * @param a A settings::real number to subtract quaternion by
      * @return Quaternion& 
      */
-    Quaternion &operator-(settings::real a);
+      Quaternion &operator-(settings::real a);
 
-    /**
+      /**
      * @brief Multiply quaternion with settings::real number 
      * 
      * @param a A settings::real number to multiply quaternion by
      * @return Quaternion& 
      */
-    Quaternion &operator*(settings::real a);
+      Quaternion &operator*(settings::real a);
 
-    /**
+      /**
      * @brief Divide quaternion with settings::real number 
      * 
      * @param a A settings::real number to divide quaternion with 
      * @return Quaternion& 
      */
-    Quaternion &operator/(settings::real a);
+      Quaternion &operator/(settings::real a);
 
-    /**
+      /**
      * @brief Add existing quaternion with settings::real number 
      * 
      * @param a A settings::real number to add quaternion with 
      * @return Quaternion& 
      */
-    Quaternion &operator+=(settings::real a);
+      Quaternion &operator+=(settings::real a);
 
-    /**
+      /**
      * @brief Subtract existing quaternion with settings::real number 
      * 
      * @param a A settings::real number to subtract quaternion with 
      * @return Quaternion& 
      */
-    Quaternion &operator-=(settings::real a);
+      Quaternion &operator-=(settings::real a);
 
-    /**
+      /**
      * @brief Multiply existing quaternion with settings::real number 
      * 
      * @param a A settings::real number to add quaternion with 
      * @return Quaternion& 
      */
-    Quaternion &operator*=(settings::real a);
+      Quaternion &operator*=(settings::real a);
 
-    /**
+      /**
      * @brief Divide existing quaternion with settings::real number 
      * 
      * @param a A settings::real number to divide quaternion with 
      * @return Quaternion& 
      */
-    Quaternion &operator/=(settings::real a);
+      Quaternion &operator/=(settings::real a);
 
-    /**
+      /**
      * @brief  Returns the conjugate of a given quaternion
      * 
      * @param a Quaternion to get conjugate of 
      * @return Quaternion& 
      */
-    Quaternion static &GetConjugate(Quaternion &a);
+      Quaternion static &GetConjugate(Quaternion &a);
 
-    /**
+      /**
      * @brief  Returns the conjugate of quaternion
      * 
      * @return Quaternion& 
      */
-    Quaternion &Conjugate();
+      Quaternion &Conjugate();
 
-    /**
+      /**
      * @brief  Returns the inverse of a given quaternion 
      * 
      * @param a A quaternion to calculate the inverse of
      * @return Quaternion&
      */
-    Quaternion static &Inverse(Quaternion &a);
+      Quaternion static &Inverse(Quaternion &a);
 
-    /**
+      /**
      * @brief  Returns the inverse of quaternion 
      * 
      * @return Quaternion&
      */
-    Quaternion &Inverse();
+      Quaternion &Inverse();
 
-    /**
+      /**
      * @brief Calculates the magnitude of given quaternion
      * 
      * @param a A quaternion whos magnitude to calculate
      * @return settings::real 
      */
-    settings::real static Magnitude(Quaternion &a);
+      settings::real static Magnitude(Quaternion &a);
 
-    /**
+      /**
      * @brief Calculates the magnitude of quaternion
      * 
      * @return settings::real
      */
-    settings::real Magnitude() const;
+      settings::real Magnitude() const;
 
-    /**
+      /**
      * @brief Caculates the squared magnitude of a given quaternion. Use this to calculate squared magnitude.
      * 
      * @return settings::real
      */
-    settings::real static SquaredMagnitude(Quaternion &a);
+      settings::real static SquaredMagnitude(Quaternion &a);
 
-    /**
+      /**
      * @brief Caculates the squared magnitude quaternion. Use this function to calculate squared magnitude.
      * 
      * @return settings::real
      */
-    settings::real SquaredMagnitude() const;
+      settings::real SquaredMagnitude() const;
 
-    /**
+      /**
      * @brief Get the normalised quaternion
      * 
      * @param a Quaternion, whos normal to calculate
      * @return Quaternion& 
      */
-    Quaternion static &GetNormalised(Quaternion &a);
+      Quaternion static &GetNormalised(Quaternion &a);
 
-    /**
+      /**
      * @brief Normalises quaternion. Returns a reference to instance
      * 
      * @return Quaternion& 
      */
-    Quaternion &Normalise();
+      Quaternion &Normalise();
 
-    Matrix static &ConvertToVector(Quaternion &a);
+      /**
+       * @brief Gets the vector representation of a quaternion 
+       * 
+       * @param a Quaternion to convert to vector representation.
+       * @return Matrix& 
+       */
+      Matrix static &ConvertToVector(Quaternion &a);
 
-    Quaternion &ConvertToQuaternion(Matrix &a);
+      /**
+       * @brief Converts a vector to a given Quaternion
+       * 
+       * @param a Quaternion to convert
+       * @return Quaternion& 
+       */
+      Quaternion &ConvertToQuaternion(Matrix &a);
 
-    //add feature to convert a settings::real to a quaternion
-    Quaternion &ConvertToQuaternion(settings::real real);
+      /**
+       * @brief Converts a real number to a quaternion
+       * 
+       * @param real real number to convert
+       * @return Quaternion& 
+       */
+      Quaternion &ConvertToQuaternion(settings::real real);
 
-    Matrix static &GetMatrixTransformation(Quaternion &a);
-};
+      /**
+       * @brief Get the Matrix Transformation corresponding to given quaternion
+       * 
+       * @param a A quaternion
+       * @return Matrix& 
+       */
+      Matrix static &GetMatrixTransformation(Quaternion &a);
+   };
 
+} // namespace numerics
 #endif

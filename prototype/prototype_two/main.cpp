@@ -25,6 +25,8 @@ using namespace std;
 //2) set up debugging in vscode
 
 using namespace render_utils;
+using namespace numerics;
+
 int main()
 {
     cout << "Running Prototype 1" << endl;
