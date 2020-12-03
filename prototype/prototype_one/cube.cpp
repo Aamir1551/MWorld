@@ -14,13 +14,12 @@ public:
     //secondary
     Quaternion spin = Quaternion(0, 0, 0, 0);
     Matrix velocity = Matrix(3, 1, 0);
-    Matrix id = Matrix(3, 1, 0);
-    Matrix &angular_velocity = id;
+    Matrix angular_velocity = Matrix(3, 1, 0);
 
     //constants
-    float inertia;
+    float inertia = 1.0f;
     float inverse_inertia = 1.0f;
-    float mass = 0.0f;
+    float mass = 1.0f;
     float inverse_mass = 0.0f;
 
     Cube(Matrix position)
@@ -28,29 +27,24 @@ public:
         this->position = position;
     };
 
-    void Update(float dt)
+    void Update()
     {
         velocity = momentum * inverse_mass;
         angular_velocity = angular_momentum * inverse_inertia;
         Quaternion q(0, angular_velocity(0, 0), angular_velocity(1, 0), angular_velocity(2, 0));
-        //std::cout << "Q is : " << q.print() << std::endl;
         Quaternion spin = q * orientation * 0.5f;
-        orientation += spin * dt;
+        orientation += spin;
         orientation.Normalise();
     }
 
     void add_torque(Matrix force, Matrix world_coordinates, float dt)
     {
-        angular_momentum += Matrix::vectorProduct(world_coordinates, force - position);
-        Update(dt);
+        //angular_momentum += Matrix::vectorProduct(world_coordinates, force - position) * dt;
+        angular_momentum += Matrix::vectorProduct(world_coordinates - this->position, force) * dt;
     }
 
     Matrix &GetOrientationMatrix()
     {
-        /*std::cout << this->orientation.r << std::endl;
-        std::cout << this->orientation.i << std::endl;
-        std::cout << this->orientation.j << std::endl;
-        std::cout << this->orientation.k << std::endl;*/
         return Quaternion::GetMatrixTransformation(this->orientation);
     }
 };

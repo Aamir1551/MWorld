@@ -24,19 +24,22 @@ using namespace std;
 //1) set render/lib -> lib in root directory
 //2) set up debugging in vscode
 
-std::vector<glm::vec3> *GeneratePosition(int num_cubes);
-std::vector<glm::vec3> *GenerateRotationsAxis(int num_cubes);
-
 int main()
 {
     cout << "Running Prototype 1" << endl;
-    settings::real coordinates[] = {0, 0, 10}; //world coordinates of the cube
-    settings::real left_force_coordinates[] = {-1, 0, 10};
-    settings::real right_force_coordinates[] = {1, 0, 10};
+    settings::real coordinates[] = {0, 0, -10};             //world coordinates of the cube
+    settings::real left_force_coordinates[] = {-2, 0, -10}; //world coordinats of forces
+    settings::real right_force_coordinates[] = {2, 0, -10};
+    settings::real up_force_coordinates[] = {0, 2, -10};
+    settings::real down_force_coordinates[] = {0, -2, -10};
+    settings::real fff[] = {0, 0, -1};
 
     Matrix world_coordinates = Matrix(3, 1, coordinates);
+    Matrix fff_force = Matrix(3, 1, fff);
     Matrix right_force = Matrix(3, 1, right_force_coordinates);
     Matrix left_force = Matrix(3, 1, left_force_coordinates);
+    Matrix up_force = Matrix(3, 1, up_force_coordinates);
+    Matrix down_force = Matrix(3, 1, down_force_coordinates);
 
     WorldProperties *world_properties = world_intializer();
 
@@ -68,14 +71,12 @@ int main()
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
     glUseProgram(world_properties->shader_id);
-    // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     glClearColor(0.0f, 0.0f, 0.0f, 0.0f); //using black to clear the background
     std::cout << "Entering Main Loop" << std::endl;
 
     float deltaTime = 0.0f; // Time between current frame and last frame
     float lastFrame = 0.0f; // Time of last frame
 
-    c.add_torque(right_force, world_coordinates, 0.0005); //put this in loop after
     while (!glfwWindowShouldClose(world_properties->window))
     { // render loop -- an iteration of this main render loop is called a frame
 
@@ -87,21 +88,27 @@ int main()
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+        float amount = 0.0001;
         if (glfwGetKey(world_properties->window, GLFW_KEY_J) == GLFW_PRESS)
-            c.add_torque(left_force, world_coordinates, 0.0000001);
+            c.add_torque(fff_force, left_force, amount * deltaTime);
         if (glfwGetKey(world_properties->window, GLFW_KEY_L) == GLFW_PRESS)
-            c.add_torque(right_force, world_coordinates, 0.0000001);
+            c.add_torque(fff_force, right_force, amount * deltaTime);
 
+        if (glfwGetKey(world_properties->window, GLFW_KEY_I) == GLFW_PRESS)
+            c.add_torque(fff_force, up_force, amount * deltaTime);
+        if (glfwGetKey(world_properties->window, GLFW_KEY_K) == GLFW_PRESS)
+            c.add_torque(fff_force, down_force, amount * deltaTime);
+
+        c.Update();
         for (int i = 0; i < num_cubes; i++)
         {
 
             glm::mat4 model = glm::translate(id, positions.at(i));
-
             glm::mat4 temp;
+
             memcpy(glm::value_ptr(temp), Quaternion::GetMatrixTransformation(c.orientation).getValues(), 16 * 4);
             model = model * temp;
 
-            //model = glm::rotate(model, glm::radians((float)glfwGetTime() * 20 * ((i + 1) % 20)), rotations->at(i));
             cubes.models.push_back(&model);
 
             view = camera.CalculateView();
@@ -124,29 +131,4 @@ int main()
     glfwTerminate();
     cout << "Terminated" << endl;
     return 0;
-}
-
-std::vector<glm::vec3> *GeneratePosition(int num_cubes)
-{
-    srand((unsigned)time(NULL)); //NULL???
-    std::vector<glm::vec3> *positions = new std::vector<glm::vec3>;
-    float world_size = 500;
-    float const scale = world_size / ((float)RAND_MAX / 2.0);
-    auto get_coord = [scale, world_size]() -> float { return scale * (rand() - RAND_MAX / 2); };
-    for (int i = 0; i < num_cubes; i++)
-    {
-        positions->push_back(glm::vec3(get_coord(), get_coord(), get_coord()));
-    }
-    return positions;
-}
-
-std::vector<glm::vec3> *GenerateRotationsAxis(int num_cubes)
-{
-    srand((unsigned)time(NULL)); //NULL???
-    std::vector<glm::vec3> *rotations = new std::vector<glm::vec3>;
-    for (int i = 0; i < num_cubes; i++)
-    {
-        rotations->push_back(glm::vec3(rand() % 5 - 2, rand() % 5 - 2, rand() % 5 - 2)); //try this without a pointer to see if it'l work.
-    }
-    return rotations;
 }

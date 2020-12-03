@@ -32,6 +32,7 @@ public:
     Matrix(const Matrix &a);            //copy constructor -- only used when object is being created
     Matrix &operator=(const Matrix &a); //assignment operator
 
+    Matrix static &reshape(Matrix a, int new_row, int new_cols);
     Matrix static &createMatrixArange(int n, int m);
 
     real inline const *const getValues()

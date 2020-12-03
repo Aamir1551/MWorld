@@ -57,6 +57,19 @@ Matrix::Matrix(const Matrix &a) //copy constructor
     }
 }
 
+Matrix &Matrix::reshape(Matrix a, int new_row, int new_cols)
+{
+    if (a.rows * a.cols != new_row * new_cols)
+    {
+        throw std::invalid_argument("Matrix Shape does not conform for reshape");
+    }
+    Matrix *b = new Matrix(new_row, new_cols);
+    for (int i = 0; i < a.rows * a.cols; i++)
+    {
+        b->values[i] = a.values[i];
+    }
+};
+
 // Returns the squared euclidean norm of a matrix
 real Matrix::squaredNorm(Matrix const &a)
 {
@@ -386,7 +399,7 @@ Matrix &Matrix::vectorProduct(Matrix const &a, Matrix const &b)
         generateError("vector product", b);
     }
 
-    Matrix *c = new Matrix(1, 3);
+    Matrix *c = new Matrix(3, 1);
     c->values[0] = a.values[1] * b.values[2] - a.values[2] * b.values[1];
     c->values[1] = a.values[2] * b.values[0] - a.values[0] * b.values[2];
     c->values[2] = a.values[0] * b.values[1] - a.values[1] * b.values[0];
