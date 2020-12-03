@@ -1,5 +1,6 @@
-#include "../include/matrix3.h"
-#include "../include/matrix.h"
+#include <matrix.hpp>
+#include <matrix3.hpp>
+#include <settings.hpp>
 
 Matrix3::Matrix3() : Matrix(3, 3){};
 int Matrix3::inv()
@@ -31,7 +32,7 @@ int Matrix3::inv()
     this->values[7] = b * g - a * h;
     this->values[8] = a * e - b * d;
 
-    real det = a * e * i + d * h * c + g * b * f - a * h * f - g * e * c - d * b * i;
+    settings::real det = a * e * i + d * h * c + g * b * f - a * h * f - g * e * c - d * b * i;
     for (int i = 0; i < 9; i++)
     {
         this->values[i] /= det;
@@ -53,5 +54,5 @@ int Matrix3::determinant() const
     int h = this->values[7];
     int i = this->values[8];
 
-    real det = a * e * i + d * h * c + g * b * f - a * h * f - g * e * c - d * b * i;
+    settings::real det = a * e * i + d * h * c + g * b * f - a * h * f - g * e * c - d * b * i;
 }

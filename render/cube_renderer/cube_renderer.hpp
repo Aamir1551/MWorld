@@ -1,5 +1,5 @@
-#ifndef MWORLD_RENDER_CUBE_CUBE_H
-#define MWORLD_RENDER_CUBE_CUBE_H
+#ifndef MWORLD_RENDER_CUBE_RENDER_H_CUBE_RENDER_H
+#define MWORLD_RENDER_CUBE_RENDER_H_CUBE_RENDER_H
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>

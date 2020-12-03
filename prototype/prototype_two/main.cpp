@@ -3,6 +3,7 @@
 #include <time.h>
 #include <math.h>
 #include <cstdlib> //for the rand function
+#include <cstring>
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -12,12 +13,11 @@
 
 #include <cube_renderer.hpp>
 #include <world_initializer.hpp>
-#include <settings.h>
-#include <matrix.h>
+#include <settings.hpp>
+#include <matrix.hpp>
 #include <quaternion.hpp>
 #include <camera.hpp>
 #include <cube.cpp>
-#include <cstring>
 
 using namespace std;
 //TODO

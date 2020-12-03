@@ -1,21 +1,21 @@
 #ifndef MWORLD_NUMERICS_QUATERNION_QUATERNION_H
 #define MWORLD_NUMERICS_QUATERNION_QUATERNION_H
 
-#include <matrix.h>
-#include <settings.h>
+#include <matrix.hpp>
+#include <settings.hpp>
 class Quaternion
 {
 
 public:
-    real r;
-    real i;
-    real j;
-    real k;
+    settings::real r;
+    settings::real i;
+    settings::real j;
+    settings::real k;
 
     /**
      * @brief Construct a new quaternion object
      * 
-     * @param r The real part of the quaternion
+     * @param r The settings::real part of the quaternion
      * @param i The imaginary part of the quaternion 
      * @param j The j part of quaternion
      * @param k The k part of quaternion
@@ -107,68 +107,68 @@ public:
     Quaternion &operator/=(Quaternion &a);
 
     /**
-     * @brief Add a real to a quaternion
+     * @brief Add a settings::real to a quaternion
      * 
-     * @param a A real number to add to quaternion
+     * @param a A settings::real number to add to quaternion
      * @return Quaternion& 
      */
     Quaternion &operator+(settings::real a);
 
     /**
-     * @brief Subtracts quaternion from real
+     * @brief Subtracts quaternion from settings::real
      * 
-     * @param a A real number to subtract quaternion by
+     * @param a A settings::real number to subtract quaternion by
      * @return Quaternion& 
      */
     Quaternion &operator-(settings::real a);
 
     /**
-     * @brief Multiply quaternion with real number 
+     * @brief Multiply quaternion with settings::real number 
      * 
-     * @param a A real number to multiply quaternion by
+     * @param a A settings::real number to multiply quaternion by
      * @return Quaternion& 
      */
-    Quaternion &operator*(real a);
+    Quaternion &operator*(settings::real a);
 
     /**
-     * @brief Divide quaternion with real number 
+     * @brief Divide quaternion with settings::real number 
      * 
-     * @param a A real number to divide quaternion with 
+     * @param a A settings::real number to divide quaternion with 
      * @return Quaternion& 
      */
-    Quaternion &operator/(real a);
+    Quaternion &operator/(settings::real a);
 
     /**
-     * @brief Add existing quaternion with real number 
+     * @brief Add existing quaternion with settings::real number 
      * 
-     * @param a A real number to add quaternion with 
+     * @param a A settings::real number to add quaternion with 
      * @return Quaternion& 
      */
-    Quaternion &operator+=(real a);
+    Quaternion &operator+=(settings::real a);
 
     /**
-     * @brief Subtract existing quaternion with real number 
+     * @brief Subtract existing quaternion with settings::real number 
      * 
-     * @param a A real number to subtract quaternion with 
+     * @param a A settings::real number to subtract quaternion with 
      * @return Quaternion& 
      */
-    Quaternion &operator-=(real a);
+    Quaternion &operator-=(settings::real a);
 
     /**
-     * @brief Multiply existing quaternion with real number 
+     * @brief Multiply existing quaternion with settings::real number 
      * 
-     * @param a A real number to add quaternion with 
+     * @param a A settings::real number to add quaternion with 
      * @return Quaternion& 
      */
-    Quaternion &operator*=(real a);
+    Quaternion &operator*=(settings::real a);
 
     /**
-     * @brief Divide existing quaternion with real number 
+     * @brief Divide existing quaternion with settings::real number 
      * 
-     * @param a A real number to divide quaternion with 
+     * @param a A settings::real number to divide quaternion with 
      * @return Quaternion& 
      */
-    Quaternion &operator/=(real a);
+    Quaternion &operator/=(settings::real a);
 
     /**
      * @brief  Returns the conjugate of a given quaternion
@@ -204,30 +204,30 @@ public:
      * @brief Calculates the magnitude of given quaternion
      * 
      * @param a A quaternion whos magnitude to calculate
-     * @return real 
+     * @return settings::real 
      */
-    real static Magnitude(Quaternion &a);
+    settings::real static Magnitude(Quaternion &a);
 
     /**
      * @brief Calculates the magnitude of quaternion
      * 
-     * @return real
+     * @return settings::real
      */
-    real Magnitude() const;
+    settings::real Magnitude() const;
 
     /**
      * @brief Caculates the squared magnitude of a given quaternion. Use this to calculate squared magnitude.
      * 
-     * @return real
+     * @return settings::real
      */
-    real static SquaredMagnitude(Quaternion &a);
+    settings::real static SquaredMagnitude(Quaternion &a);
 
     /**
      * @brief Caculates the squared magnitude quaternion. Use this function to calculate squared magnitude.
      * 
-     * @return real
+     * @return settings::real
      */
-    real SquaredMagnitude() const;
+    settings::real SquaredMagnitude() const;
 
     /**
      * @brief Get the normalised quaternion
@@ -248,8 +248,8 @@ public:
 
     Quaternion &ConvertToQuaternion(Matrix &a);
 
-    //add feature to convert a real to a quaternion
-    Quaternion &ConvertToQuaternion(real real);
+    //add feature to convert a settings::real to a quaternion
+    Quaternion &ConvertToQuaternion(settings::real real);
 
     Matrix static &GetMatrixTransformation(Quaternion &a);
 };

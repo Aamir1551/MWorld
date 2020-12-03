@@ -1,6 +1,7 @@
-#include <matrix.h>
-#include <quaternion.hpp>
 #include <iostream>
+
+#include <matrix.hpp>
+#include <quaternion.hpp>
 class Cube
 {
 public:
