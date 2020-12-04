@@ -6,6 +6,7 @@
 
 namespace numerics
 {
+
     Quaternion::Quaternion(settings::real r, settings::real i, settings::real j, settings::real k) : r(r), i(i), j(j), k(k){};
 
     Quaternion::Quaternion(const Quaternion &q)
@@ -80,6 +81,7 @@ namespace numerics
     Quaternion &Quaternion::operator/=(Quaternion &a)
     {
         *this *= Quaternion::Inverse(a);
+        return *this;
     };
 
     Quaternion &Quaternion::GetConjugate(Quaternion &a)

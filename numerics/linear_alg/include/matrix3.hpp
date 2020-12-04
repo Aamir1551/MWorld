@@ -11,7 +11,7 @@ namespace numerics
     class Matrix3 : public Matrix
     {
     public:
-        Matrix3();
+        explicit Matrix3();
 
         settings::real norm(Matrix const &a);        //returns the euclidean norm of a matrix
         settings::real squaredNorm(Matrix const &a); //returns the euclidean norm of a matrix

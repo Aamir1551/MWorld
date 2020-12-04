@@ -37,7 +37,8 @@ int main()
     settings::real down_force_coordinates[] = {0, -2, -10};
     settings::real fff[] = {0, 0, -1};
 
-    Matrix world_coordinates = Matrix(3, 1, coordinates);
+    //Matrix world_coordinates = Matrix(3, 1, coordinates);
+    Matrix world_coordinates(3, 1, coordinates);
     Matrix fff_force = Matrix(3, 1, fff);
     Matrix right_force = Matrix(3, 1, right_force_coordinates);
     Matrix left_force = Matrix(3, 1, left_force_coordinates);

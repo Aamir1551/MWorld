@@ -23,7 +23,7 @@ namespace numerics
      * @param j The j part of quaternion
      * @param k The k part of quaternion
      */
-      Quaternion(settings::real r, settings::real i, settings::real j, settings::real k);
+      explicit Quaternion(settings::real r, settings::real i, settings::real j, settings::real k);
 
       /**
      * @brief Construct a new quaternion object. Uses the copy constructor to achieve this
@@ -36,6 +36,14 @@ namespace numerics
       {
          std::cout << this->r << "+" << this->i << "i+" << this->j << "j+" << this->k << "k" << std::endl;
       };
+
+      Quaternion &operator=(const Quaternion &q)
+      {
+         this->r = q.r;
+         this->i = q.i;
+         this->j = q.j;
+         this->k = q.k;
+      }
 
       /**
      * @brief Compares two quaternion. If all values are equal, then returns true

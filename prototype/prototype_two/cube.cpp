@@ -8,8 +8,8 @@ class Cube
 {
 public:
     //primary
-    Matrix position = Matrix(3, 1, 0);
-    Quaternion orientation = Quaternion(1, 0, 0, 0);
+    Matrix position = Matrix(3.0, 1.0, 0.0);
+    Quaternion orientation = Quaternion(1.0, 0.0, 0.0, 0.0);
 
     Matrix momentum = Matrix(3, 1, 0);
     Matrix angular_momentum = Matrix(3, 1, 0);

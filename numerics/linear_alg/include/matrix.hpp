@@ -28,10 +28,11 @@ namespace numerics
 
     public:
         //try experimenting with using & instead of pointers
-        Matrix(int rows, int cols);
-        Matrix(int rows, int cols, int factor);
-        Matrix(int rows, int cols, settings::real *values);
-        Matrix(const Matrix &a);            //copy constructor -- only used when object is being created
+        explicit Matrix(int rows, int cols);
+        explicit Matrix(int rows, int cols, int factor);
+        explicit Matrix(int rows, int cols, settings::real *values);
+        Matrix(const Matrix &a); //copy constructor -- only used when object is being created
+
         Matrix &operator=(const Matrix &a); //assignment operator
 
         Matrix static &reshape(Matrix a, int new_row, int new_cols);

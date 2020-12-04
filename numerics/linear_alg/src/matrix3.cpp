@@ -57,5 +57,6 @@ namespace numerics
         int i = this->values[8];
 
         settings::real det = a * e * i + d * h * c + g * b * f - a * h * f - g * e * c - d * b * i;
+        return det;
     }
 } // namespace numerics
