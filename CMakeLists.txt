@@ -3,6 +3,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(glfw "${CMAKE_CURRENT_SOURCE_DIR}/lib/glfw-3.3.2/build/src/libglfw3.a")
 set(glfw_include_path "${CMAKE_CURRENT_SOURCE_DIR}/lib/glfw-3.3.2/include/")
 set(glm_include_path "${CMAKE_CURRENT_SOURCE_DIR}/lib/glm")
+set(catch_path ${CMAKE_CURRENT_SOURCE_DIR}/catch)
 
 project(MWorld)
 #add_subdirectory(catch)

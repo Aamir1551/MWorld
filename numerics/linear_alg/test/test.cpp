@@ -3,11 +3,12 @@
 #include <stdio.h>
 #include <vector>
 
-#include <matrix.h>
+#include <matrix.hpp>
 // should add docker and add environment path to catch/test.h
 #include <catch.hpp>
-#include "../../../utils/settings.h"
+#include <settings.hpp>
 
+using namespace numerics;
 //TODO
 //Do tests with actual numbers given instead of just using for loops and numbers
 
@@ -29,10 +30,10 @@ TEST_CASE("Creating Matrices of different size", "[construction]")
     int d_row_test = 13;
     int d_col_test = 19;
     int d_total_elements = d_row_test * d_col_test;
-    std::vector<real> d_test_values;
+    std::vector<settings::real> d_test_values;
     for (int i = 0; i < d_total_elements; i++)
     {
-        d_test_values.push_back(rand() % 100); //make sure to change this so we can also test for floats, or for any real
+        d_test_values.push_back(rand() % 100); //make sure to change this so we can also test for floats, or for any settings::real
     }
 
     Matrix *a = new Matrix(a_row_test, a_col_test);
@@ -60,13 +61,13 @@ TEST_CASE("Creating Matrices of different size", "[construction]")
         REQUIRE(b_col == b_col_test);
         REQUIRE(b_row == b_row_test);
 
-        const real *a_values = a->getValues();
+        const settings::real *a_values = a->getValues();
         for (int i = 0; i < a_total_elements; i++)
         {
             REQUIRE(a_values[i] == 0);
         }
 
-        const real *b_values = b->getValues();
+        const settings::real *b_values = b->getValues();
         for (int i = 0; i < b_total_elements; i++)
         {
             REQUIRE(b_values[i] == 0);
@@ -77,7 +78,7 @@ TEST_CASE("Creating Matrices of different size", "[construction]")
         REQUIRE(c_col == c_col_test);
         REQUIRE(c_row == c_row_test);
 
-        const real *c_values = c.getValues();
+        const settings::real *c_values = c.getValues();
         for (int i = 0; i < c_total_elements; i++)
         {
             REQUIRE(c_values[i] == i);
@@ -89,7 +90,7 @@ TEST_CASE("Creating Matrices of different size", "[construction]")
         REQUIRE(d_col == d_col_test);
         REQUIRE(d_row == d_row_test);
 
-        const real *d_values = d->getValues();
+        const settings::real *d_values = d->getValues();
         for (int i = 0; i < d_total_elements; i++)
         {
             REQUIRE(d_values[i] == d_test_values[i]);
@@ -116,8 +117,8 @@ TEST_CASE("Matrices can be operated with", "[Operations]")
     int d_col = 4;
     int d_total_elements = d_row * d_col;
 
-    std::vector<real> a_test_values;
-    std::vector<real> b_test_values;
+    std::vector<settings::real> a_test_values;
+    std::vector<settings::real> b_test_values;
     for (int i = 0; i < a_total_elements; i++)
     {
         a_test_values.push_back(rand() % 1000); //make sure to change this so we can also test for floats
