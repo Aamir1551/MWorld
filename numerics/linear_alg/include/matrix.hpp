@@ -33,7 +33,6 @@ namespace numerics
         explicit Matrix(int rows, int cols);
         explicit Matrix(int rows, int cols, int factor);
         explicit Matrix(int rows, int cols, settings::real *values);
-        Matrix(int rows, int cols, settings::real values[], int k);
         Matrix(const Matrix &a); //copy constructor -- only used when object is being created
 
         std::pair<int, int> shape()

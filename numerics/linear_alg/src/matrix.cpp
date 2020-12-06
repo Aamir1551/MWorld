@@ -186,18 +186,6 @@ hence would become a bottleneck in calculations and slow down simulation. */
         }
     };
 
-    Matrix::Matrix(int rows, int cols, settings::real values[], int k) : rows(rows),
-                                                                         cols(cols)
-    {
-        this->rows = rows;
-        this->cols = cols;
-        this->values = new settings::real[rows * cols];
-        for (int i = 0; i < rows * cols; i++)
-        {
-            this->values[i] = values[i];
-        }
-    };
-
     int Matrix::Transpose()
     {
         settings::real *new_values = new settings::real[this->cols * this->rows];

@@ -279,6 +279,4 @@ namespace numerics
         return *result;
     };
 
-    //add a move operator
-
 } // namespace numerics
