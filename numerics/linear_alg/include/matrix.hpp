@@ -35,12 +35,12 @@ namespace numerics
         explicit Matrix(int rows, int cols, settings::real *values);
         Matrix(const Matrix &a); //copy constructor -- only used when object is being created
 
-        std::pair<int, int> shape()
+        std::pair<int, int> shape() const
         {
             return std::make_pair(this->rows, this->cols);
         }
 
-        void print_shape()
+        void print_shape() const
         {
             std::cout << "(" << this->rows << "," << this->cols << ")" << std::endl;
         }
@@ -50,7 +50,7 @@ namespace numerics
         Matrix static &Reshape(Matrix a, int new_row, int new_cols);
         Matrix static *CreateMatrixArange(int n, int m);
 
-        settings::real inline const *const GetValues()
+        settings::real inline const *const GetValues() const
         {
             return values;
         };
@@ -74,7 +74,7 @@ namespace numerics
             return a.rows == b.rows && a.cols == b.cols;
         }; //get meaning of inlines -- inline functions need to be defined in the header
 
-        virtual settings::real Norm(Matrix const &a);        //returns the euclidean norm of a matrix
+        virtual settings::real Norm(Matrix const &a) const;  //returns the euclidean norm of a matrix
         virtual settings::real SquaredNorm(Matrix const &a); //returns the euclidean norm of a matrix
 
         Matrix static &MatMul(Matrix const &a, Matrix const &b); // returns the matrix if success, otherwise it throws an error or if an element is nan, it returns 1

@@ -85,9 +85,10 @@ namespace numerics
     };
 
     /* returns the euclidean norm of a matrix. Function havn't used a function call 
-to norm since that would add too many function calls, and norm is used allot, 
-hence would become a bottleneck in calculations and slow down simulation. */
-    settings::real Matrix::Norm(Matrix const &a)
+    to norm since that would add too many function calls, and norm is used allot, 
+    hence would become a bottleneck in calculations and slow down simulation. 
+    */
+    settings::real Matrix::Norm(Matrix const &a) const
     {
         settings::real sum = 0;
         for (int i = 0; i < a.rows * a.cols; i++)

@@ -55,7 +55,7 @@ int main()
 
     glm::mat4 projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 400.0f);
 
-    float position_coord[] = {0, 0, -10};
+    real position_coord[] = {0, 0, -10};
     Matrix position(3, 1, position_coord);
     Cube c(position);
 
