@@ -10,6 +10,6 @@ target_include_directories(cube_renderer PUBLIC  "${CMAKE_CURRENT_SOURCE_DIR}/..
 target_include_directories(cube_renderer PUBLIC "${glfw_include_path}" "${glm_include_path}" )
 target_include_directories(cube_renderer PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/.")
 
-target_link_libraries(cube_renderer glad "${glfw}")
+target_link_libraries(cube_renderer glad "${glfw}" settings)
 
 set_target_properties(cube_renderer PROPERTIES LINKER_LANGUAGE CXX)

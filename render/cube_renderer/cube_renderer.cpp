@@ -6,15 +6,16 @@
 
 #include <cube_renderer.hpp>
 
+using namespace settings;
 namespace render_utils
 {
     int CubeRenderer::vao;
     int CubeRenderer::vbo;
     int CubeRenderer::ebo;
-    float CubeRenderer::cube_length;
+    real CubeRenderer::cube_length;
     unsigned int CubeRenderer::shader_id;
 
-    float CubeRenderer::vertices[24];
+    real CubeRenderer::vertices[24];
     glm::mat4 *CubeRenderer::view;
     glm::mat4 *CubeRenderer::project;
 

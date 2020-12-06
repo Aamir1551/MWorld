@@ -51,7 +51,6 @@ namespace numerics
     {
         this->rows = a.rows;
         this->cols = a.cols;
-        //delete (this->values);
         this->values = new settings::real[rows * cols];
 
         for (int i = 0; i < a.rows * a.cols; i++)
@@ -73,7 +72,6 @@ namespace numerics
         }
     };
 
-    // Returns the squared euclidean norm of a matrix
     settings::real Matrix::SquaredNorm(Matrix const &a)
     {
         settings::real sum = 0;
@@ -84,10 +82,6 @@ namespace numerics
         return (sum);
     };
 
-    /* returns the euclidean norm of a matrix. Function havn't used a function call 
-    to norm since that would add too many function calls, and norm is used allot, 
-    hence would become a bottleneck in calculations and slow down simulation. 
-    */
     settings::real Matrix::Norm(Matrix const &a) const
     {
         settings::real sum = 0;
@@ -165,7 +159,7 @@ namespace numerics
         }
     }
 
-    Matrix *Matrix::CreateMatrixArange(int n, int m) //should instead try returning a reference, but that is causing a memory leak issue
+    Matrix *Matrix::CreateMatrixArange(int n, int m)
     {
         Matrix *a = new Matrix(n, m);
         for (int i = 0; i < m * n; i++)

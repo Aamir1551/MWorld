@@ -22,10 +22,10 @@ public:
     Matrix angular_velocity = Matrix(3, 1);
 
     //constants
-    float const inertia = 1.0f;
-    float const inverse_inertia = 1.0f;
-    float const mass = 1.0f;
-    float const inverse_mass = 0.0f;
+    real const inertia = 1.0f;
+    real const inverse_inertia = 1.0f;
+    real const mass = 1.0f;
+    real const inverse_mass = 0.0f;
 
     /**
      * @brief Construct a new Cube object.
@@ -81,7 +81,7 @@ public:
      * @param force_world_cooridinates The coordinates of the force in world coordinates
      * @param dt The amount of time the force was applied for
      */
-    void AddTorque(Matrix const force, Matrix const force_world_cooridinates, float const dt)
+    void AddTorque(Matrix const force, Matrix const force_world_cooridinates, real const dt)
     {
         /*
             Initially the force and the force_world_coordinates are in world coordintes. However, the 

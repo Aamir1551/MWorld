@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(prototype_one)
+project(prototype_two)
 set(CXX_STANDARD 11)
 
 add_executable(prototype_two cube.cpp main.cpp)
