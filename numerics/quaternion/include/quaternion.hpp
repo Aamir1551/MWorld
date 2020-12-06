@@ -281,7 +281,8 @@ namespace numerics
 
       /**
        * @brief Get the Matrix Transformation corresponding to given quaternion
-       * 
+       * @see  https://gafferongames.com/post/physics_in_3d/
+       * @see https://www.euclideanspace.com/maths/geometry/rotations/conversions/quaternionToMatrix/index.htm
        * @param a A quaternion
        * @return Matrix& 
        */

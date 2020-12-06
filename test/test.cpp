@@ -11,13 +11,13 @@ int main()
 
     Matrix a = Matrix(2, 2, arr);
 
-    Matrix b = Matrix::createMatrixArange(3, 3);
+    Matrix b = Matrix::CreateMatrixArange(3, 3);
     b.print();
     Matrix &c = a * b;
     cout << a.get_num_cols() << a.get_num_rows() << endl;
     cout << b.get_num_cols() << b.get_num_rows() << endl;
-    cout << Matrix::same_shape(a, b) << endl;
-    if (!Matrix::same_shape(a, b))
+    cout << Matrix::IsSameShape(a, b) << endl;
+    if (!Matrix::IsSameShape(a, b))
     {
         cout << "sadf" << endl;
     }

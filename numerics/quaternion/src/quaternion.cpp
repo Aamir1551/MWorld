@@ -225,17 +225,29 @@ namespace numerics
 
     Quaternion &Quaternion::ConvertToQuaternion(Matrix &a)
     {
-        settings::real const *new_values = a.getValues();
+        settings::real const *new_values = a.GetValues();
         Quaternion *result = new Quaternion(new_values[0], new_values[1], new_values[2], new_values[3]);
         return *result;
     }
 
+    /**
+     * @brief Transforms quaternion to corresponding matrix transformation
+     * 
+     * @see https://gafferongames.com/post/physics_in_3d/
+     * @link  https://gafferongames.com/post/physics_in_3d/
+     * \link  https://gafferongames.com/post/physics_in_3d/
+     * @see https://www.euclideanspace.com/maths/geometry/rotations/conversions/quaternionToMatrix/index.htm
+     * @param a 
+     * @return ** Matrix& 
+     */
     Matrix &Quaternion::GetMatrixTransformation(Quaternion &a)
     {
-        settings::real qx = a.r;
-        settings::real qy = a.i;
-        settings::real qz = a.j;
-        settings::real qw = a.k;
+
+        settings::real qw = a.r;
+        settings::real qx = a.i;
+        settings::real qy = a.j;
+        settings::real qz = a.k;
+
         settings::real *values = new settings::real[16];
         values[0] = 1.0f - 2.0f * qy * qy - 2.0f * qz * qz;
         values[1] = 2.0f * qx * qy - 2.0f * qz * qw;

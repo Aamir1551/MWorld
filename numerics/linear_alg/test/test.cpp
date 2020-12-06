@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include <vector>
 
+#include <utility>
+
 #include <matrix.hpp>
 // should add docker and add environment path to catch/test.h
 #include <catch.hpp>
@@ -37,20 +39,24 @@ TEST_CASE("Creating Matrices of different size", "[construction]")
     }
 
     Matrix *a = new Matrix(a_row_test, a_col_test);
-    int a_col = a->get_num_cols();
-    int a_row = a->get_num_rows();
+    std::pair<int, int> a_shape = a->shape();
+    int a_row = a_shape.first;
+    int a_col = a_shape.second;
 
     Matrix *b = new Matrix(b_row_test, b_col_test);
-    int b_col = b->get_num_cols();
-    int b_row = b->get_num_rows();
+    std::pair<int, int> b_shape = b->shape();
+    int b_row = b_shape.first;
+    int b_col = b_shape.second;
 
-    Matrix c = Matrix::createMatrixArange(c_row_test, c_col_test);
-    int c_col = c.get_num_cols();
-    int c_row = c.get_num_rows();
+    Matrix *c = Matrix::CreateMatrixArange(c_row_test, c_col_test);
+    std::pair<int, int> c_shape = c->shape();
+    int c_row = c_shape.first;
+    int c_col = c_shape.second;
 
     Matrix *d = new Matrix(d_row_test, d_col_test, &d_test_values[0]);
-    int d_col = d->get_num_cols();
-    int d_row = d->get_num_rows();
+    std::pair<int, int> d_shape = d->shape();
+    int d_row = d_shape.first;
+    int d_col = d_shape.second;
 
     SECTION("Construxtion of Matrix given rows and columns")
     {
@@ -61,13 +67,13 @@ TEST_CASE("Creating Matrices of different size", "[construction]")
         REQUIRE(b_col == b_col_test);
         REQUIRE(b_row == b_row_test);
 
-        const settings::real *a_values = a->getValues();
+        const settings::real *a_values = a->GetValues();
         for (int i = 0; i < a_total_elements; i++)
         {
             REQUIRE(a_values[i] == 0);
         }
 
-        const settings::real *b_values = b->getValues();
+        const settings::real *b_values = b->GetValues();
         for (int i = 0; i < b_total_elements; i++)
         {
             REQUIRE(b_values[i] == 0);
@@ -78,7 +84,7 @@ TEST_CASE("Creating Matrices of different size", "[construction]")
         REQUIRE(c_col == c_col_test);
         REQUIRE(c_row == c_row_test);
 
-        const settings::real *c_values = c.getValues();
+        const settings::real *c_values = c->GetValues();
         for (int i = 0; i < c_total_elements; i++)
         {
             REQUIRE(c_values[i] == i);
@@ -90,12 +96,16 @@ TEST_CASE("Creating Matrices of different size", "[construction]")
         REQUIRE(d_col == d_col_test);
         REQUIRE(d_row == d_row_test);
 
-        const settings::real *d_values = d->getValues();
+        const settings::real *d_values = d->GetValues();
         for (int i = 0; i < d_total_elements; i++)
         {
             REQUIRE(d_values[i] == d_test_values[i]);
         }
     }
+    delete a;
+    delete b;
+    delete c;
+    delete d;
 }
 
 TEST_CASE("Matrices can be operated with", "[Operations]")
@@ -157,4 +167,6 @@ TEST_CASE("Matrices can be operated with", "[Operations]")
     {
         //test with both no error thrown and error thrown
     }
+    delete a;
+    delete b;
 }

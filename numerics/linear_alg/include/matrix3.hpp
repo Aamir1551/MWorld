@@ -13,13 +13,13 @@ namespace numerics
     public:
         explicit Matrix3();
 
-        settings::real norm(Matrix const &a);        //returns the euclidean norm of a matrix
-        settings::real squaredNorm(Matrix const &a); //returns the euclidean norm of a matrix
+        settings::real Norm(Matrix const &a);        //returns the euclidean norm of a matrix
+        settings::real SquaredNorm(Matrix const &a); //returns the euclidean norm of a matrix
 
         Matrix static &MatMul(Matrix const &a, Matrix const &b); // returns the matrix if success, otherwise it throws an error or if an element is nan, it returns 1
         int MatMul(Matrix const &a);                             // returns 0 if success, otherwise it throws an error or if an element is nan, it returns 1
-        int inv();                                               // returns 0 if success, otherwise it throws an error or if an element is nan, it returns 1
-        int determinant() const;
+        int Inv();                                               // returns 0 if success, otherwise it throws an error or if an element is nan, it returns 1
+        int Determinent() const;
         ~Matrix3() { free(values); };
     };
 

@@ -31,6 +31,7 @@ using namespace render_utils;
 int main()
 {
 
+    std::cout << "Running prototype 1" << std::endl;
     WorldProperties *world_properties = world_intializer();
 
     unsigned int vao, vbo, ebo;

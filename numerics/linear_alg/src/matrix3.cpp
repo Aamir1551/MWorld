@@ -5,7 +5,7 @@
 namespace numerics
 {
     Matrix3::Matrix3() : Matrix(3, 3){};
-    int Matrix3::inv()
+    int Matrix3::Inv()
     {
         int a = this->values[0];
         int b = this->values[1];
@@ -43,7 +43,7 @@ namespace numerics
         return 0;
     }
 
-    int Matrix3::determinant() const
+    int Matrix3::Determinent() const
     {
         //detM = aei + dhc + gbf − ahf − gec − dbi
         int a = this->values[0];

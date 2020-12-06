@@ -60,11 +60,11 @@ namespace numerics
         }
     }
 
-    Matrix &Matrix::reshape(Matrix a, int new_row, int new_cols)
+    Matrix &Matrix::Reshape(Matrix a, int new_row, int new_cols)
     {
         if (a.rows * a.cols != new_row * new_cols)
         {
-            throw std::invalid_argument("Matrix Shape does not conform for reshape");
+            throw std::invalid_argument("Matrix Shape does not conform for Reshape");
         }
         Matrix *b = new Matrix(new_row, new_cols);
         for (int i = 0; i < a.rows * a.cols; i++)
@@ -74,7 +74,7 @@ namespace numerics
     };
 
     // Returns the squared euclidean norm of a matrix
-    settings::real Matrix::squaredNorm(Matrix const &a)
+    settings::real Matrix::SquaredNorm(Matrix const &a)
     {
         settings::real sum = 0;
         for (int i = 0; i < a.rows * a.cols; i++)
@@ -87,7 +87,7 @@ namespace numerics
     /* returns the euclidean norm of a matrix. Function havn't used a function call 
 to norm since that would add too many function calls, and norm is used allot, 
 hence would become a bottleneck in calculations and slow down simulation. */
-    settings::real Matrix::norm(Matrix const &a)
+    settings::real Matrix::Norm(Matrix const &a)
     {
         settings::real sum = 0;
         for (int i = 0; i < a.rows * a.cols; i++)
@@ -97,7 +97,7 @@ hence would become a bottleneck in calculations and slow down simulation. */
         return sqrt(sum);
     };
 
-    std::string Matrix::generateError(std::string operation,
+    std::string Matrix::GenerateError(std::string operation,
                                       Matrix const &a, Matrix const &b)
     {
         std::string msg = "Matrix shapes do not conform for " +
@@ -112,7 +112,7 @@ hence would become a bottleneck in calculations and slow down simulation. */
         return msg + " " + a_shape + " " + b_shape;
     }
 
-    std::string Matrix::generateError(std::string operation, Matrix const &a)
+    std::string Matrix::GenerateError(std::string operation, Matrix const &a)
     {
         std::string msg = "Matrix shapes do not conform for " + operation + ".";
         std::string a_shape = "This has shape=(" + std::to_string(a.rows) + "," +
@@ -126,7 +126,7 @@ hence would become a bottleneck in calculations and slow down simulation. */
         if (this->cols != a.rows)
         {
             throw std::invalid_argument(
-                generateError("Matrix Multiplication", *this, a));
+                GenerateError("Matrix Multiplication", *this, a));
         }
 
         settings::real *new_values = new settings::real[this->rows * a.cols];
@@ -164,18 +164,18 @@ hence would become a bottleneck in calculations and slow down simulation. */
         }
     }
 
-    Matrix &Matrix::createMatrixArange(int n, int m)
+    Matrix *Matrix::CreateMatrixArange(int n, int m) //should instead try returning a reference, but that is causing a memory leak issue
     {
         Matrix *a = new Matrix(n, m);
         for (int i = 0; i < m * n; i++)
         {
             a->values[i] = i;
         }
-        return *a;
+        return a;
     };
 
     Matrix::Matrix(int rows, int cols, settings::real *values) : rows(rows),
-                                                                 cols(cols), values(values)
+                                                                 cols(cols)
     {
         this->rows = rows;
         this->cols = cols;
@@ -186,7 +186,19 @@ hence would become a bottleneck in calculations and slow down simulation. */
         }
     };
 
-    int Matrix::transpose()
+    Matrix::Matrix(int rows, int cols, settings::real values[], int k) : rows(rows),
+                                                                         cols(cols)
+    {
+        this->rows = rows;
+        this->cols = cols;
+        this->values = new settings::real[rows * cols];
+        for (int i = 0; i < rows * cols; i++)
+        {
+            this->values[i] = values[i];
+        }
+    };
+
+    int Matrix::Transpose()
     {
         settings::real *new_values = new settings::real[this->cols * this->rows];
         for (int i = 0; i < this->rows; i++)
@@ -224,7 +236,7 @@ hence would become a bottleneck in calculations and slow down simulation. */
     {
         if (a.cols != b.rows)
         {
-            throw std::invalid_argument(generateError("Multiplication", a, b));
+            throw std::invalid_argument(GenerateError("Multiplication", a, b));
         }
 
         settings::real *new_values = new settings::real[a.rows * b.cols];
@@ -251,9 +263,9 @@ hence would become a bottleneck in calculations and slow down simulation. */
 
     Matrix &Matrix::operator+(Matrix const &a) const
     {
-        if (!Matrix::same_shape(*this, a))
+        if (!Matrix::IsSameShape(*this, a))
         {
-            throw std::invalid_argument(generateError("Addition", *this, a));
+            throw std::invalid_argument(GenerateError("Addition", *this, a));
         }
 
         settings::real *new_values = new settings::real[a.cols * a.rows];
@@ -268,9 +280,9 @@ hence would become a bottleneck in calculations and slow down simulation. */
 
     Matrix &Matrix::operator-(Matrix const &a) const
     {
-        if (!Matrix::same_shape(*this, a))
+        if (!Matrix::IsSameShape(*this, a))
         {
-            generateError("Subtraction", *this, a);
+            GenerateError("Subtraction", *this, a);
         }
 
         settings::real *new_values = new settings::real[a.cols * a.rows];
@@ -285,10 +297,10 @@ hence would become a bottleneck in calculations and slow down simulation. */
 
     Matrix &Matrix::operator*(Matrix const &a) const
     {
-        if (!Matrix::same_shape(*this, a))
+        if (!Matrix::IsSameShape(*this, a))
         {
             throw std::invalid_argument(
-                generateError("Elementwise Multiplication", *this, a));
+                GenerateError("Elementwise Multiplication", *this, a));
         }
 
         settings::real *new_values = new settings::real[a.cols * a.rows];
@@ -302,9 +314,9 @@ hence would become a bottleneck in calculations and slow down simulation. */
 
     Matrix &Matrix::operator/(Matrix const &a) const
     {
-        if (!Matrix::same_shape(*this, a))
+        if (!Matrix::IsSameShape(*this, a))
         {
-            std::invalid_argument(generateError("Division", *this, a));
+            std::invalid_argument(GenerateError("Division", *this, a));
         }
 
         settings::real *new_values = new settings::real[a.cols * a.rows];
@@ -318,9 +330,9 @@ hence would become a bottleneck in calculations and slow down simulation. */
 
     Matrix &Matrix::operator+=(Matrix const &a)
     {
-        if (!Matrix::same_shape(*this, a))
+        if (!Matrix::IsSameShape(*this, a))
         {
-            std::invalid_argument(generateError("Addition", *this, a));
+            std::invalid_argument(GenerateError("Addition", *this, a));
         }
 
         for (int i = 0; i < a.cols * a.rows; i++)
@@ -332,9 +344,9 @@ hence would become a bottleneck in calculations and slow down simulation. */
 
     Matrix &Matrix::operator-=(Matrix const &a)
     {
-        if (!Matrix::same_shape(*this, a))
+        if (!Matrix::IsSameShape(*this, a))
         {
-            std::invalid_argument(generateError("Subtraction", *this, a));
+            std::invalid_argument(GenerateError("Subtraction", *this, a));
         }
 
         for (int i = 0; i < a.cols * a.rows; i++)
@@ -346,9 +358,9 @@ hence would become a bottleneck in calculations and slow down simulation. */
 
     Matrix &Matrix::operator/=(Matrix const &a)
     {
-        if (!Matrix::same_shape(*this, a))
+        if (!Matrix::IsSameShape(*this, a))
         {
-            std::invalid_argument(generateError("Division", *this, a));
+            std::invalid_argument(GenerateError("Division", *this, a));
         }
 
         for (int i = 0; i < a.cols * a.rows; i++)
@@ -360,10 +372,10 @@ hence would become a bottleneck in calculations and slow down simulation. */
 
     Matrix &Matrix::operator*=(Matrix const &a)
     {
-        if (!Matrix::same_shape(*this, a))
+        if (!Matrix::IsSameShape(*this, a))
         {
             throw std::invalid_argument(
-                generateError("elementwise-multiplication", *this, a));
+                GenerateError("elementwise-multiplication", *this, a));
         }
 
         for (int i = 0; i < a.cols * a.rows; i++)
@@ -375,7 +387,7 @@ hence would become a bottleneck in calculations and slow down simulation. */
 
     bool Matrix::operator==(Matrix const &a) const
     {
-        if (!Matrix::same_shape(*this, a))
+        if (!Matrix::IsSameShape(*this, a))
         {
             return false;
         }
@@ -390,16 +402,16 @@ hence would become a bottleneck in calculations and slow down simulation. */
         return true;
     }
 
-    Matrix &Matrix::vectorProduct(Matrix const &a, Matrix const &b)
+    Matrix &Matrix::VectorProduct(Matrix const &a, Matrix const &b)
     {
         if (a.rows != 3 || a.cols != 1)
         {
-            throw std::invalid_argument(generateError("vector product", a));
+            throw std::invalid_argument(GenerateError("vector product", a));
         }
 
         if (b.rows != 3 || b.cols != 1)
         {
-            generateError("vector product", b);
+            GenerateError("vector product", b);
         }
 
         Matrix *c = new Matrix(3, 1);
@@ -408,11 +420,11 @@ hence would become a bottleneck in calculations and slow down simulation. */
         c->values[2] = a.values[0] * b.values[1] - a.values[1] * b.values[0];
         return *c;
     };
-    settings::real Matrix::dotProduct(Matrix const &a, Matrix const &b)
+    settings::real Matrix::Dot(Matrix const &a, Matrix const &b)
     {
-        if (!same_shape(a, b))
+        if (!IsSameShape(a, b))
         {
-            throw std::invalid_argument(generateError("Dot Product", a, b));
+            throw std::invalid_argument(GenerateError("Dot Product", a, b));
         }
 
         settings::real c = 0;
@@ -513,12 +525,12 @@ hence would become a bottleneck in calculations and slow down simulation. */
 
     /* Returns 0 if success, otherwise it throws an error or 
 if an element is nan, it returns 1 */
-    int Matrix::inv()
+    int Matrix::Inv()
     {
         return 0;
     }
 
-    int Matrix::determinant() const
+    int Matrix::Determinent() const
     {
         return 0;
     }
