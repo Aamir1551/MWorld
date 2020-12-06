@@ -187,7 +187,7 @@ namespace numerics
         }
     };
 
-    int Matrix::Transpose()
+    void Matrix::Transpose()
     {
         settings::real *new_values = new settings::real[this->cols * this->rows];
         for (int i = 0; i < this->rows; i++)
@@ -202,7 +202,6 @@ namespace numerics
         this->cols = this->rows;
         this->rows = t;
         this->values = new_values;
-        return 0;
     }
 
     Matrix &Matrix::Transpose(Matrix const &a)
@@ -419,7 +418,7 @@ namespace numerics
         settings::real c = 0;
         for (int i = 0; i < a.rows; i++)
         {
-            c += a.values[i] + b.values[i];
+            c += a.values[i] * b.values[i];
         }
         return c;
     }
