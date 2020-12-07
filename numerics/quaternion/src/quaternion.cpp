@@ -19,19 +19,19 @@ namespace numerics
         this->k = q.k;
     };
 
-    Quaternion &Quaternion::operator+(Quaternion &a)
+    Quaternion &Quaternion::operator+(const Quaternion &a)
     {
         Quaternion *result = new Quaternion(this->r + a.r, this->i + a.i, this->j + a.j, this->k + a.k);
         return *result;
     };
 
-    Quaternion &Quaternion::operator-(Quaternion &a)
+    Quaternion &Quaternion::operator-(const Quaternion &a)
     {
         Quaternion *result = new Quaternion(this->r - a.r, this->i - a.i, this->j - a.j, this->k - a.k);
         return *result;
     };
 
-    Quaternion &Quaternion::operator*(Quaternion &a)
+    Quaternion &Quaternion::operator*(const Quaternion &a)
     {
         //should this be inline instead???
         settings::real r_component = this->r * a.r - this->i * a.i - this->j * a.j - this->k * a.k;
@@ -42,7 +42,7 @@ namespace numerics
         return *result;
     }
 
-    Quaternion &Quaternion::operator/(Quaternion &a)
+    Quaternion &Quaternion::operator/(const Quaternion &a)
     {
         return (*this) * Quaternion::Inverse(a);
     }
@@ -84,7 +84,7 @@ namespace numerics
         return *this;
     };
 
-    Quaternion &Quaternion::GetConjugate(Quaternion &a)
+    Quaternion &Quaternion::GetConjugate(const Quaternion &a)
     {
         Quaternion *result = new Quaternion(a.r, -a.i, -a.j, -a.k);
         return *result;
@@ -104,12 +104,12 @@ namespace numerics
         return this->r * this->r + this->i * this->i + this->j * this->j + this->k * this->k;
     }
 
-    settings::real Quaternion::SquaredMagnitude(Quaternion &a)
+    settings::real Quaternion::SquaredMagnitude(const Quaternion &a)
     {
         return a.r * a.r + a.i * a.i + a.j * a.j + a.k * a.k;
     }
 
-    settings::real Quaternion::Magnitude(Quaternion &a)
+    settings::real Quaternion::Magnitude(const Quaternion &a)
     {
         return sqrt(a.r * a.r + a.i * a.i + a.j * a.j + a.k * a.k);
     }
@@ -119,7 +119,7 @@ namespace numerics
         return sqrt(this->r * this->r + this->i * this->i + this->j * this->j + this->k * this->k);
     }
 
-    Quaternion &Quaternion::Inverse(Quaternion &a)
+    Quaternion &Quaternion::Inverse(const Quaternion &a)
     {
         settings::real mag = a.SquaredMagnitude();
         Quaternion *result = new Quaternion(a.r / mag, -a.i / mag, -a.j / mag, -a.k / mag);
@@ -136,7 +136,7 @@ namespace numerics
         return *this;
     };
 
-    bool Quaternion::operator==(Quaternion &a)
+    bool Quaternion::operator==(const Quaternion &a)
     {
         return this->r == a.r && a.i == this->i && a.j == this->j && this->k == a.k;
     };
@@ -195,7 +195,7 @@ namespace numerics
         return *result;
     }
 
-    Quaternion &Quaternion::GetNormalised(Quaternion &a)
+    Quaternion &Quaternion::GetNormalised(const Quaternion &a)
     {
         settings::real mag = a.Magnitude();
         Quaternion *result = new Quaternion(a.r / mag, a.i / mag, a.j / mag, a.k / mag);
@@ -212,7 +212,7 @@ namespace numerics
         return *this;
     };
 
-    Matrix &Quaternion::ConvertToVector(Quaternion &a)
+    Matrix &Quaternion::ConvertToVector(const Quaternion &a)
     {
         settings::real *new_values = new settings::real[4];
         new_values[0] = a.r;
@@ -223,7 +223,7 @@ namespace numerics
         return *result;
     }
 
-    Quaternion &Quaternion::ConvertToQuaternion(Matrix &a)
+    Quaternion &Quaternion::ConvertToQuaternion(const Matrix &a)
     {
         settings::real const *new_values = a.GetValues();
         Quaternion *result = new Quaternion(new_values[0], new_values[1], new_values[2], new_values[3]);
@@ -240,7 +240,7 @@ namespace numerics
      * @param a 
      * @return ** Matrix& 
      */
-    Matrix &Quaternion::GetMatrixTransformation(Quaternion &a)
+    Matrix &Quaternion::GetMatrixTransformation(const Quaternion &a)
     {
 
         settings::real qw = a.r;

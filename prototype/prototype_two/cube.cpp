@@ -65,7 +65,7 @@ public:
      * @param world_vector 
      * @return Matrix 
      */
-    Matrix ConvertToCubeCoordinates(Matrix const world_vector)
+    Matrix ConvertToCubeCoordinates(Matrix const world_vector) const
     {
         real cube_coordinates_values4[] = {world_vector(0, 0), world_vector(1, 0), world_vector(2, 0), 0};
         Matrix cube_coordintes_4(4, 1, cube_coordinates_values4);
@@ -103,11 +103,12 @@ public:
     }
 
     /**
-     * @brief Gets the Orientation Matrix of the Cube Object
+     * @brief Gets the Orientation Matrix of the Cube Object. (Can be used to transform a vector from 
+     * cube coordinates to world coordinates -? not too sure )
      * 
      * @return Matrix& 
      */
-    Matrix &GetOrientationMatrix()
+    Matrix &GetOrientationMatrix() const
     {
         return Quaternion::GetMatrixTransformation(this->orientation);
     }

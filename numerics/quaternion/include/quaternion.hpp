@@ -51,7 +51,7 @@ namespace numerics
      * @param a The quaternion to value compare with
      * @return true or false
      */
-      bool operator==(Quaternion &a);
+      bool operator==(const Quaternion &a);
 
       /**
      * @brief Adds two quaternion objects together
@@ -59,7 +59,7 @@ namespace numerics
      * @param a A quaternion to add. 
      * @return Quaternion& 
      */
-      Quaternion &operator+(Quaternion &a);
+      Quaternion &operator+(const Quaternion &a);
 
       /**
      * @brief Subtracts two quaternion objects together
@@ -67,7 +67,7 @@ namespace numerics
      * @param a A quaternion to subtract. 
      * @return Quaternion& 
      */
-      Quaternion &operator-(Quaternion &a);
+      Quaternion &operator-(const Quaternion &a);
 
       /**
      * @brief Multiplies two quaternion objects together
@@ -75,7 +75,7 @@ namespace numerics
      * @param a A quaternion to multiply 
      * @return Quaternion& 
      */
-      Quaternion &operator*(Quaternion &a);
+      Quaternion &operator*(const Quaternion &a);
 
       /**
      * @brief Divides two quaternion objects
@@ -83,7 +83,7 @@ namespace numerics
      * @param a A quaternion to divide 
      * @return Quaternion& 
      */
-      Quaternion &operator/(Quaternion &a);
+      Quaternion &operator/(const Quaternion &a);
 
       /**
      * @brief Adds a quaternion to the existing one 
@@ -187,7 +187,7 @@ namespace numerics
      * @param a Quaternion to get conjugate of 
      * @return Quaternion& 
      */
-      Quaternion static &GetConjugate(Quaternion &a);
+      Quaternion static &GetConjugate(const Quaternion &a);
 
       /**
      * @brief  Returns the conjugate of quaternion
@@ -202,7 +202,7 @@ namespace numerics
      * @param a A quaternion to calculate the inverse of
      * @return Quaternion&
      */
-      Quaternion static &Inverse(Quaternion &a);
+      Quaternion static &Inverse(const Quaternion &a);
 
       /**
      * @brief  Returns the inverse of quaternion 
@@ -217,7 +217,7 @@ namespace numerics
      * @param a A quaternion whos magnitude to calculate
      * @return settings::real 
      */
-      settings::real static Magnitude(Quaternion &a);
+      settings::real static Magnitude(const Quaternion &a);
 
       /**
      * @brief Calculates the magnitude of quaternion
@@ -231,7 +231,7 @@ namespace numerics
      * 
      * @return settings::real
      */
-      settings::real static SquaredMagnitude(Quaternion &a);
+      settings::real static SquaredMagnitude(const Quaternion &a);
 
       /**
      * @brief Caculates the squared magnitude quaternion. Use this function to calculate squared magnitude.
@@ -246,7 +246,7 @@ namespace numerics
      * @param a Quaternion, whos normal to calculate
      * @return Quaternion& 
      */
-      Quaternion static &GetNormalised(Quaternion &a);
+      Quaternion static &GetNormalised(const Quaternion &a);
 
       /**
      * @brief Normalises quaternion. Returns a reference to instance
@@ -261,7 +261,7 @@ namespace numerics
        * @param a Quaternion to convert to vector representation.
        * @return Matrix& 
        */
-      Matrix static &ConvertToVector(Quaternion &a);
+      Matrix static &ConvertToVector(const Quaternion &a);
 
       /**
        * @brief Converts a vector to a given Quaternion
@@ -269,7 +269,7 @@ namespace numerics
        * @param a Quaternion to convert
        * @return Quaternion& 
        */
-      Quaternion &ConvertToQuaternion(Matrix &a);
+      Quaternion &ConvertToQuaternion(const Matrix &a);
 
       /**
        * @brief Converts a real number to a quaternion
@@ -286,7 +286,7 @@ namespace numerics
        * @param a A quaternion
        * @return Matrix& 
        */
-      Matrix static &GetMatrixTransformation(Quaternion &a);
+      Matrix static &GetMatrixTransformation(const Quaternion &a);
    };
 
 } // namespace numerics
