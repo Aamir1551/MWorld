@@ -80,7 +80,7 @@ namespace numerics
          * @param cols 
          * @param values The pointer to copy values from to set the initial values of the matrix.
          */
-        explicit Matrix(int rows, int cols, settings::real *values);
+        explicit Matrix(int rows, int cols, settings::real const *const values);
 
         /**
          * @brief Construct a new Matrix object. Copy constructor.
@@ -223,7 +223,7 @@ namespace numerics
          * @param a 
          * @return Matrix& 
          */
-        virtual int Inv();
+        virtual settings::real Inv() const;
 
         /**
          * @brief Calculates the determinent of a Matrix. 
@@ -231,7 +231,7 @@ namespace numerics
          * @param a 
          * @return Matrix& 
          */
-        virtual int Determinent() const;
+        virtual settings::real Determinent() const;
 
         /**
          * @brief Transposes a given Matrix 

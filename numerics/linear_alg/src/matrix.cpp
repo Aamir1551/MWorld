@@ -59,7 +59,7 @@ namespace numerics
         }
     }
 
-    Matrix &Matrix::Reshape(Matrix a, int new_row, int new_cols)
+    Matrix &Matrix::Reshape(Matrix const a, int new_row, int new_cols)
     {
         if (a.rows * a.cols != new_row * new_cols)
         {
@@ -107,7 +107,7 @@ namespace numerics
         return msg + " " + a_shape + " " + b_shape;
     }
 
-    std::string Matrix::GenerateError(std::string operation, Matrix const &a)
+    std::string Matrix::GenerateError(std::string const operation, Matrix const &a)
     {
         std::string msg = "Matrix shapes do not conform for " + operation + ".";
         std::string a_shape = "This has shape=(" + std::to_string(a.rows) + "," +
@@ -169,8 +169,8 @@ namespace numerics
         return a;
     };
 
-    Matrix::Matrix(int rows, int cols, settings::real *values) : rows(rows),
-                                                                 cols(cols)
+    Matrix::Matrix(int rows, int cols, settings::real const *const values) : rows(rows),
+                                                                             cols(cols)
     {
         this->rows = rows;
         this->cols = cols;
@@ -208,8 +208,6 @@ namespace numerics
                 new_values[j * a.rows + i] = a.values[i * a.cols + j];
             }
         }
-        int t = a.cols;
-
         Matrix *res = new Matrix(a.cols, a.rows, new_values);
         return *res;
     }
@@ -507,12 +505,12 @@ namespace numerics
 
     /* Returns 0 if success, otherwise it throws an error or 
 if an element is nan, it returns 1 */
-    int Matrix::Inv()
+    settings::real Matrix::Inv() const
     {
         return 0;
     }
 
-    int Matrix::Determinent() const
+    settings::real Matrix::Determinent() const
     {
         return 0;
     }

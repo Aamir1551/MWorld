@@ -18,8 +18,8 @@ namespace numerics
 
         Matrix static &MatMul(Matrix const &a, Matrix const &b); // returns the matrix if success, otherwise it throws an error or if an element is nan, it returns 1
         int MatMul(Matrix const &a);                             // returns 0 if success, otherwise it throws an error or if an element is nan, it returns 1
-        int Inv();                                               // returns 0 if success, otherwise it throws an error or if an element is nan, it returns 1
-        int Determinent() const;
+        settings::real Inv() const;                              // returns 0 if success, otherwise it throws an error or if an element is nan, it returns 1
+        settings::real Determinent() const;
         ~Matrix3() { free(values); };
     };
 

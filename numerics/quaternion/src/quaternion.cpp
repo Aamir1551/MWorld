@@ -47,7 +47,7 @@ namespace numerics
         return (*this) * Quaternion::Inverse(a);
     }
 
-    Quaternion &Quaternion::operator*=(Quaternion &a)
+    Quaternion &Quaternion::operator*=(Quaternion const &a)
     {
         settings::real r_component = this->r * a.r - this->i * a.i - this->j * a.j - this->k * a.k;
         settings::real i_component = this->r * a.i + this->i * a.r + this->j * a.k - this->k * a.j;
@@ -60,7 +60,7 @@ namespace numerics
         return *this;
     }
 
-    Quaternion &Quaternion::operator+=(Quaternion &a)
+    Quaternion &Quaternion::operator+=(Quaternion const &a)
     {
         this->r += a.r;
         this->i += a.i;
@@ -69,7 +69,7 @@ namespace numerics
         return *this;
     };
 
-    Quaternion &Quaternion::operator-=(Quaternion &a)
+    Quaternion &Quaternion::operator-=(Quaternion const &a)
     {
         this->r -= a.r;
         this->i -= a.i;
@@ -78,7 +78,7 @@ namespace numerics
         return *this;
     };
 
-    Quaternion &Quaternion::operator/=(Quaternion &a)
+    Quaternion &Quaternion::operator/=(Quaternion const &a)
     {
         *this *= Quaternion::Inverse(a);
         return *this;

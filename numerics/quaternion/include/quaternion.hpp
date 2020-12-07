@@ -91,7 +91,7 @@ namespace numerics
      * @param a A quaternion to add 
      * @return Quaternion& 
      */
-      Quaternion &operator+=(Quaternion &a);
+      Quaternion &operator+=(Quaternion const &a);
 
       /**
      * @brief Subtracts a quaternion form the existing one 
@@ -99,7 +99,7 @@ namespace numerics
      * @param a A quaternion to subtract 
      * @return Quaternion& 
      */
-      Quaternion &operator-=(Quaternion &a);
+      Quaternion &operator-=(Quaternion const &a);
 
       /**
      * @brief Multiples existing quaternion with given quaternion 
@@ -107,7 +107,7 @@ namespace numerics
      * @param a A quaternion to multiply with 
      * @return Quaternion&
      */
-      Quaternion &operator*=(Quaternion &a);
+      Quaternion &operator*=(Quaternion const &a);
 
       /**
      * @brief Divides existing quaternion by a 
@@ -115,7 +115,7 @@ namespace numerics
      * @param a A quaternion to divide with
      * @return Quaternion& 
      */
-      Quaternion &operator/=(Quaternion &a);
+      Quaternion &operator/=(Quaternion const &a);
 
       /**
      * @brief Add a settings::real to a quaternion

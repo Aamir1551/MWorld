@@ -5,7 +5,7 @@
 namespace numerics
 {
     Matrix3::Matrix3() : Matrix(3, 3){};
-    int Matrix3::Inv()
+    settings::real Matrix3::Inv() const
     {
         int a = this->values[0];
         int b = this->values[1];
@@ -35,6 +35,10 @@ namespace numerics
         this->values[8] = a * e - b * d;
 
         settings::real det = a * e * i + d * h * c + g * b * f - a * h * f - g * e * c - d * b * i;
+        if (det == 0)
+        {
+            //throw error
+        }
         for (int i = 0; i < 9; i++)
         {
             this->values[i] /= det;
@@ -43,18 +47,18 @@ namespace numerics
         return 0;
     }
 
-    int Matrix3::Determinent() const
+    settings::real Matrix3::Determinent() const
     {
         //detM = aei + dhc + gbf − ahf − gec − dbi
-        int a = this->values[0];
-        int b = this->values[1];
-        int c = this->values[2];
-        int d = this->values[3];
-        int e = this->values[4];
-        int f = this->values[5];
-        int g = this->values[6];
-        int h = this->values[7];
-        int i = this->values[8];
+        settings::real a = this->values[0];
+        settings::real b = this->values[1];
+        settings::real c = this->values[2];
+        settings::real d = this->values[3];
+        settings::real e = this->values[4];
+        settings::real f = this->values[5];
+        settings::real g = this->values[6];
+        settings::real h = this->values[7];
+        settings::real i = this->values[8];
 
         settings::real det = a * e * i + d * h * c + g * b * f - a * h * f - g * e * c - d * b * i;
         return det;

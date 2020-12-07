@@ -167,6 +167,22 @@ TEST_CASE("Matrices can be operated with", "[Operations]")
     {
         //test with both no error thrown and error thrown
     }
+
+    SECTION("Matrix Transpose")
+    {
+
+        //test with both no error thrown and error thrown
+        Matrix c = Matrix::Transpose(*a);
+
+        for (int i = 0; i < 4; i++)
+        {
+            for (int j = 0; j < 4; j++)
+            {
+
+                REQUIRE(c(i, j) == (*a)(j, i));
+            }
+        }
+    }
     delete a;
     delete b;
 }
