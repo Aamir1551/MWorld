@@ -108,7 +108,10 @@ int main()
         glm::mat4 rotation_mat;
         memcpy(glm::value_ptr(rotation_mat), c.GetOrientationMatrix().GetValues(), 16 * sizeof(real));
 
-        glm::mat4 model = glm::translate(id, glm::vec3(0, 0, -10));
+        glm::vec3 translation_mat;
+        memcpy(glm::value_ptr(translation_mat), c.position.GetValues(), 3 * sizeof(real));
+
+        glm::mat4 model = glm::translate(id, translation_mat);
         model = model * rotation_mat;
         cubes.models.push_back(&model);
         view = camera.CalculateView();

@@ -51,7 +51,9 @@ public:
      */
     void Update()
     {
-        //velocity = momentum * inverse_mass;
+        velocity = momentum * inverse_mass;
+        position += velocity;
+        //position.print();
         angular_velocity = angular_momentum * inverse_inertia;
         Quaternion q(0, angular_velocity(0, 0), angular_velocity(1, 0), angular_velocity(2, 0));
         Quaternion spin = q * orientation * 0.5f;
@@ -69,7 +71,7 @@ public:
     {
         real world_coordinates_values[] = {world_vector(0, 0), world_vector(1, 0), world_vector(2, 0), 0};
         Matrix world_coordintes_vector(4, 1, world_coordinates_values);
-        Matrix cube_coordinates_vector = Matrix::MatMul(this->GetOrientationMatrix(), world_coordintes_vector);
+        Matrix cube_coordinates_vector = Matrix::MatMul((this->GetOrientationMatrix()), world_coordintes_vector);
         real cube_coordinates_values[] = {cube_coordinates_vector(0, 0), cube_coordinates_vector(1, 0), cube_coordinates_vector(2, 0)};
         return Matrix(3, 1, cube_coordinates_values);
     }
@@ -91,6 +93,7 @@ public:
         Matrix force_cube_coordinates = ConvertToCubeCoordinates(force);
         Matrix r = ConvertToCubeCoordinates(force_world_cooridinates - this->position);
         angular_momentum += Matrix::VectorProduct(force_cube_coordinates, r) * dt;
+        momentum += force * dt;
     }
 
     /**
@@ -111,5 +114,15 @@ public:
     Matrix &GetOrientationMatrix() const
     {
         return Quaternion::GetMatrixTransformation(this->orientation);
+    }
+
+    /**
+     * @brief Get the Inverse Orientation Matrix of the cube Object.
+     * 
+     * @return Matrix& 
+     */
+    Matrix &GetInverseOrientationMatrix() const
+    {
+        return Quaternion::GetInverseMatrixTransformation(this->orientation);
     }
 };

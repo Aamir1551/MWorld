@@ -287,6 +287,14 @@ namespace numerics
        * @return Matrix& 
        */
       Matrix static &GetMatrixTransformation(const Quaternion &a);
+
+      /**
+       * @brief Calculates the inverse of the orientation quaternion given.
+       * 
+       * @param a 
+       * @return Matrix& 
+       */
+      Matrix static &GetInverseMatrixTransformation(const Quaternion &a);
    };
 
 } // namespace numerics

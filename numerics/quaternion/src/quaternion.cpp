@@ -231,7 +231,7 @@ namespace numerics
     }
 
     /**
-     * @brief Transforms quaternion to corresponding matrix transformation
+     * @brief Returns the rotational matrix associated with the corresponding quaternion.
      * 
      * @see https://gafferongames.com/post/physics_in_3d/
      * @link  https://gafferongames.com/post/physics_in_3d/
@@ -261,6 +261,49 @@ namespace numerics
 
         values[8] = 2.0f * qx * qz - 2.0f * qy * qw;
         values[9] = 2.0f * qy * qz + 2.0f * qx * qw;
+        values[10] = 1.0f - 2.0f * qx * qx - 2.0f * qy * qy;
+        values[11] = 0.0f;
+
+        values[12] = 0.0f;
+        values[13] = 0.0f;
+        values[14] = 0.0f;
+        values[15] = 1.0f;
+
+        Matrix *result = new Matrix(4, 4, values);
+        return *result;
+    };
+
+    /**
+     * @brief Returns the inverse rotational matrix associated with the corresponding quaternion.
+     * 
+     * @see https://gafferongames.com/post/physics_in_3d/
+     * @link  https://gafferongames.com/post/physics_in_3d/
+     * \link  https://gafferongames.com/post/physics_in_3d/
+     * @see https://www.euclideanspace.com/maths/geometry/rotations/conversions/quaternionToMatrix/index.htm
+     * @param a 
+     * @return ** Matrix& 
+     */
+    Matrix &Quaternion::GetInverseMatrixTransformation(const Quaternion &a)
+    {
+
+        settings::real qw = a.r;
+        settings::real qx = a.i;
+        settings::real qy = a.j;
+        settings::real qz = a.k;
+
+        settings::real *values = new settings::real[16];
+        values[0] = 1.0f - 2.0f * qy * qy - 2.0f * qz * qz;
+        values[4] = 2.0f * qx * qy - 2.0f * qz * qw;
+        values[8] = 2.0f * qx * qz + 2.0f * qy * qw;
+        values[3] = 0.0f;
+
+        values[1] = 2.0f * qx * qy + 2.0f * qz * qw;
+        values[5] = 1.0f - 2.0f * qx * qx - 2.0f * qz * qz;
+        values[9] = 2.0f * qy * qz - 2.0f * qx * qw;
+        values[7] = 0.0f;
+
+        values[2] = 2.0f * qx * qz - 2.0f * qy * qw;
+        values[6] = 2.0f * qy * qz + 2.0f * qx * qw;
         values[10] = 1.0f - 2.0f * qx * qx - 2.0f * qy * qy;
         values[11] = 0.0f;
 
