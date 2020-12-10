@@ -39,9 +39,12 @@ int main()
     real right_force_coordinates[] = {2, 0, -8};
     real up_force_coordinates[] = {0, 2, -8};
     real down_force_coordinates[] = {0, -2, -8};
-    real force_vector[] = {0, 0, -5};
+    real force_vector[] = {-1, 0, 0}; // make sure to change direction of force
+    real force_magnitude = 5;
 
     Matrix force_world_vector(3, 1, force_vector);
+    force_world_vector *= force_magnitude;
+
     Matrix right_force(3, 1, right_force_coordinates);
     Matrix left_force(3, 1, left_force_coordinates);
     Matrix up_force(3, 1, up_force_coordinates);
