@@ -22,24 +22,20 @@ public:
     Matrix angular_velocity = Matrix(3, 1);
 
     //constants
-    real const inertia = 1.0f;
-    real const inverse_inertia = 1.0f;
-    real const mass = 1.0f;
-    real const inverse_mass = 0.0f;
+    real const inverse_inertia;
+    real const inverse_mass;
 
     /**
      * @brief Construct a new Cube object.
      * 
      * @param position Initial position of the cube.
      * @param initial_orientation Initial orientation of cube
-     * @param mass Mass of cube
      * @param inverse_mass Inverse mass of cube
-     * @param inertia Intertia of cube
      * @param inverse_inertia Inverse intertia of cube
      */
-    Cube(Matrix position, Quaternion initial_orientation = Quaternion(1, 0, 0, 0), real mass = 1.0f,
-         real inverse_mass = 1.0f, real inertia = 1.0f, real inverse_inertia = 1.0f) : mass(mass), inverse_mass(inverse_mass),
-                                                                                       inertia(inertia), inverse_inertia(inverse_inertia)
+    Cube(Matrix position, Quaternion initial_orientation = Quaternion(1, 0, 0, 0),
+         real inverse_mass = 1.0f, real inverse_inertia = 1.0f) : inverse_mass(inverse_mass),
+                                                                  inverse_inertia(inverse_inertia)
     {
         this->position = position;
         this->orientation = initial_orientation;
@@ -71,6 +67,15 @@ public:
 
             dx/dt = v
             dθ/dt = w
+        */
+
+        /*
+        Updating orientation quaternion involves the steps:
+            1)  Convert Scaled axes representation of angular velocity to a quaternion 
+                scaled axes quaternion = (angular_velocity[0], angular_velocity[1], angular_velocity[2])
+            2)  Use the equation: 
+                        new orientation = old orientation + 1/2 * scaled axes quaternion * old orientation
+        
         */
 
         linear_velocity = momentum * inverse_mass;
