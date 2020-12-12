@@ -18,7 +18,7 @@ public:
 
     //secondary
     Quaternion spin = Quaternion(0, 0, 0, 0);
-    Matrix velocity = Matrix(3, 1);
+    Matrix linear_velocity = Matrix(3, 1);
     Matrix angular_velocity = Matrix(3, 1);
 
     //constants
@@ -51,12 +51,35 @@ public:
      */
     void Update()
     {
-        velocity = momentum * inverse_mass;
-        position += velocity;
-        //position.print();
+
+        /*
+        Equations of motion being used are:
+            p = Linear momentum
+            L = Angular momentum
+
+            v = Linear velocity
+            w = Angular velocity
+            
+            m = Linear Intertia AKA mass
+            I = Angular Intertia AKA moment of intertia
+
+            x = Linear position
+            θ = Angular position   
+
+            v = p * 1/m
+            w = L * 1/I
+
+            dx/dt = v
+            dθ/dt = w
+        */
+
+        linear_velocity = momentum * inverse_mass;
         angular_velocity = angular_momentum * inverse_inertia;
+
         Quaternion q(0, angular_velocity(0, 0), angular_velocity(1, 0), angular_velocity(2, 0));
-        Quaternion spin = q * orientation * 0.5f;
+        Quaternion spin = q * orientation;
+
+        position += linear_velocity;
         orientation += spin;
         orientation.Normalise();
     }
@@ -90,10 +113,28 @@ public:
             angular_momentums (which is a vector quantity) of the cube is in cube_coordinates. 
             Hence, we need to first transform the force, and the force_world_coordinates to cube coordinates.
         */
+
+        /*
+        Equations of motion being used are:
+            p = Linear momentum
+            L = Angular momentum
+
+            torque = perpendicular distance form pivot * force
+
+            linear impulse (Δp) = force * time
+            Angular impulse (ΔL) = torque * time
+
+            dp/dt = Δp (Rate of change of linear momentum)
+            dL/dt = ΔL (Rate of change of angular momentum)
+
+       */
         Matrix force_cube_coordinates = ConvertToCubeCoordinates(force);
         Matrix r = ConvertToCubeCoordinates(force_world_cooridinates - this->position);
-        angular_momentum += Matrix::VectorProduct(force_cube_coordinates, r) * dt;
+
+        // Torque is calculated via Matrix::VectorProduct(force_cube_coordinates, r) * dt
+
         momentum += force * dt;
+        angular_momentum += Matrix::VectorProduct(force_cube_coordinates, r) * dt;
     }
 
     /**

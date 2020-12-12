@@ -1,5 +1,7 @@
 #include <fstream>
 #include <iostream>
+#include <ostream>
+
 #include <util_functions.h>
 
 int util_functions::read_from_file(std::string file_name, std::string &contents)
@@ -18,5 +20,5 @@ int util_functions::read_from_file(std::string file_name, std::string &contents)
     else
     {
         return 0;
-    }
-}
+    };
+};
