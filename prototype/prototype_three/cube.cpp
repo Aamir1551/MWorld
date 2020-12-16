@@ -6,6 +6,17 @@
 using namespace numerics;
 using namespace settings;
 
+class Cube;
+
+struct Contact
+{
+    numerics::Matrix point = numerics::Matrix(0.0, 0.0);
+    numerics::Matrix contact_normal = numerics::Matrix(0.0, 0.0);
+    numerics::Matrix penetration = numerics::Matrix(0.0, 0.0);
+    Cube *body1 = nullptr;
+    Cube *body2 = nullptr;
+};
+
 class Cube
 {
 public:
@@ -173,5 +184,25 @@ public:
     Matrix &GetInverseOrientationMatrix() const
     {
         return Quaternion::GetInverseMatrixTransformation(this->orientation);
+    }
+
+    /**
+     * @brief Detect collision between Cube A and Cube B
+     * 
+     * @param A 
+     * @param B 
+     * @return Contact 
+     */
+    Contact static CollisionDetect(Cube &A, Cube &B)
+    {
+    }
+
+    // make the below two functions private
+    Contact static CollisionDetectCubePoint(Cube &A, Matrix &point)
+    {
+    }
+
+    Contact static CollisionDetectEdgeEdge(Matrix &edge1, Matrix &edge2)
+    {
     }
 };

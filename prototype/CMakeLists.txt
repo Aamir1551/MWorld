@@ -4,3 +4,4 @@ set(CXX_STANDARD 11)
 
 add_subdirectory(prototype_one)
 add_subdirectory(prototype_two)
+add_subdirectory(prototype_three)
