@@ -230,16 +230,6 @@ namespace numerics
         return *result;
     }
 
-    /**
-     * @brief Returns the rotational matrix associated with the corresponding quaternion.
-     * 
-     * @see https://gafferongames.com/post/physics_in_3d/
-     * @link  https://gafferongames.com/post/physics_in_3d/
-     * \link  https://gafferongames.com/post/physics_in_3d/
-     * @see https://www.euclideanspace.com/maths/geometry/rotations/conversions/quaternionToMatrix/index.htm
-     * @param a 
-     * @return ** Matrix& 
-     */
     Matrix &Quaternion::GetMatrixTransformation(const Quaternion &a)
     {
 
@@ -273,16 +263,6 @@ namespace numerics
         return *result;
     };
 
-    /**
-     * @brief Returns the inverse rotational matrix associated with the corresponding quaternion.
-     * 
-     * @see https://gafferongames.com/post/physics_in_3d/
-     * @link  https://gafferongames.com/post/physics_in_3d/
-     * \link  https://gafferongames.com/post/physics_in_3d/
-     * @see https://www.euclideanspace.com/maths/geometry/rotations/conversions/quaternionToMatrix/index.htm
-     * @param a 
-     * @return ** Matrix& 
-     */
     Matrix &Quaternion::GetInverseMatrixTransformation(const Quaternion &a)
     {
 
@@ -322,8 +302,53 @@ namespace numerics
         return *result;
     };
 
-    Matrix &Quaternion::GetInverseOrentationMatrix3(const Quaternion &a){
+    Matrix &Quaternion::GetInverseOrentationMatrix3(const Quaternion &a)
+    {
+        settings::real qw = a.r;
+        settings::real qx = a.i;
+        settings::real qy = a.j;
+        settings::real qz = a.k;
 
+        settings::real *values = new settings::real[9];
+        values[0] = 1.0f - 2.0f * qy * qy - 2.0f * qz * qz;
+        values[3] = 2.0f * qx * qy - 2.0f * qz * qw;
+        values[6] = 2.0f * qx * qz + 2.0f * qy * qw;
+
+        values[1] = 2.0f * qx * qy + 2.0f * qz * qw;
+        values[4] = 1.0f - 2.0f * qx * qx - 2.0f * qz * qz;
+        values[7] = 2.0f * qy * qz - 2.0f * qx * qw;
+
+        values[2] = 2.0f * qx * qz - 2.0f * qy * qw;
+        values[5] = 2.0f * qy * qz + 2.0f * qx * qw;
+        values[8] = 1.0f - 2.0f * qx * qx - 2.0f * qy * qy;
+
+        Matrix *result = new Matrix(3, 3, values);
+        return *result;
+    };
+
+    Matrix &Quaternion::GetOrientationMatrix3(const Quaternion &a)
+    {
+
+        settings::real qw = a.r;
+        settings::real qx = a.i;
+        settings::real qy = a.j;
+        settings::real qz = a.k;
+
+        settings::real *values = new settings::real[9];
+        values[0] = 1.0f - 2.0f * qy * qy - 2.0f * qz * qz;
+        values[1] = 2.0f * qx * qy - 2.0f * qz * qw;
+        values[2] = 2.0f * qx * qz + 2.0f * qy * qw;
+
+        values[3] = 2.0f * qx * qy + 2.0f * qz * qw;
+        values[4] = 1.0f - 2.0f * qx * qx - 2.0f * qz * qz;
+        values[5] = 2.0f * qy * qz - 2.0f * qx * qw;
+
+        values[6] = 2.0f * qx * qz - 2.0f * qy * qw;
+        values[7] = 2.0f * qy * qz + 2.0f * qx * qw;
+        values[8] = 1.0f - 2.0f * qx * qx - 2.0f * qy * qy;
+
+        Matrix *result = new Matrix(3, 3, values);
+        return *result;
     };
 
 } // namespace numerics

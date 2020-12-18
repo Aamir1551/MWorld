@@ -204,9 +204,9 @@ public:
         real diff = cube_length / 2;
         for (unsigned int i = 0; i < 8; i++)
         {
-            vertices[i * 3 + 0] = (i % 2 == 0 ? -diff : diff);
-            vertices[i * 3 + 1] = (((int)std::floor(i / 2)) % 2 == 0 ? -diff : diff);
-            vertices[i * 3 + 2] = (((int)std::floor(i / 4)) % 2 == 0 ? -diff : diff);
+            vertices[i + 0] = (i % 2 == 0 ? -diff : diff);
+            vertices[i + 16] = (((int)std::floor(i / 2)) % 2 == 0 ? -diff : diff);
+            vertices[i + 24] = (((int)std::floor(i / 4)) % 2 == 0 ? -diff : diff);
         }
         Matrix out = Matrix::MatMul(this->GetInverseOrientationMatrix(), Matrix(3, 8, vertices));
         return out;
@@ -221,7 +221,7 @@ public:
      */
     Contact static CollisionDetect(Cube &a, Cube &b)
     {
-        b.GetVerticesWorldCoordinates();
+        b.GetVerticesWorldCoordinates().GetColumns();
     }
 
     // make the below two functions private
