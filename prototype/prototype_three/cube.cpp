@@ -13,6 +13,7 @@ using namespace settings;
 // TODO
 // 1) Add Edge to Edge collision pg319 in pdf and pg296 in book
 // 2) FaceToPoint Collision is incorrect. Does not take into account position (translation) of cube
+// 3) Make position, velocity, momentum etc as 4x1 instead of 3x1
 
 class Cube;
 
@@ -309,8 +310,12 @@ public:
 
     /**
      * @brief Get the inverse transformation matrix of cube. Transforms from world to cube coordinaes. Is a 4x4 matrix
+     * @see https://math.stackexchange.com/questions/152462/inverse-of-transformation-matrix
      * 
      * @return Matrix 
      */
-    Matrix GetInverseTransformationMatrix() const {}
+    Matrix GetInverseTransformationMatrix() const
+    {
+        Matrix neg_pinv_v = Matrix::MatMul(Quaternion::GetInverseMatrixTransformation(this->orientation), this->position) * -1;
+    }
 };
