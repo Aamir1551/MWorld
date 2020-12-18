@@ -295,6 +295,22 @@ namespace numerics
        * @return Matrix& 
        */
       Matrix static &GetInverseMatrixTransformation(const Quaternion &a);
+
+      /**
+       * @brief Returns the 3by3 inverse Matrix of the Quaternion given. 
+       * 
+       * @param a 
+       * @return Matrix& 
+       */
+      Matrix static &GetInverseOrentationMatrix3(const Quaternion &a);
+
+      /**
+       * @brief Returns the 3by3 Matrix of the Quaternion given. 
+       * 
+       * @param a 
+       * @return Matrix& 
+       */
+      Matrix static &GetOrientationMatrix3(const Quaternion &a);
    };
 
 } // namespace numerics

@@ -47,15 +47,16 @@ int main()
 
     glm::mat4 projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 400.0f);
 
+    real cube_length = 4.0f;
     real position_coord1[] = {0, 0, -10};
     Matrix position1(3, 1, position_coord1);
-    Cube c1(position1, Quaternion(1, 0, 0, 0), 0.0000000005f);
+    Cube c1(cube_length, position1, Quaternion(1, 0, 0, 0), 0.0000000005f);
 
     real position_coord2[] = {10, 0, -10};
     Matrix position2(3, 1, position_coord2);
-    Cube c2(position2, Quaternion(1, 0, 0, 0), 0.0000000005f);
+    Cube c2(cube_length, position2, Quaternion(1, 0, 0, 0), 0.0000000005f);
 
-    CubeRenderer::InitializeCubes(4.0f, vao, vbo, ebo, &view, &projection, world_properties->shader_id);
+    CubeRenderer::InitializeCubes(cube_length, vao, vbo, ebo, &view, &projection, world_properties->shader_id);
     CubeRenderer::AddVerticesToBuffers();
 
     CubeRenderer cubes;

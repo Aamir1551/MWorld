@@ -316,10 +316,14 @@ namespace numerics
         return *result;
     };
 
-    Quaternion &ConvertToQuaternion(settings::real real)
+    Quaternion &Quaternion::ConvertToQuaternion(settings::real real)
     {
         Quaternion *result = new Quaternion(real, 0, 0, 0);
         return *result;
+    };
+
+    Matrix &Quaternion::GetInverseOrentationMatrix3(const Quaternion &a){
+
     };
 
 } // namespace numerics

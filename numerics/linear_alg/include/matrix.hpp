@@ -413,6 +413,34 @@ namespace numerics
          * 
          */
         ~Matrix() { delete[](values); };
+
+        /**
+         * @brief Get the Rows of the Matrix
+         * 
+         * @return Matrix* 
+         */
+        Matrix *GetRows() const;
+
+        /**
+         * @brief Get the Columns of the Matrix
+         * 
+         * @return Matrix* 
+         */
+        Matrix *GetColumns() const;
+
+        /**
+         * @brief Removes a columns from at position index
+         * 
+         * @param index 
+         */
+        void RemoveColumn(int index);
+
+        /**
+         * @brief Removes a row at position index
+         * 
+         * @param index 
+         */
+        void RemoveRow(int index);
     };
 } // namespace numerics
 #endif

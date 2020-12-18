@@ -1,4 +1,8 @@
 #include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+
+#include <math.h>
 
 #include <matrix.hpp>
 #include <quaternion.hpp>
@@ -6,15 +10,20 @@
 using namespace numerics;
 using namespace settings;
 
+// TODO
+// 1) Make an GetTransformMatrix method (in Matrix class) but returns 3x3 Matrix && the same for inverse as well
+// 2) Add Edge to Edge collision pg319 in pdf and pg296 in book
+
 class Cube;
 
 struct Contact
 {
-    numerics::Matrix point = numerics::Matrix(0.0, 0.0);
-    numerics::Matrix contact_normal = numerics::Matrix(0.0, 0.0);
-    numerics::Matrix penetration = numerics::Matrix(0.0, 0.0);
+    numerics::Matrix point;
+    real penetration;
+    int contact_normal = -1;
     Cube *body1 = nullptr;
     Cube *body2 = nullptr;
+    bool is_contact;
 };
 
 class Cube
@@ -35,17 +44,20 @@ public:
     //constants
     real const inverse_inertia;
     real const inverse_mass;
+    real const cube_length;
 
     /**
      * @brief Construct a new Cube object.
      * 
+     * @param cube_length Length of cube
      * @param position Initial position of the cube.
      * @param initial_orientation Initial orientation of cube
      * @param inverse_mass Inverse mass of cube
      * @param inverse_inertia Inverse intertia of cube
      */
-    Cube(Matrix position, Quaternion initial_orientation = Quaternion(1, 0, 0, 0),
-         real inverse_mass = 1.0f, real inverse_inertia = 1.0f) : inverse_mass(inverse_mass),
+    Cube(real cube_length, Matrix position, Quaternion initial_orientation = Quaternion(1, 0, 0, 0),
+         real inverse_mass = 1.0f, real inverse_inertia = 1.0f) : cube_length(cube_length),
+                                                                  inverse_mass(inverse_mass),
                                                                   inverse_inertia(inverse_inertia)
     {
         this->position = position;
@@ -186,6 +198,20 @@ public:
         return Quaternion::GetInverseMatrixTransformation(this->orientation);
     }
 
+    Matrix GetVerticesWorldCoordinates() const
+    {
+        real vertices[24];
+        real diff = cube_length / 2;
+        for (unsigned int i = 0; i < 8; i++)
+        {
+            vertices[i * 3 + 0] = (i % 2 == 0 ? -diff : diff);
+            vertices[i * 3 + 1] = (((int)std::floor(i / 2)) % 2 == 0 ? -diff : diff);
+            vertices[i * 3 + 2] = (((int)std::floor(i / 4)) % 2 == 0 ? -diff : diff);
+        }
+        Matrix out = Matrix::MatMul(this->GetInverseOrientationMatrix(), Matrix(3, 8, vertices));
+        return out;
+    }
+
     /**
      * @brief Detect collision between Cube A and Cube B
      * 
@@ -193,13 +219,51 @@ public:
      * @param B 
      * @return Contact 
      */
-    Contact static CollisionDetect(Cube &A, Cube &B)
+    Contact static CollisionDetect(Cube &a, Cube &b)
     {
+        b.GetVerticesWorldCoordinates();
     }
 
     // make the below two functions private
-    Contact static CollisionDetectCubePoint(Cube &A, Matrix &point)
+    /**
+     * @brief Returns the contact information of a cube in contact with point
+     * 
+     * @param A 
+     * @param point 
+     * @return Contact 
+     */
+    static bool CollisionDetectCubePoint(Cube &a, Matrix &point, Contact &contact_info)
     {
+        Matrix point_cube_coordinate = numerics::Matrix::MatMul(a.GetInverseOrientationMatrix(), point);
+
+        real min_depth = a.cube_length - std::abs(point_cube_coordinate(0, 0));
+        int normal = point_cube_coordinate(0, 0) < 0 ? 0 : 1;
+        if (min_depth < 0)
+            return false;
+
+        real depth = a.cube_length - std::abs(point_cube_coordinate(1, 0));
+        if (depth < 0)
+            return false;
+        else if (depth < min_depth)
+        {
+            min_depth = depth;
+            normal = point_cube_coordinate(1, 0) < 0 ? 2 : 3;
+        }
+
+        real depth = a.cube_length - std::abs(point_cube_coordinate(2, 0));
+        if (depth < 0)
+            return false;
+        else if (depth < min_depth)
+        {
+            min_depth = depth;
+            normal = point_cube_coordinate(2, 0) < 0 ? 4 : 5;
+        };
+
+        contact_info.point = point;
+        contact_info.is_contact = true;
+        contact_info.penetration = min_depth;
+        contact_info.contact_normal = normal;
+        return 1;
     }
 
     Contact static CollisionDetectEdgeEdge(Matrix &edge1, Matrix &edge2)

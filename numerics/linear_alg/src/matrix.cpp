@@ -515,4 +515,78 @@ if an element is nan, it returns 1 */
         return 0;
     }
 
+    Matrix *Matrix::GetRows() const
+    {
+        Matrix *rows = (Matrix *)malloc(sizeof(Matrix) * this->rows);
+        for (int i = 0; i < this->rows; i++)
+        {
+            settings::real *values;
+            for (int j = 0; j < this->cols; j++)
+            {
+                values[j] = (*this)(i, j);
+            }
+            rows[i] = Matrix(1, this->cols, values);
+        }
+        return rows;
+    }
+
+    Matrix *Matrix::GetColumns() const
+    {
+
+        Matrix *cols = (Matrix *)malloc(sizeof(Matrix) * this->cols);
+        for (int i = 0; i < this->cols; i++)
+        {
+            settings::real *values;
+            for (int j = 0; j < this->rows; j++)
+            {
+                values[j] = (*this)(i, j);
+            }
+            cols[i] = Matrix(1, this->rows, values);
+        }
+        return cols;
+    }
+
+    void Matrix::RemoveRow(int index)
+    {
+
+        int size = this->cols * this->rows;
+        if (size == 0)
+        {
+            std::invalid_argument("Matrix is of size zero. Must be more than zero for operation RemoveRow");
+        }
+        settings::real *new_values = new settings::real[(this->rows - 1) * this->cols];
+        for (int i = 0; i < index * this->cols; i++)
+        {
+            new_values[i] = this->values[i];
+        }
+        for (int i = (index + 1) * this->cols; i < size; i++)
+        {
+            new_values[i] = this->values[i];
+        }
+        delete[] values;
+        values = new_values;
+        rows--;
+    };
+
+    void Matrix::RemoveColumn(int index)
+    {
+        int size = this->cols * this->rows;
+        if (size == 0)
+        {
+            std::invalid_argument("Matrix is of size zero. Must be more than zero for operation RemoveColumn");
+        }
+        settings::real *new_values = new settings::real[(this->cols - 1) * this->rows];
+        for (int i = 0; i < size; i++)
+        {
+            if (i % this->cols == index)
+            {
+                continue;
+            }
+            new_values[i] = this->values[i];
+        }
+        delete[] values;
+        values = new_values;
+        cols--;
+    };
+
 } // namespace numerics
