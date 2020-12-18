@@ -11,8 +11,8 @@ using namespace numerics;
 using namespace settings;
 
 // TODO
-// 1) Make an GetTransformMatrix method (in Matrix class) but returns 3x3 Matrix && the same for inverse as well
-// 2) Add Edge to Edge collision pg319 in pdf and pg296 in book
+// 1) Add Edge to Edge collision pg319 in pdf and pg296 in book
+// 2) FaceToPoint Collision is incorrect. Does not take into account position (translation) of cube
 
 class Cube;
 
@@ -269,4 +269,48 @@ public:
     Contact static CollisionDetectEdgeEdge(Matrix &edge1, Matrix &edge2)
     {
     }
+
+    /**
+     * @brief Get the transformation matrix of cube. Transforms from cube to world coordinaes. Is a 4x4 matrix
+     * 
+     * @return Matrix 
+     */
+    Matrix GetTransformationMatrix() const
+    {
+        settings::real qw = this->orientation.r;
+        settings::real qx = this->orientation.i;
+        settings::real qy = this->orientation.j;
+        settings::real qz = this->orientation.k;
+
+        settings::real *values = new settings::real[16];
+        values[0] = 1.0f - 2.0f * qy * qy - 2.0f * qz * qz;
+        values[1] = 2.0f * qx * qy - 2.0f * qz * qw;
+        values[2] = 2.0f * qx * qz + 2.0f * qy * qw;
+        values[3] = 0.0f;
+
+        values[4] = 2.0f * qx * qy + 2.0f * qz * qw;
+        values[5] = 1.0f - 2.0f * qx * qx - 2.0f * qz * qz;
+        values[6] = 2.0f * qy * qz - 2.0f * qx * qw;
+        values[7] = 0.0f;
+
+        values[8] = 2.0f * qx * qz - 2.0f * qy * qw;
+        values[9] = 2.0f * qy * qz + 2.0f * qx * qw;
+        values[10] = 1.0f - 2.0f * qx * qx - 2.0f * qy * qy;
+        values[11] = 0.0f;
+
+        values[12] = this->position(0, 0);
+        values[13] = this->position(1, 0);
+        values[14] = this->position(2, 0);
+        values[15] = 1.0f;
+
+        Matrix *result = new Matrix(4, 4, values);
+        return *result;
+    };
+
+    /**
+     * @brief Get the inverse transformation matrix of cube. Transforms from world to cube coordinaes. Is a 4x4 matrix
+     * 
+     * @return Matrix 
+     */
+    Matrix GetInverseTransformationMatrix() const {}
 };
