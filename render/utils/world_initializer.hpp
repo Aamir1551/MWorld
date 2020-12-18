@@ -5,7 +5,6 @@
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include <windows.h>
 
 #include <shader.hpp>
 
@@ -51,9 +50,10 @@ namespace render_utils
         glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
         //Shader shader("  ../shaders/vert.glsl", "../shaders/frag.glsl"); //with respect to current
-        char result[MAX_PATH];
 
-        std::cout << std::string(result, GetModuleFileName(NULL, result, MAX_PATH)) << std::endl;
+        //char result[MAX_PATH]; --first use #include <windows.h>
+
+        //std::cout << std::string(result, GetModuleFileName(NULL, result, MAX_PATH)) << std::endl; --first use #include<windows.h>
         Shader shader("../../../render/glsl_shaders/vert.glsl", "../../../render/glsl_shaders/frag.glsl"); //with respect to root build
 
         shader.use();
