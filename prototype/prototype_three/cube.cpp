@@ -251,7 +251,7 @@ public:
             normal = point_cube_coordinate(1, 0) < 0 ? 2 : 3;
         }
 
-        real depth = a.cube_length - std::abs(point_cube_coordinate(2, 0));
+        depth = a.cube_length - std::abs(point_cube_coordinate(2, 0));
         if (depth < 0)
             return false;
         else if (depth < min_depth)
