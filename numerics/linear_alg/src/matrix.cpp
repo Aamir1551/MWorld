@@ -70,6 +70,7 @@ namespace numerics
         {
             b->values[i] = a.values[i];
         }
+        return *b;
     };
 
     settings::real Matrix::SquaredNorm(Matrix const &a)

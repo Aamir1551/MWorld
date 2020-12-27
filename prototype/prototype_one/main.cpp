@@ -21,11 +21,10 @@ std::vector<glm::vec3> *GenerateRotationsAxis(int num_cubes);
 // 1) Go over mouse controls and understand properly how they work, also how cameraFront works
 // so read again from page 97
 // 2) Organise code layout properly, and sort out cmakelists files for the full render directory
-// 3) Please get notion
-// 4) read over random numbers in c++
-// 5) statics and linking and why static variables should be in header file only, and why u'll get linking errors if you don't
-// 6) Learn to add a colour using element buffer objects
-// 7) Learn about cmake install and export and apply it to project if its useful
+// 3) read over random numbers in c++
+// 4) statics and linking and why static variables should be in header file only, and why u'll get linking errors if you don't
+// 5) Learn to add a colour using element buffer objects
+// 6) Learn about cmake install and export and apply it to project if its useful
 using namespace render_utils;
 
 int main()

@@ -43,6 +43,7 @@ namespace numerics
          this->i = q.i;
          this->j = q.j;
          this->k = q.k;
+         return *this;
       }
 
       /**
