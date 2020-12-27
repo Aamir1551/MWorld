@@ -14,7 +14,7 @@ using namespace settings;
 // 1) Add Edge to Edge collision pg319 in pdf and pg296 in book
 // 2) FaceToPoint Collision is incorrect. Does not take into account position (translation) of cube
 // 3) Make position, velocity, momentum etc as 4x1 instead of 3x1
-// 4) Make both FaceToPoint and DetectCubeEdgeEdge collision functions return the min distance from cube,
+// 4) Make both FaceToPoint and DetectCubeEdgeEdge collision functions return the min distance between cubes,
 //      this way we do not need to use the GJK algirithm to compute min distance
 
 class Cube;
