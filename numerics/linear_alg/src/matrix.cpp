@@ -3,6 +3,9 @@
 #include <iostream>
 #include <settings.hpp>
 
+//TODO
+// 1) pls add this to all generateError throw std::invalid_argument
+
 namespace numerics
 {
     Matrix::Matrix(int rows, int cols) : rows(rows), cols(cols)
@@ -261,9 +264,11 @@ namespace numerics
 
     Matrix &Matrix::operator-(Matrix const &a) const
     {
+
         if (!Matrix::IsSameShape(*this, a))
         {
-            GenerateError("Subtraction", *this, a);
+            //pls add this to all generateError
+            throw std::invalid_argument(GenerateError("Subtraction", *this, a));
         }
 
         settings::real *new_values = new settings::real[a.cols * a.rows];
@@ -392,7 +397,7 @@ namespace numerics
 
         if (b.rows != 3 || b.cols != 1)
         {
-            GenerateError("vector product", b);
+            throw std::invalid_argument(GenerateError("vector product", b));
         }
 
         Matrix *c = new Matrix(3, 1);

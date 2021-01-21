@@ -21,12 +21,12 @@ class Cube;
 
 struct Contact
 {
-    numerics::Matrix point;
-    real penetration;
-    int contact_normal = -1;
-    Cube *body1 = nullptr;
-    Cube *body2 = nullptr;
-    bool is_contact;
+    numerics::Matrix point;     //collision point
+    settings::real penetration; //The amount of penetration
+    int contact_normal = -1;    // The contact normal
+    Cube *body1 = nullptr;      //The body pointer of the first cube
+    Cube *body2 = nullptr;      //The body pointer of the second cube
+    bool is_contact;            //Boolean representing if the cubes are in contact
 };
 
 class Cube
@@ -222,9 +222,17 @@ public:
      * @param B 
      * @return Contact 
      */
-    Contact static CollisionDetect(Cube &a, Cube &b)
+    Contact static CollisionDetect(Cube *a, Cube *b)
     {
-        b.GetVerticesWorldCoordinates().GetColumns();
+        //for each vertex do a collsiondtectcubepoint
+        Matrix *vertices = b->GetVerticesWorldCoordinates().GetColumns();
+        Contact *c[8];
+        for (int i = 0; i < 8; i++)
+        {
+            *c[1] = CollisionDetectCubePoint(a, vertices[i], b);
+        }
+
+        //for each edge do a collidiondetectedgedge
     }
 
     // make the below two functions private
@@ -235,42 +243,92 @@ public:
      * @param point 
      * @return Contact 
      */
-    static bool CollisionDetectCubePoint(Cube &a, Matrix &point, Contact &contact_info)
+    Contact static CollisionDetectCubePoint(Cube *a, Matrix &point, Cube *b)
     {
-        Matrix point_cube_coordinate = numerics::Matrix::MatMul(a.GetInverseOrientationMatrix(), point);
-
-        real min_depth = a.cube_length - std::abs(point_cube_coordinate(0, 0));
-        int normal = point_cube_coordinate(0, 0) < 0 ? 0 : 1;
-        if (min_depth < 0)
-            return false;
-
-        real depth = a.cube_length - std::abs(point_cube_coordinate(1, 0));
-        if (depth < 0)
-            return false;
-        else if (depth < min_depth)
-        {
-            min_depth = depth;
-            normal = point_cube_coordinate(1, 0) < 0 ? 2 : 3;
-        }
-
-        depth = a.cube_length - std::abs(point_cube_coordinate(2, 0));
-        if (depth < 0)
-            return false;
-        else if (depth < min_depth)
-        {
-            min_depth = depth;
-            normal = point_cube_coordinate(2, 0) < 0 ? 4 : 5;
-        };
-
-        contact_info.point = point;
-        contact_info.is_contact = true;
-        contact_info.penetration = min_depth;
-        contact_info.contact_normal = normal;
-        return 1;
+        Matrix point_cube_coordinate = numerics::Matrix::MatMul(a->GetInverseOrientationMatrix(), point);
+        return ResolveCollision(a, point_cube_coordinate, point, b);
     }
 
-    Contact static CollisionDetectEdgeEdge(Matrix &edge1, Matrix &edge2)
+    /**
+     * @brief Detecting Collision between cubes, using edge to edge collision
+     * 
+     * @param edge  The edge is a matrix of size 4x2. Columns represent the points
+     * @return Contact 
+     */
+    Contact static CollisionDetectEdgeEdge(Cube *a, Matrix &edge, Contact &contact_info, Cube *b)
     {
+        Matrix inv_trans = a->GetInverseTransformationMatrix();
+        Matrix c = Matrix::MatMul(inv_trans, edge);
+        Matrix *cols = edge.GetColumns();
+        Matrix p1 = cols[0];
+        Matrix p2 = cols[1] - cols[0];
+
+        //equation of line = p1 + lambda * p2
+
+        real lambda = Matrix::Dot(p2, p2) / Matrix::Dot(p1, p2);
+        Matrix min_point = p1 + p2 * lambda;
+
+        if (lambda < 0 || lambda > 1 || abs(min_point(0, 0)) > a->cube_length / 2 ||
+            abs(min_point(1, 0)) > a->cube_length / 2 ||
+            abs(min_point(2, 0)) > a->cube_length / 2)
+        {
+            // no collision has taken place
+        }
+
+        //make resolve collision more faster, since the world coordinate is not always required
+        return ResolveCollision(a, min_point, Matrix::MatMul(a->GetTransformationMatrix(), min_point), b);
+    }
+
+    /**
+     * @brief Returns if in collision or not
+     * 
+     * @param a 
+     * @return true 
+     * @return false 
+     */
+    static bool IsCollision(Cube &a, Matrix &cube_point)
+    {
+        if (std::abs(cube_point(0, 0)) > a.cube_length || std::abs(cube_point(1, 0)) > a.cube_length ||
+            std::abs(cube_point(2, 0)) > a.cube_length)
+        {
+            return false;
+        };
+        return true;
+    }
+
+    /**
+     * @brief Resolves a collision struct
+     * 
+     * @param a 
+     * @param cube_point Point in cube coordinate
+     * @param contact_info Fills the contact info
+     * @param world_point cube point but in world coordinate
+     * @return true 
+     * @return false 
+     */
+    static Contact ResolveCollision(Cube *a, Matrix &cube_point, Matrix &world_point, Cube *b)
+    {
+
+        real min_depth = a->cube_length - std::abs(cube_point(0, 0));
+        int normal = cube_point(0, 0) < 0 ? 0 : 1;
+
+        real depth = a->cube_length - std::abs(cube_point(1, 0));
+        min_depth = depth;
+        normal = cube_point(1, 0) < 0 ? 2 : 3;
+
+        depth = a->cube_length - std::abs(cube_point(2, 0));
+        min_depth = depth;
+        normal = cube_point(2, 0) < 0 ? 4 : 5;
+
+        /*numerics::Matrix point;  //collision point
+        real penetration;        //The amount of penetration
+        int contact_normal = -1; // The contact normal
+        Cube *body1 = nullptr;   //The body pointer of the first cube
+        Cube *body2 = nullptr;   //The body pointer of the second cube
+        bool is_contact;         //Boolean representing if the cubes are in contact*/
+
+        Contact contact_info = {world_point, min_depth, normal, a, b, true};
+        return contact_info;
     }
 
     /**

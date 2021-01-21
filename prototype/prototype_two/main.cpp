@@ -25,11 +25,8 @@ using namespace render_utils;
 using namespace numerics;
 using namespace settings;
 
-// TODO
-// 1) Add font colour to terminal screen whenever prototype_one or two or three are running.
-// Add a different font colour for each of them in the terminal.
-// So that it is more clearer to know which prototype is running.
-
+//TODO
+//1) Try understanding how this works and if anything needs to be made more efficient please do
 int main()
 {
     cout << "Running Prototype 2" << endl;

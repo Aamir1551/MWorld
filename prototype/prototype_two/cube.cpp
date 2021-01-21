@@ -97,11 +97,7 @@ public:
      */
     Matrix ConvertToCubeCoordinates(Matrix const world_vector) const
     {
-        real world_coordinates_values[] = {world_vector(0, 0), world_vector(1, 0), world_vector(2, 0), 0};
-        Matrix world_coordintes_vector(4, 1, world_coordinates_values);
-        Matrix cube_coordinates_vector = Matrix::MatMul((this->GetOrientationMatrix()), world_coordintes_vector);
-        real cube_coordinates_values[] = {cube_coordinates_vector(0, 0), cube_coordinates_vector(1, 0), cube_coordinates_vector(2, 0)};
-        return Matrix(3, 1, cube_coordinates_values);
+        return Matrix::MatMul((Quaternion::GetOrientationMatrix3(this->orientation)), world_vector);
     }
 
     /**
