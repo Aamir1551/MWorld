@@ -87,6 +87,8 @@ int main()
         c1.Update();
         c2.Update();
 
+        //Cube::CollisionDetect(&c1, &c2);
+
         glm::mat4 rotation_mat1;
         memcpy(glm::value_ptr(rotation_mat1), c1.GetOrientationMatrix().GetValues(), 16 * sizeof(real));
 
