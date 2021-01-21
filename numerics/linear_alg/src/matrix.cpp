@@ -50,6 +50,29 @@ namespace numerics
         }
     }
 
+    Matrix::Matrix(Matrix const &vec1, Matrix const &vec2)
+    {
+
+        if (vec1.rows != vec2.rows || vec1.cols != 1 || vec2.cols != 1)
+        {
+            throw std::invalid_argument("vec1 or vec2 shapes do not conform. Shapes need to be nx1.");
+        }
+
+        this->rows = vec1.rows;
+        this->cols = 2;
+        this->values = new settings::real[this->rows * this->cols];
+
+        for (int i = 0; i < this->rows; i++)
+        {
+            this->values[2 * i] = vec1(i, 0);
+        }
+
+        for (int i = 0; i < this->rows; i++)
+        {
+            this->values[2 * i + 1] = vec2(i, 0);
+        }
+    };
+
     Matrix::Matrix(const Matrix &a) //copy constructor
     {
         this->rows = a.rows;
@@ -534,6 +557,51 @@ if an element is nan, it returns 1 */
             rows[i] = Matrix(1, this->cols, values);
         }
         return rows;
+    }
+
+    void Matrix::AddColumn(Matrix const &vec)
+    {
+
+        if (vec.cols != 1 || this->rows != vec.rows)
+            throw std::invalid_argument("Vector shape does not conform for AddColumn");
+
+        settings::real *new_vals = new settings::real[this->rows * (this->cols + 1)];
+        for (int i = 0; i < this->rows * (this->cols + 1); i++)
+        {
+            if (i > 0 && i % (this->cols + 1) == 0)
+            {
+                continue;
+            }
+            new_vals[i] = this->values[i];
+        }
+        for (int i = 1; i < this->rows + 1; i++)
+        {
+            new_vals[i * (this->cols + 1)] = vec(i, 0);
+        }
+        delete this->values;
+        this->values = new_vals;
+        this->cols += 1;
+    }
+
+    void Matrix::AddRow(Matrix const &vec)
+    {
+        // make sure shape is the same
+
+        if (vec.rows != 1 || this->cols != vec.cols)
+            throw std::invalid_argument("Vector shape does not conform for AddColumn");
+
+        settings::real *new_vals = new settings::real[(this->rows + 1) * this->rows];
+        for (int i = 0; i < this->cols * this->rows; i++)
+        {
+            new_vals[i] = this->values[i];
+        }
+        for (int i = 0; i < this->cols; i++)
+        {
+            new_vals[this->rows * this->cols + i] = vec(0, i);
+        }
+        delete this->values;
+        this->values = new_vals;
+        this->rows += 1;
     }
 
     Matrix *Matrix::GetColumns() const

@@ -19,9 +19,8 @@
 // TODO
 // 1) Why do inline functions need to be defined in header?
 // 2) Add serialize function
-// 3) Add add row + add column functions
-// 4) define implementation of inv function in .cpp file
-// 5) add to git in pre-push.sample file: cpplint.exe --filter=-legal/copyright,-whitespace/braces,-whitespace/newline matrix.cpp
+// 3) define implementation of inv function in .cpp file
+// 4) add to git in pre-push.sample file: cpplint.exe --filter=-legal/copyright,-whitespace/braces,-whitespace/newline matrix.cpp
 
 namespace numerics
 {
@@ -88,6 +87,14 @@ namespace numerics
          * @param a Matrix to copy from.
          */
         Matrix(const Matrix &a);
+
+        /**
+         * @brief Construct a new Matrix object. Joins two vectors together. Both vectors are to be of shape 1xn
+         * 
+         * @param vec1 
+         * @param vec2 
+         */
+        Matrix(Matrix const &vec1, Matrix const &vec2);
 
         /**
          * @brief Returns the shape of a matrix object.
@@ -427,6 +434,20 @@ namespace numerics
          * @return Matrix* 
          */
         Matrix *GetColumns() const;
+
+        /**
+         * @brief Adds a column to a matrix
+         * 
+         * @param vec 
+         */
+        void AddColumn(Matrix const &vec);
+
+        /**
+         * @brief Adds a row to a matrix
+         * 
+         * @param vec 
+         */
+        void AddRow(Matrix const &vec);
 
         /**
          * @brief Removes a columns from at position index

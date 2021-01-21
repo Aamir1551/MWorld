@@ -37,6 +37,7 @@ namespace render_utils
 
         6, 4, 0,
         6, 2, 0 //left-side square
+
     };
 
     void CubeRenderer::ApplyUniforms(int model_id)
