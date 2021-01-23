@@ -97,6 +97,8 @@ public:
      */
     Matrix ConvertToCubeCoordinates(Matrix const world_vector) const
     {
+        //return Matrix::MatMul((Quaternion::GetInverseOrentationMatrix3(this->orientation)), world_vector);
+        //return world_vector;
         return Matrix::MatMul((Quaternion::GetOrientationMatrix3(this->orientation)), world_vector);
     }
 
@@ -132,13 +134,16 @@ public:
             New angular momentum = old angular momentum + angular impulse
 
        */
-        Matrix force_cube_coordinates = ConvertToCubeCoordinates(force);
-        Matrix r = ConvertToCubeCoordinates(force_world_cooridinates - this->position);
+        //Matrix force_cube_coordinates = ConvertToCubeCoordinates(force);
+        Matrix force_cube_coordinates = force;
+
+        //Matrix r = ConvertToCubeCoordinates(force_world_cooridinates - this->position);
+        Matrix r = force_world_cooridinates - this->position;
 
         // Torque is calculated via Matrix::VectorProduct(force_cube_coordinates, r) * dt
 
         momentum += force * dt;
-        angular_momentum += Matrix::VectorProduct(force_cube_coordinates, r) * dt;
+        angular_momentum += Matrix::VectorProduct(r, force_cube_coordinates) * dt;
     }
 
     /**

@@ -48,13 +48,13 @@ int main()
     glm::mat4 projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 400.0f);
 
     real cube_length = 4.0f;
-    real position_coord1[] = {0, 0, -10};
+    real position_coord1[] = {-20, -2, -18}; //x, y, z. x is how much horizontal y is vertical. z is in/out
     Matrix position1(3, 1, position_coord1);
-    Cube c1(cube_length, position1, Quaternion(1, 0, 0, 0), 0.0000000005f);
+    Cube c1(cube_length, position1, Quaternion(1, 0, 0, 0), 1.0f, 1.0f);
 
-    real position_coord2[] = {10, 0, -10};
+    real position_coord2[] = {10, 0, -20};
     Matrix position2(3, 1, position_coord2);
-    Cube c2(cube_length, position2, Quaternion(1, 0, 0, 0), 0.0000000005f);
+    Cube c2(cube_length, position2, Quaternion(1, 0, 0, 0), 1.0f, 1.0f);
 
     CubeRenderer::InitializeCubes(cube_length, vao, vbo, ebo, &view, &projection, world_properties->shader_id);
     CubeRenderer::AddVerticesToBuffers();
@@ -71,8 +71,24 @@ int main()
     real deltaTime = 0.0f; // Time between current frame and last frame
     real lastFrame = 0.0f; // Time of last frame
 
+    real initial_momentum[] = {0.002, 0, 0};
+    c1.momentum = Matrix(3, 1, initial_momentum);
+
+    real angular_momentum[] = {0.0000002, 0.0002, 0.0000002};
+    c1.angular_momentum = Matrix(3, 1, angular_momentum);
+
+    bool paused = false;
+
     while (!glfwWindowShouldClose(world_properties->window))
     { // render loop -- an iteration of this main render loop is called a frame
+
+        if (glfwGetKey(world_properties->window, GLFW_KEY_SPACE) == GLFW_PRESS) {
+           paused = !paused;
+        }
+
+        while(paused) {
+
+        }
 
         real currentFrame = glfwGetTime();
         deltaTime = currentFrame - lastFrame;
@@ -84,13 +100,26 @@ int main()
 
         real amount = 0.0001;
 
+        real force_values[] = {30, 0, 0};
+        real force_world_coordinate_values[] = {-12, 0, -20};
+
+        Matrix force = Matrix(3, 1, force_values);
+        Matrix force_world_coordinate = Matrix(3, 1, force_world_coordinate_values);
+
+        //c1.AddTorque(force, force_world_coordinate, 0.1 * deltaTime);
         c1.Update();
         c2.Update();
 
-        //Cube::CollisionDetect(&c1, &c2);
+        vector<Contact> contact_list;
+        Cube::CollisionDetect(&c1, &c2, contact_list);
+
+        if(contact_list.size() != 0) {
+            //cout << "entered" << endl;
+            Cube::CollisionResolution(contact_list.at(0));
+        }
 
         glm::mat4 rotation_mat1;
-        memcpy(glm::value_ptr(rotation_mat1), c1.GetOrientationMatrix().GetValues(), 16 * sizeof(real));
+        memcpy(glm::value_ptr(rotation_mat1), c1.GetInverseOrientationMatrix().GetValues(), 16 * sizeof(real));
 
         glm::vec3 translation_mat1;
         memcpy(glm::value_ptr(translation_mat1), c1.position.GetValues(), 3 * sizeof(real));
@@ -103,7 +132,7 @@ int main()
         glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 
         glm::mat4 rotation_mat2;
-        memcpy(glm::value_ptr(rotation_mat2), c2.GetOrientationMatrix().GetValues(), 16 * sizeof(real));
+        memcpy(glm::value_ptr(rotation_mat2), c2.GetInverseOrientationMatrix().GetValues(), 16 * sizeof(real));
 
         glm::vec3 translation_mat2;
         memcpy(glm::value_ptr(translation_mat2), c2.position.GetValues(), 3 * sizeof(real));

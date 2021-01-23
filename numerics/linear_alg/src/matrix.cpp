@@ -3,7 +3,7 @@
 #include <iostream>
 #include <settings.hpp>
 
-//TODO
+// TODO
 // 1) pls add this to all generateError throw std::invalid_argument
 
 namespace numerics
@@ -610,12 +610,12 @@ if an element is nan, it returns 1 */
         Matrix *cols = (Matrix *)malloc(sizeof(Matrix) * this->cols);
         for (int i = 0; i < this->cols; i++)
         {
-            settings::real *values;
+            settings::real *values = new settings::real[this->rows];
             for (int j = 0; j < this->rows; j++)
             {
-                values[j] = (*this)(i, j);
+                values[j] = (*this)(j, i);
             }
-            cols[i] = Matrix(1, this->rows, values);
+            cols[i] = Matrix(this->rows, 1,values);
         }
         return cols;
     }
