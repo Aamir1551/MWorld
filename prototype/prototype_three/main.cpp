@@ -82,13 +82,18 @@ int main()
     while (!glfwWindowShouldClose(world_properties->window))
     { // render loop -- an iteration of this main render loop is called a frame
 
-        if (glfwGetKey(world_properties->window, GLFW_KEY_SPACE) == GLFW_PRESS) {
-           paused = !paused;
+        /*if (glfwGetKey(world_properties->window, GLFW_KEY_P) == GLFW_PRESS) {
+           paused = true;
         }
+        cout << paused << endl;
 
         while(paused) {
-
-        }
+            cout << "in pause" << endl;
+            if (glfwGetKey(world_properties->window, GLFW_KEY_A) == GLFW_PRESS) {
+                cout << "if" << endl;
+                paused = false;
+            }
+        }*/
 
         real currentFrame = glfwGetTime();
         deltaTime = currentFrame - lastFrame;

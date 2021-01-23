@@ -271,7 +271,7 @@ public:
             };
         }
 
-        /*vector<Matrix> edge_points = {
+        vector<Matrix> edge_points = {
             vertices[0], vertices[1],
             vertices[0], vertices[2],
             vertices[1], vertices[3],
@@ -288,7 +288,7 @@ public:
         for (int i = 0; i < edge_points.size(); i += 2) {
             CollisionDetectEdgeEdge(a, edge_points.at(i), edge_points.at(i + 1), b, contact_list);
         };
-        //choose collision with the lowest value and then return that contact*/
+        //choose collision with the lowest value and then return that contact
 
         if (contact_list.size() == 0)
         {
@@ -348,6 +348,7 @@ public:
             std::abs(min_point(2, 0)) > a->cube_length / 2)
         {
             // no collision has taken place
+            return;
         }
 
         //make resolve collision more faster, since the world coordinate is not always required
