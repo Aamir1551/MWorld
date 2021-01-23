@@ -259,7 +259,7 @@ public:
     {
         //for each vertex do a collsiondtectcubepoint
         Matrix *b_world_vertices = b->GetVerticesWorldCoordinates().GetColumns();
-        Matrix tt = numerics::Matrix::MatMul(Quaternion::GetInverseOrentationMatrix3(a->orientation), b->GetVerticesWorldCoordinates());
+        Matrix tt = numerics::Matrix::MatMul(Quaternion::GetOrientationMatrix3(a->orientation), b->GetVerticesWorldCoordinates());
         Matrix *vertices = tt.GetColumns();
         for(int i=0; i<8; i++)
         {
@@ -285,27 +285,11 @@ public:
             vertices[0], vertices[4],
             vertices[1], vertices[5]};
 
+        //(edge_points.at(0) - a->position + b->position).print();
         for (int i = 0; i < edge_points.size(); i += 2) {
-            CollisionDetectEdgeEdge(a, edge_points.at(i), edge_points.at(i + 1), b, contact_list);
+            CollisionDetectEdgeEdge(a, edge_points.at(i) -a->position + b->position, edge_points.at(i + 1)  - edge_points[i] - a->position + b->position , b, contact_list);
         };
-        //choose collision with the lowest value and then return that contact
 
-        if (contact_list.size() == 0)
-        {
-            // no collision occured
-            return;
-        }
-
-        real min_penetration_value = 10000000000;
-        int contact_index;
-        for (int i = 0; i < contact_list.size(); i++)
-        {
-            if (contact_list.at(i).penetration < min_penetration_value)
-            {
-                contact_index = i;
-            }
-        }
-        //return contact_list.at(contact_index);
     }
 
     // make the below two functions private
@@ -340,8 +324,12 @@ public:
 
         //equation of line = p1 + lambda * p2
 
-        real lambda = Matrix::Dot(p2, p2) / Matrix::Dot(p1, p2);
+        real lambda =  Matrix::Dot(p1, p2) / Matrix::Dot(p2, p2) * -1;
         Matrix min_point = p1 + p2 * lambda;
+
+        /*if(lambda > 0 && lambda < 1) {
+            cout << lambda << endl;
+        }*/
 
         if (lambda < 0 || lambda > 1 || std::abs(min_point(0, 0)) > a->cube_length / 2 ||
             std::abs(min_point(1, 0)) > a->cube_length / 2 ||
@@ -351,9 +339,11 @@ public:
             return;
         }
 
+
         //make resolve collision more faster, since the world coordinate is not always required
         //return ResolveCollision(a, min_point, Matrix::MatMul(a->GetTransformationMatrix(), min_point), b);
-        contact_list.push_back(ResolveCollision(a, min_point, Matrix::MatMul(Quaternion::GetOrientationMatrix3(a->orientation), min_point), b));
+        //cout << "edge coll take place" << endl;
+        contact_list.push_back(ResolveCollision(a, min_point, Matrix::MatMul(Quaternion::GetInverseOrentationMatrix3(a->orientation), min_point) + a->position, b));
     }
 
 
@@ -475,7 +465,9 @@ public:
 
         Matrix v_ab_1 = body1->linear_velocity + Matrix::VectorProduct(body1->angular_velocity, r_ap) - body2->linear_velocity - Matrix::VectorProduct(body2->angular_velocity, r_bp);
 
-        Matrix normal = body2->GetNormal(contact.contact_normal); //not too sure weather its body1, or body2
+        Matrix normal = body1->GetNormal(contact.contact_normal); //not too sure weather its body1, or body2
+
+        //normal.print();
         Matrix r_ap__n = Matrix::VectorProduct(r_ap, normal);
         Matrix r_bp__n = Matrix::VectorProduct(r_bp, normal);
 

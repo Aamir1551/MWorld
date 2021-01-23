@@ -48,7 +48,7 @@ int main()
     glm::mat4 projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 400.0f);
 
     real cube_length = 4.0f;
-    real position_coord1[] = {-20, -2, -18}; //x, y, z. x is how much horizontal y is vertical. z is in/out
+    real position_coord1[] = {-20, -0.5, -20}; //x, y, z. x is how much horizontal y is vertical. z is in/out
     Matrix position1(3, 1, position_coord1);
     Cube c1(cube_length, position1, Quaternion(1, 0, 0, 0), 1.0f, 1.0f);
 
@@ -74,8 +74,8 @@ int main()
     real initial_momentum[] = {0.002, 0, 0};
     c1.momentum = Matrix(3, 1, initial_momentum);
 
-    real angular_momentum[] = {0.0000002, 0.0002, 0.0000002};
-    c1.angular_momentum = Matrix(3, 1, angular_momentum);
+    //real angular_momentum[] = {0.0000002, 0.0002, 0.0000002};
+    //c1.angular_momentum = Matrix(3, 1, angular_momentum);
 
     bool paused = false;
 
@@ -118,10 +118,20 @@ int main()
         vector<Contact> contact_list;
         Cube::CollisionDetect(&c1, &c2, contact_list);
 
+        real min_penetration_value = 10000000000;
+        int min_contact_index = 0;
+        for (int i = 0; i < contact_list.size(); i++)
+        {
+            if (contact_list.at(i).penetration < min_penetration_value)
+            {
+                min_contact_index = i;
+            }
+        }
         if(contact_list.size() != 0) {
             //cout << "entered" << endl;
-            Cube::CollisionResolution(contact_list.at(0));
+            Cube::CollisionResolution(contact_list.at(min_contact_index));
         }
+
 
         glm::mat4 rotation_mat1;
         memcpy(glm::value_ptr(rotation_mat1), c1.GetInverseOrientationMatrix().GetValues(), 16 * sizeof(real));
