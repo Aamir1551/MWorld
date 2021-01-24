@@ -15,8 +15,15 @@ public:
                                                                                             initial_orientation, 1.0f,
                                                                                             1.0f) {
 
-
     };
+
+    void SetLinearMomentum(Matrix linear_momentum) {
+        this->momentum = linear_momentum;
+    }
+
+    void SetAngularMomentum(Matrix angular_momentum) {
+        this->angular_momentum = angular_momentum;
+    }
 
 };
 

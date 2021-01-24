@@ -135,7 +135,7 @@ int main()
                 min_contact_index = i;
             }
         }
-        if(contact_list.size() != 0) {
+        if(!contact_list.empty()) {
             //cout << "entered" << endl;
             Cube::CollisionResolution(contact_list.at(min_contact_index));
         }

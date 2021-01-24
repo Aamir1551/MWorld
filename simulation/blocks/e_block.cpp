@@ -1,3 +1,6 @@
+#ifndef MWORLD_SIMULATION_BLOCKS_E_BLOCKS_H
+#define MWORLD_SIMULATION_BLOCKS_E_BLOCKS_H
+
 #include <block.cpp>
 
 class EBlock : public Block {
@@ -9,3 +12,5 @@ public:
     }
 
 };
+
+#endif

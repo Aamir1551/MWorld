@@ -34,7 +34,6 @@ struct Contact
     int contact_normal;         // The contact normal // =-1
     Cube *body1;                //The body pointer of the first cube //=nullptr
     Cube *body2;                //The body pointer of the second cube //=nullptr
-    bool is_contact;            //Boolean representing if the cubes are in contact
 };
 
 class Cube
@@ -399,11 +398,9 @@ public:
         real penetration;        //The amount of penetration
         int contact_normal = -1; // The contact normal
         Cube *body1 = nullptr;   //The body pointer of the first cube
-        Cube *body2 = nullptr;   //The body pointer of the second cube
-        bool is_contact;         //Boolean representing if the cubes are in contact*/
+        Cube *body2 = nullptr;   //The body pointer of the second cube */
 
-        //Contact contact_info = {world_point, min_depth, normal, a, b, true};
-        Contact contact_info = {world_point, min_depth, normal, a, b, true};
+        Contact contact_info = {world_point, min_depth, normal, a, b};
         return contact_info;
     }
 
@@ -455,7 +452,6 @@ public:
         int contact_normal = contact.contact_normal;         // The contact normal // =-1
         Cube *body1 = contact.body1;                //The body pointer of the first cube //=nullptr
         Cube *body2 = contact.body2;                //The body pointer of the second cube //=nullptr
-        bool is_contact = contact.is_contact;            //Boolean representing if the cubes are in contact
 
         Matrix r_ap = contact.point - body1->position;
         Matrix r_bp = contact.point - body2->position;
