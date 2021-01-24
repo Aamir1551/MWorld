@@ -83,6 +83,11 @@ public:
 
     vector<Block> blocks;
 
+    vector<IBlock> iblocks;
+    vector<MBlock> mblocks;
+    vector<EBlock> eblocks;
+    vector<ZBlock> zblocks;
+
     WorldHandler(int num_i_blocks_plus, int num_i_blocks_neg, int num_z_blocks, int num_m_blocks_plus, int num_m_blocks_neg, int num_e_blocks_1, int num_e_blocks_1_2) {
         AddIBlocks(num_i_blocks_plus, true);
         AddIBlocks(num_i_blocks_neg, false);
@@ -105,9 +110,9 @@ public:
         std::vector<Quaternion> *orientations;
         GetProperties(num_i_blocks, positions, orientations, angular_momentums, linear_momentums);
         for(int i=0; i<num_i_blocks; i++) {
-            blocks.push_back(IBlock(positions->at(i), orientations->at(i)  ,state));
-            blocks.at(i).SetAngularMomentum(angular_momentums->at(i));
-            blocks.at(i).SetLinearMomentum(linear_momentums->at(i));
+            iblocks.push_back(IBlock(positions->at(i), orientations->at(i)  ,state));
+            iblocks.at(i).SetAngularMomentum(angular_momentums->at(i));
+            iblocks.at(i).SetLinearMomentum(linear_momentums->at(i));
         }
     }
 
@@ -169,6 +174,27 @@ public:
             Cube::CollisionResolution(contact_list.at(min_contact_index));
         }
     }
+
+    void AddForces() {
+        for(int i=0; i<this->blocks.size()-1; i++) {
+            int closest_cube;
+            for(int j=i+1; j<this->blocks.size(); j++) {
+                real closest_distance = std::numeric_limits<real>::max();
+                auto diff =  this->blocks.at(i).position - this->blocks.at(j).position;
+                auto dist = Matrix::Dot(diff, diff);
+                if( dist < closest_distance) {
+                    closest_distance =  dist;
+                    closest_cube = j;
+                }
+            }
+            this->blocks.at(i).React(this->blocks.at(closest_cube));
+
+        }
+
+    }
+
+    //when it comes to flare moving from cube to another, we will have a bigger cube that wraps the actual cube.
+    // if the bigger cubes are touching, then flare is passed, but (no collision stuff takes place)
 
 
 };

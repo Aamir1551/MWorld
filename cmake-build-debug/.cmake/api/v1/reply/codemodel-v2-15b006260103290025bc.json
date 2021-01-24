@@ -1,0 +1,643 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2,
+						5,
+						9,
+						14,
+						18
+					],
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"projectIndex" : 0,
+					"source" : "."
+				},
+				{
+					"build" : "lib/glad",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "lib/glad",
+					"targetIndexes" : 
+					[
+						2
+					]
+				},
+				{
+					"build" : "utils",
+					"childIndexes" : 
+					[
+						3,
+						4
+					],
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 2,
+					"source" : "utils"
+				},
+				{
+					"build" : "utils/util_functions",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 3,
+					"source" : "utils/util_functions",
+					"targetIndexes" : 
+					[
+						10
+					]
+				},
+				{
+					"build" : "utils/settings",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 4,
+					"source" : "utils/settings"
+				},
+				{
+					"build" : "numerics",
+					"childIndexes" : 
+					[
+						6,
+						8
+					],
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 5,
+					"source" : "numerics"
+				},
+				{
+					"build" : "numerics/linear_alg",
+					"childIndexes" : 
+					[
+						7
+					],
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 5,
+					"projectIndex" : 6,
+					"source" : "numerics/linear_alg",
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"build" : "numerics/linear_alg/test",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 6,
+					"projectIndex" : 7,
+					"source" : "numerics/linear_alg/test",
+					"targetIndexes" : 
+					[
+						4
+					]
+				},
+				{
+					"build" : "numerics/quaternion",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 5,
+					"projectIndex" : 8,
+					"source" : "numerics/quaternion",
+					"targetIndexes" : 
+					[
+						8
+					]
+				},
+				{
+					"build" : "render",
+					"childIndexes" : 
+					[
+						10,
+						11,
+						12,
+						13
+					],
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 9,
+					"source" : "render"
+				},
+				{
+					"build" : "render/camera",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 9,
+					"projectIndex" : 10,
+					"source" : "render/camera"
+				},
+				{
+					"build" : "render/cube_renderer",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 9,
+					"projectIndex" : 11,
+					"source" : "render/cube_renderer",
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"build" : "render/utils",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 9,
+					"projectIndex" : 12,
+					"source" : "render/utils"
+				},
+				{
+					"build" : "render/shader",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 9,
+					"projectIndex" : 13,
+					"source" : "render/shader"
+				},
+				{
+					"build" : "prototype",
+					"childIndexes" : 
+					[
+						15,
+						16,
+						17
+					],
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 14,
+					"source" : "prototype"
+				},
+				{
+					"build" : "prototype/prototype_one",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 14,
+					"projectIndex" : 15,
+					"source" : "prototype/prototype_one",
+					"targetIndexes" : 
+					[
+						5
+					]
+				},
+				{
+					"build" : "prototype/prototype_two",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 14,
+					"projectIndex" : 16,
+					"source" : "prototype/prototype_two",
+					"targetIndexes" : 
+					[
+						7
+					]
+				},
+				{
+					"build" : "prototype/prototype_three",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 14,
+					"projectIndex" : 17,
+					"source" : "prototype/prototype_three",
+					"targetIndexes" : 
+					[
+						6
+					]
+				},
+				{
+					"build" : "simulation",
+					"childIndexes" : 
+					[
+						19,
+						20
+					],
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 18,
+					"source" : "simulation"
+				},
+				{
+					"build" : "simulation/blocks",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 18,
+					"projectIndex" : 19,
+					"source" : "simulation/blocks",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"build" : "simulation/environment",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 18,
+					"projectIndex" : 18,
+					"source" : "simulation/environment",
+					"targetIndexes" : 
+					[
+						9
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1,
+						2,
+						5,
+						9,
+						14,
+						18
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "MWorld"
+				},
+				{
+					"directoryIndexes" : 
+					[
+						1
+					],
+					"name" : "glad",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						2
+					]
+				},
+				{
+					"childIndexes" : 
+					[
+						3,
+						4
+					],
+					"directoryIndexes" : 
+					[
+						2
+					],
+					"name" : "utils",
+					"parentIndex" : 0
+				},
+				{
+					"directoryIndexes" : 
+					[
+						3
+					],
+					"name" : "util_functions",
+					"parentIndex" : 2,
+					"targetIndexes" : 
+					[
+						10
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						4
+					],
+					"name" : "settings",
+					"parentIndex" : 2
+				},
+				{
+					"childIndexes" : 
+					[
+						6,
+						8
+					],
+					"directoryIndexes" : 
+					[
+						5
+					],
+					"name" : "numerics",
+					"parentIndex" : 0
+				},
+				{
+					"childIndexes" : 
+					[
+						7
+					],
+					"directoryIndexes" : 
+					[
+						6
+					],
+					"name" : "linear_alg",
+					"parentIndex" : 5,
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						7
+					],
+					"name" : "linear_alg_test",
+					"parentIndex" : 6,
+					"targetIndexes" : 
+					[
+						4
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						8
+					],
+					"name" : "quaternion_lib",
+					"parentIndex" : 5,
+					"targetIndexes" : 
+					[
+						8
+					]
+				},
+				{
+					"childIndexes" : 
+					[
+						10,
+						11,
+						12,
+						13
+					],
+					"directoryIndexes" : 
+					[
+						9
+					],
+					"name" : "render",
+					"parentIndex" : 0
+				},
+				{
+					"directoryIndexes" : 
+					[
+						10
+					],
+					"name" : "camera",
+					"parentIndex" : 9
+				},
+				{
+					"directoryIndexes" : 
+					[
+						11
+					],
+					"name" : "cube_renderer",
+					"parentIndex" : 9,
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						12
+					],
+					"name" : "mworld_render_utils",
+					"parentIndex" : 9
+				},
+				{
+					"directoryIndexes" : 
+					[
+						13
+					],
+					"name" : "shader",
+					"parentIndex" : 9
+				},
+				{
+					"childIndexes" : 
+					[
+						15,
+						16,
+						17
+					],
+					"directoryIndexes" : 
+					[
+						14
+					],
+					"name" : "prototypes",
+					"parentIndex" : 0
+				},
+				{
+					"directoryIndexes" : 
+					[
+						15
+					],
+					"name" : "prototype_one",
+					"parentIndex" : 14,
+					"targetIndexes" : 
+					[
+						5
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						16
+					],
+					"name" : "prototype_two",
+					"parentIndex" : 14,
+					"targetIndexes" : 
+					[
+						7
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						17
+					],
+					"name" : "prototype_three",
+					"parentIndex" : 14,
+					"targetIndexes" : 
+					[
+						6
+					]
+				},
+				{
+					"childIndexes" : 
+					[
+						19
+					],
+					"directoryIndexes" : 
+					[
+						18,
+						20
+					],
+					"name" : "simulation",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						9
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						19
+					],
+					"name" : "Blocks",
+					"parentIndex" : 18,
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 19,
+					"id" : "blocks::@6db65c1307d2a2a784c8",
+					"jsonFile" : "target-blocks-Debug-d8367d7e3c120a64f2ff.json",
+					"name" : "blocks",
+					"projectIndex" : 19
+				},
+				{
+					"directoryIndex" : 11,
+					"id" : "cube_renderer::@ef8ae11a8c6e57d14ca4",
+					"jsonFile" : "target-cube_renderer-Debug-c7281fd5c73c279391f9.json",
+					"name" : "cube_renderer",
+					"projectIndex" : 11
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "glad::@bf3af473941166e98053",
+					"jsonFile" : "target-glad-Debug-8fa16d111f64fed87290.json",
+					"name" : "glad",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 6,
+					"id" : "linear_alg::@b276e23674e4ab50d284",
+					"jsonFile" : "target-linear_alg-Debug-88835b9babd6a6fe0124.json",
+					"name" : "linear_alg",
+					"projectIndex" : 6
+				},
+				{
+					"directoryIndex" : 7,
+					"id" : "matrix_test::@2c4963581b964c5fdc28",
+					"jsonFile" : "target-matrix_test-Debug-2527b23f1aca36c7f8fc.json",
+					"name" : "matrix_test",
+					"projectIndex" : 7
+				},
+				{
+					"directoryIndex" : 15,
+					"id" : "prototype_one::@c77c4220c2085dac9ec5",
+					"jsonFile" : "target-prototype_one-Debug-8061f8b79b527cf091f5.json",
+					"name" : "prototype_one",
+					"projectIndex" : 15
+				},
+				{
+					"directoryIndex" : 17,
+					"id" : "prototype_three::@2a17fa0eebb0697fdbb6",
+					"jsonFile" : "target-prototype_three-Debug-4e9cddf6399aeabad6a8.json",
+					"name" : "prototype_three",
+					"projectIndex" : 17
+				},
+				{
+					"directoryIndex" : 16,
+					"id" : "prototype_two::@e7e923eba9c0b8a1d5aa",
+					"jsonFile" : "target-prototype_two-Debug-e0cee4adb01f88d21c1e.json",
+					"name" : "prototype_two",
+					"projectIndex" : 16
+				},
+				{
+					"directoryIndex" : 8,
+					"id" : "quaternion::@1ddfe99dd86582fd9c64",
+					"jsonFile" : "target-quaternion-Debug-3dc8bb8752be643739a2.json",
+					"name" : "quaternion",
+					"projectIndex" : 8
+				},
+				{
+					"directoryIndex" : 20,
+					"id" : "simulation::@847a59781e22ff560ae6",
+					"jsonFile" : "target-simulation-Debug-d69f6736b0787d8433c5.json",
+					"name" : "simulation",
+					"projectIndex" : 18
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "utils::@c5cd9bcf8a2dc65dcb35",
+					"jsonFile" : "target-utils-Debug-1be6c9ca5e58785b2d06.json",
+					"name" : "utils",
+					"projectIndex" : 3
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/aamir/Documents/mworld/cmake-build-debug",
+		"source" : "C:/Users/aamir/Documents/mworld"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 0
+	}
+}

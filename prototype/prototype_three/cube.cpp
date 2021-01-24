@@ -243,6 +243,7 @@ public:
         }
         //Matrix out = Matrix::MatMul(this->GetInverseOrientationMatrix(), Matrix(3, 8, vertices));
         Matrix out = Matrix::MatMul(Quaternion::GetInverseOrentationMatrix3(this->orientation), Matrix(3, 8, vertices));
+        //cout << "out get vertices world coordiantes" << endl;
         return out;
     }
 
@@ -256,8 +257,13 @@ public:
     void static CollisionDetect(Cube *a, Cube *b, vector<Contact> &contact_list)
     {
         //for each vertex do a collsiondtectcubepoint
-        Matrix *b_world_vertices = b->GetVerticesWorldCoordinates().GetColumns();
+        //cout << "cameeeee" << endl;
+        auto temp = b->GetVerticesWorldCoordinates();
+        //temp.print_shape();
+        Matrix *b_world_vertices = temp.GetColumns();
+        //cout << "cameeeee123123" << endl;
         Matrix tt = numerics::Matrix::MatMul(Quaternion::GetOrientationMatrix3(a->orientation), b->GetVerticesWorldCoordinates());
+        //tt.print_shape();
         Matrix *vertices = tt.GetColumns();
         for(int i=0; i<8; i++)
         {

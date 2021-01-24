@@ -607,17 +607,21 @@ if an element is nan, it returns 1 */
     Matrix *Matrix::GetColumns() const
     {
 
-        Matrix *cols = (Matrix *)malloc(sizeof(Matrix) * this->cols);
+        Matrix *cols_list = (Matrix *)malloc(sizeof(Matrix) * this->cols);
         for (int i = 0; i < this->cols; i++)
         {
-            settings::real *values = new settings::real[this->rows];
+            settings::real *vals = new settings::real[this->rows];
             for (int j = 0; j < this->rows; j++)
             {
-                values[j] = (*this)(j, i);
+                vals[j] = this->values[j * this->cols + i];
             }
-            cols[i] = Matrix(this->rows, 1,values);
-        }
-        return cols;
+            //std::cout << "once -" << i << std::endl;
+            cols_list[i] = Matrix(this->rows, 1,vals);
+            //cols_list[i].print();
+            delete vals;
+        };
+        //std::cout << "out get coumns" << std::endl;
+        return cols_list;
     }
 
     void Matrix::RemoveRow(int index)
