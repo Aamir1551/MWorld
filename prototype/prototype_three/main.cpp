@@ -48,7 +48,7 @@ int main()
     glm::mat4 projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 400.0f);
 
     real cube_length = 4.0f;
-    real position_coord1[] = {-20, -0.5, -20}; //x, y, z. x is how much horizontal y is vertical. z is in/out
+    real position_coord1[] = {-20, -2.0f, -20}; //x, y, z. x is how much horizontal y is vertical. z is in/out
     Matrix position1(3, 1, position_coord1);
     Cube c1(cube_length, position1, Quaternion(1, 0, 0, 0), 1.0f, 1.0f);
 
@@ -71,8 +71,16 @@ int main()
     real deltaTime = 0.0f; // Time between current frame and last frame
     real lastFrame = 0.0f; // Time of last frame
 
-    real initial_momentum[] = {0.002, 0, 0};
-    c1.momentum = Matrix(3, 1, initial_momentum);
+    real initial_momentum1[] = {0.002, 0, 0};
+    c1.momentum = Matrix(3, 1, initial_momentum1);
+
+    real initial_momentum2[] = {-0.002, 0.0, 0};
+    c2.momentum = Matrix(3, 1, initial_momentum2);
+
+    Quaternion q = Quaternion(0.0f, 0.0f, 1.7f, -1.7f);
+    Quaternion spin = q * c1.orientation;
+    c1.orientation += spin;
+    c1.orientation.Normalise();
 
     //real angular_momentum[] = {0.0000002, 0.0002, 0.0000002};
     //c1.angular_momentum = Matrix(3, 1, angular_momentum);

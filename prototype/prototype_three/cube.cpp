@@ -14,7 +14,6 @@ using namespace std;
 
 // TODO
 // 1) Add Edge to Edge collision pg319 in pdf and pg296 in book
-// 2) FaceToPoint Collision is incorrect. Does not take into account position (translation) of cube
 // 3) Make position, velocity, momentum etc as 4x1 instead of 3x1
 // 4) Make both FaceToPoint and DetectCubeEdgeEdge collision functions return the min distance between cubes,
 //      this way we do not need to use the GJK algorithm to compute min distance
@@ -23,10 +22,10 @@ class Cube;
 
 const real right_normal_values[3] = {1, 0, 0};
 const real left_normal_values[3] = {-1, 0, 0};
-const real in_normal_values[3] = {0, -1, 0};
-const real out_normal_values[3] = {0, 1, 0};
-const real up_normal_values[3] = {0, 0, 1};
-const real down_normal_values[3] = {0, 0, -1};
+const real up_normal_values[3] = {0, 1, 0};
+const real down_normal_values[3] = {0,-1, 0};
+const real in_normal_values[3] = {0, 0, -1};
+const real out_normal_values[3] = {0, 0, 1};
 
 struct Contact
 {
@@ -43,8 +42,8 @@ class Cube
 public:
 
     const Matrix normals[6] = {
-            Matrix(3, 1, right_normal_values), Matrix(3, 1, left_normal_values),
-            Matrix(3,1, up_normal_values), Matrix(3, 1, down_normal_values), //please make this static
+            Matrix(3, 1, left_normal_values), Matrix(3, 1, right_normal_values),
+            Matrix(3,1, down_normal_values), Matrix(3, 1, up_normal_values), //please make this static
              Matrix(3, 1, in_normal_values), Matrix(3, 1, out_normal_values)};
 
     //primary
@@ -446,11 +445,12 @@ public:
     };
 
     Matrix GetNormal(int normal_id) {
-       return Matrix::MatMul(Quaternion::GetOrientationMatrix3(this->orientation), Cube::normals[normal_id]);
+       //return Cube::normals[normal_id];
+       return Matrix::MatMul(Quaternion::GetOrientationMatrix3(this->orientation), Cube::normals[normal_id]) ;
     }
 
     void static CollisionResolution(Contact contact) {
-        numerics::Matrix point = contact.point;     //collision point in world coordinates
+        //numerics::Matrix point = contact.point;     //collision point in world coordinates
         settings::real penetration = contact.penetration; //The amount of penetration
         int contact_normal = contact.contact_normal;         // The contact normal // =-1
         Cube *body1 = contact.body1;                //The body pointer of the first cube //=nullptr
@@ -465,7 +465,7 @@ public:
 
         Matrix v_ab_1 = body1->linear_velocity + Matrix::VectorProduct(body1->angular_velocity, r_ap) - body2->linear_velocity - Matrix::VectorProduct(body2->angular_velocity, r_bp);
 
-        Matrix normal = body1->GetNormal(contact.contact_normal); //not too sure weather its body1, or body2
+        Matrix normal = body2->GetNormal(contact.contact_normal); //not too sure weather its body1, or body2
 
         //normal.print();
         Matrix r_ap__n = Matrix::VectorProduct(r_ap, normal);
@@ -486,8 +486,8 @@ public:
         body1->angular_momentum = w_a2 / body1->inverse_inertia;
         body2->angular_momentum = w_b2 / body2->inverse_inertia;
 
-        body1->position = body1->position - normal * (contact.penetration/2 + 0.001);
-        body2->position = body2->position + normal * (contact.penetration/2 + 0.001);
+        body1->position = body1->position - normal * (contact.penetration/2);
+        body2->position = body2->position + normal * (contact.penetration/2);
 
 
     }
