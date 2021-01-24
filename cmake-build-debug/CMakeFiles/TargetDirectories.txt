@@ -43,3 +43,11 @@ C:/Users/aamir/Documents/mworld/cmake-build-debug/prototype/prototype_two/CMakeF
 C:/Users/aamir/Documents/mworld/cmake-build-debug/prototype/prototype_three/CMakeFiles/prototype_three.dir
 C:/Users/aamir/Documents/mworld/cmake-build-debug/prototype/prototype_three/CMakeFiles/edit_cache.dir
 C:/Users/aamir/Documents/mworld/cmake-build-debug/prototype/prototype_three/CMakeFiles/rebuild_cache.dir
+C:/Users/aamir/Documents/mworld/cmake-build-debug/simulation/CMakeFiles/edit_cache.dir
+C:/Users/aamir/Documents/mworld/cmake-build-debug/simulation/CMakeFiles/rebuild_cache.dir
+C:/Users/aamir/Documents/mworld/cmake-build-debug/simulation/blocks/CMakeFiles/blocks.dir
+C:/Users/aamir/Documents/mworld/cmake-build-debug/simulation/blocks/CMakeFiles/edit_cache.dir
+C:/Users/aamir/Documents/mworld/cmake-build-debug/simulation/blocks/CMakeFiles/rebuild_cache.dir
+C:/Users/aamir/Documents/mworld/cmake-build-debug/simulation/environment/CMakeFiles/simulation.dir
+C:/Users/aamir/Documents/mworld/cmake-build-debug/simulation/environment/CMakeFiles/edit_cache.dir
+C:/Users/aamir/Documents/mworld/cmake-build-debug/simulation/environment/CMakeFiles/rebuild_cache.dir

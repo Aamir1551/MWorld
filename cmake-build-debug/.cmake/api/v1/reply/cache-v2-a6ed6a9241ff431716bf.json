@@ -2,6 +2,30 @@
 	"entries" : 
 	[
 		{
+			"name" : "Blocks_BINARY_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "C:/Users/aamir/Documents/mworld/cmake-build-debug/simulation/blocks"
+		},
+		{
+			"name" : "Blocks_SOURCE_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "C:/Users/aamir/Documents/mworld/simulation/blocks"
+		},
+		{
 			"name" : "CMAKE_ADDR2LINE",
 			"properties" : 
 			[
@@ -775,7 +799,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "18"
+			"value" : "21"
 		},
 		{
 			"name" : "CMAKE_OBJCOPY",
@@ -1258,6 +1282,18 @@
 			"value" : "C:/Users/aamir/Documents/mworld"
 		},
 		{
+			"name" : "blocks_LIB_DEPENDS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Dependencies for the target"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "general;linear_alg;general;quaternion;general;cube_renderer;general;utils;general;glad;general;C:/Users/aamir/Documents/mworld/lib/glfw-3.3.2/build/src/libglfw3.a;"
+		},
+		{
 			"name" : "camera_BINARY_DIR",
 			"properties" : 
 			[
@@ -1640,6 +1676,30 @@
 			],
 			"type" : "STATIC",
 			"value" : "C:/Users/aamir/Documents/mworld/render/shader"
+		},
+		{
+			"name" : "simulation_BINARY_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "C:/Users/aamir/Documents/mworld/cmake-build-debug/simulation/environment"
+		},
+		{
+			"name" : "simulation_SOURCE_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "C:/Users/aamir/Documents/mworld/simulation/environment"
 		},
 		{
 			"name" : "util_functions_BINARY_DIR",
