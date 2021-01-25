@@ -121,9 +121,9 @@ public:
         Quaternion q(0, angular_velocity(0, 0), angular_velocity(1, 0), angular_velocity(2, 0));
         Quaternion spin = q * orientation;
 
-        position += linear_velocity;
-        orientation += spin;
-        orientation.Normalise();
+        this->position += linear_velocity;
+        this->orientation += spin;
+        this->orientation.Normalise();
     }
 
     /**
@@ -132,7 +132,7 @@ public:
      * @param world_vector 
      * @return Matrix 
      */
-    Matrix ConvertToCubeCoordinates(Matrix const world_vector) const
+    Matrix ConvertToCubeCoordinates(Matrix const &world_vector) const
     {
         /*real world_coordinates_values[] = {world_vector(0, 0), world_vector(1, 0), world_vector(2, 0), 0};
         Matrix world_coordintes_vector(4, 1, world_coordinates_values);
@@ -150,7 +150,7 @@ public:
      * @param force_world_cooridinates The coordinates of the force in world coordinates
      * @param dt The amount of time the force was applied for
      */
-    void AddTorque(Matrix const force, Matrix const &force_world_cooridinates, real const dt)
+    void AddTorque(Matrix const &force, Matrix const &force_world_cooridinates, real const dt)
     {
         /*
             Initially the force and the force_world_coordinates are in world coordintes. However, the 
@@ -186,7 +186,7 @@ public:
 
 
         //Matrix force_cube_coordinates = ConvertToCubeCoordinates(force);
-        Matrix force_cube_coordinates = force;
+        //Matrix force_cube_coordinates = force;
 
         //Matrix r = ConvertToCubeCoordinates(force_world_cooridinates - this->position);
         Matrix r = force_world_cooridinates - this->position;
@@ -194,7 +194,7 @@ public:
         // Torque is calculated via Matrix::VectorProduct(force_cube_coordinates, r) * dt
 
         momentum += force * dt;
-        angular_momentum += Matrix::VectorProduct(r, force_cube_coordinates) * dt;
+        angular_momentum += Matrix::VectorProduct(r, force) * dt;
 
     }
 
@@ -252,15 +252,12 @@ public:
      */
     void static CollisionDetect(Cube *a, Cube *b, vector<Contact> &contact_list)
     {
-        auto temp = b->GetVerticesWorldCoordinates();
-        Matrix *b_world_vertices = temp.GetColumns(); //gonna guess we get error here
-        Matrix tt = numerics::Matrix::MatMul(Quaternion::GetOrientationMatrix3(a->orientation), b->GetVerticesWorldCoordinates());
-        Matrix *vertices = tt.GetColumns();
+        Matrix *b_world_vertices = b->GetVerticesWorldCoordinates().GetColumns();
+        Matrix *vertices = numerics::Matrix::MatMul(Quaternion::GetOrientationMatrix3(a->orientation), b->GetVerticesWorldCoordinates()).GetColumns();
+
         for(int i=0; i<8; i++)
         {
-
             Matrix v = vertices[i] - a->position + b->position;
-
             if(IsCollision(*a, v)) {
                 contact_list.push_back(CollisionDetectCubePoint(a, v, b_world_vertices[i] + b->position, b));
             };
@@ -281,7 +278,7 @@ public:
             vertices[1], vertices[5]};
 
         for (int i = 0; i < edge_points.size(); i += 2) {
-            CollisionDetectEdgeEdge(a, edge_points.at(i) -a->position + b->position, edge_points.at(i + 1)  - edge_points[i] - a->position + b->position , b, contact_list);
+            CollisionDetectEdgeEdge(a, edge_points.at(i) -a->position + b->position, edge_points.at(i + 1)  - edge_points.at(i), b, contact_list);
         };
 
     }
@@ -308,18 +305,16 @@ public:
      * @param edge  The edge is a matrix of size 4x2. Columns represent the points
      * @return Contact
      */
-    void static CollisionDetectEdgeEdge(Cube *a, Matrix edge_p1, Matrix edge_p2, Cube *b, vector<Contact> &contact_list)
+    void static CollisionDetectEdgeEdge(Cube *a, Matrix &edge_p1, Matrix &edge_p2, Cube *b, vector<Contact> &contact_list)
     {
         //Matrix inv_trans = a->GetInverseTransformationMatrix();
         //Matrix c1 = Matrix::MatMul(inv_trans, edge_p1);
         //Matrix c2 = Matrix::MatMul(inv_trans, edge_p2);
-        Matrix p1 = edge_p1;
-        Matrix p2 = edge_p2;
 
         //equation of line = p1 + lambda * p2
 
-        real lambda =  Matrix::Dot(p1, p2) / Matrix::Dot(p2, p2) * -1;
-        Matrix min_point = p1 + p2 * lambda;
+        real lambda =  Matrix::Dot(edge_p1, edge_p2) / Matrix::Dot(edge_p2, edge_p2) * -1;
+        Matrix min_point = edge_p1 + edge_p2 * lambda;
 
         /*if(lambda > 0 && lambda < 1) {
             cout << lambda << endl;
@@ -442,7 +437,7 @@ public:
        return Matrix::MatMul(Quaternion::GetOrientationMatrix3(this->orientation), Cube::normals[normal_id]) ;
     }
 
-    void static CollisionResolution(Contact contact) {
+    void static CollisionResolution(Contact &contact) {
         //numerics::Matrix point = contact.point;     //collision point in world coordinates
         settings::real penetration = contact.penetration; //The amount of penetration
         int contact_normal = contact.contact_normal;         // The contact normal // =-1
@@ -460,11 +455,11 @@ public:
         Matrix normal = body2->GetNormal(contact.contact_normal); //not too sure weather its body1, or body2
 
         //normal.print();
-        Matrix r_ap__n = Matrix::VectorProduct(r_ap, normal);
-        Matrix r_bp__n = Matrix::VectorProduct(r_bp, normal);
+        Matrix r_ap_cross_normal = Matrix::VectorProduct(r_ap, normal);
+        Matrix r_bp_cross_normal = Matrix::VectorProduct(r_bp, normal);
 
-        real j = Matrix::Dot(v_ab_1, normal) * -2 / (body1->inverse_mass + body2->inverse_mass + Matrix::Dot(r_ap__n, r_ap__n)*body1->inverse_inertia +
-                Matrix::Dot(r_bp__n, r_bp__n)*body2->inverse_inertia);
+        real j = Matrix::Dot(v_ab_1, normal) * -2 / (body1->inverse_mass + body2->inverse_mass + Matrix::Dot(r_ap_cross_normal, r_ap_cross_normal)*body1->inverse_inertia +
+                Matrix::Dot(r_bp_cross_normal, r_bp_cross_normal)*body2->inverse_inertia);
 
         Matrix w_a2 = body1->angular_velocity + Matrix::VectorProduct(r_ap, normal * j) * body1->inverse_inertia;
         Matrix w_b2 = body2->angular_velocity - Matrix::VectorProduct(r_bp, normal * j) * body2->inverse_inertia;

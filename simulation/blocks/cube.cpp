@@ -128,9 +128,9 @@ public:
         Quaternion q(0, angular_velocity(0, 0), angular_velocity(1, 0), angular_velocity(2, 0));
         Quaternion spin = q * orientation;
 
-        position += linear_velocity;
-        orientation += spin;
-        orientation.Normalise();
+        this->position += linear_velocity;
+        this->orientation += spin;
+        this->orientation.Normalise();
     }
 
     /**
@@ -139,7 +139,7 @@ public:
      * @param world_vector
      * @return Matrix
      */
-    Matrix ConvertToCubeCoordinates(Matrix const world_vector) const
+    Matrix ConvertToCubeCoordinates(Matrix const &world_vector) const
     {
         return Matrix::MatMul((Quaternion::GetOrientationMatrix3(this->orientation)), world_vector);
     }
@@ -151,7 +151,7 @@ public:
      * @param force_world_cooridinates The coordinates of the force in world coordinates
      * @param dt The amount of time the force was applied for
      */
-    void AddTorque(Matrix const force, Matrix const &force_world_cooridinates, real const dt)
+    void AddTorque(Matrix const &force, Matrix const &force_world_cooridinates, real const dt)
     {
         /*
             Initially the force and the force_world_coordinates are in world coordintes. However, the
@@ -178,7 +178,7 @@ public:
 
 
         //Matrix force_cube_coordinates = ConvertToCubeCoordinates(force);
-        Matrix force_cube_coordinates = force;
+        //Matrix force_cube_coordinates = force;
 
         //Matrix r = ConvertToCubeCoordinates(force_world_cooridinates - this->position);
         Matrix r = force_world_cooridinates - this->position;
@@ -186,7 +186,7 @@ public:
         // Torque is calculated via Matrix::VectorProduct(force_cube_coordinates, r) * dt
 
         momentum += force * dt;
-        angular_momentum += Matrix::VectorProduct(r, force_cube_coordinates) * dt;
+        angular_momentum += Matrix::VectorProduct(r, force) * dt;
 
     }
 
@@ -246,6 +246,10 @@ public:
         Matrix *b_world_vertices = b->GetVerticesWorldCoordinates().GetColumns();
         Matrix *vertices = numerics::Matrix::MatMul(Quaternion::GetOrientationMatrix3(a->orientation), b->GetVerticesWorldCoordinates()).GetColumns();
 
+        for(int i=0; i<8; i++) {
+            vertices[i] = vertices[i] + b->position - a->position;
+        }
+
         vector<Matrix> edge_points = {
                 vertices[0], vertices[1],
                 vertices[0], vertices[2],
@@ -261,9 +265,6 @@ public:
                 vertices[1], vertices[5]
         };
 
-        for(int i=0; i<8; i++) {
-            vertices[i] = vertices[i] + b->position - a->position;
-        }
 
         for(int i=0; i<8; i++)
         {
@@ -274,10 +275,11 @@ public:
 
 
         for (int i = 0; i < edge_points.size(); i += 2) {
-            real dot_i_i = Matrix::Dot(edge_points.at(i), edge_points.at(i));
-            real dot_i_i_1 = Matrix::Dot(edge_points.at(i), edge_points.at(i + 1));
-            if(IsEdgeEdgeCollision(a, edge_points.at(i), edge_points.at(i+1), b, a->cube_length, dot_i_i, dot_i_i_1)) {
-                AddCollisionDetectEdgeEdge(a, edge_points.at(i), edge_points.at(i+1), b, contact_list, dot_i_i, dot_i_i_1);
+            Matrix c = b->position - a->position;
+            real dot_i_i_1 = Matrix::Dot(edge_points.at(i), edge_points.at(i+1) - edge_points.at(i));
+            real dot_i_1_i_1 = Matrix::Dot(edge_points.at(i+1) - edge_points.at(i), edge_points.at(i+1) - edge_points.at(i));
+            if(IsEdgeEdgeCollision(a, edge_points.at(i),  edge_points.at(i+1) - edge_points.at(i), b, a->cube_length, dot_i_i_1, dot_i_1_i_1)) {
+                AddCollisionDetectEdgeEdge(a, edge_points.at(i), edge_points.at(i+1) -edge_points.at(i), b, contact_list, dot_i_i_1, dot_i_1_i_1);
             }
         };
 
@@ -425,7 +427,7 @@ public:
         return Matrix::MatMul(Quaternion::GetOrientationMatrix3(this->orientation), Cube::normals[normal_id]) ;
     }
 
-    void static CollisionResolution(Contact contact) {
+    void static CollisionResolution(Contact &contact) {
         //numerics::Matrix point = contact.point;     //collision point in world coordinates
         settings::real penetration = contact.penetration; //The amount of penetration
         int contact_normal = contact.contact_normal;         // The contact normal // =-1
@@ -442,11 +444,11 @@ public:
 
         Matrix normal = body2->GetNormal(contact.contact_normal); //not too sure weather its body1, or body2
 
-        Matrix r_ap__n = Matrix::VectorProduct(r_ap, normal);
-        Matrix r_bp__n = Matrix::VectorProduct(r_bp, normal);
+        Matrix r_ap_cross_normal = Matrix::VectorProduct(r_ap, normal);
+        Matrix r_bp_cross_normal = Matrix::VectorProduct(r_bp, normal);
 
-        real j = Matrix::Dot(v_ab_1, normal) * -2 / (body1->inverse_mass + body2->inverse_mass + Matrix::Dot(r_ap__n, r_ap__n)*body1->inverse_inertia +
-                                                     Matrix::Dot(r_bp__n, r_bp__n)*body2->inverse_inertia);
+        real j = Matrix::Dot(v_ab_1, normal) * -2 / (body1->inverse_mass + body2->inverse_mass + Matrix::Dot(r_ap_cross_normal, r_ap_cross_normal)*body1->inverse_inertia +
+                                                     Matrix::Dot(r_bp_cross_normal, r_bp_cross_normal)*body2->inverse_inertia);
 
         Matrix w_a2 = body1->angular_velocity + Matrix::VectorProduct(r_ap, normal * j) * body1->inverse_inertia;
         Matrix w_b2 = body2->angular_velocity - Matrix::VectorProduct(r_bp, normal * j) * body2->inverse_inertia;
