@@ -262,23 +262,21 @@ public:
 
         for(int i=0; i<8; i++)
         {
-            if(IsCollision(*a, vertices[i], a->cube_length)) {
-                contact_list.push_back(ResolveCollision(a, vertices[i], b_world_vertices[i] + b->position, b));
+            if(IsCollision(*a, vertices[i], a->cube_wrapper_length)) {
+                contact_list.push_back(ResolveCollision(a, vertices[i], b_world_vertices[i] + b->position, b, a->cube_wrapper_length));
             };
         }
 
 
         for (int i = 0; i < edge_points.size(); i += 2) {
-            Matrix c = b->position - a->position;
             real dot_i_i_1 = Matrix::Dot(edge_points.at(i), edge_points.at(i+1) - edge_points.at(i));
             real dot_i_1_i_1 = Matrix::Dot(edge_points.at(i+1) - edge_points.at(i), edge_points.at(i+1) - edge_points.at(i));
-            if(IsEdgeEdgeCollision(a, edge_points.at(i),  edge_points.at(i+1) - edge_points.at(i), b, a->cube_length, dot_i_i_1, dot_i_1_i_1)) {
+            if(IsEdgeEdgeCollision(a, edge_points.at(i),  edge_points.at(i+1) - edge_points.at(i), b, a->cube_wrapper_length, dot_i_i_1, dot_i_1_i_1)) {
                 AddCollisionDetectEdgeEdge(a, edge_points.at(i), edge_points.at(i+1) -edge_points.at(i), b, contact_list, dot_i_i_1, dot_i_1_i_1);
             }
         };
 
     }
-
 
     /**
      * @brief Detecting Collision between cubes, using edge to edge collision
@@ -294,7 +292,7 @@ public:
 
         //make resolve collision more faster, since the world coordinate is not always required
         //return ResolveCollision(a, min_point, Matrix::MatMul(a->GetTransformationMatrix(), min_point), b);
-        contact_list.push_back(ResolveCollision(a, min_point, Matrix::MatMul(Quaternion::GetInverseOrentationMatrix3(a->orientation), min_point) + a->position, b));
+        contact_list.push_back(ResolveCollision(a, min_point, Matrix::MatMul(Quaternion::GetInverseOrentationMatrix3(a->orientation), min_point) + a->position, b, a->cube_wrapper_length));
     }
 
     bool static IsEdgeEdgeCollision(Cube *a, Matrix const &edge_p1, Matrix const &edge_p2, Cube *b, real edge_size, real edge_p1_dot_edge_p2, real edge_p2_dot_edge_p2) {
@@ -341,20 +339,20 @@ public:
      * @return true
      * @return false
      */
-    static Contact ResolveCollision(Cube *a, Matrix &cube_point, Matrix &world_point, Cube *b)
+    static Contact ResolveCollision(Cube *a, Matrix &cube_point, Matrix &world_point, Cube *b, real length)
     {
 
-        real min_depth = a->cube_length/2 - std::abs(cube_point(0, 0));
+        real min_depth = length/2 - std::abs(cube_point(0, 0));
         int normal = cube_point(0, 0) < 0 ? 0 : 1;
 
-        real depth = a->cube_length/2 - std::abs(cube_point(1, 0));
+        real depth = length/2 - std::abs(cube_point(1, 0));
         if (depth < min_depth)
         {
             min_depth = depth;
             normal = cube_point(1, 0) < 0 ? 2 : 3;
         }
 
-        depth = a->cube_length /2- std::abs(cube_point(2, 0));
+        depth = length /2- std::abs(cube_point(2, 0));
         if (depth < min_depth)
         {
 
@@ -378,7 +376,7 @@ public:
         settings::real qy = this->orientation.j;
         settings::real qz = this->orientation.k;
 
-        settings::real *values = new settings::real[16];
+        auto *values = new settings::real[16];
         values[0] = 1.0f - 2.0f * qy * qy - 2.0f * qz * qz;
         values[1] = 2.0f * qx * qy - 2.0f * qz * qw;
         values[2] = 2.0f * qx * qz + 2.0f * qy * qw;
@@ -404,7 +402,7 @@ public:
     };
 
     Matrix GetNormal(int normal_id) {
-        return Matrix::MatMul(Quaternion::GetOrientationMatrix3(this->orientation), Cube::normals[normal_id]);
+        return Matrix::MatMul(Quaternion::GetInverseOrentationMatrix3(this->orientation), Cube::normals[normal_id]);
     }
 
     void static CollisionResolution(Contact &contact) {

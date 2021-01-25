@@ -404,7 +404,7 @@ public:
     };
 
     Matrix GetNormal(int normal_id) {
-        return Matrix::MatMul(Quaternion::GetOrientationMatrix3(this->orientation), Cube::normals[normal_id]);
+        return Matrix::MatMul(Quaternion::GetInverseOrentationMatrix3(this->orientation), Cube::normals[normal_id]);
     }
 
     void static CollisionResolution(Contact &contact) {

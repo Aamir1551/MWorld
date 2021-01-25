@@ -86,6 +86,8 @@ public:
     vector<EBlock> eblocks;
     vector<ZBlock> zblocks;
 
+    vector<Block *> blocks;
+
     WorldHandler(int num_i_blocks_plus, int num_i_blocks_neg, int num_z_blocks, int num_m_blocks_plus, int num_m_blocks_neg, int num_e_blocks_1, int num_e_blocks_1_2) {
         AddIBlocks(num_i_blocks_plus, true);
         AddIBlocks(num_i_blocks_neg, false);
@@ -108,7 +110,9 @@ public:
         std::vector<Quaternion> *orientations;
         GetProperties(num_i_blocks, positions, orientations, angular_momentums, linear_momentums);
         for(int i=0; i<num_i_blocks; i++) {
+            cout << "Add I Block ID: " << i << endl;
             iblocks.push_back(IBlock(positions->at(i), orientations->at(i)  ,state));
+            blocks.push_back(&iblocks.at(i));
             iblocks.at(i).SetAngularMomentum(angular_momentums->at(i));
             iblocks.at(i).SetLinearMomentum(linear_momentums->at(i));
         }
@@ -119,7 +123,9 @@ public:
         std::vector<Quaternion> *orientations;
         GetProperties(num_m_blocks, positions, orientations, angular_momentums, linear_momentums);
         for(int i=0; i<num_m_blocks; i++) {
+            cout << "Add M Block ID: " << i << endl;
             mblocks.push_back(MBlock(positions->at(i), orientations->at(i)  ,state));
+            blocks.push_back(&mblocks.at(i));
             mblocks.at(i).SetAngularMomentum(angular_momentums->at(i));
             mblocks.at(i).SetLinearMomentum(linear_momentums->at(i));
         }
@@ -130,7 +136,9 @@ public:
         std::vector<Quaternion> *orientations;
         GetProperties(num_e_blocks, positions, orientations, angular_momentums, linear_momentums);
         for(int i=0; i<num_e_blocks; i++) {
+            cout << "Add E Block ID: " << i << endl;
             eblocks.push_back(EBlock(positions->at(i), orientations->at(i), k));
+            blocks.push_back(&eblocks.at(i));
             eblocks.at(i).SetAngularMomentum(angular_momentums->at(i));
             eblocks.at(i).SetLinearMomentum(linear_momentums->at(i));
         }
@@ -141,7 +149,9 @@ public:
         std::vector<Quaternion> *orientations;
         GetProperties(num_z_blocks, positions, orientations, angular_momentums, linear_momentums);
         for(int i=0; i<num_z_blocks; i++) {
+            cout << "Add Z Block ID: " << i << endl;
             zblocks.push_back(ZBlock(positions->at(i), orientations->at(i)));
+            blocks.push_back(&zblocks.at(i));
             zblocks.at(i).SetAngularMomentum(angular_momentums->at(i));
             zblocks.at(i).SetLinearMomentum(linear_momentums->at(i));
         }
@@ -151,7 +161,7 @@ public:
         for(int i=0; i<this->iblocks.size(); i++) {
             this->iblocks.at(i).Update();
         };
-        for(int i=0; i<this->mblocks.size(); i++) {
+        /*for(int i=0; i<this->mblocks.size(); i++) {
             this->mblocks.at(i).Update();
         };
         for(int i=0; i<this->eblocks.size(); i++) {
@@ -159,7 +169,13 @@ public:
         };
         for(int i=0; i<this->zblocks.size(); i++) {
             this->zblocks.at(i).Update();
-        };
+        };*/
+
+        /*cout << this->blocks.size() << endl;
+        for(int i=0; i<this->blocks.size(); i++) {
+            cout << i << endl;
+            this->blocks.at(i)->Update();
+        }*/
     };
 
 
@@ -176,8 +192,15 @@ public:
                 min_contact_index = i;
             }
         }
-        if(contact_list.size() != 0) {
-            Cube::CollisionResolution(contact_list.at(min_contact_index));
+        if(!contact_list.empty()) {
+            Contact min_contact = contact_list.at(min_contact_index);
+            auto temp = Matrix::MatMul(Quaternion::GetOrientationMatrix3(min_contact.body1->orientation), min_contact.point - min_contact.body1->position);
+            if(Cube::IsCollision(*min_contact.body1, temp, min_contact.body1->cube_wrapper_length)) {
+                PassFlare(&iblocks.at(0), &iblocks.at(1));
+                if(Cube::IsCollision(*min_contact.body1, temp, min_contact.body1->cube_length)) {
+                    Cube::CollisionResolution(min_contact);
+                }
+            }
         }
     }
 
@@ -199,13 +222,12 @@ public:
 
     }*/
 
-    void GetTouching() {
-
+    void static PassFlare(Block *a, Block *b) {
+       b->flare_inc += a->flare_value  * 0.1;
+       a->flare_inc += b->flare_value  * 0.1;
+       a->flare_value *= 0.9;
+       b->flare_value *= 0.9;
     }
-
-    //when it comes to flare moving from cube to another, we will have a bigger cube that wraps the actual cube.
-    // if the bigger cubes are touching, then flare is passed, but (no collision stuff takes place)
-
 
 };
 
