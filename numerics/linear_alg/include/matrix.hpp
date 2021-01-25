@@ -61,6 +61,8 @@ namespace numerics
          * @param rows 
          * @param cols 
          */
+
+        explicit Matrix();
         explicit Matrix(int rows, int cols);
 
         /**

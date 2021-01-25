@@ -81,8 +81,6 @@ class WorldHandler {
 
 public:
 
-    vector<Block> blocks;
-
     vector<IBlock> iblocks;
     vector<MBlock> mblocks;
     vector<EBlock> eblocks;
@@ -121,44 +119,53 @@ public:
         std::vector<Quaternion> *orientations;
         GetProperties(num_m_blocks, positions, orientations, angular_momentums, linear_momentums);
         for(int i=0; i<num_m_blocks; i++) {
-            blocks.push_back(MBlock(positions->at(i), orientations->at(i)  ,state));
-            blocks.at(i).SetAngularMomentum(angular_momentums->at(i));
-            blocks.at(i).SetLinearMomentum(linear_momentums->at(i));
+            mblocks.push_back(MBlock(positions->at(i), orientations->at(i)  ,state));
+            mblocks.at(i).SetAngularMomentum(angular_momentums->at(i));
+            mblocks.at(i).SetLinearMomentum(linear_momentums->at(i));
         }
     }
 
-    void AddEBlocks(int num_m_blocks, real k) {
+    void AddEBlocks(int num_e_blocks, real k) {
         std::vector<Matrix> *positions,  *angular_momentums, *linear_momentums;
         std::vector<Quaternion> *orientations;
-        GetProperties(num_m_blocks, positions, orientations, angular_momentums, linear_momentums);
-        for(int i=0; i<num_m_blocks; i++) {
-            blocks.push_back(EBlock(positions->at(i), orientations->at(i), k));
-            blocks.at(i).SetAngularMomentum(angular_momentums->at(i));
-            blocks.at(i).SetLinearMomentum(linear_momentums->at(i));
+        GetProperties(num_e_blocks, positions, orientations, angular_momentums, linear_momentums);
+        for(int i=0; i<num_e_blocks; i++) {
+            eblocks.push_back(EBlock(positions->at(i), orientations->at(i), k));
+            eblocks.at(i).SetAngularMomentum(angular_momentums->at(i));
+            eblocks.at(i).SetLinearMomentum(linear_momentums->at(i));
         }
     }
 
-    void AddZBlocks(int num_m_blocks) {
+    void AddZBlocks(int num_z_blocks) {
         std::vector<Matrix> *positions,  *angular_momentums, *linear_momentums;
         std::vector<Quaternion> *orientations;
-        GetProperties(num_m_blocks, positions, orientations, angular_momentums, linear_momentums);
-        for(int i=0; i<num_m_blocks; i++) {
-            blocks.push_back(ZBlock(positions->at(i), orientations->at(i)));
-            blocks.at(i).SetAngularMomentum(angular_momentums->at(i));
-            blocks.at(i).SetLinearMomentum(linear_momentums->at(i));
+        GetProperties(num_z_blocks, positions, orientations, angular_momentums, linear_momentums);
+        for(int i=0; i<num_z_blocks; i++) {
+            zblocks.push_back(ZBlock(positions->at(i), orientations->at(i)));
+            zblocks.at(i).SetAngularMomentum(angular_momentums->at(i));
+            zblocks.at(i).SetLinearMomentum(linear_momentums->at(i));
         }
     }
 
     void Update() {
-        for(int i=0; i<this->blocks.size(); i++) {
-            this->blocks.at(i).Update();
+        for(int i=0; i<this->iblocks.size(); i++) {
+            this->iblocks.at(i).Update();
+        };
+        for(int i=0; i<this->mblocks.size(); i++) {
+            this->mblocks.at(i).Update();
+        };
+        for(int i=0; i<this->eblocks.size(); i++) {
+            this->eblocks.at(i).Update();
+        };
+        for(int i=0; i<this->zblocks.size(); i++) {
+            this->zblocks.at(i).Update();
         };
     };
 
 
     void CollisionHandler() {
         vector<Contact> contact_list;
-        Cube::CollisionDetect(&blocks.at(0), &blocks.at(1), contact_list);
+        Cube::CollisionDetect(&iblocks.at(0), &iblocks.at(1), contact_list);
 
         real min_penetration_value = 10000000000;
         int min_contact_index = 0;
@@ -175,7 +182,7 @@ public:
         }
     }
 
-    void AddForces() {
+    /*void AddForces() {
         for(int i=0; i<this->blocks.size()-1; i++) {
             int closest_cube;
             for(int j=i+1; j<this->blocks.size(); j++) {
@@ -191,7 +198,7 @@ public:
 
         }
 
-    }
+    }*/
 
     //when it comes to flare moving from cube to another, we will have a bigger cube that wraps the actual cube.
     // if the bigger cubes are touching, then flare is passed, but (no collision stuff takes place)
