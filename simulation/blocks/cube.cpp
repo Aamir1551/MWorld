@@ -175,12 +175,6 @@ public:
 
          */
 
-
-
-        //Matrix force_cube_coordinates = ConvertToCubeCoordinates(force);
-        //Matrix force_cube_coordinates = force;
-
-        //Matrix r = ConvertToCubeCoordinates(force_world_cooridinates - this->position);
         Matrix r = force_world_cooridinates - this->position;
 
         // Torque is calculated via Matrix::VectorProduct(force_cube_coordinates, r) * dt
@@ -269,7 +263,7 @@ public:
         for(int i=0; i<8; i++)
         {
             if(IsCollision(*a, vertices[i], a->cube_length)) {
-                contact_list.push_back(CollisionDetectCubePoint(a, vertices[i], b_world_vertices[i] + b->position, b));
+                contact_list.push_back(ResolveCollision(a, vertices[i], b_world_vertices[i] + b->position, b));
             };
         }
 
@@ -285,19 +279,6 @@ public:
 
     }
 
-    // make the below two functions private
-    /**
-     * @brief Returns the contact information of a cube in contact with point
-     *
-     * @param A
-     * @param point
-     * @param b
-     * @return Contact
-     */
-    Contact static CollisionDetectCubePoint(Cube *a, Matrix &point, Matrix &world_point, Cube *b)
-    {
-        return ResolveCollision(a, point, world_point, b);
-    }
 
     /**
      * @brief Detecting Collision between cubes, using edge to edge collision
@@ -423,14 +404,10 @@ public:
     };
 
     Matrix GetNormal(int normal_id) {
-        //return Cube::normals[normal_id];
-        return Matrix::MatMul(Quaternion::GetOrientationMatrix3(this->orientation), Cube::normals[normal_id]) ;
+        return Matrix::MatMul(Quaternion::GetOrientationMatrix3(this->orientation), Cube::normals[normal_id]);
     }
 
     void static CollisionResolution(Contact &contact) {
-        //numerics::Matrix point = contact.point;     //collision point in world coordinates
-        settings::real penetration = contact.penetration; //The amount of penetration
-        int contact_normal = contact.contact_normal;         // The contact normal // =-1
         Cube *body1 = contact.body1;                //The body pointer of the first cube //=nullptr
         Cube *body2 = contact.body2;                //The body pointer of the second cube //=nullptr
 
@@ -464,8 +441,6 @@ public:
 
         body1->position = body1->position - normal * (contact.penetration/2);
         body2->position = body2->position + normal * (contact.penetration/2);
-
-
     }
 };
 

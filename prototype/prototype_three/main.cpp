@@ -71,7 +71,7 @@ int main()
     real deltaTime = 0.0f; // Time between current frame and last frame
     real lastFrame = 0.0f; // Time of last frame
 
-    real initial_momentum1[] = {0.002, 0, 0};
+    real initial_momentum1[] = {0.002, 0.0, 0.0};
     c1.momentum = Matrix(3, 1, initial_momentum1);
 
     real initial_momentum2[] = {-0.002, 0.0, 0};
@@ -113,11 +113,11 @@ int main()
 
         real amount = 0.0001;
 
-        real force_values[] = {30, 0, 0};
+        /*real force_values[] = {30, 0, 0};
         real force_world_coordinate_values[] = {-12, 0, -20};
 
         Matrix force = Matrix(3, 1, force_values);
-        Matrix force_world_coordinate = Matrix(3, 1, force_world_coordinate_values);
+        Matrix force_world_coordinate = Matrix(3, 1, force_world_coordinate_values);*/
 
         //c1.AddTorque(force, force_world_coordinate, 0.1 * deltaTime);
         c1.Update();
@@ -138,6 +138,7 @@ int main()
         if(!contact_list.empty()) {
             //cout << "entered" << endl;
             Cube::CollisionResolution(contact_list.at(min_contact_index));
+            cout << "solved" << endl;
         }
 
 

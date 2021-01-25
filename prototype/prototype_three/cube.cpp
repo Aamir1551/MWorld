@@ -259,7 +259,7 @@ public:
         {
             Matrix v = vertices[i] - a->position + b->position;
             if(IsCollision(*a, v)) {
-                contact_list.push_back(CollisionDetectCubePoint(a, v, b_world_vertices[i] + b->position, b));
+                contact_list.push_back(ResolveCollision(a, v, b_world_vertices[i] + b->position, b));
             };
         }
 
@@ -284,20 +284,6 @@ public:
     }
 
     // make the below two functions private
-    /**
-     * @brief Returns the contact information of a cube in contact with point
-     *
-     * @param A
-     * @param point
-     * @param b
-     * @return Contact
-     */
-    Contact static CollisionDetectCubePoint(Cube *a, Matrix &point, Matrix &world_point, Cube *b)
-    {
-        //Matrix point_cube_coordinate = numerics::Matrix::MatMul(a->GetInverseOrientationMatrix(), point);
-        //return ResolveCollision(a, point_cube_coordinate, point, b);
-        return ResolveCollision(a, point, world_point, b);
-    }
 
     /**
      * @brief Detecting Collision between cubes, using edge to edge collision
@@ -307,18 +293,10 @@ public:
      */
     void static CollisionDetectEdgeEdge(Cube *a, Matrix &edge_p1, Matrix &edge_p2, Cube *b, vector<Contact> &contact_list)
     {
-        //Matrix inv_trans = a->GetInverseTransformationMatrix();
-        //Matrix c1 = Matrix::MatMul(inv_trans, edge_p1);
-        //Matrix c2 = Matrix::MatMul(inv_trans, edge_p2);
-
         //equation of line = p1 + lambda * p2
 
         real lambda =  Matrix::Dot(edge_p1, edge_p2) / Matrix::Dot(edge_p2, edge_p2) * -1;
         Matrix min_point = edge_p1 + edge_p2 * lambda;
-
-        /*if(lambda > 0 && lambda < 1) {
-            cout << lambda << endl;
-        }*/
 
         if (lambda < 0 || lambda > 1 || std::abs(min_point(0, 0)) > a->cube_length / 2 ||
             std::abs(min_point(1, 0)) > a->cube_length / 2 ||
@@ -380,16 +358,9 @@ public:
         depth = a->cube_length /2- std::abs(cube_point(2, 0));
         if (depth < min_depth)
         {
-
             min_depth = depth;
             normal = cube_point(2, 0) < 0 ? 4 : 5;
         }
-
-        /*numerics::Matrix point;  //collision point
-        real penetration;        //The amount of penetration
-        int contact_normal = -1; // The contact normal
-        Cube *body1 = nullptr;   //The body pointer of the first cube
-        Cube *body2 = nullptr;   //The body pointer of the second cube */
 
         Contact contact_info = {world_point, min_depth, normal, a, b};
         return contact_info;
@@ -433,14 +404,10 @@ public:
     };
 
     Matrix GetNormal(int normal_id) {
-       //return Cube::normals[normal_id];
-       return Matrix::MatMul(Quaternion::GetOrientationMatrix3(this->orientation), Cube::normals[normal_id]) ;
+        return Matrix::MatMul(Quaternion::GetOrientationMatrix3(this->orientation), Cube::normals[normal_id]);
     }
 
     void static CollisionResolution(Contact &contact) {
-        //numerics::Matrix point = contact.point;     //collision point in world coordinates
-        settings::real penetration = contact.penetration; //The amount of penetration
-        int contact_normal = contact.contact_normal;         // The contact normal // =-1
         Cube *body1 = contact.body1;                //The body pointer of the first cube //=nullptr
         Cube *body2 = contact.body2;                //The body pointer of the second cube //=nullptr
 
@@ -454,7 +421,7 @@ public:
 
         Matrix normal = body2->GetNormal(contact.contact_normal); //not too sure weather its body1, or body2
 
-        //normal.print();
+        normal.print();
         Matrix r_ap_cross_normal = Matrix::VectorProduct(r_ap, normal);
         Matrix r_bp_cross_normal = Matrix::VectorProduct(r_bp, normal);
 
