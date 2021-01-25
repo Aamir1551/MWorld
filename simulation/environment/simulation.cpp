@@ -54,13 +54,11 @@ int main()
 
     real position_coord1[] = {-20, -2.0f, -20}; //x, y, z. x is how much horizontal y is vertical. z is in/out
     Matrix position1(3, 1, position_coord1);
-    //Cube c1(cube_length, position1, Quaternion(1, 0, 0, 0), 1.0f, 1.0f);
     world.iblocks.at(0).position =  position1;
     world.iblocks.at(0).orientation =  Quaternion(1, 0, 0, 0);
 
     real position_coord2[] = {10, 0, -20};
     Matrix position2(3, 1, position_coord2);
-    //Cube c2(cube_length, position2, Quaternion(1, 0, 0, 0), 1.0f, 1.0f);
     world.iblocks.at(1).position =  position2;
     world.iblocks.at(1).orientation =  Quaternion(1, 0, 0, 0);
 
@@ -81,11 +79,9 @@ int main()
     real lastFrame = 0.0f; // Time of last frame
 
     real initial_momentum1[] = {0.002, 0, 0};
-    //c1.momentum = Matrix(3, 1, initial_momentum1);
     world.iblocks.at(0).momentum = Matrix(3, 1, initial_momentum1);
 
     real initial_momentum2[] = {-0.002, 0.0, 0};
-    //c2.momentum = Matrix(3, 1, initial_momentum2);
     world.iblocks.at(1).momentum = Matrix(3, 1, initial_momentum2);
 
     Quaternion q = Quaternion(0.0f, 0.0f, 1.7f, -1.7f);
@@ -96,26 +92,10 @@ int main()
     world.iblocks.at(0).angular_momentum = Matrix(3, 1);
     world.iblocks.at(1).angular_momentum = Matrix(3, 1);
 
-    //real angular_momentum[] = {0.0000002, 0.0002, 0.0000002};
-    //c1.angular_momentum = Matrix(3, 1, angular_momentum);
-
     bool paused = false;
 
     while (!glfwWindowShouldClose(world_properties->window))
     { // render loop -- an iteration of this main render loop is called a frame
-
-        /*if (glfwGetKey(world_properties->window, GLFW_KEY_P) == GLFW_PRESS) {
-           paused = true;
-        }
-        cout << paused << endl;
-
-        while(paused) {
-            cout << "in pause" << endl;
-            if (glfwGetKey(world_properties->window, GLFW_KEY_A) == GLFW_PRESS) {
-                cout << "if" << endl;
-                paused = false;
-            }
-        }*/
 
         real currentFrame = glfwGetTime();
         deltaTime = currentFrame - lastFrame;

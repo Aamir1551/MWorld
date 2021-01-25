@@ -64,6 +64,8 @@ public:
     real const inverse_mass;
     real const cube_length;
 
+    real const cube_wrapper_length;
+
 
 
     /**
@@ -78,7 +80,8 @@ public:
     Cube(real cube_length, Matrix position, Quaternion initial_orientation = Quaternion(1, 0, 0, 0),
          real inverse_mass = 1.0f, real inverse_inertia = 1.0f) : cube_length(cube_length),
                                                                   inverse_mass(inverse_mass),
-                                                                  inverse_inertia(inverse_inertia)
+                                                                  inverse_inertia(inverse_inertia),
+                                                                  cube_wrapper_length(cube_length + 0.01)
     {
         this->position = position;
         this->orientation = initial_orientation;
@@ -110,9 +113,7 @@ public:
 
             dx/dt = v
             dθ/dt = w
-        */
 
-        /*
         Updating orientation quaternion involves the steps:
             1)  Convert Scaled axes representation of angular velocity to a quaternion
                 scaled axes quaternion = (angular_velocity[0], angular_velocity[1], angular_velocity[2])
@@ -140,12 +141,6 @@ public:
      */
     Matrix ConvertToCubeCoordinates(Matrix const world_vector) const
     {
-        /*real world_coordinates_values[] = {world_vector(0, 0), world_vector(1, 0), world_vector(2, 0), 0};
-        Matrix world_coordintes_vector(4, 1, world_coordinates_values);
-        Matrix cube_coordinates_vector = Matrix::MatMul((this->GetOrientationMatrix()), world_coordintes_vector);
-        real cube_coordinates_values[] = {cube_coordinates_vector(0, 0), cube_coordinates_vector(1, 0), cube_coordinates_vector(2, 0)};
-        return Matrix(3, 1, cube_coordinates_values);*/
-
         return Matrix::MatMul((Quaternion::GetOrientationMatrix3(this->orientation)), world_vector);
     }
 
@@ -162,9 +157,7 @@ public:
             Initially the force and the force_world_coordinates are in world coordintes. However, the
             angular_momentums (which is a vector quantity) of the cube is in cube_coordinates.
             Hence, we need to first transform the force, and the force_world_coordinates to cube coordinates.
-        */
 
-        /*
         Equations of motion being used are:
             p = Linear momentum
             L = Angular momentum
@@ -180,15 +173,8 @@ public:
             New linear momentum = old linear momentum + linear impulse
             New angular momentum = old angular momentum + angular impulse
 
-       */
+         */
 
-        /*Matrix force_cube_coordinates = ConvertToCubeCoordinates(force);
-        Matrix r = ConvertToCubeCoordinates(force_world_cooridinates - this->position);
-
-        // Torque is calculated via Matrix::VectorProduct(force_cube_coordinates, r) * dt
-
-        momentum += force * dt;
-        angular_momentum += Matrix::VectorProduct(force_cube_coordinates, r) * dt;*/
 
 
         //Matrix force_cube_coordinates = ConvertToCubeCoordinates(force);
@@ -244,7 +230,6 @@ public:
             vertices[i + 8] = (((int)std::floor(i / 2)) % 2 == 0 ? -diff : diff);
             vertices[i + 16] = (((int)std::floor(i / 4)) % 2 == 0 ? -diff : diff);
         }
-        //Matrix out = Matrix::MatMul(this->GetInverseOrientationMatrix(), Matrix(3, 8, vertices));
         Matrix out = Matrix::MatMul(Quaternion::GetInverseOrentationMatrix3(this->orientation), Matrix(3, 8, vertices));
         return out;
     }
@@ -258,19 +243,8 @@ public:
      */
     void static CollisionDetect(Cube *a, Cube *b, vector<Contact> &contact_list)
     {
-        //for each vertex do a collsiondtectcubepoint
         Matrix *b_world_vertices = b->GetVerticesWorldCoordinates().GetColumns();
-        Matrix tt = numerics::Matrix::MatMul(Quaternion::GetOrientationMatrix3(a->orientation), b->GetVerticesWorldCoordinates());
-        Matrix *vertices = tt.GetColumns();
-        for(int i=0; i<8; i++)
-        {
-
-            Matrix v = vertices[i] - a->position + b->position;
-
-            if(IsCollision(*a, v)) {
-                contact_list.push_back(CollisionDetectCubePoint(a, v, b_world_vertices[i] + b->position, b));
-            };
-        }
+        Matrix *vertices = numerics::Matrix::MatMul(Quaternion::GetOrientationMatrix3(a->orientation), b->GetVerticesWorldCoordinates()).GetColumns();
 
         vector<Matrix> edge_points = {
                 vertices[0], vertices[1],
@@ -284,11 +258,27 @@ public:
                 vertices[6], vertices[2],
                 vertices[7], vertices[3],
                 vertices[0], vertices[4],
-                vertices[1], vertices[5]};
+                vertices[1], vertices[5]
+        };
 
-        //(edge_points.at(0) - a->position + b->position).print();
+        for(int i=0; i<8; i++) {
+            vertices[i] = vertices[i] + b->position - a->position;
+        }
+
+        for(int i=0; i<8; i++)
+        {
+            if(IsCollision(*a, vertices[i], a->cube_length)) {
+                contact_list.push_back(CollisionDetectCubePoint(a, vertices[i], b_world_vertices[i] + b->position, b));
+            };
+        }
+
+
         for (int i = 0; i < edge_points.size(); i += 2) {
-            CollisionDetectEdgeEdge(a, edge_points.at(i) -a->position + b->position, edge_points.at(i + 1)  - edge_points[i] - a->position + b->position , b, contact_list);
+            real dot_i_i = Matrix::Dot(edge_points.at(i), edge_points.at(i));
+            real dot_i_i_1 = Matrix::Dot(edge_points.at(i), edge_points.at(i + 1));
+            if(IsEdgeEdgeCollision(a, edge_points.at(i), edge_points.at(i+1), b, a->cube_length, dot_i_i, dot_i_i_1)) {
+                AddCollisionDetectEdgeEdge(a, edge_points.at(i), edge_points.at(i+1), b, contact_list, dot_i_i, dot_i_i_1);
+            }
         };
 
     }
@@ -304,8 +294,6 @@ public:
      */
     Contact static CollisionDetectCubePoint(Cube *a, Matrix &point, Matrix &world_point, Cube *b)
     {
-        //Matrix point_cube_coordinate = numerics::Matrix::MatMul(a->GetInverseOrientationMatrix(), point);
-        //return ResolveCollision(a, point_cube_coordinate, point, b);
         return ResolveCollision(a, point, world_point, b);
     }
 
@@ -315,36 +303,30 @@ public:
      * @param edge  The edge is a matrix of size 4x2. Columns represent the points
      * @return Contact
      */
-    void static CollisionDetectEdgeEdge(Cube *a, Matrix edge_p1, Matrix edge_p2, Cube *b, vector<Contact> &contact_list)
+    void static AddCollisionDetectEdgeEdge(Cube *a, Matrix const &edge_p1, Matrix const &edge_p2, Cube *b, vector<Contact> &contact_list, real edge_p1_dot_edge_p2, real edge_p2_dot_edge_p2)
     {
-        //Matrix inv_trans = a->GetInverseTransformationMatrix();
-        //Matrix c1 = Matrix::MatMul(inv_trans, edge_p1);
-        //Matrix c2 = Matrix::MatMul(inv_trans, edge_p2);
-        Matrix p1 = edge_p1;
-        Matrix p2 = edge_p2;
 
-        //equation of line = p1 + lambda * p2
-
-        real lambda =  Matrix::Dot(p1, p2) / Matrix::Dot(p2, p2) * -1;
-        Matrix min_point = p1 + p2 * lambda;
-
-        /*if(lambda > 0 && lambda < 1) {
-            cout << lambda << endl;
-        }*/
-
-        if (lambda < 0 || lambda > 1 || std::abs(min_point(0, 0)) > a->cube_length / 2 ||
-            std::abs(min_point(1, 0)) > a->cube_length / 2 ||
-            std::abs(min_point(2, 0)) > a->cube_length / 2)
-        {
-            // no collision has taken place
-            return;
-        }
-
+        real lambda =  edge_p1_dot_edge_p2 / edge_p2_dot_edge_p2 * -1;
+        Matrix min_point = edge_p1 + edge_p2 * lambda;
 
         //make resolve collision more faster, since the world coordinate is not always required
         //return ResolveCollision(a, min_point, Matrix::MatMul(a->GetTransformationMatrix(), min_point), b);
-        //cout << "edge coll take place" << endl;
         contact_list.push_back(ResolveCollision(a, min_point, Matrix::MatMul(Quaternion::GetInverseOrentationMatrix3(a->orientation), min_point) + a->position, b));
+    }
+
+    bool static IsEdgeEdgeCollision(Cube *a, Matrix const &edge_p1, Matrix const &edge_p2, Cube *b, real edge_size, real edge_p1_dot_edge_p2, real edge_p2_dot_edge_p2) {
+        // equation of line = p1 + lambda * p2
+
+        real lambda =  edge_p1_dot_edge_p2 / edge_p2_dot_edge_p2 * -1;
+        Matrix min_point = edge_p1 + edge_p2 * lambda;
+
+        if (lambda < 0 || lambda > 1 || std::abs(min_point(0, 0)) > edge_size/ 2 ||
+            std::abs(min_point(1, 0)) > edge_size / 2 ||
+            std::abs(min_point(2, 0)) > edge_size / 2)
+        {
+            return false;
+        }
+        return true;
     }
 
 
@@ -355,10 +337,10 @@ public:
      * @param cube_point coordinate of point in cube coordinate. Is a 3x1 vector
      * @return bool
      */
-    static bool IsCollision(Cube &a, Matrix &cube_point)
+    static bool IsCollision(Cube &a, Matrix &cube_point, real edge_size)
     {
-        if (std::abs(cube_point(0, 0)) > a.cube_length/2 || std::abs(cube_point(1, 0)) > a.cube_length/2 ||
-            std::abs(cube_point(2, 0)) > a.cube_length/2)
+        if (std::abs(cube_point(0, 0)) > edge_size/2 || std::abs(cube_point(1, 0)) > edge_size/2 ||
+            std::abs(cube_point(2, 0)) > edge_size/2)
         {
             return false;
         };
@@ -396,12 +378,6 @@ public:
             min_depth = depth;
             normal = cube_point(2, 0) < 0 ? 4 : 5;
         }
-
-        /*numerics::Matrix point;  //collision point
-        real penetration;        //The amount of penetration
-        int contact_normal = -1; // The contact normal
-        Cube *body1 = nullptr;   //The body pointer of the first cube
-        Cube *body2 = nullptr;   //The body pointer of the second cube*/
 
         Contact contact_info = {world_point, min_depth, normal, a, b};
         return contact_info;
@@ -466,7 +442,6 @@ public:
 
         Matrix normal = body2->GetNormal(contact.contact_normal); //not too sure weather its body1, or body2
 
-        //normal.print();
         Matrix r_ap__n = Matrix::VectorProduct(r_ap, normal);
         Matrix r_bp__n = Matrix::VectorProduct(r_bp, normal);
 

@@ -13,9 +13,8 @@ using namespace settings;
 using namespace std;
 
 // TODO
-// 1) Add Edge to Edge collision pg319 in pdf and pg296 in book
-// 3) Make position, velocity, momentum etc as 4x1 instead of 3x1
-// 4) Make both FaceToPoint and DetectCubeEdgeEdge collision functions return the min distance between cubes,
+// 1) Make position, velocity, momentum etc as 4x1 instead of 3x1
+// 2) Make both FaceToPoint and DetectCubeEdgeEdge collision functions return the min distance between cubes,
 //      this way we do not need to use the GJK algorithm to compute min distance
 
 class Cube;
@@ -107,9 +106,7 @@ public:
 
             dx/dt = v
             dθ/dt = w
-        */
 
-        /*
         Updating orientation quaternion involves the steps:
             1)  Convert Scaled axes representation of angular velocity to a quaternion 
                 scaled axes quaternion = (angular_velocity[0], angular_velocity[1], angular_velocity[2])

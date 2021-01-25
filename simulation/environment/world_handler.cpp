@@ -177,7 +177,6 @@ public:
             }
         }
         if(contact_list.size() != 0) {
-            //cout << "entered" << endl;
             Cube::CollisionResolution(contact_list.at(min_contact_index));
         }
     }
@@ -199,6 +198,10 @@ public:
         }
 
     }*/
+
+    void GetTouching() {
+
+    }
 
     //when it comes to flare moving from cube to another, we will have a bigger cube that wraps the actual cube.
     // if the bigger cubes are touching, then flare is passed, but (no collision stuff takes place)
