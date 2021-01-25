@@ -3,6 +3,16 @@
 
 #include <cube.cpp>
 
+/*#include <i_block.cpp>
+#include <e_block.cpp>
+#include <m_block.cpp>
+#include <z_block.cpp>*/
+
+class IBlock;
+class EBlock;
+class MBlock;
+class ZBlock;
+
 class Block : public Cube {
 
 public:
@@ -22,15 +32,19 @@ public:
     void SetAngularMomentum(Matrix &angular_momentum);
 
     //when another block is closest to you
-    //void virtual React(Block block) = 0;
 
-    /*void virtual React(IBlock block) = 0;
-    void virtual React(MBlock block) = 0;
-    void virtual React(ZBlock block) = 0;
-    void virtual React(EBlock block) = 0;*/
+    virtual void React(IBlock *block) = 0;
+    virtual void React(MBlock *block) = 0;
+
+    virtual void React(ZBlock *block) = 0;
+
+    virtual void React(EBlock *block) = 0;
 
     //when another block is touching you
-    //void virtual Interact(Block block) = 0;
+    virtual void Interact(IBlock *block) = 0;
+    virtual void Interact(MBlock *block) = 0;
+    virtual void Interact(ZBlock *block) = 0;
+    virtual void Interact(EBlock *block) = 0;
 
 };
 
