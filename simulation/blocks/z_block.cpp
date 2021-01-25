@@ -29,6 +29,18 @@ public:
 
     };
 
+    void Interact(IBlock *block) override {
+
+    };
+    void Interact(MBlock *block) override {
+
+    };
+    void Interact(ZBlock *block) override {
+
+    };
+    void Interact(EBlock *block) override {
+
+    };
 };
 
 #endif
