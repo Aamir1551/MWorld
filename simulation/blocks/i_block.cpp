@@ -19,4 +19,6 @@ namespace blocks {
 
 
     };
+
+    real IBlock::threshold = 2.0f;
 };

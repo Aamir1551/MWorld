@@ -1,12 +1,13 @@
 #include <block.hpp>
 #include <e_block.hpp>
+#include <i_block.hpp>
 
 namespace blocks {
 
     void EBlock::React(IBlock *block) {
-        /*if(block->state = true) {
+        if(block->state == true) {
 
-        };*/
+        };
     };
 
     void EBlock::React(MBlock *block) {

@@ -12,11 +12,11 @@
 
 #include <vector>
 
-#include <block.cpp>
-#include <i_block.cpp>
-#include <m_block.cpp>
-#include <e_block.cpp>
-#include <z_block.cpp>
+#include <block.hpp>
+#include <i_block.hpp>
+#include <m_block.hpp>
+#include <e_block.hpp>
+#include <z_block.hpp>
 
 #include <matrix.hpp>
 
@@ -25,13 +25,15 @@ std::vector<Quaternion> *GenerateOrientations(int num_cubes);
 std::vector<Matrix> *GenerateAngularMomentums(int num_cubes);
 std::vector<Matrix> *GenerateLinearMomentums(int num_cubes);*/
 
+using namespace blocks;
+
 std::vector<Matrix> *GeneratePositions(int num_cubes)
 {
     srand((unsigned)time(NULL)); //NULL???
-    std::vector<Matrix> *positions = new std::vector<Matrix>;
-    float world_size = 500;
-    float const scale = world_size / ((float)RAND_MAX / 2.0);
-    auto get_coord = [scale, world_size]() -> float { return scale * (rand() - RAND_MAX / 2); };
+    auto *positions = new std::vector<Matrix>;
+    real world_size = 500.0;
+    real const scale = world_size / ((real)RAND_MAX / 2.0);
+    auto get_coord = [scale, world_size]() -> real { return scale * (rand() - RAND_MAX / 2); };
     for (int i = 0; i < num_cubes; i++)
     {
         real values[] = {get_coord(), get_coord(), get_coord()};
@@ -43,7 +45,7 @@ std::vector<Matrix> *GeneratePositions(int num_cubes)
 std::vector<Matrix> *GenerateAngularMomentums(int num_cubes)
 {
     srand((unsigned)time(NULL)); //NULL???
-    std::vector<Matrix> *angular_momentums = new std::vector<Matrix>;
+    auto *angular_momentums = new std::vector<Matrix>;
     for (int i = 0; i < num_cubes; i++)
     {
         real values[] = {rand() % 5 - 2.0f, rand() % 5 - 2.0f, rand() % 5 - 2.0f};
@@ -55,7 +57,7 @@ std::vector<Matrix> *GenerateAngularMomentums(int num_cubes)
 std::vector<Matrix> *GenerateLinearMomentums(int num_cubes)
 {
     srand((unsigned)time(NULL)); //NULL???
-    std::vector<Matrix> *linear_momentums = new std::vector<Matrix>;
+    auto *linear_momentums = new std::vector<Matrix>;
     for (int i = 0; i < num_cubes; i++)
     {
         real values[] = {rand() % 5 - 2.0f, rand() % 5 - 2.0f, rand() % 5 - 2.0f};
@@ -67,7 +69,7 @@ std::vector<Matrix> *GenerateLinearMomentums(int num_cubes)
 std::vector<Quaternion> *GenerateOrientations(int num_cubes)
 {
     srand((unsigned)time(NULL)); //NULL???
-    std::vector<Quaternion> *orientations = new std::vector<Quaternion>;
+    auto *orientations = new std::vector<Quaternion>;
     for (int i = 0; i < num_cubes; i++)
     {
         orientations->push_back(Quaternion(1.0f,  rand() % 5 - 2.0f, rand() % 5 - 2.0f, rand() % 5 - 2.0f ));
@@ -98,7 +100,7 @@ public:
         AddEBlocks(num_e_blocks_1_2, 0.5f);
     }
 
-    void GetProperties(int num_blocks, std::vector<Matrix> *&positions, std::vector<Quaternion> *&orientations, std::vector<Matrix> *&angular_momentums, std::vector<Matrix> * &linear_momentums) {
+    void static GetProperties(int num_blocks, std::vector<Matrix> *&positions, std::vector<Quaternion> *&orientations, std::vector<Matrix> *&angular_momentums, std::vector<Matrix> * &linear_momentums) {
         positions = GeneratePositions(num_blocks);
         orientations = GenerateOrientations(num_blocks);
         angular_momentums = GenerateAngularMomentums(num_blocks);
