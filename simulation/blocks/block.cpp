@@ -12,5 +12,7 @@ namespace blocks {
     void Block::SetAngularMomentum(Matrix &angular_momentum) {
         this->angular_momentum = angular_momentum;
     }
+
+    real Block::force_dt = 0.01;
 }
 

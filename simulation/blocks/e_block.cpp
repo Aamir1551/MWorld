@@ -1,27 +1,32 @@
 #include <block.hpp>
 #include <e_block.hpp>
 #include <i_block.hpp>
+#include <math.h>
 
 namespace blocks {
 
-    void EBlock::React(IBlock *block) {
+    void EBlock::React(IBlock * block, real dist, const Matrix& to_cube) {
         if(block->state == true) {
-            auto force =  (block->position - this->position);
-            force /= Matrix::Norm(force);
-            AddTorque(block->position - this->position, );
-        };
+            // E block and i+ block repel
+            auto &force = to_cube;
+            AddTorque(force, this->position, Block::force_dt / dist / dist * -1); // as distance increases, force also decreases
+        }
     };
 
-    void EBlock::React(MBlock *block) {
-
+    //virtual void React(IBlock * const block, real dist, const Matrix& to_cube) = 0;
+    void EBlock::React(MBlock * block, real dist, const Matrix& to_cube) {
+        // neautral
     };
 
-    void EBlock::React(ZBlock *block) {
-
+    void EBlock::React(ZBlock * block, real dist, const Matrix& to_cube) {
+        // neautral
     };
 
-    void EBlock::React(EBlock *block) {
-
+    void EBlock::React(EBlock * block, real dist, const Matrix& to_cube) {
+        // E block and E block repel as k increases
+        float factor = std::log(block->k * this->k);
+        auto &force = to_cube;
+        AddTorque(force, this->position, force_dt * factor / dist * -1);
     };
 
 

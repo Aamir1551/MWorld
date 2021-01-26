@@ -17,13 +17,11 @@ namespace blocks {
         }
 
 
-        void React(IBlock *block) override;
+        void React(IBlock *block, real dist, const Matrix& to_cube) override;
+        void React(MBlock *block, real dist, const Matrix& to_cube) override;
+        void React(EBlock *block, real dist, const Matrix& to_cube) override;
+        void React(ZBlock *block, real dist, const Matrix& to_cube) override;
 
-        void React(MBlock *block) override;
-
-        void React(ZBlock *block) override;
-
-        void React(EBlock *block) override;
 
         real ExtractFlareFromBlock() override {
             real temp = (real) (this->flare_value > MBlock::threshold) * this->flare_value * 0.1;

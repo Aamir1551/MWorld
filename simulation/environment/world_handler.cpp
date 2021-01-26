@@ -207,24 +207,94 @@ public:
     }
 
     void AddForces() {
-        /*for(int i=0; i<this->blocks.size()-1; i++) {
-            int closest_cube;
-            for(int j=i+1; j<this->blocks.size(); j++) {
-                real closest_distance = std::numeric_limits<real>::max();
-                auto diff =  this->blocks.at(i).position - this->blocks.at(j).position;
-                auto dist = Matrix::Dot(diff, diff);
-                if( dist < closest_distance) {
-                    closest_distance =  dist;
-                    closest_cube = j;
-                }
+
+        for(int i=0; i<this->eblocks.size(); i++) {
+            Matrix to_cube_min;
+            IBlock **closest_cube;
+            real min_dist = FindClosestBlockToBlock(this->eblocks.at(i), to_cube_min, closest_cube);
+            this->eblocks.at(i).React(*closest_cube, min_dist,to_cube_min);
+        }
+
+        for(int i=0; i<this->mblocks.size(); i++) {
+            Matrix to_cube_min;
+            IBlock **closest_cube;
+            real min_dist = FindClosestBlockToBlock(this->mblocks.at(i), to_cube_min, closest_cube);
+            this->mblocks.at(i).React(*closest_cube, min_dist,to_cube_min);
+        }
+
+
+
+    }
+
+    real FindClosestBlockToBlock(Block &block, Matrix &to_cube_min, Block **ptr_ptr_block) {
+
+        real min_dist = 10000000000;
+
+        int i=0;
+        int cube_loc = 0;
+        int cube_type = 0;
+        for(auto &eblock : this->eblocks) {
+            Matrix to_cube = eblock.position - block.position;
+            real dist = Matrix::Norm(to_cube);
+            if(dist < min_dist) {
+                min_dist = dist;
+                cube_loc = i;
+                cube_type = 0;
             }
-            this->blocks.at(i).React(this->blocks.at(closest_cube));
+            i++;
+        }
 
-        }*/
+        i=0;
+        for(auto &iblock : this->iblocks) {
+            Matrix to_cube = iblock.position - block.position;
+            real dist = Matrix::Norm(to_cube);
+            if(dist < min_dist) {
+                min_dist = dist;
+                cube_loc = i;
+                cube_type = 1;
+            }
+            i++;
+        }
 
-        //loop over every block to find who is the closest to it
-        // then use block.react at that block to calculate how both the blocks are going to react to each other
+        i=0;
+        for(auto &mblock : this->mblocks) {
+            Matrix to_cube = mblock.position - block.position;
+            real dist = Matrix::Norm(to_cube);
+            if(dist < min_dist) {
+                min_dist = dist;
+                cube_loc = i;
+                cube_type = 2;
+            }
+            i++;
+        }
 
+        i=0;
+        for(auto &zblock : this->zblocks) {
+            Matrix to_cube =  zblock.position - block.position;
+            real dist = Matrix::Norm(to_cube);
+            if(dist < min_dist) {
+                min_dist = dist;
+                cube_loc = i;
+                cube_type = 3;
+            }
+            i++;
+        }
+
+        if(cube_type == 0) {
+            to_cube_min = this->eblocks.at(cube_loc).position - block.position;
+            *ptr_ptr_block = &this->eblocks.at(cube_loc);
+        } else if(cube_type == 1) {
+            to_cube_min = this->iblocks.at(cube_loc).position - block.position;
+            *ptr_ptr_block = &this->iblocks.at(cube_loc);
+        } else if(cube_type == 2) {
+            to_cube_min = this->mblocks.at(cube_loc).position - block.position;
+            *ptr_ptr_block = &this->mblocks.at(cube_loc);
+        } else if(cube_type == 3) {
+            to_cube_min = this->zblocks.at(cube_loc).position - block.position;
+            *ptr_ptr_block = &this->zblocks.at(cube_loc);
+        }
+
+        return min_dist;
     }
 
     void static PassFlare(Block *a, Block *b) {

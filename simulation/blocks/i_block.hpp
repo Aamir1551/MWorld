@@ -20,10 +20,10 @@ namespace blocks {
             this->b = (real) (1 - this->state);
         }
 
-        void React(IBlock *block) override;
-        void React(MBlock *block) override;
-        void React(ZBlock *block) override;
-        void React(EBlock *block) override;
+        void React(IBlock * block, real dist, const Matrix& to_cube) override;
+        void React(MBlock * block, real dist, const Matrix& to_cube) override;
+        void React(ZBlock * block, real dist, const Matrix& to_cube) override;
+        void React(EBlock * block, real dist, const Matrix& to_cube) override;
 
         real ExtractFlareFromBlock() override {
             return this->a + this->b * (real) (this->flare_value < IBlock::threshold);

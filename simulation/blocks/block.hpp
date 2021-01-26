@@ -15,6 +15,7 @@ namespace blocks {
 
         real flare_value = 0.0f;
         real flare_inc = 0.0f;
+        real static force_dt;
 
         Block(Matrix position, Quaternion initial_orientation, real initial_flare_amount) : Cube(4.0f, position,
                                                                                                  initial_orientation,
@@ -30,13 +31,13 @@ namespace blocks {
 
         //when another block is closest to you
 
-        virtual void React(IBlock *block) = 0;
+        virtual void React(IBlock * block, real dist, const Matrix& to_cube) = 0;
 
-        virtual void React(MBlock *block) = 0;
+        virtual void React(MBlock * block, real dist, const Matrix& to_cube) = 0;
 
-        virtual void React(ZBlock *block) = 0;
+        virtual void React(ZBlock * block, real dist, const Matrix& to_cube) = 0;
 
-        virtual void React(EBlock *block) = 0;
+        virtual void React(EBlock * block, real dist ,const Matrix& to_cube) = 0;
 
         virtual real ExtractFlareFromBlock() = 0;
 

@@ -15,13 +15,13 @@ namespace blocks
             this->k = k;
         };
 
-        void React(IBlock *block) override;
+        void React(IBlock * block, real dist, const Matrix &to_cube) override;
 
-        void React(MBlock *block) override;
+        void React(MBlock * block, real dist, const Matrix &to_cube) override;
 
-        void React(ZBlock *block) override;
+        void React(ZBlock * block, real dist, const Matrix &to_cube) override;
 
-        void React(EBlock *block) override;
+        void React(EBlock * block, real dist, const Matrix &to_cube) override;
 
         real ExtractFlareFromBlock() override;
 
