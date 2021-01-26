@@ -81,7 +81,7 @@ public:
          real inverse_mass = 1.0f, real inverse_inertia = 1.0f) : cube_length(cube_length),
                                                                   inverse_mass(inverse_mass),
                                                                   inverse_inertia(inverse_inertia),
-                                                                  cube_wrapper_length(cube_length + 0.01)
+                                                                  cube_wrapper_length(cube_length + 2.0f)
     {
         this->position = position;
         this->orientation = initial_orientation;

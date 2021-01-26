@@ -77,10 +77,10 @@ int main()
     real initial_momentum2[] = {-0.002, 0.0, 0};
     c2.momentum = Matrix(3, 1, initial_momentum2);
 
-    /*Quaternion q = Quaternion(0.0f, 0.0f, 1.7f, -1.7f);
+    Quaternion q = Quaternion(0.0f, 0.0f, 1.7f, -1.7f);
     Quaternion spin = q * c1.orientation;
     c1.orientation += spin;
-    c1.orientation.Normalise();*/
+    c1.orientation.Normalise();
 
     //real angular_momentum[] = {0.0000002, 0.0002, 0.0000002};
     //c1.angular_momentum = Matrix(3, 1, angular_momentum);
@@ -138,7 +138,6 @@ int main()
         if(!contact_list.empty()) {
             //cout << "entered" << endl;
             Cube::CollisionResolution(contact_list.at(min_contact_index));
-            cout << "solved" << endl;
         }
 
 

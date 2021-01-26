@@ -421,7 +421,6 @@ public:
 
         Matrix normal = body2->GetNormal(contact.contact_normal); //not too sure weather its body1, or body2
 
-        normal.print();
         Matrix r_ap_cross_normal = Matrix::VectorProduct(r_ap, normal);
         Matrix r_bp_cross_normal = Matrix::VectorProduct(r_bp, normal);
 

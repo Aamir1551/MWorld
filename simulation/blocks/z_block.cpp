@@ -1,46 +1,24 @@
-#ifndef MWORLD_SIMULATION_BLOCKS_Z_BLOCKS_H
-#define MWORLD_SIMULATION_BLOCKS_Z_BLOCKS_H
+#include <block.hpp>
+#include <z_block.hpp>
 
-#include <block.cpp>
+namespace blocks {
 
 
-class Block;
+    void ZBlock::React(IBlock *block) {
 
-class IBlock;
-class MBlock;
-class ZBlock;
-class EBlock;
+    }
 
-class ZBlock : public Block {
-
-public:
-    ZBlock(Matrix position, Quaternion initial_orientation) : Block(position, initial_orientation, 10.0f) {}
-
-    void React(IBlock *block) override{
-
-    };
-    void React(MBlock *block) override {
-
-    };
-    void React(ZBlock *block) override {
-
-    };
-    void React(EBlock *block) override {
+    void ZBlock::React(MBlock *block) {
 
     };
 
-    void Interact(IBlock *block) override {
+    void ZBlock::React(ZBlock *block) {
 
     };
-    void Interact(MBlock *block) override {
+
+    void ZBlock::React(EBlock *block) {
 
     };
-    void Interact(ZBlock *block) override {
 
-    };
-    void Interact(EBlock *block) override {
 
-    };
-};
-
-#endif
+}

@@ -204,8 +204,8 @@ public:
         }
     }
 
-    /*void AddForces() {
-        for(int i=0; i<this->blocks.size()-1; i++) {
+    void AddForces() {
+        /*for(int i=0; i<this->blocks.size()-1; i++) {
             int closest_cube;
             for(int j=i+1; j<this->blocks.size(); j++) {
                 real closest_distance = std::numeric_limits<real>::max();
@@ -218,15 +218,19 @@ public:
             }
             this->blocks.at(i).React(this->blocks.at(closest_cube));
 
-        }
+        }*/
 
-    }*/
+        //loop over every block to find who is the closest to it
+        // then use block.react at that block to calculate how both the blocks are going to react to each other
+
+    }
 
     void static PassFlare(Block *a, Block *b) {
-       b->flare_inc += a->flare_value  * 0.1;
-       a->flare_inc += b->flare_value  * 0.1;
-       a->flare_value *= 0.9;
-       b->flare_value *= 0.9;
+        real flare_from_a = a->ExtractFlareFromBlock();
+        real flare_from_b = b->ExtractFlareFromBlock();
+
+        a->AddFlareToBlock(flare_from_b);
+        b->AddFlareToBlock(flare_from_a);
     }
 
 };

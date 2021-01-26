@@ -1,48 +1,33 @@
-#ifndef MWORLD_SIMULATION_BLOCKS_E_BLOCKS_H
-#define MWORLD_SIMULATION_BLOCKS_E_BLOCKS_H
+#include <block.hpp>
+#include <e_block.hpp>
 
-#include <block.cpp>
+namespace blocks {
 
-class Block;
-class IBlock;
-class EBlock;
-class ZBlock;
-class MBlock;
+    void EBlock::React(IBlock *block) {
+        /*if(block->state = true) {
 
-class EBlock : public Block {
-
-public:
-    real k;
-    EBlock(Matrix position, Quaternion initial_orientation, real k) : Block(position, initial_orientation, 10.0f) {
-        this->k = k;
-    }
-
-    void React(IBlock *block) override {
-
+        };*/
     };
-    void React(MBlock *block) override {
 
-    };
-    void React(ZBlock *block) override {
-
-    };
-    void React(EBlock *block) override {
+    void EBlock::React(MBlock *block) {
 
     };
 
-    void Interact(IBlock *block) override {
-
-    };
-    void Interact(MBlock *block) override {
-
-    };
-    void Interact(ZBlock *block) override {
-
-    };
-    void Interact(EBlock *block) override {
+    void EBlock::React(ZBlock *block) {
 
     };
 
+    void EBlock::React(EBlock *block) {
+
+    };
+
+
+    real EBlock::ExtractFlareFromBlock() {
+        this->flare_inc -= this->flare_value * 0.1;
+        return this->flare_value * 0.1;
+    };
+
+    void EBlock::AddFlareToBlock(real flare_amount) {
+        this->flare_inc += (flare_amount * 0.1) * k;
+    };
 };
-
-#endif
