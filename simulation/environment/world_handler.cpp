@@ -208,27 +208,28 @@ public:
 
     void AddForces() {
 
-        for(int i=0; i<this->eblocks.size(); i++) {
-            Matrix to_cube_min;
-            IBlock **closest_cube;
-            real min_dist = FindClosestBlockToBlock(this->eblocks.at(i), to_cube_min, closest_cube);
-            this->eblocks.at(i).React(*closest_cube, min_dist,to_cube_min);
+        for(auto & eblock : this->eblocks) {
+            ReactClosestBlockToBlock(eblock);
         }
 
-        for(int i=0; i<this->mblocks.size(); i++) {
-            Matrix to_cube_min;
-            IBlock **closest_cube;
-            real min_dist = FindClosestBlockToBlock(this->mblocks.at(i), to_cube_min, closest_cube);
-            this->mblocks.at(i).React(*closest_cube, min_dist,to_cube_min);
+        for(auto & mblock : this->mblocks) {
+            ReactClosestBlockToBlock(mblock);
         }
 
+        for(auto & iblock : this->iblocks) {
+            ReactClosestBlockToBlock(iblock);
+        }
 
+        for(auto & zblock : this->zblocks) {
+            ReactClosestBlockToBlock(zblock);
+        }
 
     }
 
-    real FindClosestBlockToBlock(Block &block, Matrix &to_cube_min, Block **ptr_ptr_block) {
+    real ReactClosestBlockToBlock(Block &block) {
 
         real min_dist = 10000000000;
+        Matrix to_cube_min;
 
         int i=0;
         int cube_loc = 0;
@@ -282,16 +283,16 @@ public:
 
         if(cube_type == 0) {
             to_cube_min = this->eblocks.at(cube_loc).position - block.position;
-            *ptr_ptr_block = &this->eblocks.at(cube_loc);
+            block.React(&this->eblocks.at(cube_loc), min_dist, to_cube_min);
         } else if(cube_type == 1) {
             to_cube_min = this->iblocks.at(cube_loc).position - block.position;
-            *ptr_ptr_block = &this->iblocks.at(cube_loc);
+            block.React(&this->iblocks.at(cube_loc), min_dist, to_cube_min);
         } else if(cube_type == 2) {
             to_cube_min = this->mblocks.at(cube_loc).position - block.position;
-            *ptr_ptr_block = &this->mblocks.at(cube_loc);
+            block.React(&this->mblocks.at(cube_loc), min_dist, to_cube_min);
         } else if(cube_type == 3) {
             to_cube_min = this->zblocks.at(cube_loc).position - block.position;
-            *ptr_ptr_block = &this->zblocks.at(cube_loc);
+            block.React(&this->zblocks.at(cube_loc), min_dist, to_cube_min);
         }
 
         return min_dist;
