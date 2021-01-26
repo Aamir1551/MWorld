@@ -29,7 +29,7 @@ namespace numerics
 
         this->rows = a.rows;
         this->cols = a.cols;
-        delete (this->values);
+        delete[] (this->values);
         this->values = new settings::real[rows * cols];
 
         for (int i = 0; i < a.rows * a.cols; i++)
@@ -98,7 +98,7 @@ namespace numerics
         {
             throw std::invalid_argument("Matrix Shape does not conform for Reshape");
         }
-        Matrix *b = new Matrix(new_row, new_cols);
+        auto *b = new Matrix(new_row, new_cols);
         for (int i = 0; i < a.rows * a.cols; i++)
         {
             b->values[i] = a.values[i];
@@ -116,7 +116,7 @@ namespace numerics
         return (sum);
     };
 
-    settings::real Matrix::Norm(Matrix const &a) const
+    settings::real Matrix::Norm(Matrix const &a)
     {
         settings::real sum = 0;
         for (int i = 0; i < a.rows * a.cols; i++)
@@ -158,7 +158,7 @@ namespace numerics
                 GenerateError("Matrix Multiplication", *this, a));
         }
 
-        settings::real *new_values = new settings::real[this->rows * a.cols];
+        auto *new_values = new settings::real[this->rows * a.cols];
         for (int i = 0; i < this->rows * a.cols; i++)
         {
             new_values[i] = 0;
@@ -195,7 +195,7 @@ namespace numerics
 
     Matrix *Matrix::CreateMatrixArange(int n, int m)
     {
-        Matrix *a = new Matrix(n, m);
+        auto *a = new Matrix(n, m);
         for (int i = 0; i < m * n; i++)
         {
             a->values[i] = i;
@@ -217,7 +217,7 @@ namespace numerics
 
     void Matrix::Transpose()
     {
-        settings::real *new_values = new settings::real[this->cols * this->rows];
+        auto *new_values = new settings::real[this->cols * this->rows];
         for (int i = 0; i < this->rows; i++)
         {
             for (int j = 0; j < this->cols; j++)
@@ -234,7 +234,7 @@ namespace numerics
 
     Matrix &Matrix::Transpose(Matrix const &a)
     {
-        settings::real *new_values = new settings::real[a.cols * a.rows];
+        auto *new_values = new settings::real[a.cols * a.rows];
         for (int i = 0; i < a.rows; i++)
         {
             for (int j = 0; j < a.cols; j++)
@@ -242,7 +242,7 @@ namespace numerics
                 new_values[j * a.rows + i] = a.values[i * a.cols + j];
             }
         }
-        Matrix *res = new Matrix(a.cols, a.rows, new_values);
+        auto *res = new Matrix(a.cols, a.rows, new_values);
         return *res;
     }
 
@@ -253,7 +253,7 @@ namespace numerics
             throw std::invalid_argument(GenerateError("Multiplication", a, b));
         }
 
-        settings::real *new_values = new settings::real[a.rows * b.cols];
+        auto *new_values = new settings::real[a.rows * b.cols];
         for (int i = 0; i < a.rows * b.cols; i++)
         {
             new_values[i] = 0;
@@ -271,7 +271,7 @@ namespace numerics
             }
         };
 
-        Matrix *res = new Matrix(a.rows, b.cols, new_values);
+        auto *res = new Matrix(a.rows, b.cols, new_values);
         return *res;
     }
 
@@ -282,13 +282,13 @@ namespace numerics
             throw std::invalid_argument(GenerateError("Addition", *this, a));
         }
 
-        settings::real *new_values = new settings::real[a.cols * a.rows];
+        auto *new_values = new settings::real[a.cols * a.rows];
         for (int i = 0; i < a.cols * a.rows; i++)
         {
             new_values[i] = this->values[i] + a.values[i];
         }
 
-        Matrix *res = new Matrix(this->rows, this->cols, new_values);
+        auto *res = new Matrix(this->rows, this->cols, new_values);
         return *res;
     };
 
@@ -297,17 +297,16 @@ namespace numerics
 
         if (!Matrix::IsSameShape(*this, a))
         {
-            //pls add this to all generateError
             throw std::invalid_argument(GenerateError("Subtraction", *this, a));
         }
 
-        settings::real *new_values = new settings::real[a.cols * a.rows];
+        auto *new_values = new settings::real[a.cols * a.rows];
         for (int i = 0; i < a.cols * a.rows; i++)
         {
             new_values[i] = this->values[i] - a.values[i];
         }
 
-        Matrix *res = new Matrix(this->rows, this->cols, new_values);
+        auto *res = new Matrix(this->rows, this->cols, new_values);
         return *res;
     }
 
@@ -319,12 +318,12 @@ namespace numerics
                 GenerateError("Elementwise Multiplication", *this, a));
         }
 
-        settings::real *new_values = new settings::real[a.cols * a.rows];
+        auto *new_values = new settings::real[a.cols * a.rows];
         for (int i = 0; i < a.cols * a.rows; i++)
         {
             new_values[i] = this->values[i] * a.values[i];
         }
-        Matrix *res = new Matrix(this->rows, this->cols, new_values);
+        auto *res = new Matrix(this->rows, this->cols, new_values);
         return *res;
     }
 
@@ -332,15 +331,15 @@ namespace numerics
     {
         if (!Matrix::IsSameShape(*this, a))
         {
-            std::invalid_argument(GenerateError("Division", *this, a));
+           throw std::invalid_argument(GenerateError("Division", *this, a));
         }
 
-        settings::real *new_values = new settings::real[a.cols * a.rows];
+        auto *new_values = new settings::real[a.cols * a.rows];
         for (int i = 0; i < a.cols * a.rows; i++)
         {
             new_values[i] = this->values[i] / a.values[i];
         }
-        Matrix *res = new Matrix(this->rows, this->cols, new_values);
+        auto *res = new Matrix(this->rows, this->cols, new_values);
         return *res;
     };
 
@@ -348,7 +347,7 @@ namespace numerics
     {
         if (!Matrix::IsSameShape(*this, a))
         {
-            std::invalid_argument(GenerateError("Addition", *this, a));
+            throw std::invalid_argument(GenerateError("Addition", *this, a));
         }
 
         for (int i = 0; i < a.cols * a.rows; i++)
@@ -362,7 +361,7 @@ namespace numerics
     {
         if (!Matrix::IsSameShape(*this, a))
         {
-            std::invalid_argument(GenerateError("Subtraction", *this, a));
+            throw std::invalid_argument(GenerateError("Subtraction", *this, a));
         }
 
         for (int i = 0; i < a.cols * a.rows; i++)
@@ -376,7 +375,7 @@ namespace numerics
     {
         if (!Matrix::IsSameShape(*this, a))
         {
-            std::invalid_argument(GenerateError("Division", *this, a));
+            throw std::invalid_argument(GenerateError("Division", *this, a));
         }
 
         for (int i = 0; i < a.cols * a.rows; i++)
@@ -430,7 +429,7 @@ namespace numerics
             throw std::invalid_argument(GenerateError("vector product", b));
         }
 
-        Matrix *c = new Matrix(3, 1);
+        auto *c = new Matrix(3, 1);
         c->values[0] = a.values[1] * b.values[2] - a.values[2] * b.values[1];
         c->values[1] = a.values[2] * b.values[0] - a.values[0] * b.values[2];
         c->values[2] = a.values[0] * b.values[1] - a.values[1] * b.values[0];
@@ -489,7 +488,7 @@ namespace numerics
 
     Matrix &Matrix::operator+(settings::real a) const
     {
-        Matrix *c = new Matrix(this->rows, this->cols);
+        auto *c = new Matrix(this->rows, this->cols);
         for (int i = 0; i < this->cols * this->rows; i++)
         {
             c->values[i] = values[i] + a;
@@ -499,7 +498,7 @@ namespace numerics
 
     Matrix &Matrix::operator-(settings::real a) const
     {
-        Matrix *c = new Matrix(this->rows, this->cols);
+        auto *c = new Matrix(this->rows, this->cols);
         for (int i = 0; i < this->cols * this->rows; i++)
         {
             c->values[i] = values[i] - a;
@@ -509,7 +508,7 @@ namespace numerics
 
     Matrix &Matrix::operator*(settings::real a) const
     {
-        Matrix *c = new Matrix(this->rows, this->cols);
+        auto *c = new Matrix(this->rows, this->cols);
         for (int i = 0; i < this->cols * this->rows; i++)
         {
             c->values[i] = values[i] * a;
@@ -519,7 +518,7 @@ namespace numerics
 
     Matrix &Matrix::operator/(settings::real a) const
     {
-        Matrix *c = new Matrix(this->rows, this->cols);
+        auto *c = new Matrix(this->rows, this->cols);
         for (int i = 0; i < this->cols * this->rows; i++)
         {
             c->values[i] = values[i] / a;
@@ -553,17 +552,17 @@ if an element is nan, it returns 1 */
 
     Matrix *Matrix::GetRows() const
     {
-        Matrix *rows = (Matrix *)malloc(sizeof(Matrix) * this->rows);
+        auto *rows_list = (Matrix *)malloc(sizeof(Matrix) * this->rows);
         for (int i = 0; i < this->rows; i++)
         {
-            settings::real *values;
+            auto *new_values = new settings::real(this->cols);
             for (int j = 0; j < this->cols; j++)
             {
-                values[j] = (*this)(i, j);
+                new_values[j] = (*this)(i, j);
             }
-            rows[i] = Matrix(1, this->cols, values);
+            rows_list[i] = Matrix(1, this->cols, new_values);
         }
-        return rows;
+        return rows_list;
     }
 
     void Matrix::AddColumn(Matrix const &vec)
@@ -572,7 +571,7 @@ if an element is nan, it returns 1 */
         if (vec.cols != 1 || this->rows != vec.rows)
             throw std::invalid_argument("Vector shape does not conform for AddColumn");
 
-        settings::real *new_vals = new settings::real[this->rows * (this->cols + 1)];
+        auto *new_vals = new settings::real[this->rows * (this->cols + 1)];
         for (int i = 0; i < this->rows * (this->cols + 1); i++)
         {
             if (i > 0 && i % (this->cols + 1) == 0)
@@ -585,19 +584,18 @@ if an element is nan, it returns 1 */
         {
             new_vals[i * (this->cols + 1)] = vec(i, 0);
         }
-        delete this->values;
+        delete[] this->values;
         this->values = new_vals;
         this->cols += 1;
     }
 
     void Matrix::AddRow(Matrix const &vec)
     {
-        // make sure shape is the same
 
         if (vec.rows != 1 || this->cols != vec.cols)
             throw std::invalid_argument("Vector shape does not conform for AddColumn");
 
-        settings::real *new_vals = new settings::real[(this->rows + 1) * this->rows];
+        auto *new_vals = new settings::real[(this->rows + 1) * this->rows];
         for (int i = 0; i < this->cols * this->rows; i++)
         {
             new_vals[i] = this->values[i];
@@ -606,7 +604,7 @@ if an element is nan, it returns 1 */
         {
             new_vals[this->rows * this->cols + i] = vec(0, i);
         }
-        delete this->values;
+        delete[] this->values;
         this->values = new_vals;
         this->rows += 1;
     }
@@ -614,30 +612,29 @@ if an element is nan, it returns 1 */
 
     Matrix *Matrix::GetColumns() const
     {
-        Matrix *cols_list = new Matrix[this->cols];
+        auto *cols_list = new Matrix[this->cols];
         for (int i = 0; i < this->cols; i++)
         {
-            settings::real *vals = new settings::real[this->rows];
+            auto *vals = new settings::real[this->rows];
             for (int j = 0; j < this->rows; j++)
             {
                 vals[j] = this->values[j * this->cols + i];
 
             }
             cols_list[i] = Matrix(this->rows, 1,vals);
-            delete vals;
+            delete[] vals;
         };
         return cols_list;
     }
 
     void Matrix::RemoveRow(int index)
     {
-
         int size = this->cols * this->rows;
         if (size == 0)
         {
-            std::invalid_argument("Matrix is of size zero. Must be more than zero for operation RemoveRow");
+            throw std::invalid_argument("Matrix is of size zero. Must be more than zero for operation RemoveRow");
         }
-        settings::real *new_values = new settings::real[(this->rows - 1) * this->cols];
+        auto *new_values = new settings::real[(this->rows - 1) * this->cols];
         for (int i = 0; i < index * this->cols; i++)
         {
             new_values[i] = this->values[i];
@@ -656,9 +653,9 @@ if an element is nan, it returns 1 */
         int size = this->cols * this->rows;
         if (size == 0)
         {
-            std::invalid_argument("Matrix is of size zero. Must be more than zero for operation RemoveColumn");
+            throw std::invalid_argument("Matrix is of size zero. Must be more than zero for operation RemoveColumn");
         }
-        settings::real *new_values = new settings::real[(this->cols - 1) * this->rows];
+        auto *new_values = new settings::real[(this->cols - 1) * this->rows];
         for (int i = 0; i < size; i++)
         {
             if (i % this->cols == index)
@@ -670,6 +667,17 @@ if an element is nan, it returns 1 */
         delete[] values;
         values = new_values;
         cols--;
+    }
+
+    void Matrix::Normalise() {
+        settings::real norm = 0;
+        for(int i=0; i<this->rows * this->cols; i++) {
+            norm += this->values[i] * this->values[i];
+        }
+        norm = sqrt(norm);
+        for(int i=0; i<this->rows * this->cols; i++) {
+            this->values[i] /= norm;
+        }
     };
 
 } // namespace numerics

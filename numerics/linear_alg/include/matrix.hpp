@@ -199,7 +199,13 @@ namespace numerics
          * @param a 
          * @return settings::real 
          */
-        virtual settings::real Norm(Matrix const &a) const;
+        static settings::real Norm(Matrix const &a);
+
+        /**
+         * @brief Normalises the matrix
+         *
+         */
+        void Normalise();
 
         /**
          * @brief Returns the squared euclidean norm of a matrix

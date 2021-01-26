@@ -6,7 +6,9 @@ namespace blocks {
 
     void EBlock::React(IBlock *block) {
         if(block->state == true) {
-
+            auto force =  (block->position - this->position);
+            force /= Matrix::Norm(force);
+            AddTorque(block->position - this->position, );
         };
     };
 
