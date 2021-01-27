@@ -678,6 +678,26 @@ if an element is nan, it returns 1 */
         for(int i=0; i<this->rows * this->cols; i++) {
             this->values[i] /= norm;
         }
+    }
+
+    void Matrix::AddColumnVectorToMatrix(const Matrix &a) {
+        if(this->rows != a.rows || a.cols != 1) {
+            throw std::invalid_argument("Column Matrix is of incorrect size. Must have same number of rows as Matrix, and only 1 column.");
+        }
+        for(int i=0; i<this->rows; i++) {
+            for(int j=0; j<this->cols; j++) {
+                this->values[i * this->cols + j] += a.values[i];
+            }
+        }
+    }
+
+    bool Matrix::IsZero() {
+        for(int i=0; i<this->rows * this->cols; i++) {
+            if(this->values[i] != 0) {
+                return false;
+            }
+        }
+        return true;
     };
 
 } // namespace numerics

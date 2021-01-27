@@ -334,7 +334,7 @@ namespace numerics
         settings::real qy = a.j;
         settings::real qz = a.k;
 
-        settings::real *values = new settings::real[9];
+        auto *values = new settings::real[9];
         values[0] = 1.0f - 2.0f * qy * qy - 2.0f * qz * qz;
         values[1] = 2.0f * qx * qy - 2.0f * qz * qw;
         values[2] = 2.0f * qx * qz + 2.0f * qy * qw;

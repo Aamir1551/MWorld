@@ -42,17 +42,17 @@ int main()
     glGenBuffers(1, &ebo);
 
     glm::mat4 id = glm::mat4(1.0f);
-    Camera camera(world_properties->window);
+    Camera camera(world_properties->window, glm::vec3(-30.0f, 0.0f, 5.0f));
     glm::mat4 view = camera.CalculateView();
 
-    glm::mat4 projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 400.0f);
+    glm::mat4 projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 4000.0f);
 
     real cube_length = 4.0f;
-    real position_coord1[] = {-20, -2.0f, -20}; //x, y, z. x is how much horizontal y is vertical. z is in/out
+    real position_coord1[] = {-50, -0.0f, -20}; //x, y, z. x is how much horizontal y is vertical. z is in/out
     Matrix position1(3, 1, position_coord1);
     Cube c1(cube_length, position1, Quaternion(1, 0, 0, 0), 1.0f, 1.0f);
 
-    real position_coord2[] = {10, 0, -20};
+    real position_coord2[] = {-10, 0, -20};
     Matrix position2(3, 1, position_coord2);
     Cube c2(cube_length, position2, Quaternion(1, 0, 0, 0), 1.0f, 1.0f);
 
@@ -77,7 +77,7 @@ int main()
     real initial_momentum2[] = {-0.002, 0.0, 0};
     c2.momentum = Matrix(3, 1, initial_momentum2);
 
-    Quaternion q = Quaternion(0.0f, 0.0f, 1.7f, -1.7f);
+    Quaternion q = Quaternion(0.0f, 2.0f, 0.0f, 0.0f);
     Quaternion spin = q * c1.orientation;
     c1.orientation += spin;
     c1.orientation.Normalise();
@@ -126,11 +126,11 @@ int main()
         vector<Contact> contact_list;
         Cube::CollisionDetect(&c1, &c2, contact_list);
 
-        real min_penetration_value = 10000000000;
+        real min_penetration_value = -10000000000;
         int min_contact_index = 0;
         for (int i = 0; i < contact_list.size(); i++)
         {
-            if (contact_list.at(i).penetration < min_penetration_value)
+            if (contact_list.at(i).penetration > min_penetration_value)
             {
                 min_contact_index = i;
             }
@@ -142,7 +142,7 @@ int main()
 
 
         glm::mat4 rotation_mat1;
-        memcpy(glm::value_ptr(rotation_mat1), c1.GetInverseOrientationMatrix().GetValues(), 16 * sizeof(real));
+        memcpy(glm::value_ptr(rotation_mat1), c1.GetOrientationMatrix().GetValues(), 16 * sizeof(real));
 
         glm::vec3 translation_mat1;
         memcpy(glm::value_ptr(translation_mat1), c1.position.GetValues(), 3 * sizeof(real));
@@ -155,7 +155,7 @@ int main()
         glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 
         glm::mat4 rotation_mat2;
-        memcpy(glm::value_ptr(rotation_mat2), c2.GetInverseOrientationMatrix().GetValues(), 16 * sizeof(real));
+        memcpy(glm::value_ptr(rotation_mat2), c2.GetOrientationMatrix().GetValues(), 16 * sizeof(real));
 
         glm::vec3 translation_mat2;
         memcpy(glm::value_ptr(translation_mat2), c2.position.GetValues(), 3 * sizeof(real));

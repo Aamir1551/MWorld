@@ -67,13 +67,13 @@ namespace render_utils
             if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
                 this->camera_pos -= dy;
             if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-                camera_pos += dx;
+                this->camera_pos += dx;
             if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
                 this->camera_pos -= dx;
         }
 
     public:
-        Camera(GLFWwindow *glfw_window, glm::vec3 camera_pos = glm::vec3(0.0f, 0.0f, 3.0f), glm::vec3 camera_front = glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3 camera_up = glm::vec3(0.0f, 1.0f, 0.0f), float camera_speed = 15.0f)
+        explicit Camera(GLFWwindow *glfw_window, glm::vec3 camera_pos = glm::vec3(0.0f, 0.0f, 3.0f), glm::vec3 camera_front = glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3 camera_up = glm::vec3(0.0f, 1.0f, 0.0f), float camera_speed = 15.0f)
         {
             this->window = glfw_window;
             this->camera_pos = camera_pos;

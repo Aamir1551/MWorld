@@ -208,6 +208,19 @@ namespace numerics
         void Normalise();
 
         /**
+         * @brief Add column vector to Matrix, along every column
+         *
+         */
+        void AddColumnVectorToMatrix(Matrix const &a);
+
+        /**
+         * @brief Add column vector to Matrix, along every column
+         *
+         */
+        bool IsZero();
+
+
+        /**
          * @brief Returns the squared euclidean norm of a matrix
          * 
          * @param a 
