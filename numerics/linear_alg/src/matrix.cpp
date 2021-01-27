@@ -698,6 +698,12 @@ if an element is nan, it returns 1 */
             }
         }
         return true;
+    }
+
+    void Matrix::abs() {
+        for(int i=0; i<this->rows * this->cols; i++) {
+            this->values[i] = std::abs(this->values[i]);
+        }
     };
 
 } // namespace numerics

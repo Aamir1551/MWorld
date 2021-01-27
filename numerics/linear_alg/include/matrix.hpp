@@ -219,6 +219,8 @@ namespace numerics
          */
         bool IsZero();
 
+        void abs();
+
 
         /**
          * @brief Returns the squared euclidean norm of a matrix

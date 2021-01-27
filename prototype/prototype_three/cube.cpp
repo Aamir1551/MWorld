@@ -344,7 +344,7 @@ public:
         return n;
     }
 
-    void static CollisionDetectEdgeEdgeNew(Cube *a, vector<Matrix>& a_edges, vector<Matrix>& b_edges, vector<Contact> &contact_list, Cube *b) {
+    void static CollisionDetectEdgeEdgeNew(Cube *a_cube, vector<Matrix>& a_edges, vector<Matrix>& b_edges, vector<Contact> &contact_list, Cube *b_cube) {
         for (int i = 0; i < a_edges.size(); i += 2) {
             real s;
             real t;
@@ -354,18 +354,18 @@ public:
 
             for (int j = 0; j < b_edges.size(); j += 2) {
                 Matrix d1 = a_edges.at(i + 1) - a_edges.at(i);
-                Matrix d2 = b_edges.at(i + 1) - b_edges.at(i);
+                Matrix d2 = b_edges.at(j + 1) - b_edges.at(j);
 
-                Matrix r = a_edges.at(i) - b_edges.at(i);
+                Matrix r = a_edges.at(i) - b_edges.at(j);
                 real a = Matrix::Dot(d1, d1);
                 real e = Matrix::Dot(d2, d2);
                 real f = Matrix::Dot(d2, r);
-                real epsilon = 0.00001;
+                real epsilon = 0.000000000000000000000000000001;
 
 
                 if (a <= epsilon && e <= epsilon) {
                     c1 = a_edges.at(i);
-                    c2 = b_edges.at(i);
+                    c2 = b_edges.at(j);
                     if(penetration >  sqrt(Matrix::Dot(c1 - c2, c1 - c2))) {
                         penetration =  sqrt(Matrix::Dot(c1 - c2, c1 - c2));
                         s = t = 0;
@@ -406,15 +406,17 @@ public:
                     ss = s;
                     tt = t;
                     c1 = a_edges.at(i) + d1 * s;
-                    c2 = b_edges.at(i) + d2 * t;
+                    c2 = b_edges.at(j) + d2 * t;
                 }
                 s = ss;
                 t = tt;
             }
 
             auto temp = (c1 + c2) /2;
-            if(IsCollision(*a, temp)) {
-                contact_list.push_back(ResolveCollision(a, temp, Matrix::MatMul(Quaternion::GetOrientationMatrix3(a->orientation), temp) + a->position,b));
+            if(IsCollision(*a_cube, temp)) {
+                temp.print();
+                cout << "collsdf" << endl;
+                contact_list.push_back(ResolveCollision(a_cube, temp, Matrix::MatMul(Quaternion::GetOrientationMatrix3(a_cube->orientation), temp) + a_cube->position,b_cube));
             }
         }
     }
