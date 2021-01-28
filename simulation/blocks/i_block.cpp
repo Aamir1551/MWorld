@@ -9,7 +9,7 @@ namespace blocks {
             // Repel
             auto &force = to_cube;
             //the one below should be negative, but for testing collisions purposes has bene made positive just this once
-            AddTorque(force, this->position, Block::force_dt / dist / dist * 1 * 0.1); // as distance increases, force also decreases
+            AddTorque(force, this->position, Block::force_dt / dist / dist * -1 * 0.1); // as distance increases, force also decreases
 
         }
     };

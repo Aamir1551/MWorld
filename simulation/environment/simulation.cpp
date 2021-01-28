@@ -50,7 +50,7 @@ int main()
     real cube_length = 4.0f;
 
     //WorldHandler world = WorldHandler(20, 20, 20, 20,20, 20, 20);
-    WorldHandler world = WorldHandler(50, 0, 0,0 ,0,10,0);
+    WorldHandler world = WorldHandler(100, 0, 0,0 ,0,10,0);
 
     /*real position_coord1[] = {-20, -2.0f, -20}; //x, y, z. x is how much horizontal y is vertical. z is in/out
     Matrix position1(3, 1, position_coord1);
@@ -109,12 +109,12 @@ int main()
         world.CollisionHandler();
         world.AddForces();
 
-        for(int i =0; i<world.iblocks.size(); i++) {
+        for(int i =0; i<world.blocks.size(); i++) {
             glm::mat4 rotation_mat;
-            memcpy(glm::value_ptr(rotation_mat), world.iblocks.at(i)->GetOrientationMatrix().GetValues(), 16 * sizeof(real));
+            memcpy(glm::value_ptr(rotation_mat), world.blocks.at(i)->GetOrientationMatrix().GetValues(), 16 * sizeof(real));
 
             glm::vec3 translation_mat;
-            memcpy(glm::value_ptr(translation_mat), world.iblocks.at(i)->position.GetValues(), 3 * sizeof(real));
+            memcpy(glm::value_ptr(translation_mat), world.blocks.at(i)->position.GetValues(), 3 * sizeof(real));
 
             glm::mat4 model = glm::translate(id, translation_mat);
             model = model * rotation_mat;
