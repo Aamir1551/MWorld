@@ -5,6 +5,7 @@
 
 // TODO
 // 1) pls add this to all generateError throw std::invalid_argument
+using namespace std;
 
 namespace numerics
 {
@@ -456,7 +457,7 @@ namespace numerics
         }
 
         settings::real c = 0;
-        for (int i = 0; i < a.rows; i++)
+        for (int i = 0; i < a.rows * a.cols;  i++)
         {
             c += a.values[i] * b.values[i];
         }

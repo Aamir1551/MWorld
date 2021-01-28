@@ -124,9 +124,15 @@ int main()
         c2.Update();
 
         vector<Contact> contact_list;
-        Cube::CollisionDetect(&c1, &c2, contact_list);
+        Cube::CollisionDetect(&c1,&c2, contact_list);
 
-        real min_penetration_value = 10000000000;
+        for(int i=0; i<contact_list.size(); i++) {
+            Cube::CollisionResolution(contact_list.at(i));
+        }
+
+
+
+        /*real min_penetration_value = 10000000000;
         int min_contact_index = 0;
         for (int i = 0; i < contact_list.size(); i++)
         {
@@ -139,7 +145,7 @@ int main()
             //cout << "entered" << endl;
             Cube::CollisionResolution(contact_list.at(min_contact_index));
         }
-        //contact_list.clear();
+        //contact_list.clear();*/
 
 
         glm::mat4 rotation_mat1;
