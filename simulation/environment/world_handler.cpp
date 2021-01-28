@@ -31,7 +31,7 @@ std::vector<Matrix> *GeneratePositions(int num_cubes)
 {
     srand((unsigned)time(NULL)); //NULL???
     auto *positions = new std::vector<Matrix>;
-    real world_size = 500.0;
+    real world_size = 100.0;
     real const scale = world_size / ((real)RAND_MAX / 2.0);
     auto get_coord = [scale, world_size]() -> real { return scale * (rand() - RAND_MAX / 2); };
     for (int i = 0; i < num_cubes; i++)
@@ -46,9 +46,10 @@ std::vector<Matrix> *GenerateAngularMomentums(int num_cubes)
 {
     srand((unsigned)time(NULL)); //NULL???
     auto *angular_momentums = new std::vector<Matrix>;
+    auto get_angular_momentums = []() -> real { return (rand() % 1)/100 - 0.0005;};
     for (int i = 0; i < num_cubes; i++)
     {
-        real values[] = {rand() % 5 - 2.0f, rand() % 5 - 2.0f, rand() % 5 - 2.0f};
+        real values[] = {get_angular_momentums(), get_angular_momentums(), get_angular_momentums()};
         angular_momentums->push_back(Matrix(3, 1, values));
     }
     return angular_momentums;
@@ -58,9 +59,10 @@ std::vector<Matrix> *GenerateLinearMomentums(int num_cubes)
 {
     srand((unsigned)time(NULL)); //NULL???
     auto *linear_momentums = new std::vector<Matrix>;
+    auto get_momentums = []() -> real { return (rand() % 1)/100 - 0.0005;};
     for (int i = 0; i < num_cubes; i++)
     {
-        real values[] = {rand() % 5 - 2.0f, rand() % 5 - 2.0f, rand() % 5 - 2.0f};
+        real values[] = { get_momentums() , get_momentums() , get_momentums()};
         linear_momentums->push_back(Matrix(3, 1, values));
     }
     return linear_momentums;
@@ -183,44 +185,32 @@ public:
 
     void CollisionHandler() {
         vector<Contact> contact_list;
+        /*for(int i=0; i<blocks.size(); i++) {
+            for(int j=i; j<blocks.size(); j++) {
+                Cube::CollisionDetect(blocks.at(i), blocks.at(j), contact_list);
+            }
+        }*/
         Cube::CollisionDetect(&iblocks.at(0), &iblocks.at(1), contact_list);
-
-        real min_penetration_value = 10000000000;
-        int min_contact_index = 0;
-        for (int i = 0; i < contact_list.size(); i++)
-        {
-            if (contact_list.at(i).penetration < min_penetration_value)
-            {
-                min_contact_index = i;
-            }
-        }
-        if(!contact_list.empty()) {
-            Contact min_contact = contact_list.at(min_contact_index);
-            auto temp = Matrix::MatMul(Quaternion::GetOrientationMatrix3(min_contact.body1->orientation), min_contact.point - min_contact.body1->position);
-            if(Cube::IsCollision(*min_contact.body1, temp, min_contact.body1->cube_wrapper_length)) {
-                PassFlare(&iblocks.at(0), &iblocks.at(1));
-                if(Cube::IsCollision(*min_contact.body1, temp, min_contact.body1->cube_length)) {
-                    Cube::CollisionResolution(min_contact);
-                }
-            }
+        for(int i=0; i<contact_list.size(); i++) {
+            Cube::CollisionResolution(contact_list.at(i));
         }
     }
 
     void AddForces() {
 
-        for(auto & eblock : this->eblocks) {
+        for(auto &eblock : this->eblocks) {
             ReactClosestBlockToBlock(eblock);
         }
 
-        for(auto & mblock : this->mblocks) {
+        for(auto &mblock : this->mblocks) {
             ReactClosestBlockToBlock(mblock);
         }
 
-        for(auto & iblock : this->iblocks) {
+        for(auto &iblock : this->iblocks) {
             ReactClosestBlockToBlock(iblock);
         }
 
-        for(auto & zblock : this->zblocks) {
+        for(auto &zblock : this->zblocks) {
             ReactClosestBlockToBlock(zblock);
         }
 
@@ -237,7 +227,7 @@ public:
         for(auto &eblock : this->eblocks) {
             Matrix to_cube = eblock.position - block.position;
             real dist = Matrix::Norm(to_cube);
-            if(dist < min_dist) {
+            if(dist < min_dist && &eblock != &block) {
                 min_dist = dist;
                 cube_loc = i;
                 cube_type = 0;
@@ -249,7 +239,7 @@ public:
         for(auto &iblock : this->iblocks) {
             Matrix to_cube = iblock.position - block.position;
             real dist = Matrix::Norm(to_cube);
-            if(dist < min_dist) {
+            if(dist < min_dist && &iblock != &block) {
                 min_dist = dist;
                 cube_loc = i;
                 cube_type = 1;
@@ -261,7 +251,7 @@ public:
         for(auto &mblock : this->mblocks) {
             Matrix to_cube = mblock.position - block.position;
             real dist = Matrix::Norm(to_cube);
-            if(dist < min_dist) {
+            if(dist < min_dist  && &mblock != &block) {
                 min_dist = dist;
                 cube_loc = i;
                 cube_type = 2;
@@ -273,7 +263,7 @@ public:
         for(auto &zblock : this->zblocks) {
             Matrix to_cube =  zblock.position - block.position;
             real dist = Matrix::Norm(to_cube);
-            if(dist < min_dist) {
+            if(dist < min_dist  && &zblock != &block ) {
                 min_dist = dist;
                 cube_loc = i;
                 cube_type = 3;

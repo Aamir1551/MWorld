@@ -51,6 +51,10 @@ namespace blocks {
             this->flare_value *= 0.1;
         }
 
+        void RotateBlock() {
+            this->angular_velocity += this->flare_inc; // or something like this???
+        }
+
     };
 
 }

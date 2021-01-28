@@ -94,18 +94,18 @@ namespace numerics
         }
     }
 
-    Matrix &Matrix::Reshape(Matrix const a, int new_row, int new_cols)
+    Matrix Matrix::Reshape(Matrix const a, int new_row, int new_cols)
     {
         if (a.rows * a.cols != new_row * new_cols)
         {
             throw std::invalid_argument("Matrix Shape does not conform for Reshape");
         }
-        auto *b = new Matrix(new_row, new_cols);
+        Matrix b = Matrix(new_row, new_cols);
         for (int i = 0; i < a.rows * a.cols; i++)
         {
-            b->values[i] = a.values[i];
+            b.values[i] = a.values[i];
         }
-        return *b;
+        return b;
     };
 
     settings::real Matrix::SquaredNorm(Matrix const &a)
@@ -237,7 +237,7 @@ namespace numerics
         this->values = new_values;
     }
 
-    Matrix &Matrix::Transpose(Matrix const &a)
+    Matrix Matrix::Transpose(Matrix const &a)
     {
         auto *new_values = new settings::real[a.cols * a.rows];
         for (int i = 0; i < a.rows; i++)
@@ -247,12 +247,12 @@ namespace numerics
                 new_values[j * a.rows + i] = a.values[i * a.cols + j];
             }
         }
-        auto *res = new Matrix(a.cols, a.rows, new_values);
+        auto res = Matrix(a.cols, a.rows, new_values);
         delete[] new_values;
-        return *res;
+        return res;
     }
 
-    Matrix &Matrix::MatMul(Matrix const &a, Matrix const &b)
+    Matrix Matrix::MatMul(Matrix const &a, Matrix const &b)
     {
         if (a.cols != b.rows)
         {
@@ -277,12 +277,12 @@ namespace numerics
             }
         };
 
-        auto *res = new Matrix(a.rows, b.cols, new_values);
+        auto res = Matrix(a.rows, b.cols, new_values);
         delete[] new_values;
-        return *res;
+        return res;
     }
 
-    Matrix &Matrix::operator+(Matrix const &a) const
+    Matrix Matrix::operator+(Matrix const &a) const
     {
         if (!Matrix::IsSameShape(*this, a))
         {
@@ -295,12 +295,12 @@ namespace numerics
             new_values[i] = this->values[i] + a.values[i];
         }
 
-        auto *res = new Matrix(this->rows, this->cols, new_values);
+        Matrix res = Matrix(this->rows, this->cols, new_values);
         delete[] new_values;
-        return *res;
+        return res;
     };
 
-    Matrix &Matrix::operator-(Matrix const &a) const
+    Matrix Matrix::operator-(Matrix const &a) const
     {
 
         if (!Matrix::IsSameShape(*this, a))
@@ -317,12 +317,12 @@ namespace numerics
             new_values[i] = this->values[i] - a.values[i];
         }
 
-        auto *res = new Matrix(this->rows, this->cols, new_values);
+        Matrix res = Matrix(this->rows, this->cols, new_values);
         delete[] new_values;
-        return *res;
+        return res;
     }
 
-    Matrix &Matrix::operator*(Matrix const &a) const
+    Matrix Matrix::operator*(Matrix const &a) const
     {
         if (!Matrix::IsSameShape(*this, a))
         {
@@ -335,12 +335,12 @@ namespace numerics
         {
             new_values[i] = this->values[i] * a.values[i];
         }
-        auto *res = new Matrix(this->rows, this->cols, new_values);
+        auto res = Matrix(this->rows, this->cols, new_values);
         delete[] new_values;
-        return *res;
+        return res;
     }
 
-    Matrix &Matrix::operator/(Matrix const &a) const
+    Matrix Matrix::operator/(Matrix const &a) const
     {
         if (!Matrix::IsSameShape(*this, a))
         {
@@ -352,9 +352,9 @@ namespace numerics
         {
             new_values[i] = this->values[i] / a.values[i];
         }
-        auto *res = new Matrix(this->rows, this->cols, new_values);
+        auto res = Matrix(this->rows, this->cols, new_values);
         delete[] new_values;
-        return *res;
+        return res;
     };
 
     Matrix &Matrix::operator+=(Matrix const &a)
@@ -431,7 +431,7 @@ namespace numerics
         return true;
     }
 
-    Matrix &Matrix::VectorProduct(Matrix const &a, Matrix const &b)
+    Matrix Matrix::VectorProduct(Matrix const &a, Matrix const &b)
     {
         if (a.rows != 3 || a.cols != 1)
         {
@@ -443,11 +443,11 @@ namespace numerics
             throw std::invalid_argument(GenerateError("vector product", b));
         }
 
-        auto *c = new Matrix(3, 1);
-        c->values[0] = a.values[1] * b.values[2] - a.values[2] * b.values[1];
-        c->values[1] = a.values[2] * b.values[0] - a.values[0] * b.values[2];
-        c->values[2] = a.values[0] * b.values[1] - a.values[1] * b.values[0];
-        return *c;
+        auto c = Matrix(3, 1);
+        c.values[0] = a.values[1] * b.values[2] - a.values[2] * b.values[1];
+        c.values[1] = a.values[2] * b.values[0] - a.values[0] * b.values[2];
+        c.values[2] = a.values[0] * b.values[1] - a.values[1] * b.values[0];
+        return c;
     };
     settings::real Matrix::Dot(Matrix const &a, Matrix const &b)
     {
@@ -500,44 +500,44 @@ namespace numerics
         return *this;
     };
 
-    Matrix &Matrix::operator+(settings::real a) const
+    Matrix Matrix::operator+(settings::real a) const
     {
-        auto *c = new Matrix(this->rows, this->cols);
+        auto c = Matrix(this->rows, this->cols);
         for (int i = 0; i < this->cols * this->rows; i++)
         {
-            c->values[i] = values[i] + a;
+            c.values[i] = values[i] + a;
         }
-        return *c;
+        return c;
     }
 
-    Matrix &Matrix::operator-(settings::real a) const
+    Matrix Matrix::operator-(settings::real a) const
     {
-        auto *c = new Matrix(this->rows, this->cols);
+        auto c = Matrix(this->rows, this->cols);
         for (int i = 0; i < this->cols * this->rows; i++)
         {
-            c->values[i] = values[i] - a;
+            c.values[i] = values[i] - a;
         }
-        return *c;
+        return c;
     }
 
-    Matrix &Matrix::operator*(settings::real a) const
+    Matrix Matrix::operator*(settings::real a) const
     {
-        auto *c = new Matrix(this->rows, this->cols);
+        auto c = Matrix(this->rows, this->cols);
         for (int i = 0; i < this->cols * this->rows; i++)
         {
-            c->values[i] = values[i] * a;
+            c.values[i] = values[i] * a;
         }
-        return *c;
+        return c;
     }
 
-    Matrix &Matrix::operator/(settings::real a) const
+    Matrix Matrix::operator/(settings::real a) const
     {
-        auto *c = new Matrix(this->rows, this->cols);
+        auto c = Matrix(this->rows, this->cols);
         for (int i = 0; i < this->cols * this->rows; i++)
         {
-            c->values[i] = values[i] / a;
+            c.values[i] = values[i] / a;
         }
-        return *c;
+        return c;
     }
 
     void Matrix::print() const
@@ -626,6 +626,7 @@ if an element is nan, it returns 1 */
 
     Matrix *Matrix::GetColumns() const
     {
+        //check for mem leaks in this
         auto *cols_list = new Matrix[this->cols];
         for (int i = 0; i < this->cols; i++)
         {

@@ -1,8 +1,4 @@
 #include <iostream>
-//#include <stdlib.h>
-#include <cstdlib>
-
-#include <cmath>
 #include <vector>
 
 #include <matrix.hpp>
@@ -14,8 +10,6 @@ using namespace std;
 
 // TODO
 // 1) Make position, velocity, momentum etc as 4x1 instead of 3x1
-// 2) Make both FaceToPoint and DetectCubeEdgeEdge collision functions return the min distance between cubes,
-//      this way we do not need to use the GJK algorithm to compute min distance
 
 class Cube;
 
@@ -188,51 +182,11 @@ public:
         return Quaternion::GetMatrixTransformation(this->orientation);
     }
 
-
-    /**
-     * @brief Get the transformation matrix of cube. Transforms from cube to world coordinaes. Is a 4x4 matrix
-     *
-     * @return Matrix
-     */
-    Matrix GetTransformationMatrix() const
-    {
-        settings::real qw = this->orientation.r;
-        settings::real qx = this->orientation.i;
-        settings::real qy = this->orientation.j;
-        settings::real qz = this->orientation.k;
-
-        auto *values = new settings::real[16];
-        values[0] = 1.0f - 2.0f * qy * qy - 2.0f * qz * qz;
-        values[1] = 2.0f * qx * qy - 2.0f * qz * qw;
-        values[2] = 2.0f * qx * qz + 2.0f * qy * qw;
-        values[3] = 0.0f;
-
-        values[4] = 2.0f * qx * qy + 2.0f * qz * qw;
-        values[5] = 1.0f - 2.0f * qx * qx - 2.0f * qz * qz;
-        values[6] = 2.0f * qy * qz - 2.0f * qx * qw;
-        values[7] = 0.0f;
-
-        values[8] = 2.0f * qx * qz - 2.0f * qy * qw;
-        values[9] = 2.0f * qy * qz + 2.0f * qx * qw;
-        values[10] = 1.0f - 2.0f * qx * qx - 2.0f * qy * qy;
-        values[11] = 0.0f;
-
-        values[12] = this->position(0, 0);
-        values[13] = this->position(1, 0);
-        values[14] = this->position(2, 0);
-        values[15] = 1.0f;
-
-        Matrix *result = new Matrix(4, 4, values);
-        delete[] values;
-        return *result;
-    };
-
     static void CollisionDetect(Cube *c1, Cube *c2, vector<Contact> &contact_list) {
         Matrix vect_dist =  (c1->position - c2->position);
         real dist = Matrix::Norm(vect_dist);
         real length = (c1->cube_length + c2->cube_length)/2;
         if(dist < length) {
-            cout << "in here" << endl;
             Matrix point = (c1->position + c2->position)/2;
             vect_dist.Normalise();
             Contact contact_info = {point, length - dist, vect_dist, c1, c2};
@@ -241,8 +195,9 @@ public:
     }
 
 
+
+
     void static CollisionResolution(Contact &contact) {
-        cout << "happening";
         Cube *body1 = contact.body1;                //The body pointer of the first cube //=nullptr
         Cube *body2 = contact.body2;            //The body pointer of the second cube //=nullptr
 
@@ -262,8 +217,8 @@ public:
         real j = Matrix::Dot(v_ab_1, normal) * -2 / (body1->inverse_mass + body2->inverse_mass + Matrix::Dot(r_ap_cross_normal, r_ap_cross_normal)*body1->inverse_inertia +
                                                      Matrix::Dot(r_bp_cross_normal, r_bp_cross_normal)*body2->inverse_inertia);
 
-        //Matrix w_a2 = body1->angular_velocity + Matrix::VectorProduct(r_ap, normal * j) * body1->inverse_inertia;
-        //Matrix w_b2 = body2->angular_velocity - Matrix::VectorProduct(r_bp, normal * j) * body2->inverse_inertia;
+        Matrix w_a2 = body1->angular_velocity + Matrix::VectorProduct(r_ap, normal * j) * body1->inverse_inertia;
+        Matrix w_b2 = body2->angular_velocity - Matrix::VectorProduct(r_bp, normal * j) * body2->inverse_inertia;
 
         Matrix v_a2 = body1->linear_velocity + normal * j * body1->inverse_mass;
         Matrix v_b2 = body2->linear_velocity - normal * j * body2->inverse_mass;
@@ -271,8 +226,8 @@ public:
         body1->momentum = v_a2 / body1->inverse_mass;
         body2->momentum = v_b2 / body2->inverse_mass;
 
-        //body1->angular_momentum = w_a2 / body1->inverse_inertia;
-        //body2->angular_momentum = w_b2 / body2->inverse_inertia;
+        body1->angular_momentum = w_a2 / body1->inverse_inertia;
+        body2->angular_momentum = w_b2 / body2->inverse_inertia;
 
         body1->position = body1->position - normal * (contact.penetration/2);
         body2->position = body2->position + normal * (contact.penetration/2);
@@ -280,5 +235,3 @@ public:
 
     }
 };
-
-

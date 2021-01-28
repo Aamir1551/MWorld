@@ -133,7 +133,7 @@ namespace numerics
          * @param new_cols The new number of columns the new matrix will contain.
          * @return Matrix& 
          */
-        Matrix static &Reshape(Matrix a, int new_row, int new_cols);
+        Matrix static Reshape(Matrix a, int new_row, int new_cols);
 
         /**
          * @brief Create a Matrix object, where each item in the matrix is one higher than the next.
@@ -237,7 +237,7 @@ namespace numerics
          * @param b 
          * @return Matrix& 
          */
-        Matrix static &MatMul(Matrix const &a, Matrix const &b);
+        Matrix static MatMul(Matrix const &a, Matrix const &b);
 
         /**
          * @brief Applies Matrix multiplication between two matrices. If multiplication fails, throws invalid_argument error.
@@ -277,7 +277,7 @@ namespace numerics
          * @param a 
          * @return Matrix& 
          */
-        Matrix static &Transpose(Matrix const &a);
+        Matrix static Transpose(Matrix const &a);
 
         /**
          * @brief Elementwise Addition. 
@@ -285,7 +285,7 @@ namespace numerics
          * @param a 
          * @return Matrix& 
          */
-        Matrix &operator+(Matrix const &a) const;
+        Matrix operator+(Matrix const &a) const;
 
         /**
          * @brief Elementwise subtraction. 
@@ -293,7 +293,7 @@ namespace numerics
          * @param a 
          * @return Matrix& 
          */
-        Matrix &operator-(Matrix const &a) const;
+        Matrix operator-(Matrix const &a) const;
 
         /**
          * @brief Elementwise multiplication. 
@@ -301,7 +301,7 @@ namespace numerics
          * @param a 
          * @return Matrix& 
          */
-        Matrix &operator*(Matrix const &a) const;
+        Matrix operator*(Matrix const &a) const;
 
         /**
          * @brief Elementwise division. 
@@ -309,7 +309,7 @@ namespace numerics
          * @param a 
          * @return Matrix& 
          */
-        Matrix &operator/(Matrix const &a) const;
+        Matrix operator/(Matrix const &a) const;
 
         /**
          * @brief Calculates the vector product between 2 vectors. Vectors must have shape (3, 1).
@@ -318,7 +318,7 @@ namespace numerics
          * @param b A marix (or vector) of shape (3, 1)
          * @return Matrix& 
          */
-        Matrix static &VectorProduct(Matrix const &a, Matrix const &b);
+        Matrix static VectorProduct(Matrix const &a, Matrix const &b);
 
         /**
          * @brief Calculates the dot product between two matrices. Matrices must have the same shape.
@@ -399,7 +399,7 @@ namespace numerics
          * @param a 
          * @return Matrix& 
          */
-        Matrix &operator+(settings::real a) const;
+        Matrix operator+(settings::real a) const;
 
         /**
          * @brief Returns the result of elementwise subtraction on current matrix with a real.
@@ -407,7 +407,7 @@ namespace numerics
          * @param a 
          * @return Matrix& 
          */
-        Matrix &operator-(settings::real a) const;
+        Matrix operator-(settings::real a) const;
 
         /**
          * @brief Returns the result of elementwise multiplication on current matrix with a real.
@@ -415,7 +415,7 @@ namespace numerics
          * @param a 
          * @return Matrix& 
          */
-        Matrix &operator*(settings::real a) const;
+        Matrix operator*(settings::real a) const;
 
         /**
          * @brief Returns the result of elementwise division on current matrix with a real.
@@ -423,7 +423,7 @@ namespace numerics
          * @param a 
          * @return Matrix& 
          */
-        Matrix &operator/(settings::real a) const;
+        Matrix operator/(settings::real a) const;
 
         /**
          * @brief Prints the contents of a matrix via iostream.

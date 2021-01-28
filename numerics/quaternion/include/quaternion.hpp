@@ -60,7 +60,7 @@ namespace numerics
      * @param a A quaternion to add. 
      * @return Quaternion& 
      */
-      Quaternion &operator+(const Quaternion &a);
+      Quaternion operator+(const Quaternion &a);
 
       /**
      * @brief Subtracts two quaternion objects together
@@ -68,7 +68,7 @@ namespace numerics
      * @param a A quaternion to subtract. 
      * @return Quaternion& 
      */
-      Quaternion &operator-(const Quaternion &a);
+      Quaternion operator-(const Quaternion &a);
 
       /**
      * @brief Multiplies two quaternion objects together
@@ -76,7 +76,7 @@ namespace numerics
      * @param a A quaternion to multiply 
      * @return Quaternion& 
      */
-      Quaternion &operator*(const Quaternion &a);
+      Quaternion operator*(const Quaternion &a);
 
       /**
      * @brief Divides two quaternion objects
@@ -84,7 +84,7 @@ namespace numerics
      * @param a A quaternion to divide 
      * @return Quaternion& 
      */
-      Quaternion &operator/(const Quaternion &a);
+      Quaternion operator/(const Quaternion &a);
 
       /**
      * @brief Adds a quaternion to the existing one 
@@ -92,7 +92,7 @@ namespace numerics
      * @param a A quaternion to add 
      * @return Quaternion& 
      */
-      Quaternion &operator+=(Quaternion const &a);
+      Quaternion operator+=(Quaternion const &a);
 
       /**
      * @brief Subtracts a quaternion form the existing one 
@@ -100,7 +100,7 @@ namespace numerics
      * @param a A quaternion to subtract 
      * @return Quaternion& 
      */
-      Quaternion &operator-=(Quaternion const &a);
+      Quaternion operator-=(Quaternion const &a);
 
       /**
      * @brief Multiples existing quaternion with given quaternion 
@@ -108,7 +108,7 @@ namespace numerics
      * @param a A quaternion to multiply with 
      * @return Quaternion&
      */
-      Quaternion &operator*=(Quaternion const &a);
+      Quaternion operator*=(Quaternion const &a);
 
       /**
      * @brief Divides existing quaternion by a 
@@ -116,7 +116,7 @@ namespace numerics
      * @param a A quaternion to divide with
      * @return Quaternion& 
      */
-      Quaternion &operator/=(Quaternion const &a);
+      Quaternion operator/=(Quaternion const &a);
 
       /**
      * @brief Add a settings::real to a quaternion
@@ -124,7 +124,7 @@ namespace numerics
      * @param a A settings::real number to add to quaternion
      * @return Quaternion& 
      */
-      Quaternion &operator+(settings::real a);
+      Quaternion operator+(settings::real a);
 
       /**
      * @brief Subtracts quaternion from settings::real
@@ -132,7 +132,7 @@ namespace numerics
      * @param a A settings::real number to subtract quaternion by
      * @return Quaternion& 
      */
-      Quaternion &operator-(settings::real a);
+      Quaternion operator-(settings::real a);
 
       /**
      * @brief Multiply quaternion with settings::real number 
@@ -140,7 +140,7 @@ namespace numerics
      * @param a A settings::real number to multiply quaternion by
      * @return Quaternion& 
      */
-      Quaternion &operator*(settings::real a);
+      Quaternion operator*(settings::real a);
 
       /**
      * @brief Divide quaternion with settings::real number 
@@ -148,7 +148,7 @@ namespace numerics
      * @param a A settings::real number to divide quaternion with 
      * @return Quaternion& 
      */
-      Quaternion &operator/(settings::real a);
+      Quaternion operator/(settings::real a);
 
       /**
      * @brief Add existing quaternion with settings::real number 
@@ -156,7 +156,7 @@ namespace numerics
      * @param a A settings::real number to add quaternion with 
      * @return Quaternion& 
      */
-      Quaternion &operator+=(settings::real a);
+      Quaternion operator+=(settings::real a);
 
       /**
      * @brief Subtract existing quaternion with settings::real number 
@@ -164,7 +164,7 @@ namespace numerics
      * @param a A settings::real number to subtract quaternion with 
      * @return Quaternion& 
      */
-      Quaternion &operator-=(settings::real a);
+      Quaternion operator-=(settings::real a);
 
       /**
      * @brief Multiply existing quaternion with settings::real number 
@@ -172,7 +172,7 @@ namespace numerics
      * @param a A settings::real number to add quaternion with 
      * @return Quaternion& 
      */
-      Quaternion &operator*=(settings::real a);
+      Quaternion operator*=(settings::real a);
 
       /**
      * @brief Divide existing quaternion with settings::real number 
@@ -180,7 +180,7 @@ namespace numerics
      * @param a A settings::real number to divide quaternion with 
      * @return Quaternion& 
      */
-      Quaternion &operator/=(settings::real a);
+      Quaternion operator/=(settings::real a);
 
       /**
      * @brief  Returns the conjugate of a given quaternion
@@ -188,14 +188,14 @@ namespace numerics
      * @param a Quaternion to get conjugate of 
      * @return Quaternion& 
      */
-      Quaternion static &GetConjugate(const Quaternion &a);
+      Quaternion static GetConjugate(const Quaternion &a);
 
       /**
      * @brief  Returns the conjugate of quaternion
      * 
      * @return Quaternion& 
      */
-      Quaternion &Conjugate();
+      Quaternion Conjugate();
 
       /**
      * @brief  Returns the inverse of a given quaternion 
@@ -203,7 +203,7 @@ namespace numerics
      * @param a A quaternion to calculate the inverse of
      * @return Quaternion&
      */
-      Quaternion static &Inverse(const Quaternion &a);
+      Quaternion static Inverse(const Quaternion &a);
 
       /**
      * @brief  Returns the inverse of quaternion 
@@ -247,7 +247,7 @@ namespace numerics
      * @param a Quaternion, whos normal to calculate
      * @return Quaternion& 
      */
-      Quaternion static &GetNormalised(const Quaternion &a);
+      Quaternion static GetNormalised(const Quaternion &a);
 
       /**
      * @brief Normalises quaternion. Returns a reference to instance
@@ -262,7 +262,7 @@ namespace numerics
        * @param a Quaternion to convert to vector representation.
        * @return Matrix& 
        */
-      Matrix static &ConvertToVector(const Quaternion &a);
+      Matrix static ConvertToVector(const Quaternion &a);
 
       /**
        * @brief Converts a vector to a given Quaternion
@@ -270,7 +270,7 @@ namespace numerics
        * @param a Quaternion to convert
        * @return Quaternion& 
        */
-      Quaternion &ConvertToQuaternion(const Matrix &a);
+      Quaternion ConvertToQuaternion(const Matrix &a);
 
       /**
        * @brief Converts a real number to a quaternion
@@ -278,7 +278,7 @@ namespace numerics
        * @param real real number to convert
        * @return Quaternion& 
        */
-      Quaternion &ConvertToQuaternion(settings::real real);
+      Quaternion ConvertToQuaternion(settings::real real);
 
       /**
        * @brief Get the Matrix Transformation corresponding to given quaternion
@@ -287,7 +287,7 @@ namespace numerics
        * @param a A quaternion
        * @return Matrix& 
        */
-      Matrix static &GetMatrixTransformation(const Quaternion &a);
+      Matrix static GetMatrixTransformation(const Quaternion &a);
 
       /**
        * @brief Calculates the inverse of the orientation quaternion given.
@@ -295,7 +295,7 @@ namespace numerics
        * @param a 
        * @return Matrix& 
        */
-      Matrix static &GetInverseMatrixTransformation(const Quaternion &a);
+      Matrix static GetInverseMatrixTransformation(const Quaternion &a);
 
       /**
        * @brief Returns the 3by3 inverse Matrix of the Quaternion given. 
@@ -303,7 +303,7 @@ namespace numerics
        * @param a 
        * @return Matrix& 
        */
-      Matrix static &GetInverseOrentationMatrix3(const Quaternion &a);
+      Matrix static GetInverseOrentationMatrix3(const Quaternion &a);
 
       /**
        * @brief Returns the 3by3 Matrix of the Quaternion given. 
@@ -311,7 +311,7 @@ namespace numerics
        * @param a 
        * @return Matrix& 
        */
-      Matrix static &GetOrientationMatrix3(const Quaternion &a);
+      Matrix static GetOrientationMatrix3(const Quaternion &a);
    };
 
 } // namespace numerics

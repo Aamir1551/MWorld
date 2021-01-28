@@ -16,7 +16,6 @@ namespace blocks {
             this->state = state;
         }
 
-
         void React(IBlock *block, real dist, const Matrix& to_cube) override;
         void React(MBlock *block, real dist, const Matrix& to_cube) override;
         void React(EBlock *block, real dist, const Matrix& to_cube) override;

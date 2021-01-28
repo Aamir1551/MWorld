@@ -8,7 +8,8 @@ namespace blocks {
         if(block->state == this->state) {
             // Repel
             auto &force = to_cube;
-            AddTorque(force, this->position, Block::force_dt / dist / dist * -1); // as distance increases, force also decreases
+            AddTorque(force, this->position, Block::force_dt / dist / dist * -1 * 0.01); // as distance increases, force also decreases
+
         }
     };
 
