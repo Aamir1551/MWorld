@@ -130,24 +130,6 @@ int main()
             Cube::CollisionResolution(contact_list.at(i));
         }
 
-
-
-        /*real min_penetration_value = 10000000000;
-        int min_contact_index = 0;
-        for (int i = 0; i < contact_list.size(); i++)
-        {
-            if (contact_list.at(i).penetration < min_penetration_value)
-            {
-                min_contact_index = i;
-            }
-        }
-        if(!contact_list.empty()) {
-            //cout << "entered" << endl;
-            Cube::CollisionResolution(contact_list.at(min_contact_index));
-        }
-        //contact_list.clear();*/
-
-
         glm::mat4 rotation_mat1;
         memcpy(glm::value_ptr(rotation_mat1), c1.GetOrientationMatrix().GetValues(), 16 * sizeof(real));
 

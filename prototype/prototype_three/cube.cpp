@@ -19,18 +19,10 @@ using namespace std;
 
 class Cube;
 
-const real right_normal_values[3] = {1, 0, 0};
-const real left_normal_values[3] = {-1, 0, 0};
-const real up_normal_values[3] = {0, 1, 0};
-const real down_normal_values[3] = {0,-1, 0};
-const real in_normal_values[3] = {0, 0, -1};
-const real out_normal_values[3] = {0, 0, 1};
-
 struct Contact
 {
     numerics::Matrix point;     //collision point
     settings::real penetration; //The amount of penetration
-    //int contact_normal;         // The contact normal // =-1
     Matrix normal;         // The contact normal // =-1
     Cube *body1;                //The body pointer of the first cube //=nullptr
     Cube *body2;                //The body pointer of the second cube //=nullptr
@@ -39,13 +31,6 @@ struct Contact
 class Cube
 {
 public:
-
-    const Matrix normals[6] = {
-            Matrix(3, 1, left_normal_values), Matrix(3, 1, right_normal_values),
-            Matrix(3,1, down_normal_values), Matrix(3, 1, up_normal_values), //please make this static
-            Matrix(3, 1, in_normal_values), Matrix(3, 1, out_normal_values)};
-
-
 
     //primary
     Matrix position = Matrix(3.0, 1.0);
@@ -62,11 +47,6 @@ public:
     real const inverse_inertia;
     real const inverse_mass;
     real const cube_length;
-    real const cube_vertices[24];
-
-    Matrix cube_vertices_matrix;
-    Matrix *cube_vertices_list;
-
 
     /**
      * @brief Construct a new Cube object.
@@ -80,15 +60,10 @@ public:
     Cube(real cube_length, Matrix position, Quaternion initial_orientation = Quaternion(1, 0, 0, 0),
          real inverse_mass = 1.0f, real inverse_inertia = 1.0f) : cube_length(cube_length),
                                                                   inverse_mass(inverse_mass),
-                                                                  inverse_inertia(inverse_inertia),
-                                                                  cube_vertices{-cube_length/2, cube_length/2, -cube_length/2, cube_length/2, -cube_length/2, cube_length/2, -cube_length/2, cube_length/2,
-                                                                                -cube_length/2, -cube_length/2, cube_length/2, cube_length/2, -cube_length/2, -cube_length/2, cube_length/2, cube_length/2,
-                                                                                -cube_length/2, -cube_length/2, -cube_length/2, -cube_length/2, cube_length/2, cube_length/2, cube_length/2, cube_length/2}
+                                                                  inverse_inertia(inverse_inertia)
     {
         this->position = position;
         this->orientation = initial_orientation;
-        this->cube_vertices_matrix = Matrix(3, 8, cube_vertices);
-        this->cube_vertices_list = this->cube_vertices_matrix.GetColumns();
     };
 
     /**
@@ -252,11 +227,6 @@ public:
         return *result;
     };
 
-    Matrix GetNormal(int normal_id) {
-        //return Cube::normals[normal_id];
-        return Matrix::MatMul(Quaternion::GetOrientationMatrix3(this->orientation), Cube::normals[normal_id]);
-    }
-
     static void CollisionDetect(Cube *c1, Cube *c2, vector<Contact> &contact_list) {
         Matrix vect_dist =  (c1->position - c2->position);
         real dist = Matrix::Norm(vect_dist);
@@ -276,12 +246,8 @@ public:
         Cube *body1 = contact.body1;                //The body pointer of the first cube //=nullptr
         Cube *body2 = contact.body2;            //The body pointer of the second cube //=nullptr
 
-        //Matrix r_ap = body1->position - contact.normal; //contact.point - body1->position;
-        //Matrix r_bp = body2->position + contact.normal; //contact.point - body2->position;
-
         Matrix r_ap = contact.point - body1->position;
         Matrix r_bp = contact.point - body2->position;
-
 
         Matrix v_ap1 = body1->linear_velocity +  Matrix::VectorProduct(body1->angular_velocity, r_ap);
         Matrix v_bp1 = body2->linear_velocity +  Matrix::VectorProduct(body2->angular_velocity, r_bp);
@@ -296,8 +262,8 @@ public:
         real j = Matrix::Dot(v_ab_1, normal) * -2 / (body1->inverse_mass + body2->inverse_mass + Matrix::Dot(r_ap_cross_normal, r_ap_cross_normal)*body1->inverse_inertia +
                                                      Matrix::Dot(r_bp_cross_normal, r_bp_cross_normal)*body2->inverse_inertia);
 
-        Matrix w_a2 = body1->angular_velocity + Matrix::VectorProduct(r_ap, normal * j) * body1->inverse_inertia;
-        Matrix w_b2 = body2->angular_velocity - Matrix::VectorProduct(r_bp, normal * j) * body2->inverse_inertia;
+        //Matrix w_a2 = body1->angular_velocity + Matrix::VectorProduct(r_ap, normal * j) * body1->inverse_inertia;
+        //Matrix w_b2 = body2->angular_velocity - Matrix::VectorProduct(r_bp, normal * j) * body2->inverse_inertia;
 
         Matrix v_a2 = body1->linear_velocity + normal * j * body1->inverse_mass;
         Matrix v_b2 = body2->linear_velocity - normal * j * body2->inverse_mass;
@@ -305,8 +271,8 @@ public:
         body1->momentum = v_a2 / body1->inverse_mass;
         body2->momentum = v_b2 / body2->inverse_mass;
 
-        body1->angular_momentum = w_a2 / body1->inverse_inertia;
-        body2->angular_momentum = w_b2 / body2->inverse_inertia;
+        //body1->angular_momentum = w_a2 / body1->inverse_inertia;
+        //body2->angular_momentum = w_b2 / body2->inverse_inertia;
 
         body1->position = body1->position - normal * (contact.penetration/2);
         body2->position = body2->position + normal * (contact.penetration/2);
