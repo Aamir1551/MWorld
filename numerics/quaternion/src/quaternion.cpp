@@ -92,7 +92,6 @@ namespace numerics
 
     Quaternion &Quaternion::Conjugate()
     {
-        this->r = this->r;
         this->i = -this->i;
         this->j = -this->j;
         this->k = -this->k;
@@ -220,6 +219,7 @@ namespace numerics
         new_values[2] = a.j;
         new_values[3] = a.k;
         Matrix *result = new Matrix(4, 1, new_values);
+        delete[] new_values;
         return *result;
     }
 
@@ -227,6 +227,7 @@ namespace numerics
     {
         settings::real const *new_values = a.GetValues();
         Quaternion *result = new Quaternion(new_values[0], new_values[1], new_values[2], new_values[3]);
+        delete[] new_values;
         return *result;
     }
 
@@ -260,6 +261,7 @@ namespace numerics
         values[15] = 1.0f;
 
         Matrix *result = new Matrix(4, 4, values);
+        delete[] values;
         return *result;
     };
 
@@ -293,6 +295,7 @@ namespace numerics
         values[15] = 1.0f;
 
         Matrix *result = new Matrix(4, 4, values);
+        delete[] values;
         return *result;
     };
 
@@ -323,6 +326,7 @@ namespace numerics
         values[8] = 1.0f - 2.0f * qx * qx - 2.0f * qy * qy;
 
         Matrix *result = new Matrix(3, 3, values);
+        delete[] values;
         return *result;
     };
 
@@ -348,6 +352,7 @@ namespace numerics
         values[8] = 1.0f - 2.0f * qx * qx - 2.0f * qy * qy;
 
         Matrix *result = new Matrix(3, 3, values);
+        delete[] values;
         return *result;
     };
 

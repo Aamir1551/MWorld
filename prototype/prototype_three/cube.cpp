@@ -28,7 +28,7 @@ const real out_normal_values[3] = {0, 0, 1};
 
 struct Contact
 {
-    numerics::Matrix point;     //collision point
+    numerics::Matrix &point;     //collision point
     settings::real penetration; //The amount of penetration
     int contact_normal;         // The contact normal // =-1
     Cube *body1;                //The body pointer of the first cube //=nullptr
@@ -42,7 +42,7 @@ public:
     const Matrix normals[6] = {
             Matrix(3, 1, left_normal_values), Matrix(3, 1, right_normal_values),
             Matrix(3,1, down_normal_values), Matrix(3, 1, up_normal_values), //please make this static
-             Matrix(3, 1, in_normal_values), Matrix(3, 1, out_normal_values)};
+            Matrix(3, 1, in_normal_values), Matrix(3, 1, out_normal_values)};
 
 
 
@@ -63,10 +63,13 @@ public:
     real const cube_length;
     real const cube_vertices[24];
 
+    Matrix cube_vertices_matrix;
+    Matrix *cube_vertices_list;
+
 
     /**
      * @brief Construct a new Cube object.
-     * 
+     *
      * @param cube_length Length of cube
      * @param position Initial position of the cube.
      * @param initial_orientation Initial orientation of cube
@@ -83,11 +86,13 @@ public:
     {
         this->position = position;
         this->orientation = initial_orientation;
+        this->cube_vertices_matrix = Matrix(3, 8, cube_vertices);
+        this->cube_vertices_list = this->cube_vertices_matrix.GetColumns();
     };
 
     /**
      * @brief Updates the state of the cube
-     * 
+     *
      */
     void Update()
     {
@@ -99,12 +104,12 @@ public:
 
             v = Linear velocity
             w = Angular velocity
-            
+
             m = Linear Inertia AKA mass
             I = Angular Inertia AKA moment of inertia
 
             x = Linear position
-            θ = Angular position   
+            θ = Angular position
 
             v = p * 1/m
             w = L * 1/I
@@ -113,11 +118,11 @@ public:
             dθ/dt = w
 
         Updating orientation quaternion involves the steps:
-            1)  Convert Scaled axes representation of angular velocity to a quaternion 
+            1)  Convert Scaled axes representation of angular velocity to a quaternion
                 scaled axes quaternion = (angular_velocity[0], angular_velocity[1], angular_velocity[2])
-            2)  Use the equation: 
+            2)  Use the equation:
                         new orientation = old orientation + 1/2 * scaled axes quaternion * old orientation
-        
+
         */
 
         linear_velocity = momentum * inverse_mass;
@@ -133,9 +138,9 @@ public:
 
     /**
      * @brief Returns the equivelent vector of a given vector in cube coordinates
-     * 
-     * @param world_vector 
-     * @return Matrix 
+     *
+     * @param world_vector
+     * @return Matrix
      */
     Matrix ConvertToCubeCoordinates(Matrix const &world_vector) const
     {
@@ -149,8 +154,8 @@ public:
     }
 
     /**
-     * @brief Adds a torque to the cube. 
-     * 
+     * @brief Adds a torque to the cube.
+     *
      * @param force The force vector in world coordinates
      * @param force_world_cooridinates The coordinates of the force in world coordinates
      * @param dt The amount of time the force was applied for
@@ -158,8 +163,8 @@ public:
     void AddTorque(Matrix const &force, Matrix const &force_world_cooridinates, real const dt)
     {
         /*
-            Initially the force and the force_world_coordinates are in world coordintes. However, the 
-            angular_momentums (which is a vector quantity) of the cube is in cube_coordinates. 
+            Initially the force and the force_world_coordinates are in world coordintes. However, the
+            angular_momentums (which is a vector quantity) of the cube is in cube_coordinates.
             Hence, we need to first transform the force, and the force_world_coordinates to cube coordinates.
         */
 
@@ -205,7 +210,7 @@ public:
 
     /**
      * @brief Set the Angular Momentum To Zero
-     * 
+     *
      */
     void SetAngularMomentumToZero()
     {
@@ -213,10 +218,10 @@ public:
     }
 
     /**
-     * @brief Gets the Orientation Matrix of the Cube Object. (Can be used to transform a vector from 
+     * @brief Gets the Orientation Matrix of the Cube Object. (Can be used to transform a vector from
      * cube coordinates to world coordinates -? not too sure )
-     * 
-     * @return Matrix& 
+     *
+     * @return Matrix&
      */
     Matrix &GetOrientationMatrix() const
     {
@@ -225,8 +230,8 @@ public:
 
     /**
      * @brief Get the Inverse Orientation Matrix of the cube Object.
-     * 
-     * @return Matrix& 
+     *
+     * @return Matrix&
      */
     Matrix &GetInverseOrientationMatrix() const
     {
@@ -239,102 +244,73 @@ public:
         return out;
     };
 
-    Matrix GetVerticesWorldCoordinates() const
+    Matrix GetCubeVerticesWorldCoordinates() const
     {
-        //real vertices[24];
-        //real diff = cube_length / 2;
-        /*for (unsigned int i = 0; i < 8; i++)
-        {
-            vertices[i + 0] = (i % 2 == 0 ? -diff : diff);
-            vertices[i + 8] = (((int)std::floor(i / 2)) % 2 == 0 ? -diff : diff);
-            vertices[i + 16] = (((int)std::floor(i / 4)) % 2 == 0 ? -diff : diff);
-        }*/
-        //Matrix out = Matrix::MatMul(this->GetInverseOrientationMatrix(), Matrix(3, 8, vertices));
-        Matrix out = Matrix::MatMul(Quaternion::GetOrientationMatrix3(this->orientation), Matrix(3, 8, this->cube_vertices));
+        Matrix out = Matrix::MatMul(Quaternion::GetOrientationMatrix3(this->orientation), cube_vertices_matrix);
         out.AddColumnVectorToMatrix(this->position);
         return out;
     }
 
+    Matrix GetVerticesInWorldCoordinates(Matrix &local_coordinates) const
+    {
+        Matrix out = Matrix::MatMul(Quaternion::GetOrientationMatrix3(this->orientation), local_coordinates);
+        out.AddColumnVectorToMatrix(this->position);
+        return out;
+    }
 
     /**
      * @brief Detect collision between Cube A and Cube B
-     * 
-     * @param A 
-     * @param B 
-     * @return Contact 
+     *
+     * @param A
+     * @param B
+     * @return Contact
      */
     void static CollisionDetect(Cube *a, Cube *b, vector<Contact> &contact_list)
     {
 
-        /*Matrix *b_o_inverse = Matrix::MatMul(Quaternion::GetInverseOrentationMatrix3(b->orientation), Matrix(3, 8, b->cube_vertices)).GetColumns();
-        auto b_world_coordinates = (Matrix *) malloc(sizeof(Matrix) * 8);
-        for(int i=0; i<8; i++) {
-            b_world_coordinates[i] = b_o_inverse[i] + b->position;
-        }*/
-
-        Matrix b_world_vertices = b->GetVerticesWorldCoordinates();
+        Matrix b_world_vertices = b->GetCubeVerticesWorldCoordinates();
         Matrix *b_world_vertices_cols = b_world_vertices.GetColumns();
         Matrix b_world_vertices_in_a_coordinates = a->GetVerticesInLocalCoordinates(b_world_vertices);
         Matrix *vertices = b_world_vertices_in_a_coordinates.GetColumns();
 
         for(int i=0; i<8; i++)
         {
-            if(IsCollision(*a, vertices[i])) {
+            if(IsCollision(a, vertices[i])) {
                 contact_list.push_back(ResolveCollision(a, vertices[i], b_world_vertices_cols[i], b));
             };
         }
 
-
-
-
-        /*Matrix *b_world_vertices = b->GetVerticesWorldCoordinates().GetColumns();
-        //Quaternion::GetInverseOrentationMatrix3(b->orientation) b->GetVerticesWorldCoordinates())
-        Matrix *vertices = numerics::Matrix::MatMul(Quaternion::GetOrientationMatrix3(a->orientation), b->GetVerticesWorldCoordinates()).GetColumns();
-
-        for(int i=0; i<8; i++)
-        {
-            Matrix v = vertices[i] - a->position + b->position;
-            if(IsCollision(*a, v)) {
-                contact_list.push_back(ResolveCollision(a, v, b_world_vertices[i] + b->position, b));
-            };
-        }*/
-
-        vector<Matrix> b_edge_points = {
-            vertices[0], vertices[1],
-            vertices[0], vertices[2],
-            vertices[1], vertices[3],
-            vertices[2], vertices[3],
-            vertices[6], vertices[7],
-            vertices[4], vertices[5],
-            vertices[6], vertices[4],
-            vertices[7], vertices[5],
-            vertices[6], vertices[2],
-            vertices[7], vertices[3],
-            vertices[0], vertices[4],
-            vertices[1], vertices[5]
+        vector<Matrix*> b_edge_points = {
+                &vertices[0], &vertices[1],
+                &vertices[0], &vertices[2],
+                &vertices[1], &vertices[3],
+                &vertices[2], &vertices[3],
+                &vertices[6], &vertices[7],
+                &vertices[4], &vertices[5],
+                &vertices[6], &vertices[4],
+                &vertices[7], &vertices[5],
+                &vertices[6], &vertices[2],
+                &vertices[7], &vertices[3],
+                &vertices[0], &vertices[4],
+                &vertices[1], &vertices[5]
         };
 
-        Matrix *a_edge_vertices = Matrix(3, 8, a->cube_vertices).GetColumns();
-        vector<Matrix> a_edge_points = {
-                a_edge_vertices[0], a_edge_vertices[1],
-                a_edge_vertices[0], a_edge_vertices[2],
-                a_edge_vertices[1], a_edge_vertices[3],
-                a_edge_vertices[2], a_edge_vertices[3],
-                a_edge_vertices[6], a_edge_vertices[7],
-                a_edge_vertices[4], a_edge_vertices[5],
-                a_edge_vertices[6], a_edge_vertices[4],
-                a_edge_vertices[7], a_edge_vertices[5],
-                a_edge_vertices[6], a_edge_vertices[2],
-                a_edge_vertices[7], a_edge_vertices[3],
-                a_edge_vertices[0], a_edge_vertices[4],
-                a_edge_vertices[1], a_edge_vertices[5]
+        Matrix *a_edge_vertices = a->cube_vertices_list;
+        vector<Matrix*> a_edge_points = {
+                &a_edge_vertices[0], &a_edge_vertices[1],
+                &a_edge_vertices[0], &a_edge_vertices[2],
+                &a_edge_vertices[1], &a_edge_vertices[3],
+                &a_edge_vertices[2], &a_edge_vertices[3],
+                &a_edge_vertices[6], &a_edge_vertices[7],
+                &a_edge_vertices[4], &a_edge_vertices[5],
+                &a_edge_vertices[6], &a_edge_vertices[4],
+                &a_edge_vertices[7], &a_edge_vertices[5],
+                &a_edge_vertices[6], &a_edge_vertices[2],
+                &a_edge_vertices[7], &a_edge_vertices[3],
+                &a_edge_vertices[0], &a_edge_vertices[4],
+                &a_edge_vertices[1], &a_edge_vertices[5]
         };
 
-        /*for (int i = 0; i < edge_points.size(); i += 2) {
-            CollisionDetectEdgeEdge(a, edge_points.at(i) -a->position + b->position, edge_points.at(i + 1)  - edge_points.at(i), b, contact_list);
-        };*/
-
-        //cout << "here" << endl;
         CollisionDetectEdgeEdgeNew(a, a_edge_points ,b_edge_points, contact_list, b);
     }
 
@@ -344,91 +320,94 @@ public:
         return n;
     }
 
-    void static CollisionDetectEdgeEdgeNew(Cube *a_cube, vector<Matrix>& a_edges, vector<Matrix>& b_edges, vector<Contact> &contact_list, Cube *b_cube) {
+
+
+    void static CollisionDetectEdgeEdgeNew(Cube *a_cube, vector<Matrix*>& a_edges, vector<Matrix*>& b_edges, vector<Contact> &contact_list, Cube *b_cube) {
         for (int i = 0; i < a_edges.size(); i += 2) {
-            real s;
-            real t;
-            Matrix c1;
-            Matrix c2;
-            real penetration = 1000000.0f;
-
-            for (int j = 0; j < b_edges.size(); j += 2) {
-                Matrix d1 = a_edges.at(i + 1) - a_edges.at(i);
-                Matrix d2 = b_edges.at(j + 1) - b_edges.at(j);
-
-                Matrix r = a_edges.at(i) - b_edges.at(j);
-                real a = Matrix::Dot(d1, d1);
-                real e = Matrix::Dot(d2, d2);
-                real f = Matrix::Dot(d2, r);
-                real epsilon = 0.000000000000000000000000000001;
-
-
-                if (a <= epsilon && e <= epsilon) {
-                    c1 = a_edges.at(i);
-                    c2 = b_edges.at(j);
-                    if(penetration >  sqrt(Matrix::Dot(c1 - c2, c1 - c2))) {
-                        penetration =  sqrt(Matrix::Dot(c1 - c2, c1 - c2));
-                        s = t = 0;
-                    }
-                    continue;
+            real min_s;
+            real min_t;
+            Matrix min_c1;
+            Matrix min_c2;
+            real min_dist = 10000000000000;
+            for(int j=0; j<b_edges.size(); j+=2) {
+                real s;
+                real t;
+                Matrix c1;
+                Matrix c2;
+                real dist = ClosestPtSegjmentSegment(*a_edges.at(i), *a_edges.at(i+1), *b_edges.at(j), *b_edges.at(j+1), s, t, c1, c2);
+                if(min_dist > dist) {
+                    min_dist = dist;
+                    min_s =s;
+                    min_t = t;
+                    min_c1 = c1;
+                    min_c2 = c2;
                 }
-                real ss = s;
-                real tt = t;
-                if (a <= epsilon) {
-                    s = 0.0f;
-                    t = f / e;
-                    t = Clamp(t, 0.0f, 1.0f);
-                } else {
-                    float c = Matrix::Dot(d1, r);
-                    if (e <= epsilon) {
-                        t = 0.0f;
-                        s = Clamp(-c / a, 0.0f, 1.0f); // t = 0 => s = (b*t - c) / a = -c / a
-                    } else {
-                        float b = Matrix::Dot(d1, d2);
-                        float denom = a * e - b * b;
-                        if (denom != 0.0f) {
-                            s = Clamp((b * f - c * e) / denom, 0.0f, 1.0f);
-                        } else {
-                            s = 0.0f;
-                        }
-                        t = (b * s + f) / e;
-                        if (t < 0.0f) {
-                            t = 0.0f;
-                            s = Clamp(-c / a, 0.0f, 1.0f);
-                        } else if (t > 1.0f) {
-                            t = 1.0f;
-                            s = Clamp((b - c) / a, 0.0f, 1.0f);
-                        }
-                    }
-                }
-                if( sqrt(Matrix::Dot(c1 - c2, c1 - c2)) < penetration ){
-                    penetration = sqrt(Matrix::Dot(c1 - c2, c1 - c2)) ;
-                    ss = s;
-                    tt = t;
-                    c1 = a_edges.at(i) + d1 * s;
-                    c2 = b_edges.at(j) + d2 * t;
-                }
-                s = ss;
-                t = tt;
             }
-
-            auto temp = (c1 + c2) /2;
-            if(IsCollision(*a_cube, temp)) {
-                temp.print();
-                cout << "collsdf" << endl;
-                contact_list.push_back(ResolveCollision(a_cube, temp, Matrix::MatMul(Quaternion::GetOrientationMatrix3(a_cube->orientation), temp) + a_cube->position,b_cube));
+            //auto temp = (min_c1 + min_c2) /2;
+            if(IsCollision(a_cube, min_c2)) {
+                //temp.print();
+                //cout << "collsdf" << endl;
+                auto ttt = a_cube->GetVerticesInWorldCoordinates(min_c2);
+                contact_list.push_back(ResolveCollision(a_cube, min_c2, ttt, b_cube));
             }
         }
     }
 
+
+    float static ClosestPtSegjmentSegment(Matrix& p1, Matrix &q1, Matrix &p2, Matrix &q2,
+                                          float &s, float &t, Matrix &c1, Matrix &c2)
+    {
+        Matrix d1 = q1 - p1; // Direction vector of segment S1
+        Matrix d2 = q2 - p2; // Direction vector of segment S2
+        Matrix r = p1 - p2;
+        float a = Matrix::Dot(d1, d1); // Squared length of segment S1, always nonnegative
+        float e = Matrix::Dot(d2, d2); // Squared length of segment S2, always nonnegative
+        float f = Matrix::Dot(d2, r);
+        real EPSILON = 0.0001;
+        if (a <= EPSILON && e <= EPSILON) {
+            s=t= 0.0f;
+            c1 = p1;
+            c2 = p2;
+            return Matrix::Dot(c1 - c2, c1 - c2);
+        }
+        if (a <= EPSILON) {
+            s = 0.0f;
+            t = f / e; // s = 0 => t = (b*s + f) / e = f / e
+            t = Clamp(t, 0.0f, 1.0f);
+        } else {
+            float c = Matrix::Dot(d1, r);
+            if (e <= EPSILON) {
+                t = 0.0f;
+                s = Clamp(-c / a, 0.0f, 1.0f); // t = 0 => s = (b*t - c) / a = -c / a
+            } else {
+                float b = Matrix::Dot(d1, d2);
+                float denom = a*e-b*b; // Always nonnegative
+                if (denom != 0.0f) {
+                    s = Clamp((b*f - c*e) / denom, 0.0f, 1.0f);
+                } else s = 0.0f;
+                t = (b*s + f) / e;
+                if (t < 0.0f) {
+                    t = 0.0f;
+                    s = Clamp(-c / a, 0.0f, 1.0f);
+                } else if (t > 1.0f) {
+                    t = 1.0f;
+                    s = Clamp((b - c) / a, 0.0f, 1.0f);
+                }
+            }
+        }
+        c1 = p1 + d1 * s;
+        c2 = p2 + d2 * t;
+        return Matrix::Dot(c1 - c2, c1 - c2);
+    }
+
     // make the below two functions private
 
-    /**
+    /* /**
      * @brief Detecting Collision between cubes, using edge to edge collision
      *
      * @param edge  The edge is a matrix of size 4x2. Columns represent the points
      * @return Contact
-     */
+
     void static CollisionDetectEdgeEdge(Cube *a, Matrix &edge_p1, Matrix &edge_p2, Cube *b, vector<Contact> &contact_list)
     {
         //equation of line = p1 + lambda * p2
@@ -450,10 +429,8 @@ public:
         //return ResolveCollision(a, min_point, Matrix::MatMul(a->GetTransformationMatrix(), min_point), b);
         //cout << "edge coll take place" << endl;
 
-        Matrix *t = new Matrix();
-        *t = Matrix::MatMul(Quaternion::GetOrientationMatrix3(a->orientation) , *min_point) + a->position;
-        contact_list.push_back(ResolveCollision(a, *min_point, *t, b));
-    }
+        contact_list.push_back(ResolveCollision(a, *min_point, Matrix::MatMul(Quaternion::GetOrientationMatrix3(a->orientation) , *min_point) + a->position, b));
+    }*/
 
 
     /**
@@ -463,10 +440,10 @@ public:
      * @param cube_point coordinate of point in cube coordinate. Is a 3x1 vector
      * @return bool
      */
-    static bool IsCollision(Cube &a, Matrix &cube_point)
+    static bool IsCollision(Cube *a, Matrix &cube_point)
     {
-        if (std::abs(cube_point(0, 0)) > a.cube_length/2 || std::abs(cube_point(1, 0)) > a.cube_length/2 ||
-            std::abs(cube_point(2, 0)) > a.cube_length/2)
+        if (std::abs(cube_point(0, 0)) > a->cube_length/2 || std::abs(cube_point(1, 0)) > a->cube_length/2 ||
+            std::abs(cube_point(2, 0)) > a->cube_length/2)
         {
             return false;
         };
@@ -542,17 +519,18 @@ public:
         values[15] = 1.0f;
 
         Matrix *result = new Matrix(4, 4, values);
+        delete[] values;
         return *result;
     };
 
     Matrix GetNormal(int normal_id) {
         //return Cube::normals[normal_id];
-        return Matrix::MatMul(Quaternion::GetInverseOrentationMatrix3(this->orientation), Cube::normals[normal_id]);
+        return Matrix::MatMul(Quaternion::GetOrientationMatrix3(this->orientation), Cube::normals[normal_id]);
     }
 
     void static CollisionResolution(Contact &contact) {
         Cube *body1 = contact.body1;                //The body pointer of the first cube //=nullptr
-        Cube *body2 = contact.body2;                //The body pointer of the second cube //=nullptr
+        Cube *body2 = contact.body2;            //The body pointer of the second cube //=nullptr
 
         Matrix r_ap = contact.point - body1->position;
         Matrix r_bp = contact.point - body2->position;
@@ -568,7 +546,7 @@ public:
         Matrix r_bp_cross_normal = Matrix::VectorProduct(r_bp, normal);
 
         real j = Matrix::Dot(v_ab_1, normal) * -2 / (body1->inverse_mass + body2->inverse_mass + Matrix::Dot(r_ap_cross_normal, r_ap_cross_normal)*body1->inverse_inertia +
-                Matrix::Dot(r_bp_cross_normal, r_bp_cross_normal)*body2->inverse_inertia);
+                                                     Matrix::Dot(r_bp_cross_normal, r_bp_cross_normal)*body2->inverse_inertia);
 
         Matrix w_a2 = body1->angular_velocity + Matrix::VectorProduct(r_ap, normal * j) * body1->inverse_inertia;
         Matrix w_b2 = body2->angular_velocity - Matrix::VectorProduct(r_bp, normal * j) * body2->inverse_inertia;

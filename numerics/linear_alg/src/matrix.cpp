@@ -82,6 +82,7 @@ namespace numerics
 
     Matrix::Matrix(const Matrix &a) //copy constructor
     {
+        //std::cout << "copy cons" << std::endl;
         this->rows = a.rows;
         this->cols = a.cols;
         this->values = new settings::real[rows * cols];
@@ -217,18 +218,21 @@ namespace numerics
 
     void Matrix::Transpose()
     {
+        std::cout << "Bad function Transpose in Matrix Ran" << std::endl;
+        // Make sure to first add a check on this transpose, since it can only happen on square matrices
         auto *new_values = new settings::real[this->cols * this->rows];
         for (int i = 0; i < this->rows; i++)
         {
             for (int j = 0; j < this->cols; j++)
             {
-                new_values[j * this->rows + i] = new_values[i * this->cols + j];
+                new_values[j * this->rows + i] = this->values[i * this->cols + j];
             }
         }
         int t = this->cols;
 
         this->cols = this->rows;
         this->rows = t;
+        delete[] values;
         this->values = new_values;
     }
 
@@ -243,6 +247,7 @@ namespace numerics
             }
         }
         auto *res = new Matrix(a.cols, a.rows, new_values);
+        delete[] new_values;
         return *res;
     }
 
@@ -272,6 +277,7 @@ namespace numerics
         };
 
         auto *res = new Matrix(a.rows, b.cols, new_values);
+        delete[] new_values;
         return *res;
     }
 
@@ -289,6 +295,7 @@ namespace numerics
         }
 
         auto *res = new Matrix(this->rows, this->cols, new_values);
+        delete[] new_values;
         return *res;
     };
 
@@ -297,6 +304,9 @@ namespace numerics
 
         if (!Matrix::IsSameShape(*this, a))
         {
+            a.print_shape();
+            this->print_shape();
+
             throw std::invalid_argument(GenerateError("Subtraction", *this, a));
         }
 
@@ -307,6 +317,7 @@ namespace numerics
         }
 
         auto *res = new Matrix(this->rows, this->cols, new_values);
+        delete[] new_values;
         return *res;
     }
 
@@ -324,6 +335,7 @@ namespace numerics
             new_values[i] = this->values[i] * a.values[i];
         }
         auto *res = new Matrix(this->rows, this->cols, new_values);
+        delete[] new_values;
         return *res;
     }
 
@@ -340,6 +352,7 @@ namespace numerics
             new_values[i] = this->values[i] / a.values[i];
         }
         auto *res = new Matrix(this->rows, this->cols, new_values);
+        delete[] new_values;
         return *res;
     };
 
@@ -550,7 +563,7 @@ if an element is nan, it returns 1 */
         return 0;
     }
 
-    Matrix *Matrix::GetRows() const
+    /*Matrix *Matrix::GetRows() const
     {
         auto *rows_list = (Matrix *)malloc(sizeof(Matrix) * this->rows);
         for (int i = 0; i < this->rows; i++)
@@ -563,9 +576,9 @@ if an element is nan, it returns 1 */
             rows_list[i] = Matrix(1, this->cols, new_values);
         }
         return rows_list;
-    }
+    }*/
 
-    void Matrix::AddColumn(Matrix const &vec)
+    /*void Matrix::AddColumn(Matrix const &vec)
     {
 
         if (vec.cols != 1 || this->rows != vec.rows)
@@ -587,9 +600,9 @@ if an element is nan, it returns 1 */
         delete[] this->values;
         this->values = new_vals;
         this->cols += 1;
-    }
+    }*/
 
-    void Matrix::AddRow(Matrix const &vec)
+    /*void Matrix::AddRow(Matrix const &vec)
     {
 
         if (vec.rows != 1 || this->cols != vec.cols)
@@ -607,7 +620,7 @@ if an element is nan, it returns 1 */
         delete[] this->values;
         this->values = new_vals;
         this->rows += 1;
-    }
+    }*/
 
 
     Matrix *Matrix::GetColumns() const
@@ -619,7 +632,6 @@ if an element is nan, it returns 1 */
             for (int j = 0; j < this->rows; j++)
             {
                 vals[j] = this->values[j * this->cols + i];
-
             }
             cols_list[i] = Matrix(this->rows, 1,vals);
             delete[] vals;
@@ -627,7 +639,7 @@ if an element is nan, it returns 1 */
         return cols_list;
     }
 
-    void Matrix::RemoveRow(int index)
+    /*void Matrix::RemoveRow(int index)
     {
         int size = this->cols * this->rows;
         if (size == 0)
@@ -646,9 +658,9 @@ if an element is nan, it returns 1 */
         delete[] values;
         values = new_values;
         rows--;
-    };
+    };*/
 
-    void Matrix::RemoveColumn(int index)
+    /*void Matrix::RemoveColumn(int index)
     {
         int size = this->cols * this->rows;
         if (size == 0)
@@ -667,7 +679,7 @@ if an element is nan, it returns 1 */
         delete[] values;
         values = new_values;
         cols--;
-    }
+    }*/
 
     void Matrix::Normalise() {
         settings::real norm = 0;

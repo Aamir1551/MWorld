@@ -442,7 +442,7 @@ namespace numerics
          * @brief Destroy the Matrix object
          * 
          */
-        ~Matrix() { delete[](values); };
+        ~Matrix() { delete[](this->values); };
 
         /**
          * @brief Get the Rows of the Matrix

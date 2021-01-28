@@ -214,7 +214,7 @@ public:
         return Quaternion::GetInverseMatrixTransformation(this->orientation);
     }
 
-    Matrix GetVerticesWorldCoordinates() const
+    Matrix GetCubeVerticesWorldCoordinates() const
     {
         real vertices[24];
         real diff = cube_length / 2;
@@ -237,8 +237,9 @@ public:
      */
     void static CollisionDetect(Cube *a, Cube *b, vector<Contact> &contact_list)
     {
-        Matrix *b_world_vertices = b->GetVerticesWorldCoordinates().GetColumns();
-        Matrix *vertices = numerics::Matrix::MatMul(Quaternion::GetOrientationMatrix3(a->orientation), b->GetVerticesWorldCoordinates()).GetColumns();
+        Matrix *b_world_vertices = b->GetCubeVerticesWorldCoordinates().GetColumns();
+        Matrix *vertices = numerics::Matrix::MatMul(Quaternion::GetOrientationMatrix3(a->orientation),
+                                                    b->GetCubeVerticesWorldCoordinates()).GetColumns();
 
         for(int i=0; i<8; i++) {
             vertices[i] = vertices[i] + b->position - a->position;

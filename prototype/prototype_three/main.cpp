@@ -48,11 +48,11 @@ int main()
     glm::mat4 projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 4000.0f);
 
     real cube_length = 4.0f;
-    real position_coord1[] = {-50, -0.0f, -20}; //x, y, z. x is how much horizontal y is vertical. z is in/out
+    real position_coord1[] = {-35, -2.0f, -20}; //x, y, z. x is how much horizontal y is vertical. z is in/out
     Matrix position1(3, 1, position_coord1);
     Cube c1(cube_length, position1, Quaternion(1, 0, 0, 0), 1.0f, 1.0f);
 
-    real position_coord2[] = {-10, 0, -20};
+    real position_coord2[] = {-25, 0, -20};
     Matrix position2(3, 1, position_coord2);
     Cube c2(cube_length, position2, Quaternion(1, 0, 0, 0), 1.0f, 1.0f);
 
@@ -77,7 +77,7 @@ int main()
     real initial_momentum2[] = {-0.002, 0.0, 0};
     c2.momentum = Matrix(3, 1, initial_momentum2);
 
-    Quaternion q = Quaternion(0.0f, 2.0f, 0.0f, 0.0f);
+    Quaternion q = Quaternion(0.0f, 2.0f, 2.0f, 0.0f);
     Quaternion spin = q * c1.orientation;
     c1.orientation += spin;
     c1.orientation.Normalise();
@@ -126,11 +126,11 @@ int main()
         vector<Contact> contact_list;
         Cube::CollisionDetect(&c1, &c2, contact_list);
 
-        real min_penetration_value = -10000000000;
+        real min_penetration_value = 10000000000;
         int min_contact_index = 0;
         for (int i = 0; i < contact_list.size(); i++)
         {
-            if (contact_list.at(i).penetration > min_penetration_value)
+            if (contact_list.at(i).penetration < min_penetration_value)
             {
                 min_contact_index = i;
             }
@@ -139,6 +139,7 @@ int main()
             //cout << "entered" << endl;
             Cube::CollisionResolution(contact_list.at(min_contact_index));
         }
+        //contact_list.clear();
 
 
         glm::mat4 rotation_mat1;
