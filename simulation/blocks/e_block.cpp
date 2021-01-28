@@ -24,7 +24,7 @@ namespace blocks {
 
     void EBlock::React(EBlock * block, real dist, const Matrix& to_cube) {
         // E block and E block repel as k increases
-        float factor = std::log(block->k * this->k);
+        float factor = std::log(block->k * this->k); // is zero is both blocks are k=1
         auto &force = to_cube;
         AddTorque(force, this->position, force_dt * factor / dist / dist * -1 * 0.1);
     };

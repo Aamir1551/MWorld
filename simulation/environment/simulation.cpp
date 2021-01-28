@@ -50,7 +50,7 @@ int main()
     real cube_length = 4.0f;
 
     //WorldHandler world = WorldHandler(20, 20, 20, 20,20, 20, 20);
-    WorldHandler world = WorldHandler(100, 0, 0,0 ,0,10,0);
+    WorldHandler world = WorldHandler(10, 0, 0,0 ,0,100,0);
 
     /*real position_coord1[] = {-20, -2.0f, -20}; //x, y, z. x is how much horizontal y is vertical. z is in/out
     Matrix position1(3, 1, position_coord1);
