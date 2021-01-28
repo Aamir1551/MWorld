@@ -10,5 +10,6 @@ uniform mat4 proj;
 void main()
 {
     gl_Position=proj*view*model*vec4(pos,1);
-    cc=pos;
+    //cc=pos; -- uncomment this line, to get the multi colour again
+    cc=vec3(1, 1, 1);
 };
