@@ -8,7 +8,8 @@ namespace blocks {
         if(block->state == this->state) {
             // Repel
             auto &force = to_cube;
-            AddTorque(force, this->position, Block::force_dt / dist / dist * -1 * 0.01); // as distance increases, force also decreases
+            //the one below should be negative, but for testing collisions purposes has bene made positive just this once
+            AddTorque(force, this->position, Block::force_dt / dist / dist * 1 * 0.1); // as distance increases, force also decreases
 
         }
     };
@@ -24,7 +25,7 @@ namespace blocks {
     void IBlock::React(EBlock * block, real dist, const Matrix &to_cube) {
         if(this->state == true) {
             auto &force = to_cube;
-            AddTorque(force, this->position, Block::force_dt / dist / dist); // as distance increases, force decreases
+            AddTorque(force, this->position, Block::force_dt / dist / dist * 0.1); // as distance increases, force decreases
         }
     };
 

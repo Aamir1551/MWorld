@@ -85,10 +85,10 @@ class WorldHandler {
 
 public:
 
-    vector<IBlock> iblocks;
-    vector<MBlock> mblocks;
-    vector<EBlock> eblocks;
-    vector<ZBlock> zblocks;
+    vector<IBlock *> iblocks;
+    vector<MBlock *> mblocks;
+    vector<EBlock *> eblocks;
+    vector<ZBlock *> zblocks;
 
     vector<Block *> blocks;
 
@@ -115,10 +115,11 @@ public:
         GetProperties(num_i_blocks, positions, orientations, angular_momentums, linear_momentums);
         for(int i=0; i<num_i_blocks; i++) {
             cout << "Add I Block ID: " << i << endl;
-            iblocks.push_back(IBlock(positions->at(i), orientations->at(i)  ,state));
-            blocks.push_back(&iblocks.at(i));
-            iblocks.at(i).SetAngularMomentum(angular_momentums->at(i));
-            iblocks.at(i).SetLinearMomentum(linear_momentums->at(i));
+            auto new_block = new IBlock(positions->at(i), orientations->at(i)  ,state);
+            iblocks.push_back(new_block);
+            blocks.push_back(new_block);
+            iblocks.at(i)->SetAngularMomentum(angular_momentums->at(i));
+            iblocks.at(i)->SetLinearMomentum(linear_momentums->at(i));
         }
     }
 
@@ -128,10 +129,11 @@ public:
         GetProperties(num_m_blocks, positions, orientations, angular_momentums, linear_momentums);
         for(int i=0; i<num_m_blocks; i++) {
             cout << "Add M Block ID: " << i << endl;
-            mblocks.push_back(MBlock(positions->at(i), orientations->at(i)  ,state));
-            blocks.push_back(&mblocks.at(i));
-            mblocks.at(i).SetAngularMomentum(angular_momentums->at(i));
-            mblocks.at(i).SetLinearMomentum(linear_momentums->at(i));
+            auto new_block =  new MBlock(positions->at(i), orientations->at(i)  ,state);
+            mblocks.push_back(new_block);
+            blocks.push_back(new_block);
+            mblocks.at(i)->SetAngularMomentum(angular_momentums->at(i));
+            mblocks.at(i)->SetLinearMomentum(linear_momentums->at(i));
         }
     }
 
@@ -141,10 +143,11 @@ public:
         GetProperties(num_e_blocks, positions, orientations, angular_momentums, linear_momentums);
         for(int i=0; i<num_e_blocks; i++) {
             cout << "Add E Block ID: " << i << endl;
-            eblocks.push_back(EBlock(positions->at(i), orientations->at(i), k));
-            blocks.push_back(&eblocks.at(i));
-            eblocks.at(i).SetAngularMomentum(angular_momentums->at(i));
-            eblocks.at(i).SetLinearMomentum(linear_momentums->at(i));
+            auto new_block = new EBlock(positions->at(i), orientations->at(i), k);
+            eblocks.push_back(new_block);
+            blocks.push_back(new_block);
+            eblocks.at(i)->SetAngularMomentum(angular_momentums->at(i));
+            eblocks.at(i)->SetLinearMomentum(linear_momentums->at(i));
         }
     }
 
@@ -154,70 +157,40 @@ public:
         GetProperties(num_z_blocks, positions, orientations, angular_momentums, linear_momentums);
         for(int i=0; i<num_z_blocks; i++) {
             cout << "Add Z Block ID: " << i << endl;
-            zblocks.push_back(ZBlock(positions->at(i), orientations->at(i)));
-            blocks.push_back(&zblocks.at(i));
-            zblocks.at(i).SetAngularMomentum(angular_momentums->at(i));
-            zblocks.at(i).SetLinearMomentum(linear_momentums->at(i));
+            auto new_block = new ZBlock(positions->at(i), orientations->at(i));
+            zblocks.push_back(new_block);
+            blocks.push_back(new_block);
+            zblocks.at(i)->SetAngularMomentum(angular_momentums->at(i));
+            zblocks.at(i)->SetLinearMomentum(linear_momentums->at(i));
         }
     }
 
     void Update() {
-        for(int i=0; i<this->iblocks.size(); i++) {
-            this->iblocks.at(i).Update();
-        };
-        /*for(int i=0; i<this->mblocks.size(); i++) {
-            this->mblocks.at(i).Update();
-        };
-        for(int i=0; i<this->eblocks.size(); i++) {
-            this->eblocks.at(i).Update();
-        };
-        for(int i=0; i<this->zblocks.size(); i++) {
-            this->zblocks.at(i).Update();
-        };*/
-
-        /*cout << this->blocks.size() << endl;
         for(int i=0; i<this->blocks.size(); i++) {
-            cout << i << endl;
             this->blocks.at(i)->Update();
-        }*/
+        }
     };
 
 
     void CollisionHandler() {
         vector<Contact> contact_list;
-        /*for(int i=0; i<blocks.size(); i++) {
-            for(int j=i; j<blocks.size(); j++) {
+        for(int i=0; i<blocks.size(); i++) {
+            for(int j=i+1; j<blocks.size(); j++) {
                 Cube::CollisionDetect(blocks.at(i), blocks.at(j), contact_list);
             }
-        }*/
-        Cube::CollisionDetect(&iblocks.at(0), &iblocks.at(1), contact_list);
+        }
         for(int i=0; i<contact_list.size(); i++) {
             Cube::CollisionResolution(contact_list.at(i));
         }
     }
 
     void AddForces() {
-
-        for(auto &eblock : this->eblocks) {
-            ReactClosestBlockToBlock(eblock);
+        for(auto &block: this->blocks) {
+            ReactClosestBlockToBlock(block);
         }
-
-        for(auto &mblock : this->mblocks) {
-            ReactClosestBlockToBlock(mblock);
-        }
-
-        for(auto &iblock : this->iblocks) {
-            ReactClosestBlockToBlock(iblock);
-        }
-
-        for(auto &zblock : this->zblocks) {
-            ReactClosestBlockToBlock(zblock);
-        }
-
     }
 
-    real ReactClosestBlockToBlock(Block &block) {
-
+    real ReactClosestBlockToBlock(Block *block) {
         real min_dist = 10000000000;
         Matrix to_cube_min;
 
@@ -225,9 +198,9 @@ public:
         int cube_loc = 0;
         int cube_type = 0;
         for(auto &eblock : this->eblocks) {
-            Matrix to_cube = eblock.position - block.position;
+            Matrix to_cube = eblock->position - block->position;
             real dist = Matrix::Norm(to_cube);
-            if(dist < min_dist && &eblock != &block) {
+            if(dist < min_dist && eblock != block) {
                 min_dist = dist;
                 cube_loc = i;
                 cube_type = 0;
@@ -237,9 +210,9 @@ public:
 
         i=0;
         for(auto &iblock : this->iblocks) {
-            Matrix to_cube = iblock.position - block.position;
+            Matrix to_cube = iblock->position - block->position;
             real dist = Matrix::Norm(to_cube);
-            if(dist < min_dist && &iblock != &block) {
+            if(dist < min_dist && iblock != block) {
                 min_dist = dist;
                 cube_loc = i;
                 cube_type = 1;
@@ -249,9 +222,9 @@ public:
 
         i=0;
         for(auto &mblock : this->mblocks) {
-            Matrix to_cube = mblock.position - block.position;
+            Matrix to_cube = mblock->position - block->position;
             real dist = Matrix::Norm(to_cube);
-            if(dist < min_dist  && &mblock != &block) {
+            if(dist < min_dist  && mblock != block) {
                 min_dist = dist;
                 cube_loc = i;
                 cube_type = 2;
@@ -261,9 +234,9 @@ public:
 
         i=0;
         for(auto &zblock : this->zblocks) {
-            Matrix to_cube =  zblock.position - block.position;
+            Matrix to_cube =  zblock->position - block->position;
             real dist = Matrix::Norm(to_cube);
-            if(dist < min_dist  && &zblock != &block ) {
+            if(dist < min_dist  && zblock != block ) {
                 min_dist = dist;
                 cube_loc = i;
                 cube_type = 3;
@@ -272,17 +245,17 @@ public:
         }
 
         if(cube_type == 0) {
-            to_cube_min = this->eblocks.at(cube_loc).position - block.position;
-            block.React(&this->eblocks.at(cube_loc), min_dist, to_cube_min);
+            to_cube_min = this->eblocks.at(cube_loc)->position - block->position;
+            block->React(this->eblocks.at(cube_loc), min_dist, to_cube_min);
         } else if(cube_type == 1) {
-            to_cube_min = this->iblocks.at(cube_loc).position - block.position;
-            block.React(&this->iblocks.at(cube_loc), min_dist, to_cube_min);
+            to_cube_min = this->iblocks.at(cube_loc)->position - block->position;
+            block->React(this->iblocks.at(cube_loc), min_dist, to_cube_min);
         } else if(cube_type == 2) {
-            to_cube_min = this->mblocks.at(cube_loc).position - block.position;
-            block.React(&this->mblocks.at(cube_loc), min_dist, to_cube_min);
+            to_cube_min = this->mblocks.at(cube_loc)->position - block->position;
+            block->React(this->mblocks.at(cube_loc), min_dist, to_cube_min);
         } else if(cube_type == 3) {
-            to_cube_min = this->zblocks.at(cube_loc).position - block.position;
-            block.React(&this->zblocks.at(cube_loc), min_dist, to_cube_min);
+            to_cube_min = this->zblocks.at(cube_loc)->position - block->position;
+            block->React(this->zblocks.at(cube_loc), min_dist, to_cube_min);
         }
 
         return min_dist;

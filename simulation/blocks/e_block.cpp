@@ -9,7 +9,7 @@ namespace blocks {
         if(block->state == true) {
             // E block and i+ block repel
             auto &force = to_cube;
-            AddTorque(force, this->position, Block::force_dt / dist / dist * -1); // as distance increases, force also decreases
+            AddTorque(force, this->position, Block::force_dt / dist / dist * 0.1); // as distance increases, force also decreases
         }
     };
 
@@ -26,7 +26,7 @@ namespace blocks {
         // E block and E block repel as k increases
         float factor = std::log(block->k * this->k);
         auto &force = to_cube;
-        AddTorque(force, this->position, force_dt * factor / dist * -1);
+        AddTorque(force, this->position, force_dt * factor / dist / dist * -1 * 0.1);
     };
 
 
