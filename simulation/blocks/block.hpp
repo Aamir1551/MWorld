@@ -31,13 +31,13 @@ namespace blocks {
 
         //when another block is closest to you
 
-        virtual void React(IBlock * block, real dist, const Matrix& to_cube) = 0;
+        virtual void React(IBlock * block, real squared_dist, const Matrix& to_cube) = 0;
 
-        virtual void React(MBlock * block, real dist, const Matrix& to_cube) = 0;
+        virtual void React(MBlock * block, real squared_dist, const Matrix& to_cube) = 0;
 
-        virtual void React(ZBlock * block, real dist, const Matrix& to_cube) = 0;
+        virtual void React(ZBlock * block, real squared_dist, const Matrix& to_cube) = 0;
 
-        virtual void React(EBlock * block, real dist ,const Matrix& to_cube) = 0;
+        virtual void React(EBlock * block, real squared_dist ,const Matrix& to_cube) = 0;
 
         virtual real ExtractFlareFromBlock() = 0;
 

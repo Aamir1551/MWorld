@@ -23,12 +23,12 @@ namespace blocks {
 
     };
 
-    void IBlock::React(EBlock * block, real squard_dist, const Matrix &to_cube) {
+    void IBlock::React(EBlock * block, real squared_dist, const Matrix &to_cube) {
         // I+ and E repel
         if(this->state == true) {
             // Repel
             auto &force = to_cube;
-            AddTorque(force, this->position, Block::force_dt / * 0.1 * -1); // as distance increases, force decreases
+            AddTorque(force, this->position, Block::force_dt / squared_dist * 0.1 * -1); // as distance increases, force decreases
         }
     };
 
