@@ -18,6 +18,7 @@ namespace blocks {
         real flare_value = 0.0f;
         real flare_inc = 0.0f;
         real static force_dt;
+        real static flare_capacity;
 
         Block(Matrix position, Quaternion initial_orientation, real initial_flare_amount) : Cube(4.0f, position,
                                                                                                  initial_orientation,
@@ -50,8 +51,8 @@ namespace blocks {
             AddTorque(force_direction * this->flare_inc, this->position + force_relative_coordinates, 1.01);
         }
 
-        virtual void UpdateFlare() {
-            this->flare_value += this->flare_inc;
+        void UpdateFlare() {
+            this->flare_value = std::min(this->flare_inc + this->flare_value, flare_capacity);
         };
     };
 

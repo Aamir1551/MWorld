@@ -14,5 +14,6 @@ namespace blocks {
     }
 
     real Block::force_dt = 0.01;
+    real Block::flare_capacity = 50.0f;
 }
 

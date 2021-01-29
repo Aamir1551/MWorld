@@ -42,5 +42,4 @@ namespace blocks {
         this->flare_inc += (flare_amount * 0.1) * k;
     };
 
-    real EBlock::flare_capacity = 50.0f;
 };

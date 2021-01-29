@@ -9,7 +9,6 @@ namespace blocks {
 
     public:
         static real threshold;
-        static real flare_capacity;
 
         MBlock(Matrix position, Quaternion initial_orientation) : Block(position, initial_orientation, 0) {
         }
@@ -28,10 +27,6 @@ namespace blocks {
 
         void AddFlareToBlock(real flare_amount) override {
             this->flare_inc = this->flare_inc + flare_amount * 0.01;
-        };
-
-        void UpdateFlare() override {
-            this->flare_value = std::min(this->flare_inc + this->flare_value, MBlock::flare_capacity);
         };
 
     };
