@@ -1,6 +1,7 @@
 #include <block.hpp>
 #include <i_block.hpp>
 #include <e_block.hpp>
+#include <cmath>
 
 namespace blocks {
 
@@ -26,9 +27,10 @@ namespace blocks {
     void IBlock::React(EBlock * block, real squared_dist, const Matrix &to_cube) {
         // I+ and E repel
         if(this->state == true) {
-            // Repel
+            // If k > 1: Repel, Otherwise Attract
+            real factor = std::log(block->k);
             auto &force = to_cube;
-            AddTorque(force, this->position, Block::force_dt / squared_dist * 0.1 * -1); // as distance increases, force decreases
+            AddTorque(force, this->position, Block::force_dt / squared_dist * 0.1 * -1 * factor); // as distance increases, force decreases
         }
     };
 
