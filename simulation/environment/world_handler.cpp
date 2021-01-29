@@ -188,12 +188,40 @@ public:
     void AddForces() {
         int i=0;
         for(auto &block: this->blocks) {
-            ReactClosestBlockToBlock(block);
+            ReactToAllBlocks(block);
+            //ReactClosestBlockToBlock(block);
             i++;
         }
     }
 
-    real ReactClosestBlockToBlock(Block *block) {
+
+    real ReactToAllBlocks(Block *block) {
+        for(int i=0; i<iblocks.size(); i++) {
+            Matrix to_cube = iblocks.at(i)->position - block->position;
+            real dist = Matrix::Norm(to_cube);
+            block->React(iblocks.at(i), dist, to_cube);
+        }
+
+        for(int i=0; i<zblocks.size(); i++) {
+            Matrix to_cube = zblocks.at(i)->position - block->position;
+            real dist = Matrix::Norm(to_cube);
+            block->React(zblocks.at(i), dist, to_cube);
+        }
+
+        for(int i=0; i<eblocks.size(); i++) {
+            Matrix to_cube = eblocks.at(i)->position - block->position;
+            real dist = Matrix::Norm(to_cube);
+            block->React(eblocks.at(i), dist, to_cube);
+        }
+
+        for(int i=0; i<mblocks.size(); i++) {
+            Matrix to_cube = mblocks.at(i)->position - block->position;
+            real dist = Matrix::Norm(to_cube);
+            block->React(mblocks.at(i), dist, to_cube);
+        }
+    }
+
+    /*real ReactClosestBlockToBlock(Block *block) {
         enum block_type {i_block, z_block, e_block, m_block};
 
         real min_dist = 10000000000;
@@ -256,7 +284,7 @@ public:
         }
 
         return min_dist;
-    }
+    }*/
 
     void static PassFlare(Block *a, Block *b) {
         real flare_from_a = a->ExtractFlareFromBlock();
