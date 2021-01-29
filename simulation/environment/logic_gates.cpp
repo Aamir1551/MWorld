@@ -49,11 +49,11 @@ int main()
     int num_blocks_same = 30;
     WorldHandler world = WorldHandler(1, 0, 0, 1, 0, 0);
 
-    real position_coord1[] = {-20, -2.0f, -20}; //x, y, z. x is how much horizontal y is vertical. z is in/out
+    real position_coord1[] = {-20, -0.0f, -20}; //x, y, z. x is how much horizontal y is vertical. z is in/out
     Matrix position1(3, 1, position_coord1);
     world.iblocks.at(0)->position =  position1;
 
-    real position_coord2[] = {10, 0, -20};
+    real position_coord2[] = {-18, 0, -20};
     Matrix position2(3, 1, position_coord2);
     world.mblocks.at(0)->position =  position2;
 

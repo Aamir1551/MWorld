@@ -112,7 +112,7 @@ namespace blocks {
             Matrix vect_dist = (c1->position - c2->position);
             real dist = Matrix::Norm(vect_dist);
             real length = (c1->cube_length + c2->cube_length) / 2;
-            if (dist < length) {
+            if (dist <= length) {
                 Matrix point = (c1->position + c2->position) / 2;
                 vect_dist.Normalise();
                 Contact contact_info = {point, length - dist, vect_dist, c1, c2};

@@ -30,7 +30,7 @@ namespace blocks {
         };
 
         void AddFlareToBlock(real flare_amount) override {
-            this->flare_inc += flare_amount * 0.1;
+            this->flare_inc += flare_amount * 0.1 * this->b;
         };
 
     };

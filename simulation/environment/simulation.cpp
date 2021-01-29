@@ -57,7 +57,7 @@ int main()
     world.zblocks.at(0)->position =  position1;
     //world.iblocks.at(0)->orientation =  Quaternion(1, 0, 0, 0);
 
-    real position_coord2[] = {10, 0, -20};
+    real position_coord2[] = {-10, 0, -20};
     Matrix position2(3, 1, position_coord2);
     world.zblocks.at(1)->position =  position2;
     //world.iblocks.at(1).orientation =  Quaternion(1, 0, 0, 0);

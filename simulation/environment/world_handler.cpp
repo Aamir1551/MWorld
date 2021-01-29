@@ -177,6 +177,8 @@ public:
         for(int i=0; i<contact_list.size(); i++) {
             Cube::CollisionResolution(contact_list.at(i));
         }
+        PassBlockFlares(contact_list);
+        IncFlareValues();
     }
 
     void AddForces() {
@@ -232,6 +234,13 @@ public:
 
         a->AddFlareToBlock(flare_from_b);
         b->AddFlareToBlock(flare_from_a);
+    }
+
+    void IncFlareValues() {
+        for(int i=0; i<this->blocks.size(); i++) {
+            this->blocks.at(i)->flare_value += this->blocks.at(i)->flare_inc;
+            this->blocks.at(i)->flare_inc = 0;
+        }
     }
 
 };
