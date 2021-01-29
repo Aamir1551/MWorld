@@ -243,6 +243,17 @@ public:
         }
     }
 
+    void AddSpin(vector<Block *> &block_list, Matrix &force_relative_coordinates) {
+        for(int i=0; i<blocks.size(); i++) {
+            blocks.at(i)->spin(force_relative_coordinates);
+        }
+    }
+
+    void SpinWorldBlocks() {
+        AddSpin(iblocks, )
+
+    }
+
 };
 
 

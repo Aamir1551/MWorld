@@ -11,7 +11,7 @@ namespace blocks {
         static real threshold;
         static real flare_capacity;
 
-        MBlock(Matrix position, Quaternion initial_orientation) : Block(position, initial_orientation, 10) {
+        MBlock(Matrix position, Quaternion initial_orientation) : Block(position, initial_orientation, 0) {
         }
 
         void React(IBlock *block, real dist, const Matrix& to_cube) override;
