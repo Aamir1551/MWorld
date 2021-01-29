@@ -9,6 +9,7 @@
 
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
+#include <ctime>
 
 #include <vector>
 
@@ -29,11 +30,10 @@ using namespace blocks;
 
 std::vector<Matrix> *GeneratePositions(int num_cubes)
 {
-    srand((unsigned)time(NULL)); //NULL???
     auto *positions = new std::vector<Matrix>;
     real world_size = 100.0;
     real const scale = world_size / ((real)RAND_MAX / 2.0);
-    auto get_coord = [scale, world_size]() -> real { return scale * (rand() - RAND_MAX / 2); };
+    auto get_coord = [scale, world_size]() -> real { return scale * (rand() - RAND_MAX / 2.0); };
     for (int i = 0; i < num_cubes; i++)
     {
         real values[] = {get_coord(), get_coord(), get_coord()};
@@ -44,7 +44,6 @@ std::vector<Matrix> *GeneratePositions(int num_cubes)
 
 std::vector<Matrix> *GenerateAngularMomentums(int num_cubes)
 {
-    srand((unsigned)time(NULL)); //NULL???
     auto *angular_momentums = new std::vector<Matrix>;
     auto get_angular_momentums = []() -> real { return (rand() % 1)/100 - 0.0005;};
     for (int i = 0; i < num_cubes; i++)
@@ -57,7 +56,6 @@ std::vector<Matrix> *GenerateAngularMomentums(int num_cubes)
 
 std::vector<Matrix> *GenerateLinearMomentums(int num_cubes)
 {
-    srand((unsigned)time(NULL)); //NULL???
     auto *linear_momentums = new std::vector<Matrix>;
     auto get_momentums = []() -> real { return (rand() % 1)/100 - 0.0005;};
     for (int i = 0; i < num_cubes; i++)
@@ -70,7 +68,6 @@ std::vector<Matrix> *GenerateLinearMomentums(int num_cubes)
 
 std::vector<Quaternion> *GenerateOrientations(int num_cubes)
 {
-    srand((unsigned)time(NULL)); //NULL???
     auto *orientations = new std::vector<Quaternion>;
     for (int i = 0; i < num_cubes; i++)
     {
@@ -93,6 +90,7 @@ public:
     vector<Block *> blocks;
 
     WorldHandler(int num_i_blocks_plus, int num_i_blocks_neg, int num_z_blocks, int num_m_blocks_plus, int num_m_blocks_neg, int num_e_blocks_1, int num_e_blocks_1_2) {
+        srand((unsigned)time(0)); //NULL???
         AddIBlocks(num_i_blocks_plus, true);
         AddIBlocks(num_i_blocks_neg, false);
         AddMBlocks(num_m_blocks_plus, true);

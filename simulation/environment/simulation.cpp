@@ -46,12 +46,12 @@ int main()
     Camera camera(world_properties->window);
     glm::mat4 view = camera.CalculateView();
 
-    glm::mat4 projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 400.0f);
+    glm::mat4 projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 4000.0f);
 
     real cube_length = 4.0f;
 
-    //WorldHandler world = WorldHandler(20, 20, 20, 20,20, 20, 20);
-    WorldHandler world = WorldHandler(00, 0, 100,00 ,0,00,0);
+    WorldHandler world = WorldHandler(10, 10, 10, 10,10, 10, 10);
+    //WorldHandler world = WorldHandler(100, 10, 100,10 ,0,00,0);
 
     /*real position_coord1[] = {-20, -2.0f, -20}; //x, y, z. x is how much horizontal y is vertical. z is in/out
     Matrix position1(3, 1, position_coord1);
@@ -105,9 +105,9 @@ int main()
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        //world.Update();
-        //world.CollisionHandler();
-        //world.AddForces();
+        world.Update();
+        world.CollisionHandler();
+        world.AddForces();
 
         /*for(int i =0; i<world.blocks.size(); i++) {
             glm::mat4 rotation_mat;
