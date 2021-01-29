@@ -115,7 +115,7 @@ public:
         GetProperties(num_i_blocks, positions, orientations, angular_momentums, linear_momentums);
         for(int i=0; i<num_i_blocks; i++) {
             cout << "Add I Block ID: " << i << endl;
-            auto new_block = new IBlock(positions->at(i), Quaternion(0.0, 0.0, 0.0, 0.0)  ,state);
+            auto new_block = new IBlock(positions->at(i), Quaternion(1.0, 0.0, 0.0, 0.0)  ,state);
             iblocks.push_back(new_block);
             blocks.push_back(new_block);
             //iblocks.at(i)->SetAngularMomentum(angular_momentums->at(i));
@@ -129,7 +129,7 @@ public:
         GetProperties(num_m_blocks, positions, orientations, angular_momentums, linear_momentums);
         for(int i=0; i<num_m_blocks; i++) {
             cout << "Add M Block ID: " << i << endl;
-            auto new_block =  new MBlock(positions->at(i), Quaternion(0.0, 0.0, 0.0, 0.0)  ,state);
+            auto new_block =  new MBlock(positions->at(i), Quaternion(1.0, 0.0, 0.0, 0.0)  ,state);
             mblocks.push_back(new_block);
             blocks.push_back(new_block);
             //mblocks.at(i)->SetAngularMomentum(angular_momentums->at(i));
@@ -143,7 +143,7 @@ public:
         GetProperties(num_e_blocks, positions, orientations, angular_momentums, linear_momentums);
         for(int i=0; i<num_e_blocks; i++) {
             cout << "Add E Block ID: " << i << endl;
-            auto new_block = new EBlock(positions->at(i), Quaternion(0.0, 0.0, 0.0, 0.0), k);
+            auto new_block = new EBlock(positions->at(i), Quaternion(1.0, 0.0, 0.0, 0.0), k);
             eblocks.push_back(new_block);
             blocks.push_back(new_block);
             //eblocks.at(i)->SetAngularMomentum(angular_momentums->at(i));
@@ -157,7 +157,7 @@ public:
         GetProperties(num_z_blocks, positions, orientations, angular_momentums, linear_momentums);
         for(int i=0; i<num_z_blocks; i++) {
             cout << "Add Z Block ID: " << i << endl;
-            auto new_block = new ZBlock(positions->at(i), Quaternion(0.0, 0.0, 0.0, 0.0));
+            auto new_block = new ZBlock(positions->at(i), Quaternion(1.0, 0.0, 0.0, 0.0));
             zblocks.push_back(new_block);
             blocks.push_back(new_block);
             //zblocks.at(i)->SetAngularMomentum(angular_momentums->at(i));

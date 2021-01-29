@@ -51,7 +51,7 @@ int main()
     real cube_length = 4.0f;
 
     //WorldHandler world = WorldHandler(20, 20, 20, 20,20, 20, 20);
-    WorldHandler world = WorldHandler(100, 0, 0,100 ,0,00,0);
+    WorldHandler world = WorldHandler(00, 0, 100,00 ,0,00,0);
 
     /*real position_coord1[] = {-20, -2.0f, -20}; //x, y, z. x is how much horizontal y is vertical. z is in/out
     Matrix position1(3, 1, position_coord1);
@@ -105,9 +105,9 @@ int main()
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        world.Update();
-        world.CollisionHandler();
-        world.AddForces();
+        //world.Update();
+        //world.CollisionHandler();
+        //world.AddForces();
 
         /*for(int i =0; i<world.blocks.size(); i++) {
             glm::mat4 rotation_mat;
@@ -125,12 +125,9 @@ int main()
             glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
         }*/
         DrawBlocks( (vector<Block*> *) &(world.iblocks), glm::vec3(0, 1, 1), id, cubes, camera, view);
-        DrawBlocks( (vector<Block*> *) &world.mblocks, glm::vec3(1, 0, 1), id, cubes, camera, view);
-        DrawBlocks( (vector<Block*> *) &world.zblocks, glm::vec3(0, 0, 1), id, cubes, camera, view);
-        DrawBlocks( (vector<Block*> *) &world.eblocks, glm::vec3(1, 1, 1), id, cubes, camera, view);
-
-
-        cubes.models.clear();
+        DrawBlocks( (vector<Block*> *) &(world.zblocks), glm::vec3(1, 0, 1), id, cubes, camera, view);
+        DrawBlocks( (vector<Block*> *) &(world.eblocks), glm::vec3(0, 0, 1), id, cubes, camera, view);
+        DrawBlocks( (vector<Block*> *) &(world.mblocks), glm::vec3(1, 1, 1), id, cubes, camera, view);
 
         glfwSwapBuffers(world_properties->window);
         glfwPollEvents();
@@ -156,10 +153,7 @@ void DrawBlocks(vector<Block *> *block_list,glm::vec3 colour, glm::mat4& id, Cub
 
         glm::mat4 model = glm::translate(id, translation_mat);
         model = model * rotation_mat;
-        cubes.models.push_back(&model);
-
-        cubes.ApplyUniforms(i);
-
+        cubes.ApplyUniforms(model);
 
         int colour_loc = glGetUniformLocation(CubeRenderer::shader_id, "colour");
         glUniform3fv(colour_loc, 1, glm::value_ptr(colour));

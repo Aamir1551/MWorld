@@ -18,7 +18,6 @@ namespace render_utils
 
     public:
         static settings::real cube_length;
-        std::vector<glm::mat4 *> models;
         static glm::mat4 *view;
         static glm::mat4 *project;
         static int vao;
@@ -50,7 +49,7 @@ namespace render_utils
             CubeRenderer::project = project;
         }
 
-        void ApplyUniforms(int model_id);
+        void ApplyUniforms(glm::mat4 &model_mat);
 
         void static AddVerticesToBuffers()
         {
