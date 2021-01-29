@@ -17,11 +17,11 @@ namespace blocks {
     };
 
     void IBlock::React(MBlock  * block, real squared_dist, const Matrix &to_cube) {
-
+        // neutral
     };
 
     void IBlock::React(ZBlock  *block, real squared_dist, const Matrix &to_cube) {
-
+        // neutral
     };
 
     void IBlock::React(EBlock * block, real squared_dist, const Matrix &to_cube) {
