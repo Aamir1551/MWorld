@@ -29,7 +29,7 @@ void DrawBlocks(vector<Block *> *block_list,glm::vec3 colour, glm::mat4& id, Cub
 
 int main()
 {
-    cout << "Running MWorld Simulation" << endl;
+    cout << "Running MWorld Logic Gate Simulation" << endl;
 
     WorldProperties *world_properties = world_intializer();
 

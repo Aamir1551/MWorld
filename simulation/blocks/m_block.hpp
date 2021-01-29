@@ -8,12 +8,10 @@ namespace blocks {
     class MBlock : public Block {
 
     public:
-        bool state;
         static real threshold;
         static real flare_capacity;
 
-        MBlock(Matrix position, Quaternion initial_orientation, bool state) : Block(position, initial_orientation, 10) {
-            this->state = state;
+        MBlock(Matrix position, Quaternion initial_orientation) : Block(position, initial_orientation, 10) {
         }
 
         void React(IBlock *block, real dist, const Matrix& to_cube) override;

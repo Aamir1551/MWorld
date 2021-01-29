@@ -89,12 +89,11 @@ public:
 
     vector<Block *> blocks;
 
-    WorldHandler(int num_i_blocks_plus, int num_i_blocks_neg, int num_z_blocks, int num_m_blocks_plus, int num_m_blocks_neg, int num_e_blocks_1, int num_e_blocks_1_2) {
+    WorldHandler(int num_i_blocks_plus, int num_i_blocks_neg, int num_z_blocks, int num_m_blocks, int num_e_blocks_1, int num_e_blocks_1_2) {
         srand((unsigned)time(0)); //NULL???
         AddIBlocks(num_i_blocks_plus, true);
         AddIBlocks(num_i_blocks_neg, false);
-        AddMBlocks(num_m_blocks_plus, true);
-        AddMBlocks(num_m_blocks_neg, false);
+        AddMBlocks(num_m_blocks);
         AddZBlocks(num_z_blocks);
         AddEBlocks(num_e_blocks_1, 1);
         AddEBlocks(num_e_blocks_1_2, 0.5f);
@@ -121,13 +120,13 @@ public:
         }
     }
 
-    void AddMBlocks(int num_m_blocks, bool state) {
+    void AddMBlocks(int num_m_blocks) {
         std::vector<Matrix> *positions,  *angular_momentums, *linear_momentums;
         std::vector<Quaternion> *orientations;
         GetProperties(num_m_blocks, positions, orientations, angular_momentums, linear_momentums);
         for(int i=0; i<num_m_blocks; i++) {
             cout << "Add M Block ID: " << i << endl;
-            auto new_block =  new MBlock(positions->at(i), Quaternion(1.0, 0.0, 0.0, 0.0)  ,state);
+            auto new_block =  new MBlock(positions->at(i), Quaternion(1.0, 0.0, 0.0, 0.0));
             mblocks.push_back(new_block);
             blocks.push_back(new_block);
             //mblocks.at(i)->SetAngularMomentum(angular_momentums->at(i));
