@@ -84,6 +84,21 @@ public:
 
     vector<Block *> blocks;
 
+    real const static right_force_coordinates[];
+    real const static up_force_coordinates[];
+    real const static turn_force_coordinates[];
+
+    Matrix const static right_force_coordinates_mat;
+    Matrix const static up_force_coordinates_mat;
+    Matrix const static turn_force_coordinates_mat;
+
+    real const static force_direction_1[];
+    real const static force_direction_2[];
+
+    Matrix const static force_direction_mat1;
+    Matrix const static force_direction_mat2;
+
+
     WorldHandler(int num_i_blocks_plus, int num_i_blocks_neg, int num_z_blocks, int num_m_blocks, int num_e_blocks_1, int num_e_blocks_1_2) {
         srand((unsigned)time(0)); //NULL???
         AddIBlocks(num_i_blocks_plus, true);
@@ -244,33 +259,40 @@ public:
         }
     }
 
-    void AddSpin(vector<Block *> *block_list,  Matrix &force_direction, Matrix &force_relative_coordinates) {
+    void AddSpin(vector<Block *> *block_list,  Matrix const &force_direction, Matrix const &force_relative_coordinates) {
         for(int i=0; i<block_list->size(); i++) {
             block_list->at(i)->spin(force_direction, force_relative_coordinates);
         }
     }
 
     void SpinWorldBlocks() {
-        real left_force_coordinates[] = {-2, 0, -5};
-        real right_force_coordinates[] = {2, 0, -5};
-        real up_force_coordinates[] = {0, 2, -5};
-        real down_force_coordinates[] = {0, -2, -5};
 
-        Matrix right_force(3, 1, right_force_coordinates);
-        Matrix left_force(3, 1, left_force_coordinates);
-        Matrix up_force(3, 1, up_force_coordinates);
-        Matrix down_force(3, 1, down_force_coordinates);
-
-
-        real force_direction[] = {0, 0, -5}; // make sure to change direction of force
-        Matrix force_world_vector(3, 1, force_direction);
-
-        AddSpin((vector<Block*>*) (&this->mblocks), force_world_vector, up_force);
-
+        AddSpin((vector<Block*>*) (&this->mblocks), force_direction_mat1, up_force_coordinates_mat);
+        AddSpin((vector<Block*>*) (&this->iblocks), force_direction_mat1, right_force_coordinates_mat);
+        AddSpin((vector<Block*>*) (&this->eblocks), force_direction_mat2, turn_force_coordinates_mat);
     }
+
+
+
+
+
 
 };
 
+
+real const WorldHandler::right_force_coordinates[] = {2, 0, -5};
+real const WorldHandler::up_force_coordinates[] = {0, 2, -5};
+real const WorldHandler::turn_force_coordinates[] = {2, 0, -5};
+
+Matrix const WorldHandler::right_force_coordinates_mat(3, 1, WorldHandler::right_force_coordinates);
+Matrix const WorldHandler::up_force_coordinates_mat(3, 1, up_force_coordinates);
+Matrix const WorldHandler::turn_force_coordinates_mat(3, 1, turn_force_coordinates);
+
+real const WorldHandler::force_direction_1[] = {0, 0, -5}; // make sure to change direction of force
+real const WorldHandler::force_direction_2[] = {-5, 0, 0}; // make sure to change direction of force
+
+Matrix const WorldHandler::force_direction_mat1(3, 1, force_direction_1);
+Matrix const WorldHandler::force_direction_mat2(3, 1, force_direction_2);
 
 
 #endif

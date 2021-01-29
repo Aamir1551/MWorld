@@ -45,7 +45,7 @@ namespace blocks {
 
         virtual void AddFlareToBlock(real flare_amount) = 0;
 
-        void spin(Matrix &force_direction, Matrix &force_relative_coordinates) {
+        void spin(Matrix const &force_direction, Matrix const &force_relative_coordinates) {
              Cube::AddTorque(force_direction * this->flare_inc, this->position + force_relative_coordinates, 1.01);
         }
 

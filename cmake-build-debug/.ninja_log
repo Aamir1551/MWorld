@@ -60,3 +60,12 @@
 861	936	6336556983357443	simulation/blocks/libblocks.a	9a6e7737f8c8799c
 24	1917	6336556993149874	simulation/environment/CMakeFiles/logic_gates.dir/logic_gates.cpp.obj	9b0fb4b09a5d12d9
 1918	2259	6336556996383871	simulation/environment/logic_gates.exe	a96187776d1a2063
+17	868	6336562698237952	simulation/blocks/CMakeFiles/blocks.dir/z_block.cpp.obj	4482789c6aa25db7
+11	881	6336562698347665	simulation/blocks/CMakeFiles/blocks.dir/block.cpp.obj	c09e136d282fec9a
+24	935	6336562699035813	simulation/blocks/CMakeFiles/blocks.dir/m_block.cpp.obj	8eba9adff21bf522
+14	947	6336562699185432	simulation/blocks/CMakeFiles/blocks.dir/i_block.cpp.obj	cc77b95de594f220
+5	979	6336562699544456	simulation/blocks/CMakeFiles/blocks.dir/e_block.cpp.obj	c417ca21efc1a159
+9	1068	6336562700432090	simulation/blocks/CMakeFiles/blocks.dir/cube.cpp.obj	22f4ea64377d074e
+1068	1162	6336562701369564	simulation/blocks/libblocks.a	9a6e7737f8c8799c
+20	2218	6336562711942535	simulation/environment/CMakeFiles/simulation.dir/simulation.cpp.obj	12b260831a669cf3
+2219	2571	6336562715160936	simulation/environment/simulation.exe	da933e91212b965a
