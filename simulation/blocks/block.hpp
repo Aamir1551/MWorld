@@ -47,12 +47,11 @@ namespace blocks {
         virtual void AddFlareToBlock(real flare_amount) = 0;
 
         void spin(Matrix const &force_direction, Matrix const &force_relative_coordinates) {
-            auto temp =  force_direction * this->flare_inc;
             AddTorque(force_direction * this->flare_inc, this->position + force_relative_coordinates, 1.01);
         }
 
         void UpdateFlare() {
-            this->flare_value = std::min(this->flare_inc + this->flare_value, flare_capacity);
+            this->flare_value = std::min(this->flare_inc + this->flare_value, Block::flare_capacity);
         };
     };
 
