@@ -112,12 +112,10 @@ int main()
 
         glm::mat4 model = glm::translate(id, translation_mat);
         model = model * rotation_mat;
-        cubes.models.push_back(&model);
         view = camera.CalculateView();
-        cubes.ApplyUniforms(0);
+        cubes.ApplyUniforms(model);
 
         glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
-        cubes.models.clear();
 
         glfwSwapBuffers(world_properties->window);
         glfwPollEvents();

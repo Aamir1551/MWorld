@@ -262,7 +262,7 @@ public:
         Matrix down_force(3, 1, down_force_coordinates);
 
 
-        real force_vector[] = {0, 0, -5}; // make sure to change direction of force
+        real force_vector[] = {-5, 0, -5}; // make sure to change direction of force
         Matrix force_world_vector(3, 1, force_vector);
 
         AddSpin((vector<Block*>*) (&this->mblocks), force_world_vector, up_force);
