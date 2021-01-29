@@ -66,3 +66,17 @@
 8	503	6336607551694006	simulation/blocks/CMakeFiles/blocks.dir/cube.cpp.obj	22f4ea64377d074e
 503	582	6336607552499461	simulation/blocks/libblocks.a	9a6e7737f8c8799c
 582	928	6336607555646572	simulation/environment/logic_gates.exe	a96187776d1a2063
+18	825	6336610993578091	simulation/blocks/CMakeFiles/blocks.dir/z_block.cpp.obj	4482789c6aa25db7
+5	836	6336610993578091	simulation/blocks/CMakeFiles/blocks.dir/e_block.cpp.obj	c417ca21efc1a159
+15	847	6336610993827421	simulation/blocks/CMakeFiles/blocks.dir/m_block.cpp.obj	8eba9adff21bf522
+12	854	6336610993937116	simulation/blocks/CMakeFiles/blocks.dir/i_block.cpp.obj	cc77b95de594f220
+10	896	6336610994355991	simulation/blocks/CMakeFiles/blocks.dir/block.cpp.obj	c09e136d282fec9a
+8	959	6336610994994284	simulation/blocks/CMakeFiles/blocks.dir/cube.cpp.obj	22f4ea64377d074e
+960	1076	6336610996181137	simulation/blocks/libblocks.a	9a6e7737f8c8799c
+21	2191	6336611007321839	simulation/environment/CMakeFiles/logic_gates.dir/logic_gates.cpp.obj	9b0fb4b09a5d12d9
+2191	2544	6336611010647799	simulation/environment/logic_gates.exe	a96187776d1a2063
+5	1029	6336611130487258	prototype/prototype_one/CMakeFiles/prototype_one.dir/main.cpp.obj	e0fc4972e82e16f6
+1029	1290	6336611132896304	prototype/prototype_one/prototype_one.exe	3d8f8aeebdc256
+4	421	6336611498620924	prototype/prototype_three/CMakeFiles/prototype_three.dir/cube.cpp.obj	f87c2b6524b8301b
+7	1029	6336611504671876	prototype/prototype_three/CMakeFiles/prototype_three.dir/main.cpp.obj	60b6f42a5afde57f
+1029	1302	6336611507209133	prototype/prototype_three/prototype_three.exe	ddadbda82cf95dfb

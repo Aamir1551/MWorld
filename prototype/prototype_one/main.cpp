@@ -80,16 +80,18 @@ int main()
         {
             glm::mat4 model = glm::translate(id, positions->at(i));
             model = glm::rotate(model, glm::radians((float)glfwGetTime() * 20 * ((i + 1) % 20)), rotations->at(i));
-            cubes.models.push_back(&model);
 
             //view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
             view = camera.CalculateView();
 
-            cubes.ApplyUniforms(i);
+            cubes.ApplyUniforms(model);
+
+            glm::vec3 colour = glm::vec3(1, 1, 1);
+            int colour_loc = glGetUniformLocation(CubeRenderer::shader_id, "colour");
+            glUniform3fv(colour_loc, 1, glm::value_ptr(colour));
 
             glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
         }
-        cubes.models.clear();
 
         glfwSwapBuffers(world_properties->window);
         glfwPollEvents(); //checks if any events are triggered, and calls their respective handlers

@@ -138,9 +138,12 @@ int main()
 
         glm::mat4 model1 = glm::translate(id, translation_mat1);
         model1 = model1 * rotation_mat1;
-        cubes.models.push_back(&model1);
 
-        cubes.ApplyUniforms(0);
+        cubes.ApplyUniforms(model1);
+        glm::vec3 colour = glm::vec3(1, 1, 1);
+        int colour_loc = glGetUniformLocation(CubeRenderer::shader_id, "colour");
+        glUniform3fv(colour_loc, 1, glm::value_ptr(colour));
+
         glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 
         glm::mat4 rotation_mat2;
@@ -151,13 +154,14 @@ int main()
 
         glm::mat4 model2 = glm::translate(id, translation_mat2);
         model2 = model2 * rotation_mat2;
-        cubes.models.push_back(&model2);
 
         view = camera.CalculateView();
-        cubes.ApplyUniforms(1);
+        cubes.ApplyUniforms(model2);
+
+        colour_loc = glGetUniformLocation(CubeRenderer::shader_id, "colour");
+        glUniform3fv(colour_loc, 1, glm::value_ptr(colour));
 
         glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
-        cubes.models.clear();
 
         glfwSwapBuffers(world_properties->window);
         glfwPollEvents();
