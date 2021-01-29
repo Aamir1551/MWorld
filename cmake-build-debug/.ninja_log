@@ -22,7 +22,7 @@
 7	428	6336549190356975	prototype/prototype_two/CMakeFiles/prototype_two.dir/cube.cpp.obj	1dc6c1fecb1c272a
 1675	2020	6336612638499463	simulation/environment/simulation.exe	da933e91212b965a
 5	914	6336550393336592	prototype/prototype_two/CMakeFiles/prototype_two.dir/main.cpp.obj	5d4db0440f130d4d
-3	1073	6336619348495195	build.ninja	86ad8b687f76afe4
+3	1073	6336619804642534	build.ninja	86ad8b687f76afe4
 8	959	6336610994994284	simulation/blocks/CMakeFiles/blocks.dir/cube.cpp.obj	22f4ea64377d074e
 18	825	6336610993578091	simulation/blocks/CMakeFiles/blocks.dir/z_block.cpp.obj	4482789c6aa25db7
 15	847	6336610993827421	simulation/blocks/CMakeFiles/blocks.dir/m_block.cpp.obj	8eba9adff21bf522
@@ -33,3 +33,11 @@
 15651	24882	6332221953633018	numerics/linear_alg/test/matrix_test.exe	2a5f2e033f9e5d87
 21	2191	6336611007321839	simulation/environment/CMakeFiles/logic_gates.dir/logic_gates.cpp.obj	9b0fb4b09a5d12d9
 2191	2544	6336611010647799	simulation/environment/logic_gates.exe	a96187776d1a2063
+4	1516	6336619887360121	simulation/environment/CMakeFiles/flare_test.dir/flare_test.cpp.obj	32843daf2d90ed33
+1517	1875	6336619890652002	simulation/environment/flare_test.exe	45055f05f7a89c93
+5	1551	6336620293541267	simulation/environment/CMakeFiles/flare_test.dir/flare_test.cpp.obj	32843daf2d90ed33
+1551	1909	6336620296777937	simulation/environment/flare_test.exe	45055f05f7a89c93
+4	1515	6336621302257623	simulation/environment/CMakeFiles/flare_test.dir/flare_test.cpp.obj	32843daf2d90ed33
+1515	1862	6336621305505574	simulation/environment/flare_test.exe	45055f05f7a89c93
+5	1584	6336621695375171	simulation/environment/CMakeFiles/flare_test.dir/flare_test.cpp.obj	32843daf2d90ed33
+1585	1930	6336621698631576	simulation/environment/flare_test.exe	45055f05f7a89c93

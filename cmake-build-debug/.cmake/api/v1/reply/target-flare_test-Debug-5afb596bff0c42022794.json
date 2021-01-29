@@ -14,7 +14,8 @@
 		"commands" : 
 		[
 			"add_executable",
-			"target_link_libraries"
+			"target_link_libraries",
+			"target_include_directories"
 		],
 		"files" : 
 		[
@@ -36,6 +37,12 @@
 				"file" : 0,
 				"line" : 10,
 				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 14,
+				"parent" : 0
 			}
 		]
 	},
@@ -54,6 +61,18 @@
 			"includes" : 
 			[
 				{
+					"backtrace" : 3,
+					"path" : "C:/Users/aamir/Documents/mworld/lib/glfw-3.3.2/include"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "C:/Users/aamir/Documents/mworld/lib/glm"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "C:/Users/aamir/Documents/mworld/simulation/environment"
+				},
+				{
 					"backtrace" : 2,
 					"path" : "C:/Users/aamir/Documents/mworld/numerics/linear_alg/include"
 				},
@@ -68,14 +87,6 @@
 				{
 					"backtrace" : 2,
 					"path" : "C:/Users/aamir/Documents/mworld/render/cube_renderer/../lib"
-				},
-				{
-					"backtrace" : 2,
-					"path" : "C:/Users/aamir/Documents/mworld/lib/glfw-3.3.2/include"
-				},
-				{
-					"backtrace" : 2,
-					"path" : "C:/Users/aamir/Documents/mworld/lib/glm"
 				},
 				{
 					"backtrace" : 2,
@@ -117,19 +128,19 @@
 	[
 		{
 			"backtrace" : 2,
-			"id" : "glad::@bf3af473941166e98053"
-		},
-		{
-			"backtrace" : 2,
 			"id" : "utils::@c5cd9bcf8a2dc65dcb35"
 		},
 		{
 			"backtrace" : 2,
-			"id" : "linear_alg::@b276e23674e4ab50d284"
+			"id" : "glad::@bf3af473941166e98053"
 		},
 		{
 			"backtrace" : 2,
 			"id" : "cube_renderer::@ef8ae11a8c6e57d14ca4"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "linear_alg::@b276e23674e4ab50d284"
 		},
 		{
 			"backtrace" : 2,

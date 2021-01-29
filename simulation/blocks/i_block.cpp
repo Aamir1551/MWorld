@@ -36,4 +36,5 @@ namespace blocks {
     };
 
     real IBlock::threshold = 2.0f;
+    real EBlock::flare_capacity = 50.0f;
 };

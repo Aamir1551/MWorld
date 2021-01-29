@@ -1065,7 +1065,7 @@ build cmake_object_order_depends_target_flare_test: phony || cmake_object_order_
 build simulation/environment/CMakeFiles/flare_test.dir/flare_test.cpp.obj: CXX_COMPILER__flare_test_Debug ../simulation/environment/flare_test.cpp || cmake_object_order_depends_target_flare_test
   DEP_FILE = simulation\environment\CMakeFiles\flare_test.dir\flare_test.cpp.obj.d
   FLAGS = -g   -std=gnu++11
-  INCLUDES = -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../lib/glfw-3.3.2/include -I../lib/glm -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/camera -I../render/shader -I../simulation/blocks
+  INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../simulation/environment -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/camera -I../render/shader -I../simulation/blocks
   OBJECT_DIR = simulation\environment\CMakeFiles\flare_test.dir
   OBJECT_FILE_DIR = simulation\environment\CMakeFiles\flare_test.dir
 

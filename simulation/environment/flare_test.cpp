@@ -29,7 +29,7 @@ void DrawBlocks(vector<Block *> *block_list,glm::vec3 colour, glm::mat4& id, Cub
 
 int main()
 {
-    cout << "Running MWorld Simulation" << endl;
+    cout << "Running MWorld Logic Gate Simulation" << endl;
 
     WorldProperties *world_properties = world_intializer();
 
@@ -46,12 +46,16 @@ int main()
 
     real cube_length = 4.0f;
 
-    WorldHandler world = WorldHandler(0, 1, 0, 0, 0, 0);
+    int num_blocks_same = 30;
+    WorldHandler world = WorldHandler(1, 1, 0, 0, 0, 0);
 
-    real position_coord1[] = {-20, -2.0f, -20}; //x, y, z. x is how much horizontal y is vertical. z is in/out
+    real position_coord1[] = {-20, -0.0f, -20}; //x, y, z. x is how much horizontal y is vertical. z is in/out
     Matrix position1(3, 1, position_coord1);
     world.iblocks.at(0)->position =  position1;
-    world.iblocks.at(0)->flare_value = 10;
+
+    real position_coord2[] = {-18, 0, -20};
+    Matrix position2(3, 1, position_coord2);
+    world.iblocks.at(1)->position =  position2;
 
     CubeRenderer::InitializeCubes(cube_length, vao, vbo, ebo, &view, &projection, world_properties->shader_id);
     CubeRenderer::AddVerticesToBuffers();
@@ -68,6 +72,14 @@ int main()
     real deltaTime = 0.0f; // Time between current frame and last frame
     real lastFrame = 0.0f; // Time of last frame
     real currentFrame;
+
+    real initial_momentum1[] = {0, 0, 0};
+    world.iblocks.at(0)->momentum = Matrix(3, 1, initial_momentum1);
+
+    real initial_momentum2[] = {0, 0.0, 0};
+    world.iblocks.at(1)->momentum = Matrix(3, 1, initial_momentum2);
+
+
 
     real frame_count = 0;
     real prev_time = glfwGetTime();
@@ -91,6 +103,7 @@ int main()
         DrawBlocks( (vector<Block*> *) &(world.eblocks), glm::vec3(0, 0, 1), id, cubes, camera, view);
         DrawBlocks( (vector<Block*> *) &(world.mblocks), glm::vec3(1, 1, 1), id, cubes, camera, view);
 
+
         glfwSwapBuffers(world_properties->window);
         glfwPollEvents();
         frame_count++;
@@ -98,6 +111,8 @@ int main()
             cout << "FPS: " << frame_count << endl;
             frame_count = 0;
             prev_time = currentFrame;
+            cout << "Flare Value of I+ Block:" << world.iblocks.at(0)->flare_value << endl;
+            cout << "Flare Value of I- Block:" << world.iblocks.at(1)->flare_value << endl;
         }
     }
 

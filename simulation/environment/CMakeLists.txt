@@ -11,3 +11,4 @@ target_link_libraries(flare_test PUBLIC linear_alg quaternion cube_renderer util
 
 target_include_directories(simulation PUBLIC "${glfw_include_path}"  "${glm_include_path}" "${CMAKE_CURRENT_SOURCE_DIR}/" )
 target_include_directories(logic_gates PUBLIC "${glfw_include_path}"  "${glm_include_path}" "${CMAKE_CURRENT_SOURCE_DIR}/" )
+target_include_directories(flare_test PUBLIC "${glfw_include_path}"  "${glm_include_path}" "${CMAKE_CURRENT_SOURCE_DIR}/" )

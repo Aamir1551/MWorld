@@ -12,6 +12,7 @@ namespace blocks {
         float a;
         float b;
         static real threshold;
+        static real flare_capacity;
 
 
         IBlock(Matrix position, Quaternion initial_orientation, bool state) : Block(position, initial_orientation, 0) {

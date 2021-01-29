@@ -11,6 +11,8 @@ namespace blocks
 
     public:
         real k;
+        static real flare_capacity;
+
         EBlock(Matrix position, Quaternion initial_orientation, real k) : Block(position, initial_orientation, 0.0f) {
             this->k = k;
         };
