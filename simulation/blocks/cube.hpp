@@ -6,7 +6,6 @@
 
 #include <matrix.hpp>
 #include <quaternion.hpp>
-#include <block.hpp>
 
 using namespace numerics;
 using namespace settings;

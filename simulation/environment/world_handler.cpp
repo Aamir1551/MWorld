@@ -5,7 +5,7 @@
 #ifndef MWORLD_SIMULATION_WORLD_HANDLER_H
 #define MWORLD_SIMULATION_WORLD_HANDLER_H
 
-#include <cube.cpp>
+#include <cube.hpp>
 
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */

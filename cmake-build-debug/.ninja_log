@@ -12,7 +12,7 @@
 1137	1444	6335415238435190	prototype/prototype_three/prototype_three.exe	ddadbda82cf95dfb
 721	803	6336333855227437	render/cube_renderer/libcube_renderer.a	4a121d277667beb4
 7	1346	6334559023845134	prototype/prototype_one/CMakeFiles/prototype_one.dir/main.cpp.obj	e0fc4972e82e16f6
-22	2071	6336463553325518	simulation/environment/CMakeFiles/simulation.dir/simulation.cpp.obj	12b260831a669cf3
+10	3170	6336500625902342	simulation/environment/CMakeFiles/simulation.dir/simulation.cpp.obj	12b260831a669cf3
 9	1058	6336422349197650	numerics/linear_alg/CMakeFiles/linear_alg.dir/src/matrix3.cpp.obj	bf0a1a5c05cbf5a
 26	1367	6336498773783136	simulation/blocks/CMakeFiles/blocks.dir/i_block.cpp.obj	cc77b95de594f220
 12	1023	6336422348888481	numerics/quaternion/CMakeFiles/quaternion.dir/src/quaternion.cpp.obj	ed05215283e7b81f
@@ -22,7 +22,7 @@
 18	1140	6335463951308481	prototype/prototype_two/CMakeFiles/prototype_two.dir/cube.cpp.obj	1dc6c1fecb1c272a
 2071	2413	6336463556547808	simulation/environment/simulation.exe	da933e91212b965a
 5	1070	6335469228033769	prototype/prototype_two/CMakeFiles/prototype_two.dir/main.cpp.obj	5d4db0440f130d4d
-3	1073	6336499438300230	build.ninja	86ad8b687f76afe4
+3	1073	6336501430615543	build.ninja	86ad8b687f76afe4
 10	1010	6336499387067865	simulation/blocks/CMakeFiles/blocks.dir/cube.cpp.obj	22f4ea64377d074e
 31	1336	6336498773369730	simulation/blocks/CMakeFiles/blocks.dir/z_block.cpp.obj	4482789c6aa25db7
 36	1340	6336498773393329	simulation/blocks/CMakeFiles/blocks.dir/m_block.cpp.obj	8eba9adff21bf522
@@ -33,3 +33,14 @@
 15651	24882	6332221953633018	numerics/linear_alg/test/matrix_test.exe	2a5f2e033f9e5d87
 14	4306	6336499419718994	simulation/environment/CMakeFiles/logic_gates.dir/logic_gates.cpp.obj	9b0fb4b09a5d12d9
 1569	1920	6336463747946422	simulation/environment/logic_gates.exe	a96187776d1a2063
+16	1383	6336502036463701	simulation/blocks/CMakeFiles/blocks.dir/block.cpp.obj	c09e136d282fec9a
+29	1430	6336502036978193	simulation/blocks/CMakeFiles/blocks.dir/z_block.cpp.obj	4482789c6aa25db7
+24	1458	6336502037284052	simulation/blocks/CMakeFiles/blocks.dir/i_block.cpp.obj	cc77b95de594f220
+20	1474	6336502037467014	simulation/blocks/CMakeFiles/blocks.dir/e_block.cpp.obj	c417ca21efc1a159
+40	1482	6336502037524106	simulation/blocks/CMakeFiles/blocks.dir/m_block.cpp.obj	8eba9adff21bf522
+10	1615	6336502038834513	simulation/blocks/CMakeFiles/blocks.dir/cube.cpp.obj	22f4ea64377d074e
+1616	1800	6336502040689799	simulation/blocks/libblocks.a	9a6e7737f8c8799c
+34	4108	6336502063734749	simulation/environment/CMakeFiles/simulation.dir/simulation.cpp.obj	12b260831a669cf3
+4108	4785	6336502069935251	simulation/environment/simulation.exe	da933e91212b965a
+9	3624	6336502513863505	simulation/environment/CMakeFiles/logic_gates.dir/logic_gates.cpp.obj	9b0fb4b09a5d12d9
+3625	4540	6336502522509836	simulation/environment/logic_gates.exe	a96187776d1a2063
