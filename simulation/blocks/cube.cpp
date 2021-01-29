@@ -97,7 +97,7 @@ namespace blocks {
         angular_momentum += Matrix::VectorProduct(r, force_direction) * dt;
     }
 
-    void Cube::AddLinearForce(Matrix force_direction, real dt) {
+    void Cube::AddLinearForce(Matrix const &force_direction, real dt) {
         momentum += force_direction * dt;
     }
 

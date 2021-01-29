@@ -11,7 +11,7 @@ namespace blocks {
     class ZBlock;
     class Cube;
 
-    class Block : public Cube { //will have to create a header file for cube
+    class Block : public Cube {
 
     public:
 
@@ -47,18 +47,6 @@ namespace blocks {
 
         void spin(Matrix const &force_direction, Matrix const &force_relative_coordinates) {
              Cube::AddTorque(force_direction * this->flare_inc, this->position + force_relative_coordinates, 1.01);
-        }
-
-        virtual void UpdateFlare() {
-            this->flare_value += this->flare_inc;
-        };
-
-        void DecayFlare() {
-            this->flare_value *= 0.1;
-        }
-
-        void RotateBlock() {
-            this->angular_velocity += this->flare_inc; // or something like this???
         }
 
     };

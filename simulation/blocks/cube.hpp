@@ -75,7 +75,7 @@ namespace blocks {
          */
         void AddTorque(Matrix const &force, Matrix const &force_world_cooridinates, real const dt);
 
-        void AddLinearForce(Matrix force_direction, real dt);
+        void AddLinearForce(Matrix const &force_direction, real dt);
 
         /**
          * @brief Set the Angular Momentum To Zero
