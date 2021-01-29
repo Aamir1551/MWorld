@@ -192,7 +192,7 @@ public:
     }
 
 
-    real ReactToAllBlocks(Block *block) {
+    void ReactToAllBlocks(Block *block) {
         for(int i=0; i<iblocks.size(); i++) {
             Matrix to_cube = iblocks.at(i)->position - block->position;
             real squared_dist = Matrix::SquaredNorm(to_cube);

@@ -1,6 +1,3 @@
-#include <time.h>
-#include <math.h>
-#include <cstdlib> //for the rand function
 #include <cstring>
 
 #include <glad/glad.h>
@@ -13,7 +10,6 @@
 #include <world_initializer.hpp>
 #include <settings.hpp>
 #include <matrix.hpp>
-#include <quaternion.hpp>
 #include <camera.hpp>
 #include <world_handler.cpp>
 
@@ -50,10 +46,11 @@ int main()
 
     real cube_length = 4.0f;
 
-    //WorldHandler world = WorldHandler(10, 10, 10, 10,10, 10, 10);
+    int num_blocks_same = 30;
+    WorldHandler world = WorldHandler(num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same,num_blocks_same, num_blocks_same, num_blocks_same);
     //WorldHandler world = WorldHandler(0, 0, 0, 0, 0, 0, 0);
     //WorldHandler world = WorldHandler(0, 0, 2, 0, 0, 0, 0);
-    WorldHandler world = WorldHandler(0, 0, 120, 0, 0, 0, 0);
+    //WorldHandler world = WorldHandler(0, 0, 120, 0, 0, 0, 0);
     //WorldHandler world = WorldHandler(100, 10, 100,10 ,0,00,0);
 
     real position_coord1[] = {-20, -2.0f, -20}; //x, y, z. x is how much horizontal y is vertical. z is in/out
@@ -140,12 +137,12 @@ int main()
 }
 
 void DrawBlocks(vector<Block *> *block_list,glm::vec3 colour, glm::mat4& id, CubeRenderer &cubes, Camera &camera, glm::mat4 &view) {
-    for(int i =0; i<block_list->size(); i++) {
+    for(auto & block_ptr : *block_list) {
         glm::mat4 rotation_mat;
-        memcpy(glm::value_ptr(rotation_mat), block_list->at(i)->GetOrientationMatrix().GetValues(), 16 * sizeof(real));
+        memcpy(glm::value_ptr(rotation_mat), block_ptr->GetOrientationMatrix().GetValues(), 16 * sizeof(real));
 
         glm::vec3 translation_mat;
-        memcpy(glm::value_ptr(translation_mat), block_list->at(i)->position.GetValues(), 3 * sizeof(real));
+        memcpy(glm::value_ptr(translation_mat), block_ptr->position.GetValues(), 3 * sizeof(real));
 
         glm::mat4 model = glm::translate(id, translation_mat);
         model = model * rotation_mat;
