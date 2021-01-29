@@ -178,7 +178,7 @@ public:
         }
         PassBlockFlares(contact_list);
         SpinWorldBlocks();
-        IncFlareValues();
+        IncFlareValuesAndReset();
     }
 
     void AddForces() {
@@ -236,9 +236,9 @@ public:
         b->AddFlareToBlock(flare_from_a);
     }
 
-    void IncFlareValues() {
+    void IncFlareValuesAndReset() {
         for(int i=0; i<this->blocks.size(); i++) {
-            this->blocks.at(i)->flare_value += this->blocks.at(i)->flare_inc;
+            this->blocks.at(i)->UpdateFlare();
             this->blocks.at(i)->flare_inc = 0;
         }
     }
@@ -250,7 +250,6 @@ public:
     }
 
     void SpinWorldBlocks() {
-
 
         real const static right_force_coordinates[] = {2, 0, -5};
         real const static up_force_coordinates[] = {0, 2, -5};

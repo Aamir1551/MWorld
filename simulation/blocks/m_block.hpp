@@ -27,11 +27,13 @@ namespace blocks {
         };
 
         void AddFlareToBlock(real flare_amount) override {
-            this->flare_inc = this->flare_inc + flare_amount * 0.1;
+            this->flare_inc = this->flare_inc + flare_amount * 0.01;
         };
 
         void UpdateFlare() override {
-            this->flare_value = std::max(this->flare_inc + this->flare_value, MBlock::flare_capacity);
+            cout << this->flare_value << endl;
+            cout << this->flare_inc << endl;
+            this->flare_value = std::min(this->flare_inc + this->flare_value, MBlock::flare_capacity);
         };
 
     };

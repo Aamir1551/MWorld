@@ -49,6 +49,9 @@ namespace blocks {
              Cube::AddTorque(force_direction * this->flare_inc, this->position + force_relative_coordinates, 1.01);
         }
 
+        virtual void UpdateFlare() {
+            this->flare_value += this->flare_inc;
+        };
     };
 
 }
