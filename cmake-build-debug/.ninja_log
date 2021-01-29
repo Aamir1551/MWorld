@@ -81,3 +81,8 @@
 3979	4821	6336429451820860	simulation/environment/simulation.exe	da933e91212b965a
 12	3587	6336429633583601	simulation/environment/CMakeFiles/simulation.dir/simulation.cpp.obj	12b260831a669cf3
 3588	4388	6336429640997625	simulation/environment/simulation.exe	da933e91212b965a
+14	540	6336436468983690	simulation/blocks/CMakeFiles/blocks.dir/z_block.cpp.obj	4482789c6aa25db7
+11	546	6336436469023584	simulation/blocks/CMakeFiles/blocks.dir/m_block.cpp.obj	8eba9adff21bf522
+546	636	6336436469961071	simulation/blocks/libblocks.a	9a6e7737f8c8799c
+7	1737	6336436480936469	simulation/environment/CMakeFiles/simulation.dir/simulation.cpp.obj	12b260831a669cf3
+1738	2109	6336436484346244	simulation/environment/simulation.exe	da933e91212b965a
