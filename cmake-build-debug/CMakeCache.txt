@@ -246,7 +246,7 @@ MWorld_BINARY_DIR:STATIC=C:/Users/aamir/Documents/mworld/cmake-build-debug
 MWorld_SOURCE_DIR:STATIC=C:/Users/aamir/Documents/mworld
 
 //Dependencies for the target
-blocks_LIB_DEPENDS:STATIC=general;cube.hpp;general;linear_alg;general;quaternion;general;cube_renderer;general;utils;general;glad;general;C:/Users/aamir/Documents/mworld/lib/glfw-3.3.2/build/src/libglfw3.a;
+blocks_LIB_DEPENDS:STATIC=general;cube.hpp;general;cube.hpp;general;linear_alg;general;quaternion;general;cube_renderer;general;utils;general;glad;general;C:/Users/aamir/Documents/mworld/lib/glfw-3.3.2/build/src/libglfw3.a;
 
 //Value Computed by CMake
 camera_BINARY_DIR:STATIC=C:/Users/aamir/Documents/mworld/cmake-build-debug/render/camera

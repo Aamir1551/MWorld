@@ -1291,7 +1291,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "general;cube.hpp;general;linear_alg;general;quaternion;general;cube_renderer;general;utils;general;glad;general;C:/Users/aamir/Documents/mworld/lib/glfw-3.3.2/build/src/libglfw3.a;"
+			"value" : "general;cube.hpp;general;cube.hpp;general;linear_alg;general;quaternion;general;cube_renderer;general;utils;general;glad;general;C:/Users/aamir/Documents/mworld/lib/glfw-3.3.2/build/src/libglfw3.a;"
 		},
 		{
 			"name" : "camera_BINARY_DIR",

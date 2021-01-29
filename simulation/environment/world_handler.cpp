@@ -21,11 +21,6 @@
 
 #include <matrix.hpp>
 
-/*std::vector<Matrix> *GeneratePositions(int num_cubes);
-std::vector<Quaternion> *GenerateOrientations(int num_cubes);
-std::vector<Matrix> *GenerateAngularMomentums(int num_cubes);
-std::vector<Matrix> *GenerateLinearMomentums(int num_cubes);*/
-
 using namespace blocks;
 
 std::vector<Matrix> *GeneratePositions(int num_cubes)
