@@ -1,10 +1,15 @@
 #include <block.hpp>
 #include <z_block.hpp>
+#include "m_block.hpp"
 
 namespace blocks {
 
     void ZBlock::React(MBlock *block, real squared_dist, const Matrix& to_cube) {
-        // neutral
+        // ZBlocks are attracted to M+ blocks
+        if(block->flare_value > MBlock::threshold) {
+            auto &force = to_cube;
+            AddTorque(force, this->position, Block::force_dt / squared_dist * 1 ); // as distance increases, force also decreases
+        }
     };
 
     void ZBlock::React(IBlock *block, real squared_dist, const Matrix& to_cube) {
@@ -12,7 +17,7 @@ namespace blocks {
     };
 
     void ZBlock::React(ZBlock *block, real squared_dist, const Matrix& to_cube) {
-        // Attracted
+        // Zblock is attracted to ZBlock
         // Attraction between zblocks is the strongest out of all blocks
         auto &force = to_cube;
         AddTorque(force, this->position, Block::force_dt / squared_dist * 1 * 1.5); // as distance increases, force also decreases

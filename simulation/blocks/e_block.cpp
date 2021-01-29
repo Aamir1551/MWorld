@@ -5,28 +5,29 @@
 
 namespace blocks {
 
-    void EBlock::React(IBlock * block, real dist, const Matrix& to_cube) {
+    void EBlock::React(IBlock * block, real squared_dist, const Matrix& to_cube) {
+        // I+ and E repel
         if(block->state == true) {
-            // E block and i+ block repel
+            // If k > 1: Repel, Otherwise Attract
+            real factor = std::log(this->k);
             auto &force = to_cube;
-            AddTorque(force, this->position, Block::force_dt / dist * 0.1 * -1); // as distance increases, force also decreases
+            AddTorque(force, this->position, Block::force_dt / squared_dist * 0.1 * -1 * factor); // as distance increases, force decreases
         }
     };
 
-    //virtual void React(IBlock * const block, real dist, const Matrix& to_cube) = 0;
-    void EBlock::React(MBlock * block, real dist, const Matrix& to_cube) {
+    void EBlock::React(MBlock * block, real squared_dist, const Matrix& to_cube) {
         // neutral
     };
 
-    void EBlock::React(ZBlock * block, real dist, const Matrix& to_cube) {
+    void EBlock::React(ZBlock * block, real squared_dist, const Matrix& to_cube) {
         // neutral
     };
 
-    void EBlock::React(EBlock * block, real dist, const Matrix& to_cube) {
+    void EBlock::React(EBlock * block, real squared_dist, const Matrix& to_cube) {
         // E block and E block repel as k increases
         float factor = std::log(block->k * this->k); // is zero is both blocks are k=1
         auto &force = to_cube;
-        AddTorque(force, this->position, force_dt * factor / dist * -1 * 0.1);
+        AddTorque(force, this->position, force_dt * factor / squared_dist * -1 * 0.1);
     };
 
 
