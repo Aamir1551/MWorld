@@ -9,7 +9,9 @@ namespace blocks {
     class EBlock;
     class MBlock;
     class ZBlock;
-    class Block : public Cube {
+    class Cube;
+
+    class Block : public Cube { //will have to create a header file for cube
 
     public:
 
