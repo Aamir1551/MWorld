@@ -31,8 +31,6 @@ namespace blocks {
         };
 
         void UpdateFlare() override {
-            cout << this->flare_value << endl;
-            cout << this->flare_inc << endl;
             this->flare_value = std::min(this->flare_inc + this->flare_value, MBlock::flare_capacity);
         };
 
