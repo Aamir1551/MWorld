@@ -53,7 +53,7 @@ int main()
     //WorldHandler world = WorldHandler(10, 10, 10, 10,10, 10, 10);
     //WorldHandler world = WorldHandler(0, 0, 0, 0, 0, 0, 0);
     //WorldHandler world = WorldHandler(0, 0, 2, 0, 0, 0, 0);
-    WorldHandler world = WorldHandler(0, 0, 300, 0, 0, 0, 0);
+    WorldHandler world = WorldHandler(0, 0, 120, 0, 0, 0, 0);
     //WorldHandler world = WorldHandler(100, 10, 100,10 ,0,00,0);
 
     real position_coord1[] = {-20, -2.0f, -20}; //x, y, z. x is how much horizontal y is vertical. z is in/out
@@ -80,6 +80,7 @@ int main()
 
     real deltaTime = 0.0f; // Time between current frame and last frame
     real lastFrame = 0.0f; // Time of last frame
+    real currentFrame;
 
     /*real initial_momentum1[] = {0.002, 0, 0};
     world.iblocks.at(0).momentum = Matrix(3, 1, initial_momentum1);
@@ -96,10 +97,12 @@ int main()
     //world.iblocks.at(1).angular_momentum = Matrix(3, 1);
 
 
+    real frame_count = 0;
+    real prev_time = glfwGetTime();
     while (!glfwWindowShouldClose(world_properties->window))
     {
 
-        real currentFrame = glfwGetTime();
+        currentFrame = glfwGetTime();
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
 
@@ -118,6 +121,12 @@ int main()
 
         glfwSwapBuffers(world_properties->window);
         glfwPollEvents();
+        frame_count++;
+        if(currentFrame - prev_time >= 1.0) {
+            cout << "FPS: " << frame_count << endl;
+            frame_count = 0;
+            prev_time = currentFrame;
+        }
     }
 
     cout << "Terminating..." << endl;

@@ -186,11 +186,8 @@ public:
     }
 
     void AddForces() {
-        int i=0;
         for(auto &block: this->blocks) {
             ReactToAllBlocks(block);
-            //ReactClosestBlockToBlock(block);
-            i++;
         }
     }
 
@@ -220,71 +217,6 @@ public:
             block->React(mblocks.at(i), dist, to_cube);
         }
     }
-
-    /*real ReactClosestBlockToBlock(Block *block) {
-        enum block_type {i_block, z_block, e_block, m_block};
-
-        real min_dist = 10000000000;
-        Matrix to_cube_min;
-        int min_cube_loc = 0;
-        block_type min_cube_type = i_block;
-
-        for(int i=0; i<iblocks.size(); i++) {
-            Matrix to_cube = iblocks.at(i)->position - block->position;
-            real dist = Matrix::Norm(to_cube);
-            if(dist < min_dist && iblocks.at(i) != block) {
-                min_dist = dist;
-                min_cube_loc = i;
-                min_cube_type = i_block;
-            }
-        }
-
-        for(int i=0; i<zblocks.size(); i++) {
-            Matrix to_cube = zblocks.at(i)->position - block->position;
-            real dist = Matrix::Norm(to_cube);
-            if(dist < min_dist && zblocks.at(i) != block) {
-                min_dist = dist;
-                min_cube_loc = i;
-                min_cube_type = z_block;
-            }
-        }
-
-        for(int i=0; i<eblocks.size(); i++) {
-            Matrix to_cube = eblocks.at(i)->position - block->position;
-            real dist = Matrix::Norm(to_cube);
-            if(dist < min_dist && eblocks.at(i) != block) {
-                min_dist = dist;
-                min_cube_loc = i;
-                min_cube_type = e_block;
-            }
-        }
-
-        for(int i=0; i<mblocks.size(); i++) {
-            Matrix to_cube = mblocks.at(i)->position - block->position;
-            real dist = Matrix::Norm(to_cube);
-            if(dist < min_dist && mblocks.at(i) != block) {
-                min_dist = dist;
-                min_cube_loc = i;
-                min_cube_type = m_block;
-            }
-        }
-
-        if(min_cube_type == i_block) {
-            to_cube_min = this->iblocks.at(min_cube_loc)->position - block->position;
-            block->React(this->iblocks.at(min_cube_loc), min_dist, to_cube_min);
-        } else if(min_cube_type == z_block) {
-            to_cube_min = this->zblocks.at(min_cube_loc)->position - block->position;
-            block->React(this->zblocks.at(min_cube_loc), min_dist, to_cube_min);
-        } else if(min_cube_type == e_block) {
-            to_cube_min = this->eblocks.at(min_cube_loc)->position - block->position;
-            block->React(this->eblocks.at(min_cube_loc), min_dist, to_cube_min);
-        } else {
-            to_cube_min = this->mblocks.at(min_cube_loc)->position - block->position;
-            block->React(this->mblocks.at(min_cube_loc), min_dist, to_cube_min);
-        }
-
-        return min_dist;
-    }*/
 
     void static PassFlare(Block *a, Block *b) {
         real flare_from_a = a->ExtractFlareFromBlock();

@@ -218,8 +218,8 @@ public:
         real j = Matrix::Dot(v_ab_1, normal) * -(1+0.5) / (body1->inverse_mass + body2->inverse_mass + Matrix::Dot(r_ap_cross_normal, r_ap_cross_normal)*body1->inverse_inertia +
                                                      Matrix::Dot(r_bp_cross_normal, r_bp_cross_normal)*body2->inverse_inertia);
 
-        Matrix w_a2 = body1->angular_velocity + Matrix::VectorProduct(r_ap, normal * j) * body1->inverse_inertia;
-        Matrix w_b2 = body2->angular_velocity - Matrix::VectorProduct(r_bp, normal * j) * body2->inverse_inertia;
+        //Matrix w_a2 = body1->angular_velocity + Matrix::VectorProduct(r_ap, normal * j) * body1->inverse_inertia;
+        //Matrix w_b2 = body2->angular_velocity - Matrix::VectorProduct(r_bp, normal * j) * body2->inverse_inertia;
 
         Matrix v_a2 = body1->linear_velocity + normal * j * body1->inverse_mass;
         Matrix v_b2 = body2->linear_velocity - normal * j * body2->inverse_mass;
@@ -227,8 +227,8 @@ public:
         body1->momentum = v_a2 / body1->inverse_mass;
         body2->momentum = v_b2 / body2->inverse_mass;
 
-        body1->angular_momentum = w_a2 / body1->inverse_inertia;
-        body2->angular_momentum = w_b2 / body2->inverse_inertia;
+        //body1->angular_momentum = w_a2 / body1->inverse_inertia;
+        //body2->angular_momentum = w_b2 / body2->inverse_inertia;
 
         body1->position = body1->position - normal * (contact.penetration/2);
         body2->position = body2->position + normal * (contact.penetration/2);
