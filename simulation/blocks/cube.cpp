@@ -93,9 +93,12 @@ namespace blocks {
 
         // Torque is calculated via Matrix::VectorProduct(force_cube_coordinates, r) * dt
 
-        //momentum += force_direction * dt;
-        angular_momentum.print();
+        momentum += force_direction * dt;
         angular_momentum += Matrix::VectorProduct(r, force_direction) * dt;
+    }
+
+    void Cube::AddLinearForce(Matrix force_direction, real dt) {
+        momentum += force_direction * dt;
     }
 
         void Cube::SetAngularMomentumToZero() {

@@ -21,7 +21,8 @@ namespace blocks {
         // ZBlocks are attracted to M+ blocks
         if(this->flare_value > MBlock::threshold) {
             auto &force = to_cube;
-            AddTorque(force, this->position, Block::force_dt / squared_dist * 1 ); // as distance increases, force also decreases
+            //AddTorque(force, this->position, Block::force_dt / squared_dist * 1 );
+            AddLinearForce(force,  Block::force_dt / squared_dist * 1); // as distance increases, force also decreases
         }
     };
 
