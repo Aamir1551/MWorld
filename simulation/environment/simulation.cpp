@@ -30,6 +30,8 @@ using namespace settings;
 // Add a different font colour for each of them in the terminal.
 // So that it is more clearer to know which prototype is running.
 
+void DrawBlocks(vector<Block *> &block_list,glm::vec3 colour, glm::mat4& id, CubeRenderer &cubes, Camera &camera, glm::mat4 &view);
+
 int main()
 {
     cout << "Running MWorld Simulation" << endl;
@@ -109,7 +111,7 @@ int main()
         world.CollisionHandler();
         world.AddForces();
 
-        for(int i =0; i<world.blocks.size(); i++) {
+        /*for(int i =0; i<world.blocks.size(); i++) {
             glm::mat4 rotation_mat;
             memcpy(glm::value_ptr(rotation_mat), world.blocks.at(i)->GetOrientationMatrix().GetValues(), 16 * sizeof(real));
 
@@ -123,7 +125,9 @@ int main()
             cubes.ApplyUniforms(i);
             view = camera.CalculateView();
             glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
-        }
+        }*/
+        DrawBlocks(world.blocks, glm::vec3(1, 1, 1), id, cubes, camera, view);
+
 
         cubes.models.clear();
 
@@ -139,4 +143,28 @@ int main()
     glfwTerminate();
     cout << "Terminated" << endl;
     return 0;
+}
+
+void DrawBlocks(vector<Block *> &block_list,glm::vec3 colour, glm::mat4& id, CubeRenderer &cubes, Camera &camera, glm::mat4 &view) {
+    for(int i =0; i<block_list.size(); i++) {
+        glm::mat4 rotation_mat;
+        memcpy(glm::value_ptr(rotation_mat), block_list.at(i)->GetOrientationMatrix().GetValues(), 16 * sizeof(real));
+
+        glm::vec3 translation_mat;
+        memcpy(glm::value_ptr(translation_mat), block_list.at(i)->position.GetValues(), 3 * sizeof(real));
+
+        glm::mat4 model = glm::translate(id, translation_mat);
+        model = model * rotation_mat;
+        cubes.models.push_back(&model);
+
+        cubes.ApplyUniforms(i);
+
+
+        int colour_loc = glGetUniformLocation(CubeRenderer::shader_id, "colour");
+        glUniform3f(colour_loc, 1, GL_FALSE, glm::value_ptr(colour)); //change this to vectr
+
+
+        view = camera.CalculateView();
+        glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    }
 }
