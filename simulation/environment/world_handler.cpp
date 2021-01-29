@@ -225,6 +225,12 @@ public:
         }
     }
 
+    void PassBlockFlares(vector<Contact> &contacts) {
+        for(int i=0; i<contacts.size(); i++) {
+            PassFlare(contacts.at(i).body1, contacts.at(i).body2);
+        }
+    }
+
     void static PassFlare(Block *a, Block *b) {
         real flare_from_a = a->ExtractFlareFromBlock();
         real flare_from_b = b->ExtractFlareFromBlock();
