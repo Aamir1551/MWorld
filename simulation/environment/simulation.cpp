@@ -50,7 +50,9 @@ int main()
 
     real cube_length = 4.0f;
 
-    WorldHandler world = WorldHandler(10, 10, 10, 10,10, 10, 10);
+    //WorldHandler world = WorldHandler(10, 10, 10, 10,10, 10, 10);
+    //WorldHandler world = WorldHandler(0, 0, 0, 0, 0, 0, 0);
+    WorldHandler world = WorldHandler(0, 0, 100, 0, 0, 0, 0);
     //WorldHandler world = WorldHandler(100, 10, 100,10 ,0,00,0);
 
     /*real position_coord1[] = {-20, -2.0f, -20}; //x, y, z. x is how much horizontal y is vertical. z is in/out
@@ -92,10 +94,9 @@ int main()
     //world.iblocks.at(0).angular_momentum = Matrix(3, 1);
     //world.iblocks.at(1).angular_momentum = Matrix(3, 1);
 
-    bool paused = false;
 
     while (!glfwWindowShouldClose(world_properties->window))
-    { // render loop -- an iteration of this main render loop is called a frame
+    {
 
         real currentFrame = glfwGetTime();
         deltaTime = currentFrame - lastFrame;
@@ -109,21 +110,6 @@ int main()
         world.CollisionHandler();
         world.AddForces();
 
-        /*for(int i =0; i<world.blocks.size(); i++) {
-            glm::mat4 rotation_mat;
-            memcpy(glm::value_ptr(rotation_mat), world.blocks.at(i)->GetOrientationMatrix().GetValues(), 16 * sizeof(real));
-
-            glm::vec3 translation_mat;
-            memcpy(glm::value_ptr(translation_mat), world.blocks.at(i)->position.GetValues(), 3 * sizeof(real));
-
-            glm::mat4 model = glm::translate(id, translation_mat);
-            model = model * rotation_mat;
-            cubes.models.push_back(&model);
-
-            cubes.ApplyUniforms(i);
-            view = camera.CalculateView();
-            glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
-        }*/
         DrawBlocks( (vector<Block*> *) &(world.iblocks), glm::vec3(0, 1, 1), id, cubes, camera, view);
         DrawBlocks( (vector<Block*> *) &(world.zblocks), glm::vec3(1, 0, 1), id, cubes, camera, view);
         DrawBlocks( (vector<Block*> *) &(world.eblocks), glm::vec3(0, 0, 1), id, cubes, camera, view);

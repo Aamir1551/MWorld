@@ -173,7 +173,10 @@ public:
     void CollisionHandler() {
         vector<Contact> contact_list;
         for(int i=0; i<blocks.size()-1; i++) {
-            for(int j=i+1; j<blocks.size(); j++) {
+            for(int j=0; j<blocks.size(); j++) {
+                if(i == j) {
+                    continue;
+                }
                 Cube::CollisionDetect(blocks.at(i), blocks.at(j), contact_list);
             }
         }
