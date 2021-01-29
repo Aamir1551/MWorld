@@ -11,6 +11,10 @@ namespace render_utils
 
     class Camera
     {
+
+    public:
+        glm::vec3 camera_pos = glm::vec3(0.0f, 0.0f, 3.0f);
+
     private:
         float lastX = 400, lastY = 300;
         float camera_speed = 20.0f;
@@ -19,7 +23,6 @@ namespace render_utils
         float yaw = -90.0f;
         float pitch = 0.0f;
 
-        glm::vec3 camera_pos = glm::vec3(0.0f, 0.0f, 3.0f);
         glm::vec3 camera_front = glm::vec3(0.0f, 0.0f, -1.0f);
         glm::vec3 camera_up = glm::vec3(0.0f, 1.0f, 0.0f);
         GLFWwindow *window;

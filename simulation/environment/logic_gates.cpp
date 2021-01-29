@@ -104,8 +104,6 @@ int main()
         DrawBlocks( (vector<Block*> *) &(world.mblocks), glm::vec3(1, 1, 1), id, cubes, camera, view);
 
 
-        world.iblocks.at(0)->position.print();
-
         glfwSwapBuffers(world_properties->window);
         glfwPollEvents();
         frame_count++;
@@ -113,6 +111,8 @@ int main()
             cout << "FPS: " << frame_count << endl;
             frame_count = 0;
             prev_time = currentFrame;
+            cout << "Flare Value of I Block:" << world.iblocks.at(0)->flare_value << endl;
+            cout << "Flare Value of M Block:" << world.mblocks.at(0)->flare_value << endl;
         }
     }
 

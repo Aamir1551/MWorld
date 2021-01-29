@@ -161,7 +161,7 @@ public:
         // Torque is calculated via Matrix::VectorProduct(force_cube_coordinates, r) * dt
 
         momentum += force * dt;
-        angular_momentum += Matrix::VectorProduct(r, force) * dt;
+        //angular_momentum += Matrix::VectorProduct(r, force) * dt;
 
     }
 
@@ -205,7 +205,7 @@ public:
         Matrix r_ap = contact.point - body1->position;
         Matrix r_bp = contact.point - body2->position;
 
-        Matrix v_ap1 = body1->linear_velocity +  Matrix::VectorProduct(body1->angular_velocity, r_ap);
+        /*Matrix v_ap1 = body1->linear_velocity +  Matrix::VectorProduct(body1->angular_velocity, r_ap);
         Matrix v_bp1 = body2->linear_velocity +  Matrix::VectorProduct(body2->angular_velocity, r_bp);
 
         Matrix v_ab_1 = body1->linear_velocity + Matrix::VectorProduct(body1->angular_velocity, r_ap) - body2->linear_velocity - Matrix::VectorProduct(body2->angular_velocity, r_bp);
@@ -228,10 +228,13 @@ public:
         body2->momentum = v_b2 / body2->inverse_mass;
 
         //body1->angular_momentum = w_a2 / body1->inverse_inertia;
-        //body2->angular_momentum = w_b2 / body2->inverse_inertia;
+        //body2->angular_momentum = w_b2 / body2->inverse_inertia;*/
 
-        body1->position = body1->position - normal * (contact.penetration/2);
-        body2->position = body2->position + normal * (contact.penetration/2);
+
+        body1->momentum = body2->momentum
+
+        body1->position = body1->position - contact.normal * (contact.penetration/2);
+        body2->position = body2->position + contact.normal * (contact.penetration/2);
 
 
     }
