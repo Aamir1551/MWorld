@@ -14,10 +14,9 @@ namespace blocks {
     void ZBlock::React(ZBlock *block, real dist, const Matrix& to_cube) {
         // neautral
         auto &force = to_cube;
-        if(dist == 0) {
-            dist = 0.0001;
+        if(dist >= 5) {
+            AddTorque(force, this->position, Block::force_dt /dist / dist * 1 * 1.1); // as distance increases, force also decreases
         }
-        AddTorque(force, this->position, Block::force_dt / dist / dist * 1 * 1.1); // as distance increases, force also decreases
 
     };
 
