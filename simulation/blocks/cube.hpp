@@ -14,6 +14,7 @@ using namespace std;
 
 namespace blocks {
 
+    class Block;
     struct Contact
     {
         numerics::Matrix point;     //collision point

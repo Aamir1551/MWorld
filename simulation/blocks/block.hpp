@@ -1,7 +1,7 @@
 #ifndef MWORLD_SIMULATION_BLOCK_H
 #define MWORLD_SIMULATION_BLOCK_H
 
-#include <cube.cpp>
+#include <cube.hpp>
 
 namespace blocks {
 

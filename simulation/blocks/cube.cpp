@@ -10,13 +10,7 @@ using namespace numerics;
 using namespace settings;
 using namespace std;
 
-// TODO
-// 1) Make position, velocity, momentum etc as 4x1 instead of 3x1
-
-
-
 namespace blocks {
-
 
         void Cube::Update() {
 
@@ -172,4 +166,3 @@ namespace blocks {
 
         }
     };
-};
