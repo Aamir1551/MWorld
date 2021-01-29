@@ -25,7 +25,7 @@ namespace blocks {
     void IBlock::React(EBlock * block, real dist, const Matrix &to_cube) {
         if(this->state == true) {
             auto &force = to_cube;
-            AddTorque(force, this->position, Block::force_dt / dist / dist * 0.1); // as distance increases, force decreases
+            AddTorque(force, this->position, Block::force_dt / dist / dist * 0.1 * -1); // as distance increases, force decreases
         }
     };
 
