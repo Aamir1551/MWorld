@@ -228,7 +228,7 @@ namespace numerics
          * @param a 
          * @return settings::real 
          */
-        virtual settings::real SquaredNorm(Matrix const &a);
+        static settings::real SquaredNorm(Matrix const &a);
 
         /**
          * @brief Applies Matrix multiplication between two matrices. If multiplication fails, throws invalid_argument error.
