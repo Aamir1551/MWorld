@@ -47,10 +47,10 @@ int main()
     real cube_length = 4.0f;
 
     int num_blocks_same = 30;
-    WorldHandler world = WorldHandler(num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same);
+    //WorldHandler world = WorldHandler(num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same);
     //WorldHandler world = WorldHandler(0, 0, 0, 0, 0, 0);
     //WorldHandler world = WorldHandler(0, 0, 2, 0, 0, 0);
-    //WorldHandler world = WorldHandler(0, 0, 120, 0, 0, 0);
+    WorldHandler world = WorldHandler(0, 0, 160, 0, 0, 0);
 
     /*real position_coord1[] = {-20, -2.0f, -20}; //x, y, z. x is how much horizontal y is vertical. z is in/out
     Matrix position1(3, 1, position_coord1);
