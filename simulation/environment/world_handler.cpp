@@ -253,7 +253,7 @@ public:
     void SpinWorldBlocks() {
         real left_force_coordinates[] = {-2, 0, -5};
         real right_force_coordinates[] = {2, 0, -5};
-        real up_force_coordinates[] = {0, 2, -0};
+        real up_force_coordinates[] = {0, 2, -5};
         real down_force_coordinates[] = {0, -2, -5};
 
         Matrix right_force(3, 1, right_force_coordinates);
@@ -262,8 +262,8 @@ public:
         Matrix down_force(3, 1, down_force_coordinates);
 
 
-        real force_vector[] = {-5, 0, -5}; // make sure to change direction of force
-        Matrix force_world_vector(3, 1, force_vector);
+        real force_direction[] = {0, 0, -5}; // make sure to change direction of force
+        Matrix force_world_vector(3, 1, force_direction);
 
         AddSpin((vector<Block*>*) (&this->mblocks), force_world_vector, up_force);
 
