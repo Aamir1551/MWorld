@@ -21,7 +21,7 @@ namespace blocks {
 
 
         real ExtractFlareFromBlock() override {
-            real temp = (real) (this->flare_value > MBlock::threshold) * this->flare_value * 0.1;
+            real temp = (real) (this->flare_value > MBlock::threshold) * this->flare_value * 0.08;
             this->flare_inc -= temp;
             return temp;
         };

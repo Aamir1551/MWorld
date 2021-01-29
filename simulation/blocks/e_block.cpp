@@ -34,8 +34,8 @@ namespace blocks {
 
 
     real EBlock::ExtractFlareFromBlock() {
-        this->flare_inc -= this->flare_value * 0.1;
-        return this->flare_value * 0.1;
+        this->flare_inc -= this->flare_value * 0.08; // using the kissing number of spheres
+        return this->flare_value * 0.08;
     };
 
     void EBlock::AddFlareToBlock(real flare_amount) {
