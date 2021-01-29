@@ -47,11 +47,7 @@ int main()
     real cube_length = 4.0f;
 
     int num_blocks_same = 30;
-    WorldHandler world = WorldHandler(num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same,num_blocks_same, num_blocks_same, num_blocks_same);
-    //WorldHandler world = WorldHandler(0, 0, 0, 0, 0, 0, 0);
-    //WorldHandler world = WorldHandler(0, 0, 2, 0, 0, 0, 0);
-    //WorldHandler world = WorldHandler(0, 0, 120, 0, 0, 0, 0);
-    //WorldHandler world = WorldHandler(100, 10, 100,10 ,0,00,0);
+    WorldHandler world = WorldHandler(1, 0, 0, 1, 0, 0);
 
     real position_coord1[] = {-20, -2.0f, -20}; //x, y, z. x is how much horizontal y is vertical. z is in/out
     Matrix position1(3, 1, position_coord1);
@@ -79,19 +75,12 @@ int main()
     real lastFrame = 0.0f; // Time of last frame
     real currentFrame;
 
-    /*real initial_momentum1[] = {0.002, 0, 0};
+    real initial_momentum1[] = {0, 0, 0};
     world.iblocks.at(0).momentum = Matrix(3, 1, initial_momentum1);
 
-    real initial_momentum2[] = {-0.002, 0.0, 0};
-    world.iblocks.at(1).momentum = Matrix(3, 1, initial_momentum2);*/
+    real initial_momentum2[] = {0, 0.0, 0};
+    world.mblocks.at(0).momentum = Matrix(3, 1, initial_momentum2);*/
 
-    /*Quaternion q = Quaternion(0.0f, 0.0f, 1.7f, -1.7f);
-    Quaternion spin = q * world.iblocks.at(0).orientation;
-    world.iblocks.at(0).orientation += spin;
-    world.iblocks.at(0).orientation.Normalise();*/
-
-    //world.iblocks.at(0).angular_momentum = Matrix(3, 1);
-    //world.iblocks.at(1).angular_momentum = Matrix(3, 1);
 
 
     real frame_count = 0;
