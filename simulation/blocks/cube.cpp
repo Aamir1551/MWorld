@@ -53,52 +53,49 @@ namespace blocks {
         }
 
 
-        void Cube::AddTorque(Matrix const &force, Matrix const &force_world_cooridinates, real const dt) {
-            /*
-                Initially the force and the force_world_coordinates are in world coordintes. However, the
-                angular_momentums (which is a vector quantity) of the cube is in cube_coordinates.
-                Hence, we need to first transform the force, and the force_world_coordinates to cube coordinates.
-            */
+    /**
+     * @brief Adds a torque to the cube.
+     *
+     * @param force The force direction
+     * @param force_world_cooridinates The force position in world coordinates
+     * @param dt The amount of time the force was applied for
+     */
+    void Cube::AddTorque(Matrix const &force_direction, Matrix const &force_position_world_cooridinates, real const dt)
+    {
+        /*
+            Initially the force and the force_world_coordinates are in world coordintes. However, the
+            angular_momentums (which is a vector quantity) of the cube is in cube_coordinates.
+            Hence, we need to first transform the force, and the force_world_coordinates to cube coordinates.
+        */
 
-            /*
-            Equations of motion being used are:
-                p = Linear momentum
-                L = Angular momentum
+        /*
+        Equations of motion being used are:
+            p = Linear momentum
+            L = Angular momentum
 
-                torque = perpendicular distance form pivot * force
+            torque = perpendicular distance form pivot * force
 
-                linear impulse (Δp) = force * time
-                Angular impulse (ΔL) = torque * time
+            linear impulse (Δp) = force * time
+            Angular impulse (ΔL) = torque * time
 
-                dp/dt = Δp (Rate of change of linear momentum)
-                dL/dt = ΔL (Rate of change of angular momentum)
+            dp/dt = Δp (Rate of change of linear momentum)
+            dL/dt = ΔL (Rate of change of angular momentum)
 
-                New linear momentum = old linear momentum + linear impulse
-                New angular momentum = old angular momentum + angular impulse
+            New linear momentum = old linear momentum + linear impulse
+            New angular momentum = old angular momentum + angular impulse
 
-           */
+       */
+        //Matrix force_cube_coordinates = ConvertToCubeCoordinates(force);
+        //Matrix force_direction_cube_coordinates = force_direction;
 
-            /*Matrix force_cube_coordinates = ConvertToCubeCoordinates(force);
-            Matrix r = ConvertToCubeCoordinates(force_world_cooridinates - this->position);
+        //Matrix r = ConvertToCubeCoordinates(force_world_cooridinates - this->position);
+        Matrix r = force_position_world_cooridinates - this->position;
 
-            // Torque is calculated via Matrix::VectorProduct(force_cube_coordinates, r) * dt
+        // Torque is calculated via Matrix::VectorProduct(force_cube_coordinates, r) * dt
 
-            momentum += force * dt;
-            angular_momentum += Matrix::VectorProduct(force_cube_coordinates, r) * dt;*/
-
-
-            //Matrix force_cube_coordinates = ConvertToCubeCoordinates(force);
-            //Matrix force_cube_coordinates = force;
-
-            //Matrix r = ConvertToCubeCoordinates(force_world_cooridinates - this->position);
-            Matrix r = force_world_cooridinates - this->position;
-
-            // Torque is calculated via Matrix::VectorProduct(force_cube_coordinates, r) * dt
-
-            //momentum += force * dt;
-            angular_momentum += Matrix::VectorProduct(r, force) * dt;
-
-        }
+        momentum += force_direction * dt;
+        angular_momentum += Matrix::VectorProduct(r, force_direction) * dt;
+    }
 
         void Cube::SetAngularMomentumToZero() {
             angular_momentum = Matrix(3, 1);

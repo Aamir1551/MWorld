@@ -105,11 +105,11 @@ public:
     /**
      * @brief Adds a torque to the cube. 
      * 
-     * @param force The force vector in world coordinates
-     * @param force_world_cooridinates The coordinates of the force in world coordinates
+     * @param force The force direction
+     * @param force_world_cooridinates The force position in world coordinates
      * @param dt The amount of time the force was applied for
      */
-    void AddTorque(Matrix const force, Matrix const force_world_cooridinates, real const dt)
+    void AddTorque(Matrix const force_direction, Matrix const force_position_world_cooridinates, real const dt)
     {
         /*
             Initially the force and the force_world_coordinates are in world coordintes. However, the 
@@ -135,15 +135,15 @@ public:
 
        */
         //Matrix force_cube_coordinates = ConvertToCubeCoordinates(force);
-        Matrix force_cube_coordinates = force;
+        Matrix force_direction_cube_coordinates = force_direction;
 
         //Matrix r = ConvertToCubeCoordinates(force_world_cooridinates - this->position);
-        Matrix r = force_world_cooridinates - this->position;
+        Matrix r = force_position_world_cooridinates - this->position;
 
         // Torque is calculated via Matrix::VectorProduct(force_cube_coordinates, r) * dt
 
-        momentum += force * dt;
-        angular_momentum += Matrix::VectorProduct(r, force_cube_coordinates) * dt;
+        momentum += force_direction * dt;
+        angular_momentum += Matrix::VectorProduct(r, force_direction_cube_coordinates) * dt;
     }
 
     /**

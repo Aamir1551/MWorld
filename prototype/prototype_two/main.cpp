@@ -78,6 +78,11 @@ int main()
     real deltaTime = 0.0f; // Time between current frame and last frame
     real lastFrame = 0.0f; // Time of last frame
 
+    up_force += c.position;
+    down_force += c.position;
+    right_force += c.position;
+    left_force += c.position;
+
     while (!glfwWindowShouldClose(world_properties->window))
     { // render loop -- an iteration of this main render loop is called a frame
 
@@ -91,14 +96,14 @@ int main()
 
         real amount = 0.0001;
         if (glfwGetKey(world_properties->window, GLFW_KEY_J) == GLFW_PRESS)
-            c.AddTorque(left_force, force_world_vector, amount * deltaTime);
+            c.AddTorque(force_world_vector, left_force, amount * deltaTime);
         if (glfwGetKey(world_properties->window, GLFW_KEY_L) == GLFW_PRESS)
-            c.AddTorque(right_force, force_world_vector,amount * deltaTime);
+            c.AddTorque(force_world_vector, right_force,amount * deltaTime);
 
         if (glfwGetKey(world_properties->window, GLFW_KEY_I) == GLFW_PRESS)
-            c.AddTorque(up_force,  force_world_vector, amount * deltaTime);
+            c.AddTorque(force_world_vector,  up_force, amount * deltaTime);
         if (glfwGetKey(world_properties->window, GLFW_KEY_K) == GLFW_PRESS)
-            c.AddTorque(down_force,  force_world_vector, amount * deltaTime);
+            c.AddTorque(force_world_vector,  down_force, amount * deltaTime);
 
         if (glfwGetKey(world_properties->window, GLFW_KEY_SPACE) == GLFW_PRESS)
             c.SetAngularMomentumToZero();
@@ -114,6 +119,10 @@ int main()
         model = model * rotation_mat;
         view = camera.CalculateView();
         cubes.ApplyUniforms(model);
+
+        glm::vec3 colour = glm::vec3(1, 1, 1);
+        int colour_loc = glGetUniformLocation(CubeRenderer::shader_id, "colour");
+        glUniform3fv(colour_loc, 1, glm::value_ptr(colour));
 
         glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 
