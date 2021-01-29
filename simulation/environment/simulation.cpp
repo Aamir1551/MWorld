@@ -1,5 +1,3 @@
-#include <iostream>
-#include <vector>
 #include <time.h>
 #include <math.h>
 #include <cstdlib> //for the rand function
@@ -24,13 +22,14 @@ using namespace std;
 using namespace render_utils;
 using namespace numerics;
 using namespace settings;
+using namespace blocks;
 
 // TODO
 // 1) Add font colour to terminal screen whenever prototype_one or two or three are running.
 // Add a different font colour for each of them in the terminal.
 // So that it is more clearer to know which prototype is running.
 
-void DrawBlocks(vector<Block *> &block_list,glm::vec3 colour, glm::mat4& id, CubeRenderer &cubes, Camera &camera, glm::mat4 &view);
+void DrawBlocks(vector<Block *> *block_list,glm::vec3 colour, glm::mat4& id, CubeRenderer &cubes, Camera &camera, glm::mat4 &view);
 
 int main()
 {
@@ -52,7 +51,7 @@ int main()
     real cube_length = 4.0f;
 
     //WorldHandler world = WorldHandler(20, 20, 20, 20,20, 20, 20);
-    WorldHandler world = WorldHandler(10, 0, 0,0 ,0,100,0);
+    WorldHandler world = WorldHandler(100, 0, 0,100 ,0,00,0);
 
     /*real position_coord1[] = {-20, -2.0f, -20}; //x, y, z. x is how much horizontal y is vertical. z is in/out
     Matrix position1(3, 1, position_coord1);
@@ -107,7 +106,6 @@ int main()
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         world.Update();
-
         world.CollisionHandler();
         world.AddForces();
 
@@ -126,7 +124,10 @@ int main()
             view = camera.CalculateView();
             glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
         }*/
-        DrawBlocks(world.blocks, glm::vec3(1, 1, 1), id, cubes, camera, view);
+        DrawBlocks( (vector<Block*> *) &(world.iblocks), glm::vec3(0, 1, 1), id, cubes, camera, view);
+        DrawBlocks( (vector<Block*> *) &world.mblocks, glm::vec3(1, 0, 1), id, cubes, camera, view);
+        DrawBlocks( (vector<Block*> *) &world.zblocks, glm::vec3(0, 0, 1), id, cubes, camera, view);
+        DrawBlocks( (vector<Block*> *) &world.eblocks, glm::vec3(1, 1, 1), id, cubes, camera, view);
 
 
         cubes.models.clear();
@@ -145,13 +146,13 @@ int main()
     return 0;
 }
 
-void DrawBlocks(vector<Block *> &block_list,glm::vec3 colour, glm::mat4& id, CubeRenderer &cubes, Camera &camera, glm::mat4 &view) {
-    for(int i =0; i<block_list.size(); i++) {
+void DrawBlocks(vector<Block *> *block_list,glm::vec3 colour, glm::mat4& id, CubeRenderer &cubes, Camera &camera, glm::mat4 &view) {
+    for(int i =0; i<block_list->size(); i++) {
         glm::mat4 rotation_mat;
-        memcpy(glm::value_ptr(rotation_mat), block_list.at(i)->GetOrientationMatrix().GetValues(), 16 * sizeof(real));
+        memcpy(glm::value_ptr(rotation_mat), block_list->at(i)->GetOrientationMatrix().GetValues(), 16 * sizeof(real));
 
         glm::vec3 translation_mat;
-        memcpy(glm::value_ptr(translation_mat), block_list.at(i)->position.GetValues(), 3 * sizeof(real));
+        memcpy(glm::value_ptr(translation_mat), block_list->at(i)->position.GetValues(), 3 * sizeof(real));
 
         glm::mat4 model = glm::translate(id, translation_mat);
         model = model * rotation_mat;
@@ -161,9 +162,7 @@ void DrawBlocks(vector<Block *> &block_list,glm::vec3 colour, glm::mat4& id, Cub
 
 
         int colour_loc = glGetUniformLocation(CubeRenderer::shader_id, "colour");
-        glUniform3f(colour_loc, 1, GL_FALSE, glm::value_ptr(colour)); //change this to vectr
-
-
+        glUniform3fv(colour_loc, 1, glm::value_ptr(colour));
         view = camera.CalculateView();
         glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
     }

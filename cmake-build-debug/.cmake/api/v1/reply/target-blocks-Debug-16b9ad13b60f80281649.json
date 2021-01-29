@@ -139,11 +139,11 @@
 		},
 		{
 			"backtrace" : 2,
-			"id" : "cube_renderer::@ef8ae11a8c6e57d14ca4"
+			"id" : "quaternion::@1ddfe99dd86582fd9c64"
 		},
 		{
 			"backtrace" : 2,
-			"id" : "quaternion::@1ddfe99dd86582fd9c64"
+			"id" : "cube_renderer::@ef8ae11a8c6e57d14ca4"
 		}
 	],
 	"id" : "blocks::@6db65c1307d2a2a784c8",
