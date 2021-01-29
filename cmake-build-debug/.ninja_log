@@ -66,3 +66,13 @@
 1628	1966	6336634088125168	simulation/environment/logic_gates.exe	a96187776d1a2063
 5	1546	6336634205636053	simulation/environment/CMakeFiles/flare_test.dir/flare_test.cpp.obj	32843daf2d90ed33
 1547	1884	6336634208839996	simulation/environment/flare_test.exe	45055f05f7a89c93
+2	424	6336636536824838	build.ninja	86ad8b687f76afe4
+5	101	6336636539082291	numerics/linear_alg/liblinear_alg.a	6d1cd5b74ef1e4da
+9	527	6336636543376274	simulation/blocks/CMakeFiles/blocks.dir/z_block.cpp.obj	4482789c6aa25db7
+12	570	6336636543805116	simulation/blocks/CMakeFiles/blocks.dir/i_block.cpp.obj	cc77b95de594f220
+7	577	6336636543865209	simulation/blocks/CMakeFiles/blocks.dir/e_block.cpp.obj	c417ca21efc1a159
+577	653	6336636544633250	simulation/blocks/libblocks.a	9a6e7737f8c8799c
+15	1657	6336636554639121	simulation/environment/CMakeFiles/simulation.dir/simulation.cpp.obj	12b260831a669cf3
+1657	2007	6336636557911093	simulation/environment/simulation.exe	da933e91212b965a
+2	888	6336636716257849	numerics/linear_alg/test/CMakeFiles/matrix_test.dir/test.cpp.obj	196fa014ab1559f0
+888	10111	6336636808170795	numerics/linear_alg/test/matrix_test.exe	2a5f2e033f9e5d87

@@ -294,13 +294,6 @@ build numerics/linear_alg/CMakeFiles/linear_alg.dir/src/matrix.cpp.obj: CXX_COMP
   OBJECT_DIR = numerics\linear_alg\CMakeFiles\linear_alg.dir
   OBJECT_FILE_DIR = numerics\linear_alg\CMakeFiles\linear_alg.dir\src
 
-build numerics/linear_alg/CMakeFiles/linear_alg.dir/src/matrix3.cpp.obj: CXX_COMPILER__linear_alg_Debug ../numerics/linear_alg/src/matrix3.cpp || cmake_object_order_depends_target_linear_alg
-  DEP_FILE = numerics\linear_alg\CMakeFiles\linear_alg.dir\src\matrix3.cpp.obj.d
-  FLAGS = -g   -std=gnu++11
-  INCLUDES = -I../numerics/linear_alg/include -I../utils/settings/.
-  OBJECT_DIR = numerics\linear_alg\CMakeFiles\linear_alg.dir
-  OBJECT_FILE_DIR = numerics\linear_alg\CMakeFiles\linear_alg.dir\src
-
 
 # =============================================================================
 # Link build statements for STATIC_LIBRARY target linear_alg
@@ -309,7 +302,7 @@ build numerics/linear_alg/CMakeFiles/linear_alg.dir/src/matrix3.cpp.obj: CXX_COM
 #############################################
 # Link the static library numerics\linear_alg\liblinear_alg.a
 
-build numerics/linear_alg/liblinear_alg.a: CXX_STATIC_LIBRARY_LINKER__linear_alg_Debug numerics/linear_alg/CMakeFiles/linear_alg.dir/src/matrix.cpp.obj numerics/linear_alg/CMakeFiles/linear_alg.dir/src/matrix3.cpp.obj
+build numerics/linear_alg/liblinear_alg.a: CXX_STATIC_LIBRARY_LINKER__linear_alg_Debug numerics/linear_alg/CMakeFiles/linear_alg.dir/src/matrix.cpp.obj
   LANGUAGE_COMPILE_FLAGS = -g
   OBJECT_DIR = numerics\linear_alg\CMakeFiles\linear_alg.dir
   POST_BUILD = cd .
