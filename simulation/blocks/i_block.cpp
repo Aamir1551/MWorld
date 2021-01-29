@@ -4,31 +4,31 @@
 
 namespace blocks {
 
-    void IBlock::React(IBlock * block, real dist, const Matrix &to_cube) {
+    void IBlock::React(IBlock * block, real squard_dist, const Matrix &to_cube) {
         // I+ and I+ Repel
         // I- and I- Repel
         if(block->state == this->state) {
             // Repel
             auto &force = to_cube;
-            AddTorque(force, this->position, Block::force_dt / dist / dist * -1 * 0.1);
+            AddTorque(force, this->position, Block::force_dt / squard_dist * -1 * 0.1);
 
         }
     };
 
-    void IBlock::React(MBlock  * block, real dist, const Matrix &to_cube) {
+    void IBlock::React(MBlock  * block, real squared_dist, const Matrix &to_cube) {
 
     };
 
-    void IBlock::React(ZBlock  *block, real dist, const Matrix &to_cube) {
+    void IBlock::React(ZBlock  *block, real squared_dist, const Matrix &to_cube) {
 
     };
 
-    void IBlock::React(EBlock * block, real dist, const Matrix &to_cube) {
+    void IBlock::React(EBlock * block, real squard_dist, const Matrix &to_cube) {
         // I+ and E repel
         if(this->state == true) {
             // Repel
             auto &force = to_cube;
-            AddTorque(force, this->position, Block::force_dt / dist / dist * 0.1 * -1); // as distance increases, force decreases
+            AddTorque(force, this->position, Block::force_dt / * 0.1 * -1); // as distance increases, force decreases
         }
     };
 

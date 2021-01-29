@@ -195,33 +195,33 @@ public:
     real ReactToAllBlocks(Block *block) {
         for(int i=0; i<iblocks.size(); i++) {
             Matrix to_cube = iblocks.at(i)->position - block->position;
-            real dist = Matrix::SquaredNorm(to_cube);
-            if(dist >= 5) {
-                block->React(iblocks.at(i), dist, to_cube);
+            real squared_dist = Matrix::SquaredNorm(to_cube);
+            if(squared_dist >= 25) {
+                block->React(iblocks.at(i), squared_dist, to_cube);
             }
         }
 
         for(int i=0; i<zblocks.size(); i++) {
             Matrix to_cube = zblocks.at(i)->position - block->position;
-            real dist = Matrix::SquaredNorm(to_cube);
-            if(dist >= 5) {
-                block->React(zblocks.at(i), dist, to_cube);
+            real squared_dist = Matrix::SquaredNorm(to_cube);
+            if(squared_dist >= 25) {
+                block->React(zblocks.at(i), squared_dist, to_cube);
             }
         }
 
         for(int i=0; i<eblocks.size(); i++) {
             Matrix to_cube = eblocks.at(i)->position - block->position;
-            real dist = Matrix::SquaredNorm(to_cube);
-            if(dist >= 5) {
-                block->React(eblocks.at(i), dist, to_cube);
+            real squared_dist = Matrix::SquaredNorm(to_cube);
+            if(squared_dist >= 25) {
+                block->React(eblocks.at(i), squared_dist, to_cube);
             }
         }
 
         for(int i=0; i<mblocks.size(); i++) {
             Matrix to_cube = mblocks.at(i)->position - block->position;
-            real dist = Matrix::SquaredNorm(to_cube);
-            if(dist >= 5) {
-                block->React(mblocks.at(i), dist, to_cube);
+            real squared_dist = Matrix::SquaredNorm(to_cube);
+            if(squared_dist >= 25) {
+                block->React(mblocks.at(i), squared_dist, to_cube);
             }
         }
     }
