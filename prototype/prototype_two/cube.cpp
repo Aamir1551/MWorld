@@ -161,7 +161,7 @@ public:
      * 
      * @return Matrix& 
      */
-    Matrix &GetOrientationMatrix() const
+    Matrix GetOrientationMatrix() const
     {
         return Quaternion::GetMatrixTransformation(this->orientation);
     }
@@ -171,7 +171,7 @@ public:
      * 
      * @return Matrix& 
      */
-    Matrix &GetInverseOrientationMatrix() const
+    Matrix GetInverseOrientationMatrix() const
     {
         return Quaternion::GetInverseMatrixTransformation(this->orientation);
     }

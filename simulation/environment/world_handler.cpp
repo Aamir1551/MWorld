@@ -178,6 +178,7 @@ public:
             Cube::CollisionResolution(contact_list.at(i));
         }
         PassBlockFlares(contact_list);
+        SpinWorldBlocks();
         IncFlareValues();
     }
 
@@ -243,14 +244,28 @@ public:
         }
     }
 
-    void AddSpin(vector<Block *> &block_list, Matrix &force_relative_coordinates) {
-        for(int i=0; i<blocks.size(); i++) {
-            blocks.at(i)->spin(force_relative_coordinates);
+    void AddSpin(vector<Block *> *block_list,  Matrix &force_direction, Matrix &force_relative_coordinates) {
+        for(int i=0; i<block_list->size(); i++) {
+            block_list->at(i)->spin(force_direction, force_relative_coordinates);
         }
     }
 
     void SpinWorldBlocks() {
-        AddSpin(iblocks, )
+        real left_force_coordinates[] = {-2, 0, -5};
+        real right_force_coordinates[] = {2, 0, -5};
+        real up_force_coordinates[] = {0, 2, -0};
+        real down_force_coordinates[] = {0, -2, -5};
+
+        Matrix right_force(3, 1, right_force_coordinates);
+        Matrix left_force(3, 1, left_force_coordinates);
+        Matrix up_force(3, 1, up_force_coordinates);
+        Matrix down_force(3, 1, down_force_coordinates);
+
+
+        real force_vector[] = {0, 0, -5}; // make sure to change direction of force
+        Matrix force_world_vector(3, 1, force_vector);
+
+        AddSpin((vector<Block*>*) (&this->mblocks), force_world_vector, up_force);
 
     }
 

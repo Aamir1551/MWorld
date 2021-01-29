@@ -95,8 +95,8 @@ namespace blocks {
 
             // Torque is calculated via Matrix::VectorProduct(force_cube_coordinates, r) * dt
 
-            momentum += force * dt;
-            //angular_momentum += Matrix::VectorProduct(r, force) * dt;
+            //momentum += force * dt;
+            angular_momentum += Matrix::VectorProduct(r, force) * dt;
 
         }
 

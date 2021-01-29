@@ -26,7 +26,7 @@ namespace blocks {
     };
 
 
-    real MBlock::threshold = 50.0f;
-    real MBlock::flare_capacity = 50.0f;
+    real MBlock::threshold = 5000000000000000000000000000.0f;
+    real MBlock::flare_capacity = 500000000000000000000.0f;
 
 };
