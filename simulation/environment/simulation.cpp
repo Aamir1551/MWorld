@@ -46,14 +46,14 @@ int main()
     Camera camera(world_properties->window);
     glm::mat4 view = camera.CalculateView();
 
-    glm::mat4 projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 4000.0f);
+    glm::mat4 projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 400.0f);
 
     real cube_length = 4.0f;
 
     //WorldHandler world = WorldHandler(10, 10, 10, 10,10, 10, 10);
     //WorldHandler world = WorldHandler(0, 0, 0, 0, 0, 0, 0);
-    WorldHandler world = WorldHandler(0, 0, 2, 0, 0, 0, 0);
-    //WorldHandler world = WorldHandler(0, 0, 300, 0, 0, 0, 0);
+    //WorldHandler world = WorldHandler(0, 0, 2, 0, 0, 0, 0);
+    WorldHandler world = WorldHandler(0, 0, 300, 0, 0, 0, 0);
     //WorldHandler world = WorldHandler(100, 10, 100,10 ,0,00,0);
 
     real position_coord1[] = {-20, -2.0f, -20}; //x, y, z. x is how much horizontal y is vertical. z is in/out
