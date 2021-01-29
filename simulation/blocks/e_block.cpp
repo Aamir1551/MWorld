@@ -11,7 +11,6 @@ namespace blocks {
             // If k > 1: Repel, Otherwise Attract
             real factor = std::log(this->k);
             auto &force = to_cube;
-            //AddTorque(force, this->position, Block::force_dt / squared_dist * 0.1 * -1 * factor); // as distance increases, force decreases
             AddLinearForce(force, Block::force_dt / squared_dist * 0.1 * -1 * factor);
         }
     };
@@ -28,7 +27,6 @@ namespace blocks {
         // E block and E block repel as k increases
         float factor = std::log(block->k * this->k); // is zero is both blocks are k=1
         auto &force = to_cube;
-        //AddTorque(force, this->position, force_dt * factor / squared_dist * -1 * 0.1);
         AddLinearForce(force, force_dt * factor / squared_dist * -1 * 0.1);
     };
 
@@ -39,7 +37,7 @@ namespace blocks {
     };
 
     void EBlock::AddFlareToBlock(real flare_amount) {
-        this->flare_inc += (flare_amount * 0.1) * k;
+        this->flare_inc += (flare_amount * 0.01) * k;
     };
 
 };

@@ -11,7 +11,6 @@ namespace blocks {
         if(block->state == this->state) {
             // Repel
             auto &force = to_cube;
-            //AddTorque(force, this->position, Block::force_dt / squard_dist * -1 * 0.1);
             AddLinearForce(force, Block::force_dt / squared_dist * -1 * 0.1);
         }
     };
@@ -31,7 +30,6 @@ namespace blocks {
             real factor = std::log(block->k);
             auto &force = to_cube;
             AddLinearForce(force, Block::force_dt / squared_dist * 0.1 * -1 * factor);
-            //AddTorque(force, this->position, Block::force_dt / squared_dist * 0.1 * -1 * factor); // as distance increases, force decreases
         }
     };
 
