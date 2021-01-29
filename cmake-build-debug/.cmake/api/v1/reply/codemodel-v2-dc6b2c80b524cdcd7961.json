@@ -62,7 +62,7 @@
 					"source" : "utils/util_functions",
 					"targetIndexes" : 
 					[
-						10
+						11
 					]
 				},
 				{
@@ -119,7 +119,7 @@
 					"source" : "numerics/linear_alg/test",
 					"targetIndexes" : 
 					[
-						4
+						5
 					]
 				},
 				{
@@ -133,7 +133,7 @@
 					"source" : "numerics/quaternion",
 					"targetIndexes" : 
 					[
-						8
+						9
 					]
 				},
 				{
@@ -224,7 +224,7 @@
 					"source" : "prototype/prototype_one",
 					"targetIndexes" : 
 					[
-						5
+						6
 					]
 				},
 				{
@@ -238,7 +238,7 @@
 					"source" : "prototype/prototype_two",
 					"targetIndexes" : 
 					[
-						7
+						8
 					]
 				},
 				{
@@ -252,7 +252,7 @@
 					"source" : "prototype/prototype_three",
 					"targetIndexes" : 
 					[
-						6
+						7
 					]
 				},
 				{
@@ -295,7 +295,8 @@
 					"source" : "simulation/environment",
 					"targetIndexes" : 
 					[
-						9
+						4,
+						10
 					]
 				}
 			],
@@ -352,7 +353,7 @@
 					"parentIndex" : 2,
 					"targetIndexes" : 
 					[
-						10
+						11
 					]
 				},
 				{
@@ -401,7 +402,7 @@
 					"parentIndex" : 6,
 					"targetIndexes" : 
 					[
-						4
+						5
 					]
 				},
 				{
@@ -413,7 +414,7 @@
 					"parentIndex" : 5,
 					"targetIndexes" : 
 					[
-						8
+						9
 					]
 				},
 				{
@@ -490,7 +491,7 @@
 					"parentIndex" : 14,
 					"targetIndexes" : 
 					[
-						5
+						6
 					]
 				},
 				{
@@ -502,7 +503,7 @@
 					"parentIndex" : 14,
 					"targetIndexes" : 
 					[
-						7
+						8
 					]
 				},
 				{
@@ -514,7 +515,7 @@
 					"parentIndex" : 14,
 					"targetIndexes" : 
 					[
-						6
+						7
 					]
 				},
 				{
@@ -531,7 +532,8 @@
 					"parentIndex" : 0,
 					"targetIndexes" : 
 					[
-						9
+						4,
+						10
 					]
 				},
 				{
@@ -552,7 +554,7 @@
 				{
 					"directoryIndex" : 19,
 					"id" : "blocks::@6db65c1307d2a2a784c8",
-					"jsonFile" : "target-blocks-Debug-16b9ad13b60f80281649.json",
+					"jsonFile" : "target-blocks-Debug-1110007bccd44da9c961.json",
 					"name" : "blocks",
 					"projectIndex" : 19
 				},
@@ -578,6 +580,13 @@
 					"projectIndex" : 6
 				},
 				{
+					"directoryIndex" : 20,
+					"id" : "logic_gates::@847a59781e22ff560ae6",
+					"jsonFile" : "target-logic_gates-Debug-44aead82310b2de087a6.json",
+					"name" : "logic_gates",
+					"projectIndex" : 18
+				},
+				{
 					"directoryIndex" : 7,
 					"id" : "matrix_test::@2c4963581b964c5fdc28",
 					"jsonFile" : "target-matrix_test-Debug-2527b23f1aca36c7f8fc.json",
@@ -594,14 +603,14 @@
 				{
 					"directoryIndex" : 17,
 					"id" : "prototype_three::@2a17fa0eebb0697fdbb6",
-					"jsonFile" : "target-prototype_three-Debug-10e5e62dac9b6a141603.json",
+					"jsonFile" : "target-prototype_three-Debug-41b6124f314dc38c5cd2.json",
 					"name" : "prototype_three",
 					"projectIndex" : 17
 				},
 				{
 					"directoryIndex" : 16,
 					"id" : "prototype_two::@e7e923eba9c0b8a1d5aa",
-					"jsonFile" : "target-prototype_two-Debug-190a255f5569422ac45b.json",
+					"jsonFile" : "target-prototype_two-Debug-369f613343cae09e7385.json",
 					"name" : "prototype_two",
 					"projectIndex" : 16
 				},
@@ -615,7 +624,7 @@
 				{
 					"directoryIndex" : 20,
 					"id" : "simulation::@847a59781e22ff560ae6",
-					"jsonFile" : "target-simulation-Debug-dac68cd39d0e99ad57c4.json",
+					"jsonFile" : "target-simulation-Debug-871e0a60ba9f747dd00e.json",
 					"name" : "simulation",
 					"projectIndex" : 18
 				},

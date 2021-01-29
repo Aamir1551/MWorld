@@ -2,10 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "simulation/environment/simulation.exe"
+			"path" : "simulation/environment/logic_gates.exe"
 		},
 		{
-			"path" : "simulation/environment/simulation.pdb"
+			"path" : "simulation/environment/logic_gates.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -29,19 +29,19 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 5,
+				"line" : 6,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 6,
+				"line" : 8,
 				"parent" : 0
 			},
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 8,
+				"line" : 11,
 				"parent" : 0
 			}
 		]
@@ -136,7 +136,7 @@
 		},
 		{
 			"backtrace" : 2,
-			"id" : "linear_alg::@b276e23674e4ab50d284"
+			"id" : "cube_renderer::@ef8ae11a8c6e57d14ca4"
 		},
 		{
 			"backtrace" : 2,
@@ -144,14 +144,14 @@
 		},
 		{
 			"backtrace" : 2,
-			"id" : "cube_renderer::@ef8ae11a8c6e57d14ca4"
+			"id" : "linear_alg::@b276e23674e4ab50d284"
 		},
 		{
 			"backtrace" : 2,
 			"id" : "blocks::@6db65c1307d2a2a784c8"
 		}
 	],
-	"id" : "simulation::@847a59781e22ff560ae6",
+	"id" : "logic_gates::@847a59781e22ff560ae6",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -236,8 +236,8 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "simulation",
-	"nameOnDisk" : "simulation.exe",
+	"name" : "logic_gates",
+	"nameOnDisk" : "logic_gates.exe",
 	"paths" : 
 	{
 		"build" : "simulation/environment",
@@ -268,7 +268,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "simulation/environment/simulation.cpp",
+			"path" : "simulation/environment/logic_gates.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{

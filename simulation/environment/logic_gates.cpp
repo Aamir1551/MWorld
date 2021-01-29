@@ -51,13 +51,11 @@ int main()
 
     real position_coord1[] = {-20, -2.0f, -20}; //x, y, z. x is how much horizontal y is vertical. z is in/out
     Matrix position1(3, 1, position_coord1);
-    world.zblocks.at(0)->position =  position1;
-    //world.iblocks.at(0)->orientation =  Quaternion(1, 0, 0, 0);
+    world.iblocks.at(0)->position =  position1;
 
     real position_coord2[] = {10, 0, -20};
     Matrix position2(3, 1, position_coord2);
-    world.zblocks.at(1)->position =  position2;
-    //world.iblocks.at(1).orientation =  Quaternion(1, 0, 0, 0);
+    world.mblocks.at(0)->position =  position2;
 
     CubeRenderer::InitializeCubes(cube_length, vao, vbo, ebo, &view, &projection, world_properties->shader_id);
     CubeRenderer::AddVerticesToBuffers();
@@ -76,10 +74,10 @@ int main()
     real currentFrame;
 
     real initial_momentum1[] = {0, 0, 0};
-    world.iblocks.at(0).momentum = Matrix(3, 1, initial_momentum1);
+    world.iblocks.at(0)->momentum = Matrix(3, 1, initial_momentum1);
 
     real initial_momentum2[] = {0, 0.0, 0};
-    world.mblocks.at(0).momentum = Matrix(3, 1, initial_momentum2);*/
+    world.mblocks.at(0)->momentum = Matrix(3, 1, initial_momentum2);
 
 
 
@@ -104,6 +102,9 @@ int main()
         DrawBlocks( (vector<Block*> *) &(world.zblocks), glm::vec3(1, 0, 1), id, cubes, camera, view);
         DrawBlocks( (vector<Block*> *) &(world.eblocks), glm::vec3(0, 0, 1), id, cubes, camera, view);
         DrawBlocks( (vector<Block*> *) &(world.mblocks), glm::vec3(1, 1, 1), id, cubes, camera, view);
+
+
+        world.iblocks.at(0)->position.print();
 
         glfwSwapBuffers(world_properties->window);
         glfwPollEvents();
