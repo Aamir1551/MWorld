@@ -3,26 +3,26 @@
 
 namespace blocks {
 
-    void MBlock::React(IBlock *block, real dist, const Matrix &to_cube) {
-        // neautral
+    void MBlock::React(IBlock *block, real squared_dist, const Matrix &to_cube) {
+        // neutral
     };
 
 
-    void MBlock::React(EBlock *block, real dist, const Matrix &to_cube) {
-        // neautral
+    void MBlock::React(EBlock *block, real squared_dist, const Matrix &to_cube) {
+        // neutral
     };
 
 
-    void MBlock::React(MBlock *block, real dist, const Matrix &to_cube) {
-        // neautral
-        if(this->state != block->state) {
+    void MBlock::React(MBlock *block, real squared_dist, const Matrix &to_cube) {
+        // neutral
+    };
+
+    void MBlock::React(ZBlock *block, real squared_dist, const Matrix &to_cube) {
+        // ZBlocks are attracted to M+ blocks
+        if(this->flare_value > MBlock::threshold) {
             auto &force = to_cube;
-            AddTorque(force, this->position, Block::force_dt / dist / dist * 0.1); // as distance increases, force decreases
+            AddTorque(force, this->position, Block::force_dt / squared_dist * 1 ); // as distance increases, force also decreases
         }
-    };
-
-    void MBlock::React(ZBlock *block, real dist, const Matrix &to_cube) {
-        // neautral
     };
 
 
