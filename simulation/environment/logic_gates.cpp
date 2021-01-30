@@ -11,7 +11,7 @@
 #include <settings.hpp>
 #include <matrix.hpp>
 #include <camera.hpp>
-#include "../world_handler/world_handler.cpp"
+#include "../world_handler/world_handler.hpp"
 
 using namespace std;
 
@@ -19,11 +19,6 @@ using namespace render_utils;
 using namespace numerics;
 using namespace settings;
 using namespace blocks;
-
-// TODO
-// 1) Add font colour to terminal screen whenever prototype_one or two or three are running.
-// Add a different font colour for each of them in the terminal.
-// So that it is more clearer to know which prototype is running.
 
 void DrawBlocks(vector<Block *> *block_list,glm::vec3 colour, glm::mat4& id, CubeRenderer &cubes, Camera &camera, glm::mat4 &view);
 

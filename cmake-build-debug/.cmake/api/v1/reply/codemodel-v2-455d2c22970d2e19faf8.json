@@ -179,28 +179,28 @@
 					]
 				},
 				{
-					"build" : "render/shader",
-					"minimumCMakeVersion" : 
-					{
-						"string" : "3.10"
-					},
-					"parentIndex" : 9,
-					"projectIndex" : 12,
-					"source" : "render/shader"
-				},
-				{
 					"build" : "render/utils",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.10"
 					},
 					"parentIndex" : 9,
-					"projectIndex" : 13,
+					"projectIndex" : 12,
 					"source" : "render/utils",
 					"targetIndexes" : 
 					[
 						8
 					]
+				},
+				{
+					"build" : "render/shader",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 9,
+					"projectIndex" : 13,
+					"source" : "render/shader"
 				},
 				{
 					"build" : "render/block_renderer",
@@ -493,20 +493,20 @@
 					[
 						12
 					],
-					"name" : "shader",
-					"parentIndex" : 9
-				},
-				{
-					"directoryIndexes" : 
-					[
-						13
-					],
 					"name" : "mworld_render_utils",
 					"parentIndex" : 9,
 					"targetIndexes" : 
 					[
 						8
 					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						13
+					],
+					"name" : "shader",
+					"parentIndex" : 9
 				},
 				{
 					"directoryIndexes" : 
@@ -620,7 +620,7 @@
 				{
 					"directoryIndex" : 14,
 					"id" : "block_renderer::@20380dfbeeaf1beda5b3",
-					"jsonFile" : "target-block_renderer-Debug-81a6e6b91fd8667d81e3.json",
+					"jsonFile" : "target-block_renderer-Debug-747f58821178239f4cc4.json",
 					"name" : "block_renderer",
 					"projectIndex" : 14
 				},
@@ -641,7 +641,7 @@
 				{
 					"directoryIndex" : 22,
 					"id" : "flare_test::@847a59781e22ff560ae6",
-					"jsonFile" : "target-flare_test-Debug-17b1e3b73473d5946f86.json",
+					"jsonFile" : "target-flare_test-Debug-ab1f71474b44e44bd747.json",
 					"name" : "flare_test",
 					"projectIndex" : 19
 				},
@@ -662,7 +662,7 @@
 				{
 					"directoryIndex" : 22,
 					"id" : "logic_gates::@847a59781e22ff560ae6",
-					"jsonFile" : "target-logic_gates-Debug-164011d0f11c477095d4.json",
+					"jsonFile" : "target-logic_gates-Debug-45c2b5bcf43644145a08.json",
 					"name" : "logic_gates",
 					"projectIndex" : 19
 				},
@@ -674,30 +674,30 @@
 					"projectIndex" : 7
 				},
 				{
-					"directoryIndex" : 13,
+					"directoryIndex" : 12,
 					"id" : "mworld_render_utils::@c1c5e50b708af245b811",
-					"jsonFile" : "target-mworld_render_utils-Debug-89d12dd9430908c30aaf.json",
+					"jsonFile" : "target-mworld_render_utils-Debug-bb7a8f5dbdd4de9b1e04.json",
 					"name" : "mworld_render_utils",
-					"projectIndex" : 13
+					"projectIndex" : 12
 				},
 				{
 					"directoryIndex" : 16,
 					"id" : "prototype_one::@c77c4220c2085dac9ec5",
-					"jsonFile" : "target-prototype_one-Debug-99b523d0e7538bfd2445.json",
+					"jsonFile" : "target-prototype_one-Debug-64e5ed9e2bd07625347d.json",
 					"name" : "prototype_one",
 					"projectIndex" : 16
 				},
 				{
 					"directoryIndex" : 18,
 					"id" : "prototype_three::@2a17fa0eebb0697fdbb6",
-					"jsonFile" : "target-prototype_three-Debug-5085227a181e5cf9ffbb.json",
+					"jsonFile" : "target-prototype_three-Debug-310174b34b969fb721ef.json",
 					"name" : "prototype_three",
 					"projectIndex" : 18
 				},
 				{
 					"directoryIndex" : 17,
 					"id" : "prototype_two::@e7e923eba9c0b8a1d5aa",
-					"jsonFile" : "target-prototype_two-Debug-5a412625fae72f60e789.json",
+					"jsonFile" : "target-prototype_two-Debug-6c3079dd71d24598a465.json",
 					"name" : "prototype_two",
 					"projectIndex" : 17
 				},
@@ -711,7 +711,7 @@
 				{
 					"directoryIndex" : 22,
 					"id" : "simulation::@847a59781e22ff560ae6",
-					"jsonFile" : "target-simulation-Debug-9ac0746211e7fca5d9e6.json",
+					"jsonFile" : "target-simulation-Debug-1fdcda5015769bc68fc4.json",
 					"name" : "simulation",
 					"projectIndex" : 19
 				},
@@ -725,7 +725,7 @@
 				{
 					"directoryIndex" : 21,
 					"id" : "world_handler::@db5c5082507517693d46",
-					"jsonFile" : "target-world_handler-Debug-706637b3211ac230d9c2.json",
+					"jsonFile" : "target-world_handler-Debug-5a34f138fc8310a58fd2.json",
 					"name" : "world_handler",
 					"projectIndex" : 21
 				}

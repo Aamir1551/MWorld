@@ -189,10 +189,10 @@
 			"path" : "render/cube_renderer/CMakeLists.txt"
 		},
 		{
-			"path" : "render/shader/CMakeLists.txt"
+			"path" : "render/utils/CMakeLists.txt"
 		},
 		{
-			"path" : "render/utils/CMakeLists.txt"
+			"path" : "render/shader/CMakeLists.txt"
 		},
 		{
 			"path" : "render/block_renderer/CMakeLists.txt"

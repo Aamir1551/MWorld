@@ -39,7 +39,7 @@ int main()
     WorldHandler world = WorldHandler(num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same);
     //WorldHandler world = WorldHandler(0, 0, 0, 0, 0, 0);
     //WorldHandler world = WorldHandler(0, 0, 2, 0, 0, 0);
-    //WorldHandler world = WorldHandler(0, 0, 160, 0, 0, 0);
+    //WorldHandler world = WorldHandler(0, 0, 120, 0, 0, 0);
 
     glBindVertexArray(vao);
     glEnable(GL_DEPTH_TEST);

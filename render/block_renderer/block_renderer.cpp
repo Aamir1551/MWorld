@@ -27,7 +27,7 @@ namespace render_utils {
     glm::mat4 BlockRenderer::view;
     glm::mat4 BlockRenderer::projection;
 
-        void BlockRenderer::DrawBlocks(vector<Block *> *block_list,glm::vec3 colour) {
+        void BlockRenderer::DrawBlocks(vector<Block *> *block_list, glm::vec3 colour) {
             for(auto & block_ptr : *block_list) {
                 glm::mat4 rotation_mat;
                 memcpy(glm::value_ptr(rotation_mat), block_ptr->GetOrientationMatrix().GetValues(), 16 * sizeof(real));
@@ -60,6 +60,7 @@ namespace render_utils {
 
 
         void BlockRenderer::InitialiseBlockRenderer(Camera *_camera, real _cube_length, unsigned int vao, unsigned int vbo , unsigned int ebo, WorldProperties *world_properties) {
+            BlockRenderer::id = glm::mat4(1.0f);
             BlockRenderer::view = _camera->CalculateView();
             BlockRenderer::projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 400.0f);
             BlockRenderer::camera = _camera;
