@@ -28,16 +28,16 @@ namespace render_utils {
     public:
 
         static glm::mat4 id;
-        static Camera camera;
+        static Camera *camera;
         static real cube_length;
         static glm::mat4 view;
         static glm::mat4 projection;
 
-        void static DrawBlocks(vector<Block *> *block_list,glm::vec3 colour, glm::mat4& id, Camera &camera, glm::mat4 &view);
+        void static DrawBlocks(vector<Block *> *block_list,glm::vec3 colour);
 
         void static DrawAllBlocks(vector<IBlock *> *iblocks, vector<ZBlock *> *zblocks, vector<EBlock *> *eblocks, vector<MBlock *> *mblocks);
 
-        void static InitialiseBlockRenderer(Camera &_camera, real _cube_length, unsigned int vao, unsigned int vbo , unsigned int ebo, WorldProperties *world_properties);
+        void static InitialiseBlockRenderer(Camera *_camera, real _cube_length, unsigned int vao, unsigned int vbo , unsigned int ebo, WorldProperties *world_properties);
 
     };
 

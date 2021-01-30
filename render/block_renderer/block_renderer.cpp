@@ -11,7 +11,6 @@
 #include <settings.hpp>
 #include <camera.hpp>
 #include <block.hpp>
-#include <world_handler.hpp>
 
 using namespace std;
 
@@ -24,14 +23,13 @@ using namespace blocks;
 
 namespace render_utils {
 
-
     glm::mat4 BlockRenderer::id;
-    //Camera BlockRenderer::camera;
+    Camera *BlockRenderer::camera;
     real cube_length;
     glm::mat4 BlockRenderer::view;
     glm::mat4 BlockRenderer::projection;
 
-        void BlockRenderer::DrawBlocks(vector<Block *> *block_list,glm::vec3 colour, glm::mat4& id, Camera &camera, glm::mat4 &view) {
+        void BlockRenderer::DrawBlocks(vector<Block *> *block_list,glm::vec3 colour) {
             for(auto & block_ptr : *block_list) {
                 glm::mat4 rotation_mat;
                 memcpy(glm::value_ptr(rotation_mat), block_ptr->GetOrientationMatrix().GetValues(), 16 * sizeof(real));
@@ -45,7 +43,7 @@ namespace render_utils {
 
                 int colour_loc = glGetUniformLocation(CubeRenderer::shader_id, "colour");
                 glUniform3fv(colour_loc, 1, glm::value_ptr(colour));
-                view = camera.CalculateView();
+                view = BlockRenderer::camera->CalculateView();
                 glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
             }
         }
@@ -56,15 +54,15 @@ namespace render_utils {
             // E blocks are coloured blue = (0, 0, 1)
             // M blocks are coloured orange = (1, 0.5, 0)
 
-            DrawBlocks((vector<Block*> *) (iblocks), glm::vec3(1, 1, 1), BlockRenderer::id, BlockRenderer::camera, BlockRenderer::view);
-            DrawBlocks((vector<Block*> *) (zblocks), glm::vec3(1, 0, 1), BlockRenderer::id, BlockRenderer::camera, BlockRenderer::view);
-            DrawBlocks((vector<Block*> *) (eblocks), glm::vec3(0, 0, 1), BlockRenderer::id, BlockRenderer::camera, BlockRenderer::view);
-            DrawBlocks((vector<Block*> *) (mblocks), glm::vec3(1, 0.5, 0), BlockRenderer::id, BlockRenderer::camera, BlockRenderer::view);
+            DrawBlocks((vector<Block*> *) (iblocks), glm::vec3(1, 1, 1));
+            DrawBlocks((vector<Block*> *) (zblocks), glm::vec3(1, 0, 1));
+            DrawBlocks((vector<Block*> *) (eblocks), glm::vec3(0, 0, 1));
+            DrawBlocks((vector<Block*> *) (mblocks), glm::vec3(1, 0.5, 0));
         }
 
 
-        void BlockRenderer::InitialiseBlockRenderer(Camera &_camera, real _cube_length, unsigned int vao, unsigned int vbo , unsigned int ebo, WorldProperties *world_properties) {
-            BlockRenderer::view = _camera.CalculateView();
+        void BlockRenderer::InitialiseBlockRenderer(Camera *_camera, real _cube_length, unsigned int vao, unsigned int vbo , unsigned int ebo, WorldProperties *world_properties) {
+            BlockRenderer::view = _camera->CalculateView();
             BlockRenderer::projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 400.0f);
             BlockRenderer::cube_length = _cube_length;
             BlockRenderer::camera = _camera;
@@ -73,5 +71,4 @@ namespace render_utils {
             CubeRenderer::AddVerticesToBuffers();
         };
 
-    };
-}
+};
