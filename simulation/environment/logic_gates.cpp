@@ -48,7 +48,6 @@ int main()
     real location_1[] = {-16, 0, -5};
     world.eblocks.at(0)->position = Matrix(3, 1, location_1);
 
-
     world.eblocks.at(1)->SetLinearMomentumToZero();
     real location_2[] = {-12, 0, -5};
     world.eblocks.at(1)->position = Matrix(3, 1, location_2);
