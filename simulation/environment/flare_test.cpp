@@ -49,7 +49,7 @@ int main()
     int num_blocks_same = 30;
     WorldHandler world = WorldHandler(1, 0, 0, 1, 0, 0);
 
-    real position_coord1[] = {-18, -0.0f, -20}; //x, y, z. x is how much horizontal y is vertical. z is in/out
+    real position_coord1[] = {-22, -0.0f, -20}; //x, y, z. x is how much horizontal y is vertical. z is in/out
     Matrix position1(3, 1, position_coord1);
     world.iblocks.at(0)->position =  position1;
 
@@ -98,10 +98,16 @@ int main()
         world.CollisionHandler();
         world.AddForces();
 
-        DrawBlocks( (vector<Block*> *) &(world.iblocks), glm::vec3(0, 1, 1), id, cubes, camera, view);
-        DrawBlocks( (vector<Block*> *) &(world.zblocks), glm::vec3(1, 0, 1), id, cubes, camera, view);
-        DrawBlocks( (vector<Block*> *) &(world.eblocks), glm::vec3(0, 0, 1), id, cubes, camera, view);
-        DrawBlocks( (vector<Block*> *) &(world.mblocks), glm::vec3(1, 1, 1), id, cubes, camera, view);
+
+        // I blocks are coloured white = (1, 1, 1)
+        // Z blocks are coloured pink
+        // E blocks are coloured blue
+        // M blocks are coloured red
+
+        DrawBlocks((vector<Block*> *) &(world.iblocks), glm::vec3(1, 1, 1), id, cubes, camera, view);
+        DrawBlocks((vector<Block*> *) &(world.zblocks), glm::vec3(1, 0, 1), id, cubes, camera, view);
+        DrawBlocks((vector<Block*> *) &(world.eblocks), glm::vec3(0, 0, 1), id, cubes, camera, view);
+        DrawBlocks((vector<Block*> *) &(world.mblocks), glm::vec3(1, 0.5, 0), id, cubes, camera, view);
 
 
         glfwSwapBuffers(world_properties->window);

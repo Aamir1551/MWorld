@@ -24,8 +24,10 @@ using namespace blocks;
 // 1) Add font colour to terminal screen whenever prototype_one or two or three are running.
 // Add a different font colour for each of them in the terminal.
 // So that it is more clearer to know which prototype is running.
+// 2) Make a file called Draw, and put all draw functions in there
 
 void DrawBlocks(vector<Block *> *block_list,glm::vec3 colour, glm::mat4& id, CubeRenderer &cubes, Camera &camera, glm::mat4 &view);
+void DrawAllBlocks(WorldHandler &world, glm::mat4 &id, CubeRenderer &cubes, Camera &camera, glm::mat4 &view);
 
 int main()
 {
@@ -109,10 +111,14 @@ int main()
         world.CollisionHandler();
         world.AddForces();
 
-        DrawBlocks( (vector<Block*> *) &(world.iblocks), glm::vec3(0, 1, 1), id, cubes, camera, view);
+        /*DrawBlocks( (vector<Block*> *) &(world.iblocks), glm::vec3(0, 1, 1), id, cubes, camera, view);
         DrawBlocks( (vector<Block*> *) &(world.zblocks), glm::vec3(1, 0, 1), id, cubes, camera, view);
         DrawBlocks( (vector<Block*> *) &(world.eblocks), glm::vec3(0, 0, 1), id, cubes, camera, view);
-        DrawBlocks( (vector<Block*> *) &(world.mblocks), glm::vec3(1, 1, 1), id, cubes, camera, view);
+        DrawBlocks( (vector<Block*> *) &(world.mblocks), glm::vec3(1, 1, 1), id, cubes, camera, view);*/
+
+        DrawAllBlocks(world, id, cubes, camera, view);
+
+
 
         glfwSwapBuffers(world_properties->window);
         glfwPollEvents();
@@ -151,4 +157,16 @@ void DrawBlocks(vector<Block *> *block_list,glm::vec3 colour, glm::mat4& id, Cub
         view = camera.CalculateView();
         glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
     }
+}
+
+void DrawAllBlocks(WorldHandler &world, glm::mat4 &id, CubeRenderer &cubes, Camera &camera, glm::mat4 &view) {
+    // I blocks are coloured white = (1, 1, 1)
+    // Z blocks are coloured pink
+    // E blocks are coloured blue
+    // M blocks are coloured red
+
+    DrawBlocks((vector<Block*> *) &(world.iblocks), glm::vec3(1, 1, 1), id, cubes, camera, view);
+    DrawBlocks((vector<Block*> *) &(world.zblocks), glm::vec3(1, 0, 1), id, cubes, camera, view);
+    DrawBlocks((vector<Block*> *) &(world.eblocks), glm::vec3(0, 0, 1), id, cubes, camera, view);
+    DrawBlocks((vector<Block*> *) &(world.mblocks), glm::vec3(1, 0.5, 0), id, cubes, camera, view);
 }
