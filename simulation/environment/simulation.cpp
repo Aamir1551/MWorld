@@ -33,6 +33,7 @@ int main()
 
     real cube_length = 4.0f;
     Camera camera = Camera(world_properties->window);
+    camera.camera_pos = glm::vec3(0, 0, 150);
     BlockRenderer::InitialiseBlockRenderer(&camera, cube_length, vao, vbo, ebo, world_properties);
 
     int num_blocks_same = 40;
