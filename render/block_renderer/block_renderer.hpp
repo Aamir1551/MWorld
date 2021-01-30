@@ -23,7 +23,15 @@ using namespace blocks;
 
 namespace render_utils {
 
-    class BlockHandler {
+    class BlockRenderer {
+
+    public:
+
+        static const glm::mat4 id;
+        static const Camera camera;
+        static const real cube_length;
+        static const glm::mat4 view;
+        static const glm::mat4 projection;
 
         void DrawBlocks(vector<Block *> *block_list,glm::vec3 colour, glm::mat4& id, Camera &camera, glm::mat4 &view) {
             for(auto & block_ptr : *block_list) {
@@ -55,7 +63,21 @@ namespace render_utils {
             DrawBlocks((vector<Block*> *) &(world.eblocks), glm::vec3(0, 0, 1), id, camera, view);
             DrawBlocks((vector<Block*> *) &(world.mblocks), glm::vec3(1, 0.5, 0), id, camera, view);
         }
+
+
+        void static InitialiseBlockRenderer(Camera &camera, real &cube_length) {
+            BlockRenderer::view = camera.CalculateView();
+            BlockRenderer::projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 400.0f);
+            BlockRenderer::cube_length = cube_length;
+            BlockRenderer::camera = camera;
+
+            CubeRenderer::InitializeCubes(cube_length, vao, vbo, ebo, &view, &projection, world_properties->shader_id);
+            CubeRenderer::AddVerticesToBuffers();
+        };
+
     };
+
+
 
 
 

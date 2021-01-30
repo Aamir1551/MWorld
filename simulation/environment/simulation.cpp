@@ -112,8 +112,6 @@ int main()
 
         DrawAllBlocks(world, id, camera, view);
 
-
-
         glfwSwapBuffers(world_properties->window);
         glfwPollEvents();
         frame_count++;
