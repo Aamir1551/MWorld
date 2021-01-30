@@ -40,15 +40,14 @@ namespace blocks {
 
         virtual void React(ZBlock * block, real squared_dist, const Matrix& to_cube) = 0;
 
-        virtual void React(EBlock * block, real squared_dist ,const Matrix& to_cube) = 0;
+        virtual void React(EBlock * block, real squared_dist, const Matrix& to_cube) = 0;
 
         virtual real ExtractFlareFromBlock() = 0;
 
         virtual void AddFlareToBlock(real flare_amount) = 0;
 
-        void spin(Matrix const &force_direction) {
+        virtual void spin(Matrix const &force_direction) {
             this->angular_momentum = force_direction * this->flare_value * 0.00001  ;
-
         }
 
         void UpdateFlare() {

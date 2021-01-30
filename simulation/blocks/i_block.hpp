@@ -29,6 +29,10 @@ namespace blocks {
             return this->a + this->b * (real) (this->flare_value < IBlock::threshold);
         };
 
+        void spin(Matrix const &force_direction) override {
+            this->angular_momentum =  force_direction * (this->a + this->b * (real) (this->flare_value < IBlock::threshold)) * 0.0001;
+        }
+
         void AddFlareToBlock(real flare_amount) override {
             this->flare_inc += flare_amount * 0.01 * this->b;
         };
