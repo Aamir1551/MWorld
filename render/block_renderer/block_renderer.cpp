@@ -25,7 +25,6 @@ namespace render_utils {
 
     glm::mat4 BlockRenderer::id;
     Camera *BlockRenderer::camera;
-    real cube_length;
     glm::mat4 BlockRenderer::view;
     glm::mat4 BlockRenderer::projection;
 
@@ -64,7 +63,6 @@ namespace render_utils {
         void BlockRenderer::InitialiseBlockRenderer(Camera *_camera, real _cube_length, unsigned int vao, unsigned int vbo , unsigned int ebo, WorldProperties *world_properties) {
             BlockRenderer::view = _camera->CalculateView();
             BlockRenderer::projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 400.0f);
-            BlockRenderer::cube_length = _cube_length;
             BlockRenderer::camera = _camera;
 
             CubeRenderer::InitializeCubes(_cube_length, vao, vbo, ebo, &view, &projection, world_properties->shader_id);
