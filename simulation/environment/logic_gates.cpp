@@ -6,12 +6,12 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include <cube_renderer.hpp>
 #include <world_initializer.hpp>
 #include <settings.hpp>
 #include <matrix.hpp>
 #include <camera.hpp>
-#include "../world_handler/world_handler.hpp"
+#include <block_renderer.hpp>
+#include <world_handler.hpp>
 
 using namespace std;
 
@@ -20,11 +20,9 @@ using namespace numerics;
 using namespace settings;
 using namespace blocks;
 
-void DrawBlocks(vector<Block *> *block_list,glm::vec3 colour, glm::mat4& id, CubeRenderer &cubes, Camera &camera, glm::mat4 &view);
-
 int main()
 {
-    cout << "Running MWorld Logic Gate Simulation" << endl;
+    cout << "Running Logic Gates Simulation" << endl;
 
     WorldProperties *world_properties = world_intializer();
 
@@ -33,29 +31,18 @@ int main()
     glGenBuffers(1, &vbo);
     glGenBuffers(1, &ebo);
 
-    glm::mat4 id = glm::mat4(1.0f);
-    Camera camera(world_properties->window);
-    glm::mat4 view = camera.CalculateView();
-
-    glm::mat4 projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 400.0f);
-
     real cube_length = 4.0f;
+    Camera camera = Camera(world_properties->window);
+    BlockRenderer::InitialiseBlockRenderer(&camera, cube_length, vao, vbo, ebo, world_properties);
 
-    int num_blocks_same = 30;
-    WorldHandler world = WorldHandler(1, 0, 0, 1, 0, 0);
+    WorldHandler world = WorldHandler(1, 1, 0, 0, 0, 0);
+    world.iblocks.at(0)->SetLinearMomentumToZero();
+    real location_0[] = {-20, 0, -5};
+    world.iblocks.at(0)->position = Matrix(3, 1, location_0);
 
-    real position_coord1[] = {-20, -0.0f, -20}; //x, y, z. x is how much horizontal y is vertical. z is in/out
-    Matrix position1(3, 1, position_coord1);
-    world.iblocks.at(0)->position =  position1;
-
-    real position_coord2[] = {-18, 0, -20};
-    Matrix position2(3, 1, position_coord2);
-    world.mblocks.at(0)->position =  position2;
-
-    CubeRenderer::InitializeCubes(cube_length, vao, vbo, ebo, &view, &projection, world_properties->shader_id);
-    CubeRenderer::AddVerticesToBuffers();
-
-    CubeRenderer cubes;
+    world.iblocks.at(1)->SetLinearMomentumToZero();
+    real location_1[] = {-16, 0, -5};
+    world.iblocks.at(1)->position = Matrix(3, 1, location_1);
 
     glBindVertexArray(vao);
     glEnable(GL_DEPTH_TEST);
@@ -67,14 +54,6 @@ int main()
     real deltaTime = 0.0f; // Time between current frame and last frame
     real lastFrame = 0.0f; // Time of last frame
     real currentFrame;
-
-    real initial_momentum1[] = {0, 0, 0};
-    world.iblocks.at(0)->momentum = Matrix(3, 1, initial_momentum1);
-
-    real initial_momentum2[] = {0, 0.0, 0};
-    world.mblocks.at(0)->momentum = Matrix(3, 1, initial_momentum2);
-
-
 
     real frame_count = 0;
     real prev_time = glfwGetTime();
@@ -92,12 +71,7 @@ int main()
         world.Update();
         world.CollisionHandler();
         world.AddForces();
-
-        DrawBlocks( (vector<Block*> *) &(world.iblocks), glm::vec3(0, 1, 1), id, cubes, camera, view);
-        DrawBlocks( (vector<Block*> *) &(world.zblocks), glm::vec3(1, 0, 1), id, cubes, camera, view);
-        DrawBlocks( (vector<Block*> *) &(world.eblocks), glm::vec3(0, 0, 1), id, cubes, camera, view);
-        DrawBlocks( (vector<Block*> *) &(world.mblocks), glm::vec3(1, 1, 1), id, cubes, camera, view);
-
+        BlockRenderer::DrawAllBlocks(&world.iblocks, &world.zblocks, &world.eblocks, &world.mblocks);
 
         glfwSwapBuffers(world_properties->window);
         glfwPollEvents();
@@ -106,8 +80,8 @@ int main()
             cout << "FPS: " << frame_count << endl;
             frame_count = 0;
             prev_time = currentFrame;
-            cout << "Flare Value of I Block:" << world.iblocks.at(0)->flare_value << endl;
-            cout << "Flare Value of M Block:" << world.mblocks.at(0)->flare_value << endl;
+
+            cout << "Amount of Flare in "
         }
     }
 
@@ -119,23 +93,4 @@ int main()
     glfwTerminate();
     cout << "Terminated" << endl;
     return 0;
-}
-
-void DrawBlocks(vector<Block *> *block_list,glm::vec3 colour, glm::mat4& id, CubeRenderer &cubes, Camera &camera, glm::mat4 &view) {
-    for(auto & block_ptr : *block_list) {
-        glm::mat4 rotation_mat;
-        memcpy(glm::value_ptr(rotation_mat), block_ptr->GetOrientationMatrix().GetValues(), 16 * sizeof(real));
-
-        glm::vec3 translation_mat;
-        memcpy(glm::value_ptr(translation_mat), block_ptr->position.GetValues(), 3 * sizeof(real));
-
-        glm::mat4 model = glm::translate(id, translation_mat);
-        model = model * rotation_mat;
-        cubes.ApplyUniforms(model);
-
-        int colour_loc = glGetUniformLocation(CubeRenderer::shader_id, "colour");
-        glUniform3fv(colour_loc, 1, glm::value_ptr(colour));
-        view = camera.CalculateView();
-        glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
-    }
 }

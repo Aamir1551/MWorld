@@ -83,6 +83,13 @@ namespace blocks {
          */
         void SetAngularMomentumToZero();
 
+
+        /**
+         * @brief Set the Linear Momentum To Zero
+         *
+         */
+        void SetLinearMomentumToZero();
+
         /**
          * @brief Gets the Orientation Matrix of the Cube Object. (Can be used to transform a vector from
          * cube coordinates to world coordinates -? not too sure )

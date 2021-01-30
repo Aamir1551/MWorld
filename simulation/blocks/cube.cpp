@@ -105,7 +105,12 @@ namespace blocks {
             angular_momentum = Matrix(3, 1);
         }
 
-        Matrix Cube::GetOrientationMatrix() const {
+    void Cube::SetLinearMomentumToZero() {
+        momentum = Matrix(3, 1);
+    }
+
+
+    Matrix Cube::GetOrientationMatrix() const {
             return Quaternion::GetMatrixTransformation(this->orientation);
         }
 
