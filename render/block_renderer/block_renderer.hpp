@@ -9,6 +9,8 @@
 #include <settings.hpp>
 #include <matrix.hpp>
 #include <camera.hpp>
+#include <block.hpp>
+#include <world_handler.cpp>
 
 using namespace std;
 
@@ -24,11 +26,11 @@ namespace render_utils {
 
     public:
 
-        static const glm::mat4 id;
-        static const Camera camera;
-        static const real cube_length;
-        static const glm::mat4 view;
-        static const glm::mat4 projection;
+        static glm::mat4 id;
+        static Camera camera;
+        static real cube_length;
+        static glm::mat4 view;
+        static glm::mat4 projection;
 
         void DrawBlocks(vector<Block *> *block_list,glm::vec3 colour, glm::mat4& id, Camera &camera, glm::mat4 &view) {
             for(auto & block_ptr : *block_list) {
@@ -62,7 +64,7 @@ namespace render_utils {
         }
 
 
-        void static InitialiseBlockRenderer(Camera &_camera, real &_cube_length) {
+        void static InitialiseBlockRenderer(Camera _camera, real _cube_length, unsigned int vao, unsigned int vbo , unsigned int ebo, WorldProperties *world_properties) {
             BlockRenderer::view = _camera.CalculateView();
             BlockRenderer::projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 400.0f);
             BlockRenderer::cube_length = _cube_length;

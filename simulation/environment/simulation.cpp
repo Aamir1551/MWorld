@@ -11,6 +11,7 @@
 #include <settings.hpp>
 #include <matrix.hpp>
 #include <camera.hpp>
+#include <block_renderer.hpp>
 #include <world_handler.cpp>
 
 using namespace std;
@@ -24,10 +25,6 @@ using namespace blocks;
 // 1) Add font colour to terminal screen whenever prototype_one or two or three are running.
 // Add a different font colour for each of them in the terminal.
 // So that it is more clearer to know which prototype is running.
-// 2) Make a file called Draw, and put all draw functions in there
-
-void DrawBlocks(vector<Block *> *block_list,glm::vec3 colour, glm::mat4& id, Camera &camera, glm::mat4 &view);
-void DrawAllBlocks(WorldHandler &world, glm::mat4 &id, Camera &camera, glm::mat4 &view);
 
 int main()
 {
@@ -40,13 +37,8 @@ int main()
     glGenBuffers(1, &vbo);
     glGenBuffers(1, &ebo);
 
-    glm::mat4 id = glm::mat4(1.0f);
-    Camera camera(world_properties->window);
-    glm::mat4 view = camera.CalculateView();
-
-    glm::mat4 projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 400.0f);
-
     real cube_length = 4.0f;
+    BlockRenderer::InitialiseBlockRenderer(camera, cube_length, vao, vbo, ebo, world_properties);
 
     int num_blocks_same = 30;
     WorldHandler world = WorldHandler(num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same);
@@ -54,19 +46,8 @@ int main()
     //WorldHandler world = WorldHandler(0, 0, 2, 0, 0, 0);
     //WorldHandler world = WorldHandler(0, 0, 160, 0, 0, 0);
 
-    /*real position_coord1[] = {-20, -2.0f, -20}; //x, y, z. x is how much horizontal y is vertical. z is in/out
-    Matrix position1(3, 1, position_coord1);
-    world.zblocks.at(0)->position =  position1;
-    //world.iblocks.at(0)->orientation =  Quaternion(1, 0, 0, 0);
-
-    real position_coord2[] = {-10, 0, -20};
-    Matrix position2(3, 1, position_coord2);
-    world.zblocks.at(1)->position =  position2;*/
-    //world.iblocks.at(1).orientation =  Quaternion(1, 0, 0, 0);
-
     CubeRenderer::InitializeCubes(cube_length, vao, vbo, ebo, &view, &projection, world_properties->shader_id);
     CubeRenderer::AddVerticesToBuffers();
-
 
     glBindVertexArray(vao);
     glEnable(GL_DEPTH_TEST);
@@ -132,33 +113,3 @@ int main()
     return 0;
 }
 
-void DrawBlocks(vector<Block *> *block_list,glm::vec3 colour, glm::mat4& id, Camera &camera, glm::mat4 &view) {
-    for(auto & block_ptr : *block_list) {
-        glm::mat4 rotation_mat;
-        memcpy(glm::value_ptr(rotation_mat), block_ptr->GetOrientationMatrix().GetValues(), 16 * sizeof(real));
-
-        glm::vec3 translation_mat;
-        memcpy(glm::value_ptr(translation_mat), block_ptr->position.GetValues(), 3 * sizeof(real));
-
-        glm::mat4 model = glm::translate(id, translation_mat);
-        model = model * rotation_mat;
-        CubeRenderer::ApplyUniforms(model);
-
-        int colour_loc = glGetUniformLocation(CubeRenderer::shader_id, "colour");
-        glUniform3fv(colour_loc, 1, glm::value_ptr(colour));
-        view = camera.CalculateView();
-        glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
-    }
-}
-
-void DrawAllBlocks(WorldHandler &world, glm::mat4 &id, Camera &camera, glm::mat4 &view) {
-    // I blocks are coloured white = (1, 1, 1)
-    // Z blocks are coloured pink = (1, 0, 1)
-    // E blocks are coloured blue = (0, 0, 1)
-    // M blocks are coloured orange = (1, 0.5, 0)
-
-    DrawBlocks((vector<Block*> *) &(world.iblocks), glm::vec3(1, 1, 1), id, camera, view);
-    DrawBlocks((vector<Block*> *) &(world.zblocks), glm::vec3(1, 0, 1), id, camera, view);
-    DrawBlocks((vector<Block*> *) &(world.eblocks), glm::vec3(0, 0, 1), id, camera, view);
-    DrawBlocks((vector<Block*> *) &(world.mblocks), glm::vec3(1, 0.5, 0), id, camera, view);
-}
