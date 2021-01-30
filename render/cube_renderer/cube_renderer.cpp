@@ -12,7 +12,7 @@ namespace render_utils
     int CubeRenderer::vao;
     int CubeRenderer::vbo;
     int CubeRenderer::ebo;
-    real CubeRenderer::cube_length;
+    __unused real CubeRenderer::cube_length;
     unsigned int CubeRenderer::shader_id;
 
     real CubeRenderer::vertices[24];

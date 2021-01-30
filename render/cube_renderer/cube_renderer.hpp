@@ -17,23 +17,22 @@ namespace render_utils
     {
 
     public:
-        static settings::real cube_length;
         static glm::mat4 *view;
         static glm::mat4 *project;
-        static int vao;
-        static int vbo;
-        static int ebo;
+        static unsigned int vao;
+        static unsigned int vbo;
+        static unsigned int ebo;
         static settings::real vertices[24];
         static unsigned int shader_id;
 
         static unsigned int indices[36];
 
-        CubeRenderer(){};
+        CubeRenderer()= default;;
 
-        void static InitializeCubes(settings::real cube_length, unsigned int vao, unsigned int vbo, unsigned int ebo, glm::mat4 *view, glm::mat4 *project, unsigned int shader_id)
+        void static InitializeCubes(settings::real _cube_length, unsigned int _vao, unsigned int _vbo, unsigned int _ebo, glm::mat4 *_view, glm::mat4 *_project, unsigned int _shader_id)
         {
-            CubeRenderer::shader_id = shader_id;
-            settings::real diff = cube_length / 2;
+            CubeRenderer::shader_id = _shader_id;
+            settings::real diff = _cube_length / 2;
             for (unsigned int i = 0; i < 8; i++)
             {
                 CubeRenderer::vertices[i * 3] = (i % 2 == 0 ? -diff : diff);
@@ -41,12 +40,12 @@ namespace render_utils
                 CubeRenderer::vertices[i * 3 + 2] = (((int)std::floor(i / 4)) % 2 == 0 ? -diff : diff);
             }
 
-            CubeRenderer::vao = vao;
-            CubeRenderer::vbo = vbo;
-            CubeRenderer::ebo = ebo;
+            CubeRenderer::vao = _vao;
+            CubeRenderer::vbo = _vbo;
+            CubeRenderer::ebo = _ebo;
 
-            CubeRenderer::view = view;
-            CubeRenderer::project = project;
+            CubeRenderer::view = _view;
+            CubeRenderer::project = _project;
         }
 
         void static ApplyUniforms(glm::mat4 &model_mat);
