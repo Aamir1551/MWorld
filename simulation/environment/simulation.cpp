@@ -26,8 +26,8 @@ using namespace blocks;
 // So that it is more clearer to know which prototype is running.
 // 2) Make a file called Draw, and put all draw functions in there
 
-void DrawBlocks(vector<Block *> *block_list,glm::vec3 colour, glm::mat4& id, CubeRenderer &cubes, Camera &camera, glm::mat4 &view);
-void DrawAllBlocks(WorldHandler &world, glm::mat4 &id, CubeRenderer &cubes, Camera &camera, glm::mat4 &view);
+void DrawBlocks(vector<Block *> *block_list,glm::vec3 colour, glm::mat4& id, Camera &camera, glm::mat4 &view);
+void DrawAllBlocks(WorldHandler &world, glm::mat4 &id, Camera &camera, glm::mat4 &view);
 
 int main()
 {
@@ -49,10 +49,10 @@ int main()
     real cube_length = 4.0f;
 
     int num_blocks_same = 30;
-    //WorldHandler world = WorldHandler(num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same);
+    WorldHandler world = WorldHandler(num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same);
     //WorldHandler world = WorldHandler(0, 0, 0, 0, 0, 0);
     //WorldHandler world = WorldHandler(0, 0, 2, 0, 0, 0);
-    WorldHandler world = WorldHandler(0, 0, 160, 0, 0, 0);
+    //WorldHandler world = WorldHandler(0, 0, 160, 0, 0, 0);
 
     /*real position_coord1[] = {-20, -2.0f, -20}; //x, y, z. x is how much horizontal y is vertical. z is in/out
     Matrix position1(3, 1, position_coord1);
@@ -67,7 +67,6 @@ int main()
     CubeRenderer::InitializeCubes(cube_length, vao, vbo, ebo, &view, &projection, world_properties->shader_id);
     CubeRenderer::AddVerticesToBuffers();
 
-    CubeRenderer cubes;
 
     glBindVertexArray(vao);
     glEnable(GL_DEPTH_TEST);
@@ -111,12 +110,7 @@ int main()
         world.CollisionHandler();
         world.AddForces();
 
-        /*DrawBlocks( (vector<Block*> *) &(world.iblocks), glm::vec3(0, 1, 1), id, cubes, camera, view);
-        DrawBlocks( (vector<Block*> *) &(world.zblocks), glm::vec3(1, 0, 1), id, cubes, camera, view);
-        DrawBlocks( (vector<Block*> *) &(world.eblocks), glm::vec3(0, 0, 1), id, cubes, camera, view);
-        DrawBlocks( (vector<Block*> *) &(world.mblocks), glm::vec3(1, 1, 1), id, cubes, camera, view);*/
-
-        DrawAllBlocks(world, id, cubes, camera, view);
+        DrawAllBlocks(world, id, camera, view);
 
 
 
@@ -140,7 +134,7 @@ int main()
     return 0;
 }
 
-void DrawBlocks(vector<Block *> *block_list,glm::vec3 colour, glm::mat4& id, CubeRenderer &cubes, Camera &camera, glm::mat4 &view) {
+void DrawBlocks(vector<Block *> *block_list,glm::vec3 colour, glm::mat4& id, Camera &camera, glm::mat4 &view) {
     for(auto & block_ptr : *block_list) {
         glm::mat4 rotation_mat;
         memcpy(glm::value_ptr(rotation_mat), block_ptr->GetOrientationMatrix().GetValues(), 16 * sizeof(real));
@@ -150,7 +144,7 @@ void DrawBlocks(vector<Block *> *block_list,glm::vec3 colour, glm::mat4& id, Cub
 
         glm::mat4 model = glm::translate(id, translation_mat);
         model = model * rotation_mat;
-        cubes.ApplyUniforms(model);
+        CubeRenderer::ApplyUniforms(model);
 
         int colour_loc = glGetUniformLocation(CubeRenderer::shader_id, "colour");
         glUniform3fv(colour_loc, 1, glm::value_ptr(colour));
@@ -159,14 +153,14 @@ void DrawBlocks(vector<Block *> *block_list,glm::vec3 colour, glm::mat4& id, Cub
     }
 }
 
-void DrawAllBlocks(WorldHandler &world, glm::mat4 &id, CubeRenderer &cubes, Camera &camera, glm::mat4 &view) {
+void DrawAllBlocks(WorldHandler &world, glm::mat4 &id, Camera &camera, glm::mat4 &view) {
     // I blocks are coloured white = (1, 1, 1)
-    // Z blocks are coloured pink
-    // E blocks are coloured blue
-    // M blocks are coloured red
+    // Z blocks are coloured pink = (1, 0, 1)
+    // E blocks are coloured blue = (0, 0, 1)
+    // M blocks are coloured orange = (1, 0.5, 0)
 
-    DrawBlocks((vector<Block*> *) &(world.iblocks), glm::vec3(1, 1, 1), id, cubes, camera, view);
-    DrawBlocks((vector<Block*> *) &(world.zblocks), glm::vec3(1, 0, 1), id, cubes, camera, view);
-    DrawBlocks((vector<Block*> *) &(world.eblocks), glm::vec3(0, 0, 1), id, cubes, camera, view);
-    DrawBlocks((vector<Block*> *) &(world.mblocks), glm::vec3(1, 0.5, 0), id, cubes, camera, view);
+    DrawBlocks((vector<Block*> *) &(world.iblocks), glm::vec3(1, 1, 1), id, camera, view);
+    DrawBlocks((vector<Block*> *) &(world.zblocks), glm::vec3(1, 0, 1), id, camera, view);
+    DrawBlocks((vector<Block*> *) &(world.eblocks), glm::vec3(0, 0, 1), id, camera, view);
+    DrawBlocks((vector<Block*> *) &(world.mblocks), glm::vec3(1, 0.5, 0), id, camera, view);
 }

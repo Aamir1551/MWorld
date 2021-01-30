@@ -49,7 +49,7 @@ namespace render_utils
             CubeRenderer::project = project;
         }
 
-        void ApplyUniforms(glm::mat4 &model_mat);
+        void static ApplyUniforms(glm::mat4 &model_mat);
 
         void static AddVerticesToBuffers()
         {
