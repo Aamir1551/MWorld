@@ -195,6 +195,9 @@
 			"path" : "render/shader/CMakeLists.txt"
 		},
 		{
+			"path" : "render/block_renderer/CMakeLists.txt"
+		},
+		{
 			"path" : "prototype/CMakeLists.txt"
 		},
 		{

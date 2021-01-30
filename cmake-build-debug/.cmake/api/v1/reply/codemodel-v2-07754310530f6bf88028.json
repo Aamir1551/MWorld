@@ -12,8 +12,8 @@
 						2,
 						5,
 						9,
-						14,
-						18
+						15,
+						19
 					],
 					"minimumCMakeVersion" : 
 					{
@@ -33,7 +33,7 @@
 					"source" : "lib/glad",
 					"targetIndexes" : 
 					[
-						3
+						4
 					]
 				},
 				{
@@ -62,7 +62,7 @@
 					"source" : "utils/util_functions",
 					"targetIndexes" : 
 					[
-						12
+						13
 					]
 				},
 				{
@@ -105,7 +105,7 @@
 					"source" : "numerics/linear_alg",
 					"targetIndexes" : 
 					[
-						4
+						5
 					]
 				},
 				{
@@ -119,7 +119,7 @@
 					"source" : "numerics/linear_alg/test",
 					"targetIndexes" : 
 					[
-						6
+						7
 					]
 				},
 				{
@@ -133,7 +133,7 @@
 					"source" : "numerics/quaternion",
 					"targetIndexes" : 
 					[
-						10
+						11
 					]
 				},
 				{
@@ -143,7 +143,8 @@
 						10,
 						11,
 						12,
-						13
+						13,
+						14
 					],
 					"minimumCMakeVersion" : 
 					{
@@ -174,7 +175,7 @@
 					"source" : "render/cube_renderer",
 					"targetIndexes" : 
 					[
-						1
+						2
 					]
 				},
 				{
@@ -198,19 +199,33 @@
 					"source" : "render/shader"
 				},
 				{
+					"build" : "render/block_renderer",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 9,
+					"projectIndex" : 14,
+					"source" : "render/block_renderer",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
 					"build" : "prototype",
 					"childIndexes" : 
 					[
-						15,
 						16,
-						17
+						17,
+						18
 					],
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.10"
 					},
 					"parentIndex" : 0,
-					"projectIndex" : 14,
+					"projectIndex" : 15,
 					"source" : "prototype"
 				},
 				{
@@ -219,12 +234,12 @@
 					{
 						"string" : "3.10"
 					},
-					"parentIndex" : 14,
-					"projectIndex" : 15,
+					"parentIndex" : 15,
+					"projectIndex" : 16,
 					"source" : "prototype/prototype_one",
 					"targetIndexes" : 
 					[
-						7
+						8
 					]
 				},
 				{
@@ -233,12 +248,12 @@
 					{
 						"string" : "3.10"
 					},
-					"parentIndex" : 14,
-					"projectIndex" : 16,
+					"parentIndex" : 15,
+					"projectIndex" : 17,
 					"source" : "prototype/prototype_two",
 					"targetIndexes" : 
 					[
-						9
+						10
 					]
 				},
 				{
@@ -247,27 +262,27 @@
 					{
 						"string" : "3.10"
 					},
-					"parentIndex" : 14,
-					"projectIndex" : 17,
+					"parentIndex" : 15,
+					"projectIndex" : 18,
 					"source" : "prototype/prototype_three",
 					"targetIndexes" : 
 					[
-						8
+						9
 					]
 				},
 				{
 					"build" : "simulation",
 					"childIndexes" : 
 					[
-						19,
-						20
+						20,
+						21
 					],
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.10"
 					},
 					"parentIndex" : 0,
-					"projectIndex" : 18,
+					"projectIndex" : 19,
 					"source" : "simulation"
 				},
 				{
@@ -276,12 +291,12 @@
 					{
 						"string" : "3.10"
 					},
-					"parentIndex" : 18,
-					"projectIndex" : 19,
+					"parentIndex" : 19,
+					"projectIndex" : 20,
 					"source" : "simulation/blocks",
 					"targetIndexes" : 
 					[
-						0
+						1
 					]
 				},
 				{
@@ -290,14 +305,14 @@
 					{
 						"string" : "3.10"
 					},
-					"parentIndex" : 18,
-					"projectIndex" : 18,
+					"parentIndex" : 19,
+					"projectIndex" : 19,
 					"source" : "simulation/environment",
 					"targetIndexes" : 
 					[
-						2,
-						5,
-						11
+						3,
+						6,
+						12
 					]
 				}
 			],
@@ -311,8 +326,8 @@
 						2,
 						5,
 						9,
-						14,
-						18
+						15,
+						19
 					],
 					"directoryIndexes" : 
 					[
@@ -329,7 +344,7 @@
 					"parentIndex" : 0,
 					"targetIndexes" : 
 					[
-						3
+						4
 					]
 				},
 				{
@@ -354,7 +369,7 @@
 					"parentIndex" : 2,
 					"targetIndexes" : 
 					[
-						12
+						13
 					]
 				},
 				{
@@ -391,7 +406,7 @@
 					"parentIndex" : 5,
 					"targetIndexes" : 
 					[
-						4
+						5
 					]
 				},
 				{
@@ -403,7 +418,7 @@
 					"parentIndex" : 6,
 					"targetIndexes" : 
 					[
-						6
+						7
 					]
 				},
 				{
@@ -415,7 +430,7 @@
 					"parentIndex" : 5,
 					"targetIndexes" : 
 					[
-						10
+						11
 					]
 				},
 				{
@@ -424,7 +439,8 @@
 						10,
 						11,
 						12,
-						13
+						13,
+						14
 					],
 					"directoryIndexes" : 
 					[
@@ -450,7 +466,7 @@
 					"parentIndex" : 9,
 					"targetIndexes" : 
 					[
-						1
+						2
 					]
 				},
 				{
@@ -470,15 +486,27 @@
 					"parentIndex" : 9
 				},
 				{
-					"childIndexes" : 
-					[
-						15,
-						16,
-						17
-					],
 					"directoryIndexes" : 
 					[
 						14
+					],
+					"name" : "block_renderer",
+					"parentIndex" : 9,
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"childIndexes" : 
+					[
+						16,
+						17,
+						18
+					],
+					"directoryIndexes" : 
+					[
+						15
 					],
 					"name" : "prototypes",
 					"parentIndex" : 0
@@ -486,25 +514,13 @@
 				{
 					"directoryIndexes" : 
 					[
-						15
-					],
-					"name" : "prototype_one",
-					"parentIndex" : 14,
-					"targetIndexes" : 
-					[
-						7
-					]
-				},
-				{
-					"directoryIndexes" : 
-					[
 						16
 					],
-					"name" : "prototype_two",
-					"parentIndex" : 14,
+					"name" : "prototype_one",
+					"parentIndex" : 15,
 					"targetIndexes" : 
 					[
-						9
+						8
 					]
 				},
 				{
@@ -512,53 +528,72 @@
 					[
 						17
 					],
-					"name" : "prototype_three",
-					"parentIndex" : 14,
+					"name" : "prototype_two",
+					"parentIndex" : 15,
 					"targetIndexes" : 
 					[
-						8
+						10
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						18
+					],
+					"name" : "prototype_three",
+					"parentIndex" : 15,
+					"targetIndexes" : 
+					[
+						9
 					]
 				},
 				{
 					"childIndexes" : 
 					[
-						19
+						20
 					],
 					"directoryIndexes" : 
 					[
-						18,
-						20
+						19,
+						21
 					],
 					"name" : "simulation",
 					"parentIndex" : 0,
 					"targetIndexes" : 
 					[
-						2,
-						5,
-						11
+						3,
+						6,
+						12
 					]
 				},
 				{
 					"directoryIndexes" : 
 					[
-						19
+						20
 					],
 					"name" : "Blocks",
-					"parentIndex" : 18,
+					"parentIndex" : 19,
 					"targetIndexes" : 
 					[
-						0
+						1
 					]
 				}
 			],
 			"targets" : 
 			[
 				{
-					"directoryIndex" : 19,
+					"directoryIndex" : 14,
+					"id" : "block_renderer::@20380dfbeeaf1beda5b3",
+					"jsonFile" : "target-block_renderer-Debug-840c91c139734f5a7a7b.json",
+					"name" : "block_renderer",
+					"projectIndex" : 14
+				},
+				{
+					"directoryIndex" : 20,
 					"id" : "blocks::@6db65c1307d2a2a784c8",
 					"jsonFile" : "target-blocks-Debug-78e406cef5ef458d1962.json",
 					"name" : "blocks",
-					"projectIndex" : 19
+					"projectIndex" : 20
 				},
 				{
 					"directoryIndex" : 11,
@@ -568,11 +603,11 @@
 					"projectIndex" : 11
 				},
 				{
-					"directoryIndex" : 20,
+					"directoryIndex" : 21,
 					"id" : "flare_test::@847a59781e22ff560ae6",
-					"jsonFile" : "target-flare_test-Debug-1d55628c30ecbaa3a138.json",
+					"jsonFile" : "target-flare_test-Debug-062ec0d47c31ea397b38.json",
 					"name" : "flare_test",
-					"projectIndex" : 18
+					"projectIndex" : 19
 				},
 				{
 					"directoryIndex" : 1,
@@ -589,11 +624,11 @@
 					"projectIndex" : 6
 				},
 				{
-					"directoryIndex" : 20,
+					"directoryIndex" : 21,
 					"id" : "logic_gates::@847a59781e22ff560ae6",
-					"jsonFile" : "target-logic_gates-Debug-a16fe6fc1f6bfe4a2213.json",
+					"jsonFile" : "target-logic_gates-Debug-f2d3813386dfedecd4d5.json",
 					"name" : "logic_gates",
-					"projectIndex" : 18
+					"projectIndex" : 19
 				},
 				{
 					"directoryIndex" : 7,
@@ -603,25 +638,25 @@
 					"projectIndex" : 7
 				},
 				{
-					"directoryIndex" : 15,
+					"directoryIndex" : 16,
 					"id" : "prototype_one::@c77c4220c2085dac9ec5",
 					"jsonFile" : "target-prototype_one-Debug-f474485b05b4fbd6e8a8.json",
 					"name" : "prototype_one",
-					"projectIndex" : 15
+					"projectIndex" : 16
 				},
 				{
-					"directoryIndex" : 17,
+					"directoryIndex" : 18,
 					"id" : "prototype_three::@2a17fa0eebb0697fdbb6",
 					"jsonFile" : "target-prototype_three-Debug-243db18e2e20905717bd.json",
 					"name" : "prototype_three",
-					"projectIndex" : 17
+					"projectIndex" : 18
 				},
 				{
-					"directoryIndex" : 16,
+					"directoryIndex" : 17,
 					"id" : "prototype_two::@e7e923eba9c0b8a1d5aa",
 					"jsonFile" : "target-prototype_two-Debug-aafd1c6716c021df8757.json",
 					"name" : "prototype_two",
-					"projectIndex" : 16
+					"projectIndex" : 17
 				},
 				{
 					"directoryIndex" : 8,
@@ -631,11 +666,11 @@
 					"projectIndex" : 8
 				},
 				{
-					"directoryIndex" : 20,
+					"directoryIndex" : 21,
 					"id" : "simulation::@847a59781e22ff560ae6",
-					"jsonFile" : "target-simulation-Debug-2fe769a0c473e979a73d.json",
+					"jsonFile" : "target-simulation-Debug-e299bc6f92c3d70bd8b7.json",
 					"name" : "simulation",
-					"projectIndex" : 18
+					"projectIndex" : 19
 				},
 				{
 					"directoryIndex" : 3,

@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/aamir/Documents/mworld/render
+# Install script for directory: C:/Users/aamir/Documents/mworld/render/block_renderer
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -30,15 +30,5 @@ endif()
 # Is this installation the result of a crosscompile?
 if(NOT DEFINED CMAKE_CROSSCOMPILING)
   set(CMAKE_CROSSCOMPILING "FALSE")
-endif()
-
-if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for each subdirectory.
-  include("C:/Users/aamir/Documents/mworld/cmake-build-debug/render/camera/cmake_install.cmake")
-  include("C:/Users/aamir/Documents/mworld/cmake-build-debug/render/cube_renderer/cmake_install.cmake")
-  include("C:/Users/aamir/Documents/mworld/cmake-build-debug/render/utils/cmake_install.cmake")
-  include("C:/Users/aamir/Documents/mworld/cmake-build-debug/render/shader/cmake_install.cmake")
-  include("C:/Users/aamir/Documents/mworld/cmake-build-debug/render/block_renderer/cmake_install.cmake")
-
 endif()
 

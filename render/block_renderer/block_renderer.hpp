@@ -1,5 +1,3 @@
-#include <cstring>
-
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
@@ -11,7 +9,6 @@
 #include <settings.hpp>
 #include <matrix.hpp>
 #include <camera.hpp>
-#include <world_handler.cpp>
 
 using namespace std;
 
@@ -52,26 +49,26 @@ namespace render_utils {
             }
         }
 
-        void DrawAllBlocks(WorldHandler &world, glm::mat4 &id, Camera &camera, glm::mat4 &view) {
+        void DrawAllBlocks(WorldHandler &world, glm::mat4 &_id, Camera &_camera, glm::mat4 &_view) {
             // I blocks are coloured white = (1, 1, 1)
             // Z blocks are coloured pink = (1, 0, 1)
             // E blocks are coloured blue = (0, 0, 1)
             // M blocks are coloured orange = (1, 0.5, 0)
 
-            DrawBlocks((vector<Block*> *) &(world.iblocks), glm::vec3(1, 1, 1), id, camera, view);
-            DrawBlocks((vector<Block*> *) &(world.zblocks), glm::vec3(1, 0, 1), id, camera, view);
-            DrawBlocks((vector<Block*> *) &(world.eblocks), glm::vec3(0, 0, 1), id, camera, view);
-            DrawBlocks((vector<Block*> *) &(world.mblocks), glm::vec3(1, 0.5, 0), id, camera, view);
+            DrawBlocks((vector<Block*> *) &(world.iblocks), glm::vec3(1, 1, 1), _id, _camera, _view);
+            DrawBlocks((vector<Block*> *) &(world.zblocks), glm::vec3(1, 0, 1), _id, _camera, _view);
+            DrawBlocks((vector<Block*> *) &(world.eblocks), glm::vec3(0, 0, 1), _id, _camera, _view);
+            DrawBlocks((vector<Block*> *) &(world.mblocks), glm::vec3(1, 0.5, 0), _id, _camera, _view);
         }
 
 
-        void static InitialiseBlockRenderer(Camera &camera, real &cube_length) {
-            BlockRenderer::view = camera.CalculateView();
+        void static InitialiseBlockRenderer(Camera &_camera, real &_cube_length) {
+            BlockRenderer::view = _camera.CalculateView();
             BlockRenderer::projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 400.0f);
-            BlockRenderer::cube_length = cube_length;
-            BlockRenderer::camera = camera;
+            BlockRenderer::cube_length = _cube_length;
+            BlockRenderer::camera = _camera;
 
-            CubeRenderer::InitializeCubes(cube_length, vao, vbo, ebo, &view, &projection, world_properties->shader_id);
+            CubeRenderer::InitializeCubes(_cube_length, vao, vbo, ebo, &view, &projection, world_properties->shader_id);
             CubeRenderer::AddVerticesToBuffers();
         };
 

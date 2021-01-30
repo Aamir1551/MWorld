@@ -32,6 +32,9 @@ C:/Users/aamir/Documents/mworld/cmake-build-debug/render/utils/CMakeFiles/edit_c
 C:/Users/aamir/Documents/mworld/cmake-build-debug/render/utils/CMakeFiles/rebuild_cache.dir
 C:/Users/aamir/Documents/mworld/cmake-build-debug/render/shader/CMakeFiles/edit_cache.dir
 C:/Users/aamir/Documents/mworld/cmake-build-debug/render/shader/CMakeFiles/rebuild_cache.dir
+C:/Users/aamir/Documents/mworld/cmake-build-debug/render/block_renderer/CMakeFiles/edit_cache.dir
+C:/Users/aamir/Documents/mworld/cmake-build-debug/render/block_renderer/CMakeFiles/block_renderer.dir
+C:/Users/aamir/Documents/mworld/cmake-build-debug/render/block_renderer/CMakeFiles/rebuild_cache.dir
 C:/Users/aamir/Documents/mworld/cmake-build-debug/prototype/CMakeFiles/edit_cache.dir
 C:/Users/aamir/Documents/mworld/cmake-build-debug/prototype/CMakeFiles/rebuild_cache.dir
 C:/Users/aamir/Documents/mworld/cmake-build-debug/prototype/prototype_one/CMakeFiles/prototype_one.dir
