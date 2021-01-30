@@ -12,7 +12,7 @@
 #include <matrix.hpp>
 #include <camera.hpp>
 #include <block_renderer.hpp>
-#include <world_handler.cpp>
+#include "../world_handler/world_handler.cpp"
 
 using namespace std;
 
