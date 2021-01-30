@@ -92,7 +92,6 @@ int main()
     //world.iblocks.at(0).angular_momentum = Matrix(3, 1);
     //world.iblocks.at(1).angular_momentum = Matrix(3, 1);
 
-
     real frame_count = 0;
     real prev_time = glfwGetTime();
     while (!glfwWindowShouldClose(world_properties->window))

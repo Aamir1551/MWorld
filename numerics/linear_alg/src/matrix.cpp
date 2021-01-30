@@ -683,6 +683,7 @@ if an element is nan, it returns 1 */
         cols--;
     }*/
 
+    // This function does not throw an error, when we meet a zero vector. This has been done for performance purposes.
     void Matrix::Normalise() {
         settings::real norm = 0;
         for(int i=0; i<this->rows * this->cols; i++) {

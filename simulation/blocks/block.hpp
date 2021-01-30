@@ -46,8 +46,9 @@ namespace blocks {
 
         virtual void AddFlareToBlock(real flare_amount) = 0;
 
-        void spin(Matrix const &force_direction, Matrix const &force_relative_coordinates) {
-            AddTorque(force_direction * this->flare_inc, this->position + force_relative_coordinates, 1.01);
+        void spin(Matrix const &force_direction) {
+            this->angular_momentum = force_direction * this->flare_value * 0.00001  ;
+
         }
 
         void UpdateFlare() {

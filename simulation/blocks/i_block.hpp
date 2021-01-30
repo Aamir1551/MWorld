@@ -8,7 +8,7 @@ namespace blocks {
     class IBlock : public Block {
 
     public:
-        bool state; //state = true, means its a block+
+        bool state; //state = true, means its a I+ block
         float a;
         float b;
         static real threshold;

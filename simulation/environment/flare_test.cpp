@@ -47,15 +47,15 @@ int main()
     real cube_length = 4.0f;
 
     int num_blocks_same = 30;
-    WorldHandler world = WorldHandler(1, 1, 0, 0, 0, 0);
+    WorldHandler world = WorldHandler(1, 0, 0, 1, 0, 0);
 
-    real position_coord1[] = {-20, -0.0f, -20}; //x, y, z. x is how much horizontal y is vertical. z is in/out
+    real position_coord1[] = {-18, -0.0f, -20}; //x, y, z. x is how much horizontal y is vertical. z is in/out
     Matrix position1(3, 1, position_coord1);
     world.iblocks.at(0)->position =  position1;
 
     real position_coord2[] = {-18, 0, -20};
     Matrix position2(3, 1, position_coord2);
-    world.iblocks.at(1)->position =  position2;
+    world.mblocks.at(0)->position =  position2;
 
     CubeRenderer::InitializeCubes(cube_length, vao, vbo, ebo, &view, &projection, world_properties->shader_id);
     CubeRenderer::AddVerticesToBuffers();
@@ -77,9 +77,9 @@ int main()
     world.iblocks.at(0)->momentum = Matrix(3, 1, initial_momentum1);
 
     real initial_momentum2[] = {0, 0.0, 0};
-    world.iblocks.at(1)->momentum = Matrix(3, 1, initial_momentum2);
+    world.mblocks.at(0)->momentum = Matrix(3, 1, initial_momentum2);
 
-
+    camera.camera_pos = glm::vec3(-20.0f, 0.0f, 3.0f);
 
     real frame_count = 0;
     real prev_time = glfwGetTime();
@@ -112,7 +112,7 @@ int main()
             frame_count = 0;
             prev_time = currentFrame;
             cout << "Flare Value of I+ Block:" << world.iblocks.at(0)->flare_value << endl;
-            cout << "Flare Value of I- Block:" << world.iblocks.at(1)->flare_value << endl;
+            cout << "Flare Value of M Block:" << world.mblocks.at(0)->flare_value << endl;
         }
     }
 

@@ -187,7 +187,6 @@ public:
         }
     }
 
-
     void ReactToAllBlocks(Block *block) {
         for(int i=0; i<iblocks.size(); i++) {
             Matrix to_cube = iblocks.at(i)->position - block->position;
@@ -243,31 +242,24 @@ public:
         }
     }
 
-    void AddSpin(vector<Block *> *block_list,  Matrix const &force_direction, Matrix const &force_relative_coordinates) {
+    void AddSpin(vector<Block *> *block_list,  Matrix const &force_direction) {
         for(int i=0; i<block_list->size(); i++) {
-            block_list->at(i)->spin(force_direction, force_relative_coordinates);
+            block_list->at(i)->spin(force_direction);
         }
     }
 
     void SpinWorldBlocks() {
-
-        real const static right_force_coordinates[] = {2, 0, -5};
-        real const static up_force_coordinates[] = {0, 2, -5};
-        real const static turn_force_coordinates[] = {2, 0, -5};
-
-        Matrix const static right_force_coordinates_mat(3, 1, right_force_coordinates);
-        Matrix const static up_force_coordinates_mat(3, 1, up_force_coordinates);
-        Matrix const static turn_force_coordinates_mat(3, 1, turn_force_coordinates);
-
-        real const static force_direction_1[] = {0, 0, -5};
-        real const static force_direction_2[] = {-5, 0, 0};
+        real const static force_direction_1[] = {5, 0, 0};
+        real const static force_direction_2[] = {0, 5, 0};
+        real const static force_direction_3[] = {0, 0, 5};
 
         Matrix const static force_direction_mat1(3, 1, force_direction_1);
         Matrix const static force_direction_mat2(3, 1, force_direction_2);
+        Matrix const static force_direction_mat3(3, 1, force_direction_3);
 
-        AddSpin((vector<Block*>*) (&this->mblocks), force_direction_mat1, up_force_coordinates_mat);
-        AddSpin((vector<Block*>*) (&this->iblocks), force_direction_mat1, right_force_coordinates_mat);
-        AddSpin((vector<Block*>*) (&this->eblocks), force_direction_mat2, turn_force_coordinates_mat);
+        AddSpin((vector<Block*>*) (&this->mblocks), force_direction_mat1);
+        AddSpin((vector<Block*>*) (&this->iblocks), force_direction_mat2);
+        AddSpin((vector<Block*>*) (&this->eblocks), force_direction_mat3);
     }
 
 };

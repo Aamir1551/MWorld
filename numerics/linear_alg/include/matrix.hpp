@@ -175,6 +175,28 @@ namespace numerics
         };
 
         /**
+         * @brief Set the item at position (row, col) of given matrix to val
+         *
+         * @param row
+         * @param col
+         * @param val
+         * @return settings::real
+         */
+        void inline operator()(int row, int col, settings::real val) const
+        {
+            if (EXPECT(row < this->rows && col < this->cols, true))
+            {
+                this->values[row * this->cols + col] = val;
+            }
+            else
+            {
+                throw std::invalid_argument(
+                        GenerateError("Invalid index", *this));
+            }
+        };
+
+
+        /**
          * @brief Determines if two matrices have the same value at each index.
          * 
          * @param a 

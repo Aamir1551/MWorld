@@ -113,6 +113,12 @@ namespace blocks {
             Matrix vect_dist = (c1->position - c2->position);
             real dist = Matrix::Norm(vect_dist);
             real length = (c1->cube_length + c2->cube_length) / 2;
+            if(dist == 0) {
+                c1->position(0, 1, length/2);
+                c2->position(0, 1, length/2);
+                return;
+            }
+
             if (dist <= length) {
                 Matrix point = (c1->position + c2->position) / 2;
                 vect_dist.Normalise();
