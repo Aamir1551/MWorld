@@ -15,11 +15,9 @@ namespace blocks {
         void React(MBlock *block, real dist, const Matrix& to_cube) override;
 
 
-        real ExtractFlareFromBlock() override {
-            return 0.0;
-        };
+        real ExtractFlareFromBlock() override;
 
-        void AddFlareToBlock(real flare_amount) override {};
+        void AddFlareToBlock(real flare_amount) override;
     };
 }
 

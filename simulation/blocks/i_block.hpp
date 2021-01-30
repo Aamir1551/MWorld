@@ -25,17 +25,11 @@ namespace blocks {
         void React(ZBlock * block, real dist, const Matrix& to_cube) override;
         void React(EBlock * block, real dist, const Matrix& to_cube) override;
 
-        real ExtractFlareFromBlock() override {
-            return this->a + this->b * (real) (this->flare_value < IBlock::threshold);
-        };
+        real ExtractFlareFromBlock() override;
 
-        void spin(Matrix const &force_direction) override {
-            this->angular_momentum =  force_direction * (this->a + this->b * (real) (this->flare_value < IBlock::threshold)) * 0.0001;
-        }
+        void spin(Matrix const &force_direction) override;
 
-        void AddFlareToBlock(real flare_amount) override {
-            this->flare_inc += flare_amount * this->b;
-        };
+        void AddFlareToBlock(real flare_amount) override;
 
     };
 

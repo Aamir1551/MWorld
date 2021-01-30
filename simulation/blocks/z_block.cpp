@@ -27,4 +27,12 @@ namespace blocks {
         // neutral
     };
 
+
+    real ZBlock::ExtractFlareFromBlock() {
+        return 0.0;
+    };
+
+    void ZBlock::AddFlareToBlock(real flare_amount) {};
+
+
 }

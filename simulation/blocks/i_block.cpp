@@ -33,5 +33,18 @@ namespace blocks {
         }
     };
 
+
+    real IBlock::ExtractFlareFromBlock() {
+        return this->a + this->b * (real) (this->flare_value < IBlock::threshold);
+    };
+
+    void IBlock::spin(Matrix const &force_direction) {
+        this->angular_momentum =  force_direction * (this->a + this->b * (real) (this->flare_value < IBlock::threshold)) * 0.0001;
+    }
+
+    void IBlock::AddFlareToBlock(real flare_amount) {
+        this->flare_inc += flare_amount * this->b;
+    };
+
     real IBlock::threshold = 2.0f;
 };
