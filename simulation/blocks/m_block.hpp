@@ -18,9 +18,7 @@ namespace blocks {
         void React(EBlock *block, real dist, const Matrix& to_cube) override;
         void React(ZBlock *block, real dist, const Matrix& to_cube) override;
 
-
         real ExtractFlareFromBlock() override;
-
         void AddFlareToBlock(real flare_amount) override;
 
     };

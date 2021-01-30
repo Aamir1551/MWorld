@@ -26,9 +26,7 @@ namespace blocks {
         void React(EBlock * block, real dist, const Matrix& to_cube) override;
 
         real ExtractFlareFromBlock() override;
-
         void spin(Matrix const &force_direction) override;
-
         void AddFlareToBlock(real flare_amount) override;
 
     };
