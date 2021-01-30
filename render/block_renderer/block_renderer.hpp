@@ -1,3 +1,5 @@
+#ifndef MWORLD_RENDER_BLOCK_RENDERER_H
+#define MWORLD_RENDER_BLOCK_RENDERER_H
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
@@ -76,8 +78,5 @@ namespace render_utils {
 
     };
 
-
-
-
-
 }
+#endif
