@@ -1,4 +1,79 @@
 "C:\Program Files\JetBrains\CLion 2020.3.1\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G Ninja C:\Users\aamir\Documents\mworld
 -- Configuring done
--- Generating done
--- Build files have been written to: C:/Users/aamir/Documents/mworld/cmake-build-debug
+CMake Error at render/utils/CMakeLists.txt:10 (add_library):
+  Cannot find source file:
+
+    C:/Users/aamir/Documents/mworld/render/utils/world_initializer.cpp
+
+  Tried extensions .c .C .c++ .cc .cpp .cxx .cu .m .M .mm .h .hh .h++ .hm
+  .hpp .hxx .in .txx
+
+
+CMake Error at render/block_renderer/CMakeLists.txt:7 (add_library):
+  Cannot find source file:
+
+    C:/Users/aamir/Documents/mworld/render/utils/world_initializer.cpp
+
+  Tried extensions .c .C .c++ .cc .cpp .cxx .cu .m .M .mm .h .hh .h++ .hm
+  .hpp .hxx .in .txx
+
+
+CMake Error at prototype/prototype_one/CMakeLists.txt:7 (add_executable):
+  Cannot find source file:
+
+    C:/Users/aamir/Documents/mworld/render/utils/world_initializer.cpp
+
+  Tried extensions .c .C .c++ .cc .cpp .cxx .cu .m .M .mm .h .hh .h++ .hm
+  .hpp .hxx .in .txx
+
+
+CMake Error at prototype/prototype_two/CMakeLists.txt:5 (add_executable):
+  Cannot find source file:
+
+    C:/Users/aamir/Documents/mworld/render/utils/world_initializer.cpp
+
+  Tried extensions .c .C .c++ .cc .cpp .cxx .cu .m .M .mm .h .hh .h++ .hm
+  .hpp .hxx .in .txx
+
+
+CMake Error at prototype/prototype_three/CMakeLists.txt:5 (add_executable):
+  Cannot find source file:
+
+    C:/Users/aamir/Documents/mworld/render/utils/world_initializer.cpp
+
+  Tried extensions .c .C .c++ .cc .cpp .cxx .cu .m .M .mm .h .hh .h++ .hm
+  .hpp .hxx .in .txx
+
+
+CMake Error at simulation/blocks/CMakeLists.txt:5 (add_library):
+  Cannot find source file:
+
+    C:/Users/aamir/Documents/mworld/render/utils/world_initializer.cpp
+
+  Tried extensions .c .C .c++ .cc .cpp .cxx .cu .m .M .mm .h .hh .h++ .hm
+  .hpp .hxx .in .txx
+
+
+CMake Error at simulation/world_handler/CMakeLists.txt:5 (add_library):
+  Cannot find source file:
+
+    C:/Users/aamir/Documents/mworld/render/utils/world_initializer.cpp
+
+  Tried extensions .c .C .c++ .cc .cpp .cxx .cu .m .M .mm .h .hh .h++ .hm
+  .hpp .hxx .in .txx
+
+
+CMake Error at simulation/environment/CMakeLists.txt:5 (add_executable):
+  Cannot find source file:
+
+    C:/Users/aamir/Documents/mworld/render/utils/world_initializer.cpp
+
+  Tried extensions .c .C .c++ .cc .cpp .cxx .cu .m .M .mm .h .hh .h++ .hm
+  .hpp .hxx .in .txx
+
+
+CMake Error at render/utils/CMakeLists.txt:10 (add_library):
+  No SOURCES given to target: mworld_render_utils
+
+
+CMake Generate step failed.  Build files cannot be regenerated correctly.
