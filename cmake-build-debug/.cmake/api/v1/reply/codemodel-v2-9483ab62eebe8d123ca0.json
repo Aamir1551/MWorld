@@ -33,7 +33,7 @@
 					"source" : "lib/glad",
 					"targetIndexes" : 
 					[
-						4
+						3
 					]
 				},
 				{
@@ -62,7 +62,7 @@
 					"source" : "utils/util_functions",
 					"targetIndexes" : 
 					[
-						14
+						13
 					]
 				},
 				{
@@ -105,7 +105,7 @@
 					"source" : "numerics/linear_alg",
 					"targetIndexes" : 
 					[
-						5
+						4
 					]
 				},
 				{
@@ -119,7 +119,7 @@
 					"source" : "numerics/linear_alg/test",
 					"targetIndexes" : 
 					[
-						7
+						6
 					]
 				},
 				{
@@ -133,7 +133,7 @@
 					"source" : "numerics/quaternion",
 					"targetIndexes" : 
 					[
-						12
+						11
 					]
 				},
 				{
@@ -189,7 +189,7 @@
 					"source" : "render/utils",
 					"targetIndexes" : 
 					[
-						8
+						7
 					]
 				},
 				{
@@ -243,7 +243,7 @@
 					"source" : "prototype/prototype_one",
 					"targetIndexes" : 
 					[
-						9
+						8
 					]
 				},
 				{
@@ -257,7 +257,7 @@
 					"source" : "prototype/prototype_two",
 					"targetIndexes" : 
 					[
-						11
+						10
 					]
 				},
 				{
@@ -271,7 +271,7 @@
 					"source" : "prototype/prototype_three",
 					"targetIndexes" : 
 					[
-						10
+						9
 					]
 				},
 				{
@@ -315,7 +315,7 @@
 					"source" : "simulation/world_handler",
 					"targetIndexes" : 
 					[
-						15
+						14
 					]
 				},
 				{
@@ -329,9 +329,8 @@
 					"source" : "simulation/environment",
 					"targetIndexes" : 
 					[
-						3,
-						6,
-						13
+						5,
+						12
 					]
 				}
 			],
@@ -363,7 +362,7 @@
 					"parentIndex" : 0,
 					"targetIndexes" : 
 					[
-						4
+						3
 					]
 				},
 				{
@@ -388,7 +387,7 @@
 					"parentIndex" : 2,
 					"targetIndexes" : 
 					[
-						14
+						13
 					]
 				},
 				{
@@ -425,7 +424,7 @@
 					"parentIndex" : 5,
 					"targetIndexes" : 
 					[
-						5
+						4
 					]
 				},
 				{
@@ -437,7 +436,7 @@
 					"parentIndex" : 6,
 					"targetIndexes" : 
 					[
-						7
+						6
 					]
 				},
 				{
@@ -449,7 +448,7 @@
 					"parentIndex" : 5,
 					"targetIndexes" : 
 					[
-						12
+						11
 					]
 				},
 				{
@@ -497,7 +496,7 @@
 					"parentIndex" : 9,
 					"targetIndexes" : 
 					[
-						8
+						7
 					]
 				},
 				{
@@ -543,7 +542,7 @@
 					"parentIndex" : 15,
 					"targetIndexes" : 
 					[
-						9
+						8
 					]
 				},
 				{
@@ -555,7 +554,7 @@
 					"parentIndex" : 15,
 					"targetIndexes" : 
 					[
-						11
+						10
 					]
 				},
 				{
@@ -567,7 +566,7 @@
 					"parentIndex" : 15,
 					"targetIndexes" : 
 					[
-						10
+						9
 					]
 				},
 				{
@@ -585,9 +584,8 @@
 					"parentIndex" : 0,
 					"targetIndexes" : 
 					[
-						3,
-						6,
-						13
+						5,
+						12
 					]
 				},
 				{
@@ -611,7 +609,7 @@
 					"parentIndex" : 19,
 					"targetIndexes" : 
 					[
-						15
+						14
 					]
 				}
 			],
@@ -620,14 +618,14 @@
 				{
 					"directoryIndex" : 14,
 					"id" : "block_renderer::@20380dfbeeaf1beda5b3",
-					"jsonFile" : "target-block_renderer-Debug-747f58821178239f4cc4.json",
+					"jsonFile" : "target-block_renderer-Debug-2a76ea9d10b3cf876ceb.json",
 					"name" : "block_renderer",
 					"projectIndex" : 14
 				},
 				{
 					"directoryIndex" : 20,
 					"id" : "blocks::@6db65c1307d2a2a784c8",
-					"jsonFile" : "target-blocks-Debug-43964cb378b2bf6ef7b8.json",
+					"jsonFile" : "target-blocks-Debug-a6019f8ae6d2de3989ee.json",
 					"name" : "blocks",
 					"projectIndex" : 20
 				},
@@ -637,13 +635,6 @@
 					"jsonFile" : "target-cube_renderer-Debug-c7281fd5c73c279391f9.json",
 					"name" : "cube_renderer",
 					"projectIndex" : 11
-				},
-				{
-					"directoryIndex" : 22,
-					"id" : "flare_test::@847a59781e22ff560ae6",
-					"jsonFile" : "target-flare_test-Debug-ab1f71474b44e44bd747.json",
-					"name" : "flare_test",
-					"projectIndex" : 19
 				},
 				{
 					"directoryIndex" : 1,
@@ -662,7 +653,7 @@
 				{
 					"directoryIndex" : 22,
 					"id" : "logic_gates::@847a59781e22ff560ae6",
-					"jsonFile" : "target-logic_gates-Debug-45c2b5bcf43644145a08.json",
+					"jsonFile" : "target-logic_gates-Debug-7be8e2afd196a9fc1b9d.json",
 					"name" : "logic_gates",
 					"projectIndex" : 19
 				},
@@ -690,14 +681,14 @@
 				{
 					"directoryIndex" : 18,
 					"id" : "prototype_three::@2a17fa0eebb0697fdbb6",
-					"jsonFile" : "target-prototype_three-Debug-310174b34b969fb721ef.json",
+					"jsonFile" : "target-prototype_three-Debug-6655be7255e86675cd79.json",
 					"name" : "prototype_three",
 					"projectIndex" : 18
 				},
 				{
 					"directoryIndex" : 17,
 					"id" : "prototype_two::@e7e923eba9c0b8a1d5aa",
-					"jsonFile" : "target-prototype_two-Debug-6c3079dd71d24598a465.json",
+					"jsonFile" : "target-prototype_two-Debug-55d67733b298cc5cf1a2.json",
 					"name" : "prototype_two",
 					"projectIndex" : 17
 				},
@@ -711,7 +702,7 @@
 				{
 					"directoryIndex" : 22,
 					"id" : "simulation::@847a59781e22ff560ae6",
-					"jsonFile" : "target-simulation-Debug-1fdcda5015769bc68fc4.json",
+					"jsonFile" : "target-simulation-Debug-77763b6591bece458781.json",
 					"name" : "simulation",
 					"projectIndex" : 19
 				},
@@ -725,7 +716,7 @@
 				{
 					"directoryIndex" : 21,
 					"id" : "world_handler::@db5c5082507517693d46",
-					"jsonFile" : "target-world_handler-Debug-5a34f138fc8310a58fd2.json",
+					"jsonFile" : "target-world_handler-Debug-1e6c6984869f7bc465e1.json",
 					"name" : "world_handler",
 					"projectIndex" : 21
 				}
