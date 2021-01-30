@@ -25,6 +25,16 @@ namespace blocks {
         }
     };
 
+    void MBlock::AddFlareToBlock(real flare_amount) {
+        this->flare_inc = this->flare_inc + flare_amount;
+    }
+
+
+    real MBlock::ExtractFlareFromBlock() {
+        real temp = (real) (this->flare_value > MBlock::threshold) * this->flare_value * 0.08;
+        this->flare_inc -= temp;
+        return temp;
+    };
 
     real MBlock::threshold = 25.0f;
 };

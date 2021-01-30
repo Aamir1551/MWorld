@@ -19,15 +19,9 @@ namespace blocks {
         void React(ZBlock *block, real dist, const Matrix& to_cube) override;
 
 
-        real ExtractFlareFromBlock() override {
-            real temp = (real) (this->flare_value > MBlock::threshold) * this->flare_value * 0.08;
-            this->flare_inc -= temp;
-            return temp;
-        };
+        real ExtractFlareFromBlock() override;
 
-        void AddFlareToBlock(real flare_amount) override {
-            this->flare_inc = this->flare_inc + flare_amount;
-        };
+        void AddFlareToBlock(real flare_amount) override;
 
     };
 
