@@ -163,7 +163,7 @@ namespace numerics
          */
         settings::real inline operator()(int row, int col) const
         {
-            if (EXPECT(row < this->rows && col < this->cols, true))
+            if ((row < this->rows && col < this->cols && row >= 0 && col >= 0))
             {
                 return this->values[row * this->cols + col];
             }
@@ -182,9 +182,9 @@ namespace numerics
          * @param val
          * @return settings::real
          */
-        void inline operator()(int row, int col, settings::real val) const
+        void inline operator()(int row, int col, settings::real val)
         {
-            if (EXPECT(row < this->rows && col < this->cols, true))
+            if ((row < this->rows && col < this->cols && row >= 0 && col >= 0))
             {
                 this->values[row * this->cols + col] = val;
             }

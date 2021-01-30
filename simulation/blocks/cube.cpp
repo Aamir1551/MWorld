@@ -114,8 +114,9 @@ namespace blocks {
             real dist = Matrix::Norm(vect_dist);
             real length = (c1->cube_length + c2->cube_length) / 2;
             if(dist == 0) {
-                c1->position(0, 1, length/2);
-                c2->position(0, 1, length/2);
+                auto temp = c1->position(0, 0);
+                c1->position(0, 0, temp +  length/2);
+                c2->position(0, 0, temp -length/2);
                 return;
             }
 
