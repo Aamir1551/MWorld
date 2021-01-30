@@ -1,21 +1,16 @@
-//
-// Created by aamir on 24/01/2021.
-//
-
-#include <cube.hpp>
-
-#include <cstdlib>     /* srand, rand */
-#include <ctime>       /* time */
-
+#include <cstdlib>
+#include <ctime>
 #include <vector>
 
+#include <matrix.hpp>
+
+#include <cube.hpp>
 #include <block.hpp>
 #include <i_block.hpp>
 #include <m_block.hpp>
 #include <e_block.hpp>
 #include <z_block.hpp>
 
-#include <matrix.hpp>
 #include <world_handler.hpp>
 
 using namespace blocks;

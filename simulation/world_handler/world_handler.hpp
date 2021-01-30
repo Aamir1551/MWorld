@@ -1,15 +1,14 @@
 #ifndef MWORLD_SIMULATION_WORLD_HANDLER_H
 #define MWORLD_SIMULATION_WORLD_HANDLER_H
 
-#include <cube.hpp>
-
-#include <cstdlib>     /* srand, rand */
-#include <ctime>       /* time */
+#include <cstdlib>
+#include <ctime>
 
 #include <vector>
 
 #include <matrix.hpp>
 
+#include <cube.hpp>
 #include <block.hpp>
 #include <i_block.hpp>
 #include <m_block.hpp>
