@@ -36,14 +36,22 @@ int main()
     camera.camera_pos =  glm::vec3(-20, 0, 20);
     BlockRenderer::InitialiseBlockRenderer(&camera, cube_length, vao, vbo, ebo, world_properties);
 
-    WorldHandler world = WorldHandler(1, 0, 0, 0, 1, 0);
-    world.iblocks.at(0)->SetLinearMomentumToZero();
-    real location_0[] = {-20, 0, -5};
+    WorldHandler world = WorldHandler(1, 0, 0, 0, 2, 0);
+    //world.iblocks.at(0)->SetLinearMomentumToZero();
+
+    real vv[] = {0, 0.01, 0};
+    world.iblocks.at(0)->momentum = Matrix(3, 1, vv);
+    real location_0[] = {-16, -10, -5};
     world.iblocks.at(0)->position = Matrix(3, 1, location_0);
 
     world.eblocks.at(0)->SetLinearMomentumToZero();
     real location_1[] = {-16, 0, -5};
     world.eblocks.at(0)->position = Matrix(3, 1, location_1);
+
+
+    world.eblocks.at(1)->SetLinearMomentumToZero();
+    real location_2[] = {-12, 0, -5};
+    world.eblocks.at(1)->position = Matrix(3, 1, location_2);
 
     glBindVertexArray(vao);
     glEnable(GL_DEPTH_TEST);
@@ -71,7 +79,7 @@ int main()
 
         world.Update();
         world.CollisionHandler();
-        world.AddForces();
+        //world.AddForces();
         BlockRenderer::DrawAllBlocks(&world.iblocks, &world.zblocks, &world.eblocks, &world.mblocks);
 
         glfwSwapBuffers(world_properties->window);
@@ -82,8 +90,9 @@ int main()
             frame_count = 0;
             prev_time = currentFrame;
 
-            cout << "Flare value in I block: " << world.iblocks.at(0)->flare_value << endl;
-            cout << "Flare value in X block: " << world.eblocks.at(0)->flare_value << endl;
+            cout << "Flare value in I0 block: " << world.iblocks.at(0)->flare_value << endl;
+            cout << "Flare value in X1 block: " << world.eblocks.at(0)->flare_value << endl;
+            cout << "Flare value in X2 block: " << world.eblocks.at(1)->flare_value << endl;
         }
     }
 
