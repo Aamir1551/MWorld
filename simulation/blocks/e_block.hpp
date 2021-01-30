@@ -12,8 +12,12 @@ namespace blocks
     public:
         real k;
 
-        EBlock(Matrix position, Quaternion initial_orientation, real k) : Block(position, initial_orientation, 0.0f) {
-            this->k = k;
+        EBlock(Matrix position, Quaternion initial_orientation, bool state) : Block(position, initial_orientation, 0.0f) {
+            if(state == true) {
+                this->k = 1;
+            } else {
+                this->k = 0.5;
+            }
         };
 
         void React(IBlock * block, real dist, const Matrix &to_cube) override;

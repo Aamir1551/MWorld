@@ -82,61 +82,27 @@ public:
             std::vector<Matrix> *positions, *linear_momentums;
             GetProperties(num_blocks, positions, linear_momentums);
             for(int i=0; i<num_blocks; i++) {
-                cout << "Add I Block ID: " << i << endl;
-                auto new_block = new IBlock(positions->at(i), Quaternion(1.0, 0.0, 0.0, 0.0)  ,state);
-                new_block->SetLinearMomentum(linear_momentums->at(i));
-                iblocks.push_back(new_block);
-                blocks.push_back(new_block);
+                if(block_types == IBlockType) {
+                    auto *new_block = new IBlock(positions->at(i), Quaternion(1.0, 0.0, 0.0, 0.0)  ,state);
+                    iblocks.push_back(new_block);
+                    blocks.push_back(new_block);
+                } else if(block_types == ZBlockType) {
+                    auto *new_block = new ZBlock(positions->at(i), Quaternion(1.0, 0.0, 0.0, 0.0));
+                    zblocks.push_back(new_block);
+                    blocks.push_back(new_block);
+                } else if(block_types == EBlockType) {
+                    auto new_block = new EBlock(positions->at(i), Quaternion(1.0, 0.0, 0.0, 0.0), state);
+                    eblocks.push_back(new_block);
+                    blocks.push_back(new_block);
+                } else {
+                    auto new_block =  new MBlock(positions->at(i), Quaternion(1.0, 0.0, 0.0, 0.0));
+                    mblocks.push_back(new_block);
+                    blocks.push_back(new_block);
+                }
+                blocks.back()->SetLinearMomentum(linear_momentums->at(i));
         }
     }
 
-    void AddIBlocks(int num_i_blocks, bool state) {
-        std::vector<Matrix> *positions, *linear_momentums;
-        GetProperties(num_i_blocks, positions, linear_momentums);
-        for(int i=0; i<num_i_blocks; i++) {
-            cout << "Add I Block ID: " << i << endl;
-            auto new_block = new IBlock(positions->at(i), Quaternion(1.0, 0.0, 0.0, 0.0)  ,state);
-            iblocks.push_back(new_block);
-            blocks.push_back(new_block);
-            iblocks.at(i)->SetLinearMomentum(linear_momentums->at(i));
-        }
-    }
-
-    void AddMBlocks(int num_m_blocks) {
-        std::vector<Matrix> *positions,  *linear_momentums;
-        GetProperties(num_m_blocks, positions, linear_momentums);
-        for(int i=0; i<num_m_blocks; i++) {
-            cout << "Add M Block ID: " << i << endl;
-            auto new_block =  new MBlock(positions->at(i), Quaternion(1.0, 0.0, 0.0, 0.0));
-            mblocks.push_back(new_block);
-            blocks.push_back(new_block);
-            mblocks.at(i)->SetLinearMomentum(linear_momentums->at(i));
-        }
-    }
-
-    void AddEBlocks(int num_e_blocks, real k) {
-        std::vector<Matrix> *positions, *linear_momentums;
-        GetProperties(num_e_blocks, positions, linear_momentums);
-        for(int i=0; i<num_e_blocks; i++) {
-            cout << "Add E Block ID: " << i << endl;
-            auto new_block = new EBlock(positions->at(i), Quaternion(1.0, 0.0, 0.0, 0.0), k);
-            eblocks.push_back(new_block);
-            blocks.push_back(new_block);
-            eblocks.at(i)->SetLinearMomentum(linear_momentums->at(i));
-        }
-    }
-
-    void AddZBlocks(int num_z_blocks) {
-        std::vector<Matrix> *positions,  *linear_momentums;
-        GetProperties(num_z_blocks, positions, linear_momentums);
-        for(int i=0; i<num_z_blocks; i++) {
-            cout << "Add Z Block ID: " << i << endl;
-            auto new_block = new ZBlock(positions->at(i), Quaternion(1.0, 0.0, 0.0, 0.0));
-            zblocks.push_back(new_block);
-            blocks.push_back(new_block);
-            zblocks.at(i)->SetLinearMomentum(linear_momentums->at(i));
-        }
-    }
 
     void Update() {
         for(int i=0; i<this->blocks.size(); i++) {
