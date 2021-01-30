@@ -19,6 +19,7 @@
 #include <z_block.hpp>
 
 #include <matrix.hpp>
+#include <world_handler.hpp>
 
 using namespace blocks;
 
@@ -48,31 +49,19 @@ std::vector<Matrix> *GenerateLinearMomentums(int num_cubes)
     return linear_momentums;
 }
 
-class WorldHandler {
 
-
-public:
-
-    vector<IBlock *> iblocks;
-    vector<MBlock *> mblocks;
-    vector<EBlock *> eblocks;
-    vector<ZBlock *> zblocks;
-
-    vector<Block *> blocks;
-
-    enum BlockTypes {IBlockType, MBlockType, EBlockType, ZBlockType};
-
-    WorldHandler(int num_i_blocks_plus, int num_i_blocks_neg, int num_z_blocks, int num_m_blocks, int num_e_blocks_1, int num_e_blocks_1_2) {
+    WorldHandler::WorldHandler(int num_i_blocks_plus, int num_i_blocks_neg, int num_z_blocks, int num_m_blocks, int num_e_blocks_1, int num_e_blocks_1_2) {
         srand((unsigned)time(0)); //NULL???
-        AddIBlocks(num_i_blocks_plus, true);
-        AddIBlocks(num_i_blocks_neg, false);
-        AddMBlocks(num_m_blocks);
-        AddZBlocks(num_z_blocks);
-        AddEBlocks(num_e_blocks_1, 1);
-        AddEBlocks(num_e_blocks_1_2, 0.5f);
+        AddBlock(IBlockType, num_i_blocks_plus, true);
+        AddBlock(IBlockType, num_i_blocks_neg, false);
+        AddBlock(MBlockType, num_m_blocks, true);
+        AddBlock(EBlockType, num_e_blocks_1, true);
+        AddBlock(EBlockType, num_e_blocks_1_2, false);
+        AddBlock(ZBlockType, num_z_blocks, true);
     }
 
-    void static GetProperties(int num_blocks, std::vector<Matrix> *&positions, std::vector<Matrix> * &linear_momentums) {
+
+    void static WorldHandler::GetProperties(int num_blocks, std::vector<Matrix> *&positions, std::vector<Matrix> * &linear_momentums) {
         positions = GeneratePositions(num_blocks);
         linear_momentums = GenerateLinearMomentums(num_blocks);
     }
