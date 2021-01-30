@@ -36,8 +36,8 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("C:/Users/aamir/Documents/mworld/cmake-build-debug/render/camera/cmake_install.cmake")
   include("C:/Users/aamir/Documents/mworld/cmake-build-debug/render/cube_renderer/cmake_install.cmake")
-  include("C:/Users/aamir/Documents/mworld/cmake-build-debug/render/utils/cmake_install.cmake")
   include("C:/Users/aamir/Documents/mworld/cmake-build-debug/render/shader/cmake_install.cmake")
+  include("C:/Users/aamir/Documents/mworld/cmake-build-debug/render/utils/cmake_install.cmake")
   include("C:/Users/aamir/Documents/mworld/cmake-build-debug/render/block_renderer/cmake_install.cmake")
 
 endif()

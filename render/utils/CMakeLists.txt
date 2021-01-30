@@ -7,6 +7,7 @@ set(CMAKE_CXX_STANDARD 11)
 #target_include_directories(mworld_render_utils INTERFACE "${CMAKE_CURRENT_SOURCE_DIR}/.")
 
 
-add_library(mworld_render_utils)
-target_sources(mworld_render_utils PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/world_initializer.hpp" ${CMAKE_CURRENT_SOURCE_DIR}/world_initializer.cpp )
-target_include_directories(mworld_render_utils PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/.")
+add_library(mworld_render_utils "${CMAKE_CURRENT_SOURCE_DIR}/world_initializer.hpp" "${CMAKE_CURRENT_SOURCE_DIR}/world_initializer.cpp")
+target_sources(mworld_render_utils PUBLIC  "${CMAKE_CURRENT_SOURCE_DIR}/world_initializer.hpp" "${CMAKE_CURRENT_SOURCE_DIR}/world_initializer.cpp")
+target_link_libraries(mworld_render_utils glad ${glfw} shader)
+target_include_directories(mworld_render_utils PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/." "${glfw_include_path}" "${glm_include_path}")

@@ -5,16 +5,10 @@
 #include <GLFW/glfw3.h>
 
 #include <shader.hpp>
-#include <world_handler.hpp>
+#include <world_initializer.hpp>
 
 namespace render_utils
 {
-
-    struct WorldProperties
-    {
-        GLFWwindow *window;
-        unsigned int shader_id;
-    };
 
     void framebuffer_size_callback(GLFWwindow *window, int width, int height)
     {

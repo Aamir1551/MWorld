@@ -62,7 +62,7 @@
 					"source" : "utils/util_functions",
 					"targetIndexes" : 
 					[
-						13
+						14
 					]
 				},
 				{
@@ -133,7 +133,7 @@
 					"source" : "numerics/quaternion",
 					"targetIndexes" : 
 					[
-						11
+						12
 					]
 				},
 				{
@@ -179,24 +179,28 @@
 					]
 				},
 				{
-					"build" : "render/utils",
-					"minimumCMakeVersion" : 
-					{
-						"string" : "3.10"
-					},
-					"parentIndex" : 9,
-					"projectIndex" : 12,
-					"source" : "render/utils"
-				},
-				{
 					"build" : "render/shader",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.10"
 					},
 					"parentIndex" : 9,
-					"projectIndex" : 13,
+					"projectIndex" : 12,
 					"source" : "render/shader"
+				},
+				{
+					"build" : "render/utils",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 9,
+					"projectIndex" : 13,
+					"source" : "render/utils",
+					"targetIndexes" : 
+					[
+						8
+					]
 				},
 				{
 					"build" : "render/block_renderer",
@@ -239,7 +243,7 @@
 					"source" : "prototype/prototype_one",
 					"targetIndexes" : 
 					[
-						8
+						9
 					]
 				},
 				{
@@ -253,7 +257,7 @@
 					"source" : "prototype/prototype_two",
 					"targetIndexes" : 
 					[
-						10
+						11
 					]
 				},
 				{
@@ -267,7 +271,7 @@
 					"source" : "prototype/prototype_three",
 					"targetIndexes" : 
 					[
-						9
+						10
 					]
 				},
 				{
@@ -311,7 +315,7 @@
 					"source" : "simulation/world_handler",
 					"targetIndexes" : 
 					[
-						14
+						15
 					]
 				},
 				{
@@ -327,7 +331,7 @@
 					[
 						3,
 						6,
-						12
+						13
 					]
 				}
 			],
@@ -384,7 +388,7 @@
 					"parentIndex" : 2,
 					"targetIndexes" : 
 					[
-						13
+						14
 					]
 				},
 				{
@@ -445,7 +449,7 @@
 					"parentIndex" : 5,
 					"targetIndexes" : 
 					[
-						11
+						12
 					]
 				},
 				{
@@ -489,7 +493,7 @@
 					[
 						12
 					],
-					"name" : "mworld_render_utils",
+					"name" : "shader",
 					"parentIndex" : 9
 				},
 				{
@@ -497,8 +501,12 @@
 					[
 						13
 					],
-					"name" : "shader",
-					"parentIndex" : 9
+					"name" : "mworld_render_utils",
+					"parentIndex" : 9,
+					"targetIndexes" : 
+					[
+						8
+					]
 				},
 				{
 					"directoryIndexes" : 
@@ -535,7 +543,7 @@
 					"parentIndex" : 15,
 					"targetIndexes" : 
 					[
-						8
+						9
 					]
 				},
 				{
@@ -547,7 +555,7 @@
 					"parentIndex" : 15,
 					"targetIndexes" : 
 					[
-						10
+						11
 					]
 				},
 				{
@@ -559,7 +567,7 @@
 					"parentIndex" : 15,
 					"targetIndexes" : 
 					[
-						9
+						10
 					]
 				},
 				{
@@ -579,7 +587,7 @@
 					[
 						3,
 						6,
-						12
+						13
 					]
 				},
 				{
@@ -603,7 +611,7 @@
 					"parentIndex" : 19,
 					"targetIndexes" : 
 					[
-						14
+						15
 					]
 				}
 			],
@@ -612,14 +620,14 @@
 				{
 					"directoryIndex" : 14,
 					"id" : "block_renderer::@20380dfbeeaf1beda5b3",
-					"jsonFile" : "target-block_renderer-Debug-4d28bdf1f19baaa165d9.json",
+					"jsonFile" : "target-block_renderer-Debug-81a6e6b91fd8667d81e3.json",
 					"name" : "block_renderer",
 					"projectIndex" : 14
 				},
 				{
 					"directoryIndex" : 20,
 					"id" : "blocks::@6db65c1307d2a2a784c8",
-					"jsonFile" : "target-blocks-Debug-548238c471e0837db00d.json",
+					"jsonFile" : "target-blocks-Debug-43964cb378b2bf6ef7b8.json",
 					"name" : "blocks",
 					"projectIndex" : 20
 				},
@@ -633,7 +641,7 @@
 				{
 					"directoryIndex" : 22,
 					"id" : "flare_test::@847a59781e22ff560ae6",
-					"jsonFile" : "target-flare_test-Debug-7eda12e7cbb87c079098.json",
+					"jsonFile" : "target-flare_test-Debug-17b1e3b73473d5946f86.json",
 					"name" : "flare_test",
 					"projectIndex" : 19
 				},
@@ -654,7 +662,7 @@
 				{
 					"directoryIndex" : 22,
 					"id" : "logic_gates::@847a59781e22ff560ae6",
-					"jsonFile" : "target-logic_gates-Debug-f737fa371150668bca07.json",
+					"jsonFile" : "target-logic_gates-Debug-164011d0f11c477095d4.json",
 					"name" : "logic_gates",
 					"projectIndex" : 19
 				},
@@ -666,23 +674,30 @@
 					"projectIndex" : 7
 				},
 				{
+					"directoryIndex" : 13,
+					"id" : "mworld_render_utils::@c1c5e50b708af245b811",
+					"jsonFile" : "target-mworld_render_utils-Debug-89d12dd9430908c30aaf.json",
+					"name" : "mworld_render_utils",
+					"projectIndex" : 13
+				},
+				{
 					"directoryIndex" : 16,
 					"id" : "prototype_one::@c77c4220c2085dac9ec5",
-					"jsonFile" : "target-prototype_one-Debug-f474485b05b4fbd6e8a8.json",
+					"jsonFile" : "target-prototype_one-Debug-99b523d0e7538bfd2445.json",
 					"name" : "prototype_one",
 					"projectIndex" : 16
 				},
 				{
 					"directoryIndex" : 18,
 					"id" : "prototype_three::@2a17fa0eebb0697fdbb6",
-					"jsonFile" : "target-prototype_three-Debug-10e5e62dac9b6a141603.json",
+					"jsonFile" : "target-prototype_three-Debug-5085227a181e5cf9ffbb.json",
 					"name" : "prototype_three",
 					"projectIndex" : 18
 				},
 				{
 					"directoryIndex" : 17,
 					"id" : "prototype_two::@e7e923eba9c0b8a1d5aa",
-					"jsonFile" : "target-prototype_two-Debug-190a255f5569422ac45b.json",
+					"jsonFile" : "target-prototype_two-Debug-5a412625fae72f60e789.json",
 					"name" : "prototype_two",
 					"projectIndex" : 17
 				},
@@ -696,7 +711,7 @@
 				{
 					"directoryIndex" : 22,
 					"id" : "simulation::@847a59781e22ff560ae6",
-					"jsonFile" : "target-simulation-Debug-898bb90c78c81391bc46.json",
+					"jsonFile" : "target-simulation-Debug-9ac0746211e7fca5d9e6.json",
 					"name" : "simulation",
 					"projectIndex" : 19
 				},
@@ -710,7 +725,7 @@
 				{
 					"directoryIndex" : 21,
 					"id" : "world_handler::@db5c5082507517693d46",
-					"jsonFile" : "target-world_handler-Debug-093dc2ce9de678f2350d.json",
+					"jsonFile" : "target-world_handler-Debug-706637b3211ac230d9c2.json",
 					"name" : "world_handler",
 					"projectIndex" : 21
 				}
