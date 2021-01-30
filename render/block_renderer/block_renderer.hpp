@@ -35,7 +35,7 @@ namespace render_utils {
 
         void static DrawBlocks(vector<Block *> *block_list,glm::vec3 colour, glm::mat4& id, Camera &camera, glm::mat4 &view);
 
-        void DrawAllBlocks(vector<IBlock *> *iblocks, vector<ZBlock *> *zblocks, vector<EBlock *> *eblocks, vector<MBlock *> *mblocks);
+        void static DrawAllBlocks(vector<IBlock *> *iblocks, vector<ZBlock *> *zblocks, vector<EBlock *> *eblocks, vector<MBlock *> *mblocks);
 
         void static InitialiseBlockRenderer(Camera &_camera, real _cube_length, unsigned int vao, unsigned int vbo , unsigned int ebo, WorldProperties *world_properties);
 

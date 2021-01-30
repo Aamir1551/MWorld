@@ -12,7 +12,7 @@
 #include <matrix.hpp>
 #include <camera.hpp>
 #include <block_renderer.hpp>
-#include "../world_handler/world_handler.cpp"
+#include <world_handler.hpp>
 
 using namespace std;
 
@@ -69,7 +69,7 @@ int main()
         world.Update();
         world.CollisionHandler();
         world.AddForces();
-        BlockRenderer::DrawAllBlocks(world);
+        BlockRenderer::DrawAllBlocks(&world.iblocks, &world.zblocks, &world.eblocks, &world.mblocks);
 
         glfwSwapBuffers(world_properties->window);
         glfwPollEvents();
@@ -90,4 +90,3 @@ int main()
     cout << "Terminated" << endl;
     return 0;
 }
-
