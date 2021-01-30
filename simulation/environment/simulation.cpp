@@ -6,7 +6,6 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include <cube_renderer.hpp>
 #include <world_initializer.hpp>
 #include <settings.hpp>
 #include <matrix.hpp>

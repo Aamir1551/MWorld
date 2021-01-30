@@ -5,7 +5,6 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #include <block_renderer.hpp>
-#include <matrix.hpp>
 #include <cube_renderer.hpp>
 #include <world_initializer.hpp>
 #include <settings.hpp>
