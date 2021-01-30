@@ -216,6 +216,9 @@
 			"path" : "simulation/blocks/CMakeLists.txt"
 		},
 		{
+			"path" : "simulation/world_handler/CMakeLists.txt"
+		},
+		{
 			"path" : "simulation/environment/CMakeLists.txt"
 		}
 	],

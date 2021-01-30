@@ -66,9 +66,12 @@ public:
         AddEBlocks(num_e_blocks_1_2, 0.5f);
     }
 
-    void static GetProperties(int num_blocks, std::vector<Matrix> *&positions, std::vector<Matrix> * &linear_momentums) {
-        positions = GeneratePositions(num_blocks);
-        linear_momentums = GenerateLinearMomentums(num_blocks);
+    void static GetProperties(int num_blocks, std::vector<Matrix> *&positions, std::vector<Matrix> * &linear_momentums);
+
+
+
+    void AddBlocks(int num_blocks, bool state) {
+
     }
 
     void AddIBlocks(int num_i_blocks, bool state) {

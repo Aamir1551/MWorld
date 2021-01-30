@@ -1038,6 +1038,66 @@ build simulation/blocks/rebuild_cache: phony simulation/blocks/CMakeFiles/rebuil
 # C:/Users/aamir/Documents/mworld/simulation/CMakeLists.txt
 # =============================================================================
 
+
+#############################################
+# Utility command for edit_cache
+
+build simulation/world_handler/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cmd.exe /C "cd /D C:\Users\aamir\Documents\mworld\cmake-build-debug\simulation\world_handler && "C:\Program Files\JetBrains\CLion 2020.3.1\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build simulation/world_handler/edit_cache: phony simulation/world_handler/CMakeFiles/edit_cache.util
+
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target world_handler
+
+
+#############################################
+# Order-only phony target for world_handler
+
+build cmake_object_order_depends_target_world_handler: phony || cmake_object_order_depends_target_block_renderer cmake_object_order_depends_target_blocks cmake_object_order_depends_target_cube_renderer cmake_object_order_depends_target_glad cmake_object_order_depends_target_linear_alg cmake_object_order_depends_target_quaternion cmake_object_order_depends_target_utils
+
+build simulation/world_handler/CMakeFiles/world_handler.dir/world_handler.cpp.obj: CXX_COMPILER__world_handler_Debug ../simulation/world_handler/world_handler.cpp || cmake_object_order_depends_target_world_handler
+  DEP_FILE = simulation\world_handler\CMakeFiles\world_handler.dir\world_handler.cpp.obj.d
+  FLAGS = -g   -std=gnu++11
+  INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../simulation/world_handler -I../render/block_renderer/../lib -I../render/block_renderer/. -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/camera -I../render/shader -I../simulation/blocks
+  OBJECT_DIR = simulation\world_handler\CMakeFiles\world_handler.dir
+  OBJECT_FILE_DIR = simulation\world_handler\CMakeFiles\world_handler.dir
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target world_handler
+
+
+#############################################
+# Link the static library simulation\world_handler\libworld_handler.a
+
+build simulation/world_handler/libworld_handler.a: CXX_STATIC_LIBRARY_LINKER__world_handler_Debug simulation/world_handler/CMakeFiles/world_handler.dir/world_handler.cpp.obj || lib/glad/libglad.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/block_renderer/libblock_renderer.a render/cube_renderer/libcube_renderer.a simulation/blocks/libblocks.a utils/util_functions/libutils.a
+  LANGUAGE_COMPILE_FLAGS = -g
+  OBJECT_DIR = simulation\world_handler\CMakeFiles\world_handler.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = simulation\world_handler\libworld_handler.a
+  TARGET_PDB = world_handler.a.dbg
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build simulation/world_handler/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cmd.exe /C "cd /D C:\Users\aamir\Documents\mworld\cmake-build-debug\simulation\world_handler && "C:\Program Files\JetBrains\CLion 2020.3.1\bin\cmake\win\bin\cmake.exe" --regenerate-during-build -SC:\Users\aamir\Documents\mworld -BC:\Users\aamir\Documents\mworld\cmake-build-debug"
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build simulation/world_handler/rebuild_cache: phony simulation/world_handler/CMakeFiles/rebuild_cache.util
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# C:/Users/aamir/Documents/mworld/simulation/CMakeLists.txt
+# =============================================================================
+
 # =============================================================================
 # Object build statements for EXECUTABLE target simulation
 
@@ -1045,12 +1105,12 @@ build simulation/blocks/rebuild_cache: phony simulation/blocks/CMakeFiles/rebuil
 #############################################
 # Order-only phony target for simulation
 
-build cmake_object_order_depends_target_simulation: phony || cmake_object_order_depends_target_block_renderer cmake_object_order_depends_target_blocks cmake_object_order_depends_target_cube_renderer cmake_object_order_depends_target_glad cmake_object_order_depends_target_linear_alg cmake_object_order_depends_target_quaternion cmake_object_order_depends_target_utils
+build cmake_object_order_depends_target_simulation: phony || cmake_object_order_depends_target_block_renderer cmake_object_order_depends_target_blocks cmake_object_order_depends_target_cube_renderer cmake_object_order_depends_target_glad cmake_object_order_depends_target_linear_alg cmake_object_order_depends_target_quaternion cmake_object_order_depends_target_utils cmake_object_order_depends_target_world_handler
 
 build simulation/environment/CMakeFiles/simulation.dir/simulation.cpp.obj: CXX_COMPILER__simulation_Debug ../simulation/environment/simulation.cpp || cmake_object_order_depends_target_simulation
   DEP_FILE = simulation\environment\CMakeFiles\simulation.dir\simulation.cpp.obj.d
   FLAGS = -g   -std=gnu++11
-  INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../simulation/environment -I../render/block_renderer/../lib -I../render/block_renderer/. -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/camera -I../render/shader -I../simulation/blocks
+  INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../simulation/environment -I../render/block_renderer/../lib -I../render/block_renderer/. -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/camera -I../render/shader -I../simulation/blocks -I../simulation/world_handler
   OBJECT_DIR = simulation\environment\CMakeFiles\simulation.dir
   OBJECT_FILE_DIR = simulation\environment\CMakeFiles\simulation.dir
 
@@ -1062,9 +1122,9 @@ build simulation/environment/CMakeFiles/simulation.dir/simulation.cpp.obj: CXX_C
 #############################################
 # Link the executable simulation\environment\simulation.exe
 
-build simulation/environment/simulation.exe: CXX_EXECUTABLE_LINKER__simulation_Debug simulation/environment/CMakeFiles/simulation.dir/simulation.cpp.obj | render/block_renderer/libblock_renderer.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/cube_renderer/libcube_renderer.a utils/util_functions/libutils.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a simulation/blocks/libblocks.a numerics/quaternion/libquaternion.a numerics/linear_alg/liblinear_alg.a render/cube_renderer/libcube_renderer.a utils/util_functions/libutils.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a || lib/glad/libglad.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/block_renderer/libblock_renderer.a render/cube_renderer/libcube_renderer.a simulation/blocks/libblocks.a utils/util_functions/libutils.a
+build simulation/environment/simulation.exe: CXX_EXECUTABLE_LINKER__simulation_Debug simulation/environment/CMakeFiles/simulation.dir/simulation.cpp.obj | render/block_renderer/libblock_renderer.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/cube_renderer/libcube_renderer.a utils/util_functions/libutils.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a simulation/blocks/libblocks.a simulation/world_handler/libworld_handler.a render/block_renderer/libblock_renderer.a simulation/blocks/libblocks.a numerics/quaternion/libquaternion.a numerics/linear_alg/liblinear_alg.a render/cube_renderer/libcube_renderer.a utils/util_functions/libutils.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a || lib/glad/libglad.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/block_renderer/libblock_renderer.a render/cube_renderer/libcube_renderer.a simulation/blocks/libblocks.a simulation/world_handler/libworld_handler.a utils/util_functions/libutils.a
   FLAGS = -g
-  LINK_LIBRARIES = render/block_renderer/libblock_renderer.a  numerics/linear_alg/liblinear_alg.a  numerics/quaternion/libquaternion.a  render/cube_renderer/libcube_renderer.a  utils/util_functions/libutils.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  simulation/blocks/libblocks.a  numerics/quaternion/libquaternion.a  numerics/linear_alg/liblinear_alg.a  render/cube_renderer/libcube_renderer.a  utils/util_functions/libutils.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  LINK_LIBRARIES = render/block_renderer/libblock_renderer.a  numerics/linear_alg/liblinear_alg.a  numerics/quaternion/libquaternion.a  render/cube_renderer/libcube_renderer.a  utils/util_functions/libutils.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  simulation/blocks/libblocks.a  simulation/world_handler/libworld_handler.a  render/block_renderer/libblock_renderer.a  simulation/blocks/libblocks.a  numerics/quaternion/libquaternion.a  numerics/linear_alg/liblinear_alg.a  render/cube_renderer/libcube_renderer.a  utils/util_functions/libutils.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = simulation\environment\CMakeFiles\simulation.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -1079,12 +1139,12 @@ build simulation/environment/simulation.exe: CXX_EXECUTABLE_LINKER__simulation_D
 #############################################
 # Order-only phony target for logic_gates
 
-build cmake_object_order_depends_target_logic_gates: phony || cmake_object_order_depends_target_block_renderer cmake_object_order_depends_target_blocks cmake_object_order_depends_target_cube_renderer cmake_object_order_depends_target_glad cmake_object_order_depends_target_linear_alg cmake_object_order_depends_target_quaternion cmake_object_order_depends_target_utils
+build cmake_object_order_depends_target_logic_gates: phony || cmake_object_order_depends_target_block_renderer cmake_object_order_depends_target_blocks cmake_object_order_depends_target_cube_renderer cmake_object_order_depends_target_glad cmake_object_order_depends_target_linear_alg cmake_object_order_depends_target_quaternion cmake_object_order_depends_target_utils cmake_object_order_depends_target_world_handler
 
 build simulation/environment/CMakeFiles/logic_gates.dir/logic_gates.cpp.obj: CXX_COMPILER__logic_gates_Debug ../simulation/environment/logic_gates.cpp || cmake_object_order_depends_target_logic_gates
   DEP_FILE = simulation\environment\CMakeFiles\logic_gates.dir\logic_gates.cpp.obj.d
   FLAGS = -g   -std=gnu++11
-  INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../simulation/environment -I../render/block_renderer/../lib -I../render/block_renderer/. -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/camera -I../render/shader -I../simulation/blocks
+  INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../simulation/environment -I../render/block_renderer/../lib -I../render/block_renderer/. -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/camera -I../render/shader -I../simulation/blocks -I../simulation/world_handler
   OBJECT_DIR = simulation\environment\CMakeFiles\logic_gates.dir
   OBJECT_FILE_DIR = simulation\environment\CMakeFiles\logic_gates.dir
 
@@ -1096,9 +1156,9 @@ build simulation/environment/CMakeFiles/logic_gates.dir/logic_gates.cpp.obj: CXX
 #############################################
 # Link the executable simulation\environment\logic_gates.exe
 
-build simulation/environment/logic_gates.exe: CXX_EXECUTABLE_LINKER__logic_gates_Debug simulation/environment/CMakeFiles/logic_gates.dir/logic_gates.cpp.obj | render/block_renderer/libblock_renderer.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/cube_renderer/libcube_renderer.a utils/util_functions/libutils.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a simulation/blocks/libblocks.a numerics/quaternion/libquaternion.a numerics/linear_alg/liblinear_alg.a render/cube_renderer/libcube_renderer.a utils/util_functions/libutils.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a || lib/glad/libglad.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/block_renderer/libblock_renderer.a render/cube_renderer/libcube_renderer.a simulation/blocks/libblocks.a utils/util_functions/libutils.a
+build simulation/environment/logic_gates.exe: CXX_EXECUTABLE_LINKER__logic_gates_Debug simulation/environment/CMakeFiles/logic_gates.dir/logic_gates.cpp.obj | render/block_renderer/libblock_renderer.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/cube_renderer/libcube_renderer.a utils/util_functions/libutils.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a simulation/blocks/libblocks.a simulation/world_handler/libworld_handler.a render/block_renderer/libblock_renderer.a simulation/blocks/libblocks.a numerics/quaternion/libquaternion.a numerics/linear_alg/liblinear_alg.a render/cube_renderer/libcube_renderer.a utils/util_functions/libutils.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a || lib/glad/libglad.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/block_renderer/libblock_renderer.a render/cube_renderer/libcube_renderer.a simulation/blocks/libblocks.a simulation/world_handler/libworld_handler.a utils/util_functions/libutils.a
   FLAGS = -g
-  LINK_LIBRARIES = render/block_renderer/libblock_renderer.a  numerics/linear_alg/liblinear_alg.a  numerics/quaternion/libquaternion.a  render/cube_renderer/libcube_renderer.a  utils/util_functions/libutils.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  simulation/blocks/libblocks.a  numerics/quaternion/libquaternion.a  numerics/linear_alg/liblinear_alg.a  render/cube_renderer/libcube_renderer.a  utils/util_functions/libutils.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  LINK_LIBRARIES = render/block_renderer/libblock_renderer.a  numerics/linear_alg/liblinear_alg.a  numerics/quaternion/libquaternion.a  render/cube_renderer/libcube_renderer.a  utils/util_functions/libutils.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  simulation/blocks/libblocks.a  simulation/world_handler/libworld_handler.a  render/block_renderer/libblock_renderer.a  simulation/blocks/libblocks.a  numerics/quaternion/libquaternion.a  numerics/linear_alg/liblinear_alg.a  render/cube_renderer/libcube_renderer.a  utils/util_functions/libutils.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = simulation\environment\CMakeFiles\logic_gates.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -1113,12 +1173,12 @@ build simulation/environment/logic_gates.exe: CXX_EXECUTABLE_LINKER__logic_gates
 #############################################
 # Order-only phony target for flare_test
 
-build cmake_object_order_depends_target_flare_test: phony || cmake_object_order_depends_target_block_renderer cmake_object_order_depends_target_blocks cmake_object_order_depends_target_cube_renderer cmake_object_order_depends_target_glad cmake_object_order_depends_target_linear_alg cmake_object_order_depends_target_quaternion cmake_object_order_depends_target_utils
+build cmake_object_order_depends_target_flare_test: phony || cmake_object_order_depends_target_block_renderer cmake_object_order_depends_target_blocks cmake_object_order_depends_target_cube_renderer cmake_object_order_depends_target_glad cmake_object_order_depends_target_linear_alg cmake_object_order_depends_target_quaternion cmake_object_order_depends_target_utils cmake_object_order_depends_target_world_handler
 
 build simulation/environment/CMakeFiles/flare_test.dir/flare_test.cpp.obj: CXX_COMPILER__flare_test_Debug ../simulation/environment/flare_test.cpp || cmake_object_order_depends_target_flare_test
   DEP_FILE = simulation\environment\CMakeFiles\flare_test.dir\flare_test.cpp.obj.d
   FLAGS = -g   -std=gnu++11
-  INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../simulation/environment -I../render/block_renderer/../lib -I../render/block_renderer/. -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/camera -I../render/shader -I../simulation/blocks
+  INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../simulation/environment -I../render/block_renderer/../lib -I../render/block_renderer/. -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/camera -I../render/shader -I../simulation/blocks -I../simulation/world_handler
   OBJECT_DIR = simulation\environment\CMakeFiles\flare_test.dir
   OBJECT_FILE_DIR = simulation\environment\CMakeFiles\flare_test.dir
 
@@ -1130,9 +1190,9 @@ build simulation/environment/CMakeFiles/flare_test.dir/flare_test.cpp.obj: CXX_C
 #############################################
 # Link the executable simulation\environment\flare_test.exe
 
-build simulation/environment/flare_test.exe: CXX_EXECUTABLE_LINKER__flare_test_Debug simulation/environment/CMakeFiles/flare_test.dir/flare_test.cpp.obj | render/block_renderer/libblock_renderer.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/cube_renderer/libcube_renderer.a utils/util_functions/libutils.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a simulation/blocks/libblocks.a numerics/quaternion/libquaternion.a numerics/linear_alg/liblinear_alg.a render/cube_renderer/libcube_renderer.a utils/util_functions/libutils.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a || lib/glad/libglad.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/block_renderer/libblock_renderer.a render/cube_renderer/libcube_renderer.a simulation/blocks/libblocks.a utils/util_functions/libutils.a
+build simulation/environment/flare_test.exe: CXX_EXECUTABLE_LINKER__flare_test_Debug simulation/environment/CMakeFiles/flare_test.dir/flare_test.cpp.obj | render/block_renderer/libblock_renderer.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/cube_renderer/libcube_renderer.a utils/util_functions/libutils.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a simulation/blocks/libblocks.a simulation/world_handler/libworld_handler.a render/block_renderer/libblock_renderer.a simulation/blocks/libblocks.a numerics/quaternion/libquaternion.a numerics/linear_alg/liblinear_alg.a render/cube_renderer/libcube_renderer.a utils/util_functions/libutils.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a || lib/glad/libglad.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/block_renderer/libblock_renderer.a render/cube_renderer/libcube_renderer.a simulation/blocks/libblocks.a simulation/world_handler/libworld_handler.a utils/util_functions/libutils.a
   FLAGS = -g
-  LINK_LIBRARIES = render/block_renderer/libblock_renderer.a  numerics/linear_alg/liblinear_alg.a  numerics/quaternion/libquaternion.a  render/cube_renderer/libcube_renderer.a  utils/util_functions/libutils.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  simulation/blocks/libblocks.a  numerics/quaternion/libquaternion.a  numerics/linear_alg/liblinear_alg.a  render/cube_renderer/libcube_renderer.a  utils/util_functions/libutils.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  LINK_LIBRARIES = render/block_renderer/libblock_renderer.a  numerics/linear_alg/liblinear_alg.a  numerics/quaternion/libquaternion.a  render/cube_renderer/libcube_renderer.a  utils/util_functions/libutils.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  simulation/blocks/libblocks.a  simulation/world_handler/libworld_handler.a  render/block_renderer/libblock_renderer.a  simulation/blocks/libblocks.a  numerics/quaternion/libquaternion.a  numerics/linear_alg/liblinear_alg.a  render/cube_renderer/libcube_renderer.a  utils/util_functions/libutils.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = simulation\environment\CMakeFiles\flare_test.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -1192,6 +1252,8 @@ build libquaternion.a: phony numerics/quaternion/libquaternion.a
 
 build libutils.a: phony utils/util_functions/libutils.a
 
+build libworld_handler.a: phony simulation/world_handler/libworld_handler.a
+
 build linear_alg: phony numerics/linear_alg/liblinear_alg.a
 
 build logic_gates: phony simulation/environment/logic_gates.exe
@@ -1221,6 +1283,8 @@ build simulation: phony simulation/environment/simulation.exe
 build simulation.exe: phony simulation/environment/simulation.exe
 
 build utils: phony utils/util_functions/libutils.a
+
+build world_handler: phony simulation/world_handler/libworld_handler.a
 
 # =============================================================================
 # Folder targets.
@@ -1342,7 +1406,7 @@ build render/utils/all: phony
 #############################################
 # Folder: C:/Users/aamir/Documents/mworld/cmake-build-debug/simulation
 
-build simulation/all: phony simulation/blocks/all simulation/environment/all
+build simulation/all: phony simulation/blocks/all simulation/world_handler/all simulation/environment/all
 
 # =============================================================================
 
@@ -1357,6 +1421,13 @@ build simulation/blocks/all: phony simulation/blocks/libblocks.a
 # Folder: C:/Users/aamir/Documents/mworld/cmake-build-debug/simulation/environment
 
 build simulation/environment/all: phony simulation/environment/simulation.exe simulation/environment/logic_gates.exe simulation/environment/flare_test.exe
+
+# =============================================================================
+
+#############################################
+# Folder: C:/Users/aamir/Documents/mworld/cmake-build-debug/simulation/world_handler
+
+build simulation/world_handler/all: phony simulation/world_handler/libworld_handler.a
 
 # =============================================================================
 
@@ -1386,14 +1457,14 @@ build utils/util_functions/all: phony utils/util_functions/libutils.a
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | ../CMakeLists.txt ../lib/glad/CMakeLists.txt ../numerics/CMakeLists.txt ../numerics/linear_alg/CMakeLists.txt ../numerics/linear_alg/test/CMakeLists.txt ../numerics/quaternion/CMakeLists.txt ../prototype/CMakeLists.txt ../prototype/prototype_one/CMakeLists.txt ../prototype/prototype_three/CMakeLists.txt ../prototype/prototype_two/CMakeLists.txt ../render/CMakeLists.txt ../render/block_renderer/CMakeLists.txt ../render/camera/CMakeLists.txt ../render/cube_renderer/CMakeLists.txt ../render/shader/CMakeLists.txt ../render/utils/CMakeLists.txt ../simulation/CMakeLists.txt ../simulation/blocks/CMakeLists.txt ../simulation/environment/CMakeLists.txt ../utils/CMakeLists.txt ../utils/settings/CMakeLists.txt ../utils/util_functions/CMakeLists.txt C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Internal/CMakeCheckCompilerFlag.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/WindowsPaths.cmake CMakeCache.txt CMakeFiles/3.17.5/CMakeCCompiler.cmake CMakeFiles/3.17.5/CMakeCXXCompiler.cmake CMakeFiles/3.17.5/CMakeRCCompiler.cmake CMakeFiles/3.17.5/CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | ../CMakeLists.txt ../lib/glad/CMakeLists.txt ../numerics/CMakeLists.txt ../numerics/linear_alg/CMakeLists.txt ../numerics/linear_alg/test/CMakeLists.txt ../numerics/quaternion/CMakeLists.txt ../prototype/CMakeLists.txt ../prototype/prototype_one/CMakeLists.txt ../prototype/prototype_three/CMakeLists.txt ../prototype/prototype_two/CMakeLists.txt ../render/CMakeLists.txt ../render/block_renderer/CMakeLists.txt ../render/camera/CMakeLists.txt ../render/cube_renderer/CMakeLists.txt ../render/shader/CMakeLists.txt ../render/utils/CMakeLists.txt ../simulation/CMakeLists.txt ../simulation/blocks/CMakeLists.txt ../simulation/environment/CMakeLists.txt ../simulation/world_handler/CMakeLists.txt ../utils/CMakeLists.txt ../utils/settings/CMakeLists.txt ../utils/util_functions/CMakeLists.txt C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Internal/CMakeCheckCompilerFlag.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/WindowsPaths.cmake CMakeCache.txt CMakeFiles/3.17.5/CMakeCCompiler.cmake CMakeFiles/3.17.5/CMakeCXXCompiler.cmake CMakeFiles/3.17.5/CMakeRCCompiler.cmake CMakeFiles/3.17.5/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build ../CMakeLists.txt ../lib/glad/CMakeLists.txt ../numerics/CMakeLists.txt ../numerics/linear_alg/CMakeLists.txt ../numerics/linear_alg/test/CMakeLists.txt ../numerics/quaternion/CMakeLists.txt ../prototype/CMakeLists.txt ../prototype/prototype_one/CMakeLists.txt ../prototype/prototype_three/CMakeLists.txt ../prototype/prototype_two/CMakeLists.txt ../render/CMakeLists.txt ../render/block_renderer/CMakeLists.txt ../render/camera/CMakeLists.txt ../render/cube_renderer/CMakeLists.txt ../render/shader/CMakeLists.txt ../render/utils/CMakeLists.txt ../simulation/CMakeLists.txt ../simulation/blocks/CMakeLists.txt ../simulation/environment/CMakeLists.txt ../utils/CMakeLists.txt ../utils/settings/CMakeLists.txt ../utils/util_functions/CMakeLists.txt C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Internal/CMakeCheckCompilerFlag.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/WindowsPaths.cmake CMakeCache.txt CMakeFiles/3.17.5/CMakeCCompiler.cmake CMakeFiles/3.17.5/CMakeCXXCompiler.cmake CMakeFiles/3.17.5/CMakeRCCompiler.cmake CMakeFiles/3.17.5/CMakeSystem.cmake: phony
+build ../CMakeLists.txt ../lib/glad/CMakeLists.txt ../numerics/CMakeLists.txt ../numerics/linear_alg/CMakeLists.txt ../numerics/linear_alg/test/CMakeLists.txt ../numerics/quaternion/CMakeLists.txt ../prototype/CMakeLists.txt ../prototype/prototype_one/CMakeLists.txt ../prototype/prototype_three/CMakeLists.txt ../prototype/prototype_two/CMakeLists.txt ../render/CMakeLists.txt ../render/block_renderer/CMakeLists.txt ../render/camera/CMakeLists.txt ../render/cube_renderer/CMakeLists.txt ../render/shader/CMakeLists.txt ../render/utils/CMakeLists.txt ../simulation/CMakeLists.txt ../simulation/blocks/CMakeLists.txt ../simulation/environment/CMakeLists.txt ../simulation/world_handler/CMakeLists.txt ../utils/CMakeLists.txt ../utils/settings/CMakeLists.txt ../utils/util_functions/CMakeLists.txt C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Internal/CMakeCheckCompilerFlag.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/WindowsPaths.cmake CMakeCache.txt CMakeFiles/3.17.5/CMakeCCompiler.cmake CMakeFiles/3.17.5/CMakeCXXCompiler.cmake CMakeFiles/3.17.5/CMakeRCCompiler.cmake CMakeFiles/3.17.5/CMakeSystem.cmake: phony
 
 
 #############################################

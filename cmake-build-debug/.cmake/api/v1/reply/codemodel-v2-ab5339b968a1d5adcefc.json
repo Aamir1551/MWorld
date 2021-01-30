@@ -275,7 +275,8 @@
 					"childIndexes" : 
 					[
 						20,
-						21
+						21,
+						22
 					],
 					"minimumCMakeVersion" : 
 					{
@@ -297,6 +298,20 @@
 					"targetIndexes" : 
 					[
 						1
+					]
+				},
+				{
+					"build" : "simulation/world_handler",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 19,
+					"projectIndex" : 21,
+					"source" : "simulation/world_handler",
+					"targetIndexes" : 
+					[
+						14
 					]
 				},
 				{
@@ -550,12 +565,13 @@
 				{
 					"childIndexes" : 
 					[
-						20
+						20,
+						21
 					],
 					"directoryIndexes" : 
 					[
 						19,
-						21
+						22
 					],
 					"name" : "simulation",
 					"parentIndex" : 0,
@@ -577,6 +593,18 @@
 					[
 						1
 					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						21
+					],
+					"name" : "world_handler",
+					"parentIndex" : 19,
+					"targetIndexes" : 
+					[
+						14
+					]
 				}
 			],
 			"targets" : 
@@ -584,14 +612,14 @@
 				{
 					"directoryIndex" : 14,
 					"id" : "block_renderer::@20380dfbeeaf1beda5b3",
-					"jsonFile" : "target-block_renderer-Debug-e0261f3145da7f618ea0.json",
+					"jsonFile" : "target-block_renderer-Debug-4d28bdf1f19baaa165d9.json",
 					"name" : "block_renderer",
 					"projectIndex" : 14
 				},
 				{
 					"directoryIndex" : 20,
 					"id" : "blocks::@6db65c1307d2a2a784c8",
-					"jsonFile" : "target-blocks-Debug-a2c71ff23d11dfa230d4.json",
+					"jsonFile" : "target-blocks-Debug-548238c471e0837db00d.json",
 					"name" : "blocks",
 					"projectIndex" : 20
 				},
@@ -603,9 +631,9 @@
 					"projectIndex" : 11
 				},
 				{
-					"directoryIndex" : 21,
+					"directoryIndex" : 22,
 					"id" : "flare_test::@847a59781e22ff560ae6",
-					"jsonFile" : "target-flare_test-Debug-7b6c1277c5c901df2722.json",
+					"jsonFile" : "target-flare_test-Debug-7eda12e7cbb87c079098.json",
 					"name" : "flare_test",
 					"projectIndex" : 19
 				},
@@ -624,9 +652,9 @@
 					"projectIndex" : 6
 				},
 				{
-					"directoryIndex" : 21,
+					"directoryIndex" : 22,
 					"id" : "logic_gates::@847a59781e22ff560ae6",
-					"jsonFile" : "target-logic_gates-Debug-4b38f33ffce6c6c1a038.json",
+					"jsonFile" : "target-logic_gates-Debug-f737fa371150668bca07.json",
 					"name" : "logic_gates",
 					"projectIndex" : 19
 				},
@@ -640,21 +668,21 @@
 				{
 					"directoryIndex" : 16,
 					"id" : "prototype_one::@c77c4220c2085dac9ec5",
-					"jsonFile" : "target-prototype_one-Debug-9ef4d8862f014297e30e.json",
+					"jsonFile" : "target-prototype_one-Debug-f474485b05b4fbd6e8a8.json",
 					"name" : "prototype_one",
 					"projectIndex" : 16
 				},
 				{
 					"directoryIndex" : 18,
 					"id" : "prototype_three::@2a17fa0eebb0697fdbb6",
-					"jsonFile" : "target-prototype_three-Debug-8ddca7145d0e0e1c4286.json",
+					"jsonFile" : "target-prototype_three-Debug-10e5e62dac9b6a141603.json",
 					"name" : "prototype_three",
 					"projectIndex" : 18
 				},
 				{
 					"directoryIndex" : 17,
 					"id" : "prototype_two::@e7e923eba9c0b8a1d5aa",
-					"jsonFile" : "target-prototype_two-Debug-f5c8572da4d076408df6.json",
+					"jsonFile" : "target-prototype_two-Debug-190a255f5569422ac45b.json",
 					"name" : "prototype_two",
 					"projectIndex" : 17
 				},
@@ -666,9 +694,9 @@
 					"projectIndex" : 8
 				},
 				{
-					"directoryIndex" : 21,
+					"directoryIndex" : 22,
 					"id" : "simulation::@847a59781e22ff560ae6",
-					"jsonFile" : "target-simulation-Debug-bd245641010b85e08557.json",
+					"jsonFile" : "target-simulation-Debug-898bb90c78c81391bc46.json",
 					"name" : "simulation",
 					"projectIndex" : 19
 				},
@@ -678,6 +706,13 @@
 					"jsonFile" : "target-utils-Debug-1be6c9ca5e58785b2d06.json",
 					"name" : "utils",
 					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 21,
+					"id" : "world_handler::@db5c5082507517693d46",
+					"jsonFile" : "target-world_handler-Debug-093dc2ce9de678f2350d.json",
+					"name" : "world_handler",
+					"projectIndex" : 21
 				}
 			]
 		}

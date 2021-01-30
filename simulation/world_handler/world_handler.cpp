@@ -60,6 +60,8 @@ public:
 
     vector<Block *> blocks;
 
+    enum BlockTypes {IBlockType, MBlockType, EBlockType, ZBlockType};
+
     WorldHandler(int num_i_blocks_plus, int num_i_blocks_neg, int num_z_blocks, int num_m_blocks, int num_e_blocks_1, int num_e_blocks_1_2) {
         srand((unsigned)time(0)); //NULL???
         AddIBlocks(num_i_blocks_plus, true);
@@ -73,6 +75,19 @@ public:
     void static GetProperties(int num_blocks, std::vector<Matrix> *&positions, std::vector<Matrix> * &linear_momentums) {
         positions = GeneratePositions(num_blocks);
         linear_momentums = GenerateLinearMomentums(num_blocks);
+    }
+
+
+    void AddBlock(BlockTypes block_types, int num_blocks, bool state) {
+            std::vector<Matrix> *positions, *linear_momentums;
+            GetProperties(num_blocks, positions, linear_momentums);
+            for(int i=0; i<num_blocks; i++) {
+                cout << "Add I Block ID: " << i << endl;
+                auto new_block = new IBlock(positions->at(i), Quaternion(1.0, 0.0, 0.0, 0.0)  ,state);
+                new_block->SetLinearMomentum(linear_momentums->at(i));
+                iblocks.push_back(new_block);
+                blocks.push_back(new_block);
+        }
     }
 
     void AddIBlocks(int num_i_blocks, bool state) {
