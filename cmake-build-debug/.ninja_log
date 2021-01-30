@@ -7,12 +7,12 @@
 991	1072	6337288981247491	numerics/linear_alg/liblinear_alg.a	6d1cd5b74ef1e4da
 455	672	6330535121281983	lib/glad/libglad.a	4555925e59ee6e3c
 553	672	6330535121281983	utils/util_functions/libutils.a	7c6b80c43ced5cc6
-5	739	6337315219104122	render/cube_renderer/CMakeFiles/cube_renderer.dir/cube_renderer.cpp.obj	8231fd7b0cf8dd19
+5	694	6337373463463167	render/cube_renderer/CMakeFiles/cube_renderer.dir/cube_renderer.cpp.obj	8231fd7b0cf8dd19
 914	1184	6336550395808487	prototype/prototype_two/prototype_two.exe	409562e9910c5b0
-740	814	6337315219862103	render/cube_renderer/libcube_renderer.a	4a121d277667beb4
+695	763	6337373464156581	render/cube_renderer/libcube_renderer.a	4a121d277667beb4
 1029	1302	6336611507209133	prototype/prototype_three/prototype_three.exe	ddadbda82cf95dfb
 5	1029	6336611130487258	prototype/prototype_one/CMakeFiles/prototype_one.dir/main.cpp.obj	e0fc4972e82e16f6
-7	1518	6337315226873714	simulation/environment/CMakeFiles/simulation.dir/simulation.cpp.obj	12b260831a669cf3
+14	1605	6337371189629443	simulation/environment/CMakeFiles/simulation.dir/simulation.cpp.obj	37b5eb5378f44517
 9	869	6337288978823603	numerics/quaternion/CMakeFiles/quaternion.dir/src/quaternion.cpp.obj	ed05215283e7b81f
 13	500	6337310582639253	simulation/blocks/CMakeFiles/blocks.dir/i_block.cpp.obj	cc77b95de594f220
 4	421	6336611498620924	prototype/prototype_three/CMakeFiles/prototype_three.dir/cube.cpp.obj	f87c2b6524b8301b
@@ -21,7 +21,7 @@
 7	428	6336549190356975	prototype/prototype_two/CMakeFiles/prototype_two.dir/cube.cpp.obj	1dc6c1fecb1c272a
 5	914	6336550393336592	prototype/prototype_two/CMakeFiles/prototype_two.dir/main.cpp.obj	5d4db0440f130d4d
 1518	1859	6337315230087465	simulation/environment/simulation.exe	da933e91212b965a
-2	424	6337334605454764	build.ninja	86ad8b687f76afe4
+2	424	6337379014213370	build.ninja	86ad8b687f76afe4
 5	916	6337309611234368	simulation/blocks/CMakeFiles/blocks.dir/cube.cpp.obj	22f4ea64377d074e
 20	786	6337309609897958	simulation/blocks/CMakeFiles/blocks.dir/z_block.cpp.obj	4482789c6aa25db7
 17	801	6337309610087443	simulation/blocks/CMakeFiles/blocks.dir/m_block.cpp.obj	8eba9adff21bf522
@@ -36,8 +36,3 @@
 15	1537	6337310593003516	simulation/environment/CMakeFiles/flare_test.dir/flare_test.cpp.obj	32843daf2d90ed33
 12	157	6337371175138187	render/block_renderer/CMakeFiles/block_renderer.dir/block_renderer.cpp.obj	58b059e75cd2187a
 158	248	6337371176095625	render/block_renderer/libblock_renderer.a	fcfa44d629a9305b
-14	1605	6337371189629443	simulation/environment/CMakeFiles/simulation.dir/simulation.cpp.obj	37b5eb5378f44517
-6	732	6337372344563380	render/cube_renderer/CMakeFiles/cube_renderer.dir/cube_renderer.cpp.obj	8231fd7b0cf8dd19
-732	803	6337372345281472	render/cube_renderer/libcube_renderer.a	4a121d277667beb4
-5	694	6337373463463167	render/cube_renderer/CMakeFiles/cube_renderer.dir/cube_renderer.cpp.obj	8231fd7b0cf8dd19
-695	763	6337373464156581	render/cube_renderer/libcube_renderer.a	4a121d277667beb4
