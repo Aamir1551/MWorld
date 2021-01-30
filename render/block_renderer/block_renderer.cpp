@@ -11,7 +11,7 @@
 #include <settings.hpp>
 #include <camera.hpp>
 #include <block.hpp>
-#include <world_handler.cpp>
+#include <world_handler.hpp>
 
 using namespace std;
 
@@ -50,16 +50,16 @@ namespace render_utils {
             }
         }
 
-        void  BlockRenderer::DrawAllBlocks(WorldHandler &world) {
+        void  BlockRenderer::DrawAllBlocks(vector<IBlock *> *iblocks, vector<ZBlock *> *zblocks, vector<EBlock *> *eblocks, vector<MBlock *> *mblocks) {
             // I blocks are coloured white = (1, 1, 1)
             // Z blocks are coloured pink = (1, 0, 1)
             // E blocks are coloured blue = (0, 0, 1)
             // M blocks are coloured orange = (1, 0.5, 0)
 
-            DrawBlocks((vector<Block*> *) &(world.iblocks), glm::vec3(1, 1, 1), BlockRenderer::id, BlockRenderer::camera, BlockRenderer::view);
-            DrawBlocks((vector<Block*> *) &(world.zblocks), glm::vec3(1, 0, 1), BlockRenderer::id, BlockRenderer::camera, BlockRenderer::view);
-            DrawBlocks((vector<Block*> *) &(world.eblocks), glm::vec3(0, 0, 1), BlockRenderer::id, BlockRenderer::camera, BlockRenderer::view);
-            DrawBlocks((vector<Block*> *) &(world.mblocks), glm::vec3(1, 0.5, 0), BlockRenderer::id, BlockRenderer::camera, BlockRenderer::view);
+            DrawBlocks((vector<Block*> *) (iblocks), glm::vec3(1, 1, 1), BlockRenderer::id, BlockRenderer::camera, BlockRenderer::view);
+            DrawBlocks((vector<Block*> *) (zblocks), glm::vec3(1, 0, 1), BlockRenderer::id, BlockRenderer::camera, BlockRenderer::view);
+            DrawBlocks((vector<Block*> *) (eblocks), glm::vec3(0, 0, 1), BlockRenderer::id, BlockRenderer::camera, BlockRenderer::view);
+            DrawBlocks((vector<Block*> *) (mblocks), glm::vec3(1, 0.5, 0), BlockRenderer::id, BlockRenderer::camera, BlockRenderer::view);
         }
 
 
