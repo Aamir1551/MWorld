@@ -14,7 +14,7 @@ namespace blocks
 
         EBlock(Matrix position, Quaternion initial_orientation, bool state) : Block(position, initial_orientation, 0.0f) {
             if(state == true) {
-                this->k = 1;
+                this->k = 2;
             } else {
                 this->k = 0.5;
             }

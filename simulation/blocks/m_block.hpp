@@ -26,7 +26,7 @@ namespace blocks {
         };
 
         void AddFlareToBlock(real flare_amount) override {
-            this->flare_inc = this->flare_inc + flare_amount * 0.01;
+            this->flare_inc = this->flare_inc + flare_amount;
         };
 
     };

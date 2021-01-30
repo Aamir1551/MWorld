@@ -37,7 +37,7 @@ namespace blocks {
     };
 
     void EBlock::AddFlareToBlock(real flare_amount) {
-        this->flare_inc += (flare_amount * 0.01) * k;
+        this->flare_inc += (flare_amount) * k;
     };
 
 };

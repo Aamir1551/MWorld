@@ -33,16 +33,17 @@ int main()
 
     real cube_length = 4.0f;
     Camera camera = Camera(world_properties->window);
+    camera.camera_pos =  glm::vec3(-20, 0, 20);
     BlockRenderer::InitialiseBlockRenderer(&camera, cube_length, vao, vbo, ebo, world_properties);
 
-    WorldHandler world = WorldHandler(1, 1, 0, 0, 0, 0);
+    WorldHandler world = WorldHandler(1, 0, 0, 0, 1, 0);
     world.iblocks.at(0)->SetLinearMomentumToZero();
     real location_0[] = {-20, 0, -5};
     world.iblocks.at(0)->position = Matrix(3, 1, location_0);
 
-    world.iblocks.at(1)->SetLinearMomentumToZero();
+    world.eblocks.at(0)->SetLinearMomentumToZero();
     real location_1[] = {-16, 0, -5};
-    world.iblocks.at(1)->position = Matrix(3, 1, location_1);
+    world.eblocks.at(0)->position = Matrix(3, 1, location_1);
 
     glBindVertexArray(vao);
     glEnable(GL_DEPTH_TEST);
@@ -81,7 +82,8 @@ int main()
             frame_count = 0;
             prev_time = currentFrame;
 
-            cout << "Amount of Flare in "
+            cout << "Flare value in I block: " << world.iblocks.at(0)->flare_value << endl;
+            cout << "Flare value in X block: " << world.eblocks.at(0)->flare_value << endl;
         }
     }
 
