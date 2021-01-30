@@ -32,7 +32,7 @@ namespace render_utils {
         static glm::mat4 view;
         static glm::mat4 projection;
 
-        void DrawBlocks(vector<Block *> *block_list,glm::vec3 colour, glm::mat4& id, Camera &camera, glm::mat4 &view) {
+        void static DrawBlocks(vector<Block *> *block_list,glm::vec3 colour, glm::mat4& id, Camera &camera, glm::mat4 &view) {
             for(auto & block_ptr : *block_list) {
                 glm::mat4 rotation_mat;
                 memcpy(glm::value_ptr(rotation_mat), block_ptr->GetOrientationMatrix().GetValues(), 16 * sizeof(real));
@@ -51,20 +51,20 @@ namespace render_utils {
             }
         }
 
-        void DrawAllBlocks(WorldHandler &world, glm::mat4 &_id, Camera &_camera, glm::mat4 &_view) {
+        void static DrawAllBlocks(WorldHandler &world) {
             // I blocks are coloured white = (1, 1, 1)
             // Z blocks are coloured pink = (1, 0, 1)
             // E blocks are coloured blue = (0, 0, 1)
             // M blocks are coloured orange = (1, 0.5, 0)
 
-            DrawBlocks((vector<Block*> *) &(world.iblocks), glm::vec3(1, 1, 1), _id, _camera, _view);
-            DrawBlocks((vector<Block*> *) &(world.zblocks), glm::vec3(1, 0, 1), _id, _camera, _view);
-            DrawBlocks((vector<Block*> *) &(world.eblocks), glm::vec3(0, 0, 1), _id, _camera, _view);
-            DrawBlocks((vector<Block*> *) &(world.mblocks), glm::vec3(1, 0.5, 0), _id, _camera, _view);
+            DrawBlocks((vector<Block*> *) &(world.iblocks), glm::vec3(1, 1, 1), BlockRenderer::id, BlockRenderer::camera, BlockRenderer::view);
+            DrawBlocks((vector<Block*> *) &(world.zblocks), glm::vec3(1, 0, 1), BlockRenderer::id, BlockRenderer::camera, BlockRenderer::view);
+            DrawBlocks((vector<Block*> *) &(world.eblocks), glm::vec3(0, 0, 1), BlockRenderer::id, BlockRenderer::camera, BlockRenderer::view);
+            DrawBlocks((vector<Block*> *) &(world.mblocks), glm::vec3(1, 0.5, 0), BlockRenderer::id, BlockRenderer::camera, BlockRenderer::view);
         }
 
 
-        void static InitialiseBlockRenderer(Camera _camera, real _cube_length, unsigned int vao, unsigned int vbo , unsigned int ebo, WorldProperties *world_properties) {
+        void static InitialiseBlockRenderer(Camera &_camera, real _cube_length, unsigned int vao, unsigned int vbo , unsigned int ebo, WorldProperties *world_properties) {
             BlockRenderer::view = _camera.CalculateView();
             BlockRenderer::projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 400.0f);
             BlockRenderer::cube_length = _cube_length;

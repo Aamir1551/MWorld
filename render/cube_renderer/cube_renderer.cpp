@@ -9,10 +9,9 @@
 using namespace settings;
 namespace render_utils
 {
-    int CubeRenderer::vao;
-    int CubeRenderer::vbo;
-    int CubeRenderer::ebo;
-    __unused real CubeRenderer::cube_length;
+    unsigned int CubeRenderer::vao;
+    unsigned int CubeRenderer::vbo;
+    unsigned int CubeRenderer::ebo;
     unsigned int CubeRenderer::shader_id;
 
     real CubeRenderer::vertices[24];

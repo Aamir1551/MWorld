@@ -21,11 +21,6 @@ using namespace numerics;
 using namespace settings;
 using namespace blocks;
 
-// TODO
-// 1) Add font colour to terminal screen whenever prototype_one or two or three are running.
-// Add a different font colour for each of them in the terminal.
-// So that it is more clearer to know which prototype is running.
-
 int main()
 {
     cout << "Running MWorld Simulation" << endl;
@@ -38,6 +33,7 @@ int main()
     glGenBuffers(1, &ebo);
 
     real cube_length = 4.0f;
+    Camera camera = Camera(world_properties->window);
     BlockRenderer::InitialiseBlockRenderer(camera, cube_length, vao, vbo, ebo, world_properties);
 
     int num_blocks_same = 30;
@@ -45,9 +41,6 @@ int main()
     //WorldHandler world = WorldHandler(0, 0, 0, 0, 0, 0);
     //WorldHandler world = WorldHandler(0, 0, 2, 0, 0, 0);
     //WorldHandler world = WorldHandler(0, 0, 160, 0, 0, 0);
-
-    CubeRenderer::InitializeCubes(cube_length, vao, vbo, ebo, &view, &projection, world_properties->shader_id);
-    CubeRenderer::AddVerticesToBuffers();
 
     glBindVertexArray(vao);
     glEnable(GL_DEPTH_TEST);
@@ -59,20 +52,6 @@ int main()
     real deltaTime = 0.0f; // Time between current frame and last frame
     real lastFrame = 0.0f; // Time of last frame
     real currentFrame;
-
-    /*real initial_momentum1[] = {0.002, 0, 0};
-    world.iblocks.at(0).momentum = Matrix(3, 1, initial_momentum1);
-
-    real initial_momentum2[] = {-0.002, 0.0, 0};
-    world.iblocks.at(1).momentum = Matrix(3, 1, initial_momentum2);*/
-
-    /*Quaternion q = Quaternion(0.0f, 0.0f, 1.7f, -1.7f);
-    Quaternion spin = q * world.iblocks.at(0).orientation;
-    world.iblocks.at(0).orientation += spin;
-    world.iblocks.at(0).orientation.Normalise();*/
-
-    //world.iblocks.at(0).angular_momentum = Matrix(3, 1);
-    //world.iblocks.at(1).angular_momentum = Matrix(3, 1);
 
     real frame_count = 0;
     real prev_time = glfwGetTime();
@@ -90,8 +69,7 @@ int main()
         world.Update();
         world.CollisionHandler();
         world.AddForces();
-
-        DrawAllBlocks(world, id, camera, view);
+        BlockRenderer::DrawAllBlocks(world);
 
         glfwSwapBuffers(world_properties->window);
         glfwPollEvents();
