@@ -108,6 +108,15 @@ void WorldHandler::CollisionHandler(real deltatime) {
             Cube::CollisionDetect(blocks.at(i), blocks.at(j), contact_list);
         }
     }
+
+    for(int i=0; i<blocks.size(); i++) {
+        vector<Octree *> neighbour_cells = this->tree->GetGridNeighbours(blocks.at(i)->position(0, 0),
+                                                                         blocks.at(i)->position(1, 0),
+                                                                         blocks.at(i)->position(2, 0));
+
+    }
+
+
     for(int i=0; i<contact_list.size(); i++) {
         Cube::CollisionResolution(contact_list.at(i));
     }

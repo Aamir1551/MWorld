@@ -10,22 +10,24 @@ using namespace settings;
 
 
 void Octree::AddBlock(Block *b, unsigned int id){
-    this->world_blocks[id] = b;
     if(!this->is_min) {
         auto t0 = b->position(0, 0) > avg_x;
-        auto t1 = (b->position(1, 0) > avg_y) * 2;
-        auto t2 = (b->position(2, 0) > avg_z) * 4;
+        auto t1 = (b->position(1, 0) > avg_y);
+        auto t2 = (b->position(2, 0) > avg_z);
         this->children[t0 + t1 + t2]->AddBlock(b, id);
+    } else {
+        this->block = b;
     }
 }
 
 void Octree::RemoveBlock(Block *b, unsigned int id) {
-    this->world_blocks.erase(id);
     if(!this->is_min) {
         auto t0 = b->position(0, 0) > avg_x;
         auto t1 = b->position(1, 0) > avg_y;
         auto t2 = b->position(2, 0) > avg_z;
         this->children[t0 + t1 * 2 + t2 * 4]->RemoveBlock(b, id);
+    } else {
+        this->block = nullptr;
     }
 }
 
@@ -85,8 +87,9 @@ void Octree::AddGridAtPosToVec(real x, real y, real z, vector<Octree *> &octree_
         auto t1 = y > avg_y;
         auto t2 = z > avg_z;
         this->children[t0 + t1 * 2 + t2 * 4]->AddGridAtPosToVec(x, y, z, octree_list);
+    } else {
+        octree_list.push_back(this);
     }
-    octree_list.push_back(this);
 }
 
 Octree* Octree::GetGridAtPos(real x, real y, real z) {
@@ -95,6 +98,7 @@ Octree* Octree::GetGridAtPos(real x, real y, real z) {
         auto t1 = y > avg_y;
         auto t2 = z > avg_z;
         return this->children[t0 + t1 * 2 + t2 * 4]->GetGridAtPos(x, y, z);
+    } else {
+        return this;
     }
-    return this;
 }
