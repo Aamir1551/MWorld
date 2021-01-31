@@ -15,7 +15,7 @@
 
 using namespace blocks;
 
-std::vector<Matrix> *WorldHandler::GeneratePositions(int num_cubes, real max_coord, real min_coord)
+std::vector<Matrix> *WorldHandler::GeneratePositions(int num_cubes, real min_coord, real max_coord)
 {
     auto *positions = new std::vector<Matrix>;
     int world_size = (int) (max_coord - min_coord);
