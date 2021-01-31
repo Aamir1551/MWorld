@@ -67,9 +67,9 @@ int main()
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         world.Update();
-        auto diff = 1;
-        world.CollisionHandler(diff * 60);
-        world.AddForces(diff * 60);
+        world.CollisionHandler(deltaTime);
+        world.AddForces(deltaTime);
+
         BlockRenderer::DrawAllBlocks(&world.iblocks, &world.zblocks, &world.eblocks, &world.mblocks);
 
         glfwSwapBuffers(world_properties->window);

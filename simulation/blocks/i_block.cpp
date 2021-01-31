@@ -11,7 +11,7 @@ namespace blocks {
         if(block->state == this->state) {
             // Repel
             auto &force = to_cube;
-            AddLinearForce(force, Block::force_dt / squared_dist * -1 * 0.1);
+            AddLinearForce(force, Block::force_dt / squared_dist * -1 * 0.1 * deltatime);
         }
     };
 
@@ -29,7 +29,7 @@ namespace blocks {
             // If k > 1: Repel, Otherwise Attract
             real factor = std::log(block->k);
             auto &force = to_cube;
-            AddLinearForce(force, Block::force_dt / squared_dist * 0.1 * -1 * factor);
+            AddLinearForce(force, Block::force_dt / squared_dist * 0.1 * -1 * factor * deltatime);
         }
     };
 

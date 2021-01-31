@@ -93,10 +93,7 @@ void WorldHandler::Update() {
 void WorldHandler::CollisionHandler(real deltatime) {
     vector<Contact> contact_list;
     for(int i=0; i<blocks.size()-1; i++) {
-        for(int j=0; j<blocks.size(); j++) {
-            if(i == j) {
-                continue;
-            }
+        for(int j=i+1; j<blocks.size(); j++) {
             Cube::CollisionDetect(blocks.at(i), blocks.at(j), contact_list);
         }
     }
@@ -110,7 +107,7 @@ void WorldHandler::CollisionHandler(real deltatime) {
 
 void WorldHandler::AddForces(real deltatime) {
     for(auto &block: this->blocks) {
-        ReactToAllBlocks(block, deltatime);
+        ReactToAllBlocks(block, deltatime * 60);
     }
 }
 

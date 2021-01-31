@@ -11,7 +11,7 @@ namespace blocks {
             // If k > 1: Repel, Otherwise Attract
             real factor = std::log(this->k);
             auto &force = to_cube;
-            AddLinearForce(force, Block::force_dt / squared_dist * 0.1 * -1 * factor);
+            AddLinearForce(force, Block::force_dt / squared_dist * 0.1 * -1 * factor * deltatime);
         }
     };
 
@@ -27,12 +27,12 @@ namespace blocks {
         // E block and E block repel as k increases
         float factor = std::log(block->k * this->k); // is zero is both blocks are k=1
         auto &force = to_cube;
-        AddLinearForce(force, force_dt * factor / squared_dist * -1 * 0.1);
+        AddLinearForce(force, force_dt * factor / squared_dist * -1 * 0.1 * deltatime);
     };
 
 
     real EBlock::ExtractFlareFromBlock(real deltatime) {
-        this->flare_inc -= this->flare_value * 0.08; // using the kissing number of spheres
+        this->flare_inc -= this->flare_value * 0.08 * deltatime; // using the kissing number of spheres
         return this->flare_value * 0.08;
     };
 

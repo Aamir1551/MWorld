@@ -21,7 +21,7 @@ namespace blocks {
         // ZBlocks are attracted to M+ blocks
         if(this->flare_value > MBlock::threshold) {
             auto &force = to_cube;
-            AddLinearForce(force,  Block::force_dt / squared_dist * 1); // as distance increases, force also decreases
+            AddLinearForce(force,  Block::force_dt / squared_dist * 1 * deltatime); // as distance increases, force also decreases
         }
     };
 
@@ -31,7 +31,7 @@ namespace blocks {
 
 
     real MBlock::ExtractFlareFromBlock(real deltatime) {
-        real temp = (real) (this->flare_value > MBlock::threshold) * this->flare_value * 0.08;
+        real temp = (real) (this->flare_value > MBlock::threshold) * this->flare_value * 0.08 * deltatime;
         this->flare_inc -= temp;
         return temp;
     };
