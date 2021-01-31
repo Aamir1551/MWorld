@@ -43,7 +43,6 @@ public:
     real min_coord;
     real max_coord;
 
-    map<Block*, Octree*> block_pos;
     vector<Octree *> occupied_octrees;
 
     enum BlockTypes {IBlockType, MBlockType, EBlockType, ZBlockType};

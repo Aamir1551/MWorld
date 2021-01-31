@@ -88,10 +88,9 @@ void WorldHandler::AddBlock(BlockTypes block_types, int num_blocks, bool state) 
             }
             auto temp = blocks.back();
             temp->SetLinearMomentum(linear_momentums->at(i));
-            this->tree->AddBlock(temp, i);
+            this->tree->AddBlock(temp);
             Octree * tree_occupied = this->tree->GetGridAtPos(temp->position(0, 0), temp->position(1, 0), temp->position(2, 0));
             tree_occupied->block = temp;
-            this->block_pos[temp] = tree_occupied;
             this->occupied_octrees.push_back(tree_occupied);
     }
 }
@@ -112,7 +111,6 @@ void WorldHandler::Update() {
         auto temp = this->blocks.at(i);
         Octree * tree_occupied = this->tree->GetGridAtPos(temp->position(0, 0), temp->position(1, 0), temp->position(2, 0));
         tree_occupied->block = temp;
-        this->block_pos[temp] = tree_occupied;
         this->occupied_octrees.push_back(tree_occupied);
     }
 
@@ -143,7 +141,7 @@ void WorldHandler::CollisionHandler(real deltatime) {
                 if(find1 == collisions.end() && find2 == collisions.end()) {
                     int before_count = contact_list1.size();
                     if(blocks.at(i) == neighbour_cells.at(c)->block) {
-                        //cout << "damn!!!!" << endl; // This line of code should not even be occuring
+                        cout << "damn!!!!" << endl; // This line of code should not even be occuring
                         continue;
                     }
                     Cube::CollisionDetect(blocks.at(i), neighbour_cells.at(c)->block, contact_list1);

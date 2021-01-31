@@ -36,8 +36,8 @@ public:
 
 
     explicit Octree(int grid_sizes, real min_x, real  max_x, real min_y, real max_y, real min_z, real max_z, bool initialise = false);
-    void AddBlock(Block *b, unsigned int id);
-    void RemoveBlock(Block *b, unsigned int id);
+    void AddBlock(Block *b);
+    void RemoveBlock(Block *b);
     std::vector<Octree *> GetGridNeighbours(real x, real y, real z);
     void AddGridAtPosToVec(real x, real y, real z, vector<Octree *> &octree_list);
     Octree* GetGridAtPos(real x, real y, real z);

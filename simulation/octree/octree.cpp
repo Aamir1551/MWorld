@@ -9,23 +9,23 @@ using namespace blocks;
 using namespace settings;
 
 
-void Octree::AddBlock(Block *b, unsigned int id){
+void Octree::AddBlock(Block *b){
     if(!this->is_min) {
         auto t0 = b->position(0, 0) > avg_x;
         auto t1 = (b->position(1, 0) > avg_y);
         auto t2 = (b->position(2, 0) > avg_z);
-        this->children[t0 + t1 + t2]->AddBlock(b, id);
+        this->children[t0 + t1 + t2]->AddBlock(b);
     } else {
         this->block = b;
     }
 }
 
-void Octree::RemoveBlock(Block *b, unsigned int id) {
+void Octree::RemoveBlock(Block *b) {
     if(!this->is_min) {
         auto t0 = b->position(0, 0) > avg_x;
         auto t1 = b->position(1, 0) > avg_y;
         auto t2 = b->position(2, 0) > avg_z;
-        this->children[t0 + t1 * 2 + t2 * 4]->RemoveBlock(b, id);
+        this->children[t0 + t1 * 2 + t2 * 4]->RemoveBlock(b);
     } else {
         this->block = nullptr;
     }
@@ -69,7 +69,7 @@ Octree::Octree(int grid_size, real min_x, real  max_x, real min_y, real max_y, r
 
 std::vector<Octree *> Octree::GetGridNeighbours(real x, real y, real z) {
     vector<Octree *> neighbours;
-    for(int i=1; i<27; i++) {
+    for(int i=0; i<13; i++) {
         int a = (i % 3) - 1;
         int b = (((i - a)/3) % 3) - 1;
         int c = ((i - (i%9))/9) - 1;
@@ -77,6 +77,16 @@ std::vector<Octree *> Octree::GetGridNeighbours(real x, real y, real z) {
             AddGridAtPosToVec(x + this->grid_size * a, y + this->grid_size * b, z + this->grid_size * c, neighbours);
         }
     }
+    for(int i=14; i<27; i++) {
+        int a = (i % 3) - 1;
+        int b = (((i - a)/3) % 3) - 1;
+        int c = ((i - (i%9))/9) - 1;
+        if(0 < x + this->grid_size * a < this->max_x && 0 < y + this->grid_size * b < max_y && 0 < z + this->grid_size * c < max_z) {
+            AddGridAtPosToVec(x + this->grid_size * a, y + this->grid_size * b, z + this->grid_size * c, neighbours);
+        }
+    }
+
+
     return neighbours;
 }
 
