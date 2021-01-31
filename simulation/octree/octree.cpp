@@ -1,5 +1,5 @@
 #include <cmath>
-#include <vector>
+#include <map>
 
 #include <octree.hpp>
 #include <block.hpp>
@@ -15,7 +15,7 @@ void Octree::AddBlock(Block *b, unsigned int id){
         auto t0 = b->position(0, 0) > avg_x;
         auto t1 = (b->position(1, 0) > avg_y) * 2;
         auto t2 = (b->position(2, 0) > avg_z) * 4;
-        this->children[t0 + t1 + t2].AddBlock(b, id);
+        this->children[t0 + t1 + t2]->AddBlock(b, id);
     }
 }
 
@@ -25,14 +25,14 @@ void Octree::RemoveBlock(Block *b, unsigned int id) {
         auto t0 = b->position(0, 0) > avg_x;
         auto t1 = (b->position(1, 0) > avg_y) * 2;
         auto t2 = (b->position(2, 0) > avg_z) * 4;
-        this->children[t0 + t1 + t2].RemoveBlock(b, id);
+        this->children[t0 + t1 + t2]->RemoveBlock(b, id);
     }
 }
 
 Octree::Octree(real grid_size, real min_x, real  max_x, real min_y, real max_y, real min_z, real max_z)
 {
 
-    this->partition_size = std::min(max_x - min_x, max_y - min_y, max_z - min_z);
+    this->partition_size = std::min(max_x - min_x, std::min(max_y - min_y, max_z - min_z));
 
     avg_x = (min_x + max_x) / 2;
     avg_y = (min_y + max_y) / 2;
@@ -41,14 +41,14 @@ Octree::Octree(real grid_size, real min_x, real  max_x, real min_y, real max_y, 
     if(this->partition_size < grid_size) {
         this->is_min = true;
     } else {
-        children[0] = Octree(grid_size, min_x, avg_x, min_y, avg_y, min_z, avg_z);
-        children[1] = Octree(grid_size, avg_x, max_x, min_y, avg_y, min_z, avg_z);
-        children[2] = Octree(grid_size, min_x, avg_x, avg_y, max_y, min_z, avg_z);
-        children[3] = Octree(grid_size, avg_x, max_x, avg_y, max_y, min_z, avg_z);
-        children[4] = Octree(grid_size, min_x, avg_x, min_y, avg_y, avg_z, max_z);
-        children[5] = Octree(grid_size, avg_x, max_x, min_y, avg_y, avg_z, max_z);
-        children[6] = Octree(grid_size, min_x, avg_x, avg_y, max_y, avg_z, max_z);
-        children[7] = Octree(grid_size, avg_x, max_x, avg_y, max_y, avg_z, max_z);
+        children[0] = new Octree(grid_size, min_x, avg_x, min_y, avg_y, min_z, avg_z);
+        children[1] = new Octree(grid_size, avg_x, max_x, min_y, avg_y, min_z, avg_z);
+        children[2] = new Octree(grid_size, min_x, avg_x, avg_y, max_y, min_z, avg_z);
+        children[3] = new Octree(grid_size, avg_x, max_x, avg_y, max_y, min_z, avg_z);
+        children[4] = new Octree(grid_size, min_x, avg_x, min_y, avg_y, avg_z, max_z);
+        children[5] = new Octree(grid_size, avg_x, max_x, min_y, avg_y, avg_z, max_z);
+        children[6] = new Octree(grid_size, min_x, avg_x, avg_y, max_y, avg_z, max_z);
+        children[7] = new Octree(grid_size, avg_x, max_x, avg_y, max_y, avg_z, max_z);
     }
 
 }
