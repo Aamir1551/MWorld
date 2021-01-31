@@ -22,8 +22,8 @@ using namespace blocks;
 class WorldHandler {
 
 private:
-    void static GetProperties(int num_blocks, std::vector<Matrix> *&positions, std::vector<Matrix> * &linear_momentums, real world_size);
-    std::vector<Matrix> static *GeneratePositions(int num_cubes, real world_size);
+    void static GetProperties(int num_blocks, std::vector<Matrix> *&positions, std::vector<Matrix> * &linear_momentums, real min_coord, real max_coord);
+    std::vector<Matrix> static *GeneratePositions(int num_cubes, real min_coord, real max_coord);
     std::vector<Matrix> static *GenerateLinearMomentums(int num_cubes);
     void static PassBlockFlares(vector<Contact> &contacts, real deltatime);
     void static PassFlare(Block *a, Block *b, real deltatime);
@@ -36,10 +36,13 @@ public:
 
     Octree *tree;
     vector<Block *> blocks;
+    real world_size;
+    real min_coord;
+    real max_coord;
 
     enum BlockTypes {IBlockType, MBlockType, EBlockType, ZBlockType};
 
-    WorldHandler(int num_i_blocks_plus, int num_i_blocks_neg, int num_z_blocks, int num_m_blocks, int num_e_blocks_1, int num_e_blocks_1_2, real min_world_x, real max_world_x, real min_world_y, real max_world_y, real min_world_z, real max_world_z);
+    WorldHandler(int num_i_blocks_plus, int num_i_blocks_neg, int num_z_blocks, int num_m_blocks, int num_e_blocks_1, int num_e_blocks_1_2, real min_coord = - 50, real max_coord = 50);
 
     void AddBlock(BlockTypes block_types, int num_blocks, bool state);
 

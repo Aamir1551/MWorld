@@ -15,11 +15,11 @@
 
 using namespace blocks;
 
-std::vector<Matrix> *WorldHandler::GeneratePositions(int num_cubes, real world_size)
+std::vector<Matrix> *WorldHandler::GeneratePositions(int num_cubes, real max_coord, real min_coord)
 {
     auto *positions = new std::vector<Matrix>;
-    real const scale = world_size / ((real)RAND_MAX / 2.0);
-    auto get_coord = [scale, world_size]() -> real { return scale * (rand() - RAND_MAX / 2.0); };
+    int world_size = (int) (max_coord - min_coord);
+    auto get_coord = [world_size, min_coord]() -> real { return (rand()%( world_size + 1) + min_coord); };
     for (int i = 0; i < num_cubes; i++)
     {
         real values[] = {get_coord(), get_coord(), get_coord()};
@@ -41,10 +41,13 @@ std::vector<Matrix> *WorldHandler::GenerateLinearMomentums(int num_cubes)
 }
 
 WorldHandler::WorldHandler(int num_i_blocks_plus, int num_i_blocks_neg, int num_z_blocks, int num_m_blocks, int num_e_blocks_1, int num_e_blocks_1_2,
-                           real min_world_x, real max_world_x, real min_world_y, real max_world_y, real min_world_z, real max_world_z) {
+                           real min_coord, real max_coord) {
     srand((unsigned)time(0)); //NULL???
 
-    this->tree = new Octree(4, min_world_x, max_world_x, min_world_y, max_world_y, min_world_z, max_world_z);
+    this->tree = new Octree(4, min_coord, max_coord, min_coord, max_coord, min_coord, max_coord);
+    this->world_size = max_coord - min_coord;
+    this->max_coord = max_coord;
+    this->min_coord = min_coord;
 
     AddBlock(IBlockType, num_i_blocks_plus, true);
     AddBlock(IBlockType, num_i_blocks_neg, false);
@@ -54,15 +57,15 @@ WorldHandler::WorldHandler(int num_i_blocks_plus, int num_i_blocks_neg, int num_
     AddBlock(ZBlockType, num_z_blocks, true);
 }
 
-void WorldHandler::GetProperties(int num_blocks, std::vector<Matrix> *&positions, std::vector<Matrix> * &linear_momentums, real world_size) {
-    positions = GeneratePositions(num_blocks, world_size);
+void WorldHandler::GetProperties(int num_blocks, std::vector<Matrix> *&positions, std::vector<Matrix> * &linear_momentums, real min_coord, real max_coord) {
+    positions = GeneratePositions(num_blocks, min_coord, max_coord);
     linear_momentums = GenerateLinearMomentums(num_blocks);
 }
 
 
 void WorldHandler::AddBlock(BlockTypes block_types, int num_blocks, bool state) {
         std::vector<Matrix> *positions, *linear_momentums;
-        GetProperties(num_blocks, positions, linear_momentums);
+        GetProperties(num_blocks, positions, linear_momentums, this->min_coord, this->max_coord);
         for(int i=0; i<num_blocks; i++) {
             if(block_types == IBlockType) {
                 auto *new_block = new IBlock(positions->at(i), Quaternion(1.0, 0.0, 0.0, 0.0)  ,state);
