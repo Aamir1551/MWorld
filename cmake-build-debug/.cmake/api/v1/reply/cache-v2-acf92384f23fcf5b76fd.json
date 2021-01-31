@@ -1531,7 +1531,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "general;linear_alg;"
+			"value" : "general;linear_alg;general;blocks;"
 		},
 		{
 			"name" : "prototype_one_BINARY_DIR",
@@ -1651,7 +1651,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/aamir/Documents/mworld/cmake-build-debug/octree"
+			"value" : "C:/Users/aamir/Documents/mworld/cmake-build-debug/simulation/octree"
 		},
 		{
 			"name" : "quaternion_lib_SOURCE_DIR",
@@ -1663,7 +1663,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/aamir/Documents/mworld/octree"
+			"value" : "C:/Users/aamir/Documents/mworld/simulation/octree"
 		},
 		{
 			"name" : "render_BINARY_DIR",

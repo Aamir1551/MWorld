@@ -3,5 +3,6 @@ project(simulation)
 set(CXX_STANDARD 11)
 
 add_subdirectory(blocks)
+add_subdirectory(octree)
 add_subdirectory(world_handler)
 add_subdirectory(environment)

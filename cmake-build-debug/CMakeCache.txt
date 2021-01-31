@@ -306,7 +306,7 @@ numerics_BINARY_DIR:STATIC=C:/Users/aamir/Documents/mworld/cmake-build-debug/num
 numerics_SOURCE_DIR:STATIC=C:/Users/aamir/Documents/mworld/numerics
 
 //Dependencies for the target
-octree_LIB_DEPENDS:STATIC=general;linear_alg;
+octree_LIB_DEPENDS:STATIC=general;linear_alg;general;blocks;
 
 //Value Computed by CMake
 prototype_one_BINARY_DIR:STATIC=C:/Users/aamir/Documents/mworld/cmake-build-debug/prototype/prototype_one
@@ -336,10 +336,10 @@ prototypes_SOURCE_DIR:STATIC=C:/Users/aamir/Documents/mworld/prototype
 quaternion_LIB_DEPENDS:STATIC=general;linear_alg;
 
 //Value Computed by CMake
-quaternion_lib_BINARY_DIR:STATIC=C:/Users/aamir/Documents/mworld/cmake-build-debug/octree
+quaternion_lib_BINARY_DIR:STATIC=C:/Users/aamir/Documents/mworld/cmake-build-debug/simulation/octree
 
 //Value Computed by CMake
-quaternion_lib_SOURCE_DIR:STATIC=C:/Users/aamir/Documents/mworld/octree
+quaternion_lib_SOURCE_DIR:STATIC=C:/Users/aamir/Documents/mworld/simulation/octree
 
 //Value Computed by CMake
 render_BINARY_DIR:STATIC=C:/Users/aamir/Documents/mworld/cmake-build-debug/render

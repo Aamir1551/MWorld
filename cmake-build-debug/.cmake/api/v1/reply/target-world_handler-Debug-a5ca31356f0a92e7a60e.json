@@ -135,11 +135,15 @@
 	[
 		{
 			"backtrace" : 2,
+			"id" : "utils::@c5cd9bcf8a2dc65dcb35"
+		},
+		{
+			"backtrace" : 2,
 			"id" : "glad::@bf3af473941166e98053"
 		},
 		{
 			"backtrace" : 2,
-			"id" : "utils::@c5cd9bcf8a2dc65dcb35"
+			"id" : "linear_alg::@b276e23674e4ab50d284"
 		},
 		{
 			"backtrace" : 2,
@@ -151,7 +155,7 @@
 		},
 		{
 			"backtrace" : 2,
-			"id" : "linear_alg::@b276e23674e4ab50d284"
+			"id" : "block_renderer::@20380dfbeeaf1beda5b3"
 		},
 		{
 			"backtrace" : 2,
@@ -160,10 +164,6 @@
 		{
 			"backtrace" : 2,
 			"id" : "blocks::@6db65c1307d2a2a784c8"
-		},
-		{
-			"backtrace" : 2,
-			"id" : "block_renderer::@20380dfbeeaf1beda5b3"
 		}
 	],
 	"id" : "world_handler::@db5c5082507517693d46",

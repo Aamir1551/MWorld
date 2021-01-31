@@ -198,9 +198,6 @@
 			"path" : "render/block_renderer/CMakeLists.txt"
 		},
 		{
-			"path" : "octree/CMakeLists.txt"
-		},
-		{
 			"path" : "prototype/CMakeLists.txt"
 		},
 		{
@@ -217,6 +214,9 @@
 		},
 		{
 			"path" : "simulation/blocks/CMakeLists.txt"
+		},
+		{
+			"path" : "simulation/octree/CMakeLists.txt"
 		},
 		{
 			"path" : "simulation/world_handler/CMakeLists.txt"
