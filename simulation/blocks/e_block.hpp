@@ -12,7 +12,7 @@ namespace blocks
     public:
         real k;
 
-        EBlock(Matrix position, Quaternion initial_orientation, bool state) : Block(position, initial_orientation, 0.0f) {
+        EBlock(Matrix position, Quaternion initial_orientation, bool state, real cube_length = 4.0f) : Block(position, initial_orientation, 0.0f, cube_length) {
             if(state == true) {
                 this->k = 2;
             } else {

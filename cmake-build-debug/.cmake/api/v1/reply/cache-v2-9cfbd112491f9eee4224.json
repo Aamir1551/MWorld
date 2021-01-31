@@ -1831,7 +1831,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "general;block_renderer;general;linear_alg;general;quaternion;general;cube_renderer;general;utils;general;glad;general;C:/Users/aamir/Documents/mworld/lib/glfw-3.3.2/build/src/libglfw3.a;general;mworld_render_utils;general;blocks;"
+			"value" : "general;octree;general;block_renderer;general;linear_alg;general;quaternion;general;cube_renderer;general;utils;general;glad;general;C:/Users/aamir/Documents/mworld/lib/glfw-3.3.2/build/src/libglfw3.a;general;mworld_render_utils;general;blocks;"
 		},
 		{
 			"name" : "world_handler_SOURCE_DIR",

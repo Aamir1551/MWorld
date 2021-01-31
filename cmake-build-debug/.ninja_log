@@ -1,5 +1,6 @@
 # ninja log v5
 2	453	6330535119067899	lib/glad/CMakeFiles/glad.dir/src/glad.c.obj	741fd2a7390d7c6f
+1703	1826	6338158637128464	simulation/octree/liboctree.a	a9cd397af6653a62
 10	510	6338053132694993	simulation/blocks/CMakeFiles/blocks.dir/e_block.cpp.obj	6b98dae26ac39160
 1105	1389	6337456953407581	prototype/prototype_one/prototype_one.exe	c53482f77039edd7
 1072	1141	6337288981935297	numerics/quaternion/libquaternion.a	4a360d4939af8000
@@ -18,6 +19,7 @@
 9	531	6338053132899523	simulation/blocks/CMakeFiles/blocks.dir/i_block.cpp.obj	224f43b0dc848670
 9	869	6337288978823603	numerics/quaternion/CMakeFiles/quaternion.dir/src/quaternion.cpp.obj	ed05215283e7b81f
 6	620	6337457102601629	prototype/prototype_three/CMakeFiles/prototype_three.dir/cube.cpp.obj	23907aa070602425
+7	468	6338102995966895	simulation/octree/CMakeFiles/octree.dir/__/__/render/utils/world_initializer.cpp.obj	88dbdfedc702b74a
 5	990	6337288980429309	numerics/linear_alg/CMakeFiles/linear_alg.dir/src/matrix.cpp.obj	6310b085c868fc13
 10	1277	6337457109196976	prototype/prototype_three/CMakeFiles/prototype_three.dir/main.cpp.obj	60646d296a88c8c6
 7	573	6337456945479608	prototype/prototype_one/CMakeFiles/prototype_one.dir/__/__/render/utils/world_initializer.cpp.obj	215d90177b02d3bd
@@ -25,8 +27,9 @@
 931	1248	6338072042394489	simulation/environment/simulation.exe	8edc88ad0965ef10
 5	1132	6337457027335254	prototype/prototype_two/CMakeFiles/prototype_two.dir/main.cpp.obj	8c14c649610c6608
 7	594	6337469629507788	simulation/environment/CMakeFiles/logic_gates.dir/__/__/render/utils/world_initializer.cpp.obj	f3b05df34298e647
-2	430	6338100932254068	build.ninja	86ad8b687f76afe4
+2	430	6338159981682504	build.ninja	86ad8b687f76afe4
 15	1740	6338030329351899	simulation/blocks/CMakeFiles/blocks.dir/cube.cpp.obj	64579534af6da0eb
+10	1703	6338158635934599	simulation/octree/CMakeFiles/octree.dir/octree.cpp.obj	7c201717fbbce573
 6	487	6337455490911524	render/utils/CMakeFiles/mworld_render_utils.dir/world_initializer.cpp.obj	454dd10eee3fba8
 8	501	6338053132590196	simulation/blocks/CMakeFiles/blocks.dir/z_block.cpp.obj	7c3d0b1e23fbeb4
 6	502	6338053132600179	simulation/blocks/CMakeFiles/blocks.dir/m_block.cpp.obj	43e37000c6933a3f
@@ -46,8 +49,3 @@
 9	1005	6337448929183288	render/block_renderer/CMakeFiles/block_renderer.dir/__/utils/world_initializer.cpp.obj	bc337868b93e3897
 488	564	6337455491684914	render/utils/libmworld_render_utils.a	be5754935c8a8c50
 28	648	6337457102914964	prototype/prototype_three/CMakeFiles/prototype_three.dir/__/__/render/utils/world_initializer.cpp.obj	a328c3f48f5cc9a1
-7	468	6338102995966895	simulation/octree/CMakeFiles/octree.dir/__/__/render/utils/world_initializer.cpp.obj	88dbdfedc702b74a
-5	404	6338104588986929	simulation/octree/CMakeFiles/octree.dir/octree.cpp.obj	7c201717fbbce573
-404	471	6338104589666346	simulation/octree/liboctree.a	a9cd397af6653a62
-10	1703	6338158635934599	simulation/octree/CMakeFiles/octree.dir/octree.cpp.obj	7c201717fbbce573
-1703	1826	6338158637128464	simulation/octree/liboctree.a	a9cd397af6653a62

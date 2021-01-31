@@ -20,7 +20,7 @@ namespace blocks {
         real static force_dt;
         real static flare_capacity;
 
-        Block(Matrix position, Quaternion initial_orientation, real initial_flare_amount) : Cube(4.0f, position,
+        Block(Matrix position, Quaternion initial_orientation, real initial_flare_amount, real cube_length = 4.0f) : Cube(cube_length, position,
                                                                                                  initial_orientation,
                                                                                                  1.0f,
                                                                                                  1.0f) {

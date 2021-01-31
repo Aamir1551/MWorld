@@ -7,7 +7,7 @@ namespace blocks {
     class ZBlock : public Block {
 
     public:
-        ZBlock(Matrix position, Quaternion initial_orientation) : Block(position, initial_orientation, 0.0f) {}
+        ZBlock(Matrix position, Quaternion initial_orientation, real cube_length = 4.0f) : Block(position, initial_orientation, 0.0f, cube_length) {}
 
         void React(IBlock *block, real dist, const Matrix& to_cube, real deltimatime) override;
         void React(EBlock *block, real dist, const Matrix& to_cube, real deltimatime) override;

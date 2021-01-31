@@ -15,6 +15,8 @@
 #include <e_block.hpp>
 #include <z_block.hpp>
 
+#include <octree.hpp>
+
 using namespace blocks;
 
 class WorldHandler {
@@ -31,11 +33,13 @@ public:
     vector<MBlock *> mblocks;
     vector<EBlock *> eblocks;
     vector<ZBlock *> zblocks;
+
+    Octree *tree;
     vector<Block *> blocks;
 
     enum BlockTypes {IBlockType, MBlockType, EBlockType, ZBlockType};
 
-    WorldHandler(int num_i_blocks_plus, int num_i_blocks_neg, int num_z_blocks, int num_m_blocks, int num_e_blocks_1, int num_e_blocks_1_2);
+    WorldHandler(int num_i_blocks_plus, int num_i_blocks_neg, int num_z_blocks, int num_m_blocks, int num_e_blocks_1, int num_e_blocks_1_2, real min_world_x, real max_world_x, real min_world_y, real max_world_y, real min_world_z, real max_world_z);
 
     void AddBlock(BlockTypes block_types, int num_blocks, bool state);
 

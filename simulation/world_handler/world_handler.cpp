@@ -41,8 +41,12 @@ std::vector<Matrix> *WorldHandler::GenerateLinearMomentums(int num_cubes)
     return linear_momentums;
 }
 
-WorldHandler::WorldHandler(int num_i_blocks_plus, int num_i_blocks_neg, int num_z_blocks, int num_m_blocks, int num_e_blocks_1, int num_e_blocks_1_2) {
+WorldHandler::WorldHandler(int num_i_blocks_plus, int num_i_blocks_neg, int num_z_blocks, int num_m_blocks, int num_e_blocks_1, int num_e_blocks_1_2,
+                           real min_world_x, real max_world_x, real min_world_y, real max_world_y, real min_world_z, real max_world_z) {
     srand((unsigned)time(0)); //NULL???
+
+    this->tree = new Octree(4, min_world_x, max_world_x, min_world_y, max_world_y, min_world_z, max_world_z);
+
     AddBlock(IBlockType, num_i_blocks_plus, true);
     AddBlock(IBlockType, num_i_blocks_neg, false);
     AddBlock(MBlockType, num_m_blocks, true);
@@ -79,6 +83,7 @@ void WorldHandler::AddBlock(BlockTypes block_types, int num_blocks, bool state) 
                 blocks.push_back(new_block);
             }
             blocks.back()->SetLinearMomentum(linear_momentums->at(i));
+            this->tree->AddBlock(blocks.back(), i);
     }
 }
 
