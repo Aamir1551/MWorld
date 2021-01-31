@@ -5,6 +5,8 @@
 #include <ctime>
 
 #include <vector>
+#include <tuple>
+#include <set>
 
 #include <matrix.hpp>
 

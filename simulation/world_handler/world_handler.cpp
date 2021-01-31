@@ -127,19 +127,34 @@ void WorldHandler::CollisionHandler(real deltatime) {
         }
     }
 
-    /*for(int i=0; i<blocks.size(); i++) {
+
+    vector<Contact> contact_list1;
+    set<tuple<Block *, Block *>> collisions;
+    for(int i=0; i<blocks.size(); i++) {
         vector<Octree *> neighbour_cells = this->tree->GetGridNeighbours(blocks.at(i)->position(0, 0),
                                                                          blocks.at(i)->position(1, 0),
                                                                          blocks.at(i)->position(2, 0));
 
-        //cout << neighbour_cells.size() << endl;
         for(int c=0; c<neighbour_cells.size(); c++) {
             if(neighbour_cells.at(c)->block != nullptr) {
-                Cube::CollisionDetect(blocks.at(i), neighbour_cells.at(c)->block, contact_list);
+                auto find1 = collisions.find(std::make_tuple(neighbour_cells.at(c)->block, blocks.at(i)));
+                auto find2 = collisions.find(std::make_tuple(blocks.at(i), neighbour_cells.at(c)->block));
+
+                if(find1 == collisions.end() && find2 == collisions.end()) {
+                    int before_count = contact_list1.size();
+                    if(blocks.at(i) == neighbour_cells.at(c)->block) {
+                        //cout << "damn!!!!" << endl; // This line of code should not even be occuring
+                        continue;
+                    }
+                    Cube::CollisionDetect(blocks.at(i), neighbour_cells.at(c)->block, contact_list1);
+                    if(contact_list1.size() > before_count) {
+                        collisions.insert(std::make_tuple(neighbour_cells.at(c)->block, blocks.at(i)));
+                    }
+                }
             }
         }
     }
-    cout << contact_list.size() << endl;*/
+    cout << contact_list.size() << " " << contact_list1.size() << endl;
 
 
     for(int i=0; i<contact_list.size(); i++) {
