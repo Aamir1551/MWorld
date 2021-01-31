@@ -69,3 +69,9 @@
 13	2757	6338191988239888	simulation/world_handler/CMakeFiles/world_handler.dir/world_handler.cpp.obj	8fd53804edb01cee
 2758	2931	6338191989900646	simulation/world_handler/libworld_handler.a	d82797b59785b7e7
 2932	3798	6338191998549553	simulation/environment/simulation.exe	926585dbeb54f7de
+18	2378	6338269559822327	simulation/octree/CMakeFiles/octree.dir/octree.cpp.obj	7c201717fbbce573
+13	2426	6338269560328765	simulation/environment/CMakeFiles/simulation.dir/simulation.cpp.obj	9a782925f68b2e7c
+20	2500	6338269560998841	simulation/world_handler/CMakeFiles/world_handler.dir/world_handler.cpp.obj	8fd53804edb01cee
+2379	2567	6338269561685488	simulation/octree/liboctree.a	a9cd397af6653a62
+2567	2875	6338269564741068	simulation/world_handler/libworld_handler.a	d82797b59785b7e7
+2876	3939	6338269575382483	simulation/environment/simulation.exe	926585dbeb54f7de

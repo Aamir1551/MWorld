@@ -41,13 +41,14 @@ std::vector<Matrix> *WorldHandler::GenerateLinearMomentums(int num_cubes)
 }
 
 WorldHandler::WorldHandler(int num_i_blocks_plus, int num_i_blocks_neg, int num_z_blocks, int num_m_blocks, int num_e_blocks_1, int num_e_blocks_1_2,
-                           real min_coord, real max_coord) {
+                           real min_coord, real max_coord, real cube_length) {
     srand((unsigned)time(0)); //NULL???
 
-    this->tree = new Octree(4, min_coord, max_coord, min_coord, max_coord, min_coord, max_coord);
+    this->tree = new Octree(cube_length, min_coord, max_coord, min_coord, max_coord, min_coord, max_coord);
     this->world_size = max_coord - min_coord;
     this->max_coord = max_coord;
     this->min_coord = min_coord;
+    this->cube_length = cube_length;
 
     AddBlock(IBlockType, num_i_blocks_plus, true);
     AddBlock(IBlockType, num_i_blocks_neg, false);
