@@ -29,7 +29,7 @@ void Octree::RemoveBlock(Block *b, unsigned int id) {
     }
 }
 
-Octree::Octree(int grid_size, real min_x, real  max_x, real min_y, real max_y, real min_z, real max_z) : max_x(max_x), min_x(min_x), min_y(min_y), max_y(max_y), min_z(min_z), max_z(max_z)
+Octree::Octree(int grid_size, real min_x, real  max_x, real min_y, real max_y, real min_z, real max_z, bool initialise) : max_x(max_x), min_x(min_x), min_y(min_y), max_y(max_y), min_z(min_z), max_z(max_z)
 {
 
     this->partition_size = std::min(max_x - min_x, std::min(max_y - min_y, max_z - min_z));
@@ -52,11 +52,13 @@ Octree::Octree(int grid_size, real min_x, real  max_x, real min_y, real max_y, r
         children[7] = new Octree(grid_size, avg_x, max_x, avg_y, max_y, avg_z, max_z);
     }
 
-    for(real i=min_x + grid_size / 2; i < max_x; i+=grid_size) {
-        for(real j=min_y + grid_size /2 ; j < max_y; j+=grid_size) {
-            for(real k=min_z + grid_size / 2; k < max_z; k+=grid_size) {
-                Octree *octree_pos =  GetGridAtPos(i, j, k);
-                this->grid_elements_neighbours[octree_pos] = GetGridNeighbours(i, j, k);
+    if(initialise) {
+        for(real i=min_x + grid_size / 2; i < max_x; i+=grid_size) {
+            for(real j=min_y + grid_size /2 ; j < max_y; j+=grid_size) {
+                for(real k=min_z + grid_size / 2; k < max_z; k+=grid_size) {
+                    Octree *octree_pos =  GetGridAtPos(i, j, k);
+                    this->grid_elements_neighbours[octree_pos] = GetGridNeighbours(i, j, k);
+                }
             }
         }
     }

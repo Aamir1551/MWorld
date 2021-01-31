@@ -18,6 +18,7 @@ public:
     int grid_size;
 
     std::map<unsigned int, Block *> world_blocks;
+    Block*block;
     std::map<Octree *, vector<Octree *> > grid_elements_neighbours;
 
     real avg_x;
@@ -34,7 +35,7 @@ public:
     std::map<unsigned int, Octree*> children;
 
 
-    explicit Octree(int grid_sizes, real min_x, real  max_x, real min_y, real max_y, real min_z, real max_z);
+    explicit Octree(int grid_sizes, real min_x, real  max_x, real min_y, real max_y, real min_z, real max_z, bool initialise = false);
     void AddBlock(Block *b, unsigned int id);
     void RemoveBlock(Block *b, unsigned int id);
     std::vector<Octree *> GetGridNeighbours(real x, real y, real z);

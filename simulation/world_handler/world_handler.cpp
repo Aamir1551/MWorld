@@ -1,6 +1,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <vector>
+#include <map>
 
 #include <matrix.hpp>
 
@@ -85,8 +86,10 @@ void WorldHandler::AddBlock(BlockTypes block_types, int num_blocks, bool state) 
                 mblocks.push_back(new_block);
                 blocks.push_back(new_block);
             }
-            blocks.back()->SetLinearMomentum(linear_momentums->at(i));
-            this->tree->AddBlock(blocks.back(), i);
+            auto temp = blocks.back();
+            temp->SetLinearMomentum(linear_momentums->at(i));
+            this->tree->AddBlock(temp, i);
+            this->block_pos[temp] = this->tree->GetGridAtPos(temp->position(0, 0), temp->position(1, 0), temp->position(2, 0));
     }
 }
 
@@ -115,7 +118,7 @@ void WorldHandler::CollisionHandler(real deltatime) {
 
 void WorldHandler::AddForces(real deltatime) {
     for(auto &block: this->blocks) {
-        ReactToAllBlocks(block, deltatime * 60);
+        ReactToAllBlocks(block, deltatime * 10);
     }
 }
 
