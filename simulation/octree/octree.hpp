@@ -2,6 +2,7 @@
 #define MWORLD_SIMULATION_OCTREE
 
 #include <map>
+#include <vector>
 
 #include <block.hpp>
 #include <settings.hpp>
@@ -18,6 +19,13 @@ public:
     real avg_x;
     real avg_y;
     real avg_z;
+    real min_x;
+    real max_x;
+    real min_y;
+    real max_y;
+    real min_z;
+    real max_z;
+
     bool is_min = false;
     std::map<unsigned int, Octree*> children;
 
@@ -25,6 +33,8 @@ public:
     explicit Octree(real grid_sizes, real min_x, real  max_x, real min_y, real max_y, real min_z, real max_z);
     void AddBlock(Block *b, unsigned int id);
     void RemoveBlock(Block *b, unsigned int id);
+    std::vector<Block *> GetBlockNeighbours(Block *b);
+    Octree *GetGridAtPos(real x, real y, real z);
 
 };
 #endif
