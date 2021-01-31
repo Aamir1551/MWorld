@@ -305,6 +305,9 @@ numerics_BINARY_DIR:STATIC=C:/Users/aamir/Documents/mworld/cmake-build-debug/num
 //Value Computed by CMake
 numerics_SOURCE_DIR:STATIC=C:/Users/aamir/Documents/mworld/numerics
 
+//Dependencies for the target
+octree_LIB_DEPENDS:STATIC=general;linear_alg;
+
 //Value Computed by CMake
 prototype_one_BINARY_DIR:STATIC=C:/Users/aamir/Documents/mworld/cmake-build-debug/prototype/prototype_one
 
@@ -333,10 +336,10 @@ prototypes_SOURCE_DIR:STATIC=C:/Users/aamir/Documents/mworld/prototype
 quaternion_LIB_DEPENDS:STATIC=general;linear_alg;
 
 //Value Computed by CMake
-quaternion_lib_BINARY_DIR:STATIC=C:/Users/aamir/Documents/mworld/cmake-build-debug/numerics/quaternion
+quaternion_lib_BINARY_DIR:STATIC=C:/Users/aamir/Documents/mworld/cmake-build-debug/octree
 
 //Value Computed by CMake
-quaternion_lib_SOURCE_DIR:STATIC=C:/Users/aamir/Documents/mworld/numerics/quaternion
+quaternion_lib_SOURCE_DIR:STATIC=C:/Users/aamir/Documents/mworld/octree
 
 //Value Computed by CMake
 render_BINARY_DIR:STATIC=C:/Users/aamir/Documents/mworld/cmake-build-debug/render
@@ -488,7 +491,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=23
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=24
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

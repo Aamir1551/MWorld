@@ -155,7 +155,7 @@
 		},
 		{
 			"backtrace" : 2,
-			"id" : "block_renderer::@20380dfbeeaf1beda5b3"
+			"id" : "mworld_render_utils::@c1c5e50b708af245b811"
 		},
 		{
 			"backtrace" : 2,
@@ -163,7 +163,7 @@
 		},
 		{
 			"backtrace" : 2,
-			"id" : "mworld_render_utils::@c1c5e50b708af245b811"
+			"id" : "block_renderer::@20380dfbeeaf1beda5b3"
 		}
 	],
 	"id" : "world_handler::@db5c5082507517693d46",

@@ -13,7 +13,8 @@
 						5,
 						9,
 						15,
-						19
+						16,
+						20
 					],
 					"minimumCMakeVersion" : 
 					{
@@ -62,7 +63,7 @@
 					"source" : "utils/util_functions",
 					"targetIndexes" : 
 					[
-						13
+						14
 					]
 				},
 				{
@@ -133,7 +134,7 @@
 					"source" : "numerics/quaternion",
 					"targetIndexes" : 
 					[
-						11
+						12
 					]
 				},
 				{
@@ -217,19 +218,33 @@
 					]
 				},
 				{
-					"build" : "prototype",
-					"childIndexes" : 
-					[
-						16,
-						17,
-						18
-					],
+					"build" : "octree",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.10"
 					},
 					"parentIndex" : 0,
 					"projectIndex" : 15,
+					"source" : "octree",
+					"targetIndexes" : 
+					[
+						8
+					]
+				},
+				{
+					"build" : "prototype",
+					"childIndexes" : 
+					[
+						17,
+						18,
+						19
+					],
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 16,
 					"source" : "prototype"
 				},
 				{
@@ -238,12 +253,12 @@
 					{
 						"string" : "3.10"
 					},
-					"parentIndex" : 15,
-					"projectIndex" : 16,
+					"parentIndex" : 16,
+					"projectIndex" : 17,
 					"source" : "prototype/prototype_one",
 					"targetIndexes" : 
 					[
-						8
+						9
 					]
 				},
 				{
@@ -252,12 +267,12 @@
 					{
 						"string" : "3.10"
 					},
-					"parentIndex" : 15,
-					"projectIndex" : 17,
+					"parentIndex" : 16,
+					"projectIndex" : 18,
 					"source" : "prototype/prototype_two",
 					"targetIndexes" : 
 					[
-						10
+						11
 					]
 				},
 				{
@@ -266,28 +281,28 @@
 					{
 						"string" : "3.10"
 					},
-					"parentIndex" : 15,
-					"projectIndex" : 18,
+					"parentIndex" : 16,
+					"projectIndex" : 19,
 					"source" : "prototype/prototype_three",
 					"targetIndexes" : 
 					[
-						9
+						10
 					]
 				},
 				{
 					"build" : "simulation",
 					"childIndexes" : 
 					[
-						20,
 						21,
-						22
+						22,
+						23
 					],
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.10"
 					},
 					"parentIndex" : 0,
-					"projectIndex" : 19,
+					"projectIndex" : 20,
 					"source" : "simulation"
 				},
 				{
@@ -296,8 +311,8 @@
 					{
 						"string" : "3.10"
 					},
-					"parentIndex" : 19,
-					"projectIndex" : 20,
+					"parentIndex" : 20,
+					"projectIndex" : 21,
 					"source" : "simulation/blocks",
 					"targetIndexes" : 
 					[
@@ -310,12 +325,12 @@
 					{
 						"string" : "3.10"
 					},
-					"parentIndex" : 19,
-					"projectIndex" : 21,
+					"parentIndex" : 20,
+					"projectIndex" : 22,
 					"source" : "simulation/world_handler",
 					"targetIndexes" : 
 					[
-						14
+						15
 					]
 				},
 				{
@@ -324,13 +339,13 @@
 					{
 						"string" : "3.10"
 					},
-					"parentIndex" : 19,
-					"projectIndex" : 19,
+					"parentIndex" : 20,
+					"projectIndex" : 20,
 					"source" : "simulation/environment",
 					"targetIndexes" : 
 					[
 						5,
-						12
+						13
 					]
 				}
 			],
@@ -345,7 +360,8 @@
 						5,
 						9,
 						15,
-						19
+						16,
+						20
 					],
 					"directoryIndexes" : 
 					[
@@ -387,7 +403,7 @@
 					"parentIndex" : 2,
 					"targetIndexes" : 
 					[
-						13
+						14
 					]
 				},
 				{
@@ -448,7 +464,7 @@
 					"parentIndex" : 5,
 					"targetIndexes" : 
 					[
-						11
+						12
 					]
 				},
 				{
@@ -520,15 +536,27 @@
 					]
 				},
 				{
-					"childIndexes" : 
-					[
-						16,
-						17,
-						18
-					],
 					"directoryIndexes" : 
 					[
 						15
+					],
+					"name" : "quaternion_lib",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						8
+					]
+				},
+				{
+					"childIndexes" : 
+					[
+						17,
+						18,
+						19
+					],
+					"directoryIndexes" : 
+					[
+						16
 					],
 					"name" : "prototypes",
 					"parentIndex" : 0
@@ -536,25 +564,13 @@
 				{
 					"directoryIndexes" : 
 					[
-						16
-					],
-					"name" : "prototype_one",
-					"parentIndex" : 15,
-					"targetIndexes" : 
-					[
-						8
-					]
-				},
-				{
-					"directoryIndexes" : 
-					[
 						17
 					],
-					"name" : "prototype_two",
-					"parentIndex" : 15,
+					"name" : "prototype_one",
+					"parentIndex" : 16,
 					"targetIndexes" : 
 					[
-						10
+						9
 					]
 				},
 				{
@@ -562,39 +578,51 @@
 					[
 						18
 					],
-					"name" : "prototype_three",
-					"parentIndex" : 15,
+					"name" : "prototype_two",
+					"parentIndex" : 16,
 					"targetIndexes" : 
 					[
-						9
+						11
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						19
+					],
+					"name" : "prototype_three",
+					"parentIndex" : 16,
+					"targetIndexes" : 
+					[
+						10
 					]
 				},
 				{
 					"childIndexes" : 
 					[
-						20,
-						21
+						21,
+						22
 					],
 					"directoryIndexes" : 
 					[
-						19,
-						22
+						20,
+						23
 					],
 					"name" : "simulation",
 					"parentIndex" : 0,
 					"targetIndexes" : 
 					[
 						5,
-						12
+						13
 					]
 				},
 				{
 					"directoryIndexes" : 
 					[
-						20
+						21
 					],
 					"name" : "Blocks",
-					"parentIndex" : 19,
+					"parentIndex" : 20,
 					"targetIndexes" : 
 					[
 						1
@@ -603,13 +631,13 @@
 				{
 					"directoryIndexes" : 
 					[
-						21
+						22
 					],
 					"name" : "world_handler",
-					"parentIndex" : 19,
+					"parentIndex" : 20,
 					"targetIndexes" : 
 					[
-						14
+						15
 					]
 				}
 			],
@@ -618,16 +646,16 @@
 				{
 					"directoryIndex" : 14,
 					"id" : "block_renderer::@20380dfbeeaf1beda5b3",
-					"jsonFile" : "target-block_renderer-Debug-2a76ea9d10b3cf876ceb.json",
+					"jsonFile" : "target-block_renderer-Debug-6a3d77c114770fab3b77.json",
 					"name" : "block_renderer",
 					"projectIndex" : 14
 				},
 				{
-					"directoryIndex" : 20,
+					"directoryIndex" : 21,
 					"id" : "blocks::@6db65c1307d2a2a784c8",
 					"jsonFile" : "target-blocks-Debug-a6019f8ae6d2de3989ee.json",
 					"name" : "blocks",
-					"projectIndex" : 20
+					"projectIndex" : 21
 				},
 				{
 					"directoryIndex" : 11,
@@ -651,11 +679,11 @@
 					"projectIndex" : 6
 				},
 				{
-					"directoryIndex" : 22,
+					"directoryIndex" : 23,
 					"id" : "logic_gates::@847a59781e22ff560ae6",
-					"jsonFile" : "target-logic_gates-Debug-7be8e2afd196a9fc1b9d.json",
+					"jsonFile" : "target-logic_gates-Debug-1cda4be2ee7aebb8e6bf.json",
 					"name" : "logic_gates",
-					"projectIndex" : 19
+					"projectIndex" : 20
 				},
 				{
 					"directoryIndex" : 7,
@@ -672,25 +700,32 @@
 					"projectIndex" : 12
 				},
 				{
-					"directoryIndex" : 16,
-					"id" : "prototype_one::@c77c4220c2085dac9ec5",
-					"jsonFile" : "target-prototype_one-Debug-64e5ed9e2bd07625347d.json",
-					"name" : "prototype_one",
-					"projectIndex" : 16
-				},
-				{
-					"directoryIndex" : 18,
-					"id" : "prototype_three::@2a17fa0eebb0697fdbb6",
-					"jsonFile" : "target-prototype_three-Debug-6655be7255e86675cd79.json",
-					"name" : "prototype_three",
-					"projectIndex" : 18
+					"directoryIndex" : 15,
+					"id" : "octree::@b8dae16213a252879a1a",
+					"jsonFile" : "target-octree-Debug-3071871142580f6f2bc9.json",
+					"name" : "octree",
+					"projectIndex" : 15
 				},
 				{
 					"directoryIndex" : 17,
+					"id" : "prototype_one::@c77c4220c2085dac9ec5",
+					"jsonFile" : "target-prototype_one-Debug-64e5ed9e2bd07625347d.json",
+					"name" : "prototype_one",
+					"projectIndex" : 17
+				},
+				{
+					"directoryIndex" : 19,
+					"id" : "prototype_three::@2a17fa0eebb0697fdbb6",
+					"jsonFile" : "target-prototype_three-Debug-6655be7255e86675cd79.json",
+					"name" : "prototype_three",
+					"projectIndex" : 19
+				},
+				{
+					"directoryIndex" : 18,
 					"id" : "prototype_two::@e7e923eba9c0b8a1d5aa",
 					"jsonFile" : "target-prototype_two-Debug-55d67733b298cc5cf1a2.json",
 					"name" : "prototype_two",
-					"projectIndex" : 17
+					"projectIndex" : 18
 				},
 				{
 					"directoryIndex" : 8,
@@ -700,11 +735,11 @@
 					"projectIndex" : 8
 				},
 				{
-					"directoryIndex" : 22,
+					"directoryIndex" : 23,
 					"id" : "simulation::@847a59781e22ff560ae6",
-					"jsonFile" : "target-simulation-Debug-77763b6591bece458781.json",
+					"jsonFile" : "target-simulation-Debug-75aa46a2578b061924b8.json",
 					"name" : "simulation",
-					"projectIndex" : 19
+					"projectIndex" : 20
 				},
 				{
 					"directoryIndex" : 3,
@@ -714,11 +749,11 @@
 					"projectIndex" : 3
 				},
 				{
-					"directoryIndex" : 21,
+					"directoryIndex" : 22,
 					"id" : "world_handler::@db5c5082507517693d46",
-					"jsonFile" : "target-world_handler-Debug-1e6c6984869f7bc465e1.json",
+					"jsonFile" : "target-world_handler-Debug-2553d536a739ff637f39.json",
 					"name" : "world_handler",
-					"projectIndex" : 21
+					"projectIndex" : 22
 				}
 			]
 		}
