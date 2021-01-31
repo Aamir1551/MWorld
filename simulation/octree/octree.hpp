@@ -18,7 +18,7 @@ public:
     int grid_size;
 
     std::map<unsigned int, Block *> world_blocks;
-    Block*block;
+    Block*block = nullptr;
     std::map<Octree *, vector<Octree *> > grid_elements_neighbours;
 
     real avg_x;

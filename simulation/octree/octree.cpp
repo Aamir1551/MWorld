@@ -67,7 +67,6 @@ Octree::Octree(int grid_size, real min_x, real  max_x, real min_y, real max_y, r
 }
 
 
-
 std::vector<Octree *> Octree::GetGridNeighbours(real x, real y, real z) {
     vector<Octree *> neighbours;
     for(int i=1; i<27; i++) {

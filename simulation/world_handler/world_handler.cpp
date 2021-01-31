@@ -89,15 +89,33 @@ void WorldHandler::AddBlock(BlockTypes block_types, int num_blocks, bool state) 
             auto temp = blocks.back();
             temp->SetLinearMomentum(linear_momentums->at(i));
             this->tree->AddBlock(temp, i);
-            this->block_pos[temp] = this->tree->GetGridAtPos(temp->position(0, 0), temp->position(1, 0), temp->position(2, 0));
+            Octree * tree_occupied = this->tree->GetGridAtPos(temp->position(0, 0), temp->position(1, 0), temp->position(2, 0));
+            tree_occupied->block = temp;
+            this->block_pos[temp] = tree_occupied;
+            this->occupied_octrees.push_back(tree_occupied);
     }
 }
 
 
 void WorldHandler::Update() {
+
+    for(int i=0; i<this->occupied_octrees.size(); i++) {
+        this->occupied_octrees.at(i)->block = nullptr;
+    }
+    this->occupied_octrees.clear();
+
     for(int i=0; i<this->blocks.size(); i++) {
         this->blocks.at(i)->Update();
     }
+
+    for(int i=0; i<this->blocks.size(); i++) {
+        auto temp = this->blocks.at(i);
+        Octree * tree_occupied = this->tree->GetGridAtPos(temp->position(0, 0), temp->position(1, 0), temp->position(2, 0));
+        tree_occupied->block = temp;
+        this->block_pos[temp] = tree_occupied;
+        this->occupied_octrees.push_back(tree_occupied);
+    }
+
 };
 
 
@@ -109,12 +127,19 @@ void WorldHandler::CollisionHandler(real deltatime) {
         }
     }
 
-    for(int i=0; i<blocks.size(); i++) {
+    /*for(int i=0; i<blocks.size(); i++) {
         vector<Octree *> neighbour_cells = this->tree->GetGridNeighbours(blocks.at(i)->position(0, 0),
                                                                          blocks.at(i)->position(1, 0),
                                                                          blocks.at(i)->position(2, 0));
 
+        //cout << neighbour_cells.size() << endl;
+        for(int c=0; c<neighbour_cells.size(); c++) {
+            if(neighbour_cells.at(c)->block != nullptr) {
+                Cube::CollisionDetect(blocks.at(i), neighbour_cells.at(c)->block, contact_list);
+            }
+        }
     }
+    cout << contact_list.size() << endl;*/
 
 
     for(int i=0; i<contact_list.size(); i++) {
