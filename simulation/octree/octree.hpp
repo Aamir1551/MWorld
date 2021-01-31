@@ -23,7 +23,6 @@ public:
 
 
     explicit Octree(real grid_sizes, real min_x, real  max_x, real min_y, real max_y, real min_z, real max_z);
-
     void AddBlock(Block *b, unsigned int id);
     void RemoveBlock(Block *b, unsigned int id);
 

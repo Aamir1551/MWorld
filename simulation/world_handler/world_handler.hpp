@@ -22,8 +22,8 @@ using namespace blocks;
 class WorldHandler {
 
 private:
-    void static GetProperties(int num_blocks, std::vector<Matrix> *&positions, std::vector<Matrix> * &linear_momentums);
-    std::vector<Matrix> static *GeneratePositions(int num_cubes);
+    void static GetProperties(int num_blocks, std::vector<Matrix> *&positions, std::vector<Matrix> * &linear_momentums, real world_size);
+    std::vector<Matrix> static *GeneratePositions(int num_cubes, real world_size);
     std::vector<Matrix> static *GenerateLinearMomentums(int num_cubes);
     void static PassBlockFlares(vector<Contact> &contacts, real deltatime);
     void static PassFlare(Block *a, Block *b, real deltatime);

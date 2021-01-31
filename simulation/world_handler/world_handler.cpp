@@ -15,10 +15,9 @@
 
 using namespace blocks;
 
-std::vector<Matrix> *WorldHandler::GeneratePositions(int num_cubes)
+std::vector<Matrix> *WorldHandler::GeneratePositions(int num_cubes, real world_size)
 {
     auto *positions = new std::vector<Matrix>;
-    real world_size = 100.0;
     real const scale = world_size / ((real)RAND_MAX / 2.0);
     auto get_coord = [scale, world_size]() -> real { return scale * (rand() - RAND_MAX / 2.0); };
     for (int i = 0; i < num_cubes; i++)
@@ -55,8 +54,8 @@ WorldHandler::WorldHandler(int num_i_blocks_plus, int num_i_blocks_neg, int num_
     AddBlock(ZBlockType, num_z_blocks, true);
 }
 
-void WorldHandler::GetProperties(int num_blocks, std::vector<Matrix> *&positions, std::vector<Matrix> * &linear_momentums) {
-    positions = GeneratePositions(num_blocks);
+void WorldHandler::GetProperties(int num_blocks, std::vector<Matrix> *&positions, std::vector<Matrix> * &linear_momentums, real world_size) {
+    positions = GeneratePositions(num_blocks, world_size);
     linear_momentums = GenerateLinearMomentums(num_blocks);
 }
 
