@@ -90,7 +90,7 @@ void WorldHandler::Update() {
 };
 
 
-void WorldHandler::CollisionHandler() {
+void WorldHandler::CollisionHandler(real deltatime) {
     vector<Contact> contact_list;
     for(int i=0; i<blocks.size()-1; i++) {
         for(int j=0; j<blocks.size(); j++) {
@@ -103,23 +103,23 @@ void WorldHandler::CollisionHandler() {
     for(int i=0; i<contact_list.size(); i++) {
         Cube::CollisionResolution(contact_list.at(i));
     }
-    PassBlockFlares(contact_list);
+    PassBlockFlares(contact_list, deltatime);
     SpinWorldBlocks();
     IncFlareValuesAndReset();
 }
 
-void WorldHandler::AddForces() {
+void WorldHandler::AddForces(real deltatime) {
     for(auto &block: this->blocks) {
-        ReactToAllBlocks(block);
+        ReactToAllBlocks(block, deltatime);
     }
 }
 
-void WorldHandler::ReactToAllBlocks(Block *block) {
+void WorldHandler::ReactToAllBlocks(Block *block, real deltatime) {
     for(int i=0; i<iblocks.size(); i++) {
         Matrix to_cube = iblocks.at(i)->position - block->position;
         real squared_dist = Matrix::SquaredNorm(to_cube);
         if(squared_dist >= 25) {
-            block->React(iblocks.at(i), squared_dist, to_cube);
+            block->React(iblocks.at(i), squared_dist, to_cube, deltatime);
         }
     }
 
@@ -127,7 +127,7 @@ void WorldHandler::ReactToAllBlocks(Block *block) {
         Matrix to_cube = zblocks.at(i)->position - block->position;
         real squared_dist = Matrix::SquaredNorm(to_cube);
         if(squared_dist >= 25) {
-            block->React(zblocks.at(i), squared_dist, to_cube);
+            block->React(zblocks.at(i), squared_dist, to_cube, deltatime);
         }
     }
 
@@ -135,7 +135,7 @@ void WorldHandler::ReactToAllBlocks(Block *block) {
         Matrix to_cube = eblocks.at(i)->position - block->position;
         real squared_dist = Matrix::SquaredNorm(to_cube);
         if(squared_dist >= 25) {
-            block->React(eblocks.at(i), squared_dist, to_cube);
+            block->React(eblocks.at(i), squared_dist, to_cube, deltatime);
         }
     }
 
@@ -143,20 +143,20 @@ void WorldHandler::ReactToAllBlocks(Block *block) {
         Matrix to_cube = mblocks.at(i)->position - block->position;
         real squared_dist = Matrix::SquaredNorm(to_cube);
         if(squared_dist >= 25) {
-            block->React(mblocks.at(i), squared_dist, to_cube);
+            block->React(mblocks.at(i), squared_dist, to_cube, deltatime);
         }
     }
 }
 
-void WorldHandler::PassBlockFlares(vector<Contact> &contacts) {
+void WorldHandler::PassBlockFlares(vector<Contact> &contacts, real deltatime) {
     for(int i=0; i<contacts.size(); i++) {
-        PassFlare(contacts.at(i).body1, contacts.at(i).body2);
+        PassFlare(contacts.at(i).body1, contacts.at(i).body2, deltatime);
     }
 }
 
-void WorldHandler::PassFlare(Block *a, Block *b) {
-    real flare_from_a = a->ExtractFlareFromBlock();
-    real flare_from_b = b->ExtractFlareFromBlock();
+void WorldHandler::PassFlare(Block *a, Block *b, real deltatime) {
+    real flare_from_a = a->ExtractFlareFromBlock(deltatime);
+    real flare_from_b = b->ExtractFlareFromBlock(deltatime);
 
     a->AddFlareToBlock(flare_from_b);
     b->AddFlareToBlock(flare_from_a);

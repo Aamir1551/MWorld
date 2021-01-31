@@ -5,7 +5,7 @@
 
 namespace blocks {
 
-    void EBlock::React(IBlock * block, real squared_dist, const Matrix& to_cube) {
+    void EBlock::React(IBlock * block, real squared_dist, const Matrix& to_cube, real deltatime) {
         // I+ and E repel
         if(block->state == true) {
             // If k > 1: Repel, Otherwise Attract
@@ -15,15 +15,15 @@ namespace blocks {
         }
     };
 
-    void EBlock::React(MBlock * block, real squared_dist, const Matrix& to_cube) {
+    void EBlock::React(MBlock * block, real squared_dist, const Matrix& to_cube, real deltatime) {
         // neutral
     };
 
-    void EBlock::React(ZBlock * block, real squared_dist, const Matrix& to_cube) {
+    void EBlock::React(ZBlock * block, real squared_dist, const Matrix& to_cube, real deltatime) {
         // neutral
     };
 
-    void EBlock::React(EBlock * block, real squared_dist, const Matrix& to_cube) {
+    void EBlock::React(EBlock * block, real squared_dist, const Matrix& to_cube, real deltatime) {
         // E block and E block repel as k increases
         float factor = std::log(block->k * this->k); // is zero is both blocks are k=1
         auto &force = to_cube;
@@ -31,7 +31,7 @@ namespace blocks {
     };
 
 
-    real EBlock::ExtractFlareFromBlock() {
+    real EBlock::ExtractFlareFromBlock(real deltatime) {
         this->flare_inc -= this->flare_value * 0.08; // using the kissing number of spheres
         return this->flare_value * 0.08;
     };

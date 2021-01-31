@@ -20,12 +20,12 @@ namespace blocks {
             this->b = (real) (1 - this->state);
         }
 
-        void React(IBlock * block, real dist, const Matrix& to_cube) override;
-        void React(MBlock * block, real dist, const Matrix& to_cube) override;
-        void React(ZBlock * block, real dist, const Matrix& to_cube) override;
-        void React(EBlock * block, real dist, const Matrix& to_cube) override;
+        void React(IBlock * block, real dist, const Matrix& to_cube, real deltatime) override;
+        void React(MBlock * block, real dist, const Matrix& to_cube, real deltatime) override;
+        void React(ZBlock * block, real dist, const Matrix& to_cube, real deltatime) override;
+        void React(EBlock * block, real dist, const Matrix& to_cube, real deltatime) override;
 
-        real ExtractFlareFromBlock() override;
+        real ExtractFlareFromBlock(real deltatime) override;
         void spin(Matrix const &force_direction) override;
         void AddFlareToBlock(real flare_amount) override;
 

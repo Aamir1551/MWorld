@@ -5,7 +5,7 @@
 
 namespace blocks {
 
-    void IBlock::React(IBlock * block, real squared_dist, const Matrix &to_cube) {
+    void IBlock::React(IBlock * block, real squared_dist, const Matrix &to_cube, real deltatime) {
         // I+ and I+ Repel
         // I- and I- Repel
         if(block->state == this->state) {
@@ -15,15 +15,15 @@ namespace blocks {
         }
     };
 
-    void IBlock::React(MBlock  * block, real squared_dist, const Matrix &to_cube) {
+    void IBlock::React(MBlock  * block, real squared_dist, const Matrix &to_cube, real deltatime) {
         // neutral
     };
 
-    void IBlock::React(ZBlock  *block, real squared_dist, const Matrix &to_cube) {
+    void IBlock::React(ZBlock  *block, real squared_dist, const Matrix &to_cube, real deltatime) {
         // neutral
     };
 
-    void IBlock::React(EBlock * block, real squared_dist, const Matrix &to_cube) {
+    void IBlock::React(EBlock * block, real squared_dist, const Matrix &to_cube, real deltatime) {
         // I+ and E repel
         if(this->state == true) {
             // If k > 1: Repel, Otherwise Attract
@@ -34,8 +34,8 @@ namespace blocks {
     };
 
 
-    real IBlock::ExtractFlareFromBlock() {
-        return this->a + this->b * (real) (this->flare_value < IBlock::threshold);
+    real IBlock::ExtractFlareFromBlock(real deltatime) {
+        return this->a * deltatime + this->b * (real) (this->flare_value < IBlock::threshold) * deltatime;
     };
 
     void IBlock::spin(Matrix const &force_direction) {

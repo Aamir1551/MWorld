@@ -36,11 +36,11 @@ int main()
     camera.camera_pos = glm::vec3(0, 0, 150);
     BlockRenderer::InitialiseBlockRenderer(&camera, cube_length, vao, vbo, ebo, world_properties);
 
-    int num_blocks_same = 40;
-    WorldHandler world = WorldHandler(num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same);
+    int num_blocks_same = 3;
+    //WorldHandler world = WorldHandler(num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same);
     //WorldHandler world = WorldHandler(0, 0, 0, 0, 0, 0);
     //WorldHandler world = WorldHandler(0, 0, 2, 0, 0, 0);
-    //WorldHandler world = WorldHandler(0, 0, 120, 0, 0, 0);
+    WorldHandler world = WorldHandler(0, 0, 120, 0, 0, 0);
 
     glBindVertexArray(vao);
     glEnable(GL_DEPTH_TEST);
@@ -67,8 +67,9 @@ int main()
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         world.Update();
-        world.CollisionHandler();
-        world.AddForces();
+        auto diff = 1;
+        world.CollisionHandler(diff * 60);
+        world.AddForces(diff * 60);
         BlockRenderer::DrawAllBlocks(&world.iblocks, &world.zblocks, &world.eblocks, &world.mblocks);
 
         glfwSwapBuffers(world_properties->window);

@@ -9,12 +9,12 @@ namespace blocks {
     public:
         ZBlock(Matrix position, Quaternion initial_orientation) : Block(position, initial_orientation, 0.0f) {}
 
-        void React(IBlock *block, real dist, const Matrix& to_cube) override;
-        void React(EBlock *block, real dist, const Matrix& to_cube) override;
-        void React(ZBlock *block, real dist, const Matrix& to_cube) override;
-        void React(MBlock *block, real dist, const Matrix& to_cube) override;
+        void React(IBlock *block, real dist, const Matrix& to_cube, real deltimatime) override;
+        void React(EBlock *block, real dist, const Matrix& to_cube, real deltimatime) override;
+        void React(ZBlock *block, real dist, const Matrix& to_cube, real deltimatime) override;
+        void React(MBlock *block, real dist, const Matrix& to_cube, real deltimatime) override;
 
-        real ExtractFlareFromBlock() override;
+        real ExtractFlareFromBlock(real deltimatime) override;
         void AddFlareToBlock(real flare_amount) override;
     };
 }

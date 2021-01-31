@@ -39,9 +39,10 @@ int main()
     WorldHandler world = WorldHandler(1, 0, 0, 0, 2, 0);
     //world.iblocks.at(0)->SetLinearMomentumToZero();
 
-    real vv[] = {0, 0.01, 0};
-    world.iblocks.at(0)->momentum = Matrix(3, 1, vv);
-    real location_0[] = {-16, -10, -5};
+    //real vv[] = {0, 0.01, 0};
+    //world.iblocks.at(0)->momentum = Matrix(3, 1, vv);
+    world.iblocks.at(0)->SetLinearMomentumToZero();
+    real location_0[] = {-16, 0, -5};
     world.iblocks.at(0)->position = Matrix(3, 1, location_0);
 
     world.eblocks.at(0)->SetLinearMomentumToZero();
@@ -49,7 +50,7 @@ int main()
     world.eblocks.at(0)->position = Matrix(3, 1, location_1);
 
     world.eblocks.at(1)->SetLinearMomentumToZero();
-    real location_2[] = {-12, 0, -5};
+    real location_2[] = {-16, 0, -5};
     world.eblocks.at(1)->position = Matrix(3, 1, location_2);
 
     glBindVertexArray(vao);

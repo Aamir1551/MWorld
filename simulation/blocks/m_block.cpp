@@ -3,21 +3,21 @@
 
 namespace blocks {
 
-    void MBlock::React(IBlock *block, real squared_dist, const Matrix &to_cube) {
+    void MBlock::React(IBlock *block, real squared_dist, const Matrix &to_cube, real deltatime) {
         // neutral
     };
 
 
-    void MBlock::React(EBlock *block, real squared_dist, const Matrix &to_cube) {
+    void MBlock::React(EBlock *block, real squared_dist, const Matrix &to_cube, real deltatime) {
         // neutral
     };
 
 
-    void MBlock::React(MBlock *block, real squared_dist, const Matrix &to_cube) {
+    void MBlock::React(MBlock *block, real squared_dist, const Matrix &to_cube, real deltatime) {
         // neutral
     };
 
-    void MBlock::React(ZBlock *block, real squared_dist, const Matrix &to_cube) {
+    void MBlock::React(ZBlock *block, real squared_dist, const Matrix &to_cube, real deltatime) {
         // ZBlocks are attracted to M+ blocks
         if(this->flare_value > MBlock::threshold) {
             auto &force = to_cube;
@@ -30,7 +30,7 @@ namespace blocks {
     }
 
 
-    real MBlock::ExtractFlareFromBlock() {
+    real MBlock::ExtractFlareFromBlock(real deltatime) {
         real temp = (real) (this->flare_value > MBlock::threshold) * this->flare_value * 0.08;
         this->flare_inc -= temp;
         return temp;

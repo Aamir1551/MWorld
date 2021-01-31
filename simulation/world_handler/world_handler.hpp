@@ -23,8 +23,8 @@ private:
     void static GetProperties(int num_blocks, std::vector<Matrix> *&positions, std::vector<Matrix> * &linear_momentums);
     std::vector<Matrix> static *GeneratePositions(int num_cubes);
     std::vector<Matrix> static *GenerateLinearMomentums(int num_cubes);
-    void static PassBlockFlares(vector<Contact> &contacts);
-    void static PassFlare(Block *a, Block *b);
+    void static PassBlockFlares(vector<Contact> &contacts, real deltatime);
+    void static PassFlare(Block *a, Block *b, real deltatime);
 
 public:
     vector<IBlock *> iblocks;
@@ -41,11 +41,11 @@ public:
 
     void Update();
 
-    void CollisionHandler();
+    void CollisionHandler(real deltatime);
 
-    void AddForces();
+    void AddForces(real deltatime);
 
-    void ReactToAllBlocks(Block *block);
+    void ReactToAllBlocks(Block *block, real deltatime);
 
     void IncFlareValuesAndReset();
 
