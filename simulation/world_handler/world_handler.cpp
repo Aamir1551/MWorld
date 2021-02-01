@@ -89,17 +89,24 @@ void WorldHandler::AddBlock(BlockTypes block_types, int num_blocks, bool state) 
             auto temp = blocks.back();
             temp->SetLinearMomentum(linear_momentums->at(i));
             Octree * tree_occupied = this->tree->AddBlock(temp, i);
-            this->occupied_octrees.push_back(tree_occupied);
+            this->occupied_leaves.push_back(tree_occupied);
+            this->block_to_leaf[temp] = make_pair(i, tree_occupied);
     }
 }
 
 
 void WorldHandler::Update() {
 
-    for(int i=0; i<this->occupied_octrees.size(); i++) {
-        occupied_octrees.at(i)->RemoveBlock(nullptr, i);
+    /*for(int i=0; i<this->occupied_leaves.size(); i++) {
+        occupied_leaves.at(i)->RemoveBlock(nullptr, i);
+    }*/
+
+
+    for(auto const&imap : this->block_to_leaf) {
+        imap.second.second->RemoveBlock(nullptr, imap.second.first);
     }
-    this->occupied_octrees.clear();
+    this->occupied_leaves.clear();
+    this->block_to_leaf.clear();
 
     // debug code
     if(!this->tree->LeafsAreNull()) {
@@ -114,7 +121,8 @@ void WorldHandler::Update() {
     for(int i=0; i<this->blocks.size(); i++) {
         auto temp = this->blocks.at(i);
         Octree * tree_occupied = this->tree->AddBlock(temp, i);
-        this->occupied_octrees.push_back(tree_occupied);
+        this->occupied_leaves.push_back(tree_occupied);
+        this->block_to_leaf[temp] = make_pair(i, tree_occupied);
     }
 
 };
@@ -122,69 +130,44 @@ void WorldHandler::Update() {
 
 void WorldHandler::CollisionHandler(real deltatime) {
     vector<Contact> contact_list;
-    for(int i=0; i<blocks.size()-1; i++) {
+    /*for(int i=0; i<blocks.size()-1; i++) {
         for(int j=i+1; j<blocks.size(); j++) {
             Cube::CollisionDetect(blocks.at(i), blocks.at(j), contact_list);
         }
-    }
-
-
-    /*vector<Contact> contact_list1;
-    set<tuple<Block *, Block *>> collisions;
-    for(int i=0; i<blocks.size(); i++) {
-        vector<Octree *> neighbour_cells = this->tree->GetGridNeighbours(blocks.at(i)->position(0, 0),
-                                                                         blocks.at(i)->position(1, 0),
-                                                                         blocks.at(i)->position(2, 0));
-
-        for(int c=0; c<neighbour_cells.size(); c++) {
-            if(neighbour_cells.at(c)->block != nullptr) {
-                auto find1 = collisions.find(std::make_tuple(neighbour_cells.at(c)->block, blocks.at(i)));
-                auto find2 = collisions.find(std::make_tuple(blocks.at(i), neighbour_cells.at(c)->block));
-
-                if(find1 == collisions.end() && find2 == collisions.end()) {
-                    int before_count = contact_list1.size();
-                    if(blocks.at(i) == neighbour_cells.at(c)->block) {
-                        cout << "damn!!!!" << endl; // This line of code should not even be occuring
-                        continue;
-                    }
-                    Cube::CollisionDetect(blocks.at(i), neighbour_cells.at(c)->block, contact_list1);
-                    if(contact_list1.size() > before_count) {
-                        collisions.insert(std::make_tuple(neighbour_cells.at(c)->block, blocks.at(i)));
-                    }
-                }
-            }
-        }
     }*/
 
-    cout << "came here" << endl;
     vector<Contact> contact_list1;
+    set<tuple<Block *, Block *>> s;
     for(int i=0; i<this->blocks.size(); i++) {
         auto x = this->blocks.at(i)->position(0, 0);
         auto y = this->blocks.at(i)->position(1, 0);
         auto z = this->blocks.at(i)->position(2, 0);
         Octree *t = this->tree->GetGridAtPos(x, y, z);
-        cout << "before map" << endl;
         vector<Octree *> neighbours = this->tree->grid_elements_neighbours[t];
-        cout << "cam asdfasdf" << endl;
+
         for(int j=0; j<neighbours.size(); j++) {
-            cout << "in j" << endl;
-            for(int k=0; k<neighbours.at(j)->blocks_at_leaf.size(); k++) {
-                Cube::CollisionDetect(blocks.at(i),
-                                      neighbours.at(j)->blocks_at_leaf.at(k),
-                                      contact_list1);
-                cout << "deffo here" << endl;
+            for(auto const& imap: neighbours.at(j)->blocks_at_leaf) {
+
+                auto f1 = s.find(make_tuple(imap.second, blocks.at(i)));
+                auto f2 = s.find(make_tuple(blocks.at(i), imap.second));
+
+                if(f1 == s.end() && f2 == s.end()) {
+                    Cube::CollisionDetect(blocks.at(i),
+                                          imap.second,
+                                          contact_list1);
+                    s.insert(make_tuple(blocks.at(i),imap.second));
+                }
             }
         }
     }
-    cout << "came here2" << endl;
 
     cout << contact_list.size() << " " << contact_list1.size() << endl;
 
 
-    for(int i=0; i<contact_list.size(); i++) {
-        Cube::CollisionResolution(contact_list.at(i));
+    for(int i=0; i<contact_list1.size(); i++) {
+        Cube::CollisionResolution(contact_list1.at(i));
     }
-    PassBlockFlares(contact_list, deltatime);
+    PassBlockFlares(contact_list1, deltatime);
     for(int i=0; i<this->blocks.size(); i++) {
         Cube::CollisionBoundary(this->blocks.at(i), this->min_coord, this->max_coord, this->min_coord, this->max_coord,
                                 this->min_coord, this->max_coord);

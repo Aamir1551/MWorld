@@ -161,7 +161,7 @@ bool Octree::LeafsAreNull() {
     } else {
         bool cond;
         for(int i=0; i<this->children.size(); i++) {
-            cond = this->children.at(i)->LeafsAreNull();
+            cond &= this->children.at(i)->LeafsAreNull();
             if(!cond) {
                 return false;
             }

@@ -42,8 +42,9 @@ public:
     real cube_length;
     real min_coord;
     real max_coord;
+    map<Block*, pair<int, Octree *>> block_to_leaf;
 
-    vector<Octree *> occupied_octrees;
+    vector<Octree *> occupied_leaves;
 
     enum BlockTypes {IBlockType, MBlockType, EBlockType, ZBlockType};
 
