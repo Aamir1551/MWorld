@@ -36,11 +36,11 @@ int main()
     camera.camera_pos = glm::vec3(0, 0, 150);
     BlockRenderer::InitialiseBlockRenderer(&camera, cube_length, vao, vbo, ebo, world_properties);
 
-    int num_blocks_same = 3;
-    //WorldHandler world = WorldHandler(num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same);
+    int num_blocks_same = 50;
+    WorldHandler world = WorldHandler(num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same);
     //WorldHandler world = WorldHandler(0, 0, 0, 0, 0, 0);
     //WorldHandler world = WorldHandler(0, 0, 2, 0, 0, 0);
-    WorldHandler world = WorldHandler(0, 0, 120, 0, 0, 0);
+    //WorldHandler world = WorldHandler(0, 0, 120, 0, 0, 0);
 
     glBindVertexArray(vao);
     glEnable(GL_DEPTH_TEST);
