@@ -9,25 +9,26 @@ using namespace blocks;
 using namespace settings;
 
 
-void Octree::AddBlock(Block *b){
-    if(!this->is_leaf) {
-        auto t0 = b->position(0, 0) > avg_x;
-        auto t1 = (b->position(1, 0) > avg_y);
-        auto t2 = (b->position(2, 0) > avg_z);
-        this->children[t0 + t1 + t2]->AddBlock(b);
+Octree* Octree::AddBlock(Block *b, int id){
+    if(this->is_leaf) {
+        this->blocks_at_leaf[id] = b;
+        return this;
     } else {
-        this->block = b;
+        auto t0 = b->position(0, 0) > avg_x;
+        auto t1 = b->position(1, 0) > avg_y;
+        auto t2 = b->position(2, 0) > avg_z;
+        return this->children[t0 + t1 * 2 + t2 * 4]->AddBlock(b);
     }
 }
 
-void Octree::RemoveBlock(Block *b) {
+void Octree::RemoveBlock(Block *b, int id) {
     if(!this->is_leaf) {
         auto t0 = b->position(0, 0) > avg_x;
         auto t1 = b->position(1, 0) > avg_y;
         auto t2 = b->position(2, 0) > avg_z;
-        this->children[t0 + t1 * 2 + t2 * 4]->RemoveBlock(b);
+        this->children[t0 + t1 * 2 + t2 * 4]->RemoveBlock(b, id);
     } else {
-        this->block = nullptr;
+        this->blocks_at_leaf.erase(id);
     }
 }
 
@@ -41,7 +42,7 @@ Octree::Octree(int grid_size, real min_x, real  max_x, real min_y, real max_y, r
     avg_y = (min_y + max_y) / 2;
     avg_z = (min_z + max_z) / 2;
 
-    if(this->partition_size < grid_size) {
+    if(this->partition_size <= grid_size) {
         this->is_leaf = true;
     } else {
         children[0] = new Octree(grid_size, min_x, avg_x, min_y, avg_y, min_z, avg_z);
@@ -114,4 +115,20 @@ Octree* Octree::GetGridAtPos(real x, real y, real z) {
         auto t2 = z > avg_z;
         return this->children[t0 + t1 * 2 + t2 * 4]->GetGridAtPos(x, y, z);
     }
+}
+
+bool Octree::LeafsAreNull() {
+
+    if(this->is_leaf) {
+        return this->blocks_at_leaf.size() == 0;
+    } else {
+        bool cond;
+        for(int i=0; i<this->children.size(); i++) {
+            cond = this->children.at(i)->LeafsAreNull();
+            if(!cond) {
+                return false;
+            }
+        }
+    }
+    return true;
 }

@@ -68,7 +68,7 @@ int main()
 
         world.Update();
         world.CollisionHandler(deltaTime);
-        world.AddForces(deltaTime * 1);
+        world.AddForces(deltaTime );
 
         BlockRenderer::DrawAllBlocks(&world.iblocks, &world.zblocks, &world.eblocks, &world.mblocks);
 

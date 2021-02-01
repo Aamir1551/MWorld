@@ -45,7 +45,7 @@ WorldHandler::WorldHandler(int num_i_blocks_plus, int num_i_blocks_neg, int num_
                            real min_coord, real max_coord, real cube_length) {
     srand((unsigned)time(0)); //NULL???
 
-    this->tree = new Octree(cube_length, min_coord, max_coord, min_coord, max_coord, min_coord, max_coord);
+    this->tree = new Octree(cube_length, min_coord, max_coord, min_coord, max_coord, min_coord, max_coord, true);
     this->world_size = max_coord - min_coord;
     this->max_coord = max_coord;
     this->min_coord = min_coord;
@@ -88,9 +88,7 @@ void WorldHandler::AddBlock(BlockTypes block_types, int num_blocks, bool state) 
             }
             auto temp = blocks.back();
             temp->SetLinearMomentum(linear_momentums->at(i));
-            this->tree->AddBlock(temp);
-            Octree * tree_occupied = this->tree->GetGridAtPos(temp->position(0, 0), temp->position(1, 0), temp->position(2, 0));
-            tree_occupied->block = temp;
+            Octree * tree_occupied = this->tree->AddBlock(temp, i);
             this->occupied_octrees.push_back(tree_occupied);
     }
 }
@@ -99,9 +97,15 @@ void WorldHandler::AddBlock(BlockTypes block_types, int num_blocks, bool state) 
 void WorldHandler::Update() {
 
     for(int i=0; i<this->occupied_octrees.size(); i++) {
-        this->occupied_octrees.at(i)->block = nullptr;
+        occupied_octrees.at(i)->RemoveBlock(nullptr, i);
     }
     this->occupied_octrees.clear();
+
+    // debug code
+    if(!this->tree->LeafsAreNull()) {
+        cout << "leafs are not null" << endl;
+        exit(-1);
+    }
 
     for(int i=0; i<this->blocks.size(); i++) {
         this->blocks.at(i)->Update(this->min_coord, this->max_coord, this->min_coord, this->max_coord, this->min_coord, this->max_coord);
@@ -109,8 +113,7 @@ void WorldHandler::Update() {
 
     for(int i=0; i<this->blocks.size(); i++) {
         auto temp = this->blocks.at(i);
-        Octree * tree_occupied = this->tree->GetGridAtPos(temp->position(0, 0), temp->position(1, 0), temp->position(2, 0));
-        tree_occupied->block = temp;
+        Octree * tree_occupied = this->tree->AddBlock(temp, i);
         this->occupied_octrees.push_back(tree_occupied);
     }
 
@@ -126,7 +129,7 @@ void WorldHandler::CollisionHandler(real deltatime) {
     }
 
 
-    vector<Contact> contact_list1;
+    /*vector<Contact> contact_list1;
     set<tuple<Block *, Block *>> collisions;
     for(int i=0; i<blocks.size(); i++) {
         vector<Octree *> neighbour_cells = this->tree->GetGridNeighbours(blocks.at(i)->position(0, 0),
@@ -151,7 +154,19 @@ void WorldHandler::CollisionHandler(real deltatime) {
                 }
             }
         }
+    }*/
+
+    vector<Contact> contact_list1;
+    for(int i=0; i<this->occupied_octrees.size(); i++) {
+        Octree *t = this->occupied_octrees.at(i);
+        vector<Octree *> neighbour = this->tree->grid_elements_neighbours[t];
+        for(int j=0; j<neighbour.size(); j++) {
+            if(neighbour.at(j)->block != nullptr) {
+                Cube::CollisionDetect(t->block, neighbour.at(j)->block, contact_list1);
+            }
+        }
     }
+
     cout << contact_list.size() << " " << contact_list1.size() << endl;
 
 
