@@ -10,7 +10,7 @@ using namespace settings;
 
 
 void Octree::AddBlock(Block *b){
-    if(!this->is_min) {
+    if(!this->is_leaf) {
         auto t0 = b->position(0, 0) > avg_x;
         auto t1 = (b->position(1, 0) > avg_y);
         auto t2 = (b->position(2, 0) > avg_z);
@@ -21,7 +21,7 @@ void Octree::AddBlock(Block *b){
 }
 
 void Octree::RemoveBlock(Block *b) {
-    if(!this->is_min) {
+    if(!this->is_leaf) {
         auto t0 = b->position(0, 0) > avg_x;
         auto t1 = b->position(1, 0) > avg_y;
         auto t2 = b->position(2, 0) > avg_z;
@@ -42,7 +42,7 @@ Octree::Octree(int grid_size, real min_x, real  max_x, real min_y, real max_y, r
     avg_z = (min_z + max_z) / 2;
 
     if(this->partition_size < grid_size) {
-        this->is_min = true;
+        this->is_leaf = true;
     } else {
         children[0] = new Octree(grid_size, min_x, avg_x, min_y, avg_y, min_z, avg_z);
         children[1] = new Octree(grid_size, avg_x, max_x, min_y, avg_y, min_z, avg_z);
@@ -85,19 +85,17 @@ std::vector<Octree *> Octree::GetGridNeighbours(real x, real y, real z) {
             AddGridAtPosToVec(x + this->grid_size * a, y + this->grid_size * b, z + this->grid_size * c, neighbours);
         }
     }
-
-
     return neighbours;
 }
 
 void Octree::AddGridAtPosToVec(real x, real y, real z, vector<Octree *> &octree_list) {
-    if(!this->is_min) {
+    if(this->is_leaf) {
+        octree_list.push_back(this);
+    } else {
         auto t0 = x > avg_x;
         auto t1 = y > avg_y;
         auto t2 = z > avg_z;
         this->children[t0 + t1 * 2 + t2 * 4]->AddGridAtPosToVec(x, y, z, octree_list);
-    } else {
-        octree_list.push_back(this);
     }
 }
 
@@ -108,12 +106,12 @@ Octree* Octree::GetGridAtPos(real x, real y, real z) {
         exit(-1);
     }
 
-    if(!this->is_min) {
+    if(this->is_leaf) {
+        return this;
+    } else {
         auto t0 = x > avg_x;
         auto t1 = y > avg_y;
         auto t2 = z > avg_z;
         return this->children[t0 + t1 * 2 + t2 * 4]->GetGridAtPos(x, y, z);
-    } else {
-        return this;
     }
 }

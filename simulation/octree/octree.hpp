@@ -31,7 +31,7 @@ public:
     real min_z;
     real max_z;
 
-    bool is_min = false;
+    bool is_leaf = false;
     std::map<unsigned int, Octree*> children;
 
 

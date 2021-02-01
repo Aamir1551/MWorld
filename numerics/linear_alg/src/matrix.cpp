@@ -723,14 +723,14 @@ if an element is nan, it returns 1 */
 
     void Matrix::ApplyMaxVector3(settings::real max_x, settings::real max_y, settings::real max_z) {
         this->values[0] = std::max(this->values[0], max_x);
-        this->values[0] = std::max(this->values[1], max_y);
-        this->values[0] = std::max(this->values[2], max_z);
+        this->values[1] = std::max(this->values[1], max_y);
+        this->values[2] = std::max(this->values[2], max_z);
     }
 
     void Matrix::ApplyMinVector3(settings::real min_x, settings::real min_y, settings::real min_z) {
-        this->values[0] = std::max(this->values[0], min_x);
-        this->values[0] = std::max(this->values[1], min_y);
-        this->values[0] = std::max(this->values[2], min_z);
+        this->values[0] = std::min(this->values[0], min_x);
+        this->values[1] = std::min(this->values[1], min_y);
+        this->values[2] = std::min(this->values[2], min_z);
     }
 
 } // namespace numerics
