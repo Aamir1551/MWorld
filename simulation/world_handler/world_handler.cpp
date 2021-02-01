@@ -174,9 +174,89 @@ void WorldHandler::CollisionHandler(real deltatime) {
 }
 
 void WorldHandler::AddForces(real deltatime) {
-    for(auto &block: this->blocks) {
+    /*for(auto &block: this->blocks) {
         ReactToAllBlocks(block, deltatime * 10);
+    }*/
+
+    /*deltatime *=10;
+    for(auto &x_block_counter: this->iblocks) {
+        auto x = x_block_counter->position(0, 0);
+        auto y = x_block_counter->position(1, 0);
+        auto z = x_block_counter->position(2, 0);
+        Octree *t = this->tree->GetGridAtPos(x, y, z);
+        vector<Octree *> neighbours = this->tree->grid_elements_neighbours[t];
+
+        for(int i=0; i<neighbours.size(); i++) {
+            for(auto &n : neighbours.at(i)->blocks_at_leaf) {
+
+                Matrix to_cube = x_block_counter->position - n.second->position;
+                real squared_dist = Matrix::SquaredNorm(to_cube);
+                if(squared_dist >= 25) {
+                    n.second->React(x_block_counter, squared_dist, to_cube, deltatime);
+                }
+            }
+        }
     }
+
+
+    for(auto &x_block_counter: this->mblocks) {
+        auto x = x_block_counter->position(0, 0);
+        auto y = x_block_counter->position(1, 0);
+        auto z = x_block_counter->position(2, 0);
+        Octree *t = this->tree->GetGridAtPos(x, y, z);
+        vector<Octree *> neighbours = this->tree->grid_elements_neighbours[t];
+
+        for(int i=0; i<neighbours.size(); i++) {
+            for(auto &n : neighbours.at(i)->blocks_at_leaf) {
+
+                Matrix to_cube = x_block_counter->position - n.second->position;
+                real squared_dist = Matrix::SquaredNorm(to_cube);
+                if(squared_dist >= 25) {
+                    n.second->React(x_block_counter, squared_dist, to_cube, deltatime);
+                }
+            }
+        }
+    }
+
+
+    for(auto &x_block_counter: this->zblocks) {
+        auto x = x_block_counter->position(0, 0);
+        auto y = x_block_counter->position(1, 0);
+        auto z = x_block_counter->position(2, 0);
+        Octree *t = this->tree->GetGridAtPos(x, y, z);
+        vector<Octree *> neighbours = this->tree->grid_elements_neighbours[t];
+
+        for(int i=0; i<neighbours.size(); i++) {
+            for(auto &n : neighbours.at(i)->blocks_at_leaf) {
+
+                Matrix to_cube = x_block_counter->position - n.second->position;
+                real squared_dist = Matrix::SquaredNorm(to_cube);
+                if(squared_dist >= 25) {
+                    n.second->React(x_block_counter, squared_dist, to_cube, deltatime);
+                }
+            }
+        }
+    }
+
+    for(auto &x_block_counter: this->eblocks) {
+        auto x = x_block_counter->position(0, 0);
+        auto y = x_block_counter->position(1, 0);
+        auto z = x_block_counter->position(2, 0);
+        Octree *t = this->tree->GetGridAtPos(x, y, z);
+        vector<Octree *> neighbours = this->tree->grid_elements_neighbours[t];
+
+        for(int i=0; i<neighbours.size(); i++) {
+            for(auto &n : neighbours.at(i)->blocks_at_leaf) {
+
+                Matrix to_cube = x_block_counter->position - n.second->position;
+                real squared_dist = Matrix::SquaredNorm(to_cube);
+                if(squared_dist >= 25) {
+                    n.second->React(x_block_counter, squared_dist, to_cube, deltatime);
+                }
+            }
+        }
+    } */
+
 }
 
 void WorldHandler::ReactToAllBlocks(Block *block, real deltatime) {

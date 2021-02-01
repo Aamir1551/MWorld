@@ -74,16 +74,6 @@ Octree::Octree(int grid_size, real min_x, real  max_x, real min_y, real max_y, r
             partition_min_z /= 2;
         };
 
-
-        /*for (real i = min_x + partition_min_x / 2; i < max_x; i += partition_min_x) {
-            for (real j = min_y + partition_min_y / 2; j < max_y; j += partition_min_y) {
-                for (real k = min_z + partition_min_z / 2; k < max_z; k += partition_min_z) {
-                    Octree *octree_pos = GetGridAtPos(i, j, k);
-                    this->grid_elements_neighbours[octree_pos] = GetGridNeighbours(i, j, k);
-                }
-            }
-        }*/
-
         real i=min_x + partition_min_x / 2;
         while (i < max_x) {
             real j = min_y + partition_min_y / 2;
