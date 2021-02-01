@@ -140,8 +140,6 @@ public:
         //Matrix r = ConvertToCubeCoordinates(force_world_cooridinates - this->position);
         Matrix r = force_position_world_cooridinates - this->position;
 
-        // Torque is calculated via Matrix::VectorProduct(force_cube_coordinates, r) * dt
-
         momentum += force_direction * dt;
         angular_momentum += Matrix::VectorProduct(r, force_direction_cube_coordinates) * dt;
     }

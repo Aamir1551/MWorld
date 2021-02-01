@@ -156,16 +156,27 @@ void WorldHandler::CollisionHandler(real deltatime) {
         }
     }*/
 
+    cout << "came here" << endl;
     vector<Contact> contact_list1;
-    for(int i=0; i<this->occupied_octrees.size(); i++) {
-        Octree *t = this->occupied_octrees.at(i);
-        vector<Octree *> neighbour = this->tree->grid_elements_neighbours[t];
-        for(int j=0; j<neighbour.size(); j++) {
-            if(neighbour.at(j)->block != nullptr) {
-                Cube::CollisionDetect(t->block, neighbour.at(j)->block, contact_list1);
+    for(int i=0; i<this->blocks.size(); i++) {
+        auto x = this->blocks.at(i)->position(0, 0);
+        auto y = this->blocks.at(i)->position(1, 0);
+        auto z = this->blocks.at(i)->position(2, 0);
+        Octree *t = this->tree->GetGridAtPos(x, y, z);
+        cout << "before map" << endl;
+        vector<Octree *> neighbours = this->tree->grid_elements_neighbours[t];
+        cout << "cam asdfasdf" << endl;
+        for(int j=0; j<neighbours.size(); j++) {
+            cout << "in j" << endl;
+            for(int k=0; k<neighbours.at(j)->blocks_at_leaf.size(); k++) {
+                Cube::CollisionDetect(blocks.at(i),
+                                      neighbours.at(j)->blocks_at_leaf.at(k),
+                                      contact_list1);
+                cout << "deffo here" << endl;
             }
         }
     }
+    cout << "came here2" << endl;
 
     cout << contact_list.size() << " " << contact_list1.size() << endl;
 

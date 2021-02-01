@@ -17,7 +17,7 @@ Octree* Octree::AddBlock(Block *b, int id){
         auto t0 = b->position(0, 0) > avg_x;
         auto t1 = b->position(1, 0) > avg_y;
         auto t2 = b->position(2, 0) > avg_z;
-        return this->children[t0 + t1 * 2 + t2 * 4]->AddBlock(b);
+        return this->children[t0 + t1 * 2 + t2 * 4]->AddBlock(b, id);
     }
 }
 
@@ -32,8 +32,7 @@ void Octree::RemoveBlock(Block *b, int id) {
     }
 }
 
-Octree::Octree(int grid_size, real min_x, real  max_x, real min_y, real max_y, real min_z, real max_z, bool initialise) : max_x(max_x), min_x(min_x), min_y(min_y), max_y(max_y), min_z(min_z), max_z(max_z)
-{
+Octree::Octree(int grid_size, real min_x, real  max_x, real min_y, real max_y, real min_z, real max_z, bool initialise) : max_x(max_x), min_x(min_x), min_y(min_y), max_y(max_y), min_z(min_z), max_z(max_z) {
 
     this->partition_size = std::min(max_x - min_x, std::min(max_y - min_y, max_z - min_z));
     this->grid_size = grid_size;
@@ -42,9 +41,10 @@ Octree::Octree(int grid_size, real min_x, real  max_x, real min_y, real max_y, r
     avg_y = (min_y + max_y) / 2;
     avg_z = (min_z + max_z) / 2;
 
-    if(this->partition_size <= grid_size) {
+    if (this->partition_size <= grid_size) {
         this->is_leaf = true;
     } else {
+        this->is_leaf = false;
         children[0] = new Octree(grid_size, min_x, avg_x, min_y, avg_y, min_z, avg_z);
         children[1] = new Octree(grid_size, avg_x, max_x, min_y, avg_y, min_z, avg_z);
         children[2] = new Octree(grid_size, min_x, avg_x, avg_y, max_y, min_z, avg_z);
@@ -55,11 +55,29 @@ Octree::Octree(int grid_size, real min_x, real  max_x, real min_y, real max_y, r
         children[7] = new Octree(grid_size, avg_x, max_x, avg_y, max_y, avg_z, max_z);
     }
 
-    if(initialise) {
-        for(real i=min_x + grid_size / 2; i < max_x; i+=grid_size) {
-            for(real j=min_y + grid_size /2 ; j < max_y; j+=grid_size) {
-                for(real k=min_z + grid_size / 2; k < max_z; k+=grid_size) {
-                    Octree *octree_pos =  GetGridAtPos(i, j, k);
+    if (initialise) {
+        real partition_min_x = partition_size;
+        real partition_min_y = partition_size;
+        real partition_min_z = partition_size;
+
+        while (partition_min_x > (real) grid_size) {
+            partition_min_x /= 2;
+        };
+
+
+        while (partition_min_y > (real) grid_size) {
+            partition_min_y /= 2;
+        };
+
+
+        while (partition_min_z > (real) grid_size) {
+            partition_min_z /= 2;
+        };
+
+        for (real i = min_x + partition_min_x / 2; i < max_x; i += partition_min_x) {
+            for (real j = min_y + partition_min_y / 2; j < max_y; j += partition_min_y) {
+                for (real k = min_z + partition_min_z / 2; k < max_z; k += partition_min_z) {
+                    Octree *octree_pos = GetGridAtPos(i, j, k);
                     this->grid_elements_neighbours[octree_pos] = GetGridNeighbours(i, j, k);
                 }
             }
@@ -74,18 +92,37 @@ std::vector<Octree *> Octree::GetGridNeighbours(real x, real y, real z) {
         int a = (i % 3) - 1;
         int b = (((i - a)/3) % 3) - 1;
         int c = ((i - (i%9))/9) - 1;
-        if(0 < x + this->grid_size * a < this->max_x && 0 < y + this->grid_size * b < max_y && 0 < z + this->grid_size * c < max_z) {
-            AddGridAtPosToVec(x + this->grid_size * a, y + this->grid_size * b, z + this->grid_size * c, neighbours);
+
+        real vx = x + this->grid_size * a;
+        real vy = y + this->grid_size * b;
+        real vz = z + this->grid_size * c;
+
+        if(min_x < vx && vx < this->max_x && min_y < vy && vy < max_y && min_z < vz && vz < max_z) {
+            real p1 = x + this->grid_size * a;
+            real p2 = y + this->grid_size * b;
+            real p3 = z + this->grid_size * c;
+            AddGridAtPosToVec(p1, p2, p3, neighbours);
         }
     }
+
     for(int i=14; i<27; i++) {
         int a = (i % 3) - 1;
         int b = (((i - a)/3) % 3) - 1;
         int c = ((i - (i%9))/9) - 1;
-        if(0 < x + this->grid_size * a < this->max_x && 0 < y + this->grid_size * b < max_y && 0 < z + this->grid_size * c < max_z) {
-            AddGridAtPosToVec(x + this->grid_size * a, y + this->grid_size * b, z + this->grid_size * c, neighbours);
+
+        real vx = x + this->grid_size * a;
+        real vy = y + this->grid_size * b;
+        real vz = z + this->grid_size * c;
+
+        if(min_x < vx && vx < this->max_x && min_y < vy && vy < max_y && min_z < vz && vz < max_z) {
+            real p1 = x + this->grid_size * a;
+            real p2 = y + this->grid_size * b;
+            real p3 = z + this->grid_size * c;
+            AddGridAtPosToVec(p1, p2, p3, neighbours);
         }
     }
+
+
     return neighbours;
 }
 
