@@ -106,9 +106,7 @@ std::vector<Octree *> Octree::GetGridNeighbours(real x, real y, real z) {
     vector<Octree *> neighbours;
 
 
-
-
-    for(int i=0; i<243; i++) {
+    for(int i=0; i<125; i++) {
         int a = (i % 5) - 2; // shifts the values between {-1, 0, 1} // -2, -1, 0, 1, 2
         int b = (((i - a)/5) % 5) - 2;
         int c = ((i - (i%25))/25) - 2;

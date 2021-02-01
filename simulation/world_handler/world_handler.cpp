@@ -97,17 +97,17 @@ void WorldHandler::AddBlock(BlockTypes block_types, int num_blocks, bool state) 
 
 void WorldHandler::Update() {
 
-    for(auto const&imap : this->block_to_leaf) {
+    /*for(auto const&imap : this->block_to_leaf) {
         imap.second.second->RemoveBlock(imap.first, imap.second.first);
+    }*/
+
+    for(auto const&leaf : this->occupied_leaves) {
+        leaf->blocks_at_leaf.clear();
     }
+
     this->occupied_leaves.clear();
     this->block_to_leaf.clear();
 
-    // debug code
-    if(!this->tree->LeafsAreNull()) {
-        cout << "leafs are not null" << endl;
-        exit(-1);
-    }
     for(int i=0; i<this->blocks.size(); i++) {
         this->blocks.at(i)->Update(this->min_coord, this->max_coord, this->min_coord, this->max_coord, this->min_coord, this->max_coord);
     }
@@ -158,7 +158,11 @@ void WorldHandler::CollisionHandler(real deltatime) {
         }
     }
 
-    cout << contact_list.size() << " " << contact_list1.size() << endl;
+    //cout << contact_list.size() << " " << contact_list1.size() << endl;
+    if(contact_list.size() != contact_list1.size()) {
+        cout << "not working" << contact_list.size() << " " <<contact_list1.size() << endl;
+    }
+
 
 
     for(int i=0; i<contact_list1.size(); i++) {
