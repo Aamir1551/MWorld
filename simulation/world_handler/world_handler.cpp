@@ -97,13 +97,8 @@ void WorldHandler::AddBlock(BlockTypes block_types, int num_blocks, bool state) 
 
 void WorldHandler::Update() {
 
-    /*for(int i=0; i<this->occupied_leaves.size(); i++) {
-        occupied_leaves.at(i)->RemoveBlock(nullptr, i);
-    }*/
-
-
     for(auto const&imap : this->block_to_leaf) {
-        imap.second.second->RemoveBlock(nullptr, imap.second.first);
+        imap.second.second->RemoveBlock(imap.first, imap.second.first);
     }
     this->occupied_leaves.clear();
     this->block_to_leaf.clear();
@@ -113,7 +108,6 @@ void WorldHandler::Update() {
         cout << "leafs are not null" << endl;
         exit(-1);
     }
-
     for(int i=0; i<this->blocks.size(); i++) {
         this->blocks.at(i)->Update(this->min_coord, this->max_coord, this->min_coord, this->max_coord, this->min_coord, this->max_coord);
     }
@@ -130,11 +124,11 @@ void WorldHandler::Update() {
 
 void WorldHandler::CollisionHandler(real deltatime) {
     vector<Contact> contact_list;
-    /*for(int i=0; i<blocks.size()-1; i++) {
+    for(int i=0; i<blocks.size()-1; i++) {
         for(int j=i+1; j<blocks.size(); j++) {
             Cube::CollisionDetect(blocks.at(i), blocks.at(j), contact_list);
         }
-    }*/
+    }
 
     vector<Contact> contact_list1;
     set<tuple<Block *, Block *>> s;
@@ -152,6 +146,9 @@ void WorldHandler::CollisionHandler(real deltatime) {
                 auto f2 = s.find(make_tuple(blocks.at(i), imap.second));
 
                 if(f1 == s.end() && f2 == s.end()) {
+                    if(blocks.at(i) == imap.second) {
+                        continue;
+                    }
                     Cube::CollisionDetect(blocks.at(i),
                                           imap.second,
                                           contact_list1);

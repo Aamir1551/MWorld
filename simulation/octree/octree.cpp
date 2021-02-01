@@ -74,13 +74,29 @@ Octree::Octree(int grid_size, real min_x, real  max_x, real min_y, real max_y, r
             partition_min_z /= 2;
         };
 
-        for (real i = min_x + partition_min_x / 2; i < max_x; i += partition_min_x) {
+
+        /*for (real i = min_x + partition_min_x / 2; i < max_x; i += partition_min_x) {
             for (real j = min_y + partition_min_y / 2; j < max_y; j += partition_min_y) {
                 for (real k = min_z + partition_min_z / 2; k < max_z; k += partition_min_z) {
                     Octree *octree_pos = GetGridAtPos(i, j, k);
                     this->grid_elements_neighbours[octree_pos] = GetGridNeighbours(i, j, k);
                 }
             }
+        }*/
+
+        real i=min_x + partition_min_x / 2;
+        while (i < max_x) {
+            real j = min_y + partition_min_y / 2;
+            while (j < max_y) {
+                real k = min_z + partition_min_z / 2;
+                while (k < max_z) {
+                    Octree *octree_pos = GetGridAtPos(i, j, k);
+                    this->grid_elements_neighbours[octree_pos] = GetGridNeighbours(i, j, k);
+                    k += partition_min_z;
+                }
+                j += partition_min_y;
+            }
+            i += partition_min_x;
         }
     }
 }
@@ -88,41 +104,40 @@ Octree::Octree(int grid_size, real min_x, real  max_x, real min_y, real max_y, r
 
 std::vector<Octree *> Octree::GetGridNeighbours(real x, real y, real z) {
     vector<Octree *> neighbours;
-    for(int i=0; i<13; i++) {
-        int a = (i % 3) - 1;
-        int b = (((i - a)/3) % 3) - 1;
-        int c = ((i - (i%9))/9) - 1;
 
-        real vx = x + this->grid_size * a;
-        real vy = y + this->grid_size * b;
-        real vz = z + this->grid_size * c;
+
+
+
+    for(int i=0; i<243; i++) {
+        int a = (i % 5) - 2; // shifts the values between {-1, 0, 1} // -2, -1, 0, 1, 2
+        int b = (((i - a)/5) % 5) - 2;
+        int c = ((i - (i%25))/25) - 2;
+
+        real partition_min_x = partition_size;
+        real partition_min_y = partition_size;
+        real partition_min_z = partition_size;
+
+        while (partition_min_x > (real) grid_size) {
+            partition_min_x /= 2;
+        };
+
+
+        while (partition_min_y > (real) grid_size) {
+            partition_min_y /= 2;
+        };
+
+        while (partition_min_z > (real) grid_size) {
+            partition_min_z /= 2;
+        };
+
+        real vx = x + partition_min_x * a;
+        real vy = y + partition_min_y * b;
+        real vz = z + partition_min_z * c;
 
         if(min_x < vx && vx < this->max_x && min_y < vy && vy < max_y && min_z < vz && vz < max_z) {
-            real p1 = x + this->grid_size * a;
-            real p2 = y + this->grid_size * b;
-            real p3 = z + this->grid_size * c;
-            AddGridAtPosToVec(p1, p2, p3, neighbours);
+            AddGridAtPosToVec(vx, vy, vz, neighbours);
         }
     }
-
-    for(int i=14; i<27; i++) {
-        int a = (i % 3) - 1;
-        int b = (((i - a)/3) % 3) - 1;
-        int c = ((i - (i%9))/9) - 1;
-
-        real vx = x + this->grid_size * a;
-        real vy = y + this->grid_size * b;
-        real vz = z + this->grid_size * c;
-
-        if(min_x < vx && vx < this->max_x && min_y < vy && vy < max_y && min_z < vz && vz < max_z) {
-            real p1 = x + this->grid_size * a;
-            real p2 = y + this->grid_size * b;
-            real p3 = z + this->grid_size * c;
-            AddGridAtPosToVec(p1, p2, p3, neighbours);
-        }
-    }
-
-
     return neighbours;
 }
 
@@ -140,6 +155,7 @@ void Octree::AddGridAtPosToVec(real x, real y, real z, vector<Octree *> &octree_
 Octree* Octree::GetGridAtPos(real x, real y, real z) {
 
     if(x > this->max_x || y > this->max_y || z > this->max_z) {
+        cout << x << " " << y  << " " << z;
         cout << "error" << endl;
         exit(-1);
     }
@@ -159,7 +175,7 @@ bool Octree::LeafsAreNull() {
     if(this->is_leaf) {
         return this->blocks_at_leaf.size() == 0;
     } else {
-        bool cond;
+        bool cond = true;
         for(int i=0; i<this->children.size(); i++) {
             cond &= this->children.at(i)->LeafsAreNull();
             if(!cond) {
