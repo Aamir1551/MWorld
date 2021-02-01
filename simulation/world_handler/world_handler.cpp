@@ -97,10 +97,6 @@ void WorldHandler::AddBlock(BlockTypes block_types, int num_blocks, bool state) 
 
 void WorldHandler::Update() {
 
-    /*for(auto const&imap : this->block_to_leaf) {
-        imap.second.second->RemoveBlock(imap.first, imap.second.first);
-    }*/
-
     for(auto const&leaf : this->occupied_leaves) {
         leaf->blocks_at_leaf.clear();
     }
@@ -124,11 +120,11 @@ void WorldHandler::Update() {
 
 void WorldHandler::CollisionHandler(real deltatime) {
     vector<Contact> contact_list;
-    for(int i=0; i<blocks.size()-1; i++) {
+    /*for(int i=0; i<blocks.size()-1; i++) {
         for(int j=i+1; j<blocks.size(); j++) {
             Cube::CollisionDetect(blocks.at(i), blocks.at(j), contact_list);
         }
-    }
+    }*/
 
     vector<Contact> contact_list1;
     set<tuple<Block *, Block *>> s;
@@ -159,9 +155,9 @@ void WorldHandler::CollisionHandler(real deltatime) {
     }
 
     //cout << contact_list.size() << " " << contact_list1.size() << endl;
-    if(contact_list.size() != contact_list1.size()) {
+    /*if(contact_list.size() != contact_list1.size()) {
         cout << "not working" << contact_list.size() << " " <<contact_list1.size() << endl;
-    }
+    }*/
 
 
 
