@@ -11,7 +11,7 @@ using namespace std;
 
 namespace blocks {
 
-        void Cube::Update() {
+        void Cube::Update(real min_x, real max_x, real min_y, real max_y, real min_z, real max_z) {
 
             /*
             Equations of motion being used are:
@@ -48,6 +48,8 @@ namespace blocks {
             Quaternion spin = q * orientation;
 
             this->position += linear_velocity;
+            this->position.ApplyMinVector3(max_x, max_y, max_z);
+            this->position.ApplyMaxVector3(min_x, min_y, min_z);
             this->orientation += spin;
             this->orientation.Normalise();
         }
@@ -172,4 +174,29 @@ namespace blocks {
 
 
         }
-    };
+
+    void Cube::CollisionBoundary(Block *c1, real min_boundary_x, real max_boundary_x, real min_boundary_y,
+                                       real max_boundary_y, real min_boundary_z, real max_boundary_z) {
+        real x = c1->position(0, 0);
+        real y = c1->position(1, 0);
+        real z = c1->position(2, 0);
+        real vx = c1->angular_velocity(0, 0);
+        real vy = c1->angular_velocity(1, 0);
+        real vz = c1->angular_velocity(2, 0);
+        if(x < min_boundary_x) {
+            c1->linear_velocity(0, 0, abs(vx));
+        } else if(x > max_boundary_x) {
+            c1->linear_velocity(0, 0, -abs(vx));
+        }
+        if(y < min_boundary_y) {
+            c1->linear_velocity(1, 0, abs(vy));
+        } else if(y > max_boundary_y) {
+            c1->linear_velocity(1, 0, -abs(vy));
+        }
+        if(z < min_boundary_z) {
+            c1->linear_velocity(2, 0, abs(vz));
+        } else if(y > max_boundary_y) {
+            c1->linear_velocity(2, 0, -abs(vz));
+        }
+    }
+};

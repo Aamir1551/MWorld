@@ -63,7 +63,7 @@ namespace blocks {
          * @brief Updates the state of the cube
          *
          */
-        void Update();
+        void Update(real min_x, real max_x, real min_y, real max_y, real min_z, real max_z);
 
 
         /**
@@ -99,6 +99,11 @@ namespace blocks {
         Matrix GetOrientationMatrix() const;
 
         static void CollisionDetect(Block *c1, Block *c2, vector<Contact> &contact_list);
+
+        static void CollisionBoundary(Block *c1, real min_boundary_x, real max_boundary_x,
+                                            real min_boundary_y, real max_boundary_y ,
+                                            real min_boundary_z, real max_boundary_z);
+
         void static CollisionResolution(Contact &contact);
     };
 };

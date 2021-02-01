@@ -102,6 +102,12 @@ void Octree::AddGridAtPosToVec(real x, real y, real z, vector<Octree *> &octree_
 }
 
 Octree* Octree::GetGridAtPos(real x, real y, real z) {
+
+    if(x > this->max_x || y > this->max_y || z > this->max_z) {
+        cout << "error" << endl;
+        exit(-1);
+    }
+
     if(!this->is_min) {
         auto t0 = x > avg_x;
         auto t1 = y > avg_y;

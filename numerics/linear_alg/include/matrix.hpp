@@ -507,6 +507,21 @@ namespace numerics
          * @param index 
          */
         void RemoveRow(int index);
+
+        /**
+         * @brief Applies the max function at each element in the 3d vector which each of the max elements given
+         *
+         * @param index
+         */
+        void ApplyMaxVector3(settings::real max_x, settings::real max_y, settings::real max_z);
+
+        /**
+         * @brief Applies the min function at each element in the 3d vector which each of the min elements given
+         *
+         * @param index
+         */
+        void ApplyMinVector3(settings::real min_x, settings::real min_y, settings::real min_z);
+
     };
 } // namespace numerics
 #endif

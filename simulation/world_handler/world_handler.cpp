@@ -104,7 +104,7 @@ void WorldHandler::Update() {
     this->occupied_octrees.clear();
 
     for(int i=0; i<this->blocks.size(); i++) {
-        this->blocks.at(i)->Update();
+        this->blocks.at(i)->Update(this->min_coord, this->max_coord, this->min_coord, this->max_coord, this->min_coord, this->max_coord);
     }
 
     for(int i=0; i<this->blocks.size(); i++) {
@@ -159,6 +159,10 @@ void WorldHandler::CollisionHandler(real deltatime) {
         Cube::CollisionResolution(contact_list.at(i));
     }
     PassBlockFlares(contact_list, deltatime);
+    for(int i=0; i<this->blocks.size(); i++) {
+        Cube::CollisionBoundary(this->blocks.at(i), this->min_coord, this->max_coord, this->min_coord, this->max_coord,
+                                this->min_coord, this->max_coord);
+    }
     SpinWorldBlocks();
     IncFlareValuesAndReset();
 }
