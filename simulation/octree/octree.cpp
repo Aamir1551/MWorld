@@ -236,10 +236,10 @@ std::vector<Octree *> Octree::GetGridNeighbours(real x, real y, real z) {
     vector<Octree *> neighbours;
 
 
-    for(int i=0; i<125; i++) {
-        int a = (i % 5) - 2; // -2, -1, 0, 1, 2
-        int b = (((i - (i % 5))/5) % 5) - 2;
-        int c = ((i - (i%25))/25) - 2;
+    for(int i=0; i<27; i++) {
+        int a = (i % 3) - 1; // -2, -1, 0, 1, 2
+        int b = (((i - (i % 3))/3) % 3) - 1;
+        int c = ((i - (i%9))/9) - 1;
 
         real partition_min_x = partition_size;
         real partition_min_y = partition_size;

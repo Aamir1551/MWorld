@@ -46,7 +46,7 @@ WorldHandler::WorldHandler(int num_i_blocks_plus, int num_i_blocks_neg, int num_
     srand((unsigned)time(0)); //NULL???
 
     cout << "Quad tree is Being initialised" << endl;
-    this->tree = new Octree(cube_length, min_coord, max_coord, min_coord, max_coord, min_coord, max_coord, true);
+    this->tree = new Octree(cube_length * 2, min_coord, max_coord, min_coord, max_coord, min_coord, max_coord, true);
     cout << "Quad tree initialised" << endl;
     this->world_size = max_coord - min_coord;
     this->max_coord = max_coord;
