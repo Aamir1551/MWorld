@@ -70,27 +70,32 @@ void WorldHandler::GetProperties(int num_blocks, std::vector<Matrix> *&positions
 void WorldHandler::AddBlock(BlockTypes block_types, int num_blocks, bool state) {
         std::vector<Matrix> *positions, *linear_momentums;
         GetProperties(num_blocks, positions, linear_momentums, this->min_coord, this->max_coord);
+        Octree * tree_occupied;
         for(int i=0; i<num_blocks; i++) {
             if(block_types == IBlockType) {
                 auto *new_block = new IBlock(positions->at(i), Quaternion(1.0, 0.0, 0.0, 0.0)  ,state);
                 iblocks.push_back(new_block);
+                tree_occupied = this->tree->AddIBlock(new_block, i);
                 blocks.push_back(new_block);
             } else if(block_types == ZBlockType) {
                 auto *new_block = new ZBlock(positions->at(i), Quaternion(1.0, 0.0, 0.0, 0.0));
                 zblocks.push_back(new_block);
+                tree_occupied = this->tree->AddZBlock(new_block, i);
                 blocks.push_back(new_block);
             } else if(block_types == EBlockType) {
                 auto new_block = new EBlock(positions->at(i), Quaternion(1.0, 0.0, 0.0, 0.0), state);
                 eblocks.push_back(new_block);
+                tree_occupied = this->tree->AddEBlock(new_block, i);
                 blocks.push_back(new_block);
             } else {
                 auto new_block =  new MBlock(positions->at(i), Quaternion(1.0, 0.0, 0.0, 0.0));
                 mblocks.push_back(new_block);
+                tree_occupied = this->tree->AddMBlock(new_block, i);
                 blocks.push_back(new_block);
             }
             auto temp = blocks.back();
             temp->SetLinearMomentum(linear_momentums->at(i));
-            Octree * tree_occupied = this->tree->AddBlock(temp, i);
+            //Octree * tree_occupied = this->tree->AddBlock(temp, i);
             this->occupied_leaves.push_back(tree_occupied);
             this->block_to_leaf[temp] = make_pair(i, tree_occupied);
     }
@@ -99,24 +104,54 @@ void WorldHandler::AddBlock(BlockTypes block_types, int num_blocks, bool state) 
 
 void WorldHandler::Update() {
 
-    for(auto const&leaf : this->occupied_leaves) {
+    /*for(auto const&leaf : this->occupied_leaves) {
         leaf->blocks_at_leaf.clear();
-    }
+    }*/
 
-    this->occupied_leaves.clear();
-    this->block_to_leaf.clear();
+    //this->occupied_leaves.clear();
 
     for(int i=0; i<this->blocks.size(); i++) {
         this->blocks.at(i)->Update(this->min_coord, this->max_coord, this->min_coord, this->max_coord, this->min_coord, this->max_coord);
     }
 
-    for(int i=0; i<this->blocks.size(); i++) {
+    /*for(int i=0; i<this->blocks.size(); i++) {
         auto temp = this->blocks.at(i);
-        Octree * tree_occupied = this->tree->AddBlock(temp, i);
+        Octree *tree_occupied = this->tree->AddBlock(temp, i);
         this->occupied_leaves.push_back(tree_occupied);
-        this->block_to_leaf[temp] = make_pair(i, tree_occupied);
+        //this->block_to_leaf[temp] = make_pair(i, tree_occupied);
+    }*/
+
+    for(auto const &leaf_i_block: this->iblocks) {
+        Octree *leaf = block_to_leaf[leaf_i_block].second;
+        if(!Octree::BlockInCorrectTree(leaf, leaf_i_block)) {
+            leaf->iblocks_at_leaf.erase(block_to_leaf[leaf_i_block].first);
+            leaf->AddIBlock(leaf_i_block, block_to_leaf[leaf_i_block].first);
+        }
     }
 
+    for(auto const &leaf_z_block: this->zblocks) {
+        Octree *leaf = block_to_leaf[leaf_z_block].second;
+        if(!Octree::BlockInCorrectTree(leaf, leaf_z_block)) {
+            leaf->zblocks_at_leaf.erase(block_to_leaf[leaf_z_block].first);
+            leaf->AddZBlock(leaf_z_block, block_to_leaf[leaf_z_block].first);
+        }
+    }
+
+    for(auto const &leaf_e_block: this->eblocks) {
+        Octree *leaf = block_to_leaf[leaf_e_block].second;
+        if(!Octree::BlockInCorrectTree(leaf, leaf_e_block)) {
+            leaf->eblocks_at_leaf.erase(block_to_leaf[leaf_e_block].first);
+            leaf->AddEBlock(leaf_e_block, block_to_leaf[leaf_e_block].first);
+        }
+    }
+
+    for(auto const &leaf_m_block: this->mblocks) {
+        Octree *leaf = block_to_leaf[leaf_m_block].second;
+        if(!Octree::BlockInCorrectTree(leaf, leaf_m_block)) {
+            leaf->mblocks_at_leaf.erase(block_to_leaf[leaf_m_block].first);
+            leaf->AddMBlock(leaf_m_block, block_to_leaf[leaf_m_block].first);
+        }
+    }
 };
 
 
@@ -128,7 +163,7 @@ void WorldHandler::CollisionHandler(real deltatime) {
         }
     }*/
 
-    vector<Contact> contact_list1;
+    /*vector<Contact> contact_list1;
     set<tuple<Block *, Block *>> collisions_checked;
     for(int i=0; i<this->blocks.size(); i++) {
         auto x = this->blocks.at(i)->position(0, 0);
@@ -139,7 +174,6 @@ void WorldHandler::CollisionHandler(real deltatime) {
 
         for(int j=0; j<neighbours.size(); j++) {
             for(auto const& imap: neighbours.at(j)->blocks_at_leaf) {
-
                 auto f1 = collisions_checked.find(make_tuple(imap.second, blocks.at(i)));
                 auto f2 = collisions_checked.find(make_tuple(blocks.at(i), imap.second));
 
@@ -154,14 +188,37 @@ void WorldHandler::CollisionHandler(real deltatime) {
                 }
             }
         }
-    }
+    }*/
     //auto contact_list1 = contact_list;
 
 
-    for(int i=0; i<contact_list1.size(); i++) {
-        Cube::CollisionResolution(contact_list1.at(i));
+    set<pair<Block *, Block *>> collisions_checked;
+    for(auto const &collision_blocks : this->blocks) {
+        Octree *coll_tree = this->block_to_leaf[collision_blocks].second;
+        vector<Octree *> neighbour_nodes = this->tree->grid_elements_neighbours[coll_tree];
+
+        for(auto const &n: neighbour_nodes) {
+            for(auto const &node_in_n: n->blocks_at_leaf) {
+                auto f1 = collisions_checked.find(make_pair(node_in_n.second, collision_blocks));
+                auto f2 = collisions_checked.find(make_pair(collision_blocks, node_in_n.second));
+
+                if(f1 == collisions_checked.end() && f2 == collisions_checked.end()) {
+                    if(collision_blocks == node_in_n.second) {
+                        continue;
+                    }
+                    Cube::CollisionDetect(collision_blocks,
+                                          node_in_n.second,
+                                          contact_list);
+                    collisions_checked.insert(make_pair(collision_blocks, node_in_n.second));
+                }
+            }
+        }
     }
-    PassBlockFlares(contact_list1, deltatime);
+
+    for(int i=0; i<contact_list.size(); i++) {
+        Cube::CollisionResolution(contact_list.at(i));
+    }
+    PassBlockFlares(contact_list, deltatime);
     for(int i=0; i<this->blocks.size(); i++) {
         Cube::CollisionBoundary(this->blocks.at(i), this->min_coord, this->max_coord, this->min_coord, this->max_coord,
                                 this->min_coord, this->max_coord);

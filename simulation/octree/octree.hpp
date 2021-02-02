@@ -32,7 +32,8 @@ public:
     std::map<Octree *, vector<Octree *> > grid_elements_neighbours;
 
     real avg_x, avg_y, avg_z, min_x, max_x, min_y, max_y, min_z, max_z;
-    real com_x_i, com_y_i, com_z_i, com_x_z, com_y_z, com_z_z, com_x_m, com_y_m, com_z_m, com_x_e, com_y_e, com_z_e;
+    real sum_x_i, sum_y_i, sum_z_i, sum_x_z, sum_y_z, sum_z_z, sum_x_m, sum_y_m, sum_z_m, sum_x_e, sum_y_e, sum_z_e;
+
 
     bool is_leaf = false;
     std::map<unsigned int, Octree*> children;
