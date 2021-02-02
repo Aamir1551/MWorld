@@ -24,6 +24,7 @@ Octree* Octree::AddBlock(Block *b, int id) {
 Octree* Octree::AddIBlock(IBlock *b, int id) {
     if(this->is_leaf) {
         this->iblocks_at_leaf[id] = b;
+        this->blocks_at_leaf[id] = b;
         this->sum_x_i += b->position(0, 0);
         this->sum_y_i += b->position(1, 0);
         this->sum_z_i += b->position(2, 0);
@@ -39,6 +40,7 @@ Octree* Octree::AddIBlock(IBlock *b, int id) {
 Octree* Octree::AddMBlock(MBlock *b, int id) {
     if(this->is_leaf) {
         this->mblocks_at_leaf[id] = b;
+        this->blocks_at_leaf[id] = b;
         this->sum_x_m += b->position(0, 0);
         this->sum_y_m += b->position(1, 0);
         this->sum_z_m += b->position(2, 0);
@@ -54,6 +56,7 @@ Octree* Octree::AddMBlock(MBlock *b, int id) {
 Octree* Octree::AddEBlock(EBlock *b, int id) {
     if(this->is_leaf) {
         this->eblocks_at_leaf[id] = b;
+        this->blocks_at_leaf[id] = b;
         this->sum_x_e += b->position(0, 0);
         this->sum_y_e += b->position(1, 0);
         this->sum_z_e += b->position(2, 0);
@@ -70,6 +73,7 @@ Octree* Octree::AddEBlock(EBlock *b, int id) {
 Octree* Octree::AddZBlock(ZBlock *b, int id) {
     if(this->is_leaf) {
         this->zblocks_at_leaf[id] = b;
+        this->blocks_at_leaf[id] = b;
         this->sum_x_z += b->position(0, 0);
         this->sum_y_z += b->position(1, 0);
         this->sum_z_z += b->position(2, 0);
@@ -93,6 +97,7 @@ void Octree::RemoveIBlock(IBlock *b, int id) {
         this->sum_y_i -= b->position(1, 0);
         this->sum_z_i -= b->position(2, 0);
         this->iblocks_at_leaf.erase(id);
+        this->blocks_at_leaf.erase(id);
     }
 }
 
@@ -107,6 +112,7 @@ void Octree::RemoveEBlock(EBlock *b, int id) {
         this->sum_y_e -= b->position(1, 0);
         this->sum_z_e -= b->position(2, 0);
         this->eblocks_at_leaf.erase(id);
+        this->blocks_at_leaf.erase(id);
     }
 }
 
@@ -121,6 +127,7 @@ void Octree::RemoveZBlock(ZBlock *b, int id) {
         this->sum_y_z -= b->position(1, 0);
         this->sum_z_z -= b->position(2, 0);
         this->zblocks_at_leaf.erase(id);
+        this->blocks_at_leaf.erase(id);
     }
 }
 
@@ -135,6 +142,7 @@ void Octree::RemoveMBlock(MBlock *b, int id) {
         this->sum_y_m -= b->position(1, 0);
         this->sum_z_m -= b->position(2, 0);
         this->mblocks_at_leaf.erase(id);
+        this->blocks_at_leaf.erase(id);
     }
 }
 

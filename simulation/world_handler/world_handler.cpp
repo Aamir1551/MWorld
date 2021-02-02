@@ -125,6 +125,7 @@ void WorldHandler::Update() {
         Octree *leaf = block_to_leaf[leaf_i_block].second;
         if(!Octree::BlockInCorrectTree(leaf, leaf_i_block)) {
             leaf->iblocks_at_leaf.erase(block_to_leaf[leaf_i_block].first);
+            leaf->blocks_at_leaf.erase(block_to_leaf[leaf_i_block].first);
             leaf->AddIBlock(leaf_i_block, block_to_leaf[leaf_i_block].first);
         }
     }
@@ -133,6 +134,7 @@ void WorldHandler::Update() {
         Octree *leaf = block_to_leaf[leaf_z_block].second;
         if(!Octree::BlockInCorrectTree(leaf, leaf_z_block)) {
             leaf->zblocks_at_leaf.erase(block_to_leaf[leaf_z_block].first);
+            leaf->blocks_at_leaf.erase(block_to_leaf[leaf_z_block].first);
             leaf->AddZBlock(leaf_z_block, block_to_leaf[leaf_z_block].first);
         }
     }
@@ -141,6 +143,7 @@ void WorldHandler::Update() {
         Octree *leaf = block_to_leaf[leaf_e_block].second;
         if(!Octree::BlockInCorrectTree(leaf, leaf_e_block)) {
             leaf->eblocks_at_leaf.erase(block_to_leaf[leaf_e_block].first);
+            leaf->blocks_at_leaf.erase(block_to_leaf[leaf_e_block].first);
             leaf->AddEBlock(leaf_e_block, block_to_leaf[leaf_e_block].first);
         }
     }
@@ -149,6 +152,7 @@ void WorldHandler::Update() {
         Octree *leaf = block_to_leaf[leaf_m_block].second;
         if(!Octree::BlockInCorrectTree(leaf, leaf_m_block)) {
             leaf->mblocks_at_leaf.erase(block_to_leaf[leaf_m_block].first);
+            leaf->blocks_at_leaf.erase(block_to_leaf[leaf_m_block].first);
             leaf->AddMBlock(leaf_m_block, block_to_leaf[leaf_m_block].first);
         }
     }
@@ -196,7 +200,6 @@ void WorldHandler::CollisionHandler(real deltatime) {
     for(auto const &collision_blocks : this->blocks) {
         Octree *coll_tree = this->block_to_leaf[collision_blocks].second;
         vector<Octree *> neighbour_nodes = this->tree->grid_elements_neighbours[coll_tree];
-
         for(auto const &n: neighbour_nodes) {
             for(auto const &node_in_n: n->blocks_at_leaf) {
                 auto f1 = collisions_checked.find(make_pair(node_in_n.second, collision_blocks));
@@ -214,6 +217,8 @@ void WorldHandler::CollisionHandler(real deltatime) {
             }
         }
     }
+
+    cout << collisions_checked.size() << endl;
 
     for(int i=0; i<contact_list.size(); i++) {
         Cube::CollisionResolution(contact_list.at(i));

@@ -44,7 +44,7 @@ int main()
 
     glm::mat4 projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 400.0f);
 
-    int num_cubes = 3000;
+    int num_cubes = 5000;
     std::vector<glm::vec3> *positions = GeneratePosition(num_cubes);
     std::vector<glm::vec3> *rotations = GenerateRotationsAxis(num_cubes);
 
@@ -64,6 +64,8 @@ int main()
     float deltaTime = 0.0f; // Time between current frame and last frame
     float lastFrame = 0.0f; // Time of last frame
 
+    int frame_count = 0;
+    float prev_time = glfwGetTime();
     while (!glfwWindowShouldClose(world_properties->window))
     { // render loop -- an iteration of this main render loop is called a frame
 
@@ -95,6 +97,14 @@ int main()
 
         glfwSwapBuffers(world_properties->window);
         glfwPollEvents(); //checks if any events are triggered, and calls their respective handlers
+
+        frame_count++;
+        if(currentFrame - prev_time >= 1.0) {
+            std::cout << "FPS: " << frame_count << std::endl;
+            frame_count = 0;
+            prev_time = currentFrame;
+        }
+
     }
 
     glDeleteBuffers(1, &vao);
@@ -109,7 +119,7 @@ std::vector<glm::vec3> *GeneratePosition(int num_cubes)
 {
     srand((unsigned)time(NULL)); //NULL???
     std::vector<glm::vec3> *positions = new std::vector<glm::vec3>;
-    float world_size = 500;
+    float world_size = 100;
     float const scale = world_size / ((float)RAND_MAX / 2.0);
     auto get_coord = [scale, world_size]() -> float { return scale * (rand() - RAND_MAX / 2); };
     for (int i = 0; i < num_cubes; i++)
