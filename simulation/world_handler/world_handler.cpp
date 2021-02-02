@@ -201,6 +201,7 @@ void WorldHandler::CollisionHandler(real deltatime) {
         Octree *coll_tree = this->block_to_leaf[collision_blocks].second;
         vector<Octree *> neighbour_nodes = this->tree->grid_elements_neighbours[coll_tree];
         for(auto const &n: neighbour_nodes) {
+            cout << n->blocks_at_leaf.size() << endl;
             for(auto const &node_in_n: n->blocks_at_leaf) {
                 auto f1 = collisions_checked.find(make_pair(node_in_n.second, collision_blocks));
                 auto f2 = collisions_checked.find(make_pair(collision_blocks, node_in_n.second));

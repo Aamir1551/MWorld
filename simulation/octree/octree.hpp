@@ -23,11 +23,11 @@ public:
     real partition_size;
     int grid_size;
 
-    map<int, Block *> blocks_at_leaf;
-    map<int, IBlock *> iblocks_at_leaf;
-    map<int, ZBlock *> zblocks_at_leaf;
-    map<int, EBlock *> eblocks_at_leaf;
-    map<int, MBlock *> mblocks_at_leaf;
+    set<Block *> blocks_at_leaf;
+    set<IBlock *> iblocks_at_leaf;
+    set<ZBlock *> zblocks_at_leaf;
+    set<EBlock *> eblocks_at_leaf;
+    set<MBlock *> mblocks_at_leaf;
 
     std::map<Octree *, vector<Octree *> > grid_elements_neighbours;
 
@@ -40,22 +40,22 @@ public:
 
 
     explicit Octree(int grid_sizes, real min_x, real  max_x, real min_y, real max_y, real min_z, real max_z, bool initialise = false);
-    Octree* AddBlock(Block *b, int id);
+    Octree* AddBlock(Block *b);
 
-    Octree* AddIBlock(IBlock *b, int id);
-    Octree* AddZBlock(ZBlock *b, int id);
-    Octree* AddEBlock(EBlock *b, int id);
-    Octree* AddMBlock(MBlock *b, int id);
+    Octree* AddIBlock(IBlock *b);
+    Octree* AddZBlock(ZBlock *b);
+    Octree* AddEBlock(EBlock *b);
+    Octree* AddMBlock(MBlock *b);
 
-    void RemoveIBlock(IBlock *b, int id);
-    void RemoveZBlock(ZBlock *b, int id);
-    void RemoveEBlock(EBlock *b, int id);
-    void RemoveMBlock(MBlock *b, int id);
+    void RemoveIBlock(IBlock *b);
+    void RemoveZBlock(ZBlock *b);
+    void RemoveEBlock(EBlock *b);
+    void RemoveMBlock(MBlock *b);
 
 
     bool static BlockInCorrectTree(Octree * tree, Block *b);
 
-    void RemoveBlock(Block *b, int id);
+    void RemoveBlock(Block *b);
     std::vector<Octree *> GetGridNeighbours(real x, real y, real z);
     void AddGridAtPosToVec(real x, real y, real z, vector<Octree *> &octree_list);
     Octree* GetGridAtPos(real x, real y, real z);
