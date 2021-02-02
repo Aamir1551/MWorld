@@ -21,6 +21,100 @@ Octree* Octree::AddBlock(Block *b, int id) {
     }
 }
 
+Octree* Octree::AddIBlock(IBlock *b, int id) {
+    if(this->is_leaf) {
+        this->iblocks_at_leaf[id] = b;
+        this->com_x_i = b->position(0, 0);
+        return this;
+    } else {
+        auto t0 = b->position(0, 0) > avg_x;
+        auto t1 = b->position(1, 0) > avg_y;
+        auto t2 = b->position(2, 0) > avg_z;
+        return this->children[t0 + t1 * 2 + t2 * 4]->AddIBlock(b, id);
+    }
+}
+
+Octree* Octree::AddMBlock(MBlock *b, int id) {
+    if(this->is_leaf) {
+        this->mblocks_at_leaf[id] = b;
+        return this;
+    } else {
+        auto t0 = b->position(0, 0) > avg_x;
+        auto t1 = b->position(1, 0) > avg_y;
+        auto t2 = b->position(2, 0) > avg_z;
+        return this->children[t0 + t1 * 2 + t2 * 4]->AddMBlock(b, id);
+    }
+}
+
+Octree* Octree::AddEBlock(EBlock *b, int id) {
+    if(this->is_leaf) {
+        this->eblocks_at_leaf[id] = b;
+        return this;
+    } else {
+        auto t0 = b->position(0, 0) > avg_x;
+        auto t1 = b->position(1, 0) > avg_y;
+        auto t2 = b->position(2, 0) > avg_z;
+        return this->children[t0 + t1 * 2 + t2 * 4]->AddEBlock(b, id);
+    }
+}
+
+
+Octree* Octree::AddZBlock(ZBlock *b, int id) {
+    if(this->is_leaf) {
+        this->zblocks_at_leaf[id] = b;
+        return this;
+    } else {
+        auto t0 = b->position(0, 0) > avg_x;
+        auto t1 = b->position(1, 0) > avg_y;
+        auto t2 = b->position(2, 0) > avg_z;
+        return this->children[t0 + t1 * 2 + t2 * 4]->AddZBlock(b, id);
+    }
+}
+
+void Octree::RemoveIBlock(IBlock *b, int id) {
+    if(!this->is_leaf) {
+        auto t0 = b->position(0, 0) > avg_x;
+        auto t1 = b->position(1, 0) > avg_y;
+        auto t2 = b->position(2, 0) > avg_z;
+        this->children[t0 + t1 * 2 + t2 * 4]->RemoveIBlock(b, id);
+    } else {
+        this->iblocks_at_leaf.erase(id);
+    }
+}
+
+void Octree::RemoveEBlock(EBlock *b, int id) {
+    if(!this->is_leaf) {
+        auto t0 = b->position(0, 0) > avg_x;
+        auto t1 = b->position(1, 0) > avg_y;
+        auto t2 = b->position(2, 0) > avg_z;
+        this->children[t0 + t1 * 2 + t2 * 4]->RemoveEBlock(b, id);
+    } else {
+        this->eblocks_at_leaf.erase(id);
+    }
+}
+
+void Octree::RemoveZBlock(ZBlock *b, int id) {
+    if(!this->is_leaf) {
+        auto t0 = b->position(0, 0) > avg_x;
+        auto t1 = b->position(1, 0) > avg_y;
+        auto t2 = b->position(2, 0) > avg_z;
+        this->children[t0 + t1 * 2 + t2 * 4]->RemoveZBlock(b, id);
+    } else {
+        this->zblocks_at_leaf.erase(id);
+    }
+}
+
+void Octree::RemoveMBlock(MBlock *b, int id) {
+    if(!this->is_leaf) {
+        auto t0 = b->position(0, 0) > avg_x;
+        auto t1 = b->position(1, 0) > avg_y;
+        auto t2 = b->position(2, 0) > avg_z;
+        this->children[t0 + t1 * 2 + t2 * 4]->RemoveMBlock(b, id);
+    } else {
+        this->mblocks_at_leaf.erase(id);
+    }
+}
+
 void Octree::RemoveBlock(Block *b, int id) {
     if(!this->is_leaf) {
         auto t0 = b->position(0, 0) > avg_x;
@@ -109,7 +203,6 @@ std::vector<Octree *> Octree::GetGridNeighbours(real x, real y, real z) {
             partition_min_x /= 2;
         };
 
-
         while (partition_min_y > (real) grid_size) {
             partition_min_y /= 2;
         };
@@ -132,6 +225,7 @@ std::vector<Octree *> Octree::GetGridNeighbours(real x, real y, real z) {
 void Octree::AddGridAtPosToVec(real x, real y, real z, vector<Octree *> &octree_list) {
     if(this->is_leaf) {
         octree_list.push_back(this);
+
     } else {
         auto t0 = x > avg_x;
         auto t1 = y > avg_y;
@@ -172,4 +266,20 @@ bool Octree::LeafsAreNull() {
         }
     }
     return true;
+}
+
+bool Octree::BlockInCorrectTree(Octree *tree, Block *b) {
+
+    real x = b->position(0,0);
+    real y = b->position(1,0);
+    real z = b->position(2,0);
+    bool cond_x = tree->min_x <= x && tree->max_x >= x;
+    bool cond_y = tree->min_y <= y && tree->max_y >= y;
+    bool cond_z = tree->min_z <= z && tree->max_z >= z;
+
+    if(cond_x && cond_y && cond_z) {
+        return true;
+    }
+    return false;
+
 }
