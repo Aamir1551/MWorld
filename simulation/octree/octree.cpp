@@ -9,7 +9,7 @@ using namespace blocks;
 using namespace settings;
 
 
-Octree* Octree::AddBlock(Block *b, int id){
+Octree* Octree::AddBlock(Block *b, int id) {
     if(this->is_leaf) {
         this->blocks_at_leaf[id] = b;
         return this;
@@ -96,10 +96,10 @@ std::vector<Octree *> Octree::GetGridNeighbours(real x, real y, real z) {
     vector<Octree *> neighbours;
 
 
-    for(int i=0; i<125; i++) {
-        int a = (i % 5) - 2; // shifts the values between {-1, 0, 1} // -2, -1, 0, 1, 2
-        int b = (((i - a)/5) % 5) - 2;
-        int c = ((i - (i%25))/25) - 2;
+    for(int i=0; i<27; i++) {
+        int a = (i % 3) - 1; // shifts the values between {-1, 0, 1} // -2, -1, 0, 1, 2
+        int b = (((i - a)/3) % 3) - 1;
+        int c = ((i - (i%9))/9) - 1;
 
         real partition_min_x = partition_size;
         real partition_min_y = partition_size;

@@ -6,6 +6,11 @@
 #include <tuple>
 
 #include <block.hpp>
+#include <i_block.hpp>
+#include <m_block.hpp>
+#include <z_block.hpp>
+#include <e_block.hpp>
+
 #include <settings.hpp>
 
 using namespace settings;
@@ -19,6 +24,11 @@ public:
     int grid_size;
 
     map<int, Block *> blocks_at_leaf;
+    vector<IBlock *> iblocks_at_leaf;
+    vector<ZBlock *> zblocks_at_leaf;
+    vector<EBlock *> eblocks_at_leaf;
+    vector<MBlock *> mblocks_at_leaf;
+
     std::map<Octree *, vector<Octree *> > grid_elements_neighbours;
 
     real avg_x;

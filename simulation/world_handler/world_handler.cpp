@@ -45,7 +45,9 @@ WorldHandler::WorldHandler(int num_i_blocks_plus, int num_i_blocks_neg, int num_
                            real min_coord, real max_coord, real cube_length) {
     srand((unsigned)time(0)); //NULL???
 
+    cout << "Quad tree is Being initialised" << endl;
     this->tree = new Octree(cube_length * 2, min_coord, max_coord, min_coord, max_coord, min_coord, max_coord, true);
+    cout << "Quad tree initialised" << endl;
     this->world_size = max_coord - min_coord;
     this->max_coord = max_coord;
     this->min_coord = min_coord;
@@ -120,14 +122,14 @@ void WorldHandler::Update() {
 
 void WorldHandler::CollisionHandler(real deltatime) {
     vector<Contact> contact_list;
-    for(int i=0; i<blocks.size()-1; i++) {
+    /*for(int i=0; i<blocks.size()-1; i++) {
         for(int j=i+1; j<blocks.size(); j++) {
             Cube::CollisionDetect(blocks.at(i), blocks.at(j), contact_list);
         }
-    }
+    }*/
 
     vector<Contact> contact_list1;
-    set<tuple<Block *, Block *>> s;
+    set<tuple<Block *, Block *>> collisions_checked;
     for(int i=0; i<this->blocks.size(); i++) {
         auto x = this->blocks.at(i)->position(0, 0);
         auto y = this->blocks.at(i)->position(1, 0);
@@ -138,21 +140,23 @@ void WorldHandler::CollisionHandler(real deltatime) {
         for(int j=0; j<neighbours.size(); j++) {
             for(auto const& imap: neighbours.at(j)->blocks_at_leaf) {
 
-                auto f1 = s.find(make_tuple(imap.second, blocks.at(i)));
-                auto f2 = s.find(make_tuple(blocks.at(i), imap.second));
+                auto f1 = collisions_checked.find(make_tuple(imap.second, blocks.at(i)));
+                auto f2 = collisions_checked.find(make_tuple(blocks.at(i), imap.second));
 
-                if(f1 == s.end() && f2 == s.end()) {
+                if(f1 == collisions_checked.end() && f2 == collisions_checked.end()) {
                     if(blocks.at(i) == imap.second) {
                         continue;
                     }
                     Cube::CollisionDetect(blocks.at(i),
                                           imap.second,
                                           contact_list1);
-                    s.insert(make_tuple(blocks.at(i),imap.second));
+                    collisions_checked.insert(make_tuple(blocks.at(i), imap.second));
                 }
             }
         }
     }
+    //auto contact_list1 = contact_list;
+
 
     for(int i=0; i<contact_list1.size(); i++) {
         Cube::CollisionResolution(contact_list1.at(i));
