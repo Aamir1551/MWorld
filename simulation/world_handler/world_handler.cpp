@@ -32,7 +32,7 @@ std::vector<Matrix> *WorldHandler::GeneratePositions(int num_cubes, real min_coo
 std::vector<Matrix> *WorldHandler::GenerateLinearMomentums(int num_cubes)
 {
     auto *linear_momentums = new std::vector<Matrix>;
-    auto get_momentums = []() -> real { return (rand() % 1)/100 - 0.0005;};
+    auto get_momentums = []() -> real { return (rand() % 1)/100 - 0.005;};
     for (int i = 0; i < num_cubes; i++)
     {
         real values[] = { get_momentums() , get_momentums() , get_momentums()};
@@ -45,7 +45,7 @@ WorldHandler::WorldHandler(int num_i_blocks_plus, int num_i_blocks_neg, int num_
                            real min_coord, real max_coord, real cube_length) {
     srand((unsigned)time(0)); //NULL???
 
-    this->tree = new Octree(cube_length, min_coord, max_coord, min_coord, max_coord, min_coord, max_coord, true);
+    this->tree = new Octree(cube_length * 2, min_coord, max_coord, min_coord, max_coord, min_coord, max_coord, true);
     this->world_size = max_coord - min_coord;
     this->max_coord = max_coord;
     this->min_coord = min_coord;
@@ -119,12 +119,12 @@ void WorldHandler::Update() {
 
 
 void WorldHandler::CollisionHandler(real deltatime) {
-    /*vector<Contact> contact_list1;
+    vector<Contact> contact_list;
     for(int i=0; i<blocks.size()-1; i++) {
         for(int j=i+1; j<blocks.size(); j++) {
-            Cube::CollisionDetect(blocks.at(i), blocks.at(j), contact_list1);
+            Cube::CollisionDetect(blocks.at(i), blocks.at(j), contact_list);
         }
-    }*/
+    }
 
     vector<Contact> contact_list1;
     set<tuple<Block *, Block *>> s;
@@ -154,13 +154,6 @@ void WorldHandler::CollisionHandler(real deltatime) {
         }
     }
 
-    //cout << contact_list.size() << " " << contact_list1.size() << endl;
-    /*if(contact_list.size() != contact_list1.size()) {
-        cout << "not working" << contact_list.size() << " " <<contact_list1.size() << endl;
-    }*/
-
-
-
     for(int i=0; i<contact_list1.size(); i++) {
         Cube::CollisionResolution(contact_list1.at(i));
     }
@@ -174,9 +167,9 @@ void WorldHandler::CollisionHandler(real deltatime) {
 }
 
 void WorldHandler::AddForces(real deltatime) {
-    /*for(auto &block: this->blocks) {
+    for(auto &block: this->blocks) {
         ReactToAllBlocks(block, deltatime * 10);
-    }*/
+    }
 
     /*deltatime *=10;
     for(auto &x_block_counter: this->iblocks) {
