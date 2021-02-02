@@ -2,6 +2,7 @@
 #define MWORLD_SIMULATION_OCTREE
 
 #include <map>
+#include <set>
 #include <vector>
 #include <tuple>
 
@@ -40,12 +41,15 @@ public:
 
 
     explicit Octree(int grid_sizes, real min_x, real  max_x, real min_y, real max_y, real min_z, real max_z, bool initialise = false);
-    Octree* AddBlock(Block *b);
+
+    //Octree* AddBlock(Block *b);
 
     Octree* AddIBlock(IBlock *b);
     Octree* AddZBlock(ZBlock *b);
     Octree* AddEBlock(EBlock *b);
     Octree* AddMBlock(MBlock *b);
+
+    //void RemoveBlock(Block *b);
 
     void RemoveIBlock(IBlock *b);
     void RemoveZBlock(ZBlock *b);
@@ -55,7 +59,6 @@ public:
 
     bool static BlockInCorrectTree(Octree * tree, Block *b);
 
-    void RemoveBlock(Block *b);
     std::vector<Octree *> GetGridNeighbours(real x, real y, real z);
     void AddGridAtPosToVec(real x, real y, real z, vector<Octree *> &octree_list);
     Octree* GetGridAtPos(real x, real y, real z);
