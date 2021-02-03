@@ -9,18 +9,6 @@
 using namespace settings;
 using namespace blocks;
 
-/*Octree* Octree::AddBlock(Block *b) {
-    if(this->is_leaf) {
-        this->blocks_at_leaf.insert(b);
-        return this;
-    } else {
-        auto t0 = b->position(0, 0) > avg_x;
-        auto t1 = b->position(1, 0) > avg_y;
-        auto t2 = b->position(2, 0) > avg_z;
-        return this->children[t0 + t1 * 2 + t2 * 4]->AddBlock(b);
-    }
-}*/
-
 Octree* Octree::AddIBlockPlus(IBlock *b) {
     if(this->is_leaf) {
         this->iblocks_at_leaf_plus.insert(b);
@@ -213,44 +201,57 @@ void Octree::RemoveMBlockNeg(MBlock *b) {
 
 void Octree::CalculateCOMS() {
 
-    this->com_i_plus = Matrix::CreateColumnVec(sum_x_i_plus / this->mblocks_at_leaf_plus.size(),
-                                               sum_y_i_plus / this->mblocks_at_leaf_plus.size(),
-                                               sum_z_i_plus / this->mblocks_at_leaf_plus.size());
+    real iblocks_at_leaf_plus_count = this->iblocks_at_leaf_plus.size();
+    real iblocks_at_leaf_neg_count = this->iblocks_at_leaf_neg.size();
+    real mblocks_at_leaf_plus_count =  this->mblocks_at_leaf_plus.size();
+    real mblocks_at_leaf_neg_count =  this->mblocks_at_leaf_neg.size();
+    real zblocks_at_leaf_count =  this->zblocks_at_leaf.size();
+    real eblocks_count =  this->eblocks_at_leaf.size();
 
-    this->com_i_neg = Matrix::CreateColumnVec(sum_x_i_neg / this->iblocks_at_leaf_neg.size(),
-                                              sum_y_i_neg / this->iblocks_at_leaf_neg.size(),
-                                              sum_z_i_neg / this->iblocks_at_leaf_neg.size());
+    if(iblocks_at_leaf_plus_count > 0) {
+        this->com_i_plus = Matrix::CreateColumnVec(sum_x_i_plus / iblocks_at_leaf_plus_count,
+                                                   sum_y_i_plus / iblocks_at_leaf_plus_count,
+                                                   sum_z_i_plus / iblocks_at_leaf_plus_count);
+    }
 
-    this->com_m_neg = Matrix::CreateColumnVec(sum_x_m_neg / this->mblocks_at_leaf_neg.size(),
-                                              sum_y_m_neg / this->mblocks_at_leaf_neg.size(),
-                                              sum_z_m_neg / this->mblocks_at_leaf_neg.size());
+    if(iblocks_at_leaf_neg_count > 0) {
+        this->com_i_neg = Matrix::CreateColumnVec(sum_x_i_neg / iblocks_at_leaf_neg_count,
+                                                  sum_y_i_neg / iblocks_at_leaf_neg_count,
+                                                  sum_z_i_neg / iblocks_at_leaf_neg_count);
+    }
+
+    if(mblocks_at_leaf_plus_count > 0) {
+        this->com_m_plus = Matrix::CreateColumnVec(sum_x_m_plus / mblocks_at_leaf_plus_count,
+                                                   sum_y_m_plus / mblocks_at_leaf_plus_count,
+                                                   sum_z_m_plus / mblocks_at_leaf_plus_count);
+    }
 
 
-    this->com_m_plus = Matrix::CreateColumnVec(sum_x_m_plus / this->mblocks_at_leaf_plus.size(),
-                                              sum_y_m_plus / this->mblocks_at_leaf_plus.size(),
-                                              sum_z_m_plus / this->mblocks_at_leaf_plus.size());
+    if(mblocks_at_leaf_neg_count > 0) {
+        this->com_m_neg = Matrix::CreateColumnVec(sum_x_m_neg / mblocks_at_leaf_neg_count,
+                                                  sum_y_m_neg / mblocks_at_leaf_neg_count,
+                                                  sum_z_m_neg / mblocks_at_leaf_neg_count);
+    }
 
-    this->com_e = Matrix::CreateColumnVec(sum_x_e / this->eblocks_at_leaf.size(),
-                                               sum_y_e / this->eblocks_at_leaf.size(),
-                                               sum_z_e / this->eblocks_at_leaf.size());
 
-    this->com_z = Matrix::CreateColumnVec(sum_x_z / this->zblocks_at_leaf.size(),
-                                          sum_y_z / this->zblocks_at_leaf.size(),
-                                          sum_z_z / this->zblocks_at_leaf.size());
+    if(eblocks_count > 0) {
+        this->com_e = Matrix::CreateColumnVec(sum_x_e / eblocks_count,
+                                              sum_y_e / eblocks_count,
+                                              sum_z_e / eblocks_count);
+    }
+
+
+    if(zblocks_at_leaf_count > 0) {
+        this->com_z = Matrix::CreateColumnVec(sum_x_z / zblocks_at_leaf_count,
+                                              sum_y_z / zblocks_at_leaf_count,
+                                              sum_z_z / zblocks_at_leaf_count);
+
+    }
 }
 
-/*void Octree::RemoveBlock(Block *b) {
-    if(!this->is_leaf) {
-        auto t0 = b->position(0, 0) > avg_x;
-        auto t1 = b->position(1, 0) > avg_y;
-        auto t2 = b->position(2, 0) > avg_z;
-        this->children[t0 + t1 * 2 + t2 * 4]->RemoveBlock(b);
-    } else {
-        //this->blocks_at_leaf.erase(id);
-    }
-}*/
-
 Octree::Octree(int grid_size, real min_x, real  max_x, real min_y, real max_y, real min_z, real max_z, bool initialise) : max_x(max_x), min_x(min_x), min_y(min_y), max_y(max_y), min_z(min_z), max_z(max_z) {
+
+    sum_x_i_plus= sum_y_i_plus= sum_z_i_plus = sum_x_i_neg= sum_y_i_neg= sum_z_i_neg= sum_x_z= sum_y_z= sum_z_z= sum_x_m_plus= sum_y_m_plus= sum_z_m_plus= sum_x_m_neg= sum_y_m_neg= sum_z_m_neg= sum_x_e= sum_y_e= sum_z_e = 0;
 
     this->partition_size = std::min(max_x - min_x, std::min(max_y - min_y, max_z - min_z));
     this->grid_size = grid_size;

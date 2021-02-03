@@ -39,15 +39,15 @@ namespace blocks {
         std::map<Octree *, vector<Octree *> > grid_elements_neighbours;
 
         real avg_x, avg_y, avg_z, min_x, max_x, min_y, max_y, min_z, max_z;
-        real sum_x_i_plus, sum_y_i_plus, sum_z_i_plus,
-        sum_x_i_neg, sum_y_i_neg, sum_z_i_neg,
-        sum_x_z, sum_y_z, sum_z_z,
-        sum_x_m_plus, sum_y_m_plus, sum_z_m_plus,
-        sum_x_m_neg, sum_y_m_neg, sum_z_m_neg,
-        sum_x_e, sum_y_e, sum_z_e;
+        real sum_x_i_plus, sum_y_i_plus, sum_z_i_plus, sum_x_i_neg, sum_y_i_neg, sum_z_i_neg, sum_x_z, sum_y_z, sum_z_z, sum_x_m_plus, sum_y_m_plus, sum_z_m_plus, sum_x_m_neg, sum_y_m_neg, sum_z_m_neg, sum_x_e, sum_y_e, sum_z_e;
 
 
-        Matrix com_i_plus, com_i_neg, com_m_plus, com_m_neg, com_e, com_z;
+        Matrix com_i_plus = Matrix(3, 1, 0);
+        Matrix com_i_neg = Matrix(3, 1, 0);
+        Matrix com_m_plus = Matrix(3, 1, 0);
+        Matrix com_m_neg = Matrix(3, 1, 0);
+        Matrix com_e = Matrix(3, 1, 0);
+        Matrix com_z = Matrix(3, 1, 0);
 
         bool is_leaf = false;
         std::map<unsigned int, Octree *> children;
@@ -56,32 +56,21 @@ namespace blocks {
         explicit Octree(int grid_sizes, real min_x, real max_x, real min_y, real max_y, real min_z, real max_z,
                         bool initialise = false);
 
-        //Octree* AddBlock(Block *b);
-
         void CalculateCOMS();
 
         Octree *AddIBlockPlus(IBlock *b);
         Octree *AddIBlockNeg(IBlock *b);
-
         Octree *AddZBlock(ZBlock *b);
-
         Octree *AddEBlock(EBlock *b);
-
         Octree *AddMBlockPlus(MBlock *b);
         Octree *AddMBlockNeg(MBlock *b);
 
-        //void RemoveBlock(Block *b);
-
         void RemoveIBlockPlus(IBlock *b);
         void RemoveIBlockNeg(IBlock *b);
-
         void RemoveZBlock(ZBlock *b);
-
         void RemoveEBlock(EBlock *b);
-
         void RemoveMBlockPlus(MBlock *b);
         void RemoveMBlockNeg(MBlock *b);
-
 
         bool static BlockInCorrectTree(Octree *tree, Block *b);
 

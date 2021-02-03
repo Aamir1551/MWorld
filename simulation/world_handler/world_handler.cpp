@@ -238,9 +238,9 @@ void WorldHandler::CollisionHandler(real deltatime) {
 
 
 void WorldHandler::AddForces(real deltatime) {
-    for(auto &block: this->blocks) {
+    /*for(auto &block: this->blocks) {
         //ReactToAllBlocks(block, deltatime * 10);
-    }
+    }*/
 
     for(auto const &leaf : this->trees_occupied) {
         leaf->CalculateCOMS();

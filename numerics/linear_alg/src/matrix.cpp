@@ -307,7 +307,6 @@ namespace numerics
         {
             a.print_shape();
             this->print_shape();
-
             throw std::invalid_argument(GenerateError("Subtraction", *this, a));
         }
 
