@@ -228,6 +228,13 @@ void WorldHandler::AddForces(real deltatime) {
         ReactToAllBlocks(block, deltatime * 10);
     }
 
+    CalculateCOM();
+    for(auto const &block : this->blocks) {
+        for(auto const &leaf : this->trees_occupied) {
+
+        }
+    }
+
     /*deltatime *=10;
     for(auto &x_block_counter: this->iblocks) {
         auto x = x_block_counter->position(0, 0);

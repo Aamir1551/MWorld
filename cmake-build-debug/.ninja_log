@@ -108,3 +108,9 @@
 9	761	6340684785277462	simulation/blocks/CMakeFiles/blocks.dir/cube.cpp.obj	64579534af6da0eb
 761	868	6340684786599343	simulation/blocks/libblocks.a	b411f4246d4e389f
 869	1533	6340684793014170	simulation/environment/simulation.exe	926585dbeb54f7de
+14	1705	6340707566847634	simulation/blocks/CMakeFiles/blocks.dir/cube.cpp.obj	64579534af6da0eb
+1706	1972	6340707570294446	simulation/blocks/libblocks.a	b411f4246d4e389f
+24	3365	6340707584226083	simulation/environment/CMakeFiles/simulation.dir/simulation.cpp.obj	9a782925f68b2e7c
+19	5119	6340707601719573	simulation/world_handler/CMakeFiles/world_handler.dir/world_handler.cpp.obj	8fd53804edb01cee
+5120	5533	6340707605778057	simulation/world_handler/libworld_handler.a	d82797b59785b7e7
+5534	7092	6340707620917265	simulation/environment/simulation.exe	926585dbeb54f7de
