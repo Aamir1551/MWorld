@@ -44,7 +44,7 @@ public:
     real max_coord;
     map<Block*, Octree*> block_to_leaf;
 
-    set<Octree *> trees_occupied;
+    multiset<Octree *> leaves_occupied;
 
     enum BlockTypes {IBlockType, MBlockType, EBlockType, ZBlockType};
 

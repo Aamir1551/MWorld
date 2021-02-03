@@ -33,14 +33,14 @@ int main()
 
     real cube_length = 4.0f;
     Camera camera = Camera(world_properties->window);
-    camera.camera_pos = glm::vec3(0, 0, 150);
+    camera.camera_pos = glm::vec3(0, 0, 250);
     BlockRenderer::InitialiseBlockRenderer(&camera, cube_length, vao, vbo, ebo, world_properties);
 
     //int num_blocks_same = 50;
     //WorldHandler world = WorldHandler(num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same);
     //WorldHandler world = WorldHandler(0, 0, 0, 0, 0, 0);
     //WorldHandler world = WorldHandler(0, 0, 2, 0, 0, 0);
-    WorldHandler world = WorldHandler(0, 0, 120, 0, 0, 0, -50, 50, 4);
+    WorldHandler world = WorldHandler(0, 0, 120, 0, 0, 0, -100, 100, 4);
 
     glBindVertexArray(vao);
     glEnable(GL_DEPTH_TEST);
@@ -68,7 +68,7 @@ int main()
 
         world.Update();
         world.CollisionHandler(deltaTime);
-        world.AddForces(deltaTime );
+        world.AddForces(deltaTime);
 
         BlockRenderer::DrawAllBlocks(&world.iblocks, &world.zblocks, &world.eblocks, &world.mblocks);
 

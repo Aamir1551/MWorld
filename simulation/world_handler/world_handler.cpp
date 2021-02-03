@@ -32,7 +32,7 @@ std::vector<Matrix> *WorldHandler::GeneratePositions(int num_cubes, real min_coo
 std::vector<Matrix> *WorldHandler::GenerateLinearMomentums(int num_cubes)
 {
     auto *linear_momentums = new std::vector<Matrix>;
-    auto get_momentums = []() -> real { return (rand() % 1)/100 - 0.005;};
+    auto get_momentums = []() -> real { return ((rand() % 3) + -1) * 0.1;};
     for (int i = 0; i < num_cubes; i++)
     {
         real values[] = { get_momentums() , get_momentums() , get_momentums()};
@@ -100,7 +100,7 @@ void WorldHandler::AddBlock(BlockTypes block_types, int num_blocks, bool state) 
             auto temp = blocks.back();
             temp->SetLinearMomentum(linear_momentums->at(i));
             this->block_to_leaf[temp] = tree_occupied;
-            this->trees_occupied.insert(tree_occupied);
+            this->leaves_occupied.insert(tree_occupied);
     }
 }
 
@@ -115,34 +115,34 @@ void WorldHandler::Update() {
     for(auto const &leaf_i_block: this->iblocks) {
         Octree *leaf = block_to_leaf[leaf_i_block];
         if(!Octree::BlockInCorrectTree(leaf, leaf_i_block)) {
-            this->trees_occupied.erase(leaf);
+            this->leaves_occupied.erase(leaf);
             if(leaf_i_block->state) {
                 leaf->RemoveIBlockPlus(leaf_i_block);
                 Octree* new_leaf = tree->AddIBlockPlus(leaf_i_block);
                 block_to_leaf[leaf_i_block] = new_leaf;
-                this->trees_occupied.insert(new_leaf);
+                this->leaves_occupied.insert(new_leaf);
             } else {
                 leaf->RemoveIBlockNeg(leaf_i_block);
                 block_to_leaf[leaf_i_block] = tree->AddIBlockNeg(leaf_i_block);
-                this->trees_occupied.insert(leaf);
+                this->leaves_occupied.insert(leaf);
             }
         }
     }
 
     for(auto const &leaf_m_block: this->mblocks) {
         Octree *leaf = block_to_leaf[leaf_m_block];
-        leaf->RemoveMBlockPlus(leaf_m_block);
-        leaf->RemoveMBlockNeg(leaf_m_block); // we are removing from both, make sure this does not give an ERROR
         if(!Octree::BlockInCorrectTree(leaf, leaf_m_block)) {
-            this->trees_occupied.erase(leaf);
+            leaf->RemoveMBlockPlus(leaf_m_block);
+            leaf->RemoveMBlockNeg(leaf_m_block); // we are removing from both, make sure this does not give an ERROR
+            this->leaves_occupied.erase(leaf);
             if(leaf_m_block->flare_value > MBlock::threshold) {
                 Octree * new_leaf = tree->AddMBlockPlus(leaf_m_block);
                 block_to_leaf[leaf_m_block] = new_leaf;
-                this->trees_occupied.insert(new_leaf);
+                this->leaves_occupied.insert(new_leaf);
             } else {
                 Octree * new_leaf = tree->AddMBlockNeg(leaf_m_block);
                 block_to_leaf[leaf_m_block] = new_leaf;
-                this->trees_occupied.insert(new_leaf);
+                this->leaves_occupied.insert(new_leaf);
             }
         }
     }
@@ -150,11 +150,11 @@ void WorldHandler::Update() {
     for(auto const &leaf_z_block: this->zblocks) {
         Octree *leaf = block_to_leaf[leaf_z_block];
         if (!Octree::BlockInCorrectTree(leaf, leaf_z_block)) {
-            this->trees_occupied.erase(leaf);
+            this->leaves_occupied.erase(leaf);
             leaf->RemoveZBlock(leaf_z_block);
             Octree * new_leaf = tree->AddZBlock(leaf_z_block);
             block_to_leaf[leaf_z_block] = new_leaf;
-            this->trees_occupied.insert(new_leaf);
+            this->leaves_occupied.insert(new_leaf);
         }
     }
 
@@ -164,7 +164,7 @@ void WorldHandler::Update() {
             leaf->RemoveEBlock(leaf_e_block);
             Octree * new_leaf = tree->AddEBlock(leaf_e_block);
             block_to_leaf[leaf_e_block] = new_leaf;
-            this->trees_occupied.insert(new_leaf);
+            this->leaves_occupied.insert(new_leaf);
         }
     }
 
@@ -173,12 +173,12 @@ void WorldHandler::Update() {
 
 void WorldHandler::CollisionHandler(real deltatime) {
 
-    /*vector<Contact> contact_list_test;
+    vector<Contact> contact_list_test;
     for(int i=0; i<blocks.size()-1; i++) {
         for(int j=i+1; j<blocks.size(); j++) {
             Cube::CollisionDetect(blocks.at(i), blocks.at(j), contact_list_test);
         }
-    }*/
+    }
 
     vector<Contact> contact_list;
     set<pair<Block *, Block *>> collisions_checked;
@@ -203,7 +203,6 @@ void WorldHandler::CollisionHandler(real deltatime) {
         }
     }
 
-    /*
     set<pair<Block *, Block *>> c;
     set<pair<Block *, Block *>> c1;
 
@@ -222,7 +221,7 @@ void WorldHandler::CollisionHandler(real deltatime) {
         cout << c.size() << endl;
         cout << c1.size() << endl;
         cout << "not worked" << endl;
-    }*/
+    }
 
     for(int i=0; i<contact_list.size(); i++) {
         Cube::CollisionResolution(contact_list.at(i));
@@ -242,14 +241,14 @@ void WorldHandler::AddForces(real deltatime) {
         //ReactToAllBlocks(block, deltatime * 10);
     }*/
 
-    for(auto const &leaf : this->trees_occupied) {
+    /*for(auto const &leaf : this->leaves_occupied) {
         leaf->CalculateCOMS();
     }
-    for(auto const &block: this->blocks) {
-        for(auto const &leaf : this->trees_occupied) {
-            block->React(leaf, deltatime * 10);
+    for(auto const &block: this->zblocks) {
+        for(auto const &leaf : this->leaves_occupied) {
+            block->React(leaf, deltatime * 0.1);
         }
-    }
+    }*/
 }
 
 /*void WorldHandler::ReactToAllBlocks(Block *block, real deltatime) {
