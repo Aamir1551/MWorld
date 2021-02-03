@@ -17,8 +17,14 @@ namespace blocks {
         real dist_i_plus = std::sqrt(squared_dist_i_plus);
         real dist_i_neg = std::sqrt(squared_dist_i_neg);
 
-        AddLinearForce(vec_to_tree_com_i_plus / dist_i_plus, Block::force_dt / squared_dist_i_plus * -1 * 0.1 * delta_time * (tree->iblocks_at_leaf_plus.size()) * (this->state));
-        AddLinearForce(vec_to_tree_com_i_neg  / dist_i_neg, Block::force_dt / squared_dist_i_neg * -1 * 0.1 * delta_time * (tree->iblocks_at_leaf_neg.size()) * (1-this->state));
+
+        if(squared_dist_i_plus> 25) {
+            AddLinearForce(vec_to_tree_com_i_plus / dist_i_plus, Block::force_dt / squared_dist_i_plus * -1 * 0.1 * delta_time * (tree->iblocks_at_leaf_plus.size()) * (this->state));
+        }
+
+        if(squared_dist_i_neg > 25) {
+            AddLinearForce(vec_to_tree_com_i_neg  / dist_i_neg, Block::force_dt / squared_dist_i_neg * -1 * 0.1 * delta_time * (tree->iblocks_at_leaf_neg.size()) * (1-this->state));
+        }
     };
 
     real IBlock::ExtractFlareFromBlock(real deltatime) {

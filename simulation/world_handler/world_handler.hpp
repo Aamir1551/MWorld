@@ -58,8 +58,6 @@ public:
 
     void AddForces(real deltatime);
 
-    void ReactToAllBlocks(Block *block, real deltatime);
-
     void IncFlareValuesAndReset();
 
     void AddSpin(vector<Block *> *block_list,  Matrix const &force_direction);

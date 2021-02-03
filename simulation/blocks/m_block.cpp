@@ -23,6 +23,10 @@ namespace blocks {
         Matrix vec_to_tree_com_z = tree->com_z - this->position;
         real squared_dist_z = Matrix::SquaredNorm(vec_to_tree_com_z);
         real dist_z =  std::sqrt(squared_dist_z);
-        AddLinearForce(vec_to_tree_com_z / dist_z, Block::force_dt / squared_dist_z  * 1 * delta_time * (tree->zblocks_at_leaf.size()));
+
+        if(squared_dist_z >= 25) {
+            AddLinearForce(vec_to_tree_com_z / dist_z, Block::force_dt / squared_dist_z  * 1 * delta_time * (tree->zblocks_at_leaf.size()));
+        }
+
     }
 };

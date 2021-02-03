@@ -32,7 +32,7 @@ std::vector<Matrix> *WorldHandler::GeneratePositions(int num_cubes, real min_coo
 std::vector<Matrix> *WorldHandler::GenerateLinearMomentums(int num_cubes)
 {
     auto *linear_momentums = new std::vector<Matrix>;
-    auto get_momentums = []() -> real { return ((rand() % 3) + -1) * 0.1;};
+    auto get_momentums = []() -> real { return ((rand() % 3) + -1) * 0.2;};
     for (int i = 0; i < num_cubes; i++)
     {
         real values[] = { get_momentums() , get_momentums() , get_momentums()};
@@ -173,12 +173,12 @@ void WorldHandler::Update() {
 
 void WorldHandler::CollisionHandler(real deltatime) {
 
-    vector<Contact> contact_list_test;
+    /*vector<Contact> contact_list_test;
     for(int i=0; i<blocks.size()-1; i++) {
         for(int j=i+1; j<blocks.size(); j++) {
             Cube::CollisionDetect(blocks.at(i), blocks.at(j), contact_list_test);
         }
-    }
+    }*/
 
     vector<Contact> contact_list;
     set<pair<Block *, Block *>> collisions_checked;
@@ -203,7 +203,7 @@ void WorldHandler::CollisionHandler(real deltatime) {
         }
     }
 
-    set<pair<Block *, Block *>> c;
+    /*set<pair<Block *, Block *>> c;
     set<pair<Block *, Block *>> c1;
 
     for(auto const &k : contact_list) {
@@ -221,7 +221,7 @@ void WorldHandler::CollisionHandler(real deltatime) {
         cout << c.size() << endl;
         cout << c1.size() << endl;
         cout << "not worked" << endl;
-    }
+    }*/
 
     for(int i=0; i<contact_list.size(); i++) {
         Cube::CollisionResolution(contact_list.at(i));
@@ -237,53 +237,22 @@ void WorldHandler::CollisionHandler(real deltatime) {
 
 
 void WorldHandler::AddForces(real deltatime) {
-    /*for(auto &block: this->blocks) {
-        //ReactToAllBlocks(block, deltatime * 10);
-    }*/
-
     for(auto const &leaf : this->leaves_occupied) {
         leaf->CalculateCOMS();
-    }
-    for(auto const &block: this->zblocks) {
-        for(auto const &leaf : this->leaves_occupied) {
-            block->React(leaf, deltatime * 0.1);
+        for(auto const &block: this->zblocks) {
+            block->React(leaf, deltatime * 10);
+        }
+        for(auto const &block: this->iblocks) {
+            block->React(leaf, deltatime * 10);
+        }
+        for(auto const &block: this->mblocks) {
+            block->React(leaf, deltatime * 10);
+        }
+        for(auto const &block: this->eblocks) {
+            block->React(leaf, deltatime * 10);
         }
     }
 }
-
-/*void WorldHandler::ReactToAllBlocks(Block *block, real deltatime) {
-    for(int i=0; i<iblocks.size(); i++) {
-        Matrix to_cube = iblocks.at(i)->position - block->position;
-        real squared_dist = Matrix::SquaredNorm(to_cube);
-        if(squared_dist >= 25) {
-            block->React(iblocks.at(i), squared_dist, to_cube, deltatime);
-        }
-    }
-
-    for(int i=0; i<zblocks.size(); i++) {
-        Matrix to_cube = zblocks.at(i)->position - block->position;
-        real squared_dist = Matrix::SquaredNorm(to_cube);
-        if(squared_dist >= 25) {
-            block->React(zblocks.at(i), squared_dist, to_cube, deltatime);
-        }
-    }
-
-    for(int i=0; i<eblocks.size(); i++) {
-        Matrix to_cube = eblocks.at(i)->position - block->position;
-        real squared_dist = Matrix::SquaredNorm(to_cube);
-        if(squared_dist >= 25) {
-            block->React(eblocks.at(i), squared_dist, to_cube, deltatime);
-        }
-    }
-
-    for(int i=0; i<mblocks.size(); i++) {
-        Matrix to_cube = mblocks.at(i)->position - block->position;
-        real squared_dist = Matrix::SquaredNorm(to_cube);
-        if(squared_dist >= 25) {
-            block->React(mblocks.at(i), squared_dist, to_cube, deltatime);
-        }
-    }
-}*/
 
 void WorldHandler::PassBlockFlares(vector<Contact> &contacts, real deltatime) {
     for(int i=0; i<contacts.size(); i++) {
@@ -313,15 +282,7 @@ void WorldHandler::AddSpin(vector<Block *> *block_list,  Matrix const &force_dir
 }
 
 void WorldHandler::SpinWorldBlocks() {
-    real const static force_direction_1[] = {5, 0, 0};
-    real const static force_direction_2[] = {0, 5, 0};
-    real const static force_direction_3[] = {0, 0, 5};
-
-    Matrix const static force_direction_mat1(3, 1, force_direction_1);
-    Matrix const static force_direction_mat2(3, 1, force_direction_2);
-    Matrix const static force_direction_mat3(3, 1, force_direction_3);
-
-    AddSpin((vector<Block*>*) (&this->mblocks), force_direction_mat1);
-    AddSpin((vector<Block*>*) (&this->iblocks), force_direction_mat2);
-    AddSpin((vector<Block*>*) (&this->eblocks), force_direction_mat3);
+    AddSpin((vector<Block*>*) (&this->mblocks), Matrix::CreateColumnVec(5, 0, 0));
+    AddSpin((vector<Block*>*) (&this->iblocks), Matrix::CreateColumnVec(0, 5, 0));
+    AddSpin((vector<Block*>*) (&this->eblocks), Matrix::CreateColumnVec(0, 0, 5));
 }

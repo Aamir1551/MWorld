@@ -26,7 +26,14 @@ namespace blocks {
         real dist_i_plus =  std::sqrt(squared_dist_i_plus);
         real dist_e =  std::sqrt(squared_dist_e);
 
-        AddLinearForce(vec_to_tree_com_e / dist_e, Block::force_dt / squared_dist_e  * 1 * delta_time * (tree->eblocks_at_leaf.size()));
-        AddLinearForce(vec_to_tree_com_i_plus / dist_i_plus, Block::force_dt / squared_dist_i_plus  * 1 * delta_time * (tree->iblocks_at_leaf_plus.size()));
+
+        if(squared_dist_e >= 25) {
+            AddLinearForce(vec_to_tree_com_e / dist_e, Block::force_dt / squared_dist_e  * 1 * delta_time * (tree->eblocks_at_leaf.size()));
+        }
+
+        if(squared_dist_i_plus >= 25) {
+            AddLinearForce(vec_to_tree_com_i_plus / dist_i_plus, Block::force_dt / squared_dist_i_plus  * 1 * delta_time * (tree->iblocks_at_leaf_plus.size()));
+        }
+
     };
 };

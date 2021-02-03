@@ -198,7 +198,6 @@ void Octree::RemoveMBlockNeg(MBlock *b) {
     }
 }
 
-
 void Octree::CalculateCOMS() {
 
     real iblocks_at_leaf_plus_count = this->iblocks_at_leaf_plus.size();
