@@ -1323,17 +1323,6 @@ build simulation/environment/logic_gates.exe: CXX_EXECUTABLE_LINKER__logic_gates
 
 
 #############################################
-# Utility command for edit_cache
-
-build simulation/environment/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\Users\aamir\Documents\mworld\cmake-build-debug\simulation\environment && "C:\Program Files\JetBrains\CLion 2020.3.1\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
-  DESC = No interactive CMake dialog available...
-  restat = 1
-
-build simulation/environment/edit_cache: phony simulation/environment/CMakeFiles/edit_cache.util
-
-
-#############################################
 # Utility command for rebuild_cache
 
 build simulation/environment/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
@@ -1345,11 +1334,67 @@ build simulation/environment/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
 build simulation/environment/rebuild_cache: phony simulation/environment/CMakeFiles/rebuild_cache.util
 
 # =============================================================================
+# Object build statements for EXECUTABLE target collision_tests
+
+
+#############################################
+# Order-only phony target for collision_tests
+
+build cmake_object_order_depends_target_collision_tests: phony || cmake_object_order_depends_target_block_renderer cmake_object_order_depends_target_blocks cmake_object_order_depends_target_cube_renderer cmake_object_order_depends_target_glad cmake_object_order_depends_target_linear_alg cmake_object_order_depends_target_mworld_render_utils cmake_object_order_depends_target_octree cmake_object_order_depends_target_quaternion cmake_object_order_depends_target_utils cmake_object_order_depends_target_world_handler
+
+build simulation/environment/CMakeFiles/collision_tests.dir/collision_tests.cpp.obj: CXX_COMPILER__collision_tests_Debug ../simulation/environment/collision_tests.cpp || cmake_object_order_depends_target_collision_tests
+  DEP_FILE = simulation\environment\CMakeFiles\collision_tests.dir\collision_tests.cpp.obj.d
+  FLAGS = -g   -std=gnu++11
+  INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../simulation/environment -I../render/block_renderer/../lib -I../render/block_renderer/. -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera -I../simulation/blocks -I../simulation/blocks/../octree -I../simulation/world_handler -I../simulation/octree/.
+  OBJECT_DIR = simulation\environment\CMakeFiles\collision_tests.dir
+  OBJECT_FILE_DIR = simulation\environment\CMakeFiles\collision_tests.dir
+
+build simulation/environment/CMakeFiles/collision_tests.dir/__/__/render/utils/world_initializer.cpp.obj: CXX_COMPILER__collision_tests_Debug ../render/utils/world_initializer.cpp || cmake_object_order_depends_target_collision_tests
+  DEP_FILE = simulation\environment\CMakeFiles\collision_tests.dir\__\__\render\utils\world_initializer.cpp.obj.d
+  FLAGS = -g   -std=gnu++11
+  INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../simulation/environment -I../render/block_renderer/../lib -I../render/block_renderer/. -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera -I../simulation/blocks -I../simulation/blocks/../octree -I../simulation/world_handler -I../simulation/octree/.
+  OBJECT_DIR = simulation\environment\CMakeFiles\collision_tests.dir
+  OBJECT_FILE_DIR = simulation\environment\CMakeFiles\collision_tests.dir\__\__\render\utils
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target collision_tests
+
+
+#############################################
+# Link the executable simulation\environment\collision_tests.exe
+
+build simulation/environment/collision_tests.exe: CXX_EXECUTABLE_LINKER__collision_tests_Debug simulation/environment/CMakeFiles/collision_tests.dir/collision_tests.cpp.obj simulation/environment/CMakeFiles/collision_tests.dir/__/__/render/utils/world_initializer.cpp.obj | render/block_renderer/libblock_renderer.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/cube_renderer/libcube_renderer.a utils/util_functions/libutils.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a render/utils/libmworld_render_utils.a simulation/blocks/libblocks.a simulation/world_handler/libworld_handler.a render/block_renderer/libblock_renderer.a simulation/octree/liboctree.a simulation/blocks/libblocks.a numerics/quaternion/libquaternion.a numerics/linear_alg/liblinear_alg.a render/cube_renderer/libcube_renderer.a render/utils/libmworld_render_utils.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a utils/util_functions/libutils.a || lib/glad/libglad.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/block_renderer/libblock_renderer.a render/cube_renderer/libcube_renderer.a render/utils/libmworld_render_utils.a simulation/blocks/libblocks.a simulation/octree/liboctree.a simulation/world_handler/libworld_handler.a utils/util_functions/libutils.a
+  FLAGS = -g
+  LINK_LIBRARIES = render/block_renderer/libblock_renderer.a  numerics/linear_alg/liblinear_alg.a  numerics/quaternion/libquaternion.a  render/cube_renderer/libcube_renderer.a  utils/util_functions/libutils.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  render/utils/libmworld_render_utils.a  simulation/blocks/libblocks.a  simulation/world_handler/libworld_handler.a  render/block_renderer/libblock_renderer.a  simulation/octree/liboctree.a  simulation/blocks/libblocks.a  numerics/quaternion/libquaternion.a  numerics/linear_alg/liblinear_alg.a  render/cube_renderer/libcube_renderer.a  render/utils/libmworld_render_utils.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  utils/util_functions/libutils.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = simulation\environment\CMakeFiles\collision_tests.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = simulation\environment\collision_tests.exe
+  TARGET_IMPLIB = simulation\environment\libcollision_tests.dll.a
+  TARGET_PDB = collision_tests.exe.dbg
+
+
+#############################################
+# Utility command for edit_cache
+
+build simulation/environment/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cmd.exe /C "cd /D C:\Users\aamir\Documents\mworld\cmake-build-debug\simulation\environment && "C:\Program Files\JetBrains\CLion 2020.3.1\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build simulation/environment/edit_cache: phony simulation/environment/CMakeFiles/edit_cache.util
+
+# =============================================================================
 # Target aliases.
 
 build block_renderer: phony render/block_renderer/libblock_renderer.a
 
 build blocks: phony simulation/blocks/libblocks.a
+
+build collision_tests: phony simulation/environment/collision_tests.exe
+
+build collision_tests.exe: phony simulation/environment/collision_tests.exe
 
 build cube_renderer: phony render/cube_renderer/libcube_renderer.a
 
@@ -1545,7 +1590,7 @@ build simulation/blocks/all: phony simulation/blocks/libblocks.a
 #############################################
 # Folder: C:/Users/aamir/Documents/mworld/cmake-build-debug/simulation/environment
 
-build simulation/environment/all: phony simulation/environment/simulation.exe simulation/environment/logic_gates.exe
+build simulation/environment/all: phony simulation/environment/simulation.exe simulation/environment/logic_gates.exe simulation/environment/collision_tests.exe
 
 # =============================================================================
 
