@@ -241,14 +241,14 @@ void WorldHandler::AddForces(real deltatime) {
         //ReactToAllBlocks(block, deltatime * 10);
     }*/
 
-    /*for(auto const &leaf : this->leaves_occupied) {
+    for(auto const &leaf : this->leaves_occupied) {
         leaf->CalculateCOMS();
     }
     for(auto const &block: this->zblocks) {
         for(auto const &leaf : this->leaves_occupied) {
             block->React(leaf, deltatime * 0.1);
         }
-    }*/
+    }
 }
 
 /*void WorldHandler::ReactToAllBlocks(Block *block, real deltatime) {

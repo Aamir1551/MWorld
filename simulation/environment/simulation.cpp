@@ -40,7 +40,14 @@ int main()
     //WorldHandler world = WorldHandler(num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same);
     //WorldHandler world = WorldHandler(0, 0, 0, 0, 0, 0);
     //WorldHandler world = WorldHandler(0, 0, 2, 0, 0, 0);
-    WorldHandler world = WorldHandler(0, 0, 120, 0, 0, 0, -100, 100, 4);
+    WorldHandler world = WorldHandler(0, 0, 2, 0, 0, 0, -100, 100, 4);
+
+    world.zblocks.at(0)->position = Matrix::CreateColumnVec(-20, 0, 0);
+    world.zblocks.at(1)->position = Matrix::CreateColumnVec(20, 0, 0);
+
+    world.zblocks.at(0)->momentum = Matrix::CreateColumnVec(-0, 0, 0);
+    world.zblocks.at(1)->momentum = Matrix::CreateColumnVec(0, 0, 0);
+
 
     glBindVertexArray(vao);
     glEnable(GL_DEPTH_TEST);
