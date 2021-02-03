@@ -6,3 +6,4 @@ add_library(blocks cube.hpp cube.cpp block.hpp e_block.hpp i_block.hpp m_block.h
 target_link_libraries(blocks PUBLIC linear_alg quaternion cube_renderer utils glad ${glfw} settings  mworld_render_utils camera shader)
 
 target_include_directories(blocks PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/" )
+target_include_directories(blocks PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/../octree/" )

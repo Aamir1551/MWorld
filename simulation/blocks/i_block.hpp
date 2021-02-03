@@ -1,10 +1,11 @@
 #ifndef MWorld_SIMULATION_BLOCKS_I_BLOCKS
 #define MWorld_SIMULATION_BLOCKS_I_BLOCKS
 
+#include <octree.hpp>
 #include <block.hpp>
 
-
 namespace blocks {
+
     class IBlock : public Block {
 
     public:
@@ -20,10 +21,8 @@ namespace blocks {
             this->b = (real) (1 - this->state);
         }
 
-        void React(IBlock * block, real dist, const Matrix& to_cube, real deltatime) override;
-        void React(MBlock * block, real dist, const Matrix& to_cube, real deltatime) override;
-        void React(ZBlock * block, real dist, const Matrix& to_cube, real deltatime) override;
-        void React(EBlock * block, real dist, const Matrix& to_cube, real deltatime) override;
+
+        virtual void React(Octree * tree, real delta_time) override;
 
         real ExtractFlareFromBlock(real deltatime) override;
         void spin(Matrix const &force_direction) override;

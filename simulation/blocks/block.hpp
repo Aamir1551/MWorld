@@ -10,6 +10,7 @@ namespace blocks {
     class MBlock;
     class ZBlock;
     class Cube;
+    class Octree;
 
     class Block : public Cube {
 
@@ -34,13 +35,13 @@ namespace blocks {
 
         //when another block is closest to you
 
-        virtual void React(IBlock * block, real squared_dist, const Matrix& to_cube, real deltatime) = 0;
+        virtual void React(Octree * tree, real delta_time) = 0;
 
-        virtual void React(MBlock * block, real squared_dist, const Matrix& to_cube, real deltatime) = 0;
+        /*virtual void React(Octree * block, real squared_dist, const Matrix& to_cube, real deltatime) = 0;
 
-        virtual void React(ZBlock * block, real squared_dist, const Matrix& to_cube, real deltatime) = 0;
+        virtual void React(Octree * block, real squared_dist, const Matrix& to_cube, real deltatime) = 0;
 
-        virtual void React(EBlock * block, real squared_dist, const Matrix& to_cube, real deltatime) = 0;
+        virtual void React(Octree * block, real squared_dist, const Matrix& to_cube, real deltatime) = 0;*/
 
         virtual real ExtractFlareFromBlock(real deltatime) = 0;
 

@@ -733,4 +733,13 @@ if an element is nan, it returns 1 */
         this->values[2] = std::min(this->values[2], min_z);
     }
 
+    Matrix Matrix::CreateColumnVec(settings::real val0, settings::real val1, settings::real val2) {
+        Matrix a = Matrix(3, 1);
+        a.values[0] = val0;
+        a.values[1] = val1;
+        a.values[2] = val2;
+        return a;
+    }
+
+
 } // namespace numerics

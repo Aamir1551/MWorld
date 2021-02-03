@@ -84,6 +84,16 @@ namespace numerics
         explicit Matrix(int rows, int cols, settings::real const *const values);
 
         /**
+         * @brief Construct a new Matrix object. Is a vector of 3 values.
+         *
+         * @param val1
+         * @param val2
+         * @param val3
+         */
+        Matrix static CreateColumnVec(settings::real val0, settings::real val1, settings::real val2);
+
+
+        /**
          * @brief Construct a new Matrix object. Copy constructor.
          * 
          * @param a Matrix to copy from.

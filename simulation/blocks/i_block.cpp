@@ -1,38 +1,25 @@
-#include <block.hpp>
+#include <cmath>
+
 #include <i_block.hpp>
 #include <e_block.hpp>
-#include <cmath>
+#include <octree.hpp>
+
 
 namespace blocks {
 
-    void IBlock::React(IBlock * block, real squared_dist, const Matrix &to_cube, real deltatime) {
-        // I+ and I+ Repel
-        // I- and I- Repel
-        if(block->state == this->state) {
-            // Repel
-            auto &force = to_cube;
-            AddLinearForce(force, Block::force_dt / squared_dist * -1 * 0.1 * deltatime);
-        }
-    };
+    class Block;
 
-    void IBlock::React(MBlock  * block, real squared_dist, const Matrix &to_cube, real deltatime) {
-        // neutral
-    };
+    void IBlock::React(Octree * tree, real delta_time) {
+        Matrix vec_to_tree_com_i_plus = tree->com_i_plus - this->position;
+        Matrix vec_to_tree_com_i_neg = tree->com_i_neg - this->position;
+        real squared_dist_i_plus = Matrix::SquaredNorm(vec_to_tree_com_i_plus);
+        real squared_dist_i_neg = Matrix::SquaredNorm(vec_to_tree_com_i_plus);
+        real dist_i_plus =  std::sqrt(squared_dist_i_plus);
+        real dist_i_neg =  std::sqrt(squared_dist_i_neg);
 
-    void IBlock::React(ZBlock  *block, real squared_dist, const Matrix &to_cube, real deltatime) {
-        // neutral
+        AddLinearForce(vec_to_tree_com_i_plus / dist_i_plus, Block::force_dt / squared_dist_i_plus * -1 * 0.1 * delta_time * (tree->iblocks_at_leaf_plus.size()) * (this->state));
+        AddLinearForce(vec_to_tree_com_i_neg  / dist_i_neg, Block::force_dt / squared_dist_i_neg * -1 * 0.1 * delta_time * (tree->iblocks_at_leaf_neg.size()) * (1-this->state));
     };
-
-    void IBlock::React(EBlock * block, real squared_dist, const Matrix &to_cube, real deltatime) {
-        // I+ and E repel
-        if(this->state == true) {
-            // If k > 1: Repel, Otherwise Attract
-            real factor = std::log(block->k);
-            auto &force = to_cube;
-            AddLinearForce(force, Block::force_dt / squared_dist * 0.1 * -1 * factor * deltatime);
-        }
-    };
-
 
     real IBlock::ExtractFlareFromBlock(real deltatime) {
         return this->a * deltatime + this->b * (real) (this->flare_value < IBlock::threshold) * deltatime;

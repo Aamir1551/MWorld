@@ -682,14 +682,14 @@ build cmake_object_order_depends_target_block_renderer: phony || cmake_object_or
 build render/block_renderer/CMakeFiles/block_renderer.dir/block_renderer.cpp.obj: CXX_COMPILER__block_renderer_Debug ../render/block_renderer/block_renderer.cpp || cmake_object_order_depends_target_block_renderer
   DEP_FILE = render\block_renderer\CMakeFiles\block_renderer.dir\block_renderer.cpp.obj.d
   FLAGS = -g   -std=gnu++11
-  INCLUDES = -I../render/block_renderer/../lib -I../lib/glfw-3.3.2/include -I../lib/glm -I../render/block_renderer/. -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera -I../simulation/blocks
+  INCLUDES = -I../render/block_renderer/../lib -I../lib/glfw-3.3.2/include -I../lib/glm -I../render/block_renderer/. -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera -I../simulation/blocks -I../simulation/blocks/../octree
   OBJECT_DIR = render\block_renderer\CMakeFiles\block_renderer.dir
   OBJECT_FILE_DIR = render\block_renderer\CMakeFiles\block_renderer.dir
 
 build render/block_renderer/CMakeFiles/block_renderer.dir/__/utils/world_initializer.cpp.obj: CXX_COMPILER__block_renderer_Debug ../render/utils/world_initializer.cpp || cmake_object_order_depends_target_block_renderer
   DEP_FILE = render\block_renderer\CMakeFiles\block_renderer.dir\__\utils\world_initializer.cpp.obj.d
   FLAGS = -g   -std=gnu++11
-  INCLUDES = -I../render/block_renderer/../lib -I../lib/glfw-3.3.2/include -I../lib/glm -I../render/block_renderer/. -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera -I../simulation/blocks
+  INCLUDES = -I../render/block_renderer/../lib -I../lib/glfw-3.3.2/include -I../lib/glm -I../render/block_renderer/. -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera -I../simulation/blocks -I../simulation/blocks/../octree
   OBJECT_DIR = render\block_renderer\CMakeFiles\block_renderer.dir
   OBJECT_FILE_DIR = render\block_renderer\CMakeFiles\block_renderer.dir\__\utils
 
@@ -1015,49 +1015,49 @@ build cmake_object_order_depends_target_blocks: phony || cmake_object_order_depe
 build simulation/blocks/CMakeFiles/blocks.dir/cube.cpp.obj: CXX_COMPILER__blocks_Debug ../simulation/blocks/cube.cpp || cmake_object_order_depends_target_blocks
   DEP_FILE = simulation\blocks\CMakeFiles\blocks.dir\cube.cpp.obj.d
   FLAGS = -g   -std=gnu++11
-  INCLUDES = -I../simulation/blocks -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../lib/glfw-3.3.2/include -I../lib/glm -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera
+  INCLUDES = -I../simulation/blocks -I../simulation/blocks/../octree -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../lib/glfw-3.3.2/include -I../lib/glm -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera
   OBJECT_DIR = simulation\blocks\CMakeFiles\blocks.dir
   OBJECT_FILE_DIR = simulation\blocks\CMakeFiles\blocks.dir
 
 build simulation/blocks/CMakeFiles/blocks.dir/block.cpp.obj: CXX_COMPILER__blocks_Debug ../simulation/blocks/block.cpp || cmake_object_order_depends_target_blocks
   DEP_FILE = simulation\blocks\CMakeFiles\blocks.dir\block.cpp.obj.d
   FLAGS = -g   -std=gnu++11
-  INCLUDES = -I../simulation/blocks -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../lib/glfw-3.3.2/include -I../lib/glm -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera
+  INCLUDES = -I../simulation/blocks -I../simulation/blocks/../octree -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../lib/glfw-3.3.2/include -I../lib/glm -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera
   OBJECT_DIR = simulation\blocks\CMakeFiles\blocks.dir
   OBJECT_FILE_DIR = simulation\blocks\CMakeFiles\blocks.dir
 
 build simulation/blocks/CMakeFiles/blocks.dir/e_block.cpp.obj: CXX_COMPILER__blocks_Debug ../simulation/blocks/e_block.cpp || cmake_object_order_depends_target_blocks
   DEP_FILE = simulation\blocks\CMakeFiles\blocks.dir\e_block.cpp.obj.d
   FLAGS = -g   -std=gnu++11
-  INCLUDES = -I../simulation/blocks -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../lib/glfw-3.3.2/include -I../lib/glm -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera
+  INCLUDES = -I../simulation/blocks -I../simulation/blocks/../octree -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../lib/glfw-3.3.2/include -I../lib/glm -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera
   OBJECT_DIR = simulation\blocks\CMakeFiles\blocks.dir
   OBJECT_FILE_DIR = simulation\blocks\CMakeFiles\blocks.dir
 
 build simulation/blocks/CMakeFiles/blocks.dir/i_block.cpp.obj: CXX_COMPILER__blocks_Debug ../simulation/blocks/i_block.cpp || cmake_object_order_depends_target_blocks
   DEP_FILE = simulation\blocks\CMakeFiles\blocks.dir\i_block.cpp.obj.d
   FLAGS = -g   -std=gnu++11
-  INCLUDES = -I../simulation/blocks -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../lib/glfw-3.3.2/include -I../lib/glm -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera
+  INCLUDES = -I../simulation/blocks -I../simulation/blocks/../octree -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../lib/glfw-3.3.2/include -I../lib/glm -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera
   OBJECT_DIR = simulation\blocks\CMakeFiles\blocks.dir
   OBJECT_FILE_DIR = simulation\blocks\CMakeFiles\blocks.dir
 
 build simulation/blocks/CMakeFiles/blocks.dir/m_block.cpp.obj: CXX_COMPILER__blocks_Debug ../simulation/blocks/m_block.cpp || cmake_object_order_depends_target_blocks
   DEP_FILE = simulation\blocks\CMakeFiles\blocks.dir\m_block.cpp.obj.d
   FLAGS = -g   -std=gnu++11
-  INCLUDES = -I../simulation/blocks -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../lib/glfw-3.3.2/include -I../lib/glm -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera
+  INCLUDES = -I../simulation/blocks -I../simulation/blocks/../octree -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../lib/glfw-3.3.2/include -I../lib/glm -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera
   OBJECT_DIR = simulation\blocks\CMakeFiles\blocks.dir
   OBJECT_FILE_DIR = simulation\blocks\CMakeFiles\blocks.dir
 
 build simulation/blocks/CMakeFiles/blocks.dir/z_block.cpp.obj: CXX_COMPILER__blocks_Debug ../simulation/blocks/z_block.cpp || cmake_object_order_depends_target_blocks
   DEP_FILE = simulation\blocks\CMakeFiles\blocks.dir\z_block.cpp.obj.d
   FLAGS = -g   -std=gnu++11
-  INCLUDES = -I../simulation/blocks -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../lib/glfw-3.3.2/include -I../lib/glm -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera
+  INCLUDES = -I../simulation/blocks -I../simulation/blocks/../octree -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../lib/glfw-3.3.2/include -I../lib/glm -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera
   OBJECT_DIR = simulation\blocks\CMakeFiles\blocks.dir
   OBJECT_FILE_DIR = simulation\blocks\CMakeFiles\blocks.dir
 
 build simulation/blocks/CMakeFiles/blocks.dir/__/__/render/utils/world_initializer.cpp.obj: CXX_COMPILER__blocks_Debug ../render/utils/world_initializer.cpp || cmake_object_order_depends_target_blocks
   DEP_FILE = simulation\blocks\CMakeFiles\blocks.dir\__\__\render\utils\world_initializer.cpp.obj.d
   FLAGS = -g   -std=gnu++11
-  INCLUDES = -I../simulation/blocks -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../lib/glfw-3.3.2/include -I../lib/glm -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera
+  INCLUDES = -I../simulation/blocks -I../simulation/blocks/../octree -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../lib/glfw-3.3.2/include -I../lib/glm -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera
   OBJECT_DIR = simulation\blocks\CMakeFiles\blocks.dir
   OBJECT_FILE_DIR = simulation\blocks\CMakeFiles\blocks.dir\__\__\render\utils
 
@@ -1117,14 +1117,14 @@ build cmake_object_order_depends_target_octree: phony || cmake_object_order_depe
 build simulation/octree/CMakeFiles/octree.dir/octree.cpp.obj: CXX_COMPILER__octree_Debug ../simulation/octree/octree.cpp || cmake_object_order_depends_target_octree
   DEP_FILE = simulation\octree\CMakeFiles\octree.dir\octree.cpp.obj.d
   FLAGS = -g   -std=gnu++11
-  INCLUDES = -I../simulation/octree/. -I../numerics/linear_alg/include -I../utils/settings/. -I../simulation/blocks -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../lib/glfw-3.3.2/include -I../lib/glm -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera
+  INCLUDES = -I../simulation/octree/. -I../numerics/linear_alg/include -I../utils/settings/. -I../simulation/blocks -I../simulation/blocks/../octree -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../lib/glfw-3.3.2/include -I../lib/glm -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera
   OBJECT_DIR = simulation\octree\CMakeFiles\octree.dir
   OBJECT_FILE_DIR = simulation\octree\CMakeFiles\octree.dir
 
 build simulation/octree/CMakeFiles/octree.dir/__/__/render/utils/world_initializer.cpp.obj: CXX_COMPILER__octree_Debug ../render/utils/world_initializer.cpp || cmake_object_order_depends_target_octree
   DEP_FILE = simulation\octree\CMakeFiles\octree.dir\__\__\render\utils\world_initializer.cpp.obj.d
   FLAGS = -g   -std=gnu++11
-  INCLUDES = -I../simulation/octree/. -I../numerics/linear_alg/include -I../utils/settings/. -I../simulation/blocks -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../lib/glfw-3.3.2/include -I../lib/glm -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera
+  INCLUDES = -I../simulation/octree/. -I../numerics/linear_alg/include -I../utils/settings/. -I../simulation/blocks -I../simulation/blocks/../octree -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../lib/glfw-3.3.2/include -I../lib/glm -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera
   OBJECT_DIR = simulation\octree\CMakeFiles\octree.dir
   OBJECT_FILE_DIR = simulation\octree\CMakeFiles\octree.dir\__\__\render\utils
 
@@ -1195,14 +1195,14 @@ build cmake_object_order_depends_target_world_handler: phony || cmake_object_ord
 build simulation/world_handler/CMakeFiles/world_handler.dir/world_handler.cpp.obj: CXX_COMPILER__world_handler_Debug ../simulation/world_handler/world_handler.cpp || cmake_object_order_depends_target_world_handler
   DEP_FILE = simulation\world_handler\CMakeFiles\world_handler.dir\world_handler.cpp.obj.d
   FLAGS = -g   -std=gnu++11
-  INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../simulation/world_handler -I../simulation/octree/. -I../numerics/linear_alg/include -I../utils/settings/. -I../simulation/blocks -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera -I../render/block_renderer/../lib -I../render/block_renderer/.
+  INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../simulation/world_handler -I../simulation/octree/. -I../numerics/linear_alg/include -I../utils/settings/. -I../simulation/blocks -I../simulation/blocks/../octree -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera -I../render/block_renderer/../lib -I../render/block_renderer/.
   OBJECT_DIR = simulation\world_handler\CMakeFiles\world_handler.dir
   OBJECT_FILE_DIR = simulation\world_handler\CMakeFiles\world_handler.dir
 
 build simulation/world_handler/CMakeFiles/world_handler.dir/__/__/render/utils/world_initializer.cpp.obj: CXX_COMPILER__world_handler_Debug ../render/utils/world_initializer.cpp || cmake_object_order_depends_target_world_handler
   DEP_FILE = simulation\world_handler\CMakeFiles\world_handler.dir\__\__\render\utils\world_initializer.cpp.obj.d
   FLAGS = -g   -std=gnu++11
-  INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../simulation/world_handler -I../simulation/octree/. -I../numerics/linear_alg/include -I../utils/settings/. -I../simulation/blocks -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera -I../render/block_renderer/../lib -I../render/block_renderer/.
+  INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../simulation/world_handler -I../simulation/octree/. -I../numerics/linear_alg/include -I../utils/settings/. -I../simulation/blocks -I../simulation/blocks/../octree -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera -I../render/block_renderer/../lib -I../render/block_renderer/.
   OBJECT_DIR = simulation\world_handler\CMakeFiles\world_handler.dir
   OBJECT_FILE_DIR = simulation\world_handler\CMakeFiles\world_handler.dir\__\__\render\utils
 
@@ -1251,14 +1251,14 @@ build cmake_object_order_depends_target_simulation: phony || cmake_object_order_
 build simulation/environment/CMakeFiles/simulation.dir/simulation.cpp.obj: CXX_COMPILER__simulation_Debug ../simulation/environment/simulation.cpp || cmake_object_order_depends_target_simulation
   DEP_FILE = simulation\environment\CMakeFiles\simulation.dir\simulation.cpp.obj.d
   FLAGS = -g   -std=gnu++11
-  INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../simulation/environment -I../render/block_renderer/../lib -I../render/block_renderer/. -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera -I../simulation/blocks -I../simulation/world_handler -I../simulation/octree/.
+  INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../simulation/environment -I../render/block_renderer/../lib -I../render/block_renderer/. -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera -I../simulation/blocks -I../simulation/blocks/../octree -I../simulation/world_handler -I../simulation/octree/.
   OBJECT_DIR = simulation\environment\CMakeFiles\simulation.dir
   OBJECT_FILE_DIR = simulation\environment\CMakeFiles\simulation.dir
 
 build simulation/environment/CMakeFiles/simulation.dir/__/__/render/utils/world_initializer.cpp.obj: CXX_COMPILER__simulation_Debug ../render/utils/world_initializer.cpp || cmake_object_order_depends_target_simulation
   DEP_FILE = simulation\environment\CMakeFiles\simulation.dir\__\__\render\utils\world_initializer.cpp.obj.d
   FLAGS = -g   -std=gnu++11
-  INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../simulation/environment -I../render/block_renderer/../lib -I../render/block_renderer/. -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera -I../simulation/blocks -I../simulation/world_handler -I../simulation/octree/.
+  INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../simulation/environment -I../render/block_renderer/../lib -I../render/block_renderer/. -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera -I../simulation/blocks -I../simulation/blocks/../octree -I../simulation/world_handler -I../simulation/octree/.
   OBJECT_DIR = simulation\environment\CMakeFiles\simulation.dir
   OBJECT_FILE_DIR = simulation\environment\CMakeFiles\simulation.dir\__\__\render\utils
 
@@ -1292,14 +1292,14 @@ build cmake_object_order_depends_target_logic_gates: phony || cmake_object_order
 build simulation/environment/CMakeFiles/logic_gates.dir/logic_gates.cpp.obj: CXX_COMPILER__logic_gates_Debug ../simulation/environment/logic_gates.cpp || cmake_object_order_depends_target_logic_gates
   DEP_FILE = simulation\environment\CMakeFiles\logic_gates.dir\logic_gates.cpp.obj.d
   FLAGS = -g   -std=gnu++11
-  INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../simulation/environment -I../render/block_renderer/../lib -I../render/block_renderer/. -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera -I../simulation/blocks -I../simulation/world_handler -I../simulation/octree/.
+  INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../simulation/environment -I../render/block_renderer/../lib -I../render/block_renderer/. -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera -I../simulation/blocks -I../simulation/blocks/../octree -I../simulation/world_handler -I../simulation/octree/.
   OBJECT_DIR = simulation\environment\CMakeFiles\logic_gates.dir
   OBJECT_FILE_DIR = simulation\environment\CMakeFiles\logic_gates.dir
 
 build simulation/environment/CMakeFiles/logic_gates.dir/__/__/render/utils/world_initializer.cpp.obj: CXX_COMPILER__logic_gates_Debug ../render/utils/world_initializer.cpp || cmake_object_order_depends_target_logic_gates
   DEP_FILE = simulation\environment\CMakeFiles\logic_gates.dir\__\__\render\utils\world_initializer.cpp.obj.d
   FLAGS = -g   -std=gnu++11
-  INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../simulation/environment -I../render/block_renderer/../lib -I../render/block_renderer/. -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera -I../simulation/blocks -I../simulation/world_handler -I../simulation/octree/.
+  INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../simulation/environment -I../render/block_renderer/../lib -I../render/block_renderer/. -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera -I../simulation/blocks -I../simulation/blocks/../octree -I../simulation/world_handler -I../simulation/octree/.
   OBJECT_DIR = simulation\environment\CMakeFiles\logic_gates.dir
   OBJECT_FILE_DIR = simulation\environment\CMakeFiles\logic_gates.dir\__\__\render\utils
 
