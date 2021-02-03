@@ -45,18 +45,10 @@ public:
     map<Block*, Octree*> block_to_leaf;
 
     set<Octree *> trees_occupied;
-    map<Octree *, tuple<real, real, real>> i_leafs_occupied_com;
-    map<Octree *, tuple<real, real, real>> m_leafs_occupied_com;
-    map<Octree *, tuple<real, real, real>> z_leafs_occupied_com;
-    map<Octree *, tuple<real, real, real>> e_leafs_occupied_com;
-
 
     enum BlockTypes {IBlockType, MBlockType, EBlockType, ZBlockType};
 
     WorldHandler(int num_i_blocks_plus, int num_i_blocks_neg, int num_z_blocks, int num_m_blocks, int num_e_blocks_1, int num_e_blocks_1_2, real min_coord = - 50, real max_coord = 50, real cube_length = 4.0f);
-
-
-    void CalculateCOM();
 
     void AddBlock(BlockTypes block_types, int num_blocks, bool state);
 

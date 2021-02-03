@@ -14,10 +14,6 @@ namespace blocks {
 
         void React(Octree * tree, real delta_time) override;
 
-        /*void React(EBlock *block, real dist, const Matrix& to_cube, real deltimatime) override;
-        void React(ZBlock *block, real dist, const Matrix& to_cube, real deltimatime) override;
-        void React(MBlock *block, real dist, const Matrix& to_cube, real deltimatime) override;*/
-
         real ExtractFlareFromBlock(real deltimatime) override;
         void AddFlareToBlock(real flare_amount) override;
     };

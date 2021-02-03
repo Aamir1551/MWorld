@@ -1,29 +1,10 @@
+#include <cmath>
+
 #include <block.hpp>
 #include <m_block.hpp>
+#include <octree.hpp>
 
 namespace blocks {
-
-    void MBlock::React(IBlock *block, real squared_dist, const Matrix &to_cube, real deltatime) {
-        // neutral
-    };
-
-
-    void MBlock::React(EBlock *block, real squared_dist, const Matrix &to_cube, real deltatime) {
-        // neutral
-    };
-
-
-    void MBlock::React(MBlock *block, real squared_dist, const Matrix &to_cube, real deltatime) {
-        // neutral
-    };
-
-    void MBlock::React(ZBlock *block, real squared_dist, const Matrix &to_cube, real deltatime) {
-        // ZBlocks are attracted to M+ blocks
-        if(this->flare_value > MBlock::threshold) {
-            auto &force = to_cube;
-            AddLinearForce(force,  Block::force_dt / squared_dist * 1 * deltatime); // as distance increases, force also decreases
-        }
-    };
 
     void MBlock::AddFlareToBlock(real flare_amount) {
         this->flare_inc = this->flare_inc + flare_amount;
@@ -37,4 +18,11 @@ namespace blocks {
     };
 
     real MBlock::threshold = 25.0f;
+
+    void MBlock::React(Octree *tree, real delta_time) {
+        Matrix vec_to_tree_com_z = tree->com_z - this->position;
+        real squared_dist_z = Matrix::SquaredNorm(vec_to_tree_com_z);
+        real dist_z =  std::sqrt(squared_dist_z);
+        AddLinearForce(vec_to_tree_com_z / dist_z, Block::force_dt / squared_dist_z  * 1 * delta_time * (tree->zblocks_at_leaf.size()));
+    }
 };

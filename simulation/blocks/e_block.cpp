@@ -1,35 +1,9 @@
+#include <octree.hpp>
 #include <block.hpp>
 #include <e_block.hpp>
-#include <i_block.hpp>
 #include <cmath>
 
 namespace blocks {
-
-    void EBlock::React(IBlock * block, real squared_dist, const Matrix& to_cube, real deltatime) {
-        // I+ and E repel
-        if(block->state == true) {
-            // If k > 1: Repel, Otherwise Attract
-            real factor = std::log(this->k);
-            auto &force = to_cube;
-            AddLinearForce(force, Block::force_dt / squared_dist * 0.1 * -1 * factor * deltatime);
-        }
-    };
-
-    void EBlock::React(MBlock * block, real squared_dist, const Matrix& to_cube, real deltatime) {
-        // neutral
-    };
-
-    void EBlock::React(ZBlock * block, real squared_dist, const Matrix& to_cube, real deltatime) {
-        // neutral
-    };
-
-    void EBlock::React(EBlock * block, real squared_dist, const Matrix& to_cube, real deltatime) {
-        // E block and E block repel as k increases
-        float factor = std::log(block->k * this->k); // is zero is both blocks are k=1
-        auto &force = to_cube;
-        AddLinearForce(force, force_dt * factor / squared_dist * -1 * 0.1 * deltatime);
-    };
-
 
     real EBlock::ExtractFlareFromBlock(real deltatime) {
         this->flare_inc -= this->flare_value * 0.08 * deltatime; // using the kissing number of spheres
@@ -38,6 +12,21 @@ namespace blocks {
 
     void EBlock::AddFlareToBlock(real flare_amount) {
         this->flare_inc += (flare_amount) * k;
-    };
+    }
 
+    void EBlock::React(Octree *tree, real delta_time) {
+        // Attracted to the I+ and E blocks
+
+        Matrix vec_to_tree_com_i_plus = tree->com_i_plus - this->position;
+        Matrix vec_to_tree_com_e = tree->com_e - this->position;
+
+        real squared_dist_i_plus = Matrix::SquaredNorm(vec_to_tree_com_i_plus);
+        real squared_dist_e = Matrix::SquaredNorm(vec_to_tree_com_e);
+
+        real dist_i_plus =  std::sqrt(squared_dist_i_plus);
+        real dist_e =  std::sqrt(squared_dist_e);
+
+        AddLinearForce(vec_to_tree_com_e / dist_e, Block::force_dt / squared_dist_e  * 1 * delta_time * (tree->eblocks_at_leaf.size()));
+        AddLinearForce(vec_to_tree_com_i_plus / dist_i_plus, Block::force_dt / squared_dist_i_plus  * 1 * delta_time * (tree->iblocks_at_leaf_plus.size()));
+    };
 };

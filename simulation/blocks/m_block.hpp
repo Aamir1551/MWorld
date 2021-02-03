@@ -12,11 +12,8 @@ namespace blocks {
 
         MBlock(Matrix position, Quaternion initial_orientation, real cube_length = 4.0f) : Block(position, initial_orientation, 0, cube_length) {};
 
-        void React(IBlock *block, real dist, const Matrix& to_cube, real deltatime) override;
-        void React(MBlock *block, real dist, const Matrix& to_cube, real deltatime) override;
-        void React(EBlock *block, real dist, const Matrix& to_cube, real deltatime) override;
-        void React(ZBlock *block, real dist, const Matrix& to_cube, real deltatime) override;
 
+        void React(Octree * tree, real delta_time) override;
         real ExtractFlareFromBlock(real deltatime) override;
         void AddFlareToBlock(real flare_amount) override;
 
