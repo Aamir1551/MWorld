@@ -147,15 +147,15 @@ void WorldHandler::Update() {
 
 
 void WorldHandler::CollisionHandler(real deltatime) {
-    vector<Contact> contact_list;
 
-    vector<Contact> contact_list1;
+    /*vector<Contact> contact_list_test;
     for(int i=0; i<blocks.size()-1; i++) {
         for(int j=i+1; j<blocks.size(); j++) {
-            Cube::CollisionDetect(blocks.at(i), blocks.at(j), contact_list1);
+            Cube::CollisionDetect(blocks.at(i), blocks.at(j), contact_list_test);
         }
-    }
+    }*/
 
+    vector<Contact> contact_list;
     set<pair<Block *, Block *>> collisions_checked;
     for(auto const &collision_blocks : this->blocks) {
         Octree *coll_tree = this->block_to_leaf[collision_blocks];
@@ -178,7 +178,24 @@ void WorldHandler::CollisionHandler(real deltatime) {
         }
     }
 
-    cout << contact_list.size() << " " << contact_list1.size() << endl;
+    /*set<pair<Block *, Block *>> c;
+    set<pair<Block *, Block *>> c1;
+
+    for(auto const &k : contact_list) {
+        c.insert(make_pair(k.body1, k.body2));
+        c.insert(make_pair(k.body2, k.body1));
+    }
+
+    for(auto const &k : contact_list_test) {
+        c1.insert(make_pair(k.body1, k.body2));
+        c1.insert(make_pair(k.body2, k.body1));
+    }
+
+    if(c != c1 || contact_list.size() != contact_list_test.size()) {
+        cout << c.size() << endl;
+        cout << c1.size() << endl;
+        cout << "not worked" << endl;
+    }*/
 
     for(int i=0; i<contact_list.size(); i++) {
         Cube::CollisionResolution(contact_list.at(i));
@@ -190,6 +207,20 @@ void WorldHandler::CollisionHandler(real deltatime) {
     }
     SpinWorldBlocks();
     IncFlareValuesAndReset();
+}
+
+
+void WorldHandler::CalculateCOM() {
+    for(auto const &leaf : this->trees_occupied) {
+        real si = leaf->iblocks_at_leaf.size();
+        real sm = leaf->mblocks_at_leaf.size();
+        real sz = leaf->zblocks_at_leaf.size();
+        real se = leaf->eblocks_at_leaf.size();
+        this->i_leafs_occupied_com[leaf] = make_tuple(leaf->sum_x_i/si, leaf->sum_y_i/se, leaf->sum_z_i/se);
+        this->m_leafs_occupied_com[leaf] = make_tuple(leaf->sum_x_m/sm, leaf->sum_y_m/sm, leaf->sum_z_m/sm);
+        this->z_leafs_occupied_com[leaf] = make_tuple(leaf->sum_x_z/sz, leaf->sum_y_z/sz, leaf->sum_z_z/sz);
+        this->e_leafs_occupied_com[leaf] = make_tuple(leaf->sum_x_e/se, leaf->sum_y_e/se, leaf->sum_z_e/se);
+    }
 }
 
 void WorldHandler::AddForces(real deltatime) {
