@@ -150,9 +150,11 @@ void WorldHandler::Update() {
     for(auto const &leaf_z_block: this->zblocks) {
         Octree *leaf = block_to_leaf[leaf_z_block];
         if (!Octree::BlockInCorrectTree(leaf, leaf_z_block)) {
+            this->trees_occupied.erase(leaf);
             leaf->RemoveZBlock(leaf_z_block);
-            tree->AddZBlock(leaf_z_block);
-            block_to_leaf[leaf_z_block] = tree->AddZBlock(leaf_z_block);
+            Octree * new_leaf = tree->AddZBlock(leaf_z_block);
+            block_to_leaf[leaf_z_block] = new_leaf;
+            this->trees_occupied.insert(new_leaf);
         }
     }
 
@@ -160,8 +162,9 @@ void WorldHandler::Update() {
         Octree *leaf = block_to_leaf[leaf_e_block];
         if(!Octree::BlockInCorrectTree(leaf, leaf_e_block)) {
             leaf->RemoveEBlock(leaf_e_block);
-            tree->AddEBlock(leaf_e_block);
-            block_to_leaf[leaf_e_block] = tree->AddEBlock(leaf_e_block);
+            Octree * new_leaf = tree->AddEBlock(leaf_e_block);
+            block_to_leaf[leaf_e_block] = new_leaf;
+            this->trees_occupied.insert(new_leaf);
         }
     }
 
@@ -200,7 +203,8 @@ void WorldHandler::CollisionHandler(real deltatime) {
         }
     }
 
-    /*set<pair<Block *, Block *>> c;
+    /*
+    set<pair<Block *, Block *>> c;
     set<pair<Block *, Block *>> c1;
 
     for(auto const &k : contact_list) {
@@ -212,6 +216,7 @@ void WorldHandler::CollisionHandler(real deltatime) {
         c1.insert(make_pair(k.body1, k.body2));
         c1.insert(make_pair(k.body2, k.body1));
     }
+
 
     if(c != c1 || contact_list.size() != contact_list_test.size()) {
         cout << c.size() << endl;
@@ -234,93 +239,20 @@ void WorldHandler::CollisionHandler(real deltatime) {
 
 void WorldHandler::AddForces(real deltatime) {
     for(auto &block: this->blocks) {
-        ReactToAllBlocks(block, deltatime * 10);
+        //ReactToAllBlocks(block, deltatime * 10);
     }
 
-
-
-    /*deltatime *=10;
-    for(auto &x_block_counter: this->iblocks) {
-        auto x = x_block_counter->position(0, 0);
-        auto y = x_block_counter->position(1, 0);
-        auto z = x_block_counter->position(2, 0);
-        Octree *t = this->tree->GetGridAtPos(x, y, z);
-        vector<Octree *> neighbours = this->tree->grid_elements_neighbours[t];
-
-        for(int i=0; i<neighbours.size(); i++) {
-            for(auto &n : neighbours.at(i)->blocks_at_leaf) {
-
-                Matrix to_cube = x_block_counter->position - n.second->position;
-                real squared_dist = Matrix::SquaredNorm(to_cube);
-                if(squared_dist >= 25) {
-                    n.second->React(x_block_counter, squared_dist, to_cube, deltatime);
-                }
-            }
+    for(auto const &leaf : this->trees_occupied) {
+        leaf->CalculateCOMS();
+    }
+    for(auto const &block: this->blocks) {
+        for(auto const &leaf : this->trees_occupied) {
+            block->React(leaf, deltatime * 10);
         }
     }
-
-
-    for(auto &x_block_counter: this->mblocks) {
-        auto x = x_block_counter->position(0, 0);
-        auto y = x_block_counter->position(1, 0);
-        auto z = x_block_counter->position(2, 0);
-        Octree *t = this->tree->GetGridAtPos(x, y, z);
-        vector<Octree *> neighbours = this->tree->grid_elements_neighbours[t];
-
-        for(int i=0; i<neighbours.size(); i++) {
-            for(auto &n : neighbours.at(i)->blocks_at_leaf) {
-
-                Matrix to_cube = x_block_counter->position - n.second->position;
-                real squared_dist = Matrix::SquaredNorm(to_cube);
-                if(squared_dist >= 25) {
-                    n.second->React(x_block_counter, squared_dist, to_cube, deltatime);
-                }
-            }
-        }
-    }
-
-
-    for(auto &x_block_counter: this->zblocks) {
-        auto x = x_block_counter->position(0, 0);
-        auto y = x_block_counter->position(1, 0);
-        auto z = x_block_counter->position(2, 0);
-        Octree *t = this->tree->GetGridAtPos(x, y, z);
-        vector<Octree *> neighbours = this->tree->grid_elements_neighbours[t];
-
-        for(int i=0; i<neighbours.size(); i++) {
-            for(auto &n : neighbours.at(i)->blocks_at_leaf) {
-
-                Matrix to_cube = x_block_counter->position - n.second->position;
-                real squared_dist = Matrix::SquaredNorm(to_cube);
-                if(squared_dist >= 25) {
-                    n.second->React(x_block_counter, squared_dist, to_cube, deltatime);
-                }
-            }
-        }
-    }
-
-    for(auto &x_block_counter: this->eblocks) {
-        auto x = x_block_counter->position(0, 0);
-        auto y = x_block_counter->position(1, 0);
-        auto z = x_block_counter->position(2, 0);
-        Octree *t = this->tree->GetGridAtPos(x, y, z);
-        vector<Octree *> neighbours = this->tree->grid_elements_neighbours[t];
-
-        for(int i=0; i<neighbours.size(); i++) {
-            for(auto &n : neighbours.at(i)->blocks_at_leaf) {
-
-                Matrix to_cube = x_block_counter->position - n.second->position;
-                real squared_dist = Matrix::SquaredNorm(to_cube);
-                if(squared_dist >= 25) {
-                    n.second->React(x_block_counter, squared_dist, to_cube, deltatime);
-                }
-            }
-        }
-    } */
-
 }
 
-void WorldHandler::ReactToAllBlocks(Block *block, real deltatime) {
+/*void WorldHandler::ReactToAllBlocks(Block *block, real deltatime) {
     for(int i=0; i<iblocks.size(); i++) {
         Matrix to_cube = iblocks.at(i)->position - block->position;
         real squared_dist = Matrix::SquaredNorm(to_cube);
@@ -352,7 +284,7 @@ void WorldHandler::ReactToAllBlocks(Block *block, real deltatime) {
             block->React(mblocks.at(i), squared_dist, to_cube, deltatime);
         }
     }
-}
+}*/
 
 void WorldHandler::PassBlockFlares(vector<Contact> &contacts, real deltatime) {
     for(int i=0; i<contacts.size(); i++) {
