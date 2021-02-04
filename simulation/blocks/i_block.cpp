@@ -1,9 +1,7 @@
 #include <cmath>
 
 #include <i_block.hpp>
-#include <e_block.hpp>
 #include <octree.hpp>
-
 
 namespace blocks {
 

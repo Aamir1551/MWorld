@@ -79,3 +79,10 @@
 1771	2342	6340992554683773	simulation/environment/simulation.exe	926585dbeb54f7de
 6	1171	6340993242865924	simulation/environment/CMakeFiles/simulation.dir/simulation.cpp.obj	c5b2eb8ba1e35063
 1172	1741	6340993248426133	simulation/environment/simulation.exe	926585dbeb54f7de
+13	826	6341000073497757	simulation/blocks/CMakeFiles/blocks.dir/z_block.cpp.obj	750b0df75b18b821
+9	827	6341000073557599	simulation/blocks/CMakeFiles/blocks.dir/i_block.cpp.obj	8f01dc4238baceda
+827	940	6341000074764387	simulation/blocks/libblocks.a	b411f4246d4e389f
+20	1454	6341000079900656	simulation/environment/CMakeFiles/logic_gates.dir/logic_gates.cpp.obj	ed9cfd627f2b306d
+16	1787	6341000083226849	simulation/octree/CMakeFiles/octree.dir/octree.cpp.obj	23d77cd98a7f6b
+1787	1905	6341000084423378	simulation/octree/liboctree.a	a9cd397af6653a62
+1905	2457	6341000089668840	simulation/environment/logic_gates.exe	c3a3f9b108e73955

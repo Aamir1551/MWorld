@@ -161,7 +161,7 @@ namespace blocks {
         }
         if(z < min_boundary_z) {
             c1->linear_velocity(2, 0, abs(vz));
-        } else if(y > max_boundary_y) {
+        } else if(z > max_boundary_z) {
             c1->linear_velocity(2, 0, -abs(vz));
         }
     }
