@@ -10,12 +10,10 @@ using namespace settings;
 using namespace blocks;
 
 Octree* Octree::AddIBlockPlus(IBlock *b) {
+    this->sum_i_plus += b->position;
     if(this->is_leaf) {
         this->iblocks_at_leaf_plus.insert(b);
         this->blocks_at_leaf.insert(b);
-        this->sum_x_i_plus += b->position(0, 0);
-        this->sum_y_i_plus += b->position(1, 0);
-        this->sum_z_i_plus += b->position(2, 0);
         return this;
     } else {
         auto t0 = b->position(0, 0) > avg_x;
@@ -26,12 +24,10 @@ Octree* Octree::AddIBlockPlus(IBlock *b) {
 }
 
 Octree* Octree::AddIBlockNeg(IBlock *b) {
+    this->sum_i_neg += b->position;
     if(this->is_leaf) {
         this->iblocks_at_leaf_neg.insert(b);
         this->blocks_at_leaf.insert(b);
-        this->sum_x_i_neg += b->position(0, 0);
-        this->sum_y_i_neg += b->position(1, 0);
-        this->sum_z_i_neg += b->position(2, 0);
         return this;
     } else {
         auto t0 = b->position(0, 0) > avg_x;
@@ -43,12 +39,10 @@ Octree* Octree::AddIBlockNeg(IBlock *b) {
 
 
 Octree* Octree::AddMBlockPlus(MBlock *b) {
+    this->sum_m_plus += b->position;
     if(this->is_leaf) {
         this->mblocks_at_leaf_plus.insert(b);
         this->blocks_at_leaf.insert(b);
-        this->sum_x_m_plus += b->position(0, 0);
-        this->sum_y_m_plus += b->position(1, 0);
-        this->sum_z_m_plus += b->position(2, 0);
         return this;
     } else {
         auto t0 = b->position(0, 0) > avg_x;
@@ -60,12 +54,10 @@ Octree* Octree::AddMBlockPlus(MBlock *b) {
 
 
 Octree* Octree::AddMBlockNeg(MBlock *b) {
+    this->sum_m_neg += b->position;
     if(this->is_leaf) {
         this->mblocks_at_leaf_neg.insert(b);
         this->blocks_at_leaf.insert(b);
-        this->sum_x_m_neg += b->position(0, 0);
-        this->sum_y_m_neg += b->position(1, 0);
-        this->sum_z_m_neg += b->position(2, 0);
         return this;
     } else {
         auto t0 = b->position(0, 0) > avg_x;
@@ -76,12 +68,10 @@ Octree* Octree::AddMBlockNeg(MBlock *b) {
 }
 
 Octree* Octree::AddEBlock(EBlock *b) {
+    this->sum_e += b->position;
     if(this->is_leaf) {
         this->eblocks_at_leaf.insert(b);
         this->blocks_at_leaf.insert(b);
-        this->sum_x_e += b->position(0, 0);
-        this->sum_y_e += b->position(1, 0);
-        this->sum_z_e += b->position(2, 0);
         return this;
     } else {
         auto t0 = b->position(0, 0) > avg_x;
@@ -93,12 +83,10 @@ Octree* Octree::AddEBlock(EBlock *b) {
 
 
 Octree* Octree::AddZBlock(ZBlock *b) {
+    this->sum_z += b->position;
     if(this->is_leaf) {
         this->zblocks_at_leaf.insert(b);
         this->blocks_at_leaf.insert(b);
-        this->sum_x_z += b->position(0, 0);
-        this->sum_y_z += b->position(1, 0);
-        this->sum_z_z += b->position(2, 0);
         return this;
     } else {
         auto t0 = b->position(0, 0) > avg_x;
@@ -109,95 +97,84 @@ Octree* Octree::AddZBlock(ZBlock *b) {
 }
 
 void Octree::RemoveIBlockPlus(IBlock *b) {
+    this->sum_i_plus -= b->position;
     if(!this->is_leaf) {
         auto t0 = b->position(0, 0) > avg_x;
         auto t1 = b->position(1, 0) > avg_y;
         auto t2 = b->position(2, 0) > avg_z;
         this->children[t0 + t1 * 2 + t2 * 4]->RemoveIBlockPlus(b);
     } else {
-        this->sum_x_i_plus -= b->position(0, 0);
-        this->sum_y_i_plus -= b->position(1, 0);
-        this->sum_z_i_plus -= b->position(2, 0);
         this->iblocks_at_leaf_plus.erase(b);
         this->blocks_at_leaf.erase(b);
     }
 }
 
 void Octree::RemoveIBlockNeg(IBlock *b) {
+    this->sum_i_neg -= b->position;
     if(!this->is_leaf) {
         auto t0 = b->position(0, 0) > avg_x;
         auto t1 = b->position(1, 0) > avg_y;
         auto t2 = b->position(2, 0) > avg_z;
         this->children[t0 + t1 * 2 + t2 * 4]->RemoveIBlockNeg(b);
     } else {
-        this->sum_x_i_neg -= b->position(0, 0);
-        this->sum_y_i_neg -= b->position(1, 0);
-        this->sum_z_i_neg -= b->position(2, 0);
         this->iblocks_at_leaf_neg.erase(b);
         this->blocks_at_leaf.erase(b);
     }
 }
 
 void Octree::RemoveEBlock(EBlock *b) {
+    this->sum_e -= b->position;
     if(!this->is_leaf) {
         auto t0 = b->position(0, 0) > avg_x;
         auto t1 = b->position(1, 0) > avg_y;
         auto t2 = b->position(2, 0) > avg_z;
         this->children[t0 + t1 * 2 + t2 * 4]->RemoveEBlock(b);
     } else {
-        this->sum_x_e -= b->position(0, 0);
-        this->sum_y_e -= b->position(1, 0);
-        this->sum_z_e -= b->position(2, 0);
         this->eblocks_at_leaf.erase(b);
         this->blocks_at_leaf.erase(b);
     }
 }
 
 void Octree::RemoveZBlock(ZBlock *b) {
+    this->sum_z -= b->position;
     if(!this->is_leaf) {
         auto t0 = b->position(0, 0) > avg_x;
         auto t1 = b->position(1, 0) > avg_y;
         auto t2 = b->position(2, 0) > avg_z;
         this->children[t0 + t1 * 2 + t2 * 4]->RemoveZBlock(b);
     } else {
-        this->sum_x_z -= b->position(0, 0);
-        this->sum_y_z -= b->position(1, 0);
-        this->sum_z_z -= b->position(2, 0);
         this->zblocks_at_leaf.erase(b);
         this->blocks_at_leaf.erase(b);
     }
 }
 
 void Octree::RemoveMBlockPlus(MBlock *b) {
+    this->sum_m_plus -= b->position;
     if(!this->is_leaf) {
         auto t0 = b->position(0, 0) > avg_x;
         auto t1 = b->position(1, 0) > avg_y;
         auto t2 = b->position(2, 0) > avg_z;
         this->children[t0 + t1 * 2 + t2 * 4]->RemoveMBlockPlus(b);
     } else {
-        this->sum_x_m_plus -= b->position(0, 0);
-        this->sum_y_m_plus -= b->position(1, 0);
-        this->sum_z_m_plus -= b->position(2, 0);
         this->mblocks_at_leaf_plus.erase(b);
         this->blocks_at_leaf.erase(b);
     }
 }
 
 void Octree::RemoveMBlockNeg(MBlock *b) {
+    this->sum_m_neg -= b->position;
     if(!this->is_leaf) {
         auto t0 = b->position(0, 0) > avg_x;
         auto t1 = b->position(1, 0) > avg_y;
         auto t2 = b->position(2, 0) > avg_z;
         this->children[t0 + t1 * 2 + t2 * 4]->RemoveMBlockNeg(b);
     } else {
-        this->sum_x_m_neg -= b->position(0, 0);
-        this->sum_y_m_neg -= b->position(1, 0);
-        this->sum_z_m_neg -= b->position(2, 0);
         this->mblocks_at_leaf_neg.erase(b);
         this->blocks_at_leaf.erase(b);
     }
 }
 
+/*
 void Octree::CalculateCOMS() {
 
     real iblocks_at_leaf_plus_count = this->iblocks_at_leaf_plus.size();
@@ -246,11 +223,15 @@ void Octree::CalculateCOMS() {
                                               sum_z_z / zblocks_at_leaf_count);
 
     }
-}
+}*/
 
 Octree::Octree(int grid_size, real min_x, real  max_x, real min_y, real max_y, real min_z, real max_z, bool initialise) : max_x(max_x), min_x(min_x), min_y(min_y), max_y(max_y), min_z(min_z), max_z(max_z) {
-
-    sum_x_i_plus= sum_y_i_plus= sum_z_i_plus = sum_x_i_neg= sum_y_i_neg= sum_z_i_neg= sum_x_z= sum_y_z= sum_z_z= sum_x_m_plus= sum_y_m_plus= sum_z_m_plus= sum_x_m_neg= sum_y_m_neg= sum_z_m_neg= sum_x_e= sum_y_e= sum_z_e = 0;
+    this->sum_i_plus = Matrix(3, 1, 0);
+    this->sumi_neg = Matrix(3, 1, 0);
+    this->sum_z = Matrix(3, 1, 0);
+    this->sum_m_plus = Matrix(3, 1, 0);
+    this->sum_m_neg = Matrix(3, 1, 0);
+    this->sum_e = Matrix(3, 1, 0);
 
     this->partition_size = std::min(max_x - min_x, std::min(max_y - min_y, max_z - min_z));
     this->grid_size = grid_size;
