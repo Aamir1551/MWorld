@@ -79,7 +79,7 @@ int main()
 
         world.Update();
         world.CollisionHandler(deltaTime);
-        //world.AddForces();
+        world.AddForces(deltaTime);
         BlockRenderer::DrawAllBlocks(&world.iblocks, &world.zblocks, &world.eblocks, &world.mblocks);
 
         glfwSwapBuffers(world_properties->window);

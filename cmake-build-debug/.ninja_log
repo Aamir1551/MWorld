@@ -86,3 +86,11 @@
 16	1787	6341000083226849	simulation/octree/CMakeFiles/octree.dir/octree.cpp.obj	23d77cd98a7f6b
 1787	1905	6341000084423378	simulation/octree/liboctree.a	a9cd397af6653a62
 1905	2457	6341000089668840	simulation/environment/logic_gates.exe	c3a3f9b108e73955
+6	605	6341006282413744	simulation/blocks/CMakeFiles/blocks.dir/cube.cpp.obj	b67bd5131c5261e0
+606	768	6341006283800249	simulation/blocks/libblocks.a	b411f4246d4e389f
+13	1709	6341006293412864	simulation/environment/CMakeFiles/logic_gates.dir/logic_gates.cpp.obj	ed9cfd627f2b306d
+10	2259	6341006298938844	simulation/world_handler/CMakeFiles/world_handler.dir/world_handler.cpp.obj	6d081669d62b85e6
+2260	2409	6341006300445809	simulation/world_handler/libworld_handler.a	d82797b59785b7e7
+2409	2978	6341006305901590	simulation/environment/logic_gates.exe	c3a3f9b108e73955
+6	1182	6341006870509657	simulation/environment/CMakeFiles/logic_gates.dir/logic_gates.cpp.obj	ed9cfd627f2b306d
+1183	1756	6341006876042740	simulation/environment/logic_gates.exe	c3a3f9b108e73955
