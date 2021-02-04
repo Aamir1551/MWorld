@@ -40,15 +40,19 @@ int main()
     //WorldHandler world = WorldHandler(num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same);
     //WorldHandler world = WorldHandler(0, 0, 0, 0, 0, 0);
     //WorldHandler world = WorldHandler(0, 0, 2, 0, 0, 0);
-    WorldHandler world = WorldHandler(0, 0, 1000, 0, 0, 0, -100, 100, 4);
-    /*world.tree->RemoveZBlock(world.zblocks.at(0));
-    world.tree->RemoveZBlock(world.zblocks.at(1));*/
+    WorldHandler world = WorldHandler(0, 0, 250, 0, 0, 0, -100, 100, 4);
+    world.forces_tree->RemoveZBlock(world.zblocks.at(0));
+    world.forces_tree->RemoveZBlock(world.zblocks.at(1));
+    world.tree->RemoveZBlock(world.zblocks.at(0));
+    world.tree->RemoveZBlock(world.zblocks.at(1));
 
-    /*world.zblocks.at(0)->position = Matrix::CreateColumnVec(-20, 0, 0);
-    world.zblocks.at(1)->position = Matrix::CreateColumnVec(20, 0, 0);*/
+    world.zblocks.at(0)->position = Matrix::CreateColumnVec(-20, 0, 0);
+    world.zblocks.at(1)->position = Matrix::CreateColumnVec(20, 0, 0);
 
-    /*world.tree->AddZBlock(world.zblocks.at(0));
-    world.tree->AddZBlock(world.zblocks.at(1));*/
+    world.tree->AddZBlock(world.zblocks.at(0));
+    world.tree->AddZBlock(world.zblocks.at(1));
+    world.forces_tree->AddZBlock(world.zblocks.at(0));
+    world.forces_tree->AddZBlock(world.zblocks.at(1));
 
     world.zblocks.at(0)->SetLinearMomentumToZero();
     world.zblocks.at(0)->momentum = Matrix(3, 1);
@@ -86,11 +90,10 @@ int main()
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         world.Update();
-        //world.CollisionHandler(deltaTime);
-        world.AddForces(deltaTime);
+        world.CollisionHandler(deltaTime);
+        //world.AddForces(deltaTime);
 
         BlockRenderer::DrawAllBlocks(&world.iblocks, &world.zblocks, &world.eblocks, &world.mblocks);
-        world.tree->count = 0;
 
         glfwSwapBuffers(world_properties->window);
         glfwPollEvents();

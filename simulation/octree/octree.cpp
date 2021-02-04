@@ -217,7 +217,7 @@ void Octree::CalculateCOMonTree() {
 
 
 void Octree::ApplyBarnesHutOnBlock(Block *b, real delta_time) {
-    this->count +=1;
+    this->count += 1;
     bool recurse = b->React(this, delta_time);
     if(recurse) {
         for(int i=0; i<8; i++) {

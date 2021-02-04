@@ -37,15 +37,16 @@ public:
     vector<ZBlock *> zblocks;
 
     Octree *tree;
+    Octree *forces_tree;
     vector<Block *> blocks;
     real world_size;
     real cube_length;
     real min_coord;
     real max_coord;
     map<Block*, Octree*> block_to_leaf;
+    map<Block*, Octree*> block_to_leaf_force;
 
     multiset<Octree *> leaves_occupied;
-    map<Octree*, int> leaves_occupied_count;
 
     enum BlockTypes {IBlockType, MBlockType, EBlockType, ZBlockType};
 

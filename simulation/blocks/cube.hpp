@@ -100,7 +100,7 @@ namespace blocks {
 
         static void CollisionDetect(Block *c1, Block *c2, vector<Contact> &contact_list);
 
-        static void CollisionBoundary(Block *c1, real min_boundary_x, real max_boundary_x,
+        static void CollisionBoundary(Cube *c1, real min_boundary_x, real max_boundary_x,
                                             real min_boundary_y, real max_boundary_y ,
                                             real min_boundary_z, real max_boundary_z);
 

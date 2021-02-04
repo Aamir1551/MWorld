@@ -47,7 +47,9 @@ WorldHandler::WorldHandler(int num_i_blocks_plus, int num_i_blocks_neg, int num_
     srand((unsigned)time(0)); //NULL???
 
     cout << "Quad tree is Being initialised" << endl;
-    this->tree = new Octree(cube_length * 25, min_coord, max_coord, min_coord, max_coord, min_coord, max_coord, true);
+    this->tree = new Octree(cube_length * 2, min_coord, max_coord, min_coord, max_coord, min_coord, max_coord, true);
+    this->forces_tree = new Octree(cube_length * 25, min_coord, max_coord, min_coord, max_coord, min_coord, max_coord,
+                                   false);
     cout << "Quad tree initialised" << endl;
     this->world_size = max_coord - min_coord;
     this->max_coord = max_coord;
@@ -71,37 +73,43 @@ void WorldHandler::AddBlock(BlockTypes block_types, int num_blocks, bool state) 
         std::vector<Matrix> *positions, *linear_momentums;
         GetProperties(num_blocks, positions, linear_momentums, this->min_coord, this->max_coord);
         Octree * tree_occupied;
+        Octree * cell_occupied_force;
         for(int i=0; i<num_blocks; i++) {
             if(block_types == IBlockType) {
                 auto *new_block = new IBlock(positions->at(i), Quaternion(1.0, 0.0, 0.0, 0.0)  ,state);
                 iblocks.push_back(new_block);
                 if(state) {
                     tree_occupied = this->tree->AddIBlockPlus(new_block);
+                    cell_occupied_force = this->forces_tree->AddIBlockPlus(new_block);
                 } else {
                     tree_occupied = this->tree->AddIBlockNeg(new_block);
+                    cell_occupied_force = this->forces_tree->AddIBlockNeg(new_block);
                 }
                 blocks.push_back(new_block);
             } else if(block_types == ZBlockType) {
                 auto *new_block = new ZBlock(positions->at(i), Quaternion(1.0, 0.0, 0.0, 0.0));
                 zblocks.push_back(new_block);
                 tree_occupied = this->tree->AddZBlock(new_block);
+                cell_occupied_force = this->forces_tree->AddZBlock(new_block);
                 blocks.push_back(new_block);
             } else if(block_types == EBlockType) {
                 auto new_block = new EBlock(positions->at(i), Quaternion(1.0, 0.0, 0.0, 0.0), state);
                 eblocks.push_back(new_block);
                 tree_occupied = this->tree->AddEBlock(new_block);
+                cell_occupied_force = this->forces_tree->AddEBlock(new_block);
                 blocks.push_back(new_block);
             } else {
                 auto new_block = new MBlock(positions->at(i), Quaternion(1.0, 0.0, 0.0, 0.0));
                 mblocks.push_back(new_block);
                 tree_occupied = this->tree->AddMBlockNeg(new_block);
+                cell_occupied_force = this->forces_tree->AddMBlockNeg(new_block);
                 blocks.push_back(new_block);
             }
             auto temp = blocks.back();
             temp->SetLinearMomentum(linear_momentums->at(i));
             this->block_to_leaf[temp] = tree_occupied;
+            this->block_to_leaf_force[temp] = cell_occupied_force;
             this->leaves_occupied.insert(tree_occupied);
-            this->leaves_occupied_count[tree_occupied] = 1;
     }
 }
 
@@ -150,20 +158,20 @@ void WorldHandler::Update() {
             }
         }
     }*/
-    this->tree->CalculateCOMonTree();
+    this->forces_tree->CalculateCOMonTree();
     for(auto const &leaf_z_block: this->zblocks) {
         Octree *leaf = block_to_leaf[leaf_z_block];
+        //Octree *leaf_force = block_to_leaf_force[leaf_z_block];
+        forces_tree->RemoveZBlock(leaf_z_block); // remove block needs to be done before
+        tree->RemoveZBlock(leaf_z_block);
+        this->leaves_occupied.erase(leaf);
         leaf_z_block->Update(this->min_coord, this->max_coord, this->min_coord, this->max_coord, this->min_coord, this->max_coord);
-        if(!Octree::BlockInCorrectTree(leaf, leaf_z_block)) {
-            this->leaves_occupied.erase(leaf);
-            tree->RemoveZBlock(leaf_z_block);
-            Octree * new_leaf = tree->AddZBlock(leaf_z_block);
-            block_to_leaf[leaf_z_block] = new_leaf;
-            this->leaves_occupied.insert(new_leaf);
-        }
+        Octree * new_leaf = tree->AddZBlock(leaf_z_block);
+        block_to_leaf[leaf_z_block] = new_leaf;
+        this->leaves_occupied.insert(new_leaf);
+        new_leaf = forces_tree->AddZBlock(leaf_z_block);
+        block_to_leaf_force[leaf_z_block] = new_leaf;
     }
-
-
 };
 
 
@@ -234,47 +242,11 @@ void WorldHandler::CollisionHandler(real deltatime) {
 
 void WorldHandler::AddForces(real deltatime) {
 
-    //set<Octree *> tt; //sort out on using leaves_occupied_count everywhere in code
-    /*for(auto const &leaf : this->leaves_occupied) {
-        tt.insert(leaf);
-    }*/
-
+    this->forces_tree->CalculateCOMonTree();
     for(auto const &block : this->zblocks) {
-        tree->ApplyBarnesHutOnBlock(block, deltatime * 10);
+        forces_tree->ApplyBarnesHutOnBlock(block, deltatime * 10);
     }
 
-    /*for(auto const &blocka : this->zblocks) {
-        real dist = 10000000000000000;
-        auto closest_block = (ZBlock *) nullptr;
-        for(auto const &blockb : this->zblocks) {
-            auto v = blocka->position - blockb->position;
-            real dd = Matrix::Norm(v);
-            if(dd == 0) {
-                continue;
-            }
-            if(dd < dist) {
-                dist = dd;
-                closest_block = blockb;
-            }
-        }
-        blocka->React(this->block_to_leaf[closest_block], deltatime);
-    }*/
-
-    /*for(auto const &leaf : tt) {
-        leaf->CalculateCOMS();
-        for(auto const &block: this->zblocks) {
-            block->React(leaf, deltatime * 10);
-        }
-        for(auto const &block: this->iblocks) {
-            block->React(leaf, deltatime * 10);
-        }
-        for(auto const &block: this->mblocks) {
-            block->React(leaf, deltatime * 10);
-        }
-        for(auto const &block: this->eblocks) {
-            block->React(leaf, deltatime * 10);
-        }
-    }*/
 }
 
 void WorldHandler::PassBlockFlares(vector<Contact> &contacts, real deltatime) {
