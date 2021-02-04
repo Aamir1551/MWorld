@@ -84,6 +84,7 @@ Octree* Octree::AddEBlock(EBlock *b) {
 
 Octree* Octree::AddZBlock(ZBlock *b) {
     this->sum_z += b->position;
+    this->zblocks_at_cell_count +=1;
     if(this->is_leaf) {
         this->zblocks_at_leaf.insert(b);
         this->blocks_at_leaf.insert(b);
@@ -137,6 +138,7 @@ void Octree::RemoveEBlock(EBlock *b) {
 
 void Octree::RemoveZBlock(ZBlock *b) {
     this->sum_z -= b->position;
+    this->zblocks_at_cell_count-=1;
     if(!this->is_leaf) {
         auto t0 = b->position(0, 0) > avg_x;
         auto t1 = b->position(1, 0) > avg_y;
@@ -174,73 +176,73 @@ void Octree::RemoveMBlockNeg(MBlock *b) {
     }
 }
 
-/*
+
 void Octree::CalculateCOMS() {
 
-    real iblocks_at_leaf_plus_count = this->iblocks_at_leaf_plus.size();
-    real iblocks_at_leaf_neg_count = this->iblocks_at_leaf_neg.size();
-    real mblocks_at_leaf_plus_count =  this->mblocks_at_leaf_plus.size();
-    real mblocks_at_leaf_neg_count =  this->mblocks_at_leaf_neg.size();
-    real zblocks_at_leaf_count =  this->zblocks_at_leaf.size();
-    real eblocks_count =  this->eblocks_at_leaf.size();
-
-    if(iblocks_at_leaf_plus_count > 0) {
-        this->com_i_plus = Matrix::CreateColumnVec(sum_x_i_plus / iblocks_at_leaf_plus_count,
-                                                   sum_y_i_plus / iblocks_at_leaf_plus_count,
-                                                   sum_z_i_plus / iblocks_at_leaf_plus_count);
+    if(iblocks_at_cell_plus_count > 0) {
+        this->com_i_plus = sum_i_plus / iblocks_at_cell_plus_count;
     }
 
-    if(iblocks_at_leaf_neg_count > 0) {
-        this->com_i_neg = Matrix::CreateColumnVec(sum_x_i_neg / iblocks_at_leaf_neg_count,
-                                                  sum_y_i_neg / iblocks_at_leaf_neg_count,
-                                                  sum_z_i_neg / iblocks_at_leaf_neg_count);
+    if(iblocks_at_cell_neg_count > 0) {
+        this->com_i_neg = sum_i_neg / iblocks_at_cell_neg_count;
     }
 
-    if(mblocks_at_leaf_plus_count > 0) {
-        this->com_m_plus = Matrix::CreateColumnVec(sum_x_m_plus / mblocks_at_leaf_plus_count,
-                                                   sum_y_m_plus / mblocks_at_leaf_plus_count,
-                                                   sum_z_m_plus / mblocks_at_leaf_plus_count);
+    if(mblocks_at_cell_plus_count > 0) {
+        this->com_m_plus = sum_m_plus / mblocks_at_cell_plus_count;
     }
 
-
-    if(mblocks_at_leaf_neg_count > 0) {
-        this->com_m_neg = Matrix::CreateColumnVec(sum_x_m_neg / mblocks_at_leaf_neg_count,
-                                                  sum_y_m_neg / mblocks_at_leaf_neg_count,
-                                                  sum_z_m_neg / mblocks_at_leaf_neg_count);
+    if(mblocks_at_cell_neg_count > 0) {
+        this->com_m_neg = sum_m_neg / mblocks_at_cell_neg_count;
     }
 
-
-    if(eblocks_count > 0) {
-        this->com_e = Matrix::CreateColumnVec(sum_x_e / eblocks_count,
-                                              sum_y_e / eblocks_count,
-                                              sum_z_e / eblocks_count);
+    if(eblocks_at_cell_count > 0) {
+        this->com_e = sum_e / eblocks_at_cell_count;
     }
 
-
-    if(zblocks_at_leaf_count > 0) {
-        this->com_z = Matrix::CreateColumnVec(sum_x_z / zblocks_at_leaf_count,
-                                              sum_y_z / zblocks_at_leaf_count,
-                                              sum_z_z / zblocks_at_leaf_count);
-
+    if(zblocks_at_cell_count > 0) {
+        this->com_z = sum_z / zblocks_at_cell_count;
     }
-}*/
+}
+
+void Octree::CalculateCOMonTree() {
+    CalculateCOMS();
+    int num_blocks_count = zblocks_at_cell_count + eblocks_at_cell_count + iblocks_at_cell_neg_count + iblocks_at_cell_plus_count + mblocks_at_cell_neg_count + mblocks_at_cell_plus_count;
+    if(num_blocks_count > 0 && !this->is_leaf) {
+        for(int i=0; i<8; i++){
+           this->children[i]->CalculateCOMonTree();
+        }
+    }
+};
+
+
+
+void Octree::ApplyBarnesHutOnBlock(Block *b, real delta_time) {
+    this->count +=1;
+    bool recurse = b->React(this, delta_time);
+    if(recurse) {
+        for(int i=0; i<8; i++) {
+            this->children[i]->ApplyBarnesHutOnBlock(b, delta_time);
+        }
+    }
+}
 
 Octree::Octree(int grid_size, real min_x, real  max_x, real min_y, real max_y, real min_z, real max_z, bool initialise) : max_x(max_x), min_x(min_x), min_y(min_y), max_y(max_y), min_z(min_z), max_z(max_z) {
+    iblocks_at_cell_plus_count= iblocks_at_cell_neg_count= mblocks_at_cell_plus_count= mblocks_at_cell_neg_count= zblocks_at_cell_count= eblocks_at_cell_count = 0;
     this->sum_i_plus = Matrix(3, 1, 0);
-    this->sumi_neg = Matrix(3, 1, 0);
+    this->sum_i_neg = Matrix(3, 1, 0);
     this->sum_z = Matrix(3, 1, 0);
     this->sum_m_plus = Matrix(3, 1, 0);
     this->sum_m_neg = Matrix(3, 1, 0);
     this->sum_e = Matrix(3, 1, 0);
 
-    this->partition_size = std::min(max_x - min_x, std::min(max_y - min_y, max_z - min_z));
+    this->cell_partition_size = std::min(max_x - min_x, std::min(max_y - min_y, max_z - min_z));
     this->grid_size = grid_size;
 
     avg_x = (min_x + max_x) / 2;
     avg_y = (min_y + max_y) / 2;
     avg_z = (min_z + max_z) / 2;
 
-    if (this->partition_size <= grid_size) {
+    if (this->cell_partition_size <= grid_size) {
         this->is_leaf = true;
     } else {
         this->is_leaf = false;
@@ -255,9 +257,9 @@ Octree::Octree(int grid_size, real min_x, real  max_x, real min_y, real max_y, r
     }
 
     if (initialise) {
-        real partition_min_x = partition_size;
-        real partition_min_y = partition_size;
-        real partition_min_z = partition_size;
+        real partition_min_x = cell_partition_size;
+        real partition_min_y = cell_partition_size;
+        real partition_min_z = cell_partition_size;
 
         while (partition_min_x > (real) grid_size) {
             partition_min_x /= 2;
@@ -278,7 +280,7 @@ Octree::Octree(int grid_size, real min_x, real  max_x, real min_y, real max_y, r
                 real k = min_z + partition_min_z / 2;
                 while (k < max_z) {
                     Octree *octree_pos = GetGridAtPos(i, j, k);
-                    this->grid_elements_neighbours[octree_pos] = GetGridNeighbours(i, j, k);
+                    this->grid_elements_neighbours[octree_pos] = GenerateNeigbours(i, j, k);
                     k += partition_min_z;
                 }
                 j += partition_min_y;
@@ -288,8 +290,7 @@ Octree::Octree(int grid_size, real min_x, real  max_x, real min_y, real max_y, r
     }
 }
 
-
-std::vector<Octree *> Octree::GetGridNeighbours(real x, real y, real z) {
+std::vector<Octree *> Octree::GenerateNeigbours(real x, real y, real z) {
     vector<Octree *> neighbours;
 
     for(int i=0; i<27; i++) {
@@ -297,9 +298,9 @@ std::vector<Octree *> Octree::GetGridNeighbours(real x, real y, real z) {
         int b = (((i - (i % 3))/3) % 3) - 1;
         int c = ((i - (i%9))/9) - 1;
 
-        real partition_min_x = partition_size;
-        real partition_min_y = partition_size;
-        real partition_min_z = partition_size;
+        real partition_min_x = cell_partition_size;
+        real partition_min_y = cell_partition_size;
+        real partition_min_z = cell_partition_size;
 
         while (partition_min_x > (real) grid_size) {
             partition_min_x /= 2;
@@ -381,3 +382,5 @@ bool Octree::BlockInCorrectTree(Octree *tree, Block *b) {
     return false;
 
 }
+
+int Octree::count = 0;

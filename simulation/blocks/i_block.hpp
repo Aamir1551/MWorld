@@ -22,7 +22,7 @@ namespace blocks {
         }
 
 
-        virtual void React(Octree * tree, real delta_time) override;
+        virtual bool React(Octree * tree, real delta_time) override;
 
         real ExtractFlareFromBlock(real deltatime) override;
         void spin(Matrix const &force_direction) override;

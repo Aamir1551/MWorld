@@ -114,8 +114,8 @@ namespace blocks {
             real length = (c1->cube_length + c2->cube_length) / 2;
             if(dist == 0) {
                 auto temp = c1->position(0, 0);
-                c1->position(0, 0, temp +  length/2);
-                c2->position(0, 0, temp -length/2);
+                c1->position(0, 0, temp + length/2);
+                c2->position(0, 0, temp - length/2);
                 return;
             }
 
@@ -135,8 +135,8 @@ namespace blocks {
             auto temp = body1->momentum;
             body1->momentum = body2->momentum * 0.5;
             body2->momentum = temp * 0.5;
-            body1->position = body1->position + normal * (contact.penetration / 2);
-            body2->position = body2->position - normal * (contact.penetration / 2);
+            body1->position = body1->position + normal * (contact.penetration / 2 + 0.01);
+            body2->position = body2->position - normal * (contact.penetration / 2 + 0.01);
 
 
         }

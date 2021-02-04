@@ -20,7 +20,7 @@ namespace blocks
             }
         };
 
-        void React(Octree * tree, real delta_time) override;
+        bool React(Octree * tree, real delta_time) override;
 
         real ExtractFlareFromBlock(real deltatime) override;
         void AddFlareToBlock(real flare_amount) override;

@@ -7,7 +7,7 @@ namespace blocks {
 
     class Block;
 
-    void IBlock::React(Octree * tree, real delta_time) {
+    bool IBlock::React(Octree * tree, real delta_time) {
         Matrix vec_to_tree_com_i_plus = tree->com_i_plus - this->position;
         Matrix vec_to_tree_com_i_neg = tree->com_i_neg - this->position;
         real squared_dist_i_plus = Matrix::SquaredNorm(vec_to_tree_com_i_plus);

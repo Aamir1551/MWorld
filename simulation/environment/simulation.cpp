@@ -40,7 +40,21 @@ int main()
     //WorldHandler world = WorldHandler(num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same);
     //WorldHandler world = WorldHandler(0, 0, 0, 0, 0, 0);
     //WorldHandler world = WorldHandler(0, 0, 2, 0, 0, 0);
-    WorldHandler world = WorldHandler(0, 0, 10000, 0, 0, 0, -100, 100, 4);
+    WorldHandler world = WorldHandler(0, 0, 1000, 0, 0, 0, -100, 100, 4);
+    /*world.tree->RemoveZBlock(world.zblocks.at(0));
+    world.tree->RemoveZBlock(world.zblocks.at(1));*/
+
+    /*world.zblocks.at(0)->position = Matrix::CreateColumnVec(-20, 0, 0);
+    world.zblocks.at(1)->position = Matrix::CreateColumnVec(20, 0, 0);*/
+
+    /*world.tree->AddZBlock(world.zblocks.at(0));
+    world.tree->AddZBlock(world.zblocks.at(1));*/
+
+    world.zblocks.at(0)->SetLinearMomentumToZero();
+    world.zblocks.at(0)->momentum = Matrix(3, 1);
+    world.zblocks.at(1)->SetLinearMomentumToZero();
+    world.zblocks.at(1)->momentum = Matrix(3, 1);
+
 
     glBindVertexArray(vao);
     glEnable(GL_DEPTH_TEST);
@@ -58,6 +72,11 @@ int main()
     while (!glfwWindowShouldClose(world_properties->window))
     {
 
+
+        //world.zblocks.at(0)->position.print();
+        //world.zblocks.at(1)->position.print();
+
+
         currentFrame = glfwGetTime();
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
@@ -67,10 +86,11 @@ int main()
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         world.Update();
-        world.CollisionHandler(deltaTime);
+        //world.CollisionHandler(deltaTime);
         world.AddForces(deltaTime);
 
         BlockRenderer::DrawAllBlocks(&world.iblocks, &world.zblocks, &world.eblocks, &world.mblocks);
+        world.tree->count = 0;
 
         glfwSwapBuffers(world_properties->window);
         glfwPollEvents();

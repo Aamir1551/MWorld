@@ -35,7 +35,7 @@ namespace blocks {
 
         //when another block is closest to you
 
-        virtual void React(Octree * tree, real delta_time) = 0;
+        virtual bool React(Octree * tree, real delta_time) = 0;
 
         /*virtual void React(Octree * block, real squared_dist, const Matrix& to_cube, real deltatime) = 0;
 

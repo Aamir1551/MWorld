@@ -19,7 +19,7 @@ namespace blocks {
 
     real MBlock::threshold = 25.0f;
 
-    void MBlock::React(Octree *tree, real delta_time) {
+    bool MBlock::React(Octree *tree, real delta_time) {
         Matrix vec_to_tree_com_z = tree->com_z - this->position;
         real squared_dist_z = Matrix::SquaredNorm(vec_to_tree_com_z);
         real dist_z =  std::sqrt(squared_dist_z);
