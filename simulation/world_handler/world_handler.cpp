@@ -158,6 +158,16 @@ void WorldHandler::Update() {
             this->leaves_occupied.erase(leaf);
             leaf->RemoveZBlock(leaf_z_block);
             Octree * new_leaf = tree->AddZBlock(leaf_z_block);
+            //Octree * new_leaf = nullptr; //= tree->AddZBlock(leaf_z_block);
+            /*for(auto &t : tree->grid_elements_neighbours[leaf]) {
+                if(Octree::BlockInCorrectTree(t, leaf_z_block)){
+                    new_leaf = t;
+                    break;
+                }
+            }
+            if(new_leaf == nullptr){
+               cout << "wrong" << endl;
+            }*/
             block_to_leaf[leaf_z_block] = new_leaf;
             this->leaves_occupied.insert(new_leaf);
         }
