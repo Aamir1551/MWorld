@@ -2,6 +2,7 @@
 #include <ctime>
 #include <vector>
 #include <map>
+#include <set>
 
 #include <matrix.hpp>
 
@@ -101,6 +102,7 @@ void WorldHandler::AddBlock(BlockTypes block_types, int num_blocks, bool state) 
             temp->SetLinearMomentum(linear_momentums->at(i));
             this->block_to_leaf[temp] = tree_occupied;
             this->leaves_occupied.insert(tree_occupied);
+            this->leaves_occupied_count[tree_occupied] = 1;
     }
 }
 
@@ -116,6 +118,9 @@ void WorldHandler::Update() {
         Octree *leaf = block_to_leaf[leaf_i_block];
         if(!Octree::BlockInCorrectTree(leaf, leaf_i_block)) {
             this->leaves_occupied.erase(leaf);
+            if(leaves_occupied_count[leaf] == 1) {
+                leaves_occupied_count.erase(leaf);
+            }
             if(leaf_i_block->state) {
                 leaf->RemoveIBlockPlus(leaf_i_block);
                 Octree* new_leaf = tree->AddIBlockPlus(leaf_i_block);
@@ -237,7 +242,13 @@ void WorldHandler::CollisionHandler(real deltatime) {
 
 
 void WorldHandler::AddForces(real deltatime) {
+
+    set<Octree *> tt; //sort out on using leaves_occupied_count everywhere in code
     for(auto const &leaf : this->leaves_occupied) {
+        tt.insert(leaf);
+    }
+
+    for(auto const &leaf : tt) {
         leaf->CalculateCOMS();
         for(auto const &block: this->zblocks) {
             block->React(leaf, deltatime * 10);

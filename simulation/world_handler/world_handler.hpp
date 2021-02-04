@@ -46,6 +46,7 @@ public:
     map<Block *, Matrix *> block_to_force; // we will cache the force values in here
 
     multiset<Octree *> leaves_occupied;
+    map<Octree*, int> leaves_occupied_count;
 
     enum BlockTypes {IBlockType, MBlockType, EBlockType, ZBlockType};
 

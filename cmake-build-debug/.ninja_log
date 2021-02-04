@@ -94,3 +94,13 @@
 2409	2978	6341006305901590	simulation/environment/logic_gates.exe	c3a3f9b108e73955
 6	1182	6341006870509657	simulation/environment/CMakeFiles/logic_gates.dir/logic_gates.cpp.obj	ed9cfd627f2b306d
 1183	1756	6341006876042740	simulation/environment/logic_gates.exe	c3a3f9b108e73955
+11	4730	6341022347312194	simulation/environment/CMakeFiles/logic_gates.dir/logic_gates.cpp.obj	ed9cfd627f2b306d
+184	5469	6341022354722554	simulation/world_handler/CMakeFiles/world_handler.dir/world_handler.cpp.obj	6d081669d62b85e6
+5469	6154	6341022361600393	simulation/world_handler/libworld_handler.a	d82797b59785b7e7
+6154	7536	6341022374646792	simulation/environment/logic_gates.exe	c3a3f9b108e73955
+12	3057	6341022490908768	simulation/environment/CMakeFiles/simulation.dir/simulation.cpp.obj	c5b2eb8ba1e35063
+3058	4584	6341022505659139	simulation/environment/simulation.exe	926585dbeb54f7de
+16	2769	6341023060689103	simulation/environment/CMakeFiles/simulation.dir/simulation.cpp.obj	c5b2eb8ba1e35063
+2770	4107	6341023073537046	simulation/environment/simulation.exe	926585dbeb54f7de
+16	2658	6341023360454156	simulation/environment/CMakeFiles/simulation.dir/simulation.cpp.obj	c5b2eb8ba1e35063
+2659	4072	6341023374067898	simulation/environment/simulation.exe	926585dbeb54f7de
