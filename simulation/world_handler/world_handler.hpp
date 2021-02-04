@@ -43,6 +43,7 @@ public:
     real min_coord;
     real max_coord;
     map<Block*, Octree*> block_to_leaf;
+    map<Block *, Matrix *> block_to_force; // we will cache the force values in here
 
     multiset<Octree *> leaves_occupied;
 
