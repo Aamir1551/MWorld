@@ -47,7 +47,7 @@ WorldHandler::WorldHandler(int num_i_blocks_plus, int num_i_blocks_neg, int num_
     srand((unsigned)time(0)); //NULL???
 
     cout << "Quad tree is Being initialised" << endl;
-    this->tree = new Octree(cube_length * 2, min_coord, max_coord, min_coord, max_coord, min_coord, max_coord, true);
+    this->tree = new Octree(cube_length * 4, min_coord, max_coord, min_coord, max_coord, min_coord, max_coord, true);
     this->forces_tree = new Octree(cube_length * 25, min_coord, max_coord, min_coord, max_coord, min_coord, max_coord,
                                    false);
     cout << "Quad tree initialised" << endl;
@@ -158,19 +158,18 @@ void WorldHandler::Update() {
             }
         }
     }*/
-    this->forces_tree->CalculateCOMonTree();
     for(auto const &leaf_z_block: this->zblocks) {
         Octree *leaf = block_to_leaf[leaf_z_block];
         //Octree *leaf_force = block_to_leaf_force[leaf_z_block];
-        forces_tree->RemoveZBlock(leaf_z_block); // remove block needs to be done before
+        forces_tree->RemoveZBlock(leaf_z_block); // remove block needs to be done before updatecube
         tree->RemoveZBlock(leaf_z_block);
         this->leaves_occupied.erase(leaf);
         leaf_z_block->Update(this->min_coord, this->max_coord, this->min_coord, this->max_coord, this->min_coord, this->max_coord);
         Octree * new_leaf = tree->AddZBlock(leaf_z_block);
         block_to_leaf[leaf_z_block] = new_leaf;
         this->leaves_occupied.insert(new_leaf);
-        new_leaf = forces_tree->AddZBlock(leaf_z_block);
-        block_to_leaf_force[leaf_z_block] = new_leaf;
+        forces_tree->AddZBlock(leaf_z_block);
+        //block_to_leaf_force[leaf_z_block] = new_leaf;
     }
 };
 

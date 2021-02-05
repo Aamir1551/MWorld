@@ -1390,6 +1390,18 @@
 			"value" : "C:/Users/aamir/Documents/mworld/render/cube_renderer"
 		},
 		{
+			"name" : "force_octree_LIB_DEPENDS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Dependencies for the target"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "general;linear_alg;general;blocks;"
+		},
+		{
 			"name" : "glad_BINARY_DIR",
 			"properties" : 
 			[

@@ -1144,6 +1144,45 @@ build simulation/octree/liboctree.a: CXX_STATIC_LIBRARY_LINKER__octree_Debug sim
   TARGET_FILE = simulation\octree\liboctree.a
   TARGET_PDB = octree.a.dbg
 
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target force_octree
+
+
+#############################################
+# Order-only phony target for force_octree
+
+build cmake_object_order_depends_target_force_octree: phony || cmake_object_order_depends_target_blocks cmake_object_order_depends_target_cube_renderer cmake_object_order_depends_target_glad cmake_object_order_depends_target_linear_alg cmake_object_order_depends_target_mworld_render_utils cmake_object_order_depends_target_quaternion cmake_object_order_depends_target_utils
+
+build simulation/octree/CMakeFiles/force_octree.dir/force_octree.cpp.obj: CXX_COMPILER__force_octree_Debug ../simulation/octree/force_octree.cpp || cmake_object_order_depends_target_force_octree
+  DEP_FILE = simulation\octree\CMakeFiles\force_octree.dir\force_octree.cpp.obj.d
+  FLAGS = -g   -std=gnu++11
+  INCLUDES = -I../simulation/octree/. -I../numerics/linear_alg/include -I../utils/settings/. -I../simulation/blocks -I../simulation/blocks/../octree -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../lib/glfw-3.3.2/include -I../lib/glm -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera
+  OBJECT_DIR = simulation\octree\CMakeFiles\force_octree.dir
+  OBJECT_FILE_DIR = simulation\octree\CMakeFiles\force_octree.dir
+
+build simulation/octree/CMakeFiles/force_octree.dir/__/__/render/utils/world_initializer.cpp.obj: CXX_COMPILER__force_octree_Debug ../render/utils/world_initializer.cpp || cmake_object_order_depends_target_force_octree
+  DEP_FILE = simulation\octree\CMakeFiles\force_octree.dir\__\__\render\utils\world_initializer.cpp.obj.d
+  FLAGS = -g   -std=gnu++11
+  INCLUDES = -I../simulation/octree/. -I../numerics/linear_alg/include -I../utils/settings/. -I../simulation/blocks -I../simulation/blocks/../octree -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../lib/glfw-3.3.2/include -I../lib/glm -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera
+  OBJECT_DIR = simulation\octree\CMakeFiles\force_octree.dir
+  OBJECT_FILE_DIR = simulation\octree\CMakeFiles\force_octree.dir\__\__\render\utils
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target force_octree
+
+
+#############################################
+# Link the static library simulation\octree\libforce_octree.a
+
+build simulation/octree/libforce_octree.a: CXX_STATIC_LIBRARY_LINKER__force_octree_Debug simulation/octree/CMakeFiles/force_octree.dir/force_octree.cpp.obj simulation/octree/CMakeFiles/force_octree.dir/__/__/render/utils/world_initializer.cpp.obj || lib/glad/libglad.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/cube_renderer/libcube_renderer.a render/utils/libmworld_render_utils.a simulation/blocks/libblocks.a utils/util_functions/libutils.a
+  LANGUAGE_COMPILE_FLAGS = -g
+  OBJECT_DIR = simulation\octree\CMakeFiles\force_octree.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = simulation\octree\libforce_octree.a
+  TARGET_PDB = force_octree.a.dbg
+
 
 #############################################
 # Utility command for edit_cache
@@ -1398,6 +1437,8 @@ build collision_tests.exe: phony simulation/environment/collision_tests.exe
 
 build cube_renderer: phony render/cube_renderer/libcube_renderer.a
 
+build force_octree: phony simulation/octree/libforce_octree.a
+
 build glad: phony lib/glad/libglad.a
 
 build libblock_renderer.a: phony render/block_renderer/libblock_renderer.a
@@ -1405,6 +1446,8 @@ build libblock_renderer.a: phony render/block_renderer/libblock_renderer.a
 build libblocks.a: phony simulation/blocks/libblocks.a
 
 build libcube_renderer.a: phony render/cube_renderer/libcube_renderer.a
+
+build libforce_octree.a: phony simulation/octree/libforce_octree.a
 
 build libglad.a: phony lib/glad/libglad.a
 
@@ -1597,7 +1640,7 @@ build simulation/environment/all: phony simulation/environment/simulation.exe si
 #############################################
 # Folder: C:/Users/aamir/Documents/mworld/cmake-build-debug/simulation/octree
 
-build simulation/octree/all: phony simulation/octree/liboctree.a
+build simulation/octree/all: phony simulation/octree/liboctree.a simulation/octree/libforce_octree.a
 
 # =============================================================================
 

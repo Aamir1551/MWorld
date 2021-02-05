@@ -3,5 +3,8 @@ project(quaternion_lib)
 set(CMAKE_CXX_STANDARD 11)
 
 add_library(octree octree.cpp octree.hpp)
+add_library(force_octree force_octree.cpp force_octree.hpp)
 target_link_libraries(octree PUBLIC linear_alg settings blocks)
+target_link_libraries(force_octree PUBLIC linear_alg settings blocks)
 target_include_directories(octree PUBLIC ".")
+target_include_directories(force_octree PUBLIC ".")

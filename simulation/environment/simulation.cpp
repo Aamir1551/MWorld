@@ -41,7 +41,7 @@ int main()
     //WorldHandler world = WorldHandler(0, 0, 0, 0, 0, 0);
     //WorldHandler world = WorldHandler(0, 0, 2, 0, 0, 0);
     WorldHandler world = WorldHandler(0, 0, 250, 0, 0, 0, -100, 100, 4);
-    world.forces_tree->RemoveZBlock(world.zblocks.at(0));
+    /*world.forces_tree->RemoveZBlock(world.zblocks.at(0));
     world.forces_tree->RemoveZBlock(world.zblocks.at(1));
     world.tree->RemoveZBlock(world.zblocks.at(0));
     world.tree->RemoveZBlock(world.zblocks.at(1));
@@ -57,7 +57,7 @@ int main()
     world.zblocks.at(0)->SetLinearMomentumToZero();
     world.zblocks.at(0)->momentum = Matrix(3, 1);
     world.zblocks.at(1)->SetLinearMomentumToZero();
-    world.zblocks.at(1)->momentum = Matrix(3, 1);
+    world.zblocks.at(1)->momentum = Matrix(3, 1);*/
 
 
     glBindVertexArray(vao);
@@ -91,7 +91,7 @@ int main()
 
         world.Update();
         world.CollisionHandler(deltaTime);
-        //world.AddForces(deltaTime);
+        world.AddForces(deltaTime);
 
         BlockRenderer::DrawAllBlocks(&world.iblocks, &world.zblocks, &world.eblocks, &world.mblocks);
 

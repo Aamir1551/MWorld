@@ -41,7 +41,7 @@ namespace blocks {
 
 
         if(squared_dist_z >= 25) {
-            AddLinearForce(vec_to_tree_com_z/dist_z, Block::force_dt / dist_z * delta_time * ((real) tree->zblocks_at_cell_count ));
+            AddLinearForce(vec_to_tree_com_z/dist_z, Block::force_dt / squared_dist_z * 1000 * delta_time * ((real) tree->zblocks_at_cell_count ));
         }
 
         /*if(dist_m_plus >= 25) {

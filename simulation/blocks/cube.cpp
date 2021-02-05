@@ -134,10 +134,10 @@ namespace blocks {
             Cube *body2 = contact.body2;            //The body pointer of the second cube //=nullptr
             auto normal = contact.normal;
             auto temp = body1->momentum;
-            body1->momentum = body2->momentum * 1;
-            body2->momentum = temp * 1;
-            body1->position = body1->position + normal * (contact.penetration / 2 + 0.01);
-            body2->position = body2->position - normal * (contact.penetration / 2 + 0.01);
+            body1->momentum = body2->momentum * 0.01;
+            body2->momentum = temp * 0.01;
+            body1->position = body1->position + normal * (contact.penetration / 2 + 0.01 );
+            body2->position = body2->position - normal * (contact.penetration / 2  + 0.01);
 
 
         }
