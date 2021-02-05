@@ -1,4 +1,5 @@
 #include <octree.hpp>
+#include <force_octree.hpp>
 #include <block.hpp>
 #include <e_block.hpp>
 #include <cmath>
@@ -15,7 +16,7 @@ namespace blocks {
     }
 
 
-    bool EBlock::React(Octree * tree, real delta_time) {
+    bool EBlock::React(ForceOctree * tree, real delta_time) {
         // Attracted to the I+ and E blocks
 
         if(tree->iblocks_at_cell_plus_count == 0 && tree->eblocks_at_cell_count == 0) {

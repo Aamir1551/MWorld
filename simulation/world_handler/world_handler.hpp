@@ -18,6 +18,7 @@
 #include <z_block.hpp>
 
 #include <octree.hpp>
+#include <force_octree.hpp>
 
 using namespace blocks;
 
@@ -37,14 +38,14 @@ public:
     vector<ZBlock *> zblocks;
 
     Octree *tree;
-    Octree *forces_tree;
+    ForceOctree *forces_tree;
     vector<Block *> blocks;
     real world_size;
     real cube_length;
     real min_coord;
     real max_coord;
     map<Block*, Octree*> block_to_leaf;
-    map<Block*, Octree*> block_to_leaf_force;
+    map<Block*, ForceOctree*> block_to_leaf_force;
 
     multiset<Octree *> leaves_occupied;
 

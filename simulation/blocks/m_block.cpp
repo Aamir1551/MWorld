@@ -19,7 +19,11 @@ namespace blocks {
 
     real MBlock::threshold = 25.0f;
 
-    bool MBlock::React(Octree *tree, real delta_time) {
+    bool MBlock::React(ForceOctree *tree, real delta_time) {
+        return false;
+    }
+
+    /*bool MBlock::React(ForceOctree *tree, real delta_time) {
         Matrix vec_to_tree_com_z = tree->com_z - this->position;
         real squared_dist_z = Matrix::SquaredNorm(vec_to_tree_com_z);
         real dist_z =  std::sqrt(squared_dist_z);
@@ -28,5 +32,5 @@ namespace blocks {
             AddLinearForce(vec_to_tree_com_z / dist_z, Block::force_dt / squared_dist_z  * 1 * delta_time * (tree->zblocks_at_leaf.size()));
         }
 
-    }
+    }*/
 };

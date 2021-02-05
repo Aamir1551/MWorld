@@ -48,7 +48,7 @@ WorldHandler::WorldHandler(int num_i_blocks_plus, int num_i_blocks_neg, int num_
 
     cout << "Quad tree is Being initialised" << endl;
     this->tree = new Octree(cube_length * 4, min_coord, max_coord, min_coord, max_coord, min_coord, max_coord, true);
-    this->forces_tree = new Octree(cube_length * 25, min_coord, max_coord, min_coord, max_coord, min_coord, max_coord,
+    this->forces_tree = new ForceOctree(cube_length * 25, min_coord, max_coord, min_coord, max_coord, min_coord, max_coord,
                                    false);
     cout << "Quad tree initialised" << endl;
     this->world_size = max_coord - min_coord;
@@ -73,7 +73,7 @@ void WorldHandler::AddBlock(BlockTypes block_types, int num_blocks, bool state) 
         std::vector<Matrix> *positions, *linear_momentums;
         GetProperties(num_blocks, positions, linear_momentums, this->min_coord, this->max_coord);
         Octree * tree_occupied;
-        Octree * cell_occupied_force;
+        ForceOctree * cell_occupied_force;
         for(int i=0; i<num_blocks; i++) {
             if(block_types == IBlockType) {
                 auto *new_block = new IBlock(positions->at(i), Quaternion(1.0, 0.0, 0.0, 0.0)  ,state);

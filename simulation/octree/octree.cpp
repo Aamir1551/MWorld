@@ -216,7 +216,7 @@ void Octree::CalculateCOMonTree() {
 
 
 
-void Octree::ApplyBarnesHutOnBlock(Block *b, real delta_time) {
+/*void Octree::ApplyBarnesHutOnBlock(Block *b, real delta_time) {
     this->count += 1;
     bool recurse = b->React(this, delta_time);
     if(recurse) {
@@ -224,7 +224,7 @@ void Octree::ApplyBarnesHutOnBlock(Block *b, real delta_time) {
             this->children[i]->ApplyBarnesHutOnBlock(b, delta_time);
         }
     }
-}
+}*/
 
 Octree::Octree(int grid_size, real min_x, real  max_x, real min_y, real max_y, real min_z, real max_z, bool initialise) : max_x(max_x), min_x(min_x), min_y(min_y), max_y(max_y), min_z(min_z), max_z(max_z) {
     iblocks_at_cell_plus_count= iblocks_at_cell_neg_count= mblocks_at_cell_plus_count= mblocks_at_cell_neg_count= zblocks_at_cell_count= eblocks_at_cell_count = 0;

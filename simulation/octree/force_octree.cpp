@@ -227,22 +227,6 @@ ForceOctree::ForceOctree(int grid_size, real min_x, real  max_x, real min_y, rea
     }
 }
 
-bool ForceOctree::LeafsAreNull() {
-
-    if(this->is_leaf) {
-        return this->blocks_at_leaf.size() == 0;
-    } else {
-        bool cond = true;
-        for(int i=0; i<this->children.size(); i++) {
-            cond &= this->children.at(i)->LeafsAreNull();
-            if(!cond) {
-                return false;
-            }
-        }
-    }
-    return true;
-}
-
 bool ForceOctree::BlockInCorrectTree(ForceOctree *tree, Block *b) {
 
     real x = b->position(0,0);

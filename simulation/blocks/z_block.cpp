@@ -3,10 +3,11 @@
 #include <block.hpp>
 #include <z_block.hpp>
 #include <octree.hpp>
+#include <force_octree.hpp>
 
 namespace blocks {
 
-    bool ZBlock::React(Octree * tree, real delta_time) {
+    bool ZBlock::React(ForceOctree * tree, real delta_time) {
 
         if(tree->zblocks_at_cell_count == 0 && tree->mblocks_at_cell_plus_count == 0){
             return false;

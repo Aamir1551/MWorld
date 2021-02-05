@@ -1,5 +1,5 @@
-#ifndef MWORLD_SIMULATION_OCTREE
-#define MWORLD_SIMULATION_OCTREE
+#ifndef MWORLD_SIMULATION_FORCE_OCTREE
+#define MWORLD_SIMULATION_FORCE_OCTREE
 
 #include <map>
 #include <set>
@@ -26,22 +26,10 @@ namespace blocks {
         real cell_partition_size;
         int grid_size;
 
-        set<Block *> blocks_at_leaf;
-
-        set<IBlock *> iblocks_at_leaf_neg;
-        set<IBlock *> iblocks_at_leaf_plus;
-
-        set<ZBlock *> zblocks_at_leaf;
-        set<EBlock *> eblocks_at_leaf;
-        set<MBlock *> mblocks_at_leaf_plus;
-        set<MBlock *> mblocks_at_leaf_neg;
-
         std::map<ForceOctree *, vector<ForceOctree *> > grid_elements_neighbours;
 
         real avg_x, avg_y, avg_z, min_x, max_x, min_y, max_y, min_z, max_z;
         Matrix sum_i_plus,  sum_i_neg, sum_z, sum_m_plus, sum_m_neg, sum_e;
-
-
 
         Matrix com_i_plus = Matrix(3, 1);
         Matrix com_i_neg = Matrix(3, 1);
@@ -82,8 +70,6 @@ namespace blocks {
         void CalculateCOMonTree();
 
         bool static BlockInCorrectTree(ForceOctree *tree, Block *b);
-
-        bool LeafsAreNull();
 
     };
 }

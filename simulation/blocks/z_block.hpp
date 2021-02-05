@@ -3,6 +3,7 @@
 
 #include <block.hpp>
 #include <octree.hpp>
+#include <force_octree.hpp>
 
 namespace blocks {
     class ZBlock : public Block {
@@ -12,7 +13,7 @@ namespace blocks {
 
 
 
-        bool React(Octree * tree, real delta_time) override;
+        bool React(ForceOctree * tree, real delta_time) override;
 
         real ExtractFlareFromBlock(real deltimatime) override;
         void AddFlareToBlock(real flare_amount) override;

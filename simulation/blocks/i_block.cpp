@@ -7,7 +7,7 @@ namespace blocks {
 
     class Block;
 
-    bool IBlock::React(Octree * tree, real delta_time) {
+    /*bool IBlock::React(ForceOctree * tree, real delta_time) {
         Matrix vec_to_tree_com_i_plus = tree->com_i_plus - this->position;
         Matrix vec_to_tree_com_i_neg = tree->com_i_neg - this->position;
         real squared_dist_i_plus = Matrix::SquaredNorm(vec_to_tree_com_i_plus);
@@ -23,7 +23,7 @@ namespace blocks {
         if(squared_dist_i_neg > 25) {
             AddLinearForce(vec_to_tree_com_i_neg  / dist_i_neg, Block::force_dt / squared_dist_i_neg * -1 * 0.1 * delta_time * (tree->iblocks_at_leaf_neg.size()) * (1-this->state));
         }
-    };
+    };*/
 
     real IBlock::ExtractFlareFromBlock(real deltatime) {
         return this->a * deltatime + this->b * (real) (this->flare_value < IBlock::threshold) * deltatime;
@@ -38,4 +38,8 @@ namespace blocks {
     };
 
     real IBlock::threshold = 2.0f;
+
+    bool IBlock::React(ForceOctree *tree, real delta_time) {
+        return false;
+    }
 };

@@ -2,6 +2,7 @@
 #define MWorld_SIMULATION_BLOCKS_I_BLOCKS
 
 #include <octree.hpp>
+#include <force_octree.hpp>
 #include <block.hpp>
 
 namespace blocks {
@@ -22,7 +23,7 @@ namespace blocks {
         }
 
 
-        virtual bool React(Octree * tree, real delta_time) override;
+        virtual bool React(ForceOctree * tree, real delta_time) override;
 
         real ExtractFlareFromBlock(real deltatime) override;
         void spin(Matrix const &force_direction) override;
