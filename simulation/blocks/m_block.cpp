@@ -2,6 +2,7 @@
 
 #include <block.hpp>
 #include <m_block.hpp>
+#include <e_block.hpp>
 #include <octree.hpp>
 
 namespace blocks {
@@ -10,6 +11,9 @@ namespace blocks {
         this->flare_inc += flare_amount;
     }
 
+    void MBlock::Decay(real delta_time) {
+       this->flare_value -= (delta_time * EBlock::capacity * 0.08 * 0.55);
+    };
 
     real MBlock::ExtractFlareFromBlock(real deltatime) {
         real extract = (real) (this->flare_value > MBlock::threshold) * this->flare_value * 0.08 * deltatime;

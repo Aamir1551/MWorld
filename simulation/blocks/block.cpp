@@ -50,10 +50,12 @@ namespace blocks {
     }
 
     void Block::UpdateFlare() {
-        this->flare_value = std::min(this->flare_inc + this->flare_value, Block::flare_capacity);
+        this->flare_value = std::max(std::min( (this->flare_inc + this->flare_value), Block::flare_capacity), 0.0f);
     };
 
     real Block::flare_capacity = 1.0f;
     real Block::theta = 0.5f;
+
+    void Block::Decay(real delta_time) {return;};
 }
 

@@ -271,6 +271,7 @@ void WorldHandler::UpdateFlares(vector<Contact> &contact_list, real delta_time) 
     PassBlockFlares(contact_list, delta_time);
     for(auto const &world_block : this->blocks) {
         SpinWorldBlocks();
+        world_block->Decay(delta_time);
         IncFlareValuesAndReset();
     }
 }

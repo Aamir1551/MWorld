@@ -7,7 +7,7 @@ add_executable(logic_gates logic_gates.cpp)
 add_executable(collision_tests collision_tests.cpp)
 add_executable(or_gate_test or_gate_test.cpp)
 add_executable(and_gate_test and_gate_test.cpp)
-add_executable(not_gate_test and_gate_test.cpp)
+add_executable(not_gate_test not_gate_test.cpp)
 #add_executable(flare_test flare_test.cpp)
 #make use of variables so you dont need to include this many libraries at the same time
 target_link_libraries(simulation PUBLIC block_renderer linear_alg quaternion cube_renderer utils glad ${glfw} settings  mworld_render_utils camera shader blocks world_handler)

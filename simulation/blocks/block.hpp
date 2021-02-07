@@ -45,6 +45,9 @@ namespace blocks {
         virtual void spin(Matrix const &force_direction);
 
         virtual void UpdateFlare();
+
+        virtual void Decay(real delta_time);
+
     };
 
 }

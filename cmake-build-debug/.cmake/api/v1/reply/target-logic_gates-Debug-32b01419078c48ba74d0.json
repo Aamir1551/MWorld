@@ -2,10 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "prototype/prototype_two/prototype_two.exe"
+			"path" : "simulation/environment/logic_gates.exe"
 		},
 		{
-			"path" : "prototype/prototype_two/prototype_two.pdb"
+			"path" : "simulation/environment/logic_gates.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -19,7 +19,7 @@
 		],
 		"files" : 
 		[
-			"prototype/prototype_two/CMakeLists.txt"
+			"simulation/environment/CMakeLists.txt"
 		],
 		"nodes" : 
 		[
@@ -29,19 +29,19 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 5,
+				"line" : 6,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 6,
+				"line" : 14,
 				"parent" : 0
 			},
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 8,
+				"line" : 22,
 				"parent" : 0
 			}
 		]
@@ -70,7 +70,15 @@
 				},
 				{
 					"backtrace" : 3,
-					"path" : "C:/Users/aamir/Documents/mworld/prototype/prototype_two"
+					"path" : "C:/Users/aamir/Documents/mworld/simulation/environment"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "C:/Users/aamir/Documents/mworld/render/block_renderer/../lib"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "C:/Users/aamir/Documents/mworld/render/block_renderer/."
 				},
 				{
 					"backtrace" : 2,
@@ -111,14 +119,29 @@
 				{
 					"backtrace" : 2,
 					"path" : "C:/Users/aamir/Documents/mworld/render/camera"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "C:/Users/aamir/Documents/mworld/simulation/blocks"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "C:/Users/aamir/Documents/mworld/simulation/blocks/../octree"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "C:/Users/aamir/Documents/mworld/simulation/world_handler"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "C:/Users/aamir/Documents/mworld/simulation/octree/."
 				}
 			],
 			"language" : "CXX",
 			"sourceIndexes" : 
 			[
 				0,
-				1,
-				4
+				3
 			]
 		}
 	],
@@ -126,15 +149,11 @@
 	[
 		{
 			"backtrace" : 2,
-			"id" : "glad::@bf3af473941166e98053"
-		},
-		{
-			"backtrace" : 2,
 			"id" : "utils::@c5cd9bcf8a2dc65dcb35"
 		},
 		{
 			"backtrace" : 2,
-			"id" : "linear_alg::@b276e23674e4ab50d284"
+			"id" : "glad::@bf3af473941166e98053"
 		},
 		{
 			"backtrace" : 2,
@@ -146,10 +165,34 @@
 		},
 		{
 			"backtrace" : 2,
+			"id" : "linear_alg::@b276e23674e4ab50d284"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "block_renderer::@20380dfbeeaf1beda5b3"
+		},
+		{
+			"backtrace" : 2,
 			"id" : "mworld_render_utils::@c1c5e50b708af245b811"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "blocks::@6db65c1307d2a2a784c8"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "force_octree::@66c141f95c7ed784ad75"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "octree::@66c141f95c7ed784ad75"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "world_handler::@db5c5082507517693d46"
 		}
 	],
-	"id" : "prototype_two::@e7e923eba9c0b8a1d5aa",
+	"id" : "logic_gates::@847a59781e22ff560ae6",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -161,6 +204,11 @@
 			{
 				"fragment" : "",
 				"role" : "flags"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "..\\..\\render\\block_renderer\\libblock_renderer.a",
+				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
@@ -199,7 +247,50 @@
 			},
 			{
 				"backtrace" : 2,
+				"fragment" : "..\\blocks\\libblocks.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "..\\world_handler\\libworld_handler.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "..\\..\\render\\block_renderer\\libblock_renderer.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "..\\octree\\liboctree.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "..\\octree\\libforce_octree.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "..\\blocks\\libblocks.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "..\\..\\numerics\\quaternion\\libquaternion.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
 				"fragment" : "..\\..\\numerics\\linear_alg\\liblinear_alg.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "..\\..\\render\\cube_renderer\\libcube_renderer.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "..\\..\\render\\utils\\libmworld_render_utils.a",
 				"role" : "libraries"
 			},
 			{
@@ -224,12 +315,12 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "prototype_two",
-	"nameOnDisk" : "prototype_two.exe",
+	"name" : "logic_gates",
+	"nameOnDisk" : "logic_gates.exe",
 	"paths" : 
 	{
-		"build" : "prototype/prototype_two",
-		"source" : "prototype/prototype_two"
+		"build" : "simulation/environment",
+		"source" : "simulation/environment"
 	},
 	"sourceGroups" : 
 	[
@@ -238,18 +329,17 @@
 			"sourceIndexes" : 
 			[
 				0,
-				1,
-				4
+				3
 			]
 		},
 		{
 			"name" : "Header Files",
 			"sourceIndexes" : 
 			[
+				1,
 				2,
-				3,
-				5,
-				6
+				4,
+				5
 			]
 		}
 	],
@@ -258,13 +348,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "prototype/prototype_two/cube.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "prototype/prototype_two/main.cpp",
+			"path" : "simulation/environment/logic_gates.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{

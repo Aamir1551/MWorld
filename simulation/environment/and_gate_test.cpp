@@ -42,7 +42,7 @@ int main()
     // A    B
     // I1   I2
 
-    WorldHandler world = WorldHandler(1, 0, 0, 3, 2, 0);
+    WorldHandler world = WorldHandler(1, 0, 0, 3, 0, 2);
 
     // I1
     world.iblocks.at(0)->SetLinearMomentumToZero();
@@ -71,8 +71,6 @@ int main()
     // C
     world.mblocks.at(2)->SetLinearMomentumToZero();
     world.mblocks.at(2)->position = Matrix::CreateColumnVec(-14, down, -9);
-
-
 
     world.ResetTrees();
 

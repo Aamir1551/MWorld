@@ -16,9 +16,8 @@ namespace blocks {
     }
 
     void EBlock::UpdateFlare() {
-        this->flare_value = std::min(this->flare_inc + this->flare_value, Block::flare_capacity / 2);
+        this->flare_value = std::min(this->flare_inc + this->flare_value, EBlock::capacity);
     };
-
 
     bool EBlock::React(ForceOctree * tree, real delta_time) {
         // Attracted to E blocks
@@ -36,4 +35,5 @@ namespace blocks {
         };
     }
 
+    real EBlock::capacity = 0.2;
 };

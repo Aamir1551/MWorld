@@ -2,10 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "simulation/environment/and_gate_test.exe"
+			"path" : "simulation/environment/or_gate_test.exe"
 		},
 		{
-			"path" : "simulation/environment/and_gate_test.pdb"
+			"path" : "simulation/environment/or_gate_test.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -29,19 +29,19 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 9,
+				"line" : 8,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 17,
+				"line" : 16,
 				"parent" : 0
 			},
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 25,
+				"line" : 24,
 				"parent" : 0
 			}
 		]
@@ -149,15 +149,11 @@
 	[
 		{
 			"backtrace" : 2,
-			"id" : "glad::@bf3af473941166e98053"
-		},
-		{
-			"backtrace" : 2,
 			"id" : "utils::@c5cd9bcf8a2dc65dcb35"
 		},
 		{
 			"backtrace" : 2,
-			"id" : "linear_alg::@b276e23674e4ab50d284"
+			"id" : "glad::@bf3af473941166e98053"
 		},
 		{
 			"backtrace" : 2,
@@ -169,11 +165,7 @@
 		},
 		{
 			"backtrace" : 2,
-			"id" : "force_octree::@66c141f95c7ed784ad75"
-		},
-		{
-			"backtrace" : 2,
-			"id" : "mworld_render_utils::@c1c5e50b708af245b811"
+			"id" : "linear_alg::@b276e23674e4ab50d284"
 		},
 		{
 			"backtrace" : 2,
@@ -181,7 +173,7 @@
 		},
 		{
 			"backtrace" : 2,
-			"id" : "octree::@66c141f95c7ed784ad75"
+			"id" : "mworld_render_utils::@c1c5e50b708af245b811"
 		},
 		{
 			"backtrace" : 2,
@@ -189,10 +181,18 @@
 		},
 		{
 			"backtrace" : 2,
+			"id" : "force_octree::@66c141f95c7ed784ad75"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "octree::@66c141f95c7ed784ad75"
+		},
+		{
+			"backtrace" : 2,
 			"id" : "world_handler::@db5c5082507517693d46"
 		}
 	],
-	"id" : "and_gate_test::@847a59781e22ff560ae6",
+	"id" : "or_gate_test::@847a59781e22ff560ae6",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -315,8 +315,8 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "and_gate_test",
-	"nameOnDisk" : "and_gate_test.exe",
+	"name" : "or_gate_test",
+	"nameOnDisk" : "or_gate_test.exe",
 	"paths" : 
 	{
 		"build" : "simulation/environment",
@@ -348,7 +348,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "simulation/environment/and_gate_test.cpp",
+			"path" : "simulation/environment/or_gate_test.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{

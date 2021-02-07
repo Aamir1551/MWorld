@@ -16,7 +16,7 @@ namespace blocks {
         bool React(ForceOctree * tree, real delta_time) override;
         real ExtractFlareFromBlock(real deltatime) override;
         void AddFlareToBlock(real flare_amount) override;
-
+        void Decay(real delta_time) override;
     };
 
 }
