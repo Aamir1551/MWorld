@@ -86,7 +86,6 @@ int main()
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         auto contact_list = world.CollisionHandler();
-        //world.AddForces(deltaTime * 10);
         world.AddForces(deltaTime);
         world.Update(contact_list, deltaTime);
 

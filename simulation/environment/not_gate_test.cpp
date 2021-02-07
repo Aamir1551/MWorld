@@ -48,18 +48,22 @@ int main()
     // I+
     world.iblocks.at(0)->SetLinearMomentumToZero();
     world.iblocks.at(0)->position = Matrix::CreateColumnVec(-22, down, -13);
+    world.iblocks.at(0)->locked = true;
 
     // I-
     world.iblocks.at(1)->SetLinearMomentumToZero();
     world.iblocks.at(1)->position = Matrix::CreateColumnVec(-22+8, down, -13);
+    world.iblocks.at(1)->locked = true;
 
     // A
     world.mblocks.at(0)->SetLinearMomentumToZero();
     world.mblocks.at(0)->position = Matrix::CreateColumnVec(-22+4, down, -13);
+    world.mblocks.at(0)->locked = true;
 
     // C
     world.mblocks.at(1)->SetLinearMomentumToZero();
     world.mblocks.at(1)->position = Matrix::CreateColumnVec(-22+12, down, -13);
+    world.mblocks.at(1)->locked = true;
 
     world.ResetTrees();
 
@@ -88,7 +92,7 @@ int main()
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         auto contact_list = world.CollisionHandler();
-        //world.AddForces(deltaTime);
+        world.AddForces(deltaTime);
         world.Update(contact_list, deltaTime);
 
         BlockRenderer::DrawAllBlocks(&world.iblocks, &world.zblocks, &world.eblocks, &world.mblocks);

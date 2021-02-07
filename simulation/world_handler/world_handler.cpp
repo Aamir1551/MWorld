@@ -279,7 +279,9 @@ void WorldHandler::UpdateFlares(vector<Contact> &contact_list, real delta_time) 
 void WorldHandler::AddForces(real deltatime) {
     this->forces_tree->CalculateCOMonTree();
     for(auto const &block : this->blocks) {
-        forces_tree->ApplyBarnesHutOnBlock(block, deltatime);
+        if(!block->locked) {
+            forces_tree->ApplyBarnesHutOnBlock(block, deltatime);
+        }
     }
 }
 

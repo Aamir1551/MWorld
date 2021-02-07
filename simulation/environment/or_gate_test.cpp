@@ -47,30 +47,37 @@ int main()
     // I1
     world.iblocks.at(0)->SetLinearMomentumToZero();
     world.iblocks.at(0)->position = Matrix::CreateColumnVec(-22, down, -13);
+    world.iblocks.at(0)->locked = true;
 
     // I2
     world.iblocks.at(1)->SetLinearMomentumToZero();
     world.iblocks.at(1)->position = Matrix::CreateColumnVec(-22, down, -5);
+    world.iblocks.at(1)->locked = true;
 
     // A
     world.mblocks.at(0)->SetLinearMomentumToZero();
     world.mblocks.at(0)->position = Matrix::CreateColumnVec(-18, down, -13);
+    world.mblocks.at(0)->locked = true;
 
     // B
     world.mblocks.at(1)->SetLinearMomentumToZero();
     world.mblocks.at(1)->position = Matrix::CreateColumnVec(-18, down, -5);
+    world.mblocks.at(1)->locked = true;
 
     // M1
     world.mblocks.at(2)->SetLinearMomentumToZero();
     world.mblocks.at(2)->position = Matrix::CreateColumnVec(-14, down, -13);
+    world.mblocks.at(2)->locked = true;
 
     // M2
     world.mblocks.at(3)->SetLinearMomentumToZero();
     world.mblocks.at(3)->position = Matrix::CreateColumnVec(-14, down, -5);
+    world.mblocks.at(3)->locked = true;
 
     // C
     world.mblocks.at(4)->SetLinearMomentumToZero();
     world.mblocks.at(4)->position = Matrix::CreateColumnVec(-14, down, -9);
+    world.mblocks.at(4)->locked = true;
 
     world.ResetTrees();
 
@@ -99,7 +106,7 @@ int main()
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         auto contact_list = world.CollisionHandler();
-        //world.AddForces(deltaTime);
+        world.AddForces(deltaTime);
         world.Update(contact_list, deltaTime);
 
         BlockRenderer::DrawAllBlocks(&world.iblocks, &world.zblocks, &world.eblocks, &world.mblocks);
