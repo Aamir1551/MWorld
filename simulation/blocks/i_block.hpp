@@ -15,7 +15,6 @@ namespace blocks {
         float b;
         static real threshold;
 
-
         IBlock(Matrix position, Quaternion initial_orientation, bool state, real cube_length = 4.0f) : Block(position, initial_orientation, 0, cube_length) {
             this->state = state;
             this->a = 1.0f * (real) this->state;
@@ -28,7 +27,7 @@ namespace blocks {
         real ExtractFlareFromBlock(real deltatime) override;
         void spin(Matrix const &force_direction) override;
         void AddFlareToBlock(real flare_amount) override;
-
+        void Decay(real delta_time) override;
     };
 
 

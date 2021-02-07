@@ -17,6 +17,13 @@ namespace blocks {
         this->flare_inc += flare_amount * this->b;
     };
 
+    void IBlock::Decay(real delta_time) {
+        // Decay is needed for the I- Block, since when we do stop extracting flare from other blocks,
+        // we still need to put in more flare
+        this->flare_value -= delta_time * 0.01; // Make sure amount of flare losing every delta_time second, is less than the amount
+        // of flare being passed on by the MBlock every delta_time second.
+    }
+
     real IBlock::threshold = 0.5f;
 
     bool IBlock::React(ForceOctree *tree, real delta_time) {

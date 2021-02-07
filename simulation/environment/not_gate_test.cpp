@@ -58,8 +58,8 @@ int main()
     world.mblocks.at(0)->position = Matrix::CreateColumnVec(-22+4, down, -13);
 
     // C
-    world.mblocks.at(2)->SetLinearMomentumToZero();
-    world.mblocks.at(2)->position = Matrix::CreateColumnVec(-22+12, down, -13);
+    world.mblocks.at(1)->SetLinearMomentumToZero();
+    world.mblocks.at(1)->position = Matrix::CreateColumnVec(-22+12, down, -13);
 
     world.ResetTrees();
 
@@ -103,10 +103,8 @@ int main()
 
             // Or Gate
             cout << "Flare value in A block: " << world.mblocks.at(0)->flare_value << endl;
-            cout << "Flare value in B block: " << world.mblocks.at(1)->flare_value << endl;
-            cout << "Flare value in M1 block: " << world.mblocks.at(2)->flare_value << endl;
-            cout << "Flare value in M2 block: " << world.mblocks.at(3)->flare_value << endl;
-            cout << "Flare value in C block: " << world.mblocks.at(4)->flare_value << endl;
+            cout << "Flare value in I- block: " << world.iblocks.at(1)->flare_value << endl;
+            cout << "Flare value in C block: " << world.mblocks.at(1)->flare_value << endl;
 
         }
     }
