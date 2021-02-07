@@ -25,8 +25,8 @@ namespace blocks {
 
             if(tree->is_leaf) {
                 if(squared_dist >= 25) {
-                    //inc_force += (vec_to_tree_com/dist) * delta_time /squared_dist * ((real) cell_count * 1000);
-                    inc_force += (vec_to_tree_com/dist) * delta_time /squared_dist * ((real) cell_count);
+                    inc_force += (vec_to_tree_com/dist) * delta_time /squared_dist * ((real) cell_count * 1000);
+                    //inc_force += (vec_to_tree_com/dist) * delta_time /squared_dist * ((real) cell_count);
                 }
                 return false;
             }
@@ -37,8 +37,8 @@ namespace blocks {
             }
 
             if(squared_dist >= 25) {
-                inc_force += (vec_to_tree_com/dist) * delta_time /squared_dist * ((real) cell_count);
-                //inc_force += (vec_to_tree_com/dist) * delta_time  /squared_dist * ((real) cell_count * 1000); // The times 1000 gives rise to the weird behavior
+                //inc_force += (vec_to_tree_com/dist) * delta_time /squared_dist * ((real) cell_count);
+                inc_force += (vec_to_tree_com/dist) * delta_time  /squared_dist * ((real) cell_count * 1000); // The times 1000 gives rise to the weird behavior
             }
         }
         return false;

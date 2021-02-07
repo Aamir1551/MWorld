@@ -42,7 +42,7 @@ int main()
     // A    B
     // I1   I2
 
-    WorldHandler world = WorldHandler(1, 0, 0, 3, 0, 2);
+    WorldHandler world = WorldHandler(2, 0, 0, 3, 0, 2);
 
     // I1
     world.iblocks.at(0)->SetLinearMomentumToZero();
@@ -50,9 +50,9 @@ int main()
     world.iblocks.at(0)->locked = true;
 
     // I2
-    //world.iblocks.at(1)->SetLinearMomentumToZero();
-    //world.iblocks.at(1)->position = Matrix::CreateColumnVec(-22, down, -5);
-    //world.iblocks.at(1)->locked = true;
+    world.iblocks.at(1)->SetLinearMomentumToZero();
+    world.iblocks.at(1)->position = Matrix::CreateColumnVec(-22, down, -5);
+    world.iblocks.at(1)->locked = true;
 
     // A
     world.mblocks.at(0)->SetLinearMomentumToZero();
@@ -119,12 +119,7 @@ int main()
             frame_count = 0;
             prev_time = currentFrame;
 
-            /*cout << "Flare value in I0 block: " << world.iblocks.at(0)->flare_value << endl;
-            cout << "Flare value in X1 block: " << world.mblocks.at(0)->flare_value << endl;
-            cout << "Flare value in X2 block: " << world.mblocks.at(1)->flare_value << endl;
-            cout << "Flare value in X3 block: " << world.eblocks.at(0)->flare_value << endl;*/
-
-            // Or Gate
+            // And Gate
             cout << "Flare value in A block: " << world.mblocks.at(0)->flare_value << endl;
             cout << "Flare value in B block: " << world.mblocks.at(1)->flare_value << endl;
             cout << "Flare value in E1 block: " << world.eblocks.at(0)->flare_value << endl;
