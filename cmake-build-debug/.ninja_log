@@ -27,10 +27,11 @@
 7	573	6337456945479608	prototype/prototype_one/CMakeFiles/prototype_one.dir/__/__/render/utils/world_initializer.cpp.obj	215d90177b02d3bd
 19	2328	6339015130687908	prototype/prototype_two/CMakeFiles/prototype_two.dir/main.cpp.obj	8c14c649610c6608
 1180	1694	6344116310370573	simulation/environment/simulation.exe	18011ac758bbacec
-2	430	6344190106470890	build.ninja	86ad8b687f76afe4
+2	430	6344207757080065	build.ninja	86ad8b687f76afe4
 10	761	6340944224369729	simulation/environment/CMakeFiles/logic_gates.dir/__/__/render/utils/world_initializer.cpp.obj	64863e98b98cccf5
 29	1885	6344115913639814	simulation/octree/CMakeFiles/octree.dir/octree.cpp.obj	23d77cd98a7f6b
 7	524	6344135071857060	simulation/blocks/CMakeFiles/blocks.dir/cube.cpp.obj	b67bd5131c5261e0
+11	1160	6344206521446451	simulation/environment/CMakeFiles/or_gate_test.dir/or_gate_test.cpp.obj	41fee93b98c1c33b
 7	1281	6344115907538988	simulation/blocks/CMakeFiles/blocks.dir/z_block.cpp.obj	750b0df75b18b821
 6	487	6337455490911524	render/utils/CMakeFiles/mworld_render_utils.dir/world_initializer.cpp.obj	454dd10eee3fba8
 9	1387	6344125340514994	simulation/blocks/CMakeFiles/blocks.dir/m_block.cpp.obj	5196c0c8f124d1c8
@@ -55,3 +56,12 @@
 21	1522	6340976143447299	simulation/environment/CMakeFiles/collision_tests.dir/collision_tests.cpp.obj	7ef1672cf1399c6a
 2210	2768	6340976155685091	simulation/environment/collision_tests.exe	c81c6260c45d93ff
 29	1579	6342330899637296	simulation/octree/CMakeFiles/force_octree.dir/__/__/render/utils/world_initializer.cpp.obj	87f0cd065b1c2fd4
+7	788	6344206517731492	simulation/environment/CMakeFiles/or_gate_test.dir/__/__/render/utils/world_initializer.cpp.obj	28509a6e0e58f653
+1161	1751	6344206527019526	simulation/environment/or_gate_test.exe	74937c205d676b05
+11	564	6344210576262091	simulation/environment/CMakeFiles/and_gate_test.dir/__/__/render/utils/world_initializer.cpp.obj	843b09ca2b963123
+6	1296	6344210583612765	simulation/environment/CMakeFiles/and_gate_test.dir/and_gate_test.cpp.obj	aa75560d5681e4e6
+1296	1808	6344210588479750	simulation/environment/and_gate_test.exe	a13b9f7fa0fac613
+7	1233	6344211283987638	simulation/environment/CMakeFiles/and_gate_test.dir/and_gate_test.cpp.obj	aa75560d5681e4e6
+1233	1757	6344211289004224	simulation/environment/and_gate_test.exe	a13b9f7fa0fac613
+34	1193	6344211827247386	simulation/environment/CMakeFiles/and_gate_test.dir/and_gate_test.cpp.obj	aa75560d5681e4e6
+1194	1699	6344211832063448	simulation/environment/and_gate_test.exe	a13b9f7fa0fac613

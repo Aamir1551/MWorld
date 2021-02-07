@@ -1373,6 +1373,47 @@ build simulation/environment/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
 build simulation/environment/rebuild_cache: phony simulation/environment/CMakeFiles/rebuild_cache.util
 
 # =============================================================================
+# Object build statements for EXECUTABLE target not_gate_test
+
+
+#############################################
+# Order-only phony target for not_gate_test
+
+build cmake_object_order_depends_target_not_gate_test: phony || cmake_object_order_depends_target_block_renderer cmake_object_order_depends_target_blocks cmake_object_order_depends_target_cube_renderer cmake_object_order_depends_target_force_octree cmake_object_order_depends_target_glad cmake_object_order_depends_target_linear_alg cmake_object_order_depends_target_mworld_render_utils cmake_object_order_depends_target_octree cmake_object_order_depends_target_quaternion cmake_object_order_depends_target_utils cmake_object_order_depends_target_world_handler
+
+build simulation/environment/CMakeFiles/not_gate_test.dir/and_gate_test.cpp.obj: CXX_COMPILER__not_gate_test_Debug ../simulation/environment/and_gate_test.cpp || cmake_object_order_depends_target_not_gate_test
+  DEP_FILE = simulation\environment\CMakeFiles\not_gate_test.dir\and_gate_test.cpp.obj.d
+  FLAGS = -g   -std=gnu++11
+  INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../simulation/environment -I../render/block_renderer/../lib -I../render/block_renderer/. -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera -I../simulation/blocks -I../simulation/blocks/../octree -I../simulation/world_handler -I../simulation/octree/.
+  OBJECT_DIR = simulation\environment\CMakeFiles\not_gate_test.dir
+  OBJECT_FILE_DIR = simulation\environment\CMakeFiles\not_gate_test.dir
+
+build simulation/environment/CMakeFiles/not_gate_test.dir/__/__/render/utils/world_initializer.cpp.obj: CXX_COMPILER__not_gate_test_Debug ../render/utils/world_initializer.cpp || cmake_object_order_depends_target_not_gate_test
+  DEP_FILE = simulation\environment\CMakeFiles\not_gate_test.dir\__\__\render\utils\world_initializer.cpp.obj.d
+  FLAGS = -g   -std=gnu++11
+  INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../simulation/environment -I../render/block_renderer/../lib -I../render/block_renderer/. -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera -I../simulation/blocks -I../simulation/blocks/../octree -I../simulation/world_handler -I../simulation/octree/.
+  OBJECT_DIR = simulation\environment\CMakeFiles\not_gate_test.dir
+  OBJECT_FILE_DIR = simulation\environment\CMakeFiles\not_gate_test.dir\__\__\render\utils
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target not_gate_test
+
+
+#############################################
+# Link the executable simulation\environment\not_gate_test.exe
+
+build simulation/environment/not_gate_test.exe: CXX_EXECUTABLE_LINKER__not_gate_test_Debug simulation/environment/CMakeFiles/not_gate_test.dir/and_gate_test.cpp.obj simulation/environment/CMakeFiles/not_gate_test.dir/__/__/render/utils/world_initializer.cpp.obj | render/block_renderer/libblock_renderer.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/cube_renderer/libcube_renderer.a utils/util_functions/libutils.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a render/utils/libmworld_render_utils.a simulation/blocks/libblocks.a simulation/world_handler/libworld_handler.a render/block_renderer/libblock_renderer.a simulation/octree/liboctree.a simulation/octree/libforce_octree.a simulation/blocks/libblocks.a numerics/quaternion/libquaternion.a numerics/linear_alg/liblinear_alg.a render/cube_renderer/libcube_renderer.a render/utils/libmworld_render_utils.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a utils/util_functions/libutils.a || lib/glad/libglad.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/block_renderer/libblock_renderer.a render/cube_renderer/libcube_renderer.a render/utils/libmworld_render_utils.a simulation/blocks/libblocks.a simulation/octree/libforce_octree.a simulation/octree/liboctree.a simulation/world_handler/libworld_handler.a utils/util_functions/libutils.a
+  FLAGS = -g
+  LINK_LIBRARIES = render/block_renderer/libblock_renderer.a  numerics/linear_alg/liblinear_alg.a  numerics/quaternion/libquaternion.a  render/cube_renderer/libcube_renderer.a  utils/util_functions/libutils.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  render/utils/libmworld_render_utils.a  simulation/blocks/libblocks.a  simulation/world_handler/libworld_handler.a  render/block_renderer/libblock_renderer.a  simulation/octree/liboctree.a  simulation/octree/libforce_octree.a  simulation/blocks/libblocks.a  numerics/quaternion/libquaternion.a  numerics/linear_alg/liblinear_alg.a  render/cube_renderer/libcube_renderer.a  render/utils/libmworld_render_utils.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  utils/util_functions/libutils.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = simulation\environment\CMakeFiles\not_gate_test.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = simulation\environment\not_gate_test.exe
+  TARGET_IMPLIB = simulation\environment\libnot_gate_test.dll.a
+  TARGET_PDB = not_gate_test.exe.dbg
+
+# =============================================================================
 # Object build statements for EXECUTABLE target collision_tests
 
 
@@ -1454,6 +1495,47 @@ build simulation/environment/or_gate_test.exe: CXX_EXECUTABLE_LINKER__or_gate_te
   TARGET_IMPLIB = simulation\environment\libor_gate_test.dll.a
   TARGET_PDB = or_gate_test.exe.dbg
 
+# =============================================================================
+# Object build statements for EXECUTABLE target and_gate_test
+
+
+#############################################
+# Order-only phony target for and_gate_test
+
+build cmake_object_order_depends_target_and_gate_test: phony || cmake_object_order_depends_target_block_renderer cmake_object_order_depends_target_blocks cmake_object_order_depends_target_cube_renderer cmake_object_order_depends_target_force_octree cmake_object_order_depends_target_glad cmake_object_order_depends_target_linear_alg cmake_object_order_depends_target_mworld_render_utils cmake_object_order_depends_target_octree cmake_object_order_depends_target_quaternion cmake_object_order_depends_target_utils cmake_object_order_depends_target_world_handler
+
+build simulation/environment/CMakeFiles/and_gate_test.dir/and_gate_test.cpp.obj: CXX_COMPILER__and_gate_test_Debug ../simulation/environment/and_gate_test.cpp || cmake_object_order_depends_target_and_gate_test
+  DEP_FILE = simulation\environment\CMakeFiles\and_gate_test.dir\and_gate_test.cpp.obj.d
+  FLAGS = -g   -std=gnu++11
+  INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../simulation/environment -I../render/block_renderer/../lib -I../render/block_renderer/. -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera -I../simulation/blocks -I../simulation/blocks/../octree -I../simulation/world_handler -I../simulation/octree/.
+  OBJECT_DIR = simulation\environment\CMakeFiles\and_gate_test.dir
+  OBJECT_FILE_DIR = simulation\environment\CMakeFiles\and_gate_test.dir
+
+build simulation/environment/CMakeFiles/and_gate_test.dir/__/__/render/utils/world_initializer.cpp.obj: CXX_COMPILER__and_gate_test_Debug ../render/utils/world_initializer.cpp || cmake_object_order_depends_target_and_gate_test
+  DEP_FILE = simulation\environment\CMakeFiles\and_gate_test.dir\__\__\render\utils\world_initializer.cpp.obj.d
+  FLAGS = -g   -std=gnu++11
+  INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../simulation/environment -I../render/block_renderer/../lib -I../render/block_renderer/. -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera -I../simulation/blocks -I../simulation/blocks/../octree -I../simulation/world_handler -I../simulation/octree/.
+  OBJECT_DIR = simulation\environment\CMakeFiles\and_gate_test.dir
+  OBJECT_FILE_DIR = simulation\environment\CMakeFiles\and_gate_test.dir\__\__\render\utils
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target and_gate_test
+
+
+#############################################
+# Link the executable simulation\environment\and_gate_test.exe
+
+build simulation/environment/and_gate_test.exe: CXX_EXECUTABLE_LINKER__and_gate_test_Debug simulation/environment/CMakeFiles/and_gate_test.dir/and_gate_test.cpp.obj simulation/environment/CMakeFiles/and_gate_test.dir/__/__/render/utils/world_initializer.cpp.obj | render/block_renderer/libblock_renderer.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/cube_renderer/libcube_renderer.a utils/util_functions/libutils.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a render/utils/libmworld_render_utils.a simulation/blocks/libblocks.a simulation/world_handler/libworld_handler.a render/block_renderer/libblock_renderer.a simulation/octree/liboctree.a simulation/octree/libforce_octree.a simulation/blocks/libblocks.a numerics/quaternion/libquaternion.a numerics/linear_alg/liblinear_alg.a render/cube_renderer/libcube_renderer.a render/utils/libmworld_render_utils.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a utils/util_functions/libutils.a || lib/glad/libglad.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/block_renderer/libblock_renderer.a render/cube_renderer/libcube_renderer.a render/utils/libmworld_render_utils.a simulation/blocks/libblocks.a simulation/octree/libforce_octree.a simulation/octree/liboctree.a simulation/world_handler/libworld_handler.a utils/util_functions/libutils.a
+  FLAGS = -g
+  LINK_LIBRARIES = render/block_renderer/libblock_renderer.a  numerics/linear_alg/liblinear_alg.a  numerics/quaternion/libquaternion.a  render/cube_renderer/libcube_renderer.a  utils/util_functions/libutils.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  render/utils/libmworld_render_utils.a  simulation/blocks/libblocks.a  simulation/world_handler/libworld_handler.a  render/block_renderer/libblock_renderer.a  simulation/octree/liboctree.a  simulation/octree/libforce_octree.a  simulation/blocks/libblocks.a  numerics/quaternion/libquaternion.a  numerics/linear_alg/liblinear_alg.a  render/cube_renderer/libcube_renderer.a  render/utils/libmworld_render_utils.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  utils/util_functions/libutils.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = simulation\environment\CMakeFiles\and_gate_test.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = simulation\environment\and_gate_test.exe
+  TARGET_IMPLIB = simulation\environment\liband_gate_test.dll.a
+  TARGET_PDB = and_gate_test.exe.dbg
+
 
 #############################################
 # Utility command for edit_cache
@@ -1467,6 +1549,10 @@ build simulation/environment/edit_cache: phony simulation/environment/CMakeFiles
 
 # =============================================================================
 # Target aliases.
+
+build and_gate_test: phony simulation/environment/and_gate_test.exe
+
+build and_gate_test.exe: phony simulation/environment/and_gate_test.exe
 
 build block_renderer: phony render/block_renderer/libblock_renderer.a
 
@@ -1515,6 +1601,10 @@ build matrix_test: phony numerics/linear_alg/test/matrix_test.exe
 build matrix_test.exe: phony numerics/linear_alg/test/matrix_test.exe
 
 build mworld_render_utils: phony render/utils/libmworld_render_utils.a
+
+build not_gate_test: phony simulation/environment/not_gate_test.exe
+
+build not_gate_test.exe: phony simulation/environment/not_gate_test.exe
 
 build octree: phony simulation/octree/liboctree.a
 
@@ -1678,7 +1768,7 @@ build simulation/blocks/all: phony simulation/blocks/libblocks.a
 #############################################
 # Folder: C:/Users/aamir/Documents/mworld/cmake-build-debug/simulation/environment
 
-build simulation/environment/all: phony simulation/environment/simulation.exe simulation/environment/logic_gates.exe simulation/environment/collision_tests.exe simulation/environment/or_gate_test.exe
+build simulation/environment/all: phony simulation/environment/simulation.exe simulation/environment/logic_gates.exe simulation/environment/not_gate_test.exe simulation/environment/collision_tests.exe simulation/environment/or_gate_test.exe simulation/environment/and_gate_test.exe
 
 # =============================================================================
 

@@ -33,7 +33,7 @@
 					"source" : "lib/glad",
 					"targetIndexes" : 
 					[
-						5
+						6
 					]
 				},
 				{
@@ -62,7 +62,7 @@
 					"source" : "utils/util_functions",
 					"targetIndexes" : 
 					[
-						17
+						19
 					]
 				},
 				{
@@ -105,7 +105,7 @@
 					"source" : "numerics/linear_alg",
 					"targetIndexes" : 
 					[
-						6
+						7
 					]
 				},
 				{
@@ -119,7 +119,7 @@
 					"source" : "numerics/linear_alg/test",
 					"targetIndexes" : 
 					[
-						8
+						9
 					]
 				},
 				{
@@ -133,7 +133,7 @@
 					"source" : "numerics/quaternion",
 					"targetIndexes" : 
 					[
-						15
+						17
 					]
 				},
 				{
@@ -175,7 +175,7 @@
 					"source" : "render/cube_renderer",
 					"targetIndexes" : 
 					[
-						3
+						4
 					]
 				},
 				{
@@ -189,7 +189,7 @@
 					"source" : "render/utils",
 					"targetIndexes" : 
 					[
-						9
+						10
 					]
 				},
 				{
@@ -213,7 +213,7 @@
 					"source" : "render/block_renderer",
 					"targetIndexes" : 
 					[
-						0
+						1
 					]
 				},
 				{
@@ -243,7 +243,7 @@
 					"source" : "prototype/prototype_one",
 					"targetIndexes" : 
 					[
-						12
+						14
 					]
 				},
 				{
@@ -257,7 +257,7 @@
 					"source" : "prototype/prototype_two",
 					"targetIndexes" : 
 					[
-						14
+						16
 					]
 				},
 				{
@@ -271,7 +271,7 @@
 					"source" : "prototype/prototype_three",
 					"targetIndexes" : 
 					[
-						13
+						15
 					]
 				},
 				{
@@ -302,7 +302,7 @@
 					"source" : "simulation/blocks",
 					"targetIndexes" : 
 					[
-						1
+						2
 					]
 				},
 				{
@@ -316,8 +316,8 @@
 					"source" : "simulation/octree",
 					"targetIndexes" : 
 					[
-						4,
-						10
+						5,
+						12
 					]
 				},
 				{
@@ -331,7 +331,7 @@
 					"source" : "simulation/world_handler",
 					"targetIndexes" : 
 					[
-						18
+						20
 					]
 				},
 				{
@@ -345,10 +345,12 @@
 					"source" : "simulation/environment",
 					"targetIndexes" : 
 					[
-						2,
-						7,
+						0,
+						3,
+						8,
 						11,
-						16
+						13,
+						18
 					]
 				}
 			],
@@ -380,7 +382,7 @@
 					"parentIndex" : 0,
 					"targetIndexes" : 
 					[
-						5
+						6
 					]
 				},
 				{
@@ -405,7 +407,7 @@
 					"parentIndex" : 2,
 					"targetIndexes" : 
 					[
-						17
+						19
 					]
 				},
 				{
@@ -442,7 +444,7 @@
 					"parentIndex" : 5,
 					"targetIndexes" : 
 					[
-						6
+						7
 					]
 				},
 				{
@@ -454,7 +456,7 @@
 					"parentIndex" : 6,
 					"targetIndexes" : 
 					[
-						8
+						9
 					]
 				},
 				{
@@ -466,7 +468,7 @@
 					"parentIndex" : 5,
 					"targetIndexes" : 
 					[
-						15
+						17
 					]
 				},
 				{
@@ -502,7 +504,7 @@
 					"parentIndex" : 9,
 					"targetIndexes" : 
 					[
-						3
+						4
 					]
 				},
 				{
@@ -514,7 +516,7 @@
 					"parentIndex" : 9,
 					"targetIndexes" : 
 					[
-						9
+						10
 					]
 				},
 				{
@@ -534,7 +536,7 @@
 					"parentIndex" : 9,
 					"targetIndexes" : 
 					[
-						0
+						1
 					]
 				},
 				{
@@ -560,7 +562,7 @@
 					"parentIndex" : 15,
 					"targetIndexes" : 
 					[
-						12
+						14
 					]
 				},
 				{
@@ -572,7 +574,7 @@
 					"parentIndex" : 15,
 					"targetIndexes" : 
 					[
-						14
+						16
 					]
 				},
 				{
@@ -584,7 +586,7 @@
 					"parentIndex" : 15,
 					"targetIndexes" : 
 					[
-						13
+						15
 					]
 				},
 				{
@@ -603,10 +605,12 @@
 					"parentIndex" : 0,
 					"targetIndexes" : 
 					[
-						2,
-						7,
+						0,
+						3,
+						8,
 						11,
-						16
+						13,
+						18
 					]
 				},
 				{
@@ -618,7 +622,7 @@
 					"parentIndex" : 19,
 					"targetIndexes" : 
 					[
-						1
+						2
 					]
 				},
 				{
@@ -630,8 +634,8 @@
 					"parentIndex" : 19,
 					"targetIndexes" : 
 					[
-						4,
-						10
+						5,
+						12
 					]
 				},
 				{
@@ -643,30 +647,37 @@
 					"parentIndex" : 19,
 					"targetIndexes" : 
 					[
-						18
+						20
 					]
 				}
 			],
 			"targets" : 
 			[
 				{
+					"directoryIndex" : 23,
+					"id" : "and_gate_test::@847a59781e22ff560ae6",
+					"jsonFile" : "target-and_gate_test-Debug-981625ac9c1d275bbd79.json",
+					"name" : "and_gate_test",
+					"projectIndex" : 19
+				},
+				{
 					"directoryIndex" : 14,
 					"id" : "block_renderer::@20380dfbeeaf1beda5b3",
-					"jsonFile" : "target-block_renderer-Debug-873dbfe2165c9143979b.json",
+					"jsonFile" : "target-block_renderer-Debug-1ebd88897a31b4d6cb4c.json",
 					"name" : "block_renderer",
 					"projectIndex" : 14
 				},
 				{
 					"directoryIndex" : 20,
 					"id" : "blocks::@6db65c1307d2a2a784c8",
-					"jsonFile" : "target-blocks-Debug-f4cb78d07de7f0fc908e.json",
+					"jsonFile" : "target-blocks-Debug-a2ed02b1f4f048d44a9d.json",
 					"name" : "blocks",
 					"projectIndex" : 20
 				},
 				{
 					"directoryIndex" : 23,
 					"id" : "collision_tests::@847a59781e22ff560ae6",
-					"jsonFile" : "target-collision_tests-Debug-c527c366c375fbe17294.json",
+					"jsonFile" : "target-collision_tests-Debug-23c76685e614b340a4c7.json",
 					"name" : "collision_tests",
 					"projectIndex" : 19
 				},
@@ -680,7 +691,7 @@
 				{
 					"directoryIndex" : 21,
 					"id" : "force_octree::@66c141f95c7ed784ad75",
-					"jsonFile" : "target-force_octree-Debug-a2904c62d3720720d0b7.json",
+					"jsonFile" : "target-force_octree-Debug-cd5c0f6b01f8d57ffa95.json",
 					"name" : "force_octree",
 					"projectIndex" : 21
 				},
@@ -701,7 +712,7 @@
 				{
 					"directoryIndex" : 23,
 					"id" : "logic_gates::@847a59781e22ff560ae6",
-					"jsonFile" : "target-logic_gates-Debug-87d5655f43e1fc5b8ac4.json",
+					"jsonFile" : "target-logic_gates-Debug-64c1c92762e81ec6acfe.json",
 					"name" : "logic_gates",
 					"projectIndex" : 19
 				},
@@ -720,16 +731,23 @@
 					"projectIndex" : 12
 				},
 				{
+					"directoryIndex" : 23,
+					"id" : "not_gate_test::@847a59781e22ff560ae6",
+					"jsonFile" : "target-not_gate_test-Debug-d612f0cda0e60134edf7.json",
+					"name" : "not_gate_test",
+					"projectIndex" : 19
+				},
+				{
 					"directoryIndex" : 21,
 					"id" : "octree::@66c141f95c7ed784ad75",
-					"jsonFile" : "target-octree-Debug-7fb34207a2d1250a39de.json",
+					"jsonFile" : "target-octree-Debug-4c78c1fda3644fd422e1.json",
 					"name" : "octree",
 					"projectIndex" : 21
 				},
 				{
 					"directoryIndex" : 23,
 					"id" : "or_gate_test::@847a59781e22ff560ae6",
-					"jsonFile" : "target-or_gate_test-Debug-c7cb99ada46670860e7a.json",
+					"jsonFile" : "target-or_gate_test-Debug-3aa982b4c93e277bae38.json",
 					"name" : "or_gate_test",
 					"projectIndex" : 19
 				},
@@ -743,14 +761,14 @@
 				{
 					"directoryIndex" : 18,
 					"id" : "prototype_three::@2a17fa0eebb0697fdbb6",
-					"jsonFile" : "target-prototype_three-Debug-5bbe2530268d09b6574d.json",
+					"jsonFile" : "target-prototype_three-Debug-a95e746b06b98db788e1.json",
 					"name" : "prototype_three",
 					"projectIndex" : 18
 				},
 				{
 					"directoryIndex" : 17,
 					"id" : "prototype_two::@e7e923eba9c0b8a1d5aa",
-					"jsonFile" : "target-prototype_two-Debug-3da1c532869192ca5719.json",
+					"jsonFile" : "target-prototype_two-Debug-452465d5d5c88a9afba5.json",
 					"name" : "prototype_two",
 					"projectIndex" : 17
 				},
@@ -764,7 +782,7 @@
 				{
 					"directoryIndex" : 23,
 					"id" : "simulation::@847a59781e22ff560ae6",
-					"jsonFile" : "target-simulation-Debug-b2f304f2a336f55bb49e.json",
+					"jsonFile" : "target-simulation-Debug-82ea88599ca0fe18b797.json",
 					"name" : "simulation",
 					"projectIndex" : 19
 				},
@@ -778,7 +796,7 @@
 				{
 					"directoryIndex" : 22,
 					"id" : "world_handler::@db5c5082507517693d46",
-					"jsonFile" : "target-world_handler-Debug-4306e7373db8c1994962.json",
+					"jsonFile" : "target-world_handler-Debug-33f1044642700d75550d.json",
 					"name" : "world_handler",
 					"projectIndex" : 22
 				}
