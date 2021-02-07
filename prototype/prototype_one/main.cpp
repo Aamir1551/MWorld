@@ -44,7 +44,7 @@ int main()
 
     glm::mat4 projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 400.0f);
 
-    int num_cubes = 5000;
+    int num_cubes = 1000;
     std::vector<glm::vec3> *positions = GeneratePosition(num_cubes);
     std::vector<glm::vec3> *rotations = GenerateRotationsAxis(num_cubes);
 

@@ -11,7 +11,7 @@ using namespace std;
 
 namespace blocks {
 
-        void Cube::Update(real min_x, real max_x, real min_y, real max_y, real min_z, real max_z) {
+        void Cube::Update(real min_x, real max_x, real min_y, real max_y, real min_z, real max_z, real dt) {
 
             /*
             Equations of motion being used are:
@@ -48,11 +48,11 @@ namespace blocks {
             Quaternion spin = q * orientation;
 
             this->position += linear_velocity;
-            //Cube::CollisionBoundary(this, min_x, max_x, min_y, max_y, min_z, max_z);
             this->position.ApplyMinVector3(max_x, max_y, max_z);
             this->position.ApplyMaxVector3(min_x, min_y, min_z);
             this->orientation += spin;
             this->orientation.Normalise();
+            Cube::CollisionBoundary(this, min_x, max_x, min_y, max_y, min_z, max_z);
         }
 
 
@@ -130,16 +130,14 @@ namespace blocks {
 
 
         void Cube::CollisionResolution(Contact &contact) {
-            Cube *body1 = contact.body1;                //The body pointer of the first cube //=nullptr
-            Cube *body2 = contact.body2;            //The body pointer of the second cube //=nullptr
+            Cube *body1 = contact.body1;
+            Cube *body2 = contact.body2;
             auto normal = contact.normal;
             auto temp = body1->momentum;
             body1->momentum = body2->momentum * 0.01;
             body2->momentum = temp * 0.01;
-            body1->position = body1->position + normal * (contact.penetration / 2 + 0.01 );
-            body2->position = body2->position - normal * (contact.penetration / 2  + 0.01);
-
-
+            body1->position = body1->position + normal * (contact.penetration/2 );
+            body2->position = body2->position - normal * (contact.penetration/2);
         }
 
     void Cube::CollisionBoundary(Cube *c1, real min_boundary_x, real max_boundary_x, real min_boundary_y,
@@ -147,23 +145,23 @@ namespace blocks {
         real x = c1->position(0, 0);
         real y = c1->position(1, 0);
         real z = c1->position(2, 0);
-        real vx = c1->linear_velocity(0, 0);
-        real vy = c1->linear_velocity(1, 0);
-        real vz = c1->linear_velocity(2, 0);
+        real mx = c1->momentum(0, 0) * 0.9;
+        real my = c1->momentum(1, 0) * 0.9;
+        real mz = c1->momentum(2, 0) * 0.9;
         if(x <= min_boundary_x) {
-            c1->linear_velocity(0, 0, abs(vx));
+            c1->momentum(0, 0, abs(mx));
         } else if(x >= max_boundary_x) {
-            c1->linear_velocity(0, 0, -abs(vx));
+            c1->momentum(0, 0, -abs(mx));
         }
         if(y <= min_boundary_y) {
-            c1->linear_velocity(1, 0, abs(vy));
+            c1->momentum(1, 0, abs(my));
         } else if(y >= max_boundary_y) {
-            c1->linear_velocity(1, 0, -abs(vy));
+            c1->momentum(1, 0, -abs(my));
         }
         if(z <= min_boundary_z) {
-            c1->linear_velocity(2, 0, abs(vz));
+            c1->momentum(2, 0, abs(mz));
         } else if(z >= max_boundary_z) {
-            c1->linear_velocity(2, 0, -abs(vz));
+            c1->momentum(2, 0, -abs(mz));
         }
     }
 };

@@ -11,8 +11,6 @@ namespace blocks {
     public:
         ZBlock(Matrix position, Quaternion initial_orientation, real cube_length = 4.0f) : Block(position, initial_orientation, 0.0f, cube_length) {}
 
-
-
         bool React(ForceOctree * tree, real delta_time) override;
 
         real ExtractFlareFromBlock(real deltimatime) override;

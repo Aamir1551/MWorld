@@ -36,22 +36,67 @@ int main()
     camera.camera_pos =  glm::vec3(-20, 0, 20);
     BlockRenderer::InitialiseBlockRenderer(&camera, cube_length, vao, vbo, ebo, world_properties);
 
-    WorldHandler world = WorldHandler(1, 0, 0, 2, 0, 0);
-    //world.iblocks.at(0)->SetLinearMomentumToZero();
+    //WorldHandler world = WorldHandler(1, 0, 0, 2, 1, 0);
 
-    //real vv[] = {0, 0.01, 0};
-    //world.iblocks.at(0)->momentum = Matrix(3, 1, vv);
-    world.iblocks.at(0)->SetLinearMomentumToZero();
-    real location_0[] = {-22, 0, -5};
-    world.iblocks.at(0)->position = Matrix(3, 1, location_0);
+    /*world.iblocks.at(0)->SetLinearMomentumToZero();
+    world.iblocks.at(0)->position = Matrix::CreateColumnVec(-22, 0, -5);
 
     world.mblocks.at(0)->SetLinearMomentumToZero();
-    real location_1[] = {-18, 0, -5};
-    world.mblocks.at(0)->position = Matrix(3, 1, location_1);
+    world.mblocks.at(0)->position = Matrix::CreateColumnVec(-18, 0, -5);
 
     world.mblocks.at(1)->SetLinearMomentumToZero();
-    real location_2[] = {-14, 0, -5};
-    world.mblocks.at(1)->position = Matrix(3, 1, location_2);
+    world.mblocks.at(1)->position = Matrix::CreateColumnVec(-14, 0, -5);
+
+    world.eblocks.at(0)->SetLinearMomentumToZero();
+    world.eblocks.at(0)->position = Matrix::CreateColumnVec(-10, 0, -5);*/
+
+    real down = -10;
+
+    // Or Gate -- Given by 2 Inputs, Input 1 (A) = M block, Input 2 (B) = M block, Out (C) = M block :
+    // M1 C M2
+    // A    B
+    // I1   I2
+    WorldHandler world = WorldHandler(2, 0, 0, 5, 0, 0);
+
+    // I1
+    world.iblocks.at(0)->SetLinearMomentumToZero();
+    world.iblocks.at(0)->position = Matrix::CreateColumnVec(-22, down, -13);
+
+    // I2
+    world.iblocks.at(1)->SetLinearMomentumToZero();
+    world.iblocks.at(1)->position = Matrix::CreateColumnVec(-22, down, -5);
+
+    // A
+    world.mblocks.at(0)->SetLinearMomentumToZero();
+    world.mblocks.at(0)->position = Matrix::CreateColumnVec(-18, down, -13);
+
+    // B
+    world.mblocks.at(1)->SetLinearMomentumToZero();
+    world.mblocks.at(1)->position = Matrix::CreateColumnVec(-18, down, -5);
+
+    // M1
+    world.mblocks.at(2)->SetLinearMomentumToZero();
+    world.mblocks.at(2)->position = Matrix::CreateColumnVec(-14, down, -13);
+
+    // M2
+    world.mblocks.at(3)->SetLinearMomentumToZero();
+    world.mblocks.at(3)->position = Matrix::CreateColumnVec(-14, down, -5);
+
+    // C
+    world.mblocks.at(4)->SetLinearMomentumToZero();
+    world.mblocks.at(4)->position = Matrix::CreateColumnVec(-14, down, -9);
+
+    // And Gate -- Given by 2 Inputs, Input 1 (A) = M block, Input 2 (B) = M block, Out (C) = M block :
+    // E C E
+    // A   B
+
+
+    // Not Gate -- Given by 1 Inputs, Input 1 (A) = M block, Out (C) = M block :
+    // M
+    // I-
+    // A
+
+    world.ResetTrees();
 
     glBindVertexArray(vao);
     glEnable(GL_DEPTH_TEST);
@@ -77,9 +122,10 @@ int main()
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        world.Update();
-        world.CollisionHandler(deltaTime);
-        world.AddForces(deltaTime);
+        auto contact_list = world.CollisionHandler();
+        //world.AddForces(deltaTime);
+        world.Update(contact_list, deltaTime);
+
         BlockRenderer::DrawAllBlocks(&world.iblocks, &world.zblocks, &world.eblocks, &world.mblocks);
 
         glfwSwapBuffers(world_properties->window);
@@ -90,9 +136,18 @@ int main()
             frame_count = 0;
             prev_time = currentFrame;
 
-            cout << "Flare value in I0 block: " << world.iblocks.at(0)->flare_value << endl;
+            /*cout << "Flare value in I0 block: " << world.iblocks.at(0)->flare_value << endl;
             cout << "Flare value in X1 block: " << world.mblocks.at(0)->flare_value << endl;
             cout << "Flare value in X2 block: " << world.mblocks.at(1)->flare_value << endl;
+            cout << "Flare value in X3 block: " << world.eblocks.at(0)->flare_value << endl;*/
+
+            // Or Gate
+            cout << "Flare value in A block: " << world.mblocks.at(0)->flare_value << endl;
+            cout << "Flare value in B block: " << world.mblocks.at(1)->flare_value << endl;
+            cout << "Flare value in M1 block: " << world.mblocks.at(2)->flare_value << endl;
+            cout << "Flare value in M2 block: " << world.mblocks.at(3)->flare_value << endl;
+            cout << "Flare value in C block: " << world.mblocks.at(4)->flare_value << endl;
+
         }
     }
 

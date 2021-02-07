@@ -36,11 +36,12 @@ int main()
     camera.camera_pos = glm::vec3(0, 0, 250);
     BlockRenderer::InitialiseBlockRenderer(&camera, cube_length, vao, vbo, ebo, world_properties);
 
-    //int num_blocks_same = 50;
+    int num_blocks_same = 50;
     //WorldHandler world = WorldHandler(num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same);
     //WorldHandler world = WorldHandler(0, 0, 0, 0, 0, 0);
+    //WorldHandler world = WorldHandler(10, 0, 0, 0, 0, 0);
     //WorldHandler world = WorldHandler(0, 0, 2, 0, 0, 0);
-    WorldHandler world = WorldHandler(0, 0, 250, 0, 0, 0, -100, 100, 4);
+    WorldHandler world = WorldHandler(0, 0, 220, 0, 00, 0, -100, 100, 4);
     /*world.forces_tree->RemoveZBlock(world.zblocks.at(0));
     world.forces_tree->RemoveZBlock(world.zblocks.at(1));
     world.tree->RemoveZBlock(world.zblocks.at(0));
@@ -76,11 +77,6 @@ int main()
     while (!glfwWindowShouldClose(world_properties->window))
     {
 
-
-        //world.zblocks.at(0)->position.print();
-        //world.zblocks.at(1)->position.print();
-
-
         currentFrame = glfwGetTime();
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
@@ -89,9 +85,10 @@ int main()
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        world.Update();
-        world.CollisionHandler(deltaTime);
+        auto contact_list = world.CollisionHandler();
+        //world.AddForces(deltaTime * 10);
         world.AddForces(deltaTime);
+        world.Update(contact_list, deltaTime);
 
         BlockRenderer::DrawAllBlocks(&world.iblocks, &world.zblocks, &world.eblocks, &world.mblocks);
 

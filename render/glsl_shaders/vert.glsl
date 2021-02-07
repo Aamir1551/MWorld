@@ -11,7 +11,7 @@ uniform vec3 colour;
 void main()
 {
     gl_Position=proj*view*model*vec4(pos,1);
-    //cc=pos; -- uncomment this line, to get the multi colour again
+    //cc=pos; // -- uncomment this line, to get the multi colour again
     //cc=vec3(1, 1, 1);
     cc = colour;
 };

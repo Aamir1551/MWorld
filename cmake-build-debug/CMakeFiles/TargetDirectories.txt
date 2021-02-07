@@ -63,4 +63,5 @@ C:/Users/aamir/Documents/mworld/cmake-build-debug/simulation/environment/CMakeFi
 C:/Users/aamir/Documents/mworld/cmake-build-debug/simulation/environment/CMakeFiles/logic_gates.dir
 C:/Users/aamir/Documents/mworld/cmake-build-debug/simulation/environment/CMakeFiles/rebuild_cache.dir
 C:/Users/aamir/Documents/mworld/cmake-build-debug/simulation/environment/CMakeFiles/collision_tests.dir
+C:/Users/aamir/Documents/mworld/cmake-build-debug/simulation/environment/CMakeFiles/or_gate_test.dir
 C:/Users/aamir/Documents/mworld/cmake-build-debug/simulation/environment/CMakeFiles/edit_cache.dir

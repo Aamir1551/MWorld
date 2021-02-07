@@ -63,7 +63,7 @@ namespace blocks {
          * @brief Updates the state of the cube
          *
          */
-        void Update(real min_x, real max_x, real min_y, real max_y, real min_z, real max_z);
+        void Update(real min_x, real max_x, real min_y, real max_y, real min_z, real max_z, real dt);
 
 
         /**

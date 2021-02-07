@@ -19,8 +19,8 @@ namespace blocks {
 
         real flare_value = 0.0f;
         real flare_inc = 0.0f;
-        real static force_dt;
         real static flare_capacity; // change this for the eblock, so we can have eblocks help us make or gates
+        real static theta;
 
         Block(Matrix position, Quaternion initial_orientation, real initial_flare_amount, real cube_length = 4.0f) : Cube(cube_length, position,
                                                                                                  initial_orientation,
@@ -30,31 +30,21 @@ namespace blocks {
 
         };
 
+        bool ApplyForceFromBlock(ForceOctree* tree, real delta_time, int cell_count, const Matrix &com, Matrix &inc_force);
+
         void SetLinearMomentum(Matrix &linear_momentum);
 
         void SetAngularMomentum(Matrix &angular_momentum);
 
-        //when another block is closest to you
-
         virtual bool React(ForceOctree * tree, real delta_time) = 0;
-
-        /*virtual void React(Octree * block, real squared_dist, const Matrix& to_cube, real deltatime) = 0;
-
-        virtual void React(Octree * block, real squared_dist, const Matrix& to_cube, real deltatime) = 0;
-
-        virtual void React(Octree * block, real squared_dist, const Matrix& to_cube, real deltatime) = 0;*/
 
         virtual real ExtractFlareFromBlock(real deltatime) = 0;
 
         virtual void AddFlareToBlock(real flare_amount) = 0;
 
-        virtual void spin(Matrix const &force_direction) {
-            this->angular_momentum = force_direction * this->flare_value * 0.00001  ;
-        }
+        virtual void spin(Matrix const &force_direction);
 
-        void UpdateFlare() {
-            this->flare_value = std::min(this->flare_inc + this->flare_value, Block::flare_capacity);
-        };
+        virtual void UpdateFlare();
     };
 
 }

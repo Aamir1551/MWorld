@@ -45,25 +45,28 @@ public:
     real min_coord;
     real max_coord;
     map<Block*, Octree*> block_to_leaf;
-    map<Block*, ForceOctree*> block_to_leaf_force;
 
-    multiset<Octree *> leaves_occupied;
+    //multiset<Octree *> leaves_occupied;
 
     enum BlockTypes {IBlockType, MBlockType, EBlockType, ZBlockType};
 
     WorldHandler(int num_i_blocks_plus, int num_i_blocks_neg, int num_z_blocks, int num_m_blocks, int num_e_blocks_1, int num_e_blocks_1_2, real min_coord = - 50, real max_coord = 50, real cube_length = 4.0f);
 
+    void ResetTrees();
+
     void AddBlock(BlockTypes block_types, int num_blocks, bool state);
 
-    void Update();
+    void Update(vector<Contact> &contact_list, real delta_time);
 
-    void CollisionHandler(real deltatime);
+    vector<Contact> CollisionHandler();
 
     void AddForces(real deltatime);
 
     void IncFlareValuesAndReset();
 
     void AddSpin(vector<Block *> *block_list,  Matrix const &force_direction);
+
+    void UpdateFlares(vector<Contact> &contact_list, real delta_time);
 
     void SpinWorldBlocks();
 };

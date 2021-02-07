@@ -1,6 +1,5 @@
 #include <cmath>
 #include <map>
-#include <set>
 
 #include <force_octree.hpp>
 #include <block.hpp>
@@ -11,18 +10,20 @@ using namespace blocks;
 
 ForceOctree* ForceOctree::AddIBlockPlus(IBlock *b) {
     this->sum_i_plus += b->position;
-    if(!this->is_leaf) {
+    this->iblocks_at_cell_plus_count +=1;
+    if(this->is_leaf) {
+        return this;
+    } else {
         auto t0 = b->position(0, 0) > avg_x;
         auto t1 = b->position(1, 0) > avg_y;
         auto t2 = b->position(2, 0) > avg_z;
         return this->children[t0 + t1 * 2 + t2 * 4]->AddIBlockPlus(b);
-    } else {
-        return this;
     }
 }
 
 ForceOctree* ForceOctree::AddIBlockNeg(IBlock *b) {
     this->sum_i_neg += b->position;
+    this->iblocks_at_cell_neg_count +=1;
     if(this->is_leaf) {
         return this;
     } else {
@@ -36,6 +37,7 @@ ForceOctree* ForceOctree::AddIBlockNeg(IBlock *b) {
 
 ForceOctree* ForceOctree::AddMBlockPlus(MBlock *b) {
     this->sum_m_plus += b->position;
+    this->mblocks_at_cell_plus_count +=1;
     if(this->is_leaf) {
         return this;
     } else {
@@ -46,9 +48,9 @@ ForceOctree* ForceOctree::AddMBlockPlus(MBlock *b) {
     }
 }
 
-
 ForceOctree* ForceOctree::AddMBlockNeg(MBlock *b) {
     this->sum_m_neg += b->position;
+    this->mblocks_at_cell_neg_count +=1;
     if(this->is_leaf) {
         return this;
     } else {
@@ -61,6 +63,7 @@ ForceOctree* ForceOctree::AddMBlockNeg(MBlock *b) {
 
 ForceOctree* ForceOctree::AddEBlock(EBlock *b) {
     this->sum_e += b->position;
+    this->eblocks_at_cell_count +=1;
     if(this->is_leaf) {
         return this;
     } else {
@@ -87,6 +90,7 @@ ForceOctree* ForceOctree::AddZBlock(ZBlock *b) {
 
 void ForceOctree::RemoveIBlockPlus(IBlock *b) {
     this->sum_i_plus -= b->position;
+    this->iblocks_at_cell_plus_count -=1;
     if(!this->is_leaf) {
         auto t0 = b->position(0, 0) > avg_x;
         auto t1 = b->position(1, 0) > avg_y;
@@ -97,6 +101,7 @@ void ForceOctree::RemoveIBlockPlus(IBlock *b) {
 
 void ForceOctree::RemoveIBlockNeg(IBlock *b) {
     this->sum_i_neg -= b->position;
+    this->iblocks_at_cell_neg_count -=1;
     if(!this->is_leaf) {
         auto t0 = b->position(0, 0) > avg_x;
         auto t1 = b->position(1, 0) > avg_y;
@@ -107,6 +112,7 @@ void ForceOctree::RemoveIBlockNeg(IBlock *b) {
 
 void ForceOctree::RemoveEBlock(EBlock *b) {
     this->sum_e -= b->position;
+    this->eblocks_at_cell_count -=1;
     if(!this->is_leaf) {
         auto t0 = b->position(0, 0) > avg_x;
         auto t1 = b->position(1, 0) > avg_y;
@@ -128,6 +134,7 @@ void ForceOctree::RemoveZBlock(ZBlock *b) {
 
 void ForceOctree::RemoveMBlockPlus(MBlock *b) {
     this->sum_m_plus -= b->position;
+    this->mblocks_at_cell_plus_count -=1;
     if(!this->is_leaf) {
         auto t0 = b->position(0, 0) > avg_x;
         auto t1 = b->position(1, 0) > avg_y;
@@ -138,6 +145,7 @@ void ForceOctree::RemoveMBlockPlus(MBlock *b) {
 
 void ForceOctree::RemoveMBlockNeg(MBlock *b) {
     this->sum_m_neg -= b->position;
+    this->mblocks_at_cell_neg_count -=1;
     if(!this->is_leaf) {
         auto t0 = b->position(0, 0) > avg_x;
         auto t1 = b->position(1, 0) > avg_y;
@@ -187,7 +195,7 @@ void ForceOctree::CalculateCOMonTree() {
 
 
 void ForceOctree::ApplyBarnesHutOnBlock(Block *b, real delta_time) {
-    this->count += 1;
+    //this->count += 1;
     bool recurse = b->React(this, delta_time);
     if(recurse) {
         for(int i=0; i<8; i++) {
