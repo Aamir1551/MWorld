@@ -191,10 +191,63 @@ TEST_CASE("Matrices can be applied with", "[Auxilary Operations]") {
 
     SECTION("Matrix Dot") {
 
+        int a_row = 10;
+        int a_col = 20;
+        int a_total_elements = a_row * a_col;
+
+        int b_row = a_row;
+        int b_col = a_col;
+        int b_total_elements = b_row * b_col;
+
+        int c_row = a_row + 1;
+        int c_col = 20;
+        int c_total_elements = c_row * c_col;
+
+        std::vector<settings::real> a_test_values;
+        std::vector<settings::real> b_test_values;
+        std::vector<settings::real> c_test_values;
+
+        for(int i=0; i<a_total_elements; i++) {
+            a_test_values.push_back(rand() % 1000); //make sure to change this so we can also test for floats
+            b_test_values.push_back(rand() % 1000); //make sure to change this so we can also test for floats
+        }
+
+        for(int i=0; i<c_total_elements; i++) {
+            c_test_values.push_back(rand() % 1000); //make sure to change this so we can also test for floats
+        }
+
+        Matrix a = Matrix(a_row, a_col, &a_test_values[0]);
+        Matrix b = Matrix(b_row, b_col, &b_test_values[0]);
+        Matrix c = Matrix(c_row, c_col, &c_test_values[0]);
+
+        settings::real ab_dot = 0;
+        for(int i=0; i<a_total_elements; i++) {
+            ab_dot += a_test_values.at(i) * b_test_values.at(i);
+        }
+        settings::real ab_dot_test = Matrix::Dot(a, b);
+
+        REQUIRE(ab_dot == ab_dot_test);
+
+        REQUIRE_THROWS_AS(Matrix::Dot(a, c), std::invalid_argument);
     }
 
     SECTION("Matrix Cross Product") {
+        auto a = Matrix::CreateColumnVec(3, 7, 1);
+        auto b = Matrix::CreateColumnVec(9, 1, 4);
+        auto c = Matrix(4, 1);
+        auto d = Matrix(3, 2);
 
+        auto ab_vect = Matrix::VectorProduct(a, b);
+
+        REQUIRE(ab_vect.shape().first == 3);
+        REQUIRE(ab_vect.shape().second == 1);
+
+        REQUIRE(ab_vect(0, 0) == 27);
+        REQUIRE(ab_vect(1, 0) == -3);
+        REQUIRE(ab_vect(2, 0) == -60);
+
+        REQUIRE_THROWS_AS(Matrix::VectorProduct(a, d), std::invalid_argument);
+        REQUIRE_THROWS_AS(Matrix::VectorProduct(a, c), std::invalid_argument);
     }
 
 }
