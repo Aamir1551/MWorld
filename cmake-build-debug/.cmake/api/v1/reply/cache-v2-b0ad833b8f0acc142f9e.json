@@ -799,7 +799,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "24"
+			"value" : "25"
 		},
 		{
 			"name" : "CMAKE_OBJCOPY",
@@ -1676,6 +1676,30 @@
 			],
 			"type" : "STATIC",
 			"value" : "C:/Users/aamir/Documents/mworld/simulation/octree"
+		},
+		{
+			"name" : "quaternion_test_BINARY_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "C:/Users/aamir/Documents/mworld/cmake-build-debug/numerics/quaternion/test"
+		},
+		{
+			"name" : "quaternion_test_SOURCE_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "C:/Users/aamir/Documents/mworld/numerics/quaternion/test"
 		},
 		{
 			"name" : "render_BINARY_DIR",

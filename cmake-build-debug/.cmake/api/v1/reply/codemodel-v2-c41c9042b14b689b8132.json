@@ -11,9 +11,9 @@
 						1,
 						2,
 						5,
-						9,
-						15,
-						19
+						10,
+						16,
+						20
 					],
 					"minimumCMakeVersion" : 
 					{
@@ -62,7 +62,7 @@
 					"source" : "utils/util_functions",
 					"targetIndexes" : 
 					[
-						19
+						20
 					]
 				},
 				{
@@ -124,6 +124,10 @@
 				},
 				{
 					"build" : "numerics/quaternion",
+					"childIndexes" : 
+					[
+						9
+					],
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.10"
@@ -137,21 +141,35 @@
 					]
 				},
 				{
+					"build" : "numerics/quaternion/test",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 8,
+					"projectIndex" : 9,
+					"source" : "numerics/quaternion/test",
+					"targetIndexes" : 
+					[
+						18
+					]
+				},
+				{
 					"build" : "render",
 					"childIndexes" : 
 					[
-						10,
 						11,
 						12,
 						13,
-						14
+						14,
+						15
 					],
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.10"
 					},
 					"parentIndex" : 0,
-					"projectIndex" : 9,
+					"projectIndex" : 10,
 					"source" : "render"
 				},
 				{
@@ -160,8 +178,8 @@
 					{
 						"string" : "3.10"
 					},
-					"parentIndex" : 9,
-					"projectIndex" : 10,
+					"parentIndex" : 10,
+					"projectIndex" : 11,
 					"source" : "render/camera"
 				},
 				{
@@ -170,8 +188,8 @@
 					{
 						"string" : "3.10"
 					},
-					"parentIndex" : 9,
-					"projectIndex" : 11,
+					"parentIndex" : 10,
+					"projectIndex" : 12,
 					"source" : "render/cube_renderer",
 					"targetIndexes" : 
 					[
@@ -184,8 +202,8 @@
 					{
 						"string" : "3.10"
 					},
-					"parentIndex" : 9,
-					"projectIndex" : 12,
+					"parentIndex" : 10,
+					"projectIndex" : 13,
 					"source" : "render/utils",
 					"targetIndexes" : 
 					[
@@ -198,8 +216,8 @@
 					{
 						"string" : "3.10"
 					},
-					"parentIndex" : 9,
-					"projectIndex" : 13,
+					"parentIndex" : 10,
+					"projectIndex" : 14,
 					"source" : "render/shader"
 				},
 				{
@@ -208,8 +226,8 @@
 					{
 						"string" : "3.10"
 					},
-					"parentIndex" : 9,
-					"projectIndex" : 14,
+					"parentIndex" : 10,
+					"projectIndex" : 15,
 					"source" : "render/block_renderer",
 					"targetIndexes" : 
 					[
@@ -220,16 +238,16 @@
 					"build" : "prototype",
 					"childIndexes" : 
 					[
-						16,
 						17,
-						18
+						18,
+						19
 					],
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.10"
 					},
 					"parentIndex" : 0,
-					"projectIndex" : 15,
+					"projectIndex" : 16,
 					"source" : "prototype"
 				},
 				{
@@ -238,8 +256,8 @@
 					{
 						"string" : "3.10"
 					},
-					"parentIndex" : 15,
-					"projectIndex" : 16,
+					"parentIndex" : 16,
+					"projectIndex" : 17,
 					"source" : "prototype/prototype_one",
 					"targetIndexes" : 
 					[
@@ -252,8 +270,8 @@
 					{
 						"string" : "3.10"
 					},
-					"parentIndex" : 15,
-					"projectIndex" : 17,
+					"parentIndex" : 16,
+					"projectIndex" : 18,
 					"source" : "prototype/prototype_two",
 					"targetIndexes" : 
 					[
@@ -266,8 +284,8 @@
 					{
 						"string" : "3.10"
 					},
-					"parentIndex" : 15,
-					"projectIndex" : 18,
+					"parentIndex" : 16,
+					"projectIndex" : 19,
 					"source" : "prototype/prototype_three",
 					"targetIndexes" : 
 					[
@@ -278,17 +296,17 @@
 					"build" : "simulation",
 					"childIndexes" : 
 					[
-						20,
 						21,
 						22,
-						23
+						23,
+						24
 					],
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.10"
 					},
 					"parentIndex" : 0,
-					"projectIndex" : 19,
+					"projectIndex" : 20,
 					"source" : "simulation"
 				},
 				{
@@ -297,8 +315,8 @@
 					{
 						"string" : "3.10"
 					},
-					"parentIndex" : 19,
-					"projectIndex" : 20,
+					"parentIndex" : 20,
+					"projectIndex" : 21,
 					"source" : "simulation/blocks",
 					"targetIndexes" : 
 					[
@@ -311,8 +329,8 @@
 					{
 						"string" : "3.10"
 					},
-					"parentIndex" : 19,
-					"projectIndex" : 21,
+					"parentIndex" : 20,
+					"projectIndex" : 22,
 					"source" : "simulation/octree",
 					"targetIndexes" : 
 					[
@@ -326,12 +344,12 @@
 					{
 						"string" : "3.10"
 					},
-					"parentIndex" : 19,
-					"projectIndex" : 22,
+					"parentIndex" : 20,
+					"projectIndex" : 23,
 					"source" : "simulation/world_handler",
 					"targetIndexes" : 
 					[
-						20
+						21
 					]
 				},
 				{
@@ -340,8 +358,8 @@
 					{
 						"string" : "3.10"
 					},
-					"parentIndex" : 19,
-					"projectIndex" : 19,
+					"parentIndex" : 20,
+					"projectIndex" : 20,
 					"source" : "simulation/environment",
 					"targetIndexes" : 
 					[
@@ -350,7 +368,7 @@
 						8,
 						11,
 						13,
-						18
+						19
 					]
 				}
 			],
@@ -363,9 +381,9 @@
 						1,
 						2,
 						5,
-						9,
-						15,
-						19
+						10,
+						16,
+						20
 					],
 					"directoryIndexes" : 
 					[
@@ -407,7 +425,7 @@
 					"parentIndex" : 2,
 					"targetIndexes" : 
 					[
-						19
+						20
 					]
 				},
 				{
@@ -460,6 +478,10 @@
 					]
 				},
 				{
+					"childIndexes" : 
+					[
+						9
+					],
 					"directoryIndexes" : 
 					[
 						8
@@ -472,17 +494,29 @@
 					]
 				},
 				{
-					"childIndexes" : 
-					[
-						10,
-						11,
-						12,
-						13,
-						14
-					],
 					"directoryIndexes" : 
 					[
 						9
+					],
+					"name" : "quaternion_test",
+					"parentIndex" : 8,
+					"targetIndexes" : 
+					[
+						18
+					]
+				},
+				{
+					"childIndexes" : 
+					[
+						11,
+						12,
+						13,
+						14,
+						15
+					],
+					"directoryIndexes" : 
+					[
+						10
 					],
 					"name" : "render",
 					"parentIndex" : 0
@@ -490,18 +524,18 @@
 				{
 					"directoryIndexes" : 
 					[
-						10
+						11
 					],
 					"name" : "camera",
-					"parentIndex" : 9
+					"parentIndex" : 10
 				},
 				{
 					"directoryIndexes" : 
 					[
-						11
+						12
 					],
 					"name" : "cube_renderer",
-					"parentIndex" : 9,
+					"parentIndex" : 10,
 					"targetIndexes" : 
 					[
 						4
@@ -510,10 +544,10 @@
 				{
 					"directoryIndexes" : 
 					[
-						12
+						13
 					],
 					"name" : "mworld_render_utils",
-					"parentIndex" : 9,
+					"parentIndex" : 10,
 					"targetIndexes" : 
 					[
 						10
@@ -522,18 +556,18 @@
 				{
 					"directoryIndexes" : 
 					[
-						13
+						14
 					],
 					"name" : "shader",
-					"parentIndex" : 9
+					"parentIndex" : 10
 				},
 				{
 					"directoryIndexes" : 
 					[
-						14
+						15
 					],
 					"name" : "block_renderer",
-					"parentIndex" : 9,
+					"parentIndex" : 10,
 					"targetIndexes" : 
 					[
 						1
@@ -542,13 +576,13 @@
 				{
 					"childIndexes" : 
 					[
-						16,
 						17,
-						18
+						18,
+						19
 					],
 					"directoryIndexes" : 
 					[
-						15
+						16
 					],
 					"name" : "prototypes",
 					"parentIndex" : 0
@@ -556,10 +590,10 @@
 				{
 					"directoryIndexes" : 
 					[
-						16
+						17
 					],
 					"name" : "prototype_one",
-					"parentIndex" : 15,
+					"parentIndex" : 16,
 					"targetIndexes" : 
 					[
 						14
@@ -568,10 +602,10 @@
 				{
 					"directoryIndexes" : 
 					[
-						17
+						18
 					],
 					"name" : "prototype_two",
-					"parentIndex" : 15,
+					"parentIndex" : 16,
 					"targetIndexes" : 
 					[
 						16
@@ -580,10 +614,10 @@
 				{
 					"directoryIndexes" : 
 					[
-						18
+						19
 					],
 					"name" : "prototype_three",
-					"parentIndex" : 15,
+					"parentIndex" : 16,
 					"targetIndexes" : 
 					[
 						15
@@ -592,14 +626,14 @@
 				{
 					"childIndexes" : 
 					[
-						20,
 						21,
-						22
+						22,
+						23
 					],
 					"directoryIndexes" : 
 					[
-						19,
-						23
+						20,
+						24
 					],
 					"name" : "simulation",
 					"parentIndex" : 0,
@@ -610,16 +644,16 @@
 						8,
 						11,
 						13,
-						18
+						19
 					]
 				},
 				{
 					"directoryIndexes" : 
 					[
-						20
+						21
 					],
 					"name" : "Blocks",
-					"parentIndex" : 19,
+					"parentIndex" : 20,
 					"targetIndexes" : 
 					[
 						2
@@ -628,10 +662,10 @@
 				{
 					"directoryIndexes" : 
 					[
-						21
+						22
 					],
 					"name" : "quaternion_lib",
-					"parentIndex" : 19,
+					"parentIndex" : 20,
 					"targetIndexes" : 
 					[
 						5,
@@ -641,59 +675,59 @@
 				{
 					"directoryIndexes" : 
 					[
-						22
+						23
 					],
 					"name" : "world_handler",
-					"parentIndex" : 19,
+					"parentIndex" : 20,
 					"targetIndexes" : 
 					[
-						20
+						21
 					]
 				}
 			],
 			"targets" : 
 			[
 				{
-					"directoryIndex" : 23,
+					"directoryIndex" : 24,
 					"id" : "and_gate_test::@847a59781e22ff560ae6",
-					"jsonFile" : "target-and_gate_test-Debug-814e93a5abe6f7aee633.json",
+					"jsonFile" : "target-and_gate_test-Debug-c3cdc759e482121eedf0.json",
 					"name" : "and_gate_test",
-					"projectIndex" : 19
-				},
-				{
-					"directoryIndex" : 14,
-					"id" : "block_renderer::@20380dfbeeaf1beda5b3",
-					"jsonFile" : "target-block_renderer-Debug-158b1d18df91784da8d4.json",
-					"name" : "block_renderer",
-					"projectIndex" : 14
-				},
-				{
-					"directoryIndex" : 20,
-					"id" : "blocks::@6db65c1307d2a2a784c8",
-					"jsonFile" : "target-blocks-Debug-94f6a62b00cfd34433c8.json",
-					"name" : "blocks",
 					"projectIndex" : 20
 				},
 				{
-					"directoryIndex" : 23,
-					"id" : "collision_tests::@847a59781e22ff560ae6",
-					"jsonFile" : "target-collision_tests-Debug-cd8f7f77ea9dea897e23.json",
-					"name" : "collision_tests",
-					"projectIndex" : 19
-				},
-				{
-					"directoryIndex" : 11,
-					"id" : "cube_renderer::@ef8ae11a8c6e57d14ca4",
-					"jsonFile" : "target-cube_renderer-Debug-c7281fd5c73c279391f9.json",
-					"name" : "cube_renderer",
-					"projectIndex" : 11
+					"directoryIndex" : 15,
+					"id" : "block_renderer::@20380dfbeeaf1beda5b3",
+					"jsonFile" : "target-block_renderer-Debug-ff8ac1c102593fc207cb.json",
+					"name" : "block_renderer",
+					"projectIndex" : 15
 				},
 				{
 					"directoryIndex" : 21,
-					"id" : "force_octree::@66c141f95c7ed784ad75",
-					"jsonFile" : "target-force_octree-Debug-a6930509c7f54e761b98.json",
-					"name" : "force_octree",
+					"id" : "blocks::@6db65c1307d2a2a784c8",
+					"jsonFile" : "target-blocks-Debug-f5c1230210e64c73c8bc.json",
+					"name" : "blocks",
 					"projectIndex" : 21
+				},
+				{
+					"directoryIndex" : 24,
+					"id" : "collision_tests::@847a59781e22ff560ae6",
+					"jsonFile" : "target-collision_tests-Debug-345c158eafc94e57d7cb.json",
+					"name" : "collision_tests",
+					"projectIndex" : 20
+				},
+				{
+					"directoryIndex" : 12,
+					"id" : "cube_renderer::@ef8ae11a8c6e57d14ca4",
+					"jsonFile" : "target-cube_renderer-Debug-c7281fd5c73c279391f9.json",
+					"name" : "cube_renderer",
+					"projectIndex" : 12
+				},
+				{
+					"directoryIndex" : 22,
+					"id" : "force_octree::@66c141f95c7ed784ad75",
+					"jsonFile" : "target-force_octree-Debug-7317e3b62af313a1f099.json",
+					"name" : "force_octree",
+					"projectIndex" : 22
 				},
 				{
 					"directoryIndex" : 1,
@@ -710,11 +744,11 @@
 					"projectIndex" : 6
 				},
 				{
-					"directoryIndex" : 23,
+					"directoryIndex" : 24,
 					"id" : "logic_gates::@847a59781e22ff560ae6",
-					"jsonFile" : "target-logic_gates-Debug-32b01419078c48ba74d0.json",
+					"jsonFile" : "target-logic_gates-Debug-712fa3e917dc47f2964a.json",
 					"name" : "logic_gates",
-					"projectIndex" : 19
+					"projectIndex" : 20
 				},
 				{
 					"directoryIndex" : 7,
@@ -724,67 +758,74 @@
 					"projectIndex" : 7
 				},
 				{
-					"directoryIndex" : 12,
+					"directoryIndex" : 13,
 					"id" : "mworld_render_utils::@c1c5e50b708af245b811",
-					"jsonFile" : "target-mworld_render_utils-Debug-575878c3cf4741f5770e.json",
+					"jsonFile" : "target-mworld_render_utils-Debug-bb7a8f5dbdd4de9b1e04.json",
 					"name" : "mworld_render_utils",
-					"projectIndex" : 12
+					"projectIndex" : 13
 				},
 				{
-					"directoryIndex" : 23,
+					"directoryIndex" : 24,
 					"id" : "not_gate_test::@847a59781e22ff560ae6",
-					"jsonFile" : "target-not_gate_test-Debug-f8a5a6a344ab553854ae.json",
+					"jsonFile" : "target-not_gate_test-Debug-8b681be7ff14d90af61d.json",
 					"name" : "not_gate_test",
-					"projectIndex" : 19
+					"projectIndex" : 20
 				},
 				{
-					"directoryIndex" : 21,
+					"directoryIndex" : 22,
 					"id" : "octree::@66c141f95c7ed784ad75",
-					"jsonFile" : "target-octree-Debug-08091eec424306b3f541.json",
+					"jsonFile" : "target-octree-Debug-df16413d0837ed43c5dd.json",
 					"name" : "octree",
-					"projectIndex" : 21
+					"projectIndex" : 22
 				},
 				{
-					"directoryIndex" : 23,
+					"directoryIndex" : 24,
 					"id" : "or_gate_test::@847a59781e22ff560ae6",
-					"jsonFile" : "target-or_gate_test-Debug-26a08263e1725460f180.json",
+					"jsonFile" : "target-or_gate_test-Debug-28f6738ae38144c2c1b5.json",
 					"name" : "or_gate_test",
-					"projectIndex" : 19
-				},
-				{
-					"directoryIndex" : 16,
-					"id" : "prototype_one::@c77c4220c2085dac9ec5",
-					"jsonFile" : "target-prototype_one-Debug-8bd665d5029e58d0cbfa.json",
-					"name" : "prototype_one",
-					"projectIndex" : 16
-				},
-				{
-					"directoryIndex" : 18,
-					"id" : "prototype_three::@2a17fa0eebb0697fdbb6",
-					"jsonFile" : "target-prototype_three-Debug-f08fedd02673adac2da2.json",
-					"name" : "prototype_three",
-					"projectIndex" : 18
+					"projectIndex" : 20
 				},
 				{
 					"directoryIndex" : 17,
-					"id" : "prototype_two::@e7e923eba9c0b8a1d5aa",
-					"jsonFile" : "target-prototype_two-Debug-3aee91c8cb6dc0cd8812.json",
-					"name" : "prototype_two",
+					"id" : "prototype_one::@c77c4220c2085dac9ec5",
+					"jsonFile" : "target-prototype_one-Debug-64e5ed9e2bd07625347d.json",
+					"name" : "prototype_one",
 					"projectIndex" : 17
+				},
+				{
+					"directoryIndex" : 19,
+					"id" : "prototype_three::@2a17fa0eebb0697fdbb6",
+					"jsonFile" : "target-prototype_three-Debug-4c0323be03a84e174216.json",
+					"name" : "prototype_three",
+					"projectIndex" : 19
+				},
+				{
+					"directoryIndex" : 18,
+					"id" : "prototype_two::@e7e923eba9c0b8a1d5aa",
+					"jsonFile" : "target-prototype_two-Debug-9bb4a12bc79fde3ee18e.json",
+					"name" : "prototype_two",
+					"projectIndex" : 18
 				},
 				{
 					"directoryIndex" : 8,
 					"id" : "quaternion::@1ddfe99dd86582fd9c64",
-					"jsonFile" : "target-quaternion-Debug-3dc8bb8752be643739a2.json",
+					"jsonFile" : "target-quaternion-Debug-c5e119ae0002091cb7bc.json",
 					"name" : "quaternion",
 					"projectIndex" : 8
 				},
 				{
-					"directoryIndex" : 23,
+					"directoryIndex" : 9,
+					"id" : "quaternion_test::@fbe969544007e4df1e1f",
+					"jsonFile" : "target-quaternion_test-Debug-b894782fb4a63ef9188f.json",
+					"name" : "quaternion_test",
+					"projectIndex" : 9
+				},
+				{
+					"directoryIndex" : 24,
 					"id" : "simulation::@847a59781e22ff560ae6",
-					"jsonFile" : "target-simulation-Debug-94d392b4ff939528b7e1.json",
+					"jsonFile" : "target-simulation-Debug-0223d46dad16961a3793.json",
 					"name" : "simulation",
-					"projectIndex" : 19
+					"projectIndex" : 20
 				},
 				{
 					"directoryIndex" : 3,
@@ -794,11 +835,11 @@
 					"projectIndex" : 3
 				},
 				{
-					"directoryIndex" : 22,
+					"directoryIndex" : 23,
 					"id" : "world_handler::@db5c5082507517693d46",
-					"jsonFile" : "target-world_handler-Debug-c8b8f9e8b54d98740796.json",
+					"jsonFile" : "target-world_handler-Debug-63d2c635b883c65cadbb.json",
 					"name" : "world_handler",
-					"projectIndex" : 22
+					"projectIndex" : 23
 				}
 			]
 		}

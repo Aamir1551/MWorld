@@ -180,6 +180,9 @@
 			"path" : "numerics/quaternion/CMakeLists.txt"
 		},
 		{
+			"path" : "numerics/quaternion/test/CMakeLists.txt"
+		},
+		{
 			"path" : "render/CMakeLists.txt"
 		},
 		{

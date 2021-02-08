@@ -21,6 +21,9 @@ C:/Users/aamir/Documents/mworld/cmake-build-debug/numerics/linear_alg/test/CMake
 C:/Users/aamir/Documents/mworld/cmake-build-debug/numerics/quaternion/CMakeFiles/rebuild_cache.dir
 C:/Users/aamir/Documents/mworld/cmake-build-debug/numerics/quaternion/CMakeFiles/quaternion.dir
 C:/Users/aamir/Documents/mworld/cmake-build-debug/numerics/quaternion/CMakeFiles/edit_cache.dir
+C:/Users/aamir/Documents/mworld/cmake-build-debug/numerics/quaternion/test/CMakeFiles/quaternion_test.dir
+C:/Users/aamir/Documents/mworld/cmake-build-debug/numerics/quaternion/test/CMakeFiles/edit_cache.dir
+C:/Users/aamir/Documents/mworld/cmake-build-debug/numerics/quaternion/test/CMakeFiles/rebuild_cache.dir
 C:/Users/aamir/Documents/mworld/cmake-build-debug/render/CMakeFiles/edit_cache.dir
 C:/Users/aamir/Documents/mworld/cmake-build-debug/render/CMakeFiles/rebuild_cache.dir
 C:/Users/aamir/Documents/mworld/cmake-build-debug/render/camera/CMakeFiles/edit_cache.dir

@@ -1,12 +1,8 @@
 #include <iostream>
 #include <stdlib.h>
-#include <stdio.h>
 #include <vector>
 
-#include <utility>
-
 #include <matrix.hpp>
-// should add docker and add environment path to catch/test.h
 #include <catch.hpp>
 #include <settings.hpp>
 
