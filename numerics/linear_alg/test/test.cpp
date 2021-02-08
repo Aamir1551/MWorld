@@ -58,7 +58,7 @@ TEST_CASE("Creating Matrices of different size", "[construction]")
     int d_row = d_shape.first;
     int d_col = d_shape.second;
 
-    SECTION("Construxtion of Matrix given rows and columns")
+    SECTION("Construction of Matrix given rows and columns")
     {
 
         REQUIRE(a_col == a_col_test);
@@ -108,6 +108,97 @@ TEST_CASE("Creating Matrices of different size", "[construction]")
     delete d;
 }
 
+TEST_CASE("Matrices can be applied with", "[Auxilary Operations]") {
+
+    SECTION("Matrix Operation ()") {
+        int a_row = 10;
+        int a_col = 20;
+        int a_total_elements = a_row * a_col;
+
+        std::vector<settings::real> a_test_values;
+        for(int i=0; i<a_total_elements; i++) {
+            a_test_values.push_back(rand() % 1000); //make sure to change this so we can also test for floats
+        }
+
+        Matrix a = Matrix(a_row, a_col, &a_test_values[0]);
+
+        for(int i=0; i<a_row; i++) {
+            for(int j=0; j<a_col; j++) {
+                REQUIRE(a(i, j) == a_test_values.at(i * a_col + j));
+            }
+        }
+    }
+
+    SECTION("Matrix Norm") {
+        int a_row = 10;
+        int a_col = 20;
+        int a_total_elements = a_row * a_col;
+
+        std::vector<settings::real> a_test_values;
+        for(int i=0; i<a_total_elements; i++) {
+            a_test_values.push_back(rand() % 1000); //make sure to change this so we can also test for floats
+        }
+
+        Matrix a = Matrix(a_row, a_col, &a_test_values[0]);
+        settings::real a_norm = Matrix::Norm(a);
+
+
+        settings::real a_norm_val = 0;
+        for(int i=0; i<a_row; i++) {
+            for(int j=0; j<a_col; j++) {
+                a_norm_val += a(i, j) * a(i, j);
+            }
+        }
+        REQUIRE(std::sqrt(a_norm_val) == a_norm);
+    }
+
+
+    SECTION("Matrix Normalise") {
+        int a_row = 10;
+        int a_col = 20;
+        int a_total_elements = a_row * a_col;
+
+        std::vector<settings::real> a_test_values;
+        for(int i=0; i<a_total_elements; i++) {
+            a_test_values.push_back(rand() % 1000); //make sure to change this so we can also test for floats
+        }
+
+        Matrix a = Matrix(a_row, a_col, &a_test_values[0]);
+
+        settings::real a_norm_val = 0;
+        for(int i=0; i<a_row; i++) {
+            for(int j=0; j<a_col; j++) {
+                a_norm_val += a(i, j) * a(i, j);
+            }
+        }
+        a_norm_val = std::sqrt(a_norm_val);
+        a.Normalise();
+        for(int i=0; i<a_row; i++) {
+            for(int j=0; j<a_col; j++) {
+                REQUIRE(a(i, j) == a_test_values.at(i * a_col + j)/a_norm_val);
+            }
+        }
+
+        settings::real new_norm = 0;
+        for(int i=0; i<a_row; i++) {
+            for(int j=0; j<a_col; j++) {
+                new_norm += a(i, j) * a(i, j);
+            }
+        }
+        REQUIRE(new_norm == Approx(1).margin(1e-12));
+    }
+
+
+    SECTION("Matrix Dot") {
+
+    }
+
+    SECTION("Matrix Cross Product") {
+
+    }
+
+}
+
 TEST_CASE("Matrices can be operated with", "[Operations]")
 {
 
@@ -129,60 +220,128 @@ TEST_CASE("Matrices can be operated with", "[Operations]")
 
     std::vector<settings::real> a_test_values;
     std::vector<settings::real> b_test_values;
+    std::vector<settings::real> c_test_values;
+    std::vector<settings::real> d_test_values;
+
     for (int i = 0; i < a_total_elements; i++)
     {
         a_test_values.push_back(rand() % 1000); //make sure to change this so we can also test for floats
-        b_test_values.push_back(rand() % 1000); //make sure to change this so we can also test for floats
+        b_test_values.push_back((rand() % 1000) + 0.01); //make sure to change this so we can also test for floats //to avoid zero division
     }
 
-    Matrix *a = new Matrix(a_row, a_col, &a_test_values[0]);
-    Matrix *b = new Matrix(b_row, b_col, &b_test_values[0]);
+    for (int i = 0; i < c_total_elements; i++)
+    {
+        c_test_values.push_back(rand() % 1000);
+    }
+
+    for (int i = 0; i < d_total_elements; i++)
+    {
+        d_test_values.push_back(rand() % 1000);
+    }
+
+
+    Matrix a = Matrix(a_row, a_col, &a_test_values[0]);
+    Matrix b = Matrix(b_row, b_col, &b_test_values[0]);
+    Matrix c = Matrix(c_row, c_col, &c_test_values[0]);
+    Matrix d = Matrix(d_row, d_col, &d_test_values[0]);
 
     SECTION("Matrix Addition")
     {
-        //test with both no error thrown and error thrown
+        auto sum_ab = a + b;
+        REQUIRE(sum_ab.shape().first == a_row);
+        REQUIRE(sum_ab.shape().second == a_col);
+
+        for(int i=0; i<a_row; i++) {
+            for(int j=0; j<a_col; j++) {
+                REQUIRE(sum_ab(i, j) == a(i, j) + b(i, j));
+            }
+        }
+
+       REQUIRE_THROWS_AS(a+c, std::invalid_argument);
     }
 
     SECTION("Matrix Subtraction")
     {
-        //test with both no error thrown and error thrown
+        auto sub_ab = a - b;
+        REQUIRE(sub_ab.shape().first == a_row);
+        REQUIRE(sub_ab.shape().second == a_col);
+
+        for(int i=0; i<a_row; i++) {
+            for(int j=0; j<a_col; j++) {
+                REQUIRE(sub_ab(i, j) == a(i, j) - b(i, j));
+            }
+        }
+
+        REQUIRE_THROWS_AS(a-c, std::invalid_argument);
     }
 
     SECTION("Matrix Elementwise Multiplication")
     {
-        //test with both no error thrown and error thrown
+        auto mul_ab = a * b;
+        REQUIRE(mul_ab.shape().first == a_row);
+        REQUIRE(mul_ab.shape().second == a_col);
+
+        for(int i=0; i<a_row; i++) {
+            for(int j=0; j<a_col; j++) {
+                REQUIRE(mul_ab(i, j) == a(i, j) * b(i, j));
+            }
+        }
+
+        REQUIRE_THROWS_AS(a*c, std::invalid_argument);
     }
 
     SECTION("Matrix Division")
     {
-        //test with both no error thrown and error thrown
+        auto div_ab = a / b;
+        REQUIRE(div_ab.shape().first == a_row);
+        REQUIRE(div_ab.shape().second == a_col);
+
+        for(int i=0; i<a_row; i++) {
+            for(int j=0; j<a_col; j++) {
+                REQUIRE(div_ab(i, j) == a(i, j) / b(i, j));
+            }
+        }
+
+        REQUIRE_THROWS_AS(a / c, std::invalid_argument);
+        b(0, 0, 0);
+        REQUIRE_THROWS_AS(a / b, std::overflow_error);
+        b(0, 0, 1);
     }
 
     SECTION("Matrix Multiplication")
     {
-        //test with both no error thrown and error thrown
-    }
 
-    SECTION("Matrix Inverse")
-    {
-        //test with both no error thrown and error thrown
+        auto mat_da = Matrix::MatMul(d, a);
+        auto da_row = mat_da.shape().first;
+        auto da_col = mat_da.shape().second;
+        REQUIRE(da_row == d_row);
+        REQUIRE(da_col == a_col);
+
+        // do quaternion operators
+        // check if (,) operation works too
+        for(int i=0; i<da_row; i++) {
+            for(int j=0; j<da_row; j++) {
+                int sum_d = 0;
+                for(int k=0; k<d_col; k++) {
+                    sum_d += d(i, k) * a(k, j);
+                }
+                REQUIRE(sum_d == mat_da(i, j));
+            }
+        }
+
+        auto m_i = Matrix(5, a_col + 1);
+        REQUIRE_THROWS_AS(Matrix::MatMul(m_i, a), std::invalid_argument);
     }
 
     SECTION("Matrix Transpose")
     {
-
-        //test with both no error thrown and error thrown
-        Matrix c = Matrix::Transpose(*a);
-
-        for (int i = 0; i < 4; i++)
+        Matrix c = Matrix::Transpose(a);
+        for (int i = 0; i < a_col; i++)
         {
-            for (int j = 0; j < 4; j++)
+            for (int j = 0; j < a_row; j++)
             {
-
-                REQUIRE(c(i, j) == (*a)(j, i));
+                REQUIRE(c(i, j) == a(j, i));
             }
         }
     }
-    delete a;
-    delete b;
 }

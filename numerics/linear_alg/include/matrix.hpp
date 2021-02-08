@@ -205,7 +205,6 @@ namespace numerics
             }
         };
 
-
         /**
          * @brief Determines if two matrices have the same value at each index.
          * 
@@ -270,30 +269,6 @@ namespace numerics
          * @return Matrix& 
          */
         Matrix static MatMul(Matrix const &a, Matrix const &b);
-
-        /**
-         * @brief Applies Matrix multiplication between two matrices. If multiplication fails, throws invalid_argument error.
-         * 
-         * @param a 
-         * @return Matrix& 
-         */
-        virtual int MatMul(Matrix const &a);
-
-        /**
-         * @brief Calculates the inverse of a Matrix. 
-         * 
-         * @param a 
-         * @return Matrix& 
-         */
-        virtual settings::real Inv() const;
-
-        /**
-         * @brief Calculates the determinent of a Matrix. 
-         * 
-         * @param a 
-         * @return Matrix& 
-         */
-        virtual settings::real Determinent() const;
 
         /**
          * @brief Transposes a given Matrix 
@@ -477,46 +452,11 @@ namespace numerics
         ~Matrix() { delete[](this->values); };
 
         /**
-         * @brief Get the Rows of the Matrix
-         * 
-         * @return Matrix* 
-         */
-        Matrix *GetRows() const;
-
-        /**
          * @brief Get the Columns of the Matrix
          * 
          * @return Matrix* 
          */
         Matrix *GetColumns() const;
-
-        /**
-         * @brief Adds a column to a matrix
-         * 
-         * @param vec 
-         */
-        void AddColumn(Matrix const &vec);
-
-        /**
-         * @brief Adds a row to a matrix
-         * 
-         * @param vec 
-         */
-        void AddRow(Matrix const &vec);
-
-        /**
-         * @brief Removes a columns from at position index
-         * 
-         * @param index 
-         */
-        void RemoveColumn(int index);
-
-        /**
-         * @brief Removes a row at position index
-         * 
-         * @param index 
-         */
-        void RemoveRow(int index);
 
         /**
          * @brief Applies the max function at each element in the 3d vector which each of the max elements given

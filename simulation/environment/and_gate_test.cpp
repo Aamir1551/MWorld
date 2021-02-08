@@ -94,8 +94,20 @@ int main()
 
     real frame_count = 0;
     real prev_time = glfwGetTime();
+    int is_out = false;
     while (!glfwWindowShouldClose(world_properties->window))
     {
+
+        if (glfwGetKey(world_properties->window, GLFW_KEY_SPACE) == GLFW_PRESS) {
+            is_out = !is_out;
+            if (is_out) {
+                world.iblocks.at(0)->position = Matrix::CreateColumnVec(-28, down, -13);
+            } else {
+                world.iblocks.at(0)->position = Matrix::CreateColumnVec(-22, down, -13);
+            }
+            world.ResetTrees();
+        }
+
 
         currentFrame = glfwGetTime();
         deltaTime = currentFrame - lastFrame;

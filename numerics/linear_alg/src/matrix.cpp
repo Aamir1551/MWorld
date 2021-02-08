@@ -83,7 +83,6 @@ namespace numerics
 
     Matrix::Matrix(const Matrix &a) //copy constructor
     {
-        //std::cout << "copy cons" << std::endl;
         this->rows = a.rows;
         this->cols = a.cols;
         this->values = new settings::real[rows * cols];
@@ -152,37 +151,6 @@ namespace numerics
         return msg + " " + a_shape;
     }
 
-    int Matrix::MatMul(Matrix const &a)
-    {
-        if (this->cols != a.rows)
-        {
-            throw std::invalid_argument(
-                GenerateError("Matrix Multiplication", *this, a));
-        }
-
-        auto *new_values = new settings::real[this->rows * a.cols];
-        for (int i = 0; i < this->rows * a.cols; i++)
-        {
-            new_values[i] = 0;
-        }
-
-        for (int k = 0; k < a.rows; k++)
-        {
-            for (int c = 0; c < this->rows * a.cols; c++)
-            {
-                // make sure this rounds down
-                int i = c / a.cols;
-                int j = c % a.cols;
-                new_values[c] += this->values[i * this->cols + k] *
-                                 a.values[a.cols * k + j];
-            }
-        }
-        delete[] this->values;
-        this->values = new_values;
-        this->cols = a.cols;
-        return 0;
-    };
-
     void Matrix::print(Matrix const &a)
     {
         for (int i = 0; i < a.rows; i++)
@@ -219,8 +187,6 @@ namespace numerics
 
     void Matrix::Transpose()
     {
-        std::cout << "Bad function Transpose in Matrix Ran" << std::endl;
-        // Make sure to first add a check on this transpose, since it can only happen on square matrices
         auto *new_values = new settings::real[this->cols * this->rows];
         for (int i = 0; i < this->rows; i++)
         {
@@ -229,10 +195,11 @@ namespace numerics
                 new_values[j * this->rows + i] = this->values[i * this->cols + j];
             }
         }
-        int t = this->cols;
 
+        int t = this->cols;
         this->cols = this->rows;
         this->rows = t;
+
         delete[] values;
         this->values = new_values;
     }
@@ -349,6 +316,10 @@ namespace numerics
         auto *new_values = new settings::real[a.cols * a.rows];
         for (int i = 0; i < a.cols * a.rows; i++)
         {
+            if(a.values[i] == 0){
+                throw std::overflow_error("Division By Zero");
+            }
+
             new_values[i] = this->values[i] / a.values[i];
         }
         auto res = Matrix(this->rows, this->cols, new_values);
@@ -551,78 +522,6 @@ namespace numerics
         }
     };
 
-    /* Returns 0 if success, otherwise it throws an error or 
-if an element is nan, it returns 1 */
-    settings::real Matrix::Inv() const
-    {
-        return 0;
-    }
-
-    settings::real Matrix::Determinent() const
-    {
-        return 0;
-    }
-
-    /*Matrix *Matrix::GetRows() const
-    {
-        auto *rows_list = (Matrix *)malloc(sizeof(Matrix) * this->rows);
-        for (int i = 0; i < this->rows; i++)
-        {
-            auto *new_values = new settings::real(this->cols);
-            for (int j = 0; j < this->cols; j++)
-            {
-                new_values[j] = (*this)(i, j);
-            }
-            rows_list[i] = Matrix(1, this->cols, new_values);
-        }
-        return rows_list;
-    }*/
-
-    /*void Matrix::AddColumn(Matrix const &vec)
-    {
-
-        if (vec.cols != 1 || this->rows != vec.rows)
-            throw std::invalid_argument("Vector shape does not conform for AddColumn");
-
-        auto *new_vals = new settings::real[this->rows * (this->cols + 1)];
-        for (int i = 0; i < this->rows * (this->cols + 1); i++)
-        {
-            if (i > 0 && i % (this->cols + 1) == 0)
-            {
-                continue;
-            }
-            new_vals[i] = this->values[i];
-        }
-        for (int i = 1; i < this->rows + 1; i++)
-        {
-            new_vals[i * (this->cols + 1)] = vec(i, 0);
-        }
-        delete[] this->values;
-        this->values = new_vals;
-        this->cols += 1;
-    }*/
-
-    /*void Matrix::AddRow(Matrix const &vec)
-    {
-
-        if (vec.rows != 1 || this->cols != vec.cols)
-            throw std::invalid_argument("Vector shape does not conform for AddColumn");
-
-        auto *new_vals = new settings::real[(this->rows + 1) * this->rows];
-        for (int i = 0; i < this->cols * this->rows; i++)
-        {
-            new_vals[i] = this->values[i];
-        }
-        for (int i = 0; i < this->cols; i++)
-        {
-            new_vals[this->rows * this->cols + i] = vec(0, i);
-        }
-        delete[] this->values;
-        this->values = new_vals;
-        this->rows += 1;
-    }*/
-
-
     Matrix *Matrix::GetColumns() const
     {
         //check for mem leaks in this
@@ -639,48 +538,6 @@ if an element is nan, it returns 1 */
         };
         return cols_list;
     }
-
-    /*void Matrix::RemoveRow(int index)
-    {
-        int size = this->cols * this->rows;
-        if (size == 0)
-        {
-            throw std::invalid_argument("Matrix is of size zero. Must be more than zero for operation RemoveRow");
-        }
-        auto *new_values = new settings::real[(this->rows - 1) * this->cols];
-        for (int i = 0; i < index * this->cols; i++)
-        {
-            new_values[i] = this->values[i];
-        }
-        for (int i = (index + 1) * this->cols; i < size; i++)
-        {
-            new_values[i] = this->values[i];
-        }
-        delete[] values;
-        values = new_values;
-        rows--;
-    };*/
-
-    /*void Matrix::RemoveColumn(int index)
-    {
-        int size = this->cols * this->rows;
-        if (size == 0)
-        {
-            throw std::invalid_argument("Matrix is of size zero. Must be more than zero for operation RemoveColumn");
-        }
-        auto *new_values = new settings::real[(this->cols - 1) * this->rows];
-        for (int i = 0; i < size; i++)
-        {
-            if (i % this->cols == index)
-            {
-                continue;
-            }
-            new_values[i] = this->values[i];
-        }
-        delete[] values;
-        values = new_values;
-        cols--;
-    }*/
 
     // This function does not throw an error, when we meet a zero vector. This has been done for performance purposes.
     void Matrix::Normalise() {
