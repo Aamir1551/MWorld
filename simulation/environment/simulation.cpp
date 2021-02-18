@@ -41,7 +41,7 @@ int main()
     //WorldHandler world = WorldHandler(0, 0, 0, 0, 0, 0);
     //WorldHandler world = WorldHandler(10, 0, 0, 0, 0, 0);
     //WorldHandler world = WorldHandler(0, 0, 2, 0, 0, 0);
-    WorldHandler world = WorldHandler(0, 0, 220, 0, 00, 0, -100, 100, 4);
+    WorldHandler world = WorldHandler(0, 0, 200, 0, 00, 0, -100, 100, 4);
     /*world.forces_tree->RemoveZBlock(world.zblocks.at(0));
     world.forces_tree->RemoveZBlock(world.zblocks.at(1));
     world.tree->RemoveZBlock(world.zblocks.at(0));
@@ -87,7 +87,7 @@ int main()
 
         auto contact_list = world.CollisionHandler();
         world.AddForces(deltaTime);
-        //contact_list = vector<Contact>();
+        //auto contact_list = vector<Contact>();
         world.Update(contact_list, deltaTime);
 
         BlockRenderer::DrawAllBlocks(&world.iblocks, &world.zblocks, &world.eblocks, &world.mblocks);

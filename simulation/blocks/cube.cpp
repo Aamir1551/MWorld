@@ -124,7 +124,10 @@ namespace blocks {
                 Matrix point = (c1->position + c2->position) / 2;
                 vect_dist.Normalise();
                 Contact contact_info = {point, length - dist, vect_dist, c1, c2};
+#pragma omp critical
+                {
                 contact_list.push_back(contact_info);
+                };
             }
         }
 
@@ -134,10 +137,13 @@ namespace blocks {
             Cube *body2 = contact.body2;
             auto normal = contact.normal;
             auto temp = body1->momentum;
-            body1->momentum = body2->momentum * 0.01;
-            body2->momentum = temp * 0.01;
-            body1->position = body1->position + normal * (contact.penetration/2 );
-            body2->position = body2->position - normal * (contact.penetration/2);
+//#pragma omp critical -- does not work if we put this here
+            {
+                body1->momentum = body2->momentum * 0.01;
+                body2->momentum = temp * 0.01;
+                body1->position += normal * (contact.penetration/2);
+                body2->position -= normal * (contact.penetration/2);
+            };
         }
 
     void Cube::CollisionBoundary(Cube *c1, real min_boundary_x, real max_boundary_x, real min_boundary_y,

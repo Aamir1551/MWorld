@@ -54,6 +54,8 @@ namespace blocks {
         ForceOctree *AddMBlockPlus(MBlock *b);
         ForceOctree *AddMBlockNeg(MBlock *b);
 
+        void RemoveAllZBlocks();
+
         void RemoveIBlockPlus(IBlock *b);
         void RemoveIBlockNeg(IBlock *b);
         void RemoveZBlock(ZBlock *b);

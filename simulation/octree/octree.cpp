@@ -50,14 +50,29 @@ Octree::Octree(int grid_size, real min_x, real  max_x, real min_y, real max_y, r
         this->is_leaf = true;
     } else {
         this->is_leaf = false;
-        children[0] = new Octree(grid_size, min_x, avg_x, min_y, avg_y, min_z, avg_z);
+
+#pragma parallel for
+        for(int i=0; i<8; i++) {
+            auto xx0 = (i % 2) ? avg_x : min_x;
+            auto xx1 = (i % 2) ? max_x: avg_x;
+
+            auto yy0 = ((i/2) % 2) ? avg_y : min_y;
+            auto yy1 = ((i/2) % 2) ? max_y : avg_y;
+
+            auto zz0 = ((i/4) % 2) ? avg_z : min_z;
+            auto zz1 = ((i/4) % 2) ? max_z : avg_z;
+            children[i] =  new Octree(grid_size, xx0, xx1, yy0, yy1, zz0, zz1);
+        }
+
+
+        /*children[0] = new Octree(grid_size, min_x, avg_x, min_y, avg_y, min_z, avg_z);
         children[1] = new Octree(grid_size, avg_x, max_x, min_y, avg_y, min_z, avg_z);
         children[2] = new Octree(grid_size, min_x, avg_x, avg_y, max_y, min_z, avg_z);
         children[3] = new Octree(grid_size, avg_x, max_x, avg_y, max_y, min_z, avg_z);
         children[4] = new Octree(grid_size, min_x, avg_x, min_y, avg_y, avg_z, max_z);
         children[5] = new Octree(grid_size, avg_x, max_x, min_y, avg_y, avg_z, max_z);
         children[6] = new Octree(grid_size, min_x, avg_x, avg_y, max_y, avg_z, max_z);
-        children[7] = new Octree(grid_size, avg_x, max_x, avg_y, max_y, avg_z, max_z);
+        children[7] = new Octree(grid_size, avg_x, max_x, avg_y, max_y, avg_z, max_z);*/
     }
 
     if (initialise) {

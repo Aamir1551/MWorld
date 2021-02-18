@@ -124,9 +124,22 @@ void ForceOctree::RemoveEBlock(EBlock *b) {
     }
 }
 
+void  ForceOctree::RemoveAllZBlocks() {
+    this->sum_z = Matrix(3, 1, 0);
+    this->zblocks_at_cell_count = 0;
+    if(!this->is_leaf) {
+        for(auto const &childs : this->children) {
+            childs.second->RemoveAllZBlocks();
+        }
+    }
+}
+
 void ForceOctree::RemoveZBlock(ZBlock *b) {
-    this->sum_z -= b->position;
-    this->zblocks_at_cell_count-=1;
+#pragma omp critical
+    {
+        this->sum_z -= b->position;
+        this->zblocks_at_cell_count-=1;
+    }
     if(!this->is_leaf) {
         auto t0 = b->position(0, 0) > avg_x;
         auto t1 = b->position(1, 0) > avg_y;
@@ -227,14 +240,29 @@ ForceOctree::ForceOctree(int grid_size, real min_x, real  max_x, real min_y, rea
         this->is_leaf = true;
     } else {
         this->is_leaf = false;
-        children[0] = new ForceOctree(grid_size, min_x, avg_x, min_y, avg_y, min_z, avg_z);
+
+
+#pragma parallel for
+        for(int i=0; i<8; i++) {
+            auto xx0 = (i % 2) ? avg_x : min_x;
+            auto xx1 = (i % 2) ? max_x: avg_x;
+
+            auto yy0 = ((i/2) % 2) ? avg_y : min_y;
+            auto yy1 = ((i/2) % 2) ? max_y : avg_y;
+
+            auto zz0 = ((i/4) % 2) ? avg_z : min_z;
+            auto zz1 = ((i/4) % 2) ? max_z : avg_z;
+            children[i] =  new ForceOctree(grid_size, xx0, xx1, yy0, yy1, zz0, zz1);
+        }
+
+        /*children[0] = new ForceOctree(grid_size, min_x, avg_x, min_y, avg_y, min_z, avg_z);
         children[1] = new ForceOctree(grid_size, avg_x, max_x, min_y, avg_y, min_z, avg_z);
         children[2] = new ForceOctree(grid_size, min_x, avg_x, avg_y, max_y, min_z, avg_z);
         children[3] = new ForceOctree(grid_size, avg_x, max_x, avg_y, max_y, min_z, avg_z);
         children[4] = new ForceOctree(grid_size, min_x, avg_x, min_y, avg_y, avg_z, max_z);
         children[5] = new ForceOctree(grid_size, avg_x, max_x, min_y, avg_y, avg_z, max_z);
         children[6] = new ForceOctree(grid_size, min_x, avg_x, avg_y, max_y, avg_z, max_z);
-        children[7] = new ForceOctree(grid_size, avg_x, max_x, avg_y, max_y, avg_z, max_z);
+        children[7] = new ForceOctree(grid_size, avg_x, max_x, avg_y, max_y, avg_z, max_z);*/
     }
 }
 
