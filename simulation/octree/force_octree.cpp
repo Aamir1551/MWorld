@@ -76,8 +76,11 @@ ForceOctree* ForceOctree::AddEBlock(EBlock *b) {
 
 
 ForceOctree* ForceOctree::AddZBlock(ZBlock *b) {
-    this->sum_z += b->position;
-    this->zblocks_at_cell_count +=1;
+#pragma omp critical
+    {
+        this->sum_z += b->position;
+        this->zblocks_at_cell_count +=1;
+    }
     if(this->is_leaf) {
         return this;
     } else {

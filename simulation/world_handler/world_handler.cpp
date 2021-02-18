@@ -155,7 +155,7 @@ void WorldHandler::AddBlock(BlockTypes block_types, int num_blocks, bool state) 
 
 void WorldHandler::Update(vector<Contact> &contact_list, real delta_time) {
 
-//#pragma omp parallel for
+#pragma omp parallel for
     for(int i=0; i<this->blocks.size(); i++) {
         tree->RemoveBlock(this->blocks.at(i));
     }
@@ -221,6 +221,7 @@ void WorldHandler::Update(vector<Contact> &contact_list, real delta_time) {
     }*/
 
 
+#pragma omp parallel for
     for(int i=0; i<this->zblocks.size(); i++) {
         auto leaf_z_block = this->zblocks.at(i);
         forces_tree->RemoveZBlock(leaf_z_block);
@@ -235,7 +236,7 @@ vector<Contact> WorldHandler::CollisionHandler()
 {
     vector<Contact> contact_list;
     set<pair<Block *, Block *>> collisions_checked;
-//#pragma omp parallel for
+#pragma omp parallel for
     for(auto const &collision_blocks : this->blocks) {
         Octree *coll_tree = this->block_to_leaf[collision_blocks];
         vector<Octree *> neighbour_nodes = this->tree->grid_elements_neighbours[coll_tree];

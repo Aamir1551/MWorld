@@ -10,7 +10,10 @@ using namespace blocks;
 
 Octree* Octree::AddBlock(Block *b) {
     if(this->is_leaf) {
-        this->blocks_at_leaf.insert(b);
+#pragma omp critical
+        {
+            this->blocks_at_leaf.insert(b);
+        }
         return this;
     } else {
         auto t0 = b->position(0, 0) > avg_x;
