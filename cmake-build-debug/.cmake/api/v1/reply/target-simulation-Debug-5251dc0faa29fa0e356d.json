@@ -2,10 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "simulation/environment/or_gate_test.exe"
+			"path" : "simulation/environment/simulation.exe"
 		},
 		{
-			"path" : "simulation/environment/or_gate_test.pdb"
+			"path" : "simulation/environment/simulation.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -29,19 +29,19 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 8,
+				"line" : 5,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 16,
+				"line" : 13,
 				"parent" : 0
 			},
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 24,
+				"line" : 21,
 				"parent" : 0
 			}
 		]
@@ -52,7 +52,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g  "
+					"fragment" : " -Wall -fopenmp -g  "
 				},
 				{
 					"fragment" : "-std=gnu++11"
@@ -165,7 +165,15 @@
 		},
 		{
 			"backtrace" : 2,
+			"id" : "cube_renderer::@ef8ae11a8c6e57d14ca4"
+		},
+		{
+			"backtrace" : 2,
 			"id" : "blocks::@6db65c1307d2a2a784c8"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "block_renderer::@20380dfbeeaf1beda5b3"
 		},
 		{
 			"backtrace" : 2,
@@ -177,14 +185,6 @@
 		},
 		{
 			"backtrace" : 2,
-			"id" : "block_renderer::@20380dfbeeaf1beda5b3"
-		},
-		{
-			"backtrace" : 2,
-			"id" : "cube_renderer::@ef8ae11a8c6e57d14ca4"
-		},
-		{
-			"backtrace" : 2,
 			"id" : "mworld_render_utils::@c1c5e50b708af245b811"
 		},
 		{
@@ -192,13 +192,13 @@
 			"id" : "world_handler::@db5c5082507517693d46"
 		}
 	],
-	"id" : "or_gate_test::@847a59781e22ff560ae6",
+	"id" : "simulation::@847a59781e22ff560ae6",
 	"link" : 
 	{
 		"commandFragments" : 
 		[
 			{
-				"fragment" : "-g",
+				"fragment" : "-Wall -fopenmp -g",
 				"role" : "flags"
 			},
 			{
@@ -315,8 +315,8 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "or_gate_test",
-	"nameOnDisk" : "or_gate_test.exe",
+	"name" : "simulation",
+	"nameOnDisk" : "simulation.exe",
 	"paths" : 
 	{
 		"build" : "simulation/environment",
@@ -348,7 +348,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "simulation/environment/or_gate_test.cpp",
+			"path" : "simulation/environment/simulation.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{

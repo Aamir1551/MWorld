@@ -21,12 +21,12 @@ namespace blocks {
         if(cell_count != 0) {
             Matrix vec_to_tree_com = com - this->position;
             real squared_dist = Matrix::SquaredNorm(vec_to_tree_com);
-            real dist =  std::sqrt(squared_dist);
+            real dist = std::sqrt(squared_dist);
 
             if(tree->is_leaf) {
-                if(squared_dist >= 25) {
-                    inc_force += (vec_to_tree_com/dist) * delta_time /squared_dist * ((real) cell_count * 1000);
-                    //inc_force += (vec_to_tree_com/dist) * delta_time /squared_dist * ((real) cell_count);
+                if(squared_dist >= 5) {
+                    //inc_force += (vec_to_tree_com/dist) * delta_time /squared_dist * ((real) cell_count * 1000);
+                    inc_force += (vec_to_tree_com) * delta_time /squared_dist * ((real) cell_count);
                 }
                 return false;
             }
@@ -36,9 +36,9 @@ namespace blocks {
                 return true;
             }
 
-            if(squared_dist >= 25) {
-                //inc_force += (vec_to_tree_com/dist) * delta_time /squared_dist * ((real) cell_count);
-                inc_force += (vec_to_tree_com/dist) * delta_time  /squared_dist * ((real) cell_count * 1000); // The times 1000 gives rise to the weird behavior
+            if(squared_dist >= 5) {
+                inc_force += (vec_to_tree_com) * delta_time /squared_dist * ((real) cell_count);
+                //inc_force += (vec_to_tree_com/dist) * delta_time  /squared_dist * ((real) cell_count * 1000); // The times 1000 gives rise to the weird behavior
             }
         }
         return false;

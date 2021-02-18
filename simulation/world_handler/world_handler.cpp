@@ -3,6 +3,7 @@
 #include <vector>
 #include <map>
 #include <set>
+#include <omp.h>
 
 #include <matrix.hpp>
 
@@ -48,7 +49,7 @@ WorldHandler::WorldHandler(int num_i_blocks_plus, int num_i_blocks_neg, int num_
 
     cout << "Quad trees are being initialised" << endl;
     this->tree = new Octree(cube_length * 2, min_coord, max_coord, min_coord, max_coord, min_coord, max_coord, true);
-    this->forces_tree = new ForceOctree(cube_length * 5, min_coord, max_coord, min_coord, max_coord, min_coord, max_coord,
+    this->forces_tree = new ForceOctree(cube_length * 1, min_coord, max_coord, min_coord, max_coord, min_coord, max_coord,
                                    false);
     cout << "Quad trees are initialised" << endl;
     this->world_size = max_coord - min_coord;
@@ -154,10 +155,18 @@ void WorldHandler::AddBlock(BlockTypes block_types, int num_blocks, bool state) 
 
 void WorldHandler::Update(vector<Contact> &contact_list, real delta_time) {
 
-    for(auto const &world_block : this->blocks) {
-        tree->RemoveBlock(world_block);
+//#pragma omp parallel for
+    for(int i=0; i<this->blocks.size(); i++) {
+        tree->RemoveBlock(this->blocks.at(i));
     }
+
+
+    /*for(auto const &world_block : this->blocks) {
+        tree->RemoveBlock(world_block);
+    }*/
+
     UpdateFlares(contact_list, delta_time);
+
     for(int i=0; i<contact_list.size(); i++) {
         Cube::CollisionResolution(contact_list.at(i));
     }
@@ -203,7 +212,17 @@ void WorldHandler::Update(vector<Contact> &contact_list, real delta_time) {
         forces_tree->AddEBlock(leaf_e_block);
     }
 
-    for(auto const &leaf_z_block: this->zblocks) {
+    /*for(auto const &leaf_z_block: this->zblocks) {
+        forces_tree->RemoveZBlock(leaf_z_block);
+        leaf_z_block->Update(this->min_coord, this->max_coord, this->min_coord, this->max_coord, this->min_coord, this->max_coord, delta_time);
+        Octree * new_leaf = tree->AddBlock(leaf_z_block);
+        block_to_leaf[leaf_z_block] = new_leaf;
+        forces_tree->AddZBlock(leaf_z_block);
+    }*/
+
+
+    for(int i=0; i<this->zblocks.size(); i++) {
+        auto leaf_z_block = this->zblocks.at(i);
         forces_tree->RemoveZBlock(leaf_z_block);
         leaf_z_block->Update(this->min_coord, this->max_coord, this->min_coord, this->max_coord, this->min_coord, this->max_coord, delta_time);
         Octree * new_leaf = tree->AddBlock(leaf_z_block);
@@ -216,6 +235,7 @@ vector<Contact> WorldHandler::CollisionHandler()
 {
     vector<Contact> contact_list;
     set<pair<Block *, Block *>> collisions_checked;
+//#pragma omp parallel for
     for(auto const &collision_blocks : this->blocks) {
         Octree *coll_tree = this->block_to_leaf[collision_blocks];
         vector<Octree *> neighbour_nodes = this->tree->grid_elements_neighbours[coll_tree];
@@ -269,6 +289,7 @@ vector<Contact> WorldHandler::CollisionHandler()
 
 void WorldHandler::UpdateFlares(vector<Contact> &contact_list, real delta_time) {
     PassBlockFlares(contact_list, delta_time);
+#pragma omp parallel for
     for(auto const &world_block : this->blocks) {
         SpinWorldBlocks();
         world_block->Decay(delta_time);
@@ -278,6 +299,7 @@ void WorldHandler::UpdateFlares(vector<Contact> &contact_list, real delta_time) 
 
 void WorldHandler::AddForces(real deltatime) {
     this->forces_tree->CalculateCOMonTree();
+#pragma omp parallel for
     for(auto const &block : this->blocks) {
         if(!block->locked) {
             forces_tree->ApplyBarnesHutOnBlock(block, deltatime);
@@ -292,14 +314,18 @@ void WorldHandler::PassBlockFlares(vector<Contact> &contacts, real deltatime) {
 }
 
 void WorldHandler::PassFlare(Block *a, Block *b, real deltatime) {
+
     real flare_from_a = a->ExtractFlareFromBlock(deltatime);
     real flare_from_b = b->ExtractFlareFromBlock(deltatime);
-
-    a->AddFlareToBlock(flare_from_b);
-    b->AddFlareToBlock(flare_from_a);
+#pragma omp critical
+    {
+        a->AddFlareToBlock(flare_from_b);
+        b->AddFlareToBlock(flare_from_a);
+    };
 }
 
 void WorldHandler::IncFlareValuesAndReset() {
+#pragma omp parallel for
     for(int i=0; i<this->blocks.size(); i++) {
         this->blocks.at(i)->UpdateFlare();
         this->blocks.at(i)->flare_inc = 0;
@@ -307,6 +333,7 @@ void WorldHandler::IncFlareValuesAndReset() {
 }
 
 void WorldHandler::AddSpin(vector<Block *> *block_list,  Matrix const &force_direction) {
+#pragma omp parallel for
     for(int i=0; i<block_list->size(); i++) {
         block_list->at(i)->spin(force_direction);
     }

@@ -128,7 +128,7 @@ namespace render_utils
         auto b = [&camera](GLFWwindow *window, double xpos, double ypos) -> void {
             camera.ProcessMouseControlls(window, xpos, ypos);
         };
-        return b;
+        return bi
     }*/
     };
 } // namespace render_utils

@@ -27,7 +27,10 @@ void Octree::RemoveBlock(Block *b) {
         auto t2 = b->position(2, 0) > avg_z;
         this->children[t0 + t1 * 2 + t2 * 4]->RemoveBlock(b);
     } else {
-        this->blocks_at_leaf.erase(b);
+#pragma omp critical
+        {
+            this->blocks_at_leaf.erase(b);
+        }
     }
 }
 

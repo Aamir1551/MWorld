@@ -9,6 +9,8 @@ set(glfw_include_path "${CMAKE_CURRENT_SOURCE_DIR}/lib/glfw-3.3.2/include/")
 set(glm_include_path "${CMAKE_CURRENT_SOURCE_DIR}/lib/glm")
 set(catch_path ${CMAKE_CURRENT_SOURCE_DIR}/catch)
 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -fopenmp")
+
 
 #SET (CMAKE_C_FLAGS_INIT                "-Wall -std=c99")
 #SET (CMAKE_C_FLAGS_DEBUG_INIT          "-g")

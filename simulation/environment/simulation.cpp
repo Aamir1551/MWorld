@@ -87,6 +87,7 @@ int main()
 
         auto contact_list = world.CollisionHandler();
         world.AddForces(deltaTime);
+        //contact_list = vector<Contact>();
         world.Update(contact_list, deltaTime);
 
         BlockRenderer::DrawAllBlocks(&world.iblocks, &world.zblocks, &world.eblocks, &world.mblocks);

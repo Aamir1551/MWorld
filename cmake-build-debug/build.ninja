@@ -161,7 +161,7 @@ build cmake_object_order_depends_target_utils: phony || utils/util_functions/CMa
 
 build utils/util_functions/CMakeFiles/utils.dir/util_functions.cpp.obj: CXX_COMPILER__utils_Debug ../utils/util_functions/util_functions.cpp || cmake_object_order_depends_target_utils
   DEP_FILE = utils\util_functions\CMakeFiles\utils.dir\util_functions.cpp.obj.d
-  FLAGS = -g   -std=gnu++11
+  FLAGS = -Wall -fopenmp -g   -std=gnu++11
   INCLUDES = -I../utils/util_functions/.
   OBJECT_DIR = utils\util_functions\CMakeFiles\utils.dir
   OBJECT_FILE_DIR = utils\util_functions\CMakeFiles\utils.dir
@@ -175,7 +175,7 @@ build utils/util_functions/CMakeFiles/utils.dir/util_functions.cpp.obj: CXX_COMP
 # Link the static library utils\util_functions\libutils.a
 
 build utils/util_functions/libutils.a: CXX_STATIC_LIBRARY_LINKER__utils_Debug utils/util_functions/CMakeFiles/utils.dir/util_functions.cpp.obj
-  LANGUAGE_COMPILE_FLAGS = -g
+  LANGUAGE_COMPILE_FLAGS = -Wall -fopenmp -g
   OBJECT_DIR = utils\util_functions\CMakeFiles\utils.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -289,7 +289,7 @@ build cmake_object_order_depends_target_linear_alg: phony || numerics/linear_alg
 
 build numerics/linear_alg/CMakeFiles/linear_alg.dir/src/matrix.cpp.obj: CXX_COMPILER__linear_alg_Debug ../numerics/linear_alg/src/matrix.cpp || cmake_object_order_depends_target_linear_alg
   DEP_FILE = numerics\linear_alg\CMakeFiles\linear_alg.dir\src\matrix.cpp.obj.d
-  FLAGS = -g   -std=gnu++11
+  FLAGS = -Wall -fopenmp -g   -std=gnu++11
   INCLUDES = -I../numerics/linear_alg/include -I../utils/settings/.
   OBJECT_DIR = numerics\linear_alg\CMakeFiles\linear_alg.dir
   OBJECT_FILE_DIR = numerics\linear_alg\CMakeFiles\linear_alg.dir\src
@@ -303,7 +303,7 @@ build numerics/linear_alg/CMakeFiles/linear_alg.dir/src/matrix.cpp.obj: CXX_COMP
 # Link the static library numerics\linear_alg\liblinear_alg.a
 
 build numerics/linear_alg/liblinear_alg.a: CXX_STATIC_LIBRARY_LINKER__linear_alg_Debug numerics/linear_alg/CMakeFiles/linear_alg.dir/src/matrix.cpp.obj
-  LANGUAGE_COMPILE_FLAGS = -g
+  LANGUAGE_COMPILE_FLAGS = -Wall -fopenmp -g
   OBJECT_DIR = numerics\linear_alg\CMakeFiles\linear_alg.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -337,14 +337,14 @@ build cmake_object_order_depends_target_matrix_test: phony || cmake_object_order
 
 build numerics/linear_alg/test/CMakeFiles/matrix_test.dir/test.cpp.obj: CXX_COMPILER__matrix_test_Debug ../numerics/linear_alg/test/test.cpp || cmake_object_order_depends_target_matrix_test
   DEP_FILE = numerics\linear_alg\test\CMakeFiles\matrix_test.dir\test.cpp.obj.d
-  FLAGS = -g   -std=gnu++11
+  FLAGS = -Wall -fopenmp -g   -std=gnu++11
   INCLUDES = -I../catch -I../numerics/linear_alg/include -I../utils/settings/.
   OBJECT_DIR = numerics\linear_alg\test\CMakeFiles\matrix_test.dir
   OBJECT_FILE_DIR = numerics\linear_alg\test\CMakeFiles\matrix_test.dir
 
 build numerics/linear_alg/test/CMakeFiles/matrix_test.dir/test-main.cpp.obj: CXX_COMPILER__matrix_test_Debug ../numerics/linear_alg/test/test-main.cpp || cmake_object_order_depends_target_matrix_test
   DEP_FILE = numerics\linear_alg\test\CMakeFiles\matrix_test.dir\test-main.cpp.obj.d
-  FLAGS = -g   -std=gnu++11
+  FLAGS = -Wall -fopenmp -g   -std=gnu++11
   INCLUDES = -I../catch -I../numerics/linear_alg/include -I../utils/settings/.
   OBJECT_DIR = numerics\linear_alg\test\CMakeFiles\matrix_test.dir
   OBJECT_FILE_DIR = numerics\linear_alg\test\CMakeFiles\matrix_test.dir
@@ -358,7 +358,7 @@ build numerics/linear_alg/test/CMakeFiles/matrix_test.dir/test-main.cpp.obj: CXX
 # Link the executable numerics\linear_alg\test\matrix_test.exe
 
 build numerics/linear_alg/test/matrix_test.exe: CXX_EXECUTABLE_LINKER__matrix_test_Debug numerics/linear_alg/test/CMakeFiles/matrix_test.dir/test.cpp.obj numerics/linear_alg/test/CMakeFiles/matrix_test.dir/test-main.cpp.obj | numerics/linear_alg/liblinear_alg.a || numerics/linear_alg/liblinear_alg.a
-  FLAGS = -g
+  FLAGS = -Wall -fopenmp -g
   LINK_LIBRARIES = numerics/linear_alg/liblinear_alg.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = numerics\linear_alg\test\CMakeFiles\matrix_test.dir
   POST_BUILD = cd .
@@ -418,7 +418,7 @@ build cmake_object_order_depends_target_quaternion: phony || cmake_object_order_
 
 build numerics/quaternion/CMakeFiles/quaternion.dir/src/quaternion.cpp.obj: CXX_COMPILER__quaternion_Debug ../numerics/quaternion/src/quaternion.cpp || cmake_object_order_depends_target_quaternion
   DEP_FILE = numerics\quaternion\CMakeFiles\quaternion.dir\src\quaternion.cpp.obj.d
-  FLAGS = -g   -std=gnu++11
+  FLAGS = -Wall -fopenmp -g   -std=gnu++11
   INCLUDES = -I../numerics/quaternion/include -I../numerics/linear_alg/include -I../utils/settings/.
   OBJECT_DIR = numerics\quaternion\CMakeFiles\quaternion.dir
   OBJECT_FILE_DIR = numerics\quaternion\CMakeFiles\quaternion.dir\src
@@ -432,7 +432,7 @@ build numerics/quaternion/CMakeFiles/quaternion.dir/src/quaternion.cpp.obj: CXX_
 # Link the static library numerics\quaternion\libquaternion.a
 
 build numerics/quaternion/libquaternion.a: CXX_STATIC_LIBRARY_LINKER__quaternion_Debug numerics/quaternion/CMakeFiles/quaternion.dir/src/quaternion.cpp.obj || numerics/linear_alg/liblinear_alg.a
-  LANGUAGE_COMPILE_FLAGS = -g
+  LANGUAGE_COMPILE_FLAGS = -Wall -fopenmp -g
   OBJECT_DIR = numerics\quaternion\CMakeFiles\quaternion.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -466,14 +466,14 @@ build cmake_object_order_depends_target_quaternion_test: phony || cmake_object_o
 
 build numerics/quaternion/test/CMakeFiles/quaternion_test.dir/test.cpp.obj: CXX_COMPILER__quaternion_test_Debug ../numerics/quaternion/test/test.cpp || cmake_object_order_depends_target_quaternion_test
   DEP_FILE = numerics\quaternion\test\CMakeFiles\quaternion_test.dir\test.cpp.obj.d
-  FLAGS = -g   -std=gnu++11
+  FLAGS = -Wall -fopenmp -g   -std=gnu++11
   INCLUDES = -I../catch -I../numerics/quaternion/include -I../numerics/linear_alg/include -I../utils/settings/.
   OBJECT_DIR = numerics\quaternion\test\CMakeFiles\quaternion_test.dir
   OBJECT_FILE_DIR = numerics\quaternion\test\CMakeFiles\quaternion_test.dir
 
 build numerics/quaternion/test/CMakeFiles/quaternion_test.dir/test-main.cpp.obj: CXX_COMPILER__quaternion_test_Debug ../numerics/quaternion/test/test-main.cpp || cmake_object_order_depends_target_quaternion_test
   DEP_FILE = numerics\quaternion\test\CMakeFiles\quaternion_test.dir\test-main.cpp.obj.d
-  FLAGS = -g   -std=gnu++11
+  FLAGS = -Wall -fopenmp -g   -std=gnu++11
   INCLUDES = -I../catch -I../numerics/quaternion/include -I../numerics/linear_alg/include -I../utils/settings/.
   OBJECT_DIR = numerics\quaternion\test\CMakeFiles\quaternion_test.dir
   OBJECT_FILE_DIR = numerics\quaternion\test\CMakeFiles\quaternion_test.dir
@@ -487,7 +487,7 @@ build numerics/quaternion/test/CMakeFiles/quaternion_test.dir/test-main.cpp.obj:
 # Link the executable numerics\quaternion\test\quaternion_test.exe
 
 build numerics/quaternion/test/quaternion_test.exe: CXX_EXECUTABLE_LINKER__quaternion_test_Debug numerics/quaternion/test/CMakeFiles/quaternion_test.dir/test.cpp.obj numerics/quaternion/test/CMakeFiles/quaternion_test.dir/test-main.cpp.obj | numerics/quaternion/libquaternion.a numerics/linear_alg/liblinear_alg.a || numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a
-  FLAGS = -g
+  FLAGS = -Wall -fopenmp -g
   LINK_LIBRARIES = numerics/quaternion/libquaternion.a  numerics/linear_alg/liblinear_alg.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = numerics\quaternion\test\CMakeFiles\quaternion_test.dir
   POST_BUILD = cd .
@@ -591,7 +591,7 @@ build cmake_object_order_depends_target_cube_renderer: phony || cmake_object_ord
 
 build render/cube_renderer/CMakeFiles/cube_renderer.dir/cube_renderer.cpp.obj: CXX_COMPILER__cube_renderer_Debug ../render/cube_renderer/cube_renderer.cpp || cmake_object_order_depends_target_cube_renderer
   DEP_FILE = render\cube_renderer\CMakeFiles\cube_renderer.dir\cube_renderer.cpp.obj.d
-  FLAGS = -g   -std=gnu++11
+  FLAGS = -Wall -fopenmp -g   -std=gnu++11
   INCLUDES = -I../render/cube_renderer/../lib -I../lib/glfw-3.3.2/include -I../lib/glm -I../render/cube_renderer/. -I../lib/glad/include -I../utils/settings/.
   OBJECT_DIR = render\cube_renderer\CMakeFiles\cube_renderer.dir
   OBJECT_FILE_DIR = render\cube_renderer\CMakeFiles\cube_renderer.dir
@@ -605,7 +605,7 @@ build render/cube_renderer/CMakeFiles/cube_renderer.dir/cube_renderer.cpp.obj: C
 # Link the static library render\cube_renderer\libcube_renderer.a
 
 build render/cube_renderer/libcube_renderer.a: CXX_STATIC_LIBRARY_LINKER__cube_renderer_Debug render/cube_renderer/CMakeFiles/cube_renderer.dir/cube_renderer.cpp.obj || lib/glad/libglad.a
-  LANGUAGE_COMPILE_FLAGS = -g
+  LANGUAGE_COMPILE_FLAGS = -Wall -fopenmp -g
   OBJECT_DIR = render\cube_renderer\CMakeFiles\cube_renderer.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -651,7 +651,7 @@ build cmake_object_order_depends_target_mworld_render_utils: phony || cmake_obje
 
 build render/utils/CMakeFiles/mworld_render_utils.dir/world_initializer.cpp.obj: CXX_COMPILER__mworld_render_utils_Debug ../render/utils/world_initializer.cpp || cmake_object_order_depends_target_mworld_render_utils
   DEP_FILE = render\utils\CMakeFiles\mworld_render_utils.dir\world_initializer.cpp.obj.d
-  FLAGS = -g   -std=gnu++11
+  FLAGS = -Wall -fopenmp -g   -std=gnu++11
   INCLUDES = -I../render/utils/. -I../lib/glfw-3.3.2/include -I../lib/glm -I../lib/glad/include -I../render/shader -I../utils/util_functions/.
   OBJECT_DIR = render\utils\CMakeFiles\mworld_render_utils.dir
   OBJECT_FILE_DIR = render\utils\CMakeFiles\mworld_render_utils.dir
@@ -665,7 +665,7 @@ build render/utils/CMakeFiles/mworld_render_utils.dir/world_initializer.cpp.obj:
 # Link the static library render\utils\libmworld_render_utils.a
 
 build render/utils/libmworld_render_utils.a: CXX_STATIC_LIBRARY_LINKER__mworld_render_utils_Debug render/utils/CMakeFiles/mworld_render_utils.dir/world_initializer.cpp.obj || lib/glad/libglad.a utils/util_functions/libutils.a
-  LANGUAGE_COMPILE_FLAGS = -g
+  LANGUAGE_COMPILE_FLAGS = -Wall -fopenmp -g
   OBJECT_DIR = render\utils\CMakeFiles\mworld_render_utils.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -750,14 +750,14 @@ build cmake_object_order_depends_target_block_renderer: phony || cmake_object_or
 
 build render/block_renderer/CMakeFiles/block_renderer.dir/block_renderer.cpp.obj: CXX_COMPILER__block_renderer_Debug ../render/block_renderer/block_renderer.cpp || cmake_object_order_depends_target_block_renderer
   DEP_FILE = render\block_renderer\CMakeFiles\block_renderer.dir\block_renderer.cpp.obj.d
-  FLAGS = -g   -std=gnu++11
+  FLAGS = -Wall -fopenmp -g   -std=gnu++11
   INCLUDES = -I../render/block_renderer/../lib -I../lib/glfw-3.3.2/include -I../lib/glm -I../render/block_renderer/. -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera -I../simulation/blocks -I../simulation/blocks/../octree
   OBJECT_DIR = render\block_renderer\CMakeFiles\block_renderer.dir
   OBJECT_FILE_DIR = render\block_renderer\CMakeFiles\block_renderer.dir
 
 build render/block_renderer/CMakeFiles/block_renderer.dir/__/utils/world_initializer.cpp.obj: CXX_COMPILER__block_renderer_Debug ../render/utils/world_initializer.cpp || cmake_object_order_depends_target_block_renderer
   DEP_FILE = render\block_renderer\CMakeFiles\block_renderer.dir\__\utils\world_initializer.cpp.obj.d
-  FLAGS = -g   -std=gnu++11
+  FLAGS = -Wall -fopenmp -g   -std=gnu++11
   INCLUDES = -I../render/block_renderer/../lib -I../lib/glfw-3.3.2/include -I../lib/glm -I../render/block_renderer/. -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera -I../simulation/blocks -I../simulation/blocks/../octree
   OBJECT_DIR = render\block_renderer\CMakeFiles\block_renderer.dir
   OBJECT_FILE_DIR = render\block_renderer\CMakeFiles\block_renderer.dir\__\utils
@@ -771,7 +771,7 @@ build render/block_renderer/CMakeFiles/block_renderer.dir/__/utils/world_initial
 # Link the static library render\block_renderer\libblock_renderer.a
 
 build render/block_renderer/libblock_renderer.a: CXX_STATIC_LIBRARY_LINKER__block_renderer_Debug render/block_renderer/CMakeFiles/block_renderer.dir/block_renderer.cpp.obj render/block_renderer/CMakeFiles/block_renderer.dir/__/utils/world_initializer.cpp.obj || lib/glad/libglad.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/cube_renderer/libcube_renderer.a render/utils/libmworld_render_utils.a simulation/blocks/libblocks.a utils/util_functions/libutils.a
-  LANGUAGE_COMPILE_FLAGS = -g
+  LANGUAGE_COMPILE_FLAGS = -Wall -fopenmp -g
   OBJECT_DIR = render\block_renderer\CMakeFiles\block_renderer.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -834,14 +834,14 @@ build cmake_object_order_depends_target_prototype_one: phony || cmake_object_ord
 
 build prototype/prototype_one/CMakeFiles/prototype_one.dir/main.cpp.obj: CXX_COMPILER__prototype_one_Debug ../prototype/prototype_one/main.cpp || cmake_object_order_depends_target_prototype_one
   DEP_FILE = prototype\prototype_one\CMakeFiles\prototype_one.dir\main.cpp.obj.d
-  FLAGS = -g   -std=gnu++11
+  FLAGS = -Wall -fopenmp -g   -std=gnu++11
   INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../utils/util_functions/. -I../lib/glad/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../utils/settings/. -I../render/utils/. -I../render/shader -I../render/camera
   OBJECT_DIR = prototype\prototype_one\CMakeFiles\prototype_one.dir
   OBJECT_FILE_DIR = prototype\prototype_one\CMakeFiles\prototype_one.dir
 
 build prototype/prototype_one/CMakeFiles/prototype_one.dir/__/__/render/utils/world_initializer.cpp.obj: CXX_COMPILER__prototype_one_Debug ../render/utils/world_initializer.cpp || cmake_object_order_depends_target_prototype_one
   DEP_FILE = prototype\prototype_one\CMakeFiles\prototype_one.dir\__\__\render\utils\world_initializer.cpp.obj.d
-  FLAGS = -g   -std=gnu++11
+  FLAGS = -Wall -fopenmp -g   -std=gnu++11
   INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../utils/util_functions/. -I../lib/glad/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../utils/settings/. -I../render/utils/. -I../render/shader -I../render/camera
   OBJECT_DIR = prototype\prototype_one\CMakeFiles\prototype_one.dir
   OBJECT_FILE_DIR = prototype\prototype_one\CMakeFiles\prototype_one.dir\__\__\render\utils
@@ -855,7 +855,7 @@ build prototype/prototype_one/CMakeFiles/prototype_one.dir/__/__/render/utils/wo
 # Link the executable prototype\prototype_one\prototype_one.exe
 
 build prototype/prototype_one/prototype_one.exe: CXX_EXECUTABLE_LINKER__prototype_one_Debug prototype/prototype_one/CMakeFiles/prototype_one.dir/main.cpp.obj prototype/prototype_one/CMakeFiles/prototype_one.dir/__/__/render/utils/world_initializer.cpp.obj | utils/util_functions/libutils.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a render/cube_renderer/libcube_renderer.a render/utils/libmworld_render_utils.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a utils/util_functions/libutils.a || lib/glad/libglad.a render/cube_renderer/libcube_renderer.a render/utils/libmworld_render_utils.a utils/util_functions/libutils.a
-  FLAGS = -g
+  FLAGS = -Wall -fopenmp -g
   LINK_LIBRARIES = utils/util_functions/libutils.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  render/cube_renderer/libcube_renderer.a  render/utils/libmworld_render_utils.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  utils/util_functions/libutils.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = prototype\prototype_one\CMakeFiles\prototype_one.dir
   POST_BUILD = cd .
@@ -914,21 +914,21 @@ build cmake_object_order_depends_target_prototype_two: phony || cmake_object_ord
 
 build prototype/prototype_two/CMakeFiles/prototype_two.dir/cube.cpp.obj: CXX_COMPILER__prototype_two_Debug ../prototype/prototype_two/cube.cpp || cmake_object_order_depends_target_prototype_two
   DEP_FILE = prototype\prototype_two\CMakeFiles\prototype_two.dir\cube.cpp.obj.d
-  FLAGS = -g   -std=gnu++11
+  FLAGS = -Wall -fopenmp -g   -std=gnu++11
   INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../prototype/prototype_two -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera
   OBJECT_DIR = prototype\prototype_two\CMakeFiles\prototype_two.dir
   OBJECT_FILE_DIR = prototype\prototype_two\CMakeFiles\prototype_two.dir
 
 build prototype/prototype_two/CMakeFiles/prototype_two.dir/main.cpp.obj: CXX_COMPILER__prototype_two_Debug ../prototype/prototype_two/main.cpp || cmake_object_order_depends_target_prototype_two
   DEP_FILE = prototype\prototype_two\CMakeFiles\prototype_two.dir\main.cpp.obj.d
-  FLAGS = -g   -std=gnu++11
+  FLAGS = -Wall -fopenmp -g   -std=gnu++11
   INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../prototype/prototype_two -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera
   OBJECT_DIR = prototype\prototype_two\CMakeFiles\prototype_two.dir
   OBJECT_FILE_DIR = prototype\prototype_two\CMakeFiles\prototype_two.dir
 
 build prototype/prototype_two/CMakeFiles/prototype_two.dir/__/__/render/utils/world_initializer.cpp.obj: CXX_COMPILER__prototype_two_Debug ../render/utils/world_initializer.cpp || cmake_object_order_depends_target_prototype_two
   DEP_FILE = prototype\prototype_two\CMakeFiles\prototype_two.dir\__\__\render\utils\world_initializer.cpp.obj.d
-  FLAGS = -g   -std=gnu++11
+  FLAGS = -Wall -fopenmp -g   -std=gnu++11
   INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../prototype/prototype_two -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera
   OBJECT_DIR = prototype\prototype_two\CMakeFiles\prototype_two.dir
   OBJECT_FILE_DIR = prototype\prototype_two\CMakeFiles\prototype_two.dir\__\__\render\utils
@@ -942,7 +942,7 @@ build prototype/prototype_two/CMakeFiles/prototype_two.dir/__/__/render/utils/wo
 # Link the executable prototype\prototype_two\prototype_two.exe
 
 build prototype/prototype_two/prototype_two.exe: CXX_EXECUTABLE_LINKER__prototype_two_Debug prototype/prototype_two/CMakeFiles/prototype_two.dir/cube.cpp.obj prototype/prototype_two/CMakeFiles/prototype_two.dir/main.cpp.obj prototype/prototype_two/CMakeFiles/prototype_two.dir/__/__/render/utils/world_initializer.cpp.obj | numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/cube_renderer/libcube_renderer.a utils/util_functions/libutils.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a render/utils/libmworld_render_utils.a numerics/linear_alg/liblinear_alg.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a utils/util_functions/libutils.a || lib/glad/libglad.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/cube_renderer/libcube_renderer.a render/utils/libmworld_render_utils.a utils/util_functions/libutils.a
-  FLAGS = -g
+  FLAGS = -Wall -fopenmp -g
   LINK_LIBRARIES = numerics/linear_alg/liblinear_alg.a  numerics/quaternion/libquaternion.a  render/cube_renderer/libcube_renderer.a  utils/util_functions/libutils.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  render/utils/libmworld_render_utils.a  numerics/linear_alg/liblinear_alg.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  utils/util_functions/libutils.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = prototype\prototype_two\CMakeFiles\prototype_two.dir
   POST_BUILD = cd .
@@ -979,21 +979,21 @@ build cmake_object_order_depends_target_prototype_three: phony || cmake_object_o
 
 build prototype/prototype_three/CMakeFiles/prototype_three.dir/cube.cpp.obj: CXX_COMPILER__prototype_three_Debug ../prototype/prototype_three/cube.cpp || cmake_object_order_depends_target_prototype_three
   DEP_FILE = prototype\prototype_three\CMakeFiles\prototype_three.dir\cube.cpp.obj.d
-  FLAGS = -g   -std=gnu++11
+  FLAGS = -Wall -fopenmp -g   -std=gnu++11
   INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../prototype/prototype_three -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera
   OBJECT_DIR = prototype\prototype_three\CMakeFiles\prototype_three.dir
   OBJECT_FILE_DIR = prototype\prototype_three\CMakeFiles\prototype_three.dir
 
 build prototype/prototype_three/CMakeFiles/prototype_three.dir/main.cpp.obj: CXX_COMPILER__prototype_three_Debug ../prototype/prototype_three/main.cpp || cmake_object_order_depends_target_prototype_three
   DEP_FILE = prototype\prototype_three\CMakeFiles\prototype_three.dir\main.cpp.obj.d
-  FLAGS = -g   -std=gnu++11
+  FLAGS = -Wall -fopenmp -g   -std=gnu++11
   INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../prototype/prototype_three -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera
   OBJECT_DIR = prototype\prototype_three\CMakeFiles\prototype_three.dir
   OBJECT_FILE_DIR = prototype\prototype_three\CMakeFiles\prototype_three.dir
 
 build prototype/prototype_three/CMakeFiles/prototype_three.dir/__/__/render/utils/world_initializer.cpp.obj: CXX_COMPILER__prototype_three_Debug ../render/utils/world_initializer.cpp || cmake_object_order_depends_target_prototype_three
   DEP_FILE = prototype\prototype_three\CMakeFiles\prototype_three.dir\__\__\render\utils\world_initializer.cpp.obj.d
-  FLAGS = -g   -std=gnu++11
+  FLAGS = -Wall -fopenmp -g   -std=gnu++11
   INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../prototype/prototype_three -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera
   OBJECT_DIR = prototype\prototype_three\CMakeFiles\prototype_three.dir
   OBJECT_FILE_DIR = prototype\prototype_three\CMakeFiles\prototype_three.dir\__\__\render\utils
@@ -1007,7 +1007,7 @@ build prototype/prototype_three/CMakeFiles/prototype_three.dir/__/__/render/util
 # Link the executable prototype\prototype_three\prototype_three.exe
 
 build prototype/prototype_three/prototype_three.exe: CXX_EXECUTABLE_LINKER__prototype_three_Debug prototype/prototype_three/CMakeFiles/prototype_three.dir/cube.cpp.obj prototype/prototype_three/CMakeFiles/prototype_three.dir/main.cpp.obj prototype/prototype_three/CMakeFiles/prototype_three.dir/__/__/render/utils/world_initializer.cpp.obj | numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/cube_renderer/libcube_renderer.a utils/util_functions/libutils.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a render/utils/libmworld_render_utils.a numerics/linear_alg/liblinear_alg.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a utils/util_functions/libutils.a || lib/glad/libglad.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/cube_renderer/libcube_renderer.a render/utils/libmworld_render_utils.a utils/util_functions/libutils.a
-  FLAGS = -g
+  FLAGS = -Wall -fopenmp -g
   LINK_LIBRARIES = numerics/linear_alg/liblinear_alg.a  numerics/quaternion/libquaternion.a  render/cube_renderer/libcube_renderer.a  utils/util_functions/libutils.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  render/utils/libmworld_render_utils.a  numerics/linear_alg/liblinear_alg.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  utils/util_functions/libutils.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = prototype\prototype_three\CMakeFiles\prototype_three.dir
   POST_BUILD = cd .
@@ -1083,49 +1083,49 @@ build cmake_object_order_depends_target_blocks: phony || cmake_object_order_depe
 
 build simulation/blocks/CMakeFiles/blocks.dir/cube.cpp.obj: CXX_COMPILER__blocks_Debug ../simulation/blocks/cube.cpp || cmake_object_order_depends_target_blocks
   DEP_FILE = simulation\blocks\CMakeFiles\blocks.dir\cube.cpp.obj.d
-  FLAGS = -g   -std=gnu++11
+  FLAGS = -Wall -fopenmp -g   -std=gnu++11
   INCLUDES = -I../simulation/blocks -I../simulation/blocks/../octree -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../lib/glfw-3.3.2/include -I../lib/glm -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera
   OBJECT_DIR = simulation\blocks\CMakeFiles\blocks.dir
   OBJECT_FILE_DIR = simulation\blocks\CMakeFiles\blocks.dir
 
 build simulation/blocks/CMakeFiles/blocks.dir/block.cpp.obj: CXX_COMPILER__blocks_Debug ../simulation/blocks/block.cpp || cmake_object_order_depends_target_blocks
   DEP_FILE = simulation\blocks\CMakeFiles\blocks.dir\block.cpp.obj.d
-  FLAGS = -g   -std=gnu++11
+  FLAGS = -Wall -fopenmp -g   -std=gnu++11
   INCLUDES = -I../simulation/blocks -I../simulation/blocks/../octree -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../lib/glfw-3.3.2/include -I../lib/glm -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera
   OBJECT_DIR = simulation\blocks\CMakeFiles\blocks.dir
   OBJECT_FILE_DIR = simulation\blocks\CMakeFiles\blocks.dir
 
 build simulation/blocks/CMakeFiles/blocks.dir/e_block.cpp.obj: CXX_COMPILER__blocks_Debug ../simulation/blocks/e_block.cpp || cmake_object_order_depends_target_blocks
   DEP_FILE = simulation\blocks\CMakeFiles\blocks.dir\e_block.cpp.obj.d
-  FLAGS = -g   -std=gnu++11
+  FLAGS = -Wall -fopenmp -g   -std=gnu++11
   INCLUDES = -I../simulation/blocks -I../simulation/blocks/../octree -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../lib/glfw-3.3.2/include -I../lib/glm -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera
   OBJECT_DIR = simulation\blocks\CMakeFiles\blocks.dir
   OBJECT_FILE_DIR = simulation\blocks\CMakeFiles\blocks.dir
 
 build simulation/blocks/CMakeFiles/blocks.dir/i_block.cpp.obj: CXX_COMPILER__blocks_Debug ../simulation/blocks/i_block.cpp || cmake_object_order_depends_target_blocks
   DEP_FILE = simulation\blocks\CMakeFiles\blocks.dir\i_block.cpp.obj.d
-  FLAGS = -g   -std=gnu++11
+  FLAGS = -Wall -fopenmp -g   -std=gnu++11
   INCLUDES = -I../simulation/blocks -I../simulation/blocks/../octree -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../lib/glfw-3.3.2/include -I../lib/glm -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera
   OBJECT_DIR = simulation\blocks\CMakeFiles\blocks.dir
   OBJECT_FILE_DIR = simulation\blocks\CMakeFiles\blocks.dir
 
 build simulation/blocks/CMakeFiles/blocks.dir/m_block.cpp.obj: CXX_COMPILER__blocks_Debug ../simulation/blocks/m_block.cpp || cmake_object_order_depends_target_blocks
   DEP_FILE = simulation\blocks\CMakeFiles\blocks.dir\m_block.cpp.obj.d
-  FLAGS = -g   -std=gnu++11
+  FLAGS = -Wall -fopenmp -g   -std=gnu++11
   INCLUDES = -I../simulation/blocks -I../simulation/blocks/../octree -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../lib/glfw-3.3.2/include -I../lib/glm -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera
   OBJECT_DIR = simulation\blocks\CMakeFiles\blocks.dir
   OBJECT_FILE_DIR = simulation\blocks\CMakeFiles\blocks.dir
 
 build simulation/blocks/CMakeFiles/blocks.dir/z_block.cpp.obj: CXX_COMPILER__blocks_Debug ../simulation/blocks/z_block.cpp || cmake_object_order_depends_target_blocks
   DEP_FILE = simulation\blocks\CMakeFiles\blocks.dir\z_block.cpp.obj.d
-  FLAGS = -g   -std=gnu++11
+  FLAGS = -Wall -fopenmp -g   -std=gnu++11
   INCLUDES = -I../simulation/blocks -I../simulation/blocks/../octree -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../lib/glfw-3.3.2/include -I../lib/glm -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera
   OBJECT_DIR = simulation\blocks\CMakeFiles\blocks.dir
   OBJECT_FILE_DIR = simulation\blocks\CMakeFiles\blocks.dir
 
 build simulation/blocks/CMakeFiles/blocks.dir/__/__/render/utils/world_initializer.cpp.obj: CXX_COMPILER__blocks_Debug ../render/utils/world_initializer.cpp || cmake_object_order_depends_target_blocks
   DEP_FILE = simulation\blocks\CMakeFiles\blocks.dir\__\__\render\utils\world_initializer.cpp.obj.d
-  FLAGS = -g   -std=gnu++11
+  FLAGS = -Wall -fopenmp -g   -std=gnu++11
   INCLUDES = -I../simulation/blocks -I../simulation/blocks/../octree -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../lib/glfw-3.3.2/include -I../lib/glm -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera
   OBJECT_DIR = simulation\blocks\CMakeFiles\blocks.dir
   OBJECT_FILE_DIR = simulation\blocks\CMakeFiles\blocks.dir\__\__\render\utils
@@ -1139,7 +1139,7 @@ build simulation/blocks/CMakeFiles/blocks.dir/__/__/render/utils/world_initializ
 # Link the static library simulation\blocks\libblocks.a
 
 build simulation/blocks/libblocks.a: CXX_STATIC_LIBRARY_LINKER__blocks_Debug simulation/blocks/CMakeFiles/blocks.dir/cube.cpp.obj simulation/blocks/CMakeFiles/blocks.dir/block.cpp.obj simulation/blocks/CMakeFiles/blocks.dir/e_block.cpp.obj simulation/blocks/CMakeFiles/blocks.dir/i_block.cpp.obj simulation/blocks/CMakeFiles/blocks.dir/m_block.cpp.obj simulation/blocks/CMakeFiles/blocks.dir/z_block.cpp.obj simulation/blocks/CMakeFiles/blocks.dir/__/__/render/utils/world_initializer.cpp.obj || lib/glad/libglad.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/cube_renderer/libcube_renderer.a render/utils/libmworld_render_utils.a utils/util_functions/libutils.a
-  LANGUAGE_COMPILE_FLAGS = -g
+  LANGUAGE_COMPILE_FLAGS = -Wall -fopenmp -g
   OBJECT_DIR = simulation\blocks\CMakeFiles\blocks.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -1185,14 +1185,14 @@ build cmake_object_order_depends_target_octree: phony || cmake_object_order_depe
 
 build simulation/octree/CMakeFiles/octree.dir/octree.cpp.obj: CXX_COMPILER__octree_Debug ../simulation/octree/octree.cpp || cmake_object_order_depends_target_octree
   DEP_FILE = simulation\octree\CMakeFiles\octree.dir\octree.cpp.obj.d
-  FLAGS = -g   -std=gnu++11
+  FLAGS = -Wall -fopenmp -g   -std=gnu++11
   INCLUDES = -I../simulation/octree/. -I../numerics/linear_alg/include -I../utils/settings/. -I../simulation/blocks -I../simulation/blocks/../octree -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../lib/glfw-3.3.2/include -I../lib/glm -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera
   OBJECT_DIR = simulation\octree\CMakeFiles\octree.dir
   OBJECT_FILE_DIR = simulation\octree\CMakeFiles\octree.dir
 
 build simulation/octree/CMakeFiles/octree.dir/__/__/render/utils/world_initializer.cpp.obj: CXX_COMPILER__octree_Debug ../render/utils/world_initializer.cpp || cmake_object_order_depends_target_octree
   DEP_FILE = simulation\octree\CMakeFiles\octree.dir\__\__\render\utils\world_initializer.cpp.obj.d
-  FLAGS = -g   -std=gnu++11
+  FLAGS = -Wall -fopenmp -g   -std=gnu++11
   INCLUDES = -I../simulation/octree/. -I../numerics/linear_alg/include -I../utils/settings/. -I../simulation/blocks -I../simulation/blocks/../octree -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../lib/glfw-3.3.2/include -I../lib/glm -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera
   OBJECT_DIR = simulation\octree\CMakeFiles\octree.dir
   OBJECT_FILE_DIR = simulation\octree\CMakeFiles\octree.dir\__\__\render\utils
@@ -1206,7 +1206,7 @@ build simulation/octree/CMakeFiles/octree.dir/__/__/render/utils/world_initializ
 # Link the static library simulation\octree\liboctree.a
 
 build simulation/octree/liboctree.a: CXX_STATIC_LIBRARY_LINKER__octree_Debug simulation/octree/CMakeFiles/octree.dir/octree.cpp.obj simulation/octree/CMakeFiles/octree.dir/__/__/render/utils/world_initializer.cpp.obj || lib/glad/libglad.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/cube_renderer/libcube_renderer.a render/utils/libmworld_render_utils.a simulation/blocks/libblocks.a utils/util_functions/libutils.a
-  LANGUAGE_COMPILE_FLAGS = -g
+  LANGUAGE_COMPILE_FLAGS = -Wall -fopenmp -g
   OBJECT_DIR = simulation\octree\CMakeFiles\octree.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -1224,14 +1224,14 @@ build cmake_object_order_depends_target_force_octree: phony || cmake_object_orde
 
 build simulation/octree/CMakeFiles/force_octree.dir/force_octree.cpp.obj: CXX_COMPILER__force_octree_Debug ../simulation/octree/force_octree.cpp || cmake_object_order_depends_target_force_octree
   DEP_FILE = simulation\octree\CMakeFiles\force_octree.dir\force_octree.cpp.obj.d
-  FLAGS = -g   -std=gnu++11
+  FLAGS = -Wall -fopenmp -g   -std=gnu++11
   INCLUDES = -I../simulation/octree/. -I../numerics/linear_alg/include -I../utils/settings/. -I../simulation/blocks -I../simulation/blocks/../octree -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../lib/glfw-3.3.2/include -I../lib/glm -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera
   OBJECT_DIR = simulation\octree\CMakeFiles\force_octree.dir
   OBJECT_FILE_DIR = simulation\octree\CMakeFiles\force_octree.dir
 
 build simulation/octree/CMakeFiles/force_octree.dir/__/__/render/utils/world_initializer.cpp.obj: CXX_COMPILER__force_octree_Debug ../render/utils/world_initializer.cpp || cmake_object_order_depends_target_force_octree
   DEP_FILE = simulation\octree\CMakeFiles\force_octree.dir\__\__\render\utils\world_initializer.cpp.obj.d
-  FLAGS = -g   -std=gnu++11
+  FLAGS = -Wall -fopenmp -g   -std=gnu++11
   INCLUDES = -I../simulation/octree/. -I../numerics/linear_alg/include -I../utils/settings/. -I../simulation/blocks -I../simulation/blocks/../octree -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../lib/glfw-3.3.2/include -I../lib/glm -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera
   OBJECT_DIR = simulation\octree\CMakeFiles\force_octree.dir
   OBJECT_FILE_DIR = simulation\octree\CMakeFiles\force_octree.dir\__\__\render\utils
@@ -1245,7 +1245,7 @@ build simulation/octree/CMakeFiles/force_octree.dir/__/__/render/utils/world_ini
 # Link the static library simulation\octree\libforce_octree.a
 
 build simulation/octree/libforce_octree.a: CXX_STATIC_LIBRARY_LINKER__force_octree_Debug simulation/octree/CMakeFiles/force_octree.dir/force_octree.cpp.obj simulation/octree/CMakeFiles/force_octree.dir/__/__/render/utils/world_initializer.cpp.obj || lib/glad/libglad.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/cube_renderer/libcube_renderer.a render/utils/libmworld_render_utils.a simulation/blocks/libblocks.a utils/util_functions/libutils.a
-  LANGUAGE_COMPILE_FLAGS = -g
+  LANGUAGE_COMPILE_FLAGS = -Wall -fopenmp -g
   OBJECT_DIR = simulation\octree\CMakeFiles\force_octree.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -1302,14 +1302,14 @@ build cmake_object_order_depends_target_world_handler: phony || cmake_object_ord
 
 build simulation/world_handler/CMakeFiles/world_handler.dir/world_handler.cpp.obj: CXX_COMPILER__world_handler_Debug ../simulation/world_handler/world_handler.cpp || cmake_object_order_depends_target_world_handler
   DEP_FILE = simulation\world_handler\CMakeFiles\world_handler.dir\world_handler.cpp.obj.d
-  FLAGS = -g   -std=gnu++11
+  FLAGS = -Wall -fopenmp -g   -std=gnu++11
   INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../simulation/world_handler -I../simulation/octree/. -I../numerics/linear_alg/include -I../utils/settings/. -I../simulation/blocks -I../simulation/blocks/../octree -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera -I../render/block_renderer/../lib -I../render/block_renderer/.
   OBJECT_DIR = simulation\world_handler\CMakeFiles\world_handler.dir
   OBJECT_FILE_DIR = simulation\world_handler\CMakeFiles\world_handler.dir
 
 build simulation/world_handler/CMakeFiles/world_handler.dir/__/__/render/utils/world_initializer.cpp.obj: CXX_COMPILER__world_handler_Debug ../render/utils/world_initializer.cpp || cmake_object_order_depends_target_world_handler
   DEP_FILE = simulation\world_handler\CMakeFiles\world_handler.dir\__\__\render\utils\world_initializer.cpp.obj.d
-  FLAGS = -g   -std=gnu++11
+  FLAGS = -Wall -fopenmp -g   -std=gnu++11
   INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../simulation/world_handler -I../simulation/octree/. -I../numerics/linear_alg/include -I../utils/settings/. -I../simulation/blocks -I../simulation/blocks/../octree -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera -I../render/block_renderer/../lib -I../render/block_renderer/.
   OBJECT_DIR = simulation\world_handler\CMakeFiles\world_handler.dir
   OBJECT_FILE_DIR = simulation\world_handler\CMakeFiles\world_handler.dir\__\__\render\utils
@@ -1323,7 +1323,7 @@ build simulation/world_handler/CMakeFiles/world_handler.dir/__/__/render/utils/w
 # Link the static library simulation\world_handler\libworld_handler.a
 
 build simulation/world_handler/libworld_handler.a: CXX_STATIC_LIBRARY_LINKER__world_handler_Debug simulation/world_handler/CMakeFiles/world_handler.dir/world_handler.cpp.obj simulation/world_handler/CMakeFiles/world_handler.dir/__/__/render/utils/world_initializer.cpp.obj || lib/glad/libglad.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/block_renderer/libblock_renderer.a render/cube_renderer/libcube_renderer.a render/utils/libmworld_render_utils.a simulation/blocks/libblocks.a simulation/octree/libforce_octree.a simulation/octree/liboctree.a utils/util_functions/libutils.a
-  LANGUAGE_COMPILE_FLAGS = -g
+  LANGUAGE_COMPILE_FLAGS = -Wall -fopenmp -g
   OBJECT_DIR = simulation\world_handler\CMakeFiles\world_handler.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -1358,14 +1358,14 @@ build cmake_object_order_depends_target_simulation: phony || cmake_object_order_
 
 build simulation/environment/CMakeFiles/simulation.dir/simulation.cpp.obj: CXX_COMPILER__simulation_Debug ../simulation/environment/simulation.cpp || cmake_object_order_depends_target_simulation
   DEP_FILE = simulation\environment\CMakeFiles\simulation.dir\simulation.cpp.obj.d
-  FLAGS = -g   -std=gnu++11
+  FLAGS = -Wall -fopenmp -g   -std=gnu++11
   INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../simulation/environment -I../render/block_renderer/../lib -I../render/block_renderer/. -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera -I../simulation/blocks -I../simulation/blocks/../octree -I../simulation/world_handler -I../simulation/octree/.
   OBJECT_DIR = simulation\environment\CMakeFiles\simulation.dir
   OBJECT_FILE_DIR = simulation\environment\CMakeFiles\simulation.dir
 
 build simulation/environment/CMakeFiles/simulation.dir/__/__/render/utils/world_initializer.cpp.obj: CXX_COMPILER__simulation_Debug ../render/utils/world_initializer.cpp || cmake_object_order_depends_target_simulation
   DEP_FILE = simulation\environment\CMakeFiles\simulation.dir\__\__\render\utils\world_initializer.cpp.obj.d
-  FLAGS = -g   -std=gnu++11
+  FLAGS = -Wall -fopenmp -g   -std=gnu++11
   INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../simulation/environment -I../render/block_renderer/../lib -I../render/block_renderer/. -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera -I../simulation/blocks -I../simulation/blocks/../octree -I../simulation/world_handler -I../simulation/octree/.
   OBJECT_DIR = simulation\environment\CMakeFiles\simulation.dir
   OBJECT_FILE_DIR = simulation\environment\CMakeFiles\simulation.dir\__\__\render\utils
@@ -1379,7 +1379,7 @@ build simulation/environment/CMakeFiles/simulation.dir/__/__/render/utils/world_
 # Link the executable simulation\environment\simulation.exe
 
 build simulation/environment/simulation.exe: CXX_EXECUTABLE_LINKER__simulation_Debug simulation/environment/CMakeFiles/simulation.dir/simulation.cpp.obj simulation/environment/CMakeFiles/simulation.dir/__/__/render/utils/world_initializer.cpp.obj | render/block_renderer/libblock_renderer.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/cube_renderer/libcube_renderer.a utils/util_functions/libutils.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a render/utils/libmworld_render_utils.a simulation/blocks/libblocks.a simulation/world_handler/libworld_handler.a render/block_renderer/libblock_renderer.a simulation/octree/liboctree.a simulation/octree/libforce_octree.a simulation/blocks/libblocks.a numerics/quaternion/libquaternion.a numerics/linear_alg/liblinear_alg.a render/cube_renderer/libcube_renderer.a render/utils/libmworld_render_utils.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a utils/util_functions/libutils.a || lib/glad/libglad.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/block_renderer/libblock_renderer.a render/cube_renderer/libcube_renderer.a render/utils/libmworld_render_utils.a simulation/blocks/libblocks.a simulation/octree/libforce_octree.a simulation/octree/liboctree.a simulation/world_handler/libworld_handler.a utils/util_functions/libutils.a
-  FLAGS = -g
+  FLAGS = -Wall -fopenmp -g
   LINK_LIBRARIES = render/block_renderer/libblock_renderer.a  numerics/linear_alg/liblinear_alg.a  numerics/quaternion/libquaternion.a  render/cube_renderer/libcube_renderer.a  utils/util_functions/libutils.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  render/utils/libmworld_render_utils.a  simulation/blocks/libblocks.a  simulation/world_handler/libworld_handler.a  render/block_renderer/libblock_renderer.a  simulation/octree/liboctree.a  simulation/octree/libforce_octree.a  simulation/blocks/libblocks.a  numerics/quaternion/libquaternion.a  numerics/linear_alg/liblinear_alg.a  render/cube_renderer/libcube_renderer.a  render/utils/libmworld_render_utils.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  utils/util_functions/libutils.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = simulation\environment\CMakeFiles\simulation.dir
   POST_BUILD = cd .
@@ -1399,14 +1399,14 @@ build cmake_object_order_depends_target_logic_gates: phony || cmake_object_order
 
 build simulation/environment/CMakeFiles/logic_gates.dir/logic_gates.cpp.obj: CXX_COMPILER__logic_gates_Debug ../simulation/environment/logic_gates.cpp || cmake_object_order_depends_target_logic_gates
   DEP_FILE = simulation\environment\CMakeFiles\logic_gates.dir\logic_gates.cpp.obj.d
-  FLAGS = -g   -std=gnu++11
+  FLAGS = -Wall -fopenmp -g   -std=gnu++11
   INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../simulation/environment -I../render/block_renderer/../lib -I../render/block_renderer/. -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera -I../simulation/blocks -I../simulation/blocks/../octree -I../simulation/world_handler -I../simulation/octree/.
   OBJECT_DIR = simulation\environment\CMakeFiles\logic_gates.dir
   OBJECT_FILE_DIR = simulation\environment\CMakeFiles\logic_gates.dir
 
 build simulation/environment/CMakeFiles/logic_gates.dir/__/__/render/utils/world_initializer.cpp.obj: CXX_COMPILER__logic_gates_Debug ../render/utils/world_initializer.cpp || cmake_object_order_depends_target_logic_gates
   DEP_FILE = simulation\environment\CMakeFiles\logic_gates.dir\__\__\render\utils\world_initializer.cpp.obj.d
-  FLAGS = -g   -std=gnu++11
+  FLAGS = -Wall -fopenmp -g   -std=gnu++11
   INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../simulation/environment -I../render/block_renderer/../lib -I../render/block_renderer/. -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera -I../simulation/blocks -I../simulation/blocks/../octree -I../simulation/world_handler -I../simulation/octree/.
   OBJECT_DIR = simulation\environment\CMakeFiles\logic_gates.dir
   OBJECT_FILE_DIR = simulation\environment\CMakeFiles\logic_gates.dir\__\__\render\utils
@@ -1420,7 +1420,7 @@ build simulation/environment/CMakeFiles/logic_gates.dir/__/__/render/utils/world
 # Link the executable simulation\environment\logic_gates.exe
 
 build simulation/environment/logic_gates.exe: CXX_EXECUTABLE_LINKER__logic_gates_Debug simulation/environment/CMakeFiles/logic_gates.dir/logic_gates.cpp.obj simulation/environment/CMakeFiles/logic_gates.dir/__/__/render/utils/world_initializer.cpp.obj | render/block_renderer/libblock_renderer.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/cube_renderer/libcube_renderer.a utils/util_functions/libutils.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a render/utils/libmworld_render_utils.a simulation/blocks/libblocks.a simulation/world_handler/libworld_handler.a render/block_renderer/libblock_renderer.a simulation/octree/liboctree.a simulation/octree/libforce_octree.a simulation/blocks/libblocks.a numerics/quaternion/libquaternion.a numerics/linear_alg/liblinear_alg.a render/cube_renderer/libcube_renderer.a render/utils/libmworld_render_utils.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a utils/util_functions/libutils.a || lib/glad/libglad.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/block_renderer/libblock_renderer.a render/cube_renderer/libcube_renderer.a render/utils/libmworld_render_utils.a simulation/blocks/libblocks.a simulation/octree/libforce_octree.a simulation/octree/liboctree.a simulation/world_handler/libworld_handler.a utils/util_functions/libutils.a
-  FLAGS = -g
+  FLAGS = -Wall -fopenmp -g
   LINK_LIBRARIES = render/block_renderer/libblock_renderer.a  numerics/linear_alg/liblinear_alg.a  numerics/quaternion/libquaternion.a  render/cube_renderer/libcube_renderer.a  utils/util_functions/libutils.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  render/utils/libmworld_render_utils.a  simulation/blocks/libblocks.a  simulation/world_handler/libworld_handler.a  render/block_renderer/libblock_renderer.a  simulation/octree/liboctree.a  simulation/octree/libforce_octree.a  simulation/blocks/libblocks.a  numerics/quaternion/libquaternion.a  numerics/linear_alg/liblinear_alg.a  render/cube_renderer/libcube_renderer.a  render/utils/libmworld_render_utils.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  utils/util_functions/libutils.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = simulation\environment\CMakeFiles\logic_gates.dir
   POST_BUILD = cd .
@@ -1452,14 +1452,14 @@ build cmake_object_order_depends_target_not_gate_test: phony || cmake_object_ord
 
 build simulation/environment/CMakeFiles/not_gate_test.dir/not_gate_test.cpp.obj: CXX_COMPILER__not_gate_test_Debug ../simulation/environment/not_gate_test.cpp || cmake_object_order_depends_target_not_gate_test
   DEP_FILE = simulation\environment\CMakeFiles\not_gate_test.dir\not_gate_test.cpp.obj.d
-  FLAGS = -g   -std=gnu++11
+  FLAGS = -Wall -fopenmp -g   -std=gnu++11
   INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../simulation/environment -I../render/block_renderer/../lib -I../render/block_renderer/. -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera -I../simulation/blocks -I../simulation/blocks/../octree -I../simulation/world_handler -I../simulation/octree/.
   OBJECT_DIR = simulation\environment\CMakeFiles\not_gate_test.dir
   OBJECT_FILE_DIR = simulation\environment\CMakeFiles\not_gate_test.dir
 
 build simulation/environment/CMakeFiles/not_gate_test.dir/__/__/render/utils/world_initializer.cpp.obj: CXX_COMPILER__not_gate_test_Debug ../render/utils/world_initializer.cpp || cmake_object_order_depends_target_not_gate_test
   DEP_FILE = simulation\environment\CMakeFiles\not_gate_test.dir\__\__\render\utils\world_initializer.cpp.obj.d
-  FLAGS = -g   -std=gnu++11
+  FLAGS = -Wall -fopenmp -g   -std=gnu++11
   INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../simulation/environment -I../render/block_renderer/../lib -I../render/block_renderer/. -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera -I../simulation/blocks -I../simulation/blocks/../octree -I../simulation/world_handler -I../simulation/octree/.
   OBJECT_DIR = simulation\environment\CMakeFiles\not_gate_test.dir
   OBJECT_FILE_DIR = simulation\environment\CMakeFiles\not_gate_test.dir\__\__\render\utils
@@ -1473,7 +1473,7 @@ build simulation/environment/CMakeFiles/not_gate_test.dir/__/__/render/utils/wor
 # Link the executable simulation\environment\not_gate_test.exe
 
 build simulation/environment/not_gate_test.exe: CXX_EXECUTABLE_LINKER__not_gate_test_Debug simulation/environment/CMakeFiles/not_gate_test.dir/not_gate_test.cpp.obj simulation/environment/CMakeFiles/not_gate_test.dir/__/__/render/utils/world_initializer.cpp.obj | render/block_renderer/libblock_renderer.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/cube_renderer/libcube_renderer.a utils/util_functions/libutils.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a render/utils/libmworld_render_utils.a simulation/blocks/libblocks.a simulation/world_handler/libworld_handler.a render/block_renderer/libblock_renderer.a simulation/octree/liboctree.a simulation/octree/libforce_octree.a simulation/blocks/libblocks.a numerics/quaternion/libquaternion.a numerics/linear_alg/liblinear_alg.a render/cube_renderer/libcube_renderer.a render/utils/libmworld_render_utils.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a utils/util_functions/libutils.a || lib/glad/libglad.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/block_renderer/libblock_renderer.a render/cube_renderer/libcube_renderer.a render/utils/libmworld_render_utils.a simulation/blocks/libblocks.a simulation/octree/libforce_octree.a simulation/octree/liboctree.a simulation/world_handler/libworld_handler.a utils/util_functions/libutils.a
-  FLAGS = -g
+  FLAGS = -Wall -fopenmp -g
   LINK_LIBRARIES = render/block_renderer/libblock_renderer.a  numerics/linear_alg/liblinear_alg.a  numerics/quaternion/libquaternion.a  render/cube_renderer/libcube_renderer.a  utils/util_functions/libutils.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  render/utils/libmworld_render_utils.a  simulation/blocks/libblocks.a  simulation/world_handler/libworld_handler.a  render/block_renderer/libblock_renderer.a  simulation/octree/liboctree.a  simulation/octree/libforce_octree.a  simulation/blocks/libblocks.a  numerics/quaternion/libquaternion.a  numerics/linear_alg/liblinear_alg.a  render/cube_renderer/libcube_renderer.a  render/utils/libmworld_render_utils.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  utils/util_functions/libutils.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = simulation\environment\CMakeFiles\not_gate_test.dir
   POST_BUILD = cd .
@@ -1493,14 +1493,14 @@ build cmake_object_order_depends_target_collision_tests: phony || cmake_object_o
 
 build simulation/environment/CMakeFiles/collision_tests.dir/collision_tests.cpp.obj: CXX_COMPILER__collision_tests_Debug ../simulation/environment/collision_tests.cpp || cmake_object_order_depends_target_collision_tests
   DEP_FILE = simulation\environment\CMakeFiles\collision_tests.dir\collision_tests.cpp.obj.d
-  FLAGS = -g   -std=gnu++11
+  FLAGS = -Wall -fopenmp -g   -std=gnu++11
   INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../simulation/environment -I../render/block_renderer/../lib -I../render/block_renderer/. -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera -I../simulation/blocks -I../simulation/blocks/../octree -I../simulation/world_handler -I../simulation/octree/.
   OBJECT_DIR = simulation\environment\CMakeFiles\collision_tests.dir
   OBJECT_FILE_DIR = simulation\environment\CMakeFiles\collision_tests.dir
 
 build simulation/environment/CMakeFiles/collision_tests.dir/__/__/render/utils/world_initializer.cpp.obj: CXX_COMPILER__collision_tests_Debug ../render/utils/world_initializer.cpp || cmake_object_order_depends_target_collision_tests
   DEP_FILE = simulation\environment\CMakeFiles\collision_tests.dir\__\__\render\utils\world_initializer.cpp.obj.d
-  FLAGS = -g   -std=gnu++11
+  FLAGS = -Wall -fopenmp -g   -std=gnu++11
   INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../simulation/environment -I../render/block_renderer/../lib -I../render/block_renderer/. -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera -I../simulation/blocks -I../simulation/blocks/../octree -I../simulation/world_handler -I../simulation/octree/.
   OBJECT_DIR = simulation\environment\CMakeFiles\collision_tests.dir
   OBJECT_FILE_DIR = simulation\environment\CMakeFiles\collision_tests.dir\__\__\render\utils
@@ -1514,7 +1514,7 @@ build simulation/environment/CMakeFiles/collision_tests.dir/__/__/render/utils/w
 # Link the executable simulation\environment\collision_tests.exe
 
 build simulation/environment/collision_tests.exe: CXX_EXECUTABLE_LINKER__collision_tests_Debug simulation/environment/CMakeFiles/collision_tests.dir/collision_tests.cpp.obj simulation/environment/CMakeFiles/collision_tests.dir/__/__/render/utils/world_initializer.cpp.obj | render/block_renderer/libblock_renderer.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/cube_renderer/libcube_renderer.a utils/util_functions/libutils.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a render/utils/libmworld_render_utils.a simulation/blocks/libblocks.a simulation/world_handler/libworld_handler.a render/block_renderer/libblock_renderer.a simulation/octree/liboctree.a simulation/octree/libforce_octree.a simulation/blocks/libblocks.a numerics/quaternion/libquaternion.a numerics/linear_alg/liblinear_alg.a render/cube_renderer/libcube_renderer.a render/utils/libmworld_render_utils.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a utils/util_functions/libutils.a || lib/glad/libglad.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/block_renderer/libblock_renderer.a render/cube_renderer/libcube_renderer.a render/utils/libmworld_render_utils.a simulation/blocks/libblocks.a simulation/octree/libforce_octree.a simulation/octree/liboctree.a simulation/world_handler/libworld_handler.a utils/util_functions/libutils.a
-  FLAGS = -g
+  FLAGS = -Wall -fopenmp -g
   LINK_LIBRARIES = render/block_renderer/libblock_renderer.a  numerics/linear_alg/liblinear_alg.a  numerics/quaternion/libquaternion.a  render/cube_renderer/libcube_renderer.a  utils/util_functions/libutils.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  render/utils/libmworld_render_utils.a  simulation/blocks/libblocks.a  simulation/world_handler/libworld_handler.a  render/block_renderer/libblock_renderer.a  simulation/octree/liboctree.a  simulation/octree/libforce_octree.a  simulation/blocks/libblocks.a  numerics/quaternion/libquaternion.a  numerics/linear_alg/liblinear_alg.a  render/cube_renderer/libcube_renderer.a  render/utils/libmworld_render_utils.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  utils/util_functions/libutils.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = simulation\environment\CMakeFiles\collision_tests.dir
   POST_BUILD = cd .
@@ -1534,14 +1534,14 @@ build cmake_object_order_depends_target_or_gate_test: phony || cmake_object_orde
 
 build simulation/environment/CMakeFiles/or_gate_test.dir/or_gate_test.cpp.obj: CXX_COMPILER__or_gate_test_Debug ../simulation/environment/or_gate_test.cpp || cmake_object_order_depends_target_or_gate_test
   DEP_FILE = simulation\environment\CMakeFiles\or_gate_test.dir\or_gate_test.cpp.obj.d
-  FLAGS = -g   -std=gnu++11
+  FLAGS = -Wall -fopenmp -g   -std=gnu++11
   INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../simulation/environment -I../render/block_renderer/../lib -I../render/block_renderer/. -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera -I../simulation/blocks -I../simulation/blocks/../octree -I../simulation/world_handler -I../simulation/octree/.
   OBJECT_DIR = simulation\environment\CMakeFiles\or_gate_test.dir
   OBJECT_FILE_DIR = simulation\environment\CMakeFiles\or_gate_test.dir
 
 build simulation/environment/CMakeFiles/or_gate_test.dir/__/__/render/utils/world_initializer.cpp.obj: CXX_COMPILER__or_gate_test_Debug ../render/utils/world_initializer.cpp || cmake_object_order_depends_target_or_gate_test
   DEP_FILE = simulation\environment\CMakeFiles\or_gate_test.dir\__\__\render\utils\world_initializer.cpp.obj.d
-  FLAGS = -g   -std=gnu++11
+  FLAGS = -Wall -fopenmp -g   -std=gnu++11
   INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../simulation/environment -I../render/block_renderer/../lib -I../render/block_renderer/. -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera -I../simulation/blocks -I../simulation/blocks/../octree -I../simulation/world_handler -I../simulation/octree/.
   OBJECT_DIR = simulation\environment\CMakeFiles\or_gate_test.dir
   OBJECT_FILE_DIR = simulation\environment\CMakeFiles\or_gate_test.dir\__\__\render\utils
@@ -1555,7 +1555,7 @@ build simulation/environment/CMakeFiles/or_gate_test.dir/__/__/render/utils/worl
 # Link the executable simulation\environment\or_gate_test.exe
 
 build simulation/environment/or_gate_test.exe: CXX_EXECUTABLE_LINKER__or_gate_test_Debug simulation/environment/CMakeFiles/or_gate_test.dir/or_gate_test.cpp.obj simulation/environment/CMakeFiles/or_gate_test.dir/__/__/render/utils/world_initializer.cpp.obj | render/block_renderer/libblock_renderer.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/cube_renderer/libcube_renderer.a utils/util_functions/libutils.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a render/utils/libmworld_render_utils.a simulation/blocks/libblocks.a simulation/world_handler/libworld_handler.a render/block_renderer/libblock_renderer.a simulation/octree/liboctree.a simulation/octree/libforce_octree.a simulation/blocks/libblocks.a numerics/quaternion/libquaternion.a numerics/linear_alg/liblinear_alg.a render/cube_renderer/libcube_renderer.a render/utils/libmworld_render_utils.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a utils/util_functions/libutils.a || lib/glad/libglad.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/block_renderer/libblock_renderer.a render/cube_renderer/libcube_renderer.a render/utils/libmworld_render_utils.a simulation/blocks/libblocks.a simulation/octree/libforce_octree.a simulation/octree/liboctree.a simulation/world_handler/libworld_handler.a utils/util_functions/libutils.a
-  FLAGS = -g
+  FLAGS = -Wall -fopenmp -g
   LINK_LIBRARIES = render/block_renderer/libblock_renderer.a  numerics/linear_alg/liblinear_alg.a  numerics/quaternion/libquaternion.a  render/cube_renderer/libcube_renderer.a  utils/util_functions/libutils.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  render/utils/libmworld_render_utils.a  simulation/blocks/libblocks.a  simulation/world_handler/libworld_handler.a  render/block_renderer/libblock_renderer.a  simulation/octree/liboctree.a  simulation/octree/libforce_octree.a  simulation/blocks/libblocks.a  numerics/quaternion/libquaternion.a  numerics/linear_alg/liblinear_alg.a  render/cube_renderer/libcube_renderer.a  render/utils/libmworld_render_utils.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  utils/util_functions/libutils.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = simulation\environment\CMakeFiles\or_gate_test.dir
   POST_BUILD = cd .
@@ -1575,14 +1575,14 @@ build cmake_object_order_depends_target_and_gate_test: phony || cmake_object_ord
 
 build simulation/environment/CMakeFiles/and_gate_test.dir/and_gate_test.cpp.obj: CXX_COMPILER__and_gate_test_Debug ../simulation/environment/and_gate_test.cpp || cmake_object_order_depends_target_and_gate_test
   DEP_FILE = simulation\environment\CMakeFiles\and_gate_test.dir\and_gate_test.cpp.obj.d
-  FLAGS = -g   -std=gnu++11
+  FLAGS = -Wall -fopenmp -g   -std=gnu++11
   INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../simulation/environment -I../render/block_renderer/../lib -I../render/block_renderer/. -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera -I../simulation/blocks -I../simulation/blocks/../octree -I../simulation/world_handler -I../simulation/octree/.
   OBJECT_DIR = simulation\environment\CMakeFiles\and_gate_test.dir
   OBJECT_FILE_DIR = simulation\environment\CMakeFiles\and_gate_test.dir
 
 build simulation/environment/CMakeFiles/and_gate_test.dir/__/__/render/utils/world_initializer.cpp.obj: CXX_COMPILER__and_gate_test_Debug ../render/utils/world_initializer.cpp || cmake_object_order_depends_target_and_gate_test
   DEP_FILE = simulation\environment\CMakeFiles\and_gate_test.dir\__\__\render\utils\world_initializer.cpp.obj.d
-  FLAGS = -g   -std=gnu++11
+  FLAGS = -Wall -fopenmp -g   -std=gnu++11
   INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../simulation/environment -I../render/block_renderer/../lib -I../render/block_renderer/. -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/../lib -I../render/cube_renderer/. -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera -I../simulation/blocks -I../simulation/blocks/../octree -I../simulation/world_handler -I../simulation/octree/.
   OBJECT_DIR = simulation\environment\CMakeFiles\and_gate_test.dir
   OBJECT_FILE_DIR = simulation\environment\CMakeFiles\and_gate_test.dir\__\__\render\utils
@@ -1596,7 +1596,7 @@ build simulation/environment/CMakeFiles/and_gate_test.dir/__/__/render/utils/wor
 # Link the executable simulation\environment\and_gate_test.exe
 
 build simulation/environment/and_gate_test.exe: CXX_EXECUTABLE_LINKER__and_gate_test_Debug simulation/environment/CMakeFiles/and_gate_test.dir/and_gate_test.cpp.obj simulation/environment/CMakeFiles/and_gate_test.dir/__/__/render/utils/world_initializer.cpp.obj | render/block_renderer/libblock_renderer.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/cube_renderer/libcube_renderer.a utils/util_functions/libutils.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a render/utils/libmworld_render_utils.a simulation/blocks/libblocks.a simulation/world_handler/libworld_handler.a render/block_renderer/libblock_renderer.a simulation/octree/liboctree.a simulation/octree/libforce_octree.a simulation/blocks/libblocks.a numerics/quaternion/libquaternion.a numerics/linear_alg/liblinear_alg.a render/cube_renderer/libcube_renderer.a render/utils/libmworld_render_utils.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a utils/util_functions/libutils.a || lib/glad/libglad.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/block_renderer/libblock_renderer.a render/cube_renderer/libcube_renderer.a render/utils/libmworld_render_utils.a simulation/blocks/libblocks.a simulation/octree/libforce_octree.a simulation/octree/liboctree.a simulation/world_handler/libworld_handler.a utils/util_functions/libutils.a
-  FLAGS = -g
+  FLAGS = -Wall -fopenmp -g
   LINK_LIBRARIES = render/block_renderer/libblock_renderer.a  numerics/linear_alg/liblinear_alg.a  numerics/quaternion/libquaternion.a  render/cube_renderer/libcube_renderer.a  utils/util_functions/libutils.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  render/utils/libmworld_render_utils.a  simulation/blocks/libblocks.a  simulation/world_handler/libworld_handler.a  render/block_renderer/libblock_renderer.a  simulation/octree/liboctree.a  simulation/octree/libforce_octree.a  simulation/blocks/libblocks.a  numerics/quaternion/libquaternion.a  numerics/linear_alg/liblinear_alg.a  render/cube_renderer/libcube_renderer.a  render/utils/libmworld_render_utils.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  utils/util_functions/libutils.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = simulation\environment\CMakeFiles\and_gate_test.dir
   POST_BUILD = cd .
