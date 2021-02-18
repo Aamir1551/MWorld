@@ -106,7 +106,7 @@ int main()
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         auto contact_list = world.CollisionHandler();
-        //world.AddForces(deltaTime);
+        world.AddForces(deltaTime);
         world.Update(contact_list, deltaTime);
 
         BlockRenderer::DrawAllBlocks(&world.iblocks, &world.zblocks, &world.eblocks, &world.mblocks);
@@ -118,8 +118,6 @@ int main()
             cout << "FPS: " << frame_count << endl;
             frame_count = 0;
             prev_time = currentFrame;
-            cout << contact_list.size() << endl;
-            world.mblocks.at(3)->position.print();
 
             // Or Gate
             cout << "Flare value in A block: " << world.mblocks.at(0)->flare_value << endl;

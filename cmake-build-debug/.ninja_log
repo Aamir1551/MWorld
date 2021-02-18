@@ -186,3 +186,10 @@
 675	765	6353908572625880	simulation/blocks/libblocks.a	b411f4246d4e389f
 13	1268	6353908577665314	simulation/environment/CMakeFiles/simulation.dir/simulation.cpp.obj	118d72e8add463e3
 1268	1772	6353908582492283	simulation/environment/simulation.exe	8bc3af03e4a3dc66
+7	1175	6353909099773081	simulation/environment/CMakeFiles/simulation.dir/simulation.cpp.obj	118d72e8add463e3
+1176	1692	6353909104725564	simulation/environment/simulation.exe	8bc3af03e4a3dc66
+12	547	6353909717674759	simulation/environment/CMakeFiles/and_gate_test.dir/__/__/render/utils/world_initializer.cpp.obj	24a8b62fb90b6aab
+8	1247	6353909724670719	simulation/environment/CMakeFiles/and_gate_test.dir/and_gate_test.cpp.obj	d7b75fbc6f5f793a
+1247	1749	6353909729461061	simulation/environment/and_gate_test.exe	e560ccedcee71f9d
+6	1234	6353910947674463	simulation/environment/CMakeFiles/or_gate_test.dir/or_gate_test.cpp.obj	64ab055b246d2a7e
+1234	1736	6353910952452117	simulation/environment/or_gate_test.exe	242068e13c3d0c0d

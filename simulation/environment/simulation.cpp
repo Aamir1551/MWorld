@@ -41,7 +41,7 @@ int main()
     //WorldHandler world = WorldHandler(0, 0, 0, 0, 0, 0);
     //WorldHandler world = WorldHandler(10, 0, 0, 0, 0, 0);
     //WorldHandler world = WorldHandler(0, 0, 2, 0, 0, 0);
-    WorldHandler world = WorldHandler(0, 0, 200, 0, 00, 0, -100, 100, 4);
+    WorldHandler world = WorldHandler(0, 0, 500, 0, 00, 0, -100, 100, 4);
     /*world.forces_tree->RemoveZBlock(world.zblocks.at(0));
     world.forces_tree->RemoveZBlock(world.zblocks.at(1));
     world.tree->RemoveZBlock(world.zblocks.at(0));
