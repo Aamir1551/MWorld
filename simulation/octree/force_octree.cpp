@@ -76,10 +76,13 @@ ForceOctree* ForceOctree::AddEBlock(EBlock *b) {
 
 
 ForceOctree* ForceOctree::AddZBlock(ZBlock *b) {
+
+
+#pragma omp atomic
+    this->zblocks_at_cell_count +=1;
 #pragma omp critical
     {
         this->sum_z += b->position;
-        this->zblocks_at_cell_count +=1;
     }
     if(this->is_leaf) {
         return this;
@@ -124,21 +127,13 @@ void ForceOctree::RemoveEBlock(EBlock *b) {
     }
 }
 
-void  ForceOctree::RemoveAllZBlocks() {
-    this->sum_z = Matrix(3, 1, 0);
-    this->zblocks_at_cell_count = 0;
-    if(!this->is_leaf) {
-        for(auto const &childs : this->children) {
-            childs.second->RemoveAllZBlocks();
-        }
-    }
-}
-
 void ForceOctree::RemoveZBlock(ZBlock *b) {
+
+#pragma omp atomic
+    this->zblocks_at_cell_count-=1;
 #pragma omp critical
     {
         this->sum_z -= b->position;
-        this->zblocks_at_cell_count-=1;
     }
     if(!this->is_leaf) {
         auto t0 = b->position(0, 0) > avg_x;

@@ -36,30 +36,21 @@ int main()
     camera.camera_pos = glm::vec3(0, 0, 250);
     BlockRenderer::InitialiseBlockRenderer(&camera, cube_length, vao, vbo, ebo, world_properties);
 
-    int num_blocks_same = 50;
-    //WorldHandler world = WorldHandler(num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same);
-    //WorldHandler world = WorldHandler(0, 0, 0, 0, 0, 0);
-    //WorldHandler world = WorldHandler(10, 0, 0, 0, 0, 0);
+    int num_blocks_same = 100;
+    //WorldHandler world = WorldHandler(num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same); //WorldHandler world = WorldHandler(0, 0, 0, 0, 0, 0); //WorldHandler world = WorldHandler(10, 0, 0, 0, 0, 0);
     //WorldHandler world = WorldHandler(0, 0, 2, 0, 0, 0);
-    WorldHandler world = WorldHandler(0, 0, 500, 0, 00, 0, -100, 100, 4);
-    /*world.forces_tree->RemoveZBlock(world.zblocks.at(0));
-    world.forces_tree->RemoveZBlock(world.zblocks.at(1));
-    world.tree->RemoveZBlock(world.zblocks.at(0));
-    world.tree->RemoveZBlock(world.zblocks.at(1));
-
-    world.zblocks.at(0)->position = Matrix::CreateColumnVec(-20, 0, 0);
-    world.zblocks.at(1)->position = Matrix::CreateColumnVec(20, 0, 0);
-
-    world.tree->AddZBlock(world.zblocks.at(0));
-    world.tree->AddZBlock(world.zblocks.at(1));
-    world.forces_tree->AddZBlock(world.zblocks.at(0));
-    world.forces_tree->AddZBlock(world.zblocks.at(1));
-
-    world.zblocks.at(0)->SetLinearMomentumToZero();
-    world.zblocks.at(0)->momentum = Matrix(3, 1);
-    world.zblocks.at(1)->SetLinearMomentumToZero();
-    world.zblocks.at(1)->momentum = Matrix(3, 1);*/
-
+    WorldHandler world = WorldHandler(0, 0, 1000, 0, 00, 0, -100, 100, 4);
+    // Testing with ZBLocks only -- Note we disabled the force's being applied, however, the forces are still being calculated
+    //100 = 170fps
+    //200 = 75fps
+    //300 = 38fps
+    //400 = 25fps
+    //500 = 20fps
+    //600 = 15fps
+    //700 = 12fps
+    //800 = 9fps
+    //900 = 8fps
+    //1000 = 6 fps
 
     glBindVertexArray(vao);
     glEnable(GL_DEPTH_TEST);
