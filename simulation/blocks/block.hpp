@@ -22,6 +22,7 @@ namespace blocks {
         real static flare_capacity; // change this for the eblock, so we can have eblocks help us make or gates
         real static theta;
         bool locked; // When a block is locked, then forces do not act on it
+        int block_type;
 
         Block(Matrix position, Quaternion initial_orientation, real initial_flare_amount, real cube_length = 4.0f) : Cube(cube_length, position,
                                                                                                  initial_orientation,
@@ -42,7 +43,7 @@ namespace blocks {
 
         virtual real ExtractFlareFromBlock(real deltatime) = 0;
 
-        virtual void AddFlareToBlock(real flare_amount) = 0;
+        virtual void AddFlareToBlock(real flare_amount, Block *b) = 0;
 
         virtual void spin(Matrix const &force_direction);
 

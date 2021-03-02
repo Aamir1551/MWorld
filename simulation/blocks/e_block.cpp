@@ -3,6 +3,7 @@
 #include <block.hpp>
 #include <e_block.hpp>
 
+
 namespace blocks {
 
     real EBlock::ExtractFlareFromBlock(real delta_time) {
@@ -11,8 +12,10 @@ namespace blocks {
         return extract_flare;
     };
 
-    void EBlock::AddFlareToBlock(real flare_amount) {
-        this->flare_inc += (flare_amount);
+    void EBlock::AddFlareToBlock(real flare_amount, Block *b) {
+        if(flare_amount > 0) {
+            this->flare_inc += flare_amount;
+        }
     }
 
     void EBlock::UpdateFlare() {

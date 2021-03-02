@@ -27,11 +27,30 @@ namespace blocks {
         }
     }
 
-    real ZBlock::ExtractFlareFromBlock(real delta_time) {
+    /*real ZBlock::ExtractFlareFromBlock(real delta_time) {
         return 0.0;
     };
 
-    void ZBlock::AddFlareToBlock(real flare_amount) {};
+    void ZBlock::AddFlareToBlock(real flare_amount, Block *b) {
+
+    };*/
 
 
+    real ZBlock::ExtractFlareFromBlock(real delta_time) {
+        if(flare_value > 0.5) {
+            real extract_flare = this->flare_value * 0.08 * delta_time;
+            this->flare_inc -= extract_flare; // using the kissing number of spheres
+            return extract_flare * -1;
+        }
+    };
+
+    void ZBlock::AddFlareToBlock(real flare_amount, Block *b) {
+        if(b->block_type!=0) {
+            this->flare_inc += (flare_amount) * 3;
+        }
+    }
+
+    void ZBlock::UpdateFlare() {
+        this->flare_value = std::max(std::min(this->flare_inc + this->flare_value, (real) 1), (real) -1);
+    };
 }

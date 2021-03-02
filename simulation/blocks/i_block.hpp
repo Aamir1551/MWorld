@@ -19,6 +19,8 @@ namespace blocks {
             this->state = state;
             this->a = 1.0f * (real) this->state;
             this->b = (real) (1 - this->state);
+            this->block_type;
+            block_type = 0;
         }
 
 
@@ -26,7 +28,7 @@ namespace blocks {
 
         real ExtractFlareFromBlock(real deltatime) override;
         void spin(Matrix const &force_direction) override;
-        void AddFlareToBlock(real flare_amount) override;
+        void AddFlareToBlock(real flare_amount, Block *b) override;
         void Decay(real delta_time) override;
     };
 

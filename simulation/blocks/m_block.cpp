@@ -7,16 +7,20 @@
 
 namespace blocks {
 
-    void MBlock::AddFlareToBlock(real flare_amount) {
-        this->flare_inc += flare_amount;
+    void MBlock::AddFlareToBlock(real flare_amount, Block *b) {
+        if(flare_amount > 0) {
+            this->flare_inc += flare_amount;
+        }
     }
 
     void MBlock::Decay(real delta_time) {
-       this->flare_value -= (delta_time * EBlock::capacity * 0.08 * 0.55);
+       //this->flare_value -= (delta_time * EBlock::capacity * 0.08 * 1);
+       this->flare_value -= delta_time * 0.001;
+       this->flare_value = std::max(this->flare_value, (real) 0);
     };
 
     real MBlock::ExtractFlareFromBlock(real deltatime) {
-        real extract = (real) (this->flare_value > MBlock::threshold) * this->flare_value * 0.08 * deltatime;
+        real extract = (real) (this->flare_value > MBlock::threshold) * this->flare_value * 0.08 * deltatime * 0.7;
         this->flare_inc -= extract;
         return extract;
     };

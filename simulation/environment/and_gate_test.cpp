@@ -42,7 +42,7 @@ int main()
     // A    B
     // I1   I2
 
-    WorldHandler world = WorldHandler(2, 0, 0, 3, 0, 2);
+    WorldHandler world = WorldHandler(2, 0, 0, 3, 2, 0);
 
     // I1
     world.iblocks.at(0)->SetLinearMomentumToZero();

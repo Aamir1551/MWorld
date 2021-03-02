@@ -9,12 +9,15 @@ namespace blocks {
     class ZBlock : public Block {
 
     public:
-        ZBlock(Matrix position, Quaternion initial_orientation, real cube_length = 4.0f) : Block(position, initial_orientation, 0.0f, cube_length) {}
+        ZBlock(Matrix position, Quaternion initial_orientation, real cube_length = 4.0f) : Block(position, initial_orientation, 0.0f, cube_length) {
+            this->block_type = 1;
+        }
 
         bool React(ForceOctree * tree, real delta_time) override;
 
         real ExtractFlareFromBlock(real deltimatime) override;
-        void AddFlareToBlock(real flare_amount) override;
+        void AddFlareToBlock(real flare_amount, Block *b) override;
+        void UpdateFlare() override;
     };
 }
 

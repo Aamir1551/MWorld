@@ -6,27 +6,24 @@ namespace blocks {
     class Block;
 
     real IBlock::ExtractFlareFromBlock(real delta_time) {
-        return (this->a * 10 + 10 * this->b * (real) (this->flare_value < IBlock::threshold)) * 0.05 * delta_time;
+        return (this->a + this->b * (real) (this->flare_value < this->threshold)) * 0.5 * delta_time;
     };
 
     void IBlock::spin(Matrix const &force_direction) {
         this->angular_momentum =  force_direction * (this->a + this->b * (real) (this->flare_value < IBlock::threshold)) * 0.1;
     }
 
-    void IBlock::AddFlareToBlock(real flare_amount) {
-        this->flare_inc += flare_amount * this->b;
+    void IBlock::AddFlareToBlock(real flare_amount, Block * b) {
+        if(flare_amount < 0) {
+            this->flare_inc +=  flare_amount * -1;
+        }
     };
 
     void IBlock::Decay(real delta_time) {
-        // Decay is needed for the I- Block, since when we do stop extracting flare from other blocks,
-        // we still need to put in more flare
-        //real extract = (real) (this->flare_value > MBlock::threshold) * this->flare_value * 0.08 * deltatime;
-        //this->flare_value -= delta_time * 0.01; // Make sure amount of flare losing every delta_time second, is less than the amount
-        this->flare_value -=  0.08 * delta_time * 1.5 * 0.5;
-        // of flare being passed on by the MBlock every delta_time second.
+        this->flare_value = std::max(this->flare_value - 0.08 * delta_time * 1.5 * 0.5, 0.0);
     }
 
-    real IBlock::threshold = 0.9f;
+    real IBlock::threshold = 0.1f;
 
     bool IBlock::React(ForceOctree *tree, real delta_time) {
         if(this->state) {

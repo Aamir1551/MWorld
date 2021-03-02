@@ -19,12 +19,13 @@ namespace blocks
             } else {
                 this->k = 0.5;
             }
+            this->block_type=3;
         };
 
         bool React(ForceOctree * tree, real delta_time) override;
 
         real ExtractFlareFromBlock(real deltatime) override;
-        void AddFlareToBlock(real flare_amount) override;
+        void AddFlareToBlock(real flare_amount, Block *b) override;
         void UpdateFlare() override;
 
     };

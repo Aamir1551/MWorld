@@ -39,10 +39,9 @@ int main()
     real down = -10;
 
     // Or Gate -- Given by 2 Inputs, Input 1 (A) = M block, Input 2 (B) = M block, Out (C) = M block :
-    // M1 C M2
-    // A    B
-    // I1   I2
-    WorldHandler world = WorldHandler(2, 0, 0, 5, 0, 0);
+    //    C
+    // I1 M  I2
+    WorldHandler world = WorldHandler(2, 0, 0, 3, 0, 0);
 
     // I1
     world.iblocks.at(0)->SetLinearMomentumToZero();
@@ -51,33 +50,23 @@ int main()
 
     // I2
     world.iblocks.at(1)->SetLinearMomentumToZero();
-    world.iblocks.at(1)->position = Matrix::CreateColumnVec(-22, down, -5);
+    world.iblocks.at(1)->position = Matrix::CreateColumnVec(-22, down, -13+8);
     world.iblocks.at(1)->locked = true;
 
     // A
     world.mblocks.at(0)->SetLinearMomentumToZero();
-    world.mblocks.at(0)->position = Matrix::CreateColumnVec(-18, down, -13);
+    world.mblocks.at(0)->position = Matrix::CreateColumnVec(-22, down, -13+4);
     world.mblocks.at(0)->locked = true;
 
     // B
     world.mblocks.at(1)->SetLinearMomentumToZero();
-    world.mblocks.at(1)->position = Matrix::CreateColumnVec(-18, down, -5);
+    world.mblocks.at(1)->position = Matrix::CreateColumnVec(-22 + 4, down, -13+4);
     world.mblocks.at(1)->locked = true;
 
-    // M1
-    world.mblocks.at(2)->SetLinearMomentumToZero();
-    world.mblocks.at(2)->position = Matrix::CreateColumnVec(-14, down, -13);
-    world.mblocks.at(2)->locked = true;
-
-    // M2
-    world.mblocks.at(3)->SetLinearMomentumToZero();
-    world.mblocks.at(3)->position = Matrix::CreateColumnVec(-14, down, -5);
-    world.mblocks.at(3)->locked = true;
-
     // C
-    world.mblocks.at(4)->SetLinearMomentumToZero();
-    world.mblocks.at(4)->position = Matrix::CreateColumnVec(-14, down, -9);
-    world.mblocks.at(4)->locked = true;
+    world.mblocks.at(2)->SetLinearMomentumToZero();
+    world.mblocks.at(2)->position = Matrix::CreateColumnVec(-22 + 8, down, -13+4);
+    world.mblocks.at(2)->locked = true;
 
     world.ResetTrees();
 
@@ -94,8 +83,29 @@ int main()
 
     real frame_count = 0;
     real prev_time = glfwGetTime();
+    int is_out = false;
     while (!glfwWindowShouldClose(world_properties->window))
     {
+
+        if (glfwGetKey(world_properties->window, GLFW_KEY_J) == GLFW_PRESS) {
+            is_out = !is_out;
+            if (is_out) {
+                world.iblocks.at(0)->position = Matrix::CreateColumnVec(-28, down, -13);
+            } else {
+                world.iblocks.at(0)->position = Matrix::CreateColumnVec(-22, down, -13);
+            }
+            world.ResetTrees();
+        }
+
+        if (glfwGetKey(world_properties->window, GLFW_KEY_K) == GLFW_PRESS) {
+            is_out = !is_out;
+            if (is_out) {
+                world.iblocks.at(1)->position = Matrix::CreateColumnVec(-28, down, -13 + 8);
+            } else {
+                world.iblocks.at(1)->position = Matrix::CreateColumnVec(-22, down, -13 + 8);
+            }
+            world.ResetTrees();
+        }
 
         currentFrame = glfwGetTime();
         deltaTime = currentFrame - lastFrame;
@@ -122,10 +132,7 @@ int main()
             // Or Gate
             cout << "Flare value in A block: " << world.mblocks.at(0)->flare_value << endl;
             cout << "Flare value in B block: " << world.mblocks.at(1)->flare_value << endl;
-            cout << "Flare value in M1 block: " << world.mblocks.at(2)->flare_value << endl;
-            cout << "Flare value in M2 block: " << world.mblocks.at(3)->flare_value << endl;
-            cout << "Flare value in C block: " << world.mblocks.at(4)->flare_value << endl;
-
+            cout << "Flare value in C block: " << world.mblocks.at(2)->flare_value << endl;
         }
     }
 

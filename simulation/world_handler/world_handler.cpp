@@ -320,8 +320,8 @@ void WorldHandler::PassFlare(Block *a, Block *b, real deltatime) {
     real flare_from_b = b->ExtractFlareFromBlock(deltatime);
 #pragma omp critical
     {
-        a->AddFlareToBlock(flare_from_b);
-        b->AddFlareToBlock(flare_from_a);
+        a->AddFlareToBlock(flare_from_b, b);
+        b->AddFlareToBlock(flare_from_a, a);
     };
 }
 
