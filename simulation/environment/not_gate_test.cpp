@@ -45,8 +45,9 @@ int main()
     // I-
     // M1
     // M2
+    // E
     // C
-    WorldHandler world = WorldHandler(1, 1, 1, 4, 0, 0);
+    WorldHandler world = WorldHandler(1, 1, 1, 4, 1, 0);
 
     // I+
     world.iblocks.at(0)->SetLinearMomentumToZero();
@@ -78,9 +79,15 @@ int main()
     world.mblocks.at(2)->position = Matrix::CreateColumnVec(-22+20, down, -13);
     world.mblocks.at(2)->locked = true;
 
+
+    // E
+    world.eblocks.at(0)->SetLinearMomentumToZero();
+    world.eblocks.at(0)->position = Matrix::CreateColumnVec(-22+24, down, -13);
+    world.eblocks.at(0)->locked = true;
+
     // Out
     world.mblocks.at(3)->SetLinearMomentumToZero();
-    world.mblocks.at(3)->position = Matrix::CreateColumnVec(-22+24, down, -13);
+    world.mblocks.at(3)->position = Matrix::CreateColumnVec(-22+28, down, -13);
     world.mblocks.at(3)->locked = true;
 
     world.ResetTrees();
@@ -136,16 +143,12 @@ int main()
             prev_time = currentFrame;
 
             // NOT Gate
-            //cout << "Flare value in A block: " << world.mblocks.at(0)->flare_value << endl;
-            //cout << "Flare value in I- block: " << world.iblocks.at(1)->flare_value << endl;
-            //cout << "Flare value in C block: " << world.eblocks.at(0)->flare_value << endl;
-            //cout << "Flare value in M block: " << world.mblocks.at(1)->flare_value << endl;
-
             cout << "Flare value in M0 block: " << world.mblocks.at(0)->flare_value << endl;
             cout << "Flare value in Z block: " << world.zblocks.at(0)->flare_value << endl;
             cout << "Flare value in I- block: " << world.iblocks.at(1)->flare_value << endl;
             cout << "Flare value in M1 block: " << world.mblocks.at(1)->flare_value << endl;
-            cout << "Flare value in Out block: " << world.mblocks.at(2)->flare_value << endl;
+            cout << "Flare value in M2 block: " << world.mblocks.at(2)->flare_value << endl;
+            cout << "Flare value in Out block: " << world.mblocks.at(3)->flare_value << endl;
         }
     }
 

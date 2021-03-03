@@ -18,6 +18,7 @@ namespace blocks {
         real ExtractFlareFromBlock(real deltimatime) override;
         void AddFlareToBlock(real flare_amount, Block *b) override;
         void UpdateFlare() override;
+        void Decay(real delta_time) override;
     };
 }
 

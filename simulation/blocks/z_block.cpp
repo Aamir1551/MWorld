@@ -27,14 +27,9 @@ namespace blocks {
         }
     }
 
-    /*real ZBlock::ExtractFlareFromBlock(real delta_time) {
-        return 0.0;
-    };
-
-    void ZBlock::AddFlareToBlock(real flare_amount, Block *b) {
-
-    };*/
-
+    void ZBlock::Decay(real delta_time) {
+        this->flare_value -= delta_time * 0.02;
+    }
 
     real ZBlock::ExtractFlareFromBlock(real delta_time) {
         if(flare_value > 0.5) {
