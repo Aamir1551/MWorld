@@ -38,12 +38,15 @@ int main()
 
     real down = -10;
 
-    // Not Gate -- Given by 1 Inputs, Input 1 (A) = M block, Out (C) = M block :
-    // C
+    // Not Gate -- Given by 1 Input, Input 1 (A) = I block, Out (C) = M block :
+    // I+
+    // M0
+    // Z
     // I-
-    // A
-    // I
-    WorldHandler world = WorldHandler(1, 1, 1, 3, 0, 0);
+    // M1
+    // M2
+    // C
+    WorldHandler world = WorldHandler(1, 1, 1, 4, 0, 0);
 
     // I+
     world.iblocks.at(0)->SetLinearMomentumToZero();
@@ -70,10 +73,15 @@ int main()
     world.mblocks.at(1)->position = Matrix::CreateColumnVec(-22+16, down, -13);
     world.mblocks.at(1)->locked = true;
 
-    // Out
+    // M2
     world.mblocks.at(2)->SetLinearMomentumToZero();
     world.mblocks.at(2)->position = Matrix::CreateColumnVec(-22+20, down, -13);
     world.mblocks.at(2)->locked = true;
+
+    // Out
+    world.mblocks.at(3)->SetLinearMomentumToZero();
+    world.mblocks.at(3)->position = Matrix::CreateColumnVec(-22+24, down, -13);
+    world.mblocks.at(3)->locked = true;
 
     world.ResetTrees();
 

@@ -38,5 +38,5 @@ namespace blocks {
         };
     }
 
-    real EBlock::capacity = 0.2;
+    real EBlock::capacity = 0.1;
 };
