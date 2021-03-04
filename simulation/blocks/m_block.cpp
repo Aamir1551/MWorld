@@ -14,8 +14,8 @@ namespace blocks {
     }
 
     void MBlock::Decay(real delta_time) {
-       //this->flare_value -= (delta_time * EBlock::capacity * 0.08 * 1);
-       this->flare_value -= delta_time * 0.001;
+       this->flare_value -= (delta_time * EBlock::capacity * 0.08 * 0.55);
+       //this->flare_value -= delta_time * 0.001;
        this->flare_value = std::max(this->flare_value, (real) 0);
     };
 

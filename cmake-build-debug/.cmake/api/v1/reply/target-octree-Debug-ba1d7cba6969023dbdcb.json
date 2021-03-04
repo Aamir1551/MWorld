@@ -3,7 +3,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "simulation/octree/libforce_octree.a"
+			"path" : "simulation/octree/liboctree.a"
 		}
 	],
 	"backtrace" : 1,
@@ -27,19 +27,19 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 6,
+				"line" : 5,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 8,
+				"line" : 7,
 				"parent" : 0
 			},
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 10,
+				"line" : 9,
 				"parent" : 0
 			}
 		]
@@ -50,7 +50,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : " -Wall -fopenmp -g  "
+					"fragment" : " -Wall -g  "
 				},
 				{
 					"fragment" : "-std=gnu++11"
@@ -131,15 +131,11 @@
 	[
 		{
 			"backtrace" : 2,
-			"id" : "utils::@c5cd9bcf8a2dc65dcb35"
-		},
-		{
-			"backtrace" : 2,
 			"id" : "glad::@bf3af473941166e98053"
 		},
 		{
 			"backtrace" : 2,
-			"id" : "linear_alg::@b276e23674e4ab50d284"
+			"id" : "utils::@c5cd9bcf8a2dc65dcb35"
 		},
 		{
 			"backtrace" : 2,
@@ -147,20 +143,24 @@
 		},
 		{
 			"backtrace" : 2,
+			"id" : "linear_alg::@b276e23674e4ab50d284"
+		},
+		{
+			"backtrace" : 2,
 			"id" : "blocks::@6db65c1307d2a2a784c8"
 		},
 		{
 			"backtrace" : 2,
-			"id" : "mworld_render_utils::@c1c5e50b708af245b811"
+			"id" : "cube_renderer::@ef8ae11a8c6e57d14ca4"
 		},
 		{
 			"backtrace" : 2,
-			"id" : "cube_renderer::@ef8ae11a8c6e57d14ca4"
+			"id" : "mworld_render_utils::@c1c5e50b708af245b811"
 		}
 	],
-	"id" : "force_octree::@66c141f95c7ed784ad75",
-	"name" : "force_octree",
-	"nameOnDisk" : "libforce_octree.a",
+	"id" : "octree::@66c141f95c7ed784ad75",
+	"name" : "octree",
+	"nameOnDisk" : "liboctree.a",
 	"paths" : 
 	{
 		"build" : "simulation/octree",
@@ -193,12 +193,12 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "simulation/octree/force_octree.cpp",
+			"path" : "simulation/octree/octree.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
-			"path" : "simulation/octree/force_octree.hpp",
+			"path" : "simulation/octree/octree.hpp",
 			"sourceGroupIndex" : 1
 		},
 		{

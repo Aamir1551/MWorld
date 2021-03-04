@@ -42,7 +42,7 @@ int main()
     // A    B
     // I1   I2
 
-    WorldHandler world = WorldHandler(2, 0, 0, 3, 2, 0);
+    WorldHandler world = WorldHandler(2, 0, 0, 4, 2, 0);
 
     // I1
     world.iblocks.at(0)->SetLinearMomentumToZero();
@@ -78,6 +78,11 @@ int main()
     world.mblocks.at(2)->SetLinearMomentumToZero();
     world.mblocks.at(2)->position = Matrix::CreateColumnVec(-14, down, -9);
     world.mblocks.at(2)->locked = true;
+
+    // D
+    world.mblocks.at(3)->SetLinearMomentumToZero();
+    world.mblocks.at(3)->position = Matrix::CreateColumnVec(-14+4, down, -9);
+    world.mblocks.at(3)->locked = true;
 
     world.ResetTrees();
 
@@ -137,6 +142,7 @@ int main()
             cout << "Flare value in E1 block: " << world.eblocks.at(0)->flare_value << endl;
             cout << "Flare value in E2 block: " << world.eblocks.at(1)->flare_value << endl;
             cout << "Flare value in C block: " << world.mblocks.at(2)->flare_value << endl;
+            cout << "Flare value in D block: " << world.mblocks.at(3)->flare_value << endl;
 
         }
     }
