@@ -14,13 +14,18 @@ namespace blocks {
     }
 
     void MBlock::Decay(real delta_time) {
-       this->flare_value -= (delta_time * EBlock::capacity * 0.08 * 0.55);
+       //this->flare_value -= (delta_time * EBlock::capacity * 0.08 * 0.55);
+       this->flare_value -= 0.5 * 0.08 * delta_time * (this->flare_value/4) * (this->flare_value/4);
+
+       // if they have less flare, then we decay less
+
+       // we need decay to be more than 0.5 * 0.08
        //this->flare_value -= delta_time * 0.001;
        this->flare_value = std::max(this->flare_value, (real) 0);
     };
 
     real MBlock::ExtractFlareFromBlock(real deltatime) {
-        real extract = (real) (this->flare_value > MBlock::threshold) * this->flare_value * 0.08 * deltatime * 0.7;
+        real extract = (real) (this->flare_value > MBlock::threshold) * this->flare_value * 0.08 * deltatime;
         this->flare_inc -= extract;
         return extract;
     };

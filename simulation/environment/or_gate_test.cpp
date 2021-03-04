@@ -68,6 +68,21 @@ int main()
     world.mblocks.at(2)->position = Matrix::CreateColumnVec(-22 + 8, down, -13+4);
     world.mblocks.at(2)->locked = true;
 
+    /*// C1
+    world.mblocks.at(3)->SetLinearMomentumToZero();
+    world.mblocks.at(3)->position = Matrix::CreateColumnVec(-22 + 8, down+4, -13+4);
+    world.mblocks.at(3)->locked = true;
+
+    // C2
+    world.mblocks.at(4)->SetLinearMomentumToZero();
+    world.mblocks.at(4)->position = Matrix::CreateColumnVec(-22 + 4, down+4, -13+4);
+    world.mblocks.at(4)->locked = true;
+
+    // C3
+    world.mblocks.at(5)->SetLinearMomentumToZero();
+    world.mblocks.at(5)->position = Matrix::CreateColumnVec(-22, down+4, -13+4);
+    world.mblocks.at(5)->locked = true;*/
+
     world.ResetTrees();
 
     glBindVertexArray(vao);

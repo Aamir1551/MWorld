@@ -38,6 +38,7 @@ int main()
 
     real down = -10;
     // And Gate -- Given by 2 Inputs, Input 1 (A) = M block, Input 2 (B) = M block, Out (C) = M block :
+    //    D
     // E1 C E2
     // A    B
     // I1   I2

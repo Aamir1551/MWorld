@@ -45,9 +45,8 @@ int main()
     // I-
     // M1
     // M2
-    // E
     // C
-    WorldHandler world = WorldHandler(1, 1, 1, 4, 1, 0);
+    WorldHandler world = WorldHandler(1, 1, 1, 4, 0, 0);
 
     // I+
     world.iblocks.at(0)->SetLinearMomentumToZero();
@@ -79,15 +78,9 @@ int main()
     world.mblocks.at(2)->position = Matrix::CreateColumnVec(-22+20, down, -13);
     world.mblocks.at(2)->locked = true;
 
-
-    // E
-    world.eblocks.at(0)->SetLinearMomentumToZero();
-    world.eblocks.at(0)->position = Matrix::CreateColumnVec(-22+24, down, -13);
-    world.eblocks.at(0)->locked = true;
-
     // Out
     world.mblocks.at(3)->SetLinearMomentumToZero();
-    world.mblocks.at(3)->position = Matrix::CreateColumnVec(-22+28, down, -13);
+    world.mblocks.at(3)->position = Matrix::CreateColumnVec(-22+24, down, -13);
     world.mblocks.at(3)->locked = true;
 
     world.ResetTrees();

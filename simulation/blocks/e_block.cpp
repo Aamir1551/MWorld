@@ -18,6 +18,9 @@ namespace blocks {
         }
     }
 
+    // set Mblock capacity to 5 -- no need reaces equilibrium at 4.98
+    // set eblock capacity to 0.7 or something (try for a value of higher than 0.5)
+
     void EBlock::UpdateFlare() {
         this->flare_value = std::min(this->flare_inc + this->flare_value, EBlock::capacity);
     };
@@ -38,5 +41,5 @@ namespace blocks {
         };
     }
 
-    real EBlock::capacity = 0.5;
+    real EBlock::capacity = 1.5;
 };
