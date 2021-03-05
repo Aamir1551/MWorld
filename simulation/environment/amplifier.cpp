@@ -128,9 +128,9 @@ int main()
         if (glfwGetKey(world_properties->window, GLFW_KEY_SPACE) == GLFW_PRESS) {
             is_out = !is_out;
             if (is_out) {
-                world.iblocks.at(0)->position = Matrix::CreateColumnVec(-28, down, -13);
+                world.iblocks.at(0)->position = Matrix::CreateColumnVec(-28, down, -5);
             } else {
-                world.iblocks.at(0)->position = Matrix::CreateColumnVec(-22, down, -13);
+                world.iblocks.at(0)->position = Matrix::CreateColumnVec(-22, down, -5);
             }
             world.ResetTrees();
         }
