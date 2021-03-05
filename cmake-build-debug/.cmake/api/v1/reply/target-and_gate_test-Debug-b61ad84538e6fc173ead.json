@@ -2,10 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "simulation/environment/not_gate_test.exe"
+			"path" : "simulation/environment/and_gate_test.exe"
 		},
 		{
-			"path" : "simulation/environment/not_gate_test.pdb"
+			"path" : "simulation/environment/and_gate_test.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -29,19 +29,19 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 10,
+				"line" : 9,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 20,
+				"line" : 19,
 				"parent" : 0
 			},
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 29,
+				"line" : 28,
 				"parent" : 0
 			}
 		]
@@ -169,14 +169,6 @@
 		},
 		{
 			"backtrace" : 2,
-			"id" : "octree::@66c141f95c7ed784ad75"
-		},
-		{
-			"backtrace" : 2,
-			"id" : "force_octree::@66c141f95c7ed784ad75"
-		},
-		{
-			"backtrace" : 2,
 			"id" : "block_renderer::@20380dfbeeaf1beda5b3"
 		},
 		{
@@ -189,10 +181,18 @@
 		},
 		{
 			"backtrace" : 2,
+			"id" : "octree::@66c141f95c7ed784ad75"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "force_octree::@66c141f95c7ed784ad75"
+		},
+		{
+			"backtrace" : 2,
 			"id" : "world_handler::@db5c5082507517693d46"
 		}
 	],
-	"id" : "not_gate_test::@847a59781e22ff560ae6",
+	"id" : "and_gate_test::@847a59781e22ff560ae6",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -315,8 +315,8 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "not_gate_test",
-	"nameOnDisk" : "not_gate_test.exe",
+	"name" : "and_gate_test",
+	"nameOnDisk" : "and_gate_test.exe",
 	"paths" : 
 	{
 		"build" : "simulation/environment",
@@ -348,7 +348,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "simulation/environment/not_gate_test.cpp",
+			"path" : "simulation/environment/and_gate_test.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{

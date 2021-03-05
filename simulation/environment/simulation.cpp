@@ -83,7 +83,7 @@ int main()
         //auto contact_list = vector<Contact>();
         world.Update(contact_list, deltaTime);
 
-        //BlockRenderer::DrawAllBlocks(&world.iblocks, &world.zblocks, &world.eblocks, &world.mblocks);
+        BlockRenderer::DrawAllBlocks(&world.iblocks, &world.zblocks, &world.eblocks, &world.mblocks);
 
         glfwSwapBuffers(world_properties->window);
         glfwPollEvents();
