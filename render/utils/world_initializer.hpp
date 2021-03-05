@@ -3,10 +3,10 @@
 #include <iostream>
 #include <string>
 
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
+//#include <glad/glad.h>
+//#include <GLFW/glfw3.h>
 
-#include <shader.hpp>
+//#include <shader.hpp>
 
 namespace render_utils
 {

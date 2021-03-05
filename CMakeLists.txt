@@ -9,7 +9,8 @@ set(glfw_include_path "${CMAKE_CURRENT_SOURCE_DIR}/lib/glfw-3.3.2/include/")
 set(glm_include_path "${CMAKE_CURRENT_SOURCE_DIR}/lib/glm")
 set(catch_path ${CMAKE_CURRENT_SOURCE_DIR}/catch)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -fopenmp")
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -fopenmp")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -fopenmp -lGL -lX11 -lpthread -lXrandr -lXi -ldl")
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
 
 
@@ -27,9 +28,9 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -fopenmp")
 
 project(MWorld)
 #add_subdirectory(catch)
-add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/lib/glad")
+#add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/lib/glad")
 add_subdirectory(utils)
 add_subdirectory(numerics)
-add_subdirectory(render)
-add_subdirectory(prototype)
+#add_subdirectory(render)
+#add_subdirectory(prototype)
 add_subdirectory(simulation)
