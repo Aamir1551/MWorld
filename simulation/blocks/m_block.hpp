@@ -21,7 +21,7 @@ namespace blocks {
         void Decay(real delta_time) override;
 
         void UpdateFlare() override {
-            this->flare_value = std::max(std::min( (this->flare_inc + this->flare_value), (real) 4), 0.0f);
+            this->flare_value = std::max(std::min( (this->flare_inc + this->flare_value), (real) 100), 0.0f);
         };
     };
 

@@ -15,7 +15,8 @@ namespace blocks {
 
     void MBlock::Decay(real delta_time) {
        //this->flare_value -= (delta_time * EBlock::capacity * 0.08 * 0.55);
-       this->flare_value -= 0.5 * 0.08 * delta_time * (this->flare_value/4) * (this->flare_value/4);
+       //this->flare_value -= 0.5 * 0.08 * delta_time * (this->flare_value/4) * (this->flare_value/4);
+       this->flare_value -= 0.5 * 0.08 * delta_time;
 
        // if they have less flare, then we decay less
 

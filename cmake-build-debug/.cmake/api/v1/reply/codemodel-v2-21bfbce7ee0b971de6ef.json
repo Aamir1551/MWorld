@@ -33,7 +33,7 @@
 					"source" : "lib/glad",
 					"targetIndexes" : 
 					[
-						6
+						7
 					]
 				},
 				{
@@ -62,7 +62,7 @@
 					"source" : "utils/util_functions",
 					"targetIndexes" : 
 					[
-						20
+						21
 					]
 				},
 				{
@@ -105,7 +105,7 @@
 					"source" : "numerics/linear_alg",
 					"targetIndexes" : 
 					[
-						7
+						8
 					]
 				},
 				{
@@ -119,7 +119,7 @@
 					"source" : "numerics/linear_alg/test",
 					"targetIndexes" : 
 					[
-						9
+						10
 					]
 				},
 				{
@@ -137,7 +137,7 @@
 					"source" : "numerics/quaternion",
 					"targetIndexes" : 
 					[
-						17
+						18
 					]
 				},
 				{
@@ -151,7 +151,7 @@
 					"source" : "numerics/quaternion/test",
 					"targetIndexes" : 
 					[
-						18
+						19
 					]
 				},
 				{
@@ -193,7 +193,7 @@
 					"source" : "render/cube_renderer",
 					"targetIndexes" : 
 					[
-						4
+						5
 					]
 				},
 				{
@@ -207,7 +207,7 @@
 					"source" : "render/utils",
 					"targetIndexes" : 
 					[
-						10
+						11
 					]
 				},
 				{
@@ -231,7 +231,7 @@
 					"source" : "render/block_renderer",
 					"targetIndexes" : 
 					[
-						1
+						2
 					]
 				},
 				{
@@ -261,7 +261,7 @@
 					"source" : "prototype/prototype_one",
 					"targetIndexes" : 
 					[
-						14
+						15
 					]
 				},
 				{
@@ -275,7 +275,7 @@
 					"source" : "prototype/prototype_two",
 					"targetIndexes" : 
 					[
-						16
+						17
 					]
 				},
 				{
@@ -289,7 +289,7 @@
 					"source" : "prototype/prototype_three",
 					"targetIndexes" : 
 					[
-						15
+						16
 					]
 				},
 				{
@@ -320,7 +320,7 @@
 					"source" : "simulation/blocks",
 					"targetIndexes" : 
 					[
-						2
+						3
 					]
 				},
 				{
@@ -334,8 +334,8 @@
 					"source" : "simulation/octree",
 					"targetIndexes" : 
 					[
-						5,
-						12
+						6,
+						13
 					]
 				},
 				{
@@ -349,7 +349,7 @@
 					"source" : "simulation/world_handler",
 					"targetIndexes" : 
 					[
-						21
+						22
 					]
 				},
 				{
@@ -364,11 +364,12 @@
 					"targetIndexes" : 
 					[
 						0,
-						3,
-						8,
-						11,
-						13,
-						19
+						1,
+						4,
+						9,
+						12,
+						14,
+						20
 					]
 				}
 			],
@@ -400,7 +401,7 @@
 					"parentIndex" : 0,
 					"targetIndexes" : 
 					[
-						6
+						7
 					]
 				},
 				{
@@ -425,7 +426,7 @@
 					"parentIndex" : 2,
 					"targetIndexes" : 
 					[
-						20
+						21
 					]
 				},
 				{
@@ -462,7 +463,7 @@
 					"parentIndex" : 5,
 					"targetIndexes" : 
 					[
-						7
+						8
 					]
 				},
 				{
@@ -474,7 +475,7 @@
 					"parentIndex" : 6,
 					"targetIndexes" : 
 					[
-						9
+						10
 					]
 				},
 				{
@@ -490,7 +491,7 @@
 					"parentIndex" : 5,
 					"targetIndexes" : 
 					[
-						17
+						18
 					]
 				},
 				{
@@ -502,7 +503,7 @@
 					"parentIndex" : 8,
 					"targetIndexes" : 
 					[
-						18
+						19
 					]
 				},
 				{
@@ -538,7 +539,7 @@
 					"parentIndex" : 10,
 					"targetIndexes" : 
 					[
-						4
+						5
 					]
 				},
 				{
@@ -550,7 +551,7 @@
 					"parentIndex" : 10,
 					"targetIndexes" : 
 					[
-						10
+						11
 					]
 				},
 				{
@@ -570,7 +571,7 @@
 					"parentIndex" : 10,
 					"targetIndexes" : 
 					[
-						1
+						2
 					]
 				},
 				{
@@ -596,7 +597,7 @@
 					"parentIndex" : 16,
 					"targetIndexes" : 
 					[
-						14
+						15
 					]
 				},
 				{
@@ -608,7 +609,7 @@
 					"parentIndex" : 16,
 					"targetIndexes" : 
 					[
-						16
+						17
 					]
 				},
 				{
@@ -620,7 +621,7 @@
 					"parentIndex" : 16,
 					"targetIndexes" : 
 					[
-						15
+						16
 					]
 				},
 				{
@@ -640,11 +641,12 @@
 					"targetIndexes" : 
 					[
 						0,
-						3,
-						8,
-						11,
-						13,
-						19
+						1,
+						4,
+						9,
+						12,
+						14,
+						20
 					]
 				},
 				{
@@ -656,7 +658,7 @@
 					"parentIndex" : 20,
 					"targetIndexes" : 
 					[
-						2
+						3
 					]
 				},
 				{
@@ -668,8 +670,8 @@
 					"parentIndex" : 20,
 					"targetIndexes" : 
 					[
-						5,
-						12
+						6,
+						13
 					]
 				},
 				{
@@ -681,7 +683,7 @@
 					"parentIndex" : 20,
 					"targetIndexes" : 
 					[
-						21
+						22
 					]
 				}
 			],
@@ -689,8 +691,15 @@
 			[
 				{
 					"directoryIndex" : 24,
+					"id" : "amplifier::@847a59781e22ff560ae6",
+					"jsonFile" : "target-amplifier-Debug-4206eca0177dfaf3a209.json",
+					"name" : "amplifier",
+					"projectIndex" : 20
+				},
+				{
+					"directoryIndex" : 24,
 					"id" : "and_gate_test::@847a59781e22ff560ae6",
-					"jsonFile" : "target-and_gate_test-Debug-cfd8838e77732cec0f66.json",
+					"jsonFile" : "target-and_gate_test-Debug-2240b008ec440318cc0c.json",
 					"name" : "and_gate_test",
 					"projectIndex" : 20
 				},
@@ -711,7 +720,7 @@
 				{
 					"directoryIndex" : 24,
 					"id" : "collision_tests::@847a59781e22ff560ae6",
-					"jsonFile" : "target-collision_tests-Debug-9319ae379b27dab5ddb4.json",
+					"jsonFile" : "target-collision_tests-Debug-8cfec46bc0615cc535cf.json",
 					"name" : "collision_tests",
 					"projectIndex" : 20
 				},
@@ -746,7 +755,7 @@
 				{
 					"directoryIndex" : 24,
 					"id" : "logic_gates::@847a59781e22ff560ae6",
-					"jsonFile" : "target-logic_gates-Debug-6e1f69d5126fcfd2c07a.json",
+					"jsonFile" : "target-logic_gates-Debug-01b32abe2705550c1790.json",
 					"name" : "logic_gates",
 					"projectIndex" : 20
 				},
@@ -767,7 +776,7 @@
 				{
 					"directoryIndex" : 24,
 					"id" : "not_gate_test::@847a59781e22ff560ae6",
-					"jsonFile" : "target-not_gate_test-Debug-1900afca2b4df9e9a00a.json",
+					"jsonFile" : "target-not_gate_test-Debug-d6ca908929b1b4be9043.json",
 					"name" : "not_gate_test",
 					"projectIndex" : 20
 				},
@@ -781,7 +790,7 @@
 				{
 					"directoryIndex" : 24,
 					"id" : "or_gate_test::@847a59781e22ff560ae6",
-					"jsonFile" : "target-or_gate_test-Debug-358f3061acbd791a0139.json",
+					"jsonFile" : "target-or_gate_test-Debug-77b18b5a67b54c209d4e.json",
 					"name" : "or_gate_test",
 					"projectIndex" : 20
 				},
@@ -823,7 +832,7 @@
 				{
 					"directoryIndex" : 24,
 					"id" : "simulation::@847a59781e22ff560ae6",
-					"jsonFile" : "target-simulation-Debug-e9fb627fff6030cd8c51.json",
+					"jsonFile" : "target-simulation-Debug-44810347c0ee01072486.json",
 					"name" : "simulation",
 					"projectIndex" : 20
 				},
@@ -837,7 +846,7 @@
 				{
 					"directoryIndex" : 23,
 					"id" : "world_handler::@db5c5082507517693d46",
-					"jsonFile" : "target-world_handler-Debug-f707489c4607d2841244.json",
+					"jsonFile" : "target-world_handler-Debug-efcef8883e73af34bb34.json",
 					"name" : "world_handler",
 					"projectIndex" : 23
 				}
