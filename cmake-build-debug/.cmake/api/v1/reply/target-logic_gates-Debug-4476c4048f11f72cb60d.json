@@ -52,7 +52,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : " -Wall -g  "
+					"fragment" : " -Wall -fopenmp -g  "
 				},
 				{
 					"fragment" : "-std=gnu++11"
@@ -157,19 +157,15 @@
 		},
 		{
 			"backtrace" : 2,
-			"id" : "quaternion::@1ddfe99dd86582fd9c64"
-		},
-		{
-			"backtrace" : 2,
 			"id" : "linear_alg::@b276e23674e4ab50d284"
 		},
 		{
 			"backtrace" : 2,
-			"id" : "block_renderer::@20380dfbeeaf1beda5b3"
+			"id" : "quaternion::@1ddfe99dd86582fd9c64"
 		},
 		{
 			"backtrace" : 2,
-			"id" : "blocks::@6db65c1307d2a2a784c8"
+			"id" : "cube_renderer::@ef8ae11a8c6e57d14ca4"
 		},
 		{
 			"backtrace" : 2,
@@ -181,11 +177,15 @@
 		},
 		{
 			"backtrace" : 2,
-			"id" : "cube_renderer::@ef8ae11a8c6e57d14ca4"
+			"id" : "block_renderer::@20380dfbeeaf1beda5b3"
 		},
 		{
 			"backtrace" : 2,
 			"id" : "mworld_render_utils::@c1c5e50b708af245b811"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "blocks::@6db65c1307d2a2a784c8"
 		},
 		{
 			"backtrace" : 2,
@@ -198,7 +198,7 @@
 		"commandFragments" : 
 		[
 			{
-				"fragment" : "-Wall -g",
+				"fragment" : "-Wall -fopenmp -g",
 				"role" : "flags"
 			},
 			{

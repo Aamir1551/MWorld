@@ -19,8 +19,7 @@ namespace blocks {
             this->state = state;
             this->a = 1.0f * (real) this->state;
             this->b = (real) (1 - this->state);
-            this->block_type;
-            block_type = 0;
+            this->block_type = 0;
         }
 
 

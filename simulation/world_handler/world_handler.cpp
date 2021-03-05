@@ -163,7 +163,7 @@ void WorldHandler::Update(vector<Contact> &contact_list, real delta_time) {
     UpdateFlares(contact_list, delta_time);
 
 #pragma omp parallel for
-    for(int i=0; i<contact_list.size(); i++) {
+    for(unsigned int i=0; i<contact_list.size(); i++) {
 #pragma omp critical
         {
             Cube::CollisionResolution(contact_list.at(i));
@@ -257,8 +257,8 @@ vector<Contact> WorldHandler::CollisionHandler()
 
     vector<Contact> contact_list_test;
 #pragma omp parallel for
-    for(int i=0; i<blocks.size()-1; i++) {
-        for(int j=i+1; j<blocks.size(); j++) {
+    for(unsigned int i=0; i<blocks.size()-1; i++) {
+        for(unsigned int j=i+1; j<blocks.size(); j++) {
             Cube::CollisionDetect(blocks.at(i), blocks.at(j), contact_list_test);
         }
     }
@@ -309,7 +309,7 @@ void WorldHandler::AddForces(real deltatime) {
 
 void WorldHandler::PassBlockFlares(vector<Contact> &contacts, real deltatime) {
 #pragma omp parallel for
-    for(int i=0; i<contacts.size(); i++) {
+    for(unsigned int i=0; i<contacts.size(); i++) {
         PassFlare(contacts.at(i).body1, contacts.at(i).body2, deltatime);
     }
 }
@@ -327,7 +327,7 @@ void WorldHandler::PassFlare(Block *a, Block *b, real deltatime) {
 
 void WorldHandler::IncFlareValuesAndReset() {
 #pragma omp parallel for
-   for(int i=0; i<this->blocks.size(); i++) {
+   for(unsigned int i=0; i<this->blocks.size(); i++) {
         this->blocks.at(i)->UpdateFlare();
         this->blocks.at(i)->flare_inc = 0;
     }
@@ -335,7 +335,7 @@ void WorldHandler::IncFlareValuesAndReset() {
 
 void WorldHandler::AddSpin(vector<Block *> *block_list,  Matrix const &force_direction) {
 #pragma omp parallel for
-    for(int i=0; i<block_list->size(); i++) {
+    for(unsigned int i=0; i<block_list->size(); i++) {
         block_list->at(i)->spin(force_direction);
     }
 }
