@@ -33,7 +33,7 @@ namespace blocks {
         real cell_partition_size;
 
         bool is_leaf = false;
-        std::map<unsigned int, Octree *> children;
+        Octree* children[8];
 
         explicit Octree(int grid_sizes, real min_x, real max_x, real min_y, real max_y, real min_z, real max_z,
                         bool initialise = false);
@@ -53,6 +53,7 @@ namespace blocks {
         Octree *GetGridAtPos(real x, real y, real z);
 
         bool LeafsAreNull();
+        ~Octree();
 
     };
 }

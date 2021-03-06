@@ -177,8 +177,8 @@ bool Octree::LeafsAreNull() {
         return this->blocks_at_leaf.size() == 0;
     } else {
         bool cond = true;
-        for(unsigned int i=0; i<this->children.size(); i++) {
-            cond &= this->children.at(i)->LeafsAreNull();
+        for(unsigned int i=0; i<8; i++) {
+            cond &= this->children[i]->LeafsAreNull();
             if(!cond) {
                 return false;
             }
@@ -199,3 +199,11 @@ bool Octree::BlockInCorrectTree(Octree *tree, Block *b) {
 }
 
 int Octree::count = 0;
+
+Octree::~Octree() {
+    if(!this->is_leaf) {
+        for(auto & i : children) {
+            delete i;
+        }
+    }
+}

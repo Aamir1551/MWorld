@@ -44,7 +44,7 @@ public:
     real cube_length;
     real min_coord;
     real max_coord;
-    map<Block*, Octree*> block_to_leaf;
+    map<Block*, Octree*> block_to_leaf; // This type is only needed for when checking for collision in n^2 fashion
 
     enum BlockTypes {IBlockType, MBlockType, EBlockType, ZBlockType};
 
@@ -67,5 +67,7 @@ public:
     void UpdateFlares(vector<Contact> &contact_list, real delta_time);
 
     void SpinWorldBlocks();
+
+    ~WorldHandler();
 };
 #endif

@@ -9,8 +9,12 @@ using namespace settings;
 using namespace blocks;
 
 ForceOctree* ForceOctree::AddIBlockPlus(IBlock *b) {
-    this->sum_i_plus += b->position;
+#pragma omp atomic
     this->iblocks_at_cell_plus_count +=1;
+#pragma omp critical
+    {
+        this->sum_i_plus += b->position;
+    };
     if(this->is_leaf) {
         return this;
     } else {
@@ -22,8 +26,12 @@ ForceOctree* ForceOctree::AddIBlockPlus(IBlock *b) {
 }
 
 ForceOctree* ForceOctree::AddIBlockNeg(IBlock *b) {
-    this->sum_i_neg += b->position;
+#pragma omp atomic
     this->iblocks_at_cell_neg_count +=1;
+#pragma omp critical
+    {
+        this->sum_i_neg += b->position;
+    };
     if(this->is_leaf) {
         return this;
     } else {
@@ -36,8 +44,12 @@ ForceOctree* ForceOctree::AddIBlockNeg(IBlock *b) {
 
 
 ForceOctree* ForceOctree::AddMBlockPlus(MBlock *b) {
-    this->sum_m_plus += b->position;
+#pragma omp critical
     this->mblocks_at_cell_plus_count +=1;
+#pragma omp parallel
+    {
+        this->sum_m_plus += b->position;
+    };
     if(this->is_leaf) {
         return this;
     } else {
@@ -49,8 +61,12 @@ ForceOctree* ForceOctree::AddMBlockPlus(MBlock *b) {
 }
 
 ForceOctree* ForceOctree::AddMBlockNeg(MBlock *b) {
-    this->sum_m_neg += b->position;
+#pragma omp atomic
     this->mblocks_at_cell_neg_count +=1;
+#pragma omp critical
+    {
+        this->sum_m_neg += b->position;
+    };
     if(this->is_leaf) {
         return this;
     } else {
@@ -62,8 +78,12 @@ ForceOctree* ForceOctree::AddMBlockNeg(MBlock *b) {
 }
 
 ForceOctree* ForceOctree::AddEBlock(EBlock *b) {
-    this->sum_e += b->position;
+#pragma omp atomic
     this->eblocks_at_cell_count +=1;
+#pragma omp critical
+    {
+        this->sum_e += b->position;
+    };
     if(this->is_leaf) {
         return this;
     } else {
@@ -76,7 +96,6 @@ ForceOctree* ForceOctree::AddEBlock(EBlock *b) {
 
 
 ForceOctree* ForceOctree::AddZBlock(ZBlock *b) {
-
 
 #pragma omp atomic
     this->zblocks_at_cell_count +=1;
@@ -95,74 +114,99 @@ ForceOctree* ForceOctree::AddZBlock(ZBlock *b) {
 }
 
 void ForceOctree::RemoveIBlockPlus(IBlock *b) {
-    this->sum_i_plus -= b->position;
-    this->iblocks_at_cell_plus_count -=1;
     if(!this->is_leaf) {
         auto t0 = b->position(0, 0) > avg_x;
         auto t1 = b->position(1, 0) > avg_y;
         auto t2 = b->position(2, 0) > avg_z;
         this->children[t0 + t1 * 2 + t2 * 4]->RemoveIBlockPlus(b);
     }
+#pragma omp atomic
+    this->iblocks_at_cell_plus_count -=1;
+#pragma omp critical
+    {
+        this->sum_i_plus -= b->position;
+    };
 }
 
 void ForceOctree::RemoveIBlockNeg(IBlock *b) {
-    this->sum_i_neg -= b->position;
-    this->iblocks_at_cell_neg_count -=1;
     if(!this->is_leaf) {
         auto t0 = b->position(0, 0) > avg_x;
         auto t1 = b->position(1, 0) > avg_y;
         auto t2 = b->position(2, 0) > avg_z;
         this->children[t0 + t1 * 2 + t2 * 4]->RemoveIBlockNeg(b);
     }
+
+
+#pragma omp atomic
+    this->iblocks_at_cell_neg_count -=1;
+#pragma omp critical
+    {
+        this->sum_i_neg -= b->position;
+    };
 }
 
 void ForceOctree::RemoveEBlock(EBlock *b) {
-    this->sum_e -= b->position;
-    this->eblocks_at_cell_count -=1;
     if(!this->is_leaf) {
         auto t0 = b->position(0, 0) > avg_x;
         auto t1 = b->position(1, 0) > avg_y;
         auto t2 = b->position(2, 0) > avg_z;
         this->children[t0 + t1 * 2 + t2 * 4]->RemoveEBlock(b);
     }
+
+#pragma omp atomic
+    this->eblocks_at_cell_count -=1;
+#pragma omp critical
+    {
+        this->sum_e -= b->position;
+    };
 }
 
 void ForceOctree::RemoveZBlock(ZBlock *b) {
 
-#pragma omp atomic
-    this->zblocks_at_cell_count-=1;
-#pragma omp critical
-    {
-        this->sum_z -= b->position;
-    }
     if(!this->is_leaf) {
         auto t0 = b->position(0, 0) > avg_x;
         auto t1 = b->position(1, 0) > avg_y;
         auto t2 = b->position(2, 0) > avg_z;
         this->children[t0 + t1 * 2 + t2 * 4]->RemoveZBlock(b);
     }
+#pragma omp atomic
+    this->zblocks_at_cell_count-=1;
+#pragma omp critical
+    {
+        this->sum_z -= b->position;
+    }
 }
 
 void ForceOctree::RemoveMBlockPlus(MBlock *b) {
-    this->sum_m_plus -= b->position;
-    this->mblocks_at_cell_plus_count -=1;
     if(!this->is_leaf) {
         auto t0 = b->position(0, 0) > avg_x;
         auto t1 = b->position(1, 0) > avg_y;
         auto t2 = b->position(2, 0) > avg_z;
         this->children[t0 + t1 * 2 + t2 * 4]->RemoveMBlockPlus(b);
     }
+
+#pragma omp atomic
+    this->mblocks_at_cell_plus_count -=1;
+#pragma omp critical
+    {
+        this->sum_m_plus -= b->position;
+    };
 }
 
 void ForceOctree::RemoveMBlockNeg(MBlock *b) {
-    this->sum_m_neg -= b->position;
-    this->mblocks_at_cell_neg_count -=1;
     if(!this->is_leaf) {
         auto t0 = b->position(0, 0) > avg_x;
         auto t1 = b->position(1, 0) > avg_y;
         auto t2 = b->position(2, 0) > avg_z;
         this->children[t0 + t1 * 2 + t2 * 4]->RemoveMBlockNeg(b);
     }
+
+#pragma omp atomic
+    this->mblocks_at_cell_neg_count -=1;
+#pragma omp critical
+    {
+        this->sum_m_neg -= b->position;
+    };
 }
 
 
@@ -270,6 +314,14 @@ bool ForceOctree::BlockInCorrectTree(ForceOctree *tree, Block *b) {
     }
     return false;
 
+}
+
+ForceOctree::~ForceOctree() {
+    if(!this->is_leaf) {
+        for(auto & i : children) {
+            delete i;
+        }
+    }
 }
 
 int ForceOctree::count = 0;

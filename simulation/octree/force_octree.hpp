@@ -41,7 +41,8 @@ namespace blocks {
         real cell_partition_size;
 
         bool is_leaf = false;
-        std::map<unsigned int, ForceOctree *> children;
+        //std::map<unsigned int, ForceOctree *> children;
+        ForceOctree* children[8];
 
 
         explicit ForceOctree(int grid_sizes, real min_x, real max_x, real min_y, real max_y, real min_z, real max_z,
@@ -55,8 +56,6 @@ namespace blocks {
         ForceOctree *AddEBlock(EBlock *b);
         ForceOctree *AddMBlockPlus(MBlock *b);
         ForceOctree *AddMBlockNeg(MBlock *b);
-
-        void RemoveAllZBlocks();
 
         void RemoveIBlockPlus(IBlock *b);
         void RemoveIBlockNeg(IBlock *b);
@@ -74,6 +73,8 @@ namespace blocks {
         void CalculateCOMonTree();
 
         bool static BlockInCorrectTree(ForceOctree *tree, Block *b);
+
+        ~ForceOctree();
 
     };
 }

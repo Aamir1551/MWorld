@@ -309,8 +309,8 @@ void WorldHandler::AddForces(real deltatime) {
 
 void WorldHandler::PassBlockFlares(vector<Contact> &contacts, real deltatime) {
 #pragma omp parallel for
-    for(unsigned int i=0; i<contacts.size(); i++) {
-        PassFlare(contacts.at(i).body1, contacts.at(i).body2, deltatime);
+    for(auto & contact : contacts) {
+        PassFlare(contact.body1, contact.body2, deltatime);
     }
 }
 
@@ -327,16 +327,16 @@ void WorldHandler::PassFlare(Block *a, Block *b, real deltatime) {
 
 void WorldHandler::IncFlareValuesAndReset() {
 #pragma omp parallel for
-   for(unsigned int i=0; i<this->blocks.size(); i++) {
-        this->blocks.at(i)->UpdateFlare();
-        this->blocks.at(i)->flare_inc = 0;
+   for(auto & block : this->blocks) {
+        block->UpdateFlare();
+        block->flare_inc = 0;
     }
 }
 
 void WorldHandler::AddSpin(vector<Block *> *block_list,  Matrix const &force_direction) {
 #pragma omp parallel for
-    for(unsigned int i=0; i<block_list->size(); i++) {
-        block_list->at(i)->spin(force_direction);
+    for(auto & i : *block_list) {
+        i->spin(force_direction);
     }
 }
 
@@ -344,4 +344,14 @@ void WorldHandler::SpinWorldBlocks() {
     AddSpin((vector<Block*>*) (&this->mblocks), Matrix::CreateColumnVec(0.1, 0, 0));
     AddSpin((vector<Block*>*) (&this->iblocks), Matrix::CreateColumnVec(0, 0.01, 0));
     AddSpin((vector<Block*>*) (&this->eblocks), Matrix::CreateColumnVec(0, 0, 0.1));
+}
+
+WorldHandler::~WorldHandler() {
+    /*delete this->tree;
+    delete this->forces_tree;
+    for(unsigned int i=0; i<this->blocks.size(); i++) {
+        delete this->blocks[i];
+    }*/
+    // still working on this code
+
 }

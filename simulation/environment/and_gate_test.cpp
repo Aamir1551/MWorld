@@ -43,7 +43,7 @@ int main()
     // A    B
     // I1   I2
 
-    WorldHandler world = WorldHandler(2, 2, 2, 6, 2, 0);
+    WorldHandler world = WorldHandler(2, 0, 0, 5, 2, 0);
 
     // I1
     world.iblocks.at(0)->SetLinearMomentumToZero();
@@ -85,35 +85,10 @@ int main()
     world.mblocks.at(3)->position = Matrix::CreateColumnVec(-14+4, down, -9);
     world.mblocks.at(3)->locked = true;
 
-    // Z1
-    world.zblocks.at(0)->SetLinearMomentumToZero();
-    world.zblocks.at(0)->position = Matrix::CreateColumnVec(-14+8, down, -9);
-    world.zblocks.at(0)->locked = true;
-
-    // I-1
-    world.iblocks.at(2)->SetLinearMomentumToZero();
-    world.iblocks.at(2)->position = Matrix::CreateColumnVec(-14+12, down, -9);
-    world.iblocks.at(2)->locked = true;
-
-    // E
-    world.mblocks.at(4)->SetLinearMomentumToZero();
-    world.mblocks.at(4)->position = Matrix::CreateColumnVec(-14+16, down, -9);
-    world.mblocks.at(4)->locked = true;
-
-    // Z2
-    world.zblocks.at(1)->SetLinearMomentumToZero();
-    world.zblocks.at(1)->position = Matrix::CreateColumnVec(-14+20, down, -9);
-    world.zblocks.at(1)->locked = true;
-
-    // I-2
-    world.iblocks.at(3)->SetLinearMomentumToZero();
-    world.iblocks.at(3)->position = Matrix::CreateColumnVec(-14+24, down, -9);
-    world.iblocks.at(3)->locked = true;
-
     // F
-    world.mblocks.at(5)->SetLinearMomentumToZero();
-    world.mblocks.at(5)->position = Matrix::CreateColumnVec(-14+28, down, -9);
-    world.mblocks.at(5)->locked = true;
+    world.mblocks.at(4)->SetLinearMomentumToZero();
+    world.mblocks.at(4)->position = Matrix::CreateColumnVec(-14+8, down, -9);
+    world.mblocks.at(4)->locked = true;
 
     world.ResetTrees();
 
@@ -174,8 +149,7 @@ int main()
             cout << "Flare value in E2 block: " << world.eblocks.at(1)->flare_value << endl;
             cout << "Flare value in C block: " << world.mblocks.at(2)->flare_value << endl;
             cout << "Flare value in D block: " << world.mblocks.at(3)->flare_value << endl;
-            cout << "Flare value in E block: " << world.mblocks.at(4)->flare_value << endl;
-            cout << "Flare value in F block: " << world.mblocks.at(5)->flare_value << endl;
+            cout << "Flare value in F block: " << world.mblocks.at(4)->flare_value << endl;
 
         }
     }
