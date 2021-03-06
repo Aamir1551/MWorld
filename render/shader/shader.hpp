@@ -16,7 +16,7 @@ namespace render_utils
     {
 
     private:
-        void static compile_code(int shaderID, const std::string& sourcecode, char const *shaderName)
+        void static CompileCode(int shaderID, const std::string& sourcecode, char const *shaderName)
         {
             // Compiling code
             char const *c = sourcecode.c_str();
@@ -34,7 +34,7 @@ namespace render_utils
             }
         }
 
-        void static link_shaders(unsigned int &shader_id, unsigned int vertex_shader, unsigned int frag_shader)
+        void static LinkShaders(unsigned int &shader_id, unsigned int vertex_shader, unsigned int frag_shader)
         {
             int success;
             char infoLog[512];
@@ -66,36 +66,36 @@ namespace render_utils
 
             unsigned int vertex_shader = glCreateShader(GL_VERTEX_SHADER);
             char const *vp = "vertex";
-            compile_code(vertex_shader, vertex_shader_sourcecode, vp);
+            CompileCode(vertex_shader, vertex_shader_sourcecode, vp);
 
             unsigned int frag_shader = glCreateShader(GL_FRAGMENT_SHADER);
             char const *fp = "fragment";
-            compile_code(frag_shader, frag_shader_sourcecode, fp);
+            CompileCode(frag_shader, frag_shader_sourcecode, fp);
 
-            link_shaders(shader_id, vertex_shader, frag_shader);
+            LinkShaders(shader_id, vertex_shader, frag_shader);
 
             glDeleteShader(vertex_shader);
             glDeleteShader(frag_shader);
         };
 
-        void use()
+        void Use()
         {
             glUseProgram(shader_id);
         };
 
-        void set_bool(const std::string &name, bool a) const
+        void SetBool(const std::string &name, bool a) const
         {
             glUniform1i(glGetUniformLocation(shader_id, name.c_str()), (int)a);
         };
-        void set_int(const std::string &name, int a) const
+        void SetInt(const std::string &name, int a) const
         {
             glUniform1i(glGetUniformLocation(shader_id, name.c_str()), a);
         };
-        void set_float(const std::string &name, float a) const
+        void SetFloat(const std::string &name, float a) const
         {
             glUniform1f(glGetUniformLocation(shader_id, name.c_str()), a);
         };
-        void set_float3(const std::string &name, float a, float b, float c)
+        void SetFloat3(const std::string &name, float a, float b, float c)
         {
             glUniform3f(glGetUniformLocation(shader_id, name.c_str()), a, b, c);
         }

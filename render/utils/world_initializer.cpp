@@ -49,7 +49,7 @@ namespace render_utils
         //std::cout << std::string(result, GetModuleFileName(NULL, result, MAX_PATH)) << std::endl; --first use #include<windows.h>
         Shader shader("../../../render/glsl_shaders/vert.glsl", "../../../render/glsl_shaders/frag.glsl"); //with respect to root build
 
-        shader.use();
+        shader.Use();
         std::cout << "Shaders successfully initialised" << std::endl;
         WorldProperties *world_properties = new WorldProperties({window, shader.shader_id});
         return world_properties;
