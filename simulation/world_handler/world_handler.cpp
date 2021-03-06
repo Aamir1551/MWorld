@@ -149,7 +149,9 @@ void WorldHandler::AddBlock(BlockTypes block_types, int num_blocks, bool state) 
             auto temp = blocks.back();
             temp->SetLinearMomentum(linear_momentums->at(i));
             this->block_to_leaf[temp] = tree_occupied;
-    }
+        };
+        delete positions;
+        delete linear_momentums;
 }
 
 
@@ -164,10 +166,7 @@ void WorldHandler::Update(vector<Contact> &contact_list, real delta_time) {
 
 #pragma omp parallel for
     for(unsigned int i=0; i<contact_list.size(); i++) {
-#pragma omp critical
-        {
-            Cube::CollisionResolution(contact_list.at(i));
-    }
+        Cube::CollisionResolution(contact_list.at(i));
     }
 
 #pragma omp parallel for
@@ -347,11 +346,11 @@ void WorldHandler::SpinWorldBlocks() {
 }
 
 WorldHandler::~WorldHandler() {
-    /*delete this->tree;
+    delete this->tree;
     delete this->forces_tree;
-    for(unsigned int i=0; i<this->blocks.size(); i++) {
-        delete this->blocks[i];
-    }*/
-    // still working on this code
+
+    for(auto & b : this->blocks) {
+        delete b;
+    }
 
 }

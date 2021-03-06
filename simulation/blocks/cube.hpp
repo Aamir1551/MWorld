@@ -104,6 +104,7 @@ namespace blocks {
                                             real min_boundary_z, real max_boundary_z);
 
         void static CollisionResolution(Contact &contact);
+        virtual ~Cube() = default;
     };
 };
 #endif

@@ -20,7 +20,7 @@ namespace blocks {
         void AddFlareToBlock(real flare_amount, Block *b) override;
         void Decay(real delta_time) override;
         void UpdateFlare() override;
-
+        ~MBlock() override =default;
     };
 
 }

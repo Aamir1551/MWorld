@@ -27,6 +27,7 @@ namespace blocks
         real ExtractFlareFromBlock(real deltatime) override;
         void AddFlareToBlock(real flare_amount, Block *b) override;
         void UpdateFlare() override;
+        ~EBlock() override = default;
 
     };
 

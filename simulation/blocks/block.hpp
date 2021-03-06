@@ -50,6 +50,7 @@ namespace blocks {
         virtual void UpdateFlare();
 
         virtual void Decay(real delta_time);
+        ~Block() override = default;
 
     };
 
