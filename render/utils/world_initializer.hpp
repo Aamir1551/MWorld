@@ -17,8 +17,8 @@ namespace render_utils
         unsigned int shader_id;
     };
 
-    void framebuffer_size_callback(GLFWwindow *window, int width, int height);
-    WorldProperties *world_intializer();
+    void FramebufferSizeCallback(GLFWwindow *window, int width, int height);
+    WorldProperties *WorldIntializer();
 
 } // namespace render_utils
 #endif

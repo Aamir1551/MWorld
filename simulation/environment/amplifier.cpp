@@ -28,7 +28,7 @@ int main()
 {
     cout << "Running Amplifier Simulation" << endl;
 
-    WorldProperties *world_properties = world_intializer();
+    WorldProperties *world_properties = WorldIntializer();
 
     unsigned int vao, vbo, ebo;
     glGenVertexArrays(1, &vao);

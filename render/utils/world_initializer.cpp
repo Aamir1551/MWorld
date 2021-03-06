@@ -10,12 +10,12 @@
 namespace render_utils
 {
 
-    void framebuffer_size_callback(GLFWwindow *window, int width, int height)
+    void FramebufferSizeCallback(GLFWwindow *window, int width, int height)
     {
         glViewport(0, 0, width, height);
     };
 
-    WorldProperties *world_intializer()
+    WorldProperties *WorldIntializer()
     {
         std::cout << "Rendering started" << std::endl;
         glfwInit();
@@ -25,12 +25,12 @@ namespace render_utils
         std::cout << "GLFW initialised" << std::endl;
 
         GLFWwindow *window = glfwCreateWindow(800, 600, "Cube Renderer", NULL, NULL);
-        if (window == NULL)
+        if (window == nullptr)
         {
             std::cout << "Failed to create a GLFW window" << std::endl;
         }
         glfwMakeContextCurrent(window);
-        glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+        glfwSetFramebufferSizeCallback(window, FramebufferSizeCallback);
         std::cout << "GLFW successfully intialised" << std::endl;
 
         if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
@@ -51,7 +51,7 @@ namespace render_utils
 
         shader.Use();
         std::cout << "Shaders successfully initialised" << std::endl;
-        WorldProperties *world_properties = new WorldProperties({window, shader.shader_id});
+        auto *world_properties = new WorldProperties({window, shader.shader_id});
         return world_properties;
     }
 } // namespace render_utils

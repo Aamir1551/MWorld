@@ -46,7 +46,7 @@ int main()
     Matrix up_force(3, 1, up_force_coordinates);
     Matrix down_force(3, 1, down_force_coordinates);
 
-    WorldProperties *world_properties = world_intializer();
+    WorldProperties *world_properties = WorldIntializer();
 
     unsigned int vao, vbo, ebo;
     glGenVertexArrays(1, &vao);
