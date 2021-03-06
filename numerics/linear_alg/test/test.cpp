@@ -1,5 +1,5 @@
 #include <iostream>
-#include <stdlib.h>
+#include <cstdlib>
 #include <vector>
 
 #include <matrix.hpp>
@@ -34,12 +34,12 @@ TEST_CASE("Creating Matrices of different size", "[construction]")
         d_test_values.push_back(rand() % 100); //make sure to change this so we can also test for floats, or for any settings::real
     }
 
-    Matrix *a = new Matrix(a_row_test, a_col_test);
+    auto *a = new Matrix(a_row_test, a_col_test);
     std::pair<int, int> a_shape = a->shape();
     int a_row = a_shape.first;
     int a_col = a_shape.second;
 
-    Matrix *b = new Matrix(b_row_test, b_col_test);
+    auto *b = new Matrix(b_row_test, b_col_test);
     std::pair<int, int> b_shape = b->shape();
     int b_row = b_shape.first;
     int b_col = b_shape.second;
@@ -104,7 +104,7 @@ TEST_CASE("Creating Matrices of different size", "[construction]")
     delete d;
 }
 
-TEST_CASE("Matrices can be applied with", "[Auxilary Operations]") {
+TEST_CASE("Matrices can be applied with", "[Auxiliary Operations]") {
 
     SECTION("Matrix Operation ()") {
         int a_row = 10;
@@ -193,7 +193,6 @@ TEST_CASE("Matrices can be applied with", "[Auxilary Operations]") {
 
         int b_row = a_row;
         int b_col = a_col;
-        int b_total_elements = b_row * b_col;
 
         int c_row = a_row + 1;
         int c_col = 20;
@@ -257,7 +256,6 @@ TEST_CASE("Matrices can be operated with", "[Operations]")
 
     int b_row = 4;
     int b_col = 4;
-    int b_total_elements = b_row * b_col;
 
     int c_row = 100;
     int c_col = 10;

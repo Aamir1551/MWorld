@@ -23,12 +23,12 @@ namespace blocks {
     class ForceOctree {
     public:
 
-        real cell_partition_size;
         int grid_size;
 
         std::map<ForceOctree *, vector<ForceOctree *> > grid_elements_neighbours;
 
-        real avg_x, avg_y, avg_z, min_x, max_x, min_y, max_y, min_z, max_z;
+        real min_x = 0, max_x = 0, min_y = 0, max_y = 0, min_z = 0, max_z = 0;
+        real avg_x = 0, avg_y = 0, avg_z = 0;
         Matrix sum_i_plus,  sum_i_neg, sum_z, sum_m_plus, sum_m_neg, sum_e;
 
         Matrix com_i_plus = Matrix(3, 1);
@@ -37,6 +37,8 @@ namespace blocks {
         Matrix com_m_neg = Matrix(3, 1);
         Matrix com_e = Matrix(3, 1);
         Matrix com_z = Matrix(3, 1);
+
+        real cell_partition_size;
 
         bool is_leaf = false;
         std::map<unsigned int, ForceOctree *> children;

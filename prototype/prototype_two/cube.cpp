@@ -9,6 +9,11 @@ using namespace settings;
 class Cube
 {
 public:
+
+    //constants
+    real const inverse_inertia;
+    real const inverse_mass;
+
     //primary
     Matrix position = Matrix(3.0, 1.0);
     Quaternion orientation = Quaternion(1.0f, 0.0f, 0.0f, 0.0f);
@@ -21,9 +26,6 @@ public:
     Matrix linear_velocity = Matrix(3, 1);
     Matrix angular_velocity = Matrix(3, 1);
 
-    //constants
-    real const inverse_inertia;
-    real const inverse_mass;
 
     /**
      * @brief Construct a new Cube object.
@@ -33,9 +35,9 @@ public:
      * @param inverse_mass Inverse mass of cube
      * @param inverse_inertia Inverse intertia of cube
      */
-    Cube(Matrix position, Quaternion initial_orientation = Quaternion(1, 0, 0, 0),
-         real inverse_mass = 1.0f, real inverse_inertia = 1.0f) : inverse_mass(inverse_mass),
-                                                                  inverse_inertia(inverse_inertia)
+    explicit Cube(Matrix &position, const Quaternion &initial_orientation = Quaternion(1, 0, 0, 0),
+         real inverse_mass = 1.0f, real inverse_inertia = 1.0f) : inverse_inertia(inverse_inertia), inverse_mass(inverse_mass)
+
     {
         this->position = position;
         this->orientation = initial_orientation;
@@ -90,15 +92,13 @@ public:
     }
 
     /**
-     * @brief Returns the equavilent vector of a given vector in cube coordinates
+     * @brief Returns the equivalent vector of a given vector in cube coordinates
      * 
      * @param world_vector 
      * @return Matrix 
      */
     Matrix ConvertToCubeCoordinates(Matrix const world_vector) const
     {
-        //return Matrix::MatMul((Quaternion::GetInverseOrentationMatrix3(this->orientation)), world_vector);
-        //return world_vector;
         return Matrix::MatMul((Quaternion::GetOrientationMatrix3(this->orientation)), world_vector);
     }
 
@@ -109,7 +109,7 @@ public:
      * @param force_world_cooridinates The force position in world coordinates
      * @param dt The amount of time the force was applied for
      */
-    void AddTorque(Matrix const force_direction, Matrix const force_position_world_cooridinates, real const dt)
+    void AddTorque(Matrix const& force_direction, Matrix const& force_position_world_cooridinates, real const dt)
     {
         /*
             Initially the force and the force_world_coordinates are in world coordintes. However, the 
@@ -134,14 +134,11 @@ public:
             New angular momentum = old angular momentum + angular impulse
 
        */
-        //Matrix force_cube_coordinates = ConvertToCubeCoordinates(force);
-        Matrix force_direction_cube_coordinates = force_direction;
 
-        //Matrix r = ConvertToCubeCoordinates(force_world_cooridinates - this->position);
         Matrix r = force_position_world_cooridinates - this->position;
 
         momentum += force_direction * dt;
-        angular_momentum += Matrix::VectorProduct(r, force_direction_cube_coordinates) * dt;
+        angular_momentum += Matrix::VectorProduct(r, force_direction) * dt;
     }
 
     /**

@@ -8,23 +8,30 @@ using namespace numerics;
 using namespace settings;
 using namespace std;
 
-// TODO
-// 1) Make position, velocity, momentum etc as 4x1 instead of 3x1
-
 class Cube;
 
 struct Contact
 {
-    numerics::Matrix point;     //collision point
-    settings::real penetration; //The amount of penetration
-    Matrix normal;         // The contact normal // =-1
-    Cube *body1;                //The body pointer of the first cube //=nullptr
-    Cube *body2;                //The body pointer of the second cube //=nullptr
+    //collision point
+    numerics::Matrix point;
+    //The amount of penetration
+    settings::real penetration;
+    // The contact normal // =-1
+    Matrix normal;
+    //The body pointer of the first cube
+    Cube *body1;
+    //The body pointer of the second cube
+    Cube *body2;
 };
 
 class Cube
 {
 public:
+
+    //constants
+    real const cube_length;
+    real const inverse_mass;
+    real const inverse_inertia;
 
     //primary
     Matrix position = Matrix(3.0, 1.0);
@@ -37,10 +44,6 @@ public:
     Matrix linear_velocity = Matrix(3, 1);
     Matrix angular_velocity = Matrix(3, 1);
 
-    //constants
-    real const inverse_inertia;
-    real const inverse_mass;
-    real const cube_length;
 
     /**
      * @brief Construct a new Cube object.
@@ -51,7 +54,7 @@ public:
      * @param inverse_mass Inverse mass of cube
      * @param inverse_inertia Inverse inertia of cube
      */
-    Cube(real cube_length, Matrix position, Quaternion initial_orientation = Quaternion(1, 0, 0, 0),
+    Cube(real cube_length, Matrix &position, const Quaternion &initial_orientation = Quaternion(1, 0, 0, 0),
          real inverse_mass = 1.0f, real inverse_inertia = 1.0f) : cube_length(cube_length),
                                                                   inverse_mass(inverse_mass),
                                                                   inverse_inertia(inverse_inertia)
@@ -114,7 +117,7 @@ public:
      * @param force_world_cooridinates The coordinates of the force in world coordinates
      * @param dt The amount of time the force was applied for
      */
-    void AddTorque(Matrix const &force, Matrix const &force_world_cooridinates, real const dt)
+    void AddTorque(Matrix const& force_direction, Matrix const& force_position_world_cooridinates, real const dt)
     {
         /*
             Initially the force and the force_world_coordinates are in world coordintes. However, the
@@ -140,26 +143,10 @@ public:
 
        */
 
-        /*Matrix force_cube_coordinates = ConvertToCubeCoordinates(force);
-        Matrix r = ConvertToCubeCoordinates(force_world_cooridinates - this->position);
+        Matrix r = force_position_world_cooridinates - this->position;
 
-        // Torque is calculated via Matrix::VectorProduct(force_cube_coordinates, r) * dt
-
-        momentum += force * dt;
-        angular_momentum += Matrix::VectorProduct(force_cube_coordinates, r) * dt;*/
-
-
-        //Matrix force_cube_coordinates = ConvertToCubeCoordinates(force);
-        //Matrix force_cube_coordinates = force;
-
-        //Matrix r = ConvertToCubeCoordinates(force_world_cooridinates - this->position);
-        Matrix r = force_world_cooridinates - this->position;
-
-        // Torque is calculated via Matrix::VectorProduct(force_cube_coordinates, r) * dt
-
-        momentum += force * dt;
-        angular_momentum += Matrix::VectorProduct(r, force) * dt;
-
+        momentum += force_direction * dt;
+        angular_momentum += Matrix::VectorProduct(r, force_direction) * dt;
     }
 
     /**
@@ -193,9 +180,6 @@ public:
             contact_list.push_back(contact_info);
         }
     }
-
-
-
 
     void static CollisionResolution(Contact &contact) {
         Cube *body1 = contact.body1;                //The body pointer of the first cube //=nullptr

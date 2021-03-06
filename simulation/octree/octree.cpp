@@ -37,10 +37,9 @@ void Octree::RemoveBlock(Block *b) {
     }
 }
 
-Octree::Octree(int grid_size, real min_x, real  max_x, real min_y, real max_y, real min_z, real max_z, bool initialise) : max_x(max_x), min_x(min_x), min_y(min_y), max_y(max_y), min_z(min_z), max_z(max_z) {
+Octree::Octree(int grid_size, real min_x, real  max_x, real min_y, real max_y, real min_z, real max_z, bool initialise) : grid_size(grid_size), min_x(min_x), max_x(max_x), min_y(min_y), max_y(max_y), min_z(min_z), max_z(max_z) {
 
     this->cell_partition_size = std::min(max_x - min_x, std::min(max_y - min_y, max_z - min_z));
-    this->grid_size = grid_size;
 
     avg_x = (min_x + max_x) / 2;
     avg_y = (min_y + max_y) / 2;
@@ -51,7 +50,7 @@ Octree::Octree(int grid_size, real min_x, real  max_x, real min_y, real max_y, r
     } else {
         this->is_leaf = false;
 
-#pragma parallel for
+#pragma omp parallel for
         for(int i=0; i<8; i++) {
             auto xx0 = (i % 2) ? avg_x : min_x;
             auto xx1 = (i % 2) ? max_x: avg_x;
@@ -178,7 +177,7 @@ bool Octree::LeafsAreNull() {
         return this->blocks_at_leaf.size() == 0;
     } else {
         bool cond = true;
-        for(int i=0; i<this->children.size(); i++) {
+        for(unsigned int i=0; i<this->children.size(); i++) {
             cond &= this->children.at(i)->LeafsAreNull();
             if(!cond) {
                 return false;

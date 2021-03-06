@@ -51,10 +51,9 @@ namespace blocks {
          * @param inverse_mass Inverse mass of cube
          * @param inverse_inertia Inverse inertia of cube
          */
-        Cube(real cube_length, Matrix position, Quaternion initial_orientation = Quaternion(1, 0, 0, 0),
-             real inverse_mass = 1.0f, real inverse_inertia = 1.0f) : cube_length(cube_length),
-                                                                      inverse_mass(inverse_mass),
-                                                                      inverse_inertia(inverse_inertia) {
+        Cube(real cube_length, const Matrix &position, const Quaternion& initial_orientation = Quaternion(1, 0, 0, 0), real inverse_mass = 1.0f, real inverse_inertia = 1.0f) :
+         inverse_inertia(inverse_inertia), inverse_mass(inverse_mass), cube_length(cube_length)
+        {
             this->position = position;
             this->orientation = initial_orientation;
         };

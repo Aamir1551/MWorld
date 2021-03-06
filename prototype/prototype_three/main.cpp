@@ -25,11 +25,6 @@ using namespace render_utils;
 using namespace numerics;
 using namespace settings;
 
-// TODO
-// 1) Add font colour to terminal screen whenever prototype_one or two or three are running.
-// Add a different font colour for each of them in the terminal.
-// So that it is more clearer to know which prototype is running.
-
 int main()
 {
     cout << "Running Prototype 3" << endl;
@@ -85,7 +80,7 @@ int main()
     //real angular_momentum[] = {0.0000002, 0.0002, 0.0000002};
     //c1.angular_momentum = Matrix(3, 1, angular_momentum);
 
-    bool paused = false;
+    //bool paused = false;
 
     while (!glfwWindowShouldClose(world_properties->window))
     { // render loop -- an iteration of this main render loop is called a frame
@@ -111,8 +106,6 @@ int main()
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        real amount = 0.0001;
-
         /*real force_values[] = {30, 0, 0};
         real force_world_coordinate_values[] = {-12, 0, -20};
 
@@ -126,7 +119,7 @@ int main()
         vector<Contact> contact_list;
         Cube::CollisionDetect(&c1,&c2, contact_list);
 
-        for(int i=0; i<contact_list.size(); i++) {
+        for(unsigned int i=0; i<contact_list.size(); i++) {
             Cube::CollisionResolution(contact_list.at(i));
         }
 

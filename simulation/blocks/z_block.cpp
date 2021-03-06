@@ -37,6 +37,7 @@ namespace blocks {
             this->flare_inc -= extract_flare; // using the kissing number of spheres
             return extract_flare * -1;
         }
+        return 0;
     };
 
     void ZBlock::AddFlareToBlock(real flare_amount, Block *b) {

@@ -14,15 +14,11 @@ namespace blocks {
     }
 
     void MBlock::Decay(real delta_time) {
-       //this->flare_value -= (delta_time * EBlock::capacity * 0.08 * 0.55);
-       //this->flare_value -= 0.5 * 0.08 * delta_time * (this->flare_value/4) * (this->flare_value/4);
-       this->flare_value -= 0.5 * 0.08 * delta_time;
+       this->flare_value = std::max(this->flare_value - 0.5 * 0.08 * delta_time, 0.0);
+    };
 
-       // if they have less flare, then we decay less
-
-       // we need decay to be more than 0.5 * 0.08
-       //this->flare_value -= delta_time * 0.001;
-       this->flare_value = std::max(this->flare_value, (real) 0);
+    void MBlock::UpdateFlare() {
+        this->flare_value = std::min((this->flare_inc + this->flare_value), MBlock::capacity);
     };
 
     real MBlock::ExtractFlareFromBlock(real deltatime) {
@@ -32,6 +28,7 @@ namespace blocks {
     };
 
     real MBlock::threshold = 0.5f;
+    real MBlock::capacity = 5;
 
     bool MBlock::React(ForceOctree *tree, real delta_time) {
         if (tree->zblocks_at_cell_count == 0) {

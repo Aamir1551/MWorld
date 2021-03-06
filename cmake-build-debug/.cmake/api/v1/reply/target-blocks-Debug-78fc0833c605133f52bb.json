@@ -3,7 +3,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "simulation/octree/libforce_octree.a"
+			"path" : "simulation/blocks/libblocks.a"
 		}
 	],
 	"backtrace" : 1,
@@ -17,7 +17,7 @@
 		],
 		"files" : 
 		[
-			"simulation/octree/CMakeLists.txt"
+			"simulation/blocks/CMakeLists.txt"
 		],
 		"nodes" : 
 		[
@@ -27,11 +27,17 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 6,
+				"line" : 5,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
+				"file" : 0,
+				"line" : 6,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
 				"file" : 0,
 				"line" : 8,
 				"parent" : 0
@@ -39,7 +45,7 @@
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 10,
+				"line" : 9,
 				"parent" : 0
 			}
 		]
@@ -60,7 +66,11 @@
 			[
 				{
 					"backtrace" : 3,
-					"path" : "C:/Users/aamir/Documents/mworld/simulation/octree/."
+					"path" : "C:/Users/aamir/Documents/mworld/simulation/blocks"
+				},
+				{
+					"backtrace" : 4,
+					"path" : "C:/Users/aamir/Documents/mworld/simulation/blocks/../octree"
 				},
 				{
 					"backtrace" : 2,
@@ -69,14 +79,6 @@
 				{
 					"backtrace" : 2,
 					"path" : "C:/Users/aamir/Documents/mworld/utils/settings/."
-				},
-				{
-					"backtrace" : 2,
-					"path" : "C:/Users/aamir/Documents/mworld/simulation/blocks"
-				},
-				{
-					"backtrace" : 2,
-					"path" : "C:/Users/aamir/Documents/mworld/simulation/blocks/../octree"
 				},
 				{
 					"backtrace" : 2,
@@ -122,8 +124,13 @@
 			"language" : "CXX",
 			"sourceIndexes" : 
 			[
-				0,
-				4
+				1,
+				7,
+				8,
+				9,
+				10,
+				11,
+				14
 			]
 		}
 	],
@@ -131,19 +138,19 @@
 	[
 		{
 			"backtrace" : 2,
-			"id" : "glad::@bf3af473941166e98053"
-		},
-		{
-			"backtrace" : 2,
 			"id" : "utils::@c5cd9bcf8a2dc65dcb35"
 		},
 		{
 			"backtrace" : 2,
-			"id" : "linear_alg::@b276e23674e4ab50d284"
+			"id" : "glad::@bf3af473941166e98053"
 		},
 		{
 			"backtrace" : 2,
 			"id" : "quaternion::@1ddfe99dd86582fd9c64"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "linear_alg::@b276e23674e4ab50d284"
 		},
 		{
 			"backtrace" : 2,
@@ -152,39 +159,45 @@
 		{
 			"backtrace" : 2,
 			"id" : "mworld_render_utils::@c1c5e50b708af245b811"
-		},
-		{
-			"backtrace" : 2,
-			"id" : "blocks::@6db65c1307d2a2a784c8"
 		}
 	],
-	"id" : "force_octree::@66c141f95c7ed784ad75",
-	"name" : "force_octree",
-	"nameOnDisk" : "libforce_octree.a",
+	"id" : "blocks::@6db65c1307d2a2a784c8",
+	"name" : "blocks",
+	"nameOnDisk" : "libblocks.a",
 	"paths" : 
 	{
-		"build" : "simulation/octree",
-		"source" : "simulation/octree"
+		"build" : "simulation/blocks",
+		"source" : "simulation/blocks"
 	},
 	"sourceGroups" : 
 	[
 		{
-			"name" : "Source Files",
-			"sourceIndexes" : 
-			[
-				0,
-				4
-			]
-		},
-		{
 			"name" : "Header Files",
 			"sourceIndexes" : 
 			[
-				1,
+				0,
 				2,
 				3,
+				4,
 				5,
-				6
+				6,
+				12,
+				13,
+				15,
+				16
+			]
+		},
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				1,
+				7,
+				8,
+				9,
+				10,
+				11,
+				14
 			]
 		}
 	],
@@ -192,40 +205,95 @@
 	[
 		{
 			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "simulation/octree/force_octree.cpp",
+			"path" : "simulation/blocks/cube.hpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
-			"path" : "simulation/octree/force_octree.hpp",
+			"compileGroupIndex" : 0,
+			"path" : "simulation/blocks/cube.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "simulation/blocks/block.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "simulation/blocks/e_block.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "simulation/blocks/i_block.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "simulation/blocks/m_block.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "simulation/blocks/z_block.hpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "simulation/blocks/block.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "simulation/blocks/e_block.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "simulation/blocks/i_block.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "simulation/blocks/m_block.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "simulation/blocks/z_block.cpp",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 2,
 			"path" : "utils/settings/settings.hpp",
-			"sourceGroupIndex" : 1
+			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 2,
 			"path" : "render/utils/world_initializer.hpp",
-			"sourceGroupIndex" : 1
+			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 2,
 			"compileGroupIndex" : 0,
 			"path" : "render/utils/world_initializer.cpp",
-			"sourceGroupIndex" : 0
+			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 2,
 			"path" : "render/shader/shader.hpp",
-			"sourceGroupIndex" : 1
+			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 2,
 			"path" : "render/camera/camera.hpp",
-			"sourceGroupIndex" : 1
+			"sourceGroupIndex" : 0
 		}
 	],
 	"type" : "STATIC_LIBRARY"

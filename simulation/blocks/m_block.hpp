@@ -9,20 +9,18 @@ namespace blocks {
 
     public:
         static real threshold;
+        static real capacity;
 
         MBlock(Matrix position, Quaternion initial_orientation, real cube_length = 4.0f) : Block(position, initial_orientation, 0, cube_length) {
             this->block_type = 2;
         };
 
-
         bool React(ForceOctree * tree, real delta_time) override;
         real ExtractFlareFromBlock(real deltatime) override;
         void AddFlareToBlock(real flare_amount, Block *b) override;
         void Decay(real delta_time) override;
+        void UpdateFlare() override;
 
-        void UpdateFlare() override {
-            this->flare_value = std::max(std::min( (this->flare_inc + this->flare_value), (real) 100), 0.0f);
-        };
     };
 
 }

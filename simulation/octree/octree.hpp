@@ -23,21 +23,20 @@ namespace blocks {
     class Octree {
     public:
 
-        real cell_partition_size;
         int grid_size;
 
         set<Block *> blocks_at_leaf;
         std::map<Octree *, vector<Octree *> > grid_elements_neighbours;
 
-        real avg_x, avg_y, avg_z, min_x, max_x, min_y, max_y, min_z, max_z;
+        real min_x = 0, max_x = 0, min_y = 0, max_y = 0, min_z = 0, max_z = 0;
+        real avg_x = 0, avg_y = 0, avg_z = 0;
+        real cell_partition_size;
 
         bool is_leaf = false;
         std::map<unsigned int, Octree *> children;
 
-
         explicit Octree(int grid_sizes, real min_x, real max_x, real min_y, real max_y, real min_z, real max_z,
                         bool initialise = false);
-
 
         Octree *AddBlock(Block *b);
 
