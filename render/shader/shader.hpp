@@ -16,30 +16,31 @@ namespace render_utils
     {
 
     private:
-        void static compile_code(int shaderID, std::string sourcecode, char const *shaderName)
+        void static compile_code(int shaderID, const std::string& sourcecode, char const *shaderName)
         {
-
+            // Compiling code
             char const *c = sourcecode.c_str();
+            int success;
+            char infoLog[512];
+
             glShaderSource(shaderID, 1, &(c), NULL);
             glCompileShader(shaderID);
 
-            int success;
-            char infoLog[512];
             glGetShaderiv(shaderID, GL_COMPILE_STATUS, &success);
             if (!success)
             {
                 glGetShaderInfoLog(shaderID, 512, NULL, infoLog);
-                std::cout << "ERROR::SHADER::" << shaderName << "::COMPILATION_FAILED\n"
-                          << infoLog << std::endl;
+                std::cout << "ERROR::SHADER::" << shaderName << "::COMPILATION_FAILED\n" << infoLog << std::endl;
             }
         }
 
         void static link_shaders(unsigned int &shader_id, unsigned int vertex_shader, unsigned int frag_shader)
         {
-            shader_id = glCreateProgram();
-
             int success;
             char infoLog[512];
+
+            shader_id = glCreateProgram();
+
             glAttachShader(shader_id, vertex_shader);
             glAttachShader(shader_id, frag_shader);
             glLinkProgram(shader_id);
@@ -47,14 +48,13 @@ namespace render_utils
             glGetProgramiv(shader_id, GL_LINK_STATUS, &success);
             if (!success)
             {
-                glGetProgramInfoLog(shader_id, 512, NULL, infoLog);
-                std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n"
-                          << infoLog << std::endl;
+                glGetProgramInfoLog(shader_id, 512, nullptr, infoLog);
+                std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
             }
         }
 
     public:
-        unsigned int shader_id;
+        unsigned int shader_id = 0;
 
         Shader(std::string vert_file, std::string frag_file)
         {
@@ -83,7 +83,6 @@ namespace render_utils
             glUseProgram(shader_id);
         };
 
-        // utility uniform functions
         void set_bool(const std::string &name, bool a) const
         {
             glUniform1i(glGetUniformLocation(shader_id, name.c_str()), (int)a);

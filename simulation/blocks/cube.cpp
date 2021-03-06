@@ -94,12 +94,12 @@ namespace blocks {
 
     void Cube::AddLinearForce(Matrix const &force_direction, real dt) {
         momentum += force_direction * dt;
-        momentum -= force_direction * dt; //comment out this line of code to test out time complexity of code, when forces are not being take in to consideration
+        //momentum -= force_direction * dt; //comment out this line of code to test out time complexity of code, when forces are not being take in to consideration
     }
 
-        void Cube::SetAngularMomentumToZero() {
-            angular_momentum = Matrix(3, 1);
-        }
+    void Cube::SetAngularMomentumToZero() {
+        angular_momentum = Matrix(3, 1);
+    }
 
     void Cube::SetLinearMomentumToZero() {
         momentum = Matrix(3, 1);
@@ -107,45 +107,44 @@ namespace blocks {
 
 
     Matrix Cube::GetOrientationMatrix() const {
-            return Quaternion::GetMatrixTransformation(this->orientation);
+        return Quaternion::GetMatrixTransformation(this->orientation);
+    }
+
+    void Cube::CollisionDetect(Block *c1, Block *c2, vector<Contact> &contact_list) {
+        Matrix vect_dist = (c1->position - c2->position);
+        real dist = Matrix::Norm(vect_dist);
+        real length = (c1->cube_length + c2->cube_length) / 2;
+        if(dist == 0) {
+            auto temp = c1->position(0, 0);
+            c1->position(0, 0, temp + length/2);
+            c2->position(0, 0, temp - length/2);
+            return;
         }
 
-        void Cube::CollisionDetect(Block *c1, Block *c2, vector<Contact> &contact_list) {
-            Matrix vect_dist = (c1->position - c2->position);
-            real dist = Matrix::Norm(vect_dist);
-            real length = (c1->cube_length + c2->cube_length) / 2;
-            if(dist == 0) {
-                auto temp = c1->position(0, 0);
-                c1->position(0, 0, temp + length/2);
-                c2->position(0, 0, temp - length/2);
-                return;
-            }
-
-            if (dist <= length) {
-                Matrix point = (c1->position + c2->position) / 2;
-                vect_dist.Normalise();
-                Contact contact_info = {point, length - dist, vect_dist, c1, c2};
-#pragma omp critical
-                {
-                contact_list.push_back(contact_info);
-                };
-            }
-        }
-
-
-        void Cube::CollisionResolution(Contact &contact) {
-            Cube *body1 = contact.body1;
-            Cube *body2 = contact.body2;
-            auto normal = contact.normal;
-            auto temp = body1->momentum;
+        if (dist <= length) {
+            Matrix point = (c1->position + c2->position) / 2;
+            vect_dist.Normalise();
+            Contact contact_info = {point, length - dist, vect_dist, c1, c2};
 #pragma omp critical
             {
-                body1->momentum = body2->momentum * 0.01;
-                body2->momentum = temp * 0.01;
-                body1->position += normal * (contact.penetration/2);
-                body2->position -= normal * (contact.penetration/2);
+                contact_list.push_back(contact_info);
             };
         }
+    }
+
+    void Cube::CollisionResolution(Contact &contact) {
+        Cube *body1 = contact.body1;
+        Cube *body2 = contact.body2;
+        auto normal = contact.normal;
+        auto temp = body1->momentum;
+#pragma omp critical
+        {
+            body1->momentum = body2->momentum * 0.01;
+            body2->momentum = temp * 0.01;
+            body1->position += normal * (contact.penetration/2);
+            body2->position -= normal * (contact.penetration/2);
+        };
+    }
 
     void Cube::CollisionBoundary(Cube *c1, real min_boundary_x, real max_boundary_x, real min_boundary_y,
                                        real max_boundary_y, real min_boundary_z, real max_boundary_z) {

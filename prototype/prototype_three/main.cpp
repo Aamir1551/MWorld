@@ -66,10 +66,10 @@ int main()
     real deltaTime = 0.0f; // Time between current frame and last frame
     real lastFrame = 0.0f; // Time of last frame
 
-    real initial_momentum1[] = {0.002, 0.0, 0.0};
+    real initial_momentum1[] = {0.002, 0.002, 0.0};
     c1.momentum = Matrix(3, 1, initial_momentum1);
 
-    real initial_momentum2[] = {-0.002, 0.0, 0};
+    real initial_momentum2[] = {-0.002, 0.001, 0};
     c2.momentum = Matrix(3, 1, initial_momentum2);
 
     Quaternion q = Quaternion(0.0f, 2.0f, 2.0f, 0.0f);
@@ -119,8 +119,8 @@ int main()
         vector<Contact> contact_list;
         Cube::CollisionDetect(&c1,&c2, contact_list);
 
-        for(unsigned int i=0; i<contact_list.size(); i++) {
-            Cube::CollisionResolution(contact_list.at(i));
+        for(auto & i : contact_list) {
+            Cube::CollisionResolution(i);
         }
 
         glm::mat4 rotation_mat1;
@@ -132,7 +132,7 @@ int main()
         glm::mat4 model1 = glm::translate(id, translation_mat1);
         model1 = model1 * rotation_mat1;
 
-        cubes.ApplyUniforms(model1);
+        render_utils::CubeRenderer::ApplyUniforms(model1);
         glm::vec3 colour = glm::vec3(1, 1, 1);
         int colour_loc = glGetUniformLocation(CubeRenderer::shader_id, "colour");
         glUniform3fv(colour_loc, 1, glm::value_ptr(colour));
@@ -149,7 +149,7 @@ int main()
         model2 = model2 * rotation_mat2;
 
         view = camera.CalculateView();
-        cubes.ApplyUniforms(model2);
+        render_utils::CubeRenderer::ApplyUniforms(model2);
 
         colour_loc = glGetUniformLocation(CubeRenderer::shader_id, "colour");
         glUniform3fv(colour_loc, 1, glm::value_ptr(colour));

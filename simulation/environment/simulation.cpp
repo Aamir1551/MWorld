@@ -66,7 +66,7 @@ int main()
     real currentFrame;
 
     real frame_count = 0;
-    real prev_time = glfwGetTime();
+    real prev_time = glfwGetTime(); // prev_time refers to the last time we printed the num of frames per seconds
     while (!glfwWindowShouldClose(world_properties->window))
     {
 

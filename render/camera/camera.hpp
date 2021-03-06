@@ -16,10 +16,8 @@ namespace render_utils
         glm::vec3 camera_pos = glm::vec3(0.0f, 0.0f, 3.0f);
 
     private:
-        float lastX = 400, lastY = 300;
         float camera_speed = 20.0f;
 
-        bool firstMouse = false;
         float yaw = -90.0f;
         float pitch = 0.0f;
 
@@ -96,40 +94,6 @@ namespace render_utils
                 ProcessControllerInput(camera_speed * delta_time, 0.05f);
             ProcessKeyboardInput(camera_speed * delta_time, 0.05f);
         }
-
-        void ProcessMouseControlls(GLFWwindow *window, double xpos, double ypos)
-        {
-
-            static bool first_mouse;
-            if (first_mouse)
-            {
-                lastX = xpos;
-                lastY = ypos;
-                firstMouse = false;
-            }
-            float xoffset = xpos - lastX;
-            float yoffset = lastY - ypos;
-            lastX = xpos;
-            lastY = ypos;
-            xoffset *= 0.04;
-            yoffset *= 0.04;
-            yaw += xoffset;
-            pitch += yoffset;
-            if (pitch > 89.0f)
-                pitch = 89.0f;
-            if (pitch < -89.0f)
-                pitch = -89.0f;
-            this->camera_front = glm::normalize(glm::vec3(cos(glm::radians(yaw)) * cos(glm::radians(pitch)), sin(glm::radians(pitch)), sin(glm::radians(yaw)) * cos(glm::radians(pitch))));
-        }
-
-        /*static auto MouseCallbackHandler(Camera camera)
-    {
-
-        auto b = [&camera](GLFWwindow *window, double xpos, double ypos) -> void {
-            camera.ProcessMouseControlls(window, xpos, ypos);
-        };
-        return bi
-    }*/
     };
 } // namespace render_utils
 #endif

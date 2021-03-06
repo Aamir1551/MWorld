@@ -182,40 +182,15 @@ public:
     }
 
     void static CollisionResolution(Contact &contact) {
-        Cube *body1 = contact.body1;                //The body pointer of the first cube //=nullptr
-        Cube *body2 = contact.body2;            //The body pointer of the second cube //=nullptr
-
-        Matrix r_ap = contact.point - body1->position;
-        Matrix r_bp = contact.point - body2->position;
-
-        Matrix v_ap1 = body1->linear_velocity +  Matrix::VectorProduct(body1->angular_velocity, r_ap);
-        Matrix v_bp1 = body2->linear_velocity +  Matrix::VectorProduct(body2->angular_velocity, r_bp);
-
-        Matrix v_ab_1 = body1->linear_velocity + Matrix::VectorProduct(body1->angular_velocity, r_ap) - body2->linear_velocity - Matrix::VectorProduct(body2->angular_velocity, r_bp);
-
-        Matrix normal = contact.normal * -1;//body2->GetNormal(contact.contact_normal); //not too sure weather its body1, or body2
-
-        Matrix r_ap_cross_normal = Matrix::VectorProduct(r_ap, normal);
-        Matrix r_bp_cross_normal = Matrix::VectorProduct(r_bp, normal);
-
-        real j = Matrix::Dot(v_ab_1, normal) * -2 / (body1->inverse_mass + body2->inverse_mass + Matrix::Dot(r_ap_cross_normal, r_ap_cross_normal)*body1->inverse_inertia +
-                                                     Matrix::Dot(r_bp_cross_normal, r_bp_cross_normal)*body2->inverse_inertia);
-
-        Matrix w_a2 = body1->angular_velocity + Matrix::VectorProduct(r_ap, normal * j) * body1->inverse_inertia;
-        Matrix w_b2 = body2->angular_velocity - Matrix::VectorProduct(r_bp, normal * j) * body2->inverse_inertia;
-
-        Matrix v_a2 = body1->linear_velocity + normal * j * body1->inverse_mass;
-        Matrix v_b2 = body2->linear_velocity - normal * j * body2->inverse_mass;
-
-        body1->momentum = v_a2 / body1->inverse_mass;
-        body2->momentum = v_b2 / body2->inverse_mass;
-
-        body1->angular_momentum = w_a2 / body1->inverse_inertia;
-        body2->angular_momentum = w_b2 / body2->inverse_inertia;
-
-        body1->position = body1->position - normal * (contact.penetration/2);
-        body2->position = body2->position + normal * (contact.penetration/2);
-
-
+        Cube *body1 = contact.body1;
+        Cube *body2 = contact.body2;
+        auto normal = contact.normal;
+        auto temp = body1->momentum;
+        {
+            body1->momentum = body2->momentum;
+            body2->momentum = temp;
+            body1->position += normal * (contact.penetration/2);
+            body2->position -= normal * (contact.penetration/2);
+        };
     }
 };
