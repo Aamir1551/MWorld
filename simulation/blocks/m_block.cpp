@@ -49,10 +49,12 @@ namespace blocks {
 
     void MBlock::ReactSerial(ZBlock *b, real delta_time) {
         // Attracted to the MBlock
-        Matrix dist_vect = b->position - this->position;
-        real squared_dist = Matrix::SquaredNorm(dist_vect);
-        if(squared_dist >= 5) {
-            this->AddLinearForce(dist_vect/squared_dist, delta_time);
+        if(this->flare_value > blocks::MBlock::threshold) {
+            Matrix dist_vect = b->position - this->position;
+            real squared_dist = Matrix::SquaredNorm(dist_vect);
+            if(squared_dist >= 5) {
+                this->AddLinearForce(dist_vect/squared_dist, delta_time);
+            }
         }
     };
 };

@@ -32,7 +32,7 @@ namespace blocks {
         }
 
         Matrix inc_force = Matrix(3, 1);
-        bool recurse = ApplyForceFromBlock(tree, delta_time, tree->eblocks_at_cell_count, tree->com_e, inc_force);
+        bool recurse = ApplyForceFromBlock(tree, tree->eblocks_at_cell_count, tree->com_e, inc_force);
         if (recurse == false) {
             this->AddLinearForce(inc_force * 1 , delta_time);
             return false;
@@ -42,4 +42,12 @@ namespace blocks {
     }
 
     real EBlock::capacity = 1.5;
+
+    void EBlock::ReactSerial(EBlock *b, real delta_time) {
+        Matrix dist_vect = b->position - this->position;
+        real squared_dist = Matrix::SquaredNorm(dist_vect);
+        if(squared_dist >= 5) {
+            this->AddLinearForce(dist_vect/squared_dist, delta_time);
+        }
+    }
 };

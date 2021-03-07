@@ -13,7 +13,7 @@ namespace blocks
         real k;
         real static capacity;
 
-        EBlock(Matrix position, Quaternion initial_orientation, bool state, real cube_length = 4.0f) : Block(position, initial_orientation, 0.0f, cube_length) {
+        EBlock(const Matrix& position, const Quaternion& initial_orientation, bool state, real cube_length = 4.0f) : Block(position, initial_orientation, 0.0f, cube_length) {
             if(state == true) {
                 this->k = 2;
             } else {
@@ -24,9 +24,10 @@ namespace blocks
 
         bool ReactBarnesHut(ForceOctree * tree, real delta_time) override;
 
-        real ExtractFlareFromBlock(real deltatime) override;
+        real ExtractFlareFromBlock(real delta_time) override;
         void AddFlareToBlock(real flare_amount, Block *b) override;
         void UpdateFlare() override;
+        void ReactSerial(EBlock *b, real delta_time) override;
         ~EBlock() override = default;
 
     };

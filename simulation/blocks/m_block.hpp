@@ -16,7 +16,7 @@ namespace blocks {
         };
 
         bool ReactBarnesHut(ForceOctree * tree, real delta_time) override;
-        real ExtractFlareFromBlock(real deltatime) override;
+        real ExtractFlareFromBlock(real delta_time) override;
         void AddFlareToBlock(real flare_amount, Block *b) override;
         void Decay(real delta_time) override;
         void UpdateFlare() override;

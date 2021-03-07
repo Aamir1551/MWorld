@@ -6,7 +6,7 @@ namespace blocks {
     class Block;
 
     real IBlock::ExtractFlareFromBlock(real delta_time) {
-        return (this->a + this->b * (real) (this->flare_value < this->threshold)) * 0.5 * delta_time;
+        return (this->a + this->b * (real) (this->flare_value < blocks::IBlock::threshold)) * 0.5 * delta_time;
     };
 
     void IBlock::spin(Matrix const &force_direction) {
@@ -44,7 +44,7 @@ namespace blocks {
                 return false;
             }
             Matrix inc_force = Matrix(3, 1);
-            bool recurse = ApplyForceFromBlock(tree, delta_time, tree->iblocks_at_cell_neg_count, tree->com_i_neg, inc_force);
+            bool recurse = ApplyForceFromBlock(tree, tree->iblocks_at_cell_neg_count, tree->com_i_neg, inc_force);
             if (!recurse) {
                 this->AddLinearForce(inc_force * -1, delta_time);
                 return false;
@@ -54,9 +54,9 @@ namespace blocks {
         }
     }
 
-    void IBlock::ReactSerial(IBlock *b, real delta_time) {
+    void IBlock::ReactSerial(IBlock *bl, real delta_time) {
         // Repels both the I+ and I- block
-        Matrix dist_vect = b->position - this->position;
+        Matrix dist_vect = bl->position - this->position;
         real squared_dist = Matrix::SquaredNorm(dist_vect);
         if(squared_dist >= 5) {
                 this->AddLinearForce(dist_vect/squared_dist, delta_time);

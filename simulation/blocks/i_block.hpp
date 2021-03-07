@@ -23,11 +23,11 @@ namespace blocks {
         }
 
         bool ReactBarnesHut(ForceOctree * tree, real delta_time) override;
-        real ExtractFlareFromBlock(real deltatime) override;
+        real ExtractFlareFromBlock(real delta_time) override;
         void spin(Matrix const &force_direction) override;
         void AddFlareToBlock(real flare_amount, Block *b) override;
         void Decay(real delta_time) override;
-        void ReactSerial(IBlock *b, real delta_time) override;
+        void ReactSerial(IBlock *bl, real delta_time) override;
 
         ~IBlock() override = default;
     };
