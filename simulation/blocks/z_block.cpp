@@ -48,5 +48,9 @@ namespace blocks {
 
     void ZBlock::UpdateFlare() {
         this->flare_value = std::max(std::min(this->flare_inc + this->flare_value, (real) 1), (real) -1);
+    }
+
+    void ZBlock::ReactSerial(IBlock *b, real delta_time) {
+        Block::ReactSerial(b, delta_time);
     };
 }

@@ -27,7 +27,7 @@ namespace blocks {
         void spin(Matrix const &force_direction) override;
         void AddFlareToBlock(real flare_amount, Block *b) override;
         void Decay(real delta_time) override;
-        void ReactLinear(IBlock *b, real delta_time) override;
+        void ReactSerial(IBlock *b, real delta_time) override;
 
         ~IBlock() override = default;
     };

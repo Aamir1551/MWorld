@@ -26,7 +26,7 @@ namespace blocks {
     real IBlock::threshold = 0.1f;
 
     bool IBlock::React(ForceOctree *tree, real delta_time) {
-        // Is Not attracted to either the I+ block or the I- block
+        // Repels both the I+ and I- block
         if(this->state) {
            if(tree->iblocks_at_cell_plus_count == 0) {
               return false;
@@ -54,7 +54,8 @@ namespace blocks {
         }
     }
 
-    void IBlock::ReactLinear(IBlock *b, real delta_time) {
+    void IBlock::ReactSerial(IBlock *b, real delta_time) {
+        // Repels both the I+ and I- block
         Matrix dist_vect = b->position - this->position;
         real squared_dist = Matrix::SquaredNorm(dist_vect);
         if(squared_dist >= 5) {

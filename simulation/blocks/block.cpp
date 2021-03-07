@@ -56,10 +56,10 @@ namespace blocks {
 
     void Block::Decay(real delta_time) {};
 
-    void Block::ReactLinear(IBlock *b, real delta_time){};
-    void Block::ReactLinear(MBlock *b, real delta_time){};
-    void Block::ReactLinear(ZBlock *b, real delta_time){};
-    void Block::ReactLinear(EBlock *b, real delta_time){};
+    void Block::ReactSerial(IBlock *b, real delta_time){};
+    void Block::ReactSerial(MBlock *b, real delta_time){};
+    void Block::ReactSerial(ZBlock *b, real delta_time){};
+    void Block::ReactSerial(EBlock *b, real delta_time){};
 
 }
 

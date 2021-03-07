@@ -41,10 +41,10 @@ namespace blocks {
 
         virtual bool React(ForceOctree * tree, real delta_time) = 0;
 
-        virtual void ReactLinear(IBlock *b, real delta_time);
-        virtual void ReactLinear(MBlock *b, real delta_time);
-        virtual void ReactLinear(ZBlock *b, real delta_time);
-        virtual void ReactLinear(EBlock *b, real delta_time);
+        virtual void ReactSerial(IBlock *b, real delta_time);
+        virtual void ReactSerial(MBlock *b, real delta_time);
+        virtual void ReactSerial(ZBlock *b, real delta_time);
+        virtual void ReactSerial(EBlock *b, real delta_time);
 
         virtual real ExtractFlareFromBlock(real deltatime) = 0;
 
