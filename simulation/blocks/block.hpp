@@ -39,7 +39,7 @@ namespace blocks {
 
         void SetAngularMomentum(Matrix &angular_momentum);
 
-        virtual bool React(ForceOctree * tree, real delta_time) = 0;
+        virtual bool ReactBarnesHut(ForceOctree * tree, real delta_time) = 0;
 
         virtual void ReactSerial(IBlock *b, real delta_time);
         virtual void ReactSerial(MBlock *b, real delta_time);

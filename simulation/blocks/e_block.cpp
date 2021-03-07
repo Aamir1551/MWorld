@@ -25,7 +25,7 @@ namespace blocks {
         this->flare_value = std::min(this->flare_inc + this->flare_value, EBlock::capacity);
     };
 
-    bool EBlock::React(ForceOctree * tree, real delta_time) {
+    bool EBlock::ReactBarnesHut(ForceOctree * tree, real delta_time) {
         // Attracted to E blocks
         if (tree->eblocks_at_cell_count == 0) {
             return false;

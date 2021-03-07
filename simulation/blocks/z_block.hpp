@@ -9,17 +9,19 @@ namespace blocks {
     class ZBlock : public Block {
 
     public:
-        ZBlock(Matrix position, Quaternion initial_orientation, real cube_length = 4.0f) : Block(position, initial_orientation, 0.0f, cube_length) {
+        static real threshold;
+        ZBlock(const Matrix& position, const Quaternion& initial_orientation, real cube_length = 4.0f) : Block(position, initial_orientation, 0.0f, cube_length) {
             this->block_type = 1;
         }
 
-        bool React(ForceOctree * tree, real delta_time) override;
+        bool ReactBarnesHut(ForceOctree * tree, real delta_time) override;
 
-        real ExtractFlareFromBlock(real deltimatime) override;
+        real ExtractFlareFromBlock(real delta_time) override;
         void AddFlareToBlock(real flare_amount, Block *b) override;
         void UpdateFlare() override;
         void Decay(real delta_time) override;
-        void ReactSerial(IBlock *b, real delta_time) override;
+        void ReactSerial(ZBlock *b, real delta_time) override;
+        void ReactSerial(MBlock *b, real delta_time) override;
 
         ~ZBlock() override = default;
     };

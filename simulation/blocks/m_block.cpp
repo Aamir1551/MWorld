@@ -21,8 +21,8 @@ namespace blocks {
         this->flare_value = std::min((this->flare_inc + this->flare_value), MBlock::capacity);
     };
 
-    real MBlock::ExtractFlareFromBlock(real deltatime) {
-        real extract = (real) (this->flare_value > MBlock::threshold) * this->flare_value * 0.08 * deltatime;
+    real MBlock::ExtractFlareFromBlock(real delta_time) {
+        real extract = (real) (this->flare_value > MBlock::threshold) * this->flare_value * 0.08 * delta_time;
         this->flare_inc -= extract;
         return extract;
     };
@@ -30,13 +30,14 @@ namespace blocks {
     real MBlock::threshold = 0.5f;
     real MBlock::capacity = 5;
 
-    bool MBlock::React(ForceOctree *tree, real delta_time) {
+    bool MBlock::ReactBarnesHut(ForceOctree *tree, real delta_time) {
+        // Attracted to only the ZBlock
         if (tree->zblocks_at_cell_count == 0) {
             return false;
         }
 
         Matrix inc_force = Matrix(3, 1);
-        bool recurse = ApplyForceFromBlock(tree, delta_time, tree->zblocks_at_cell_count, tree->com_z, inc_force);
+        bool recurse = ApplyForceFromBlock(tree, tree->zblocks_at_cell_count, tree->com_z, inc_force);
         if (recurse == false) {
             inc_force *= (this->flare_value > MBlock::threshold);
             this->AddLinearForce(inc_force, delta_time);
@@ -45,4 +46,13 @@ namespace blocks {
             return true;
         }
     }
+
+    void MBlock::ReactSerial(ZBlock *b, real delta_time) {
+        // Attracted to the MBlock
+        Matrix dist_vect = b->position - this->position;
+        real squared_dist = Matrix::SquaredNorm(dist_vect);
+        if(squared_dist >= 5) {
+            this->AddLinearForce(dist_vect/squared_dist, delta_time);
+        }
+    };
 };

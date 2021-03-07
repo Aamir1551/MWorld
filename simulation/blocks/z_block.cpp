@@ -7,16 +7,17 @@
 
 namespace blocks {
 
-    bool ZBlock::React(ForceOctree *tree, real delta_time) {
+    bool ZBlock::ReactBarnesHut(ForceOctree *tree, real delta_time) {
+        // Attracted to Both MBlocks an ZBlocks
 
         if (tree->zblocks_at_cell_count == 0 && tree->mblocks_at_cell_plus_count == 0) {
             return false;
         }
 
         Matrix inc_force = Matrix(3, 1);
-        bool recurse = ApplyForceFromBlock(tree, delta_time, tree->zblocks_at_cell_count, tree->com_z, inc_force);
+        bool recurse = ApplyForceFromBlock(tree, tree->zblocks_at_cell_count, tree->com_z, inc_force);
         if (recurse == false) {
-            recurse = ApplyForceFromBlock(tree, delta_time, tree->mblocks_at_cell_plus_count, tree->com_m_plus,
+            recurse = ApplyForceFromBlock(tree, tree->mblocks_at_cell_plus_count, tree->com_m_plus,
                                           inc_force);
         }
         if (!recurse) {
@@ -32,7 +33,7 @@ namespace blocks {
     }
 
     real ZBlock::ExtractFlareFromBlock(real delta_time) {
-        if(flare_value > 0.5) {
+        if(flare_value > ZBlock::threshold) {
             real extract_flare = this->flare_value * 0.08 * delta_time;
             this->flare_inc -= extract_flare; // using the kissing number of spheres
             return extract_flare * -1;
@@ -50,7 +51,23 @@ namespace blocks {
         this->flare_value = std::max(std::min(this->flare_inc + this->flare_value, (real) 1), (real) -1);
     }
 
-    void ZBlock::ReactSerial(IBlock *b, real delta_time) {
-        Block::ReactSerial(b, delta_time);
+    void ZBlock::ReactSerial(ZBlock *b, real delta_time) {
+        // Attracted to the ZBlock
+        Matrix dist_vect = b->position - this->position;
+        real squared_dist = Matrix::SquaredNorm(dist_vect);
+        if(squared_dist >= 5) {
+            this->AddLinearForce(dist_vect/squared_dist, delta_time);
+        }
     };
+
+    void ZBlock::ReactSerial(MBlock *b, real delta_time) {
+        // Attracted to the MBlock
+        Matrix dist_vect = b->position - this->position;
+        real squared_dist = Matrix::SquaredNorm(dist_vect);
+        if(squared_dist >= 5) {
+            this->AddLinearForce(dist_vect/squared_dist, delta_time);
+        }
+    };
+
+    real ZBlock::threshold = 0.5f;
 }

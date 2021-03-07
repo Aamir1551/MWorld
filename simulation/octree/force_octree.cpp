@@ -251,7 +251,7 @@ void ForceOctree::CalculateCOMonTree() {
 
 void ForceOctree::ApplyBarnesHutOnBlock(Block *b, real delta_time) {
     //this->count += 1;
-    bool recurse = b->React(this, delta_time);
+    bool recurse = b->ReactBarnesHut(this, delta_time);
     if(recurse) {
         for(int i=0; i<8; i++) {
             this->children[i]->ApplyBarnesHutOnBlock(b, delta_time);

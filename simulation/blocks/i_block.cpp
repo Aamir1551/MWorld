@@ -25,7 +25,7 @@ namespace blocks {
 
     real IBlock::threshold = 0.1f;
 
-    bool IBlock::React(ForceOctree *tree, real delta_time) {
+    bool IBlock::ReactBarnesHut(ForceOctree *tree, real delta_time) {
         // Repels both the I+ and I- block
         if(this->state) {
            if(tree->iblocks_at_cell_plus_count == 0) {

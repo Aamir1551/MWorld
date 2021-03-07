@@ -22,7 +22,7 @@ namespace blocks {
             this->block_type = 0;
         }
 
-        bool React(ForceOctree * tree, real delta_time) override;
+        bool ReactBarnesHut(ForceOctree * tree, real delta_time) override;
         real ExtractFlareFromBlock(real deltatime) override;
         void spin(Matrix const &force_direction) override;
         void AddFlareToBlock(real flare_amount, Block *b) override;
