@@ -20,7 +20,7 @@ namespace blocks {
     };
 
     void IBlock::Decay(real delta_time) {
-        this->flare_value = std::max(this->flare_value - 0.08 * delta_time * 1.5 * 0.5, 0.0);
+        this->flare_value = std::max(this->flare_value - 0.08 * delta_time * 0.5, 0.0);
     }
 
     real IBlock::threshold = 0.1f;

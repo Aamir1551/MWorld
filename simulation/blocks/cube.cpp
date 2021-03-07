@@ -137,8 +137,8 @@ namespace blocks {
         Cube *body2 = contact.body2;
         auto normal = contact.normal;
         auto temp = body1->momentum;
-        body1->momentum = body2->momentum * 0.01;
-        body2->momentum = temp * 0.01;
+        body1->momentum = body2->momentum * 0.3;
+        body2->momentum = temp * 0.3;
         body1->position += normal * (contact.penetration/2);
         body2->position -= normal * (contact.penetration/2);
     }
@@ -148,9 +148,9 @@ namespace blocks {
         real x = c1->position(0, 0);
         real y = c1->position(1, 0);
         real z = c1->position(2, 0);
-        real mx = c1->momentum(0, 0) * 0.9;
-        real my = c1->momentum(1, 0) * 0.9;
-        real mz = c1->momentum(2, 0) * 0.9;
+        real mx = c1->momentum(0, 0);
+        real my = c1->momentum(1, 0);
+        real mz = c1->momentum(2, 0);
         if(x <= min_boundary_x) {
             c1->momentum(0, 0, abs(mx));
         } else if(x >= max_boundary_x) {

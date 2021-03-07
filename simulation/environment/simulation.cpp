@@ -39,10 +39,12 @@ int main()
     int num_blocks_same = 100;
     //WorldHandler world = WorldHandler(num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same); //WorldHandler world = WorldHandler(0, 0, 0, 0, 0, 0); //WorldHandler world = WorldHandler(10, 0, 0, 0, 0, 0);
     //WorldHandler world = WorldHandler(0, 0, 2, 0, 0, 0);
+    // Test out with different collision elasticity value, so change scaling of velocity after collision, and see how world develops
     WorldHandler world = WorldHandler(0, 0, 500, 0, 00, 0, -100, 100, 4);
     
     // Testing with ZBLocks only -- Note we disabled the force's being applied, however, the forces are still being calculated
-    
+    // We shall have tests, with forces being applied and both not being applied
+    // When doing time tests, also disable all glfw functions
     //100 = 170fps
     //200 = 75fps
     //300 = 38fps
