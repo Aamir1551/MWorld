@@ -228,10 +228,15 @@ void WorldHandler::Update(vector<Contact> &contact_list, real delta_time) {
 
 vector<Contact> WorldHandler::CollisionHandler()
 {
+
+
+    // When testing if both methods of calculating collisions return the same value,
+    // check CollisionDetect function and comment out if statement, if(dist==0), in CollisionDetect
+
     vector<Contact> contact_list;
     set<pair<Block *, Block *>> collisions_checked;
 
-    /*
+
 #pragma omp parallel for
     for(auto const &collision_blocks : this->blocks) {
         Octree *coll_tree = this->block_to_leaf[collision_blocks];
@@ -255,7 +260,7 @@ vector<Contact> WorldHandler::CollisionHandler()
                 }
             }
         }
-    }*/
+    }
 
     vector<Contact> contact_list_test;
 #pragma omp parallel for
@@ -264,9 +269,9 @@ vector<Contact> WorldHandler::CollisionHandler()
             Cube::CollisionDetect(blocks.at(i), blocks.at(j), contact_list_test);
         }
     }
-    return contact_list_test;
+    //return contact_list_test;
 
-    /*set<pair<Block *, Block *>> c;
+    set<pair<Block *, Block *>> c;
     set<pair<Block *, Block *>> c1;
 
     for(auto const &k : contact_list) {
@@ -284,7 +289,7 @@ vector<Contact> WorldHandler::CollisionHandler()
         cout << c.size() << endl;
         cout << c1.size() << endl;
         cout << "not worked" << endl;
-    }*/
+    }
 
     return contact_list;
 }
