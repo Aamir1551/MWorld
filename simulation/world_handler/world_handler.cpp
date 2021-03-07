@@ -48,7 +48,7 @@ WorldHandler::WorldHandler(int num_i_blocks_plus, int num_i_blocks_neg, int num_
     srand((unsigned)time(0)); //NULL???
 
     cout << "Quad trees are being initialised" << endl;
-    this->tree = new Octree(cube_length * 2, min_coord, max_coord, min_coord, max_coord, min_coord, max_coord, true);
+    this->tree = new Octree(cube_length * 3, min_coord, max_coord, min_coord, max_coord, min_coord, max_coord, true);
     this->forces_tree = new ForceOctree(cube_length * 5, min_coord, max_coord, min_coord, max_coord, min_coord, max_coord,
                                    false);
     cout << "Quad trees are initialised" << endl;
@@ -239,20 +239,28 @@ vector<Contact> WorldHandler::CollisionHandler()
 
 #pragma omp parallel for
     for(auto const &collision_blocks : this->blocks) {
-        Octree *coll_tree = this->block_to_leaf[collision_blocks];
-        vector<Octree *> neighbour_nodes = this->tree->grid_elements_neighbours[coll_tree];
+        Octree *coll_tree;
+        vector<Octree *> neighbour_nodes;
+#pragma omp critical
+        {
+            coll_tree = this->block_to_leaf[collision_blocks];
+            neighbour_nodes = this->tree->grid_elements_neighbours[coll_tree];
+    }
         for(auto const &n: neighbour_nodes) {
             for(auto const &node_in_n: n->blocks_at_leaf) {
-                auto f1 = collisions_checked.find(make_pair(node_in_n, collision_blocks));
-                auto f2 = collisions_checked.find(make_pair(collision_blocks, node_in_n));
+               auto f1 = collisions_checked.begin();
+               auto f2 = collisions_checked.begin();
+#pragma omp critical
+                {
+                    f1 = collisions_checked.find(make_pair(node_in_n, collision_blocks));
+                    f2 = collisions_checked.find(make_pair(collision_blocks, node_in_n));
+                }
 
                 if(f1 == collisions_checked.end() && f2 == collisions_checked.end()) {
                     if(collision_blocks == node_in_n) {
                         continue;
                     }
-                    Cube::CollisionDetect(collision_blocks,
-                                          node_in_n,
-                                          contact_list);
+                    Cube::CollisionDetect(collision_blocks, node_in_n,contact_list);
 #pragma omp critical
                     {
                         collisions_checked.insert(make_pair(collision_blocks, node_in_n));
