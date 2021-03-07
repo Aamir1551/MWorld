@@ -690,14 +690,14 @@
 				{
 					"directoryIndex" : 24,
 					"id" : "amplifier::@847a59781e22ff560ae6",
-					"jsonFile" : "target-amplifier-Debug-b19367fa2fe7d9774791.json",
+					"jsonFile" : "target-amplifier-Debug-94eff513b1086471be88.json",
 					"name" : "amplifier",
 					"projectIndex" : 20
 				},
 				{
 					"directoryIndex" : 24,
 					"id" : "and_gate_test::@847a59781e22ff560ae6",
-					"jsonFile" : "target-and_gate_test-Debug-8113edf6f8604923f340.json",
+					"jsonFile" : "target-and_gate_test-Debug-ec7fb3ef75dd4d803725.json",
 					"name" : "and_gate_test",
 					"projectIndex" : 20
 				},
@@ -746,7 +746,7 @@
 				{
 					"directoryIndex" : 24,
 					"id" : "logic_gates::@847a59781e22ff560ae6",
-					"jsonFile" : "target-logic_gates-Debug-0282baeb85c68eb5e3e7.json",
+					"jsonFile" : "target-logic_gates-Debug-1d6a045dd2c4d821a1fb.json",
 					"name" : "logic_gates",
 					"projectIndex" : 20
 				},
@@ -767,7 +767,7 @@
 				{
 					"directoryIndex" : 24,
 					"id" : "not_gate_test::@847a59781e22ff560ae6",
-					"jsonFile" : "target-not_gate_test-Debug-c550fdd6909e92b85fca.json",
+					"jsonFile" : "target-not_gate_test-Debug-75bed7c2da33607a49e5.json",
 					"name" : "not_gate_test",
 					"projectIndex" : 20
 				},
@@ -781,7 +781,7 @@
 				{
 					"directoryIndex" : 24,
 					"id" : "or_gate_test::@847a59781e22ff560ae6",
-					"jsonFile" : "target-or_gate_test-Debug-d7a98d4ac2f337846ced.json",
+					"jsonFile" : "target-or_gate_test-Debug-3464f06b01c50f91220e.json",
 					"name" : "or_gate_test",
 					"projectIndex" : 20
 				},
@@ -823,7 +823,7 @@
 				{
 					"directoryIndex" : 24,
 					"id" : "simulation::@847a59781e22ff560ae6",
-					"jsonFile" : "target-simulation-Debug-e9be255eb14610827b55.json",
+					"jsonFile" : "target-simulation-Debug-98d4340ddb0c6014f0ba.json",
 					"name" : "simulation",
 					"projectIndex" : 20
 				},
@@ -837,7 +837,7 @@
 				{
 					"directoryIndex" : 23,
 					"id" : "world_handler::@db5c5082507517693d46",
-					"jsonFile" : "target-world_handler-Debug-83003e56fdd849f52b70.json",
+					"jsonFile" : "target-world_handler-Debug-2785c674f648a28b8dfe.json",
 					"name" : "world_handler",
 					"projectIndex" : 23
 				}

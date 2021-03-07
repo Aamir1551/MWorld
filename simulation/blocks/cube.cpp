@@ -137,13 +137,10 @@ namespace blocks {
         Cube *body2 = contact.body2;
         auto normal = contact.normal;
         auto temp = body1->momentum;
-#pragma omp critical
-        {
-            body1->momentum = body2->momentum * 0.01;
-            body2->momentum = temp * 0.01;
-            body1->position += normal * (contact.penetration/2);
-            body2->position -= normal * (contact.penetration/2);
-        };
+        body1->momentum = body2->momentum * 0.01;
+        body2->momentum = temp * 0.01;
+        body1->position += normal * (contact.penetration/2);
+        body2->position -= normal * (contact.penetration/2);
     }
 
     void Cube::CollisionBoundary(Cube *c1, real min_boundary_x, real max_boundary_x, real min_boundary_y,

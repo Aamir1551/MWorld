@@ -166,7 +166,10 @@ void WorldHandler::Update(vector<Contact> &contact_list, real delta_time) {
 
 #pragma omp parallel for
     for(unsigned int i=0; i<contact_list.size(); i++) {
-        Cube::CollisionResolution(contact_list.at(i));
+#pragma omp critical
+        {
+            Cube::CollisionResolution(contact_list.at(i));
+        }
     }
 
 #pragma omp parallel for
