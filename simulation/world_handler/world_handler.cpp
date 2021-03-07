@@ -243,30 +243,25 @@ vector<Contact> WorldHandler::CollisionHandler()
     for(auto const &collision_blocks : this->blocks) {
         Octree *coll_tree;
         vector<Octree *> neighbour_nodes;
-#pragma omp critical
-        {
-            coll_tree = this->block_to_leaf[collision_blocks];
-            neighbour_nodes = this->tree->grid_elements_neighbours[coll_tree];
-    }
+        coll_tree = this->block_to_leaf[collision_blocks];
+        neighbour_nodes = this->tree->grid_elements_neighbours[coll_tree];
         for(auto const &n: neighbour_nodes) {
             for(auto const &node_in_n: n->blocks_at_leaf) {
-               auto f1 = collisions_checked.begin();
-               auto f2 = collisions_checked.begin();
-#pragma omp critical
-                {
-                    f1 = collisions_checked.find(make_pair(node_in_n, collision_blocks));
-                    f2 = collisions_checked.find(make_pair(collision_blocks, node_in_n));
-                }
+                auto f1 = collisions_checked.find(make_pair(node_in_n, collision_blocks));
+                auto f2 = collisions_checked.find(make_pair(collision_blocks, node_in_n));
 
                 if(f1 == collisions_checked.end() && f2 == collisions_checked.end()) {
                     if(collision_blocks == node_in_n) {
                         continue;
                     }
-                    Cube::CollisionDetect(collision_blocks, node_in_n,contact_list);
+
 #pragma omp critical
+                    // This code must be before the CollisionDetect code in order to avoid the contact list from
+                    // being filled twice
                     {
                         collisions_checked.insert(make_pair(collision_blocks, node_in_n));
                     };
+                    Cube::CollisionDetect(collision_blocks, node_in_n,contact_list);
                 }
             }
         }
@@ -281,6 +276,8 @@ vector<Contact> WorldHandler::CollisionHandler()
     }
     //return contact_list_test;
 
+    // We are creating sets to test if both these methods return the same contacts, since we are interested in the
+    // number of unique collisions, since we will be receiving many
     set<pair<Block *, Block *>> c;
     set<pair<Block *, Block *>> c1;
 
@@ -295,7 +292,7 @@ vector<Contact> WorldHandler::CollisionHandler()
     }
 
 
-    if(c != c1 || contact_list.size() != contact_list_test.size()) {
+    if(c != c1 || contact_list_test.size() != contact_list.size()) {
         cout << c.size() << endl;
         cout << c1.size() << endl;
         cout << "not worked" << endl;

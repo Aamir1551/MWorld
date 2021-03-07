@@ -16,7 +16,7 @@ namespace blocks {
         this->angular_momentum = angular_momentum;
     }
 
-    bool Block::ApplyForceFromBlock(ForceOctree* tree, real delta_time, int cell_count, const Matrix &com, Matrix &inc_force) {
+    bool Block::ApplyForceFromBlock(ForceOctree* tree, int cell_count, const Matrix &com, Matrix &inc_force) {
 
         if(cell_count != 0) {
             Matrix vec_to_tree_com = com - this->position;
@@ -25,9 +25,7 @@ namespace blocks {
 
             if(tree->is_leaf) {
                 if(squared_dist >= 5) {
-                    //inc_force += (vec_to_tree_com/dist) * delta_time /squared_dist * ((real) cell_count * 1000);
-                    //inc_force += (vec_to_tree_com) * delta_time /squared_dist * ((real) cell_count);
-                    inc_force += (vec_to_tree_com) * delta_time /dist * ((real) cell_count);
+                    inc_force += (vec_to_tree_com) / squared_dist * ((real) cell_count);
                 }
                 return false;
             }
@@ -38,9 +36,7 @@ namespace blocks {
             }
 
             if(squared_dist >= 5) {
-                //inc_force += (vec_to_tree_com) * delta_time /squared_dist * ((real) cell_count);
-                inc_force += (vec_to_tree_com) * delta_time /dist * ((real) cell_count);
-                //inc_force += (vec_to_tree_com/dist) * delta_time  /squared_dist * ((real) cell_count * 1000); // The times 1000 gives rise to the weird behavior
+                inc_force += (vec_to_tree_com) / squared_dist * ((real) cell_count);
             }
         }
         return false;
@@ -58,6 +54,12 @@ namespace blocks {
     real Block::flare_capacity = 1.0f;
     real Block::theta = 0.5f;
 
-    void Block::Decay(real delta_time) {return;};
+    void Block::Decay(real delta_time) {};
+
+    void Block::ReactLinear(IBlock *b, real delta_time){};
+    void Block::ReactLinear(MBlock *b, real delta_time){};
+    void Block::ReactLinear(ZBlock *b, real delta_time){};
+    void Block::ReactLinear(EBlock *b, real delta_time){};
+
 }
 

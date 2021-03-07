@@ -15,18 +15,20 @@ namespace blocks {
         float b;
         static real threshold;
 
-        IBlock(Matrix position, Quaternion initial_orientation, bool state, real cube_length = 4.0f) : Block(position, initial_orientation, 0, cube_length) {
+        IBlock(const Matrix& position, const Quaternion& initial_orientation, bool state, real cube_length = 4.0f) : Block(position, initial_orientation, 0, cube_length) {
             this->state = state;
             this->a = 1.0f * (real) this->state;
             this->b = (real) (1 - this->state);
             this->block_type = 0;
         }
 
-        virtual bool React(ForceOctree * tree, real delta_time) override;
+        bool React(ForceOctree * tree, real delta_time) override;
         real ExtractFlareFromBlock(real deltatime) override;
         void spin(Matrix const &force_direction) override;
         void AddFlareToBlock(real flare_amount, Block *b) override;
         void Decay(real delta_time) override;
+        void ReactLinear(IBlock *b, real delta_time) override;
+
         ~IBlock() override = default;
     };
 

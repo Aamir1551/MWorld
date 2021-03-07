@@ -26,12 +26,13 @@ namespace blocks {
     real IBlock::threshold = 0.1f;
 
     bool IBlock::React(ForceOctree *tree, real delta_time) {
+        // Is Not attracted to either the I+ block or the I- block
         if(this->state) {
            if(tree->iblocks_at_cell_plus_count == 0) {
               return false;
            }
            Matrix inc_force = Matrix(3, 1);
-           bool recurse = ApplyForceFromBlock(tree, delta_time, tree->iblocks_at_cell_plus_count, tree->com_i_plus, inc_force);
+           bool recurse = ApplyForceFromBlock(tree, tree->iblocks_at_cell_plus_count, tree->com_i_plus, inc_force);
            if (!recurse) {
                this->AddLinearForce(inc_force * -1, delta_time);
                return false;
@@ -50,6 +51,14 @@ namespace blocks {
             } else {
                 return true;
             }
+        }
+    }
+
+    void IBlock::ReactLinear(IBlock *b, real delta_time) {
+        Matrix dist_vect = b->position - this->position;
+        real squared_dist = Matrix::SquaredNorm(dist_vect);
+        if(squared_dist >= 5) {
+                this->AddLinearForce(dist_vect/squared_dist, delta_time);
         }
     }
 };
