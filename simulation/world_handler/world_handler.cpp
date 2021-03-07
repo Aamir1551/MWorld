@@ -230,6 +230,8 @@ vector<Contact> WorldHandler::CollisionHandler()
 {
 
 
+    // Both methods not returning same results. Fix code
+
     // When testing if both methods of calculating collisions return the same value,
     // check CollisionDetect function and comment out if statement, if(dist==0), in CollisionDetect
 
