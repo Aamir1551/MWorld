@@ -38,6 +38,7 @@ std::vector<Matrix> *WorldHandler::GenerateLinearMomentums(int num_cubes)
     for (int i = 0; i < num_cubes; i++)
     {
         real values[] = { get_momentums() , get_momentums() , get_momentums()};
+        //real values[] = {0, 0, 0}; // Used for testing purposes
         linear_momentums->push_back(Matrix(3, 1, values));
     }
     return linear_momentums;
@@ -311,14 +312,34 @@ void WorldHandler::UpdateFlares(vector<Contact> &contact_list, real delta_time) 
     IncFlareValuesAndReset();
 }
 
-void WorldHandler::AddForces(real deltatime) {
+void WorldHandler::AddForces(real delta_time) {
     this->forces_tree->CalculateCOMonTree();
 #pragma omp parallel for
     for(auto const &block : this->blocks) {
         if(!block->locked) {
-            forces_tree->ApplyBarnesHutOnBlock(block, deltatime);
+            forces_tree->ApplyBarnesHutOnBlock(block, delta_time);
         }
     }
+    // The below code is for testing purposes; To see if the Barnes Hut algorithm, gives accurate results
+    // It is important to note, that the Barnes hut alogirthm approximates as compared to the below algorithm
+    // that gives accurate values
+/*#pragma omp parallel for
+    for(auto &block0: this->blocks) {
+        if (!block0->locked) {
+            for (auto &block1: this->iblocks) {
+                block0->ReactSerial(block1, delta_time);
+            }
+            for (auto &block1: this->zblocks) {
+                block0->ReactSerial(block1, delta_time);
+            }
+            for (auto &block1: this->mblocks) {
+                block0->ReactSerial(block1, delta_time);
+            }
+            for (auto &block1: this->eblocks) {
+                block0->ReactSerial(block1, delta_time);
+            }
+        }
+    }*/
 }
 
 void WorldHandler::PassBlockFlares(vector<Contact> &contacts, real deltatime) {
