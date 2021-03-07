@@ -88,3 +88,11 @@
 6	541	6368439015669680	simulation/blocks/CMakeFiles/blocks.dir/z_block.cpp.obj	93cb0f87fbec6d34
 542	610	6368439016374374	simulation/blocks/libblocks.a	b411f4246d4e389f
 611	1082	6368439021040249	simulation/environment/not_gate_test.exe	70dcd3c61a6c32bc
+6	504	6368442236750720	simulation/environment/and_gate_test.exe	e560ccedcee71f9d
+7	473	6368442386917051	simulation/environment/amplifier.exe	a48cb442adbf19b8
+8	1338	6368444652889714	simulation/world_handler/CMakeFiles/world_handler.dir/world_handler.cpp.obj	fb81956d2b6352e8
+1338	1440	6368444653938726	simulation/world_handler/libworld_handler.a	d82797b59785b7e7
+1440	1866	6368444658171739	simulation/environment/amplifier.exe	a48cb442adbf19b8
+7	535	6368446079046255	simulation/blocks/CMakeFiles/blocks.dir/z_block.cpp.obj	93cb0f87fbec6d34
+536	604	6368446079739053	simulation/blocks/libblocks.a	b411f4246d4e389f
+604	1033	6368446083976898	simulation/environment/amplifier.exe	a48cb442adbf19b8

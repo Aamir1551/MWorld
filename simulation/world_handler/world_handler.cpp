@@ -239,7 +239,7 @@ vector<Contact> WorldHandler::CollisionHandler()
     vector<Contact> contact_list;
     set<pair<Block *, Block *>> collisions_checked;
 
-
+/*
 #pragma omp parallel for
     for(auto const &collision_blocks : this->blocks) {
         Octree *coll_tree;
@@ -266,7 +266,7 @@ vector<Contact> WorldHandler::CollisionHandler()
                 }
             }
         }
-    }
+    }*/
 
     vector<Contact> contact_list_test;
 #pragma omp parallel for
@@ -275,8 +275,9 @@ vector<Contact> WorldHandler::CollisionHandler()
             Cube::CollisionDetect(blocks.at(i), blocks.at(j), contact_list_test);
         }
     }
-    //return contact_list_test;
+    return contact_list_test;
 
+    /*
     // We are creating sets to test if both these methods return the same contacts, since we are interested in the
     // number of unique collisions, since we will be receiving many
     set<pair<Block *, Block *>> c;
@@ -299,7 +300,7 @@ vector<Contact> WorldHandler::CollisionHandler()
         cout << "not worked" << endl;
     }
 
-    return contact_list;
+    return contact_list;*/
 }
 
 void WorldHandler::UpdateFlares(vector<Contact> &contact_list, real delta_time) {

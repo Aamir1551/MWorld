@@ -43,7 +43,7 @@ namespace blocks {
 
     void ZBlock::AddFlareToBlock(real flare_amount, Block *b) {
         if(b->block_type!=0) {
-            this->flare_inc += (flare_amount);
+            this->flare_inc += (flare_amount) * 3;
         }
     }
 
