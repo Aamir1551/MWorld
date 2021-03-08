@@ -7,6 +7,8 @@
 #include <vector>
 #include <tuple>
 #include <set>
+#include <unordered_set>
+#include <utility>
 
 #include <matrix.hpp>
 
@@ -30,6 +32,13 @@ private:
     std::vector<Matrix> static *GenerateLinearMomentums(int num_cubes);
     void static PassBlockFlares(vector<Contact> &contacts, real deltatime);
     void static PassFlare(Block *a, Block *b, real deltatime);
+
+    template<typename T>
+    std::unordered_set<T> static VecToSetParallel(vector<T> v);
+
+    std::unordered_set<Octree*> GetBlockPositions();
+    void MakeDAG(std::unordered_set<Octree *> &block_positions, std::vector<pair<Octree *, Octree *>> &edges, std::unordered_set<Octree *> &nodes);
+    void GetDAGAtRoot(Octree *root, std::vector<pair<Octree *, Octree *>> &edges, std::unordered_set<Octree *> &nodes);
 
 public:
     vector<IBlock *> iblocks;

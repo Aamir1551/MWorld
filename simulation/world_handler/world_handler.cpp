@@ -4,6 +4,7 @@
 #include <map>
 #include <set>
 #include <omp.h>
+#include <cmath>
 
 #include <matrix.hpp>
 
@@ -392,4 +393,94 @@ WorldHandler::~WorldHandler() {
         delete b;
     }
 
+}
+
+
+template<typename T>
+std::unordered_set<T> WorldHandler::VecToSetParallel(vector<T> v) {
+    // sort out this yellow stuff
+    int p = min(omp_get_max_threads(), (int) v.size()); // need to ensure the data is more than the number of threads
+    unordered_set<T> local_set[p];
+
+    int local_size = std::ceil(v.size()/p);
+#pragma omp parallel for
+    for(int i=0; i<p; i++){
+        for(int j=i*local_size; j<min(local_size * (i+1), (int) v.size()); j++) {
+            local_set[i].insert(v.at(j));
+        }
+    }
+
+    int num_threads_distributed_across = p; // p=4
+    for(int i=0; i<ceil(log(p)); i++) { // 2 {0, 1}
+        int t = floor(num_threads_distributed_across/2);
+#pragma omp parallel for
+        for(int j=0; j<t; j++) { // 2 {0, 1}
+            for(const auto&elem : local_set[((int) floor(num_threads_distributed_across/2)) + j]) {
+                local_set[j].insert(elem);
+            }
+            if(j == floor(num_threads_distributed_across/2)){
+                if(num_threads_distributed_across % 2 == 1) {
+                    for(const auto&elem : local_set[p/2 + j + 1]) {
+                        local_set[j].insert(elem);
+                    }
+                }
+            }
+        }
+        num_threads_distributed_across = floor(num_threads_distributed_across/2);
+    }
+    return local_set[0];
+}
+
+
+
+std::unordered_set<Octree *> WorldHandler::GetBlockPositions() {
+    // A separate one has been made for getting positions, since blocks could be clustered close together, so we may be able to take advantage of some spacial structure of the blocks
+    int p = min(omp_get_max_threads(), (int) this->blocks.size()); // need to ensure the data is more than the number of threads
+    unordered_set<Octree*> local_set[p];
+
+    int local_size = std::ceil(this->blocks.size()/p);
+#pragma omp parallel for
+    for(int i=0; i<p; i++){
+        for(int j=i*local_size; j<min(local_size * (i+1), (int) this->blocks.size()); j++) {
+            local_set[i].insert(this->block_to_leaf.at(this->blocks.at(j)));
+        }
+    }
+
+    int num_threads_distributed_across = p; // p=4
+    for(int i=0; i<ceil(log(p)); i++) { // 2 {0, 1}
+        int t = floor(num_threads_distributed_across/2);
+#pragma omp parallel for
+        for(int j=0; j<t; j++) { // 2 {0, 1}
+            for(const auto&elem : local_set[((int) floor(num_threads_distributed_across/2)) + j]) {
+                local_set[j].insert(elem);
+            }
+            if(j == floor(num_threads_distributed_across/2)){
+                if(num_threads_distributed_across % 2 == 1) {
+                    for(const auto&elem : local_set[p/2 + j + 1]) {
+                        local_set[j].insert(elem);
+                    }
+                }
+            }
+        }
+        num_threads_distributed_across = floor(num_threads_distributed_across/2);
+    }
+    return local_set[0];
+}
+
+void WorldHandler::MakeDAG(std::unordered_set<Octree *> &block_positions, std::vector<pair<Octree *, Octree *>> &edges, std::unordered_set<Octree *> &nodes) {
+    for(auto const pos: block_positions) {
+        GetDAGAtRoot(pos, edges, nodes);
+    }
+}
+
+void WorldHandler::GetDAGAtRoot(Octree *root, std::vector<pair<Octree *, Octree *>> &edges,
+                                std::unordered_set<Octree *> &nodes) {
+    auto children = this->tree->grid_elements_neighbours.at(root);
+    nodes.insert(root);
+    for(auto & child : children) {
+        if(nodes.find(child) == nodes.end()) {
+            edges.emplace_back(root, child);
+            GetDAGAtRoot(child, edges, nodes);
+        }
+    }
 }
