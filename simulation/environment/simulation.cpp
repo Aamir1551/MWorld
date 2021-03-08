@@ -1,4 +1,6 @@
 #include <cstring>
+#include <unordered_set>
+#include <set>
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -23,8 +25,8 @@ using namespace blocks;
 
 int main()
 {
-    cout << "Running MWorld Simulation with "  << omp_get_max_threads() << " threads" << endl;
-    //cout << "Running MWorld Simulation" << endl;
+    //cout << "Running MWorld Simulation with "  << omp_get_max_threads() << " threads" << endl;
+    cout << "Running MWorld Simulation" << endl;
 
     WorldProperties *world_properties = WorldIntializer();
 
@@ -82,7 +84,29 @@ int main()
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        auto contact_list = world.CollisionHandler();
+        //auto contact_list = world.CollisionHandler();
+        //auto contact_list1 = world.CollisionHandlerParallel();
+
+        auto contact_list = world.CollisionHandlerParallel();
+
+        /*set<pair<Block *, Block *>> c;
+        for(auto const &i : contact_list) {
+           c.insert(make_pair(i.body1, i.body2));
+           c.insert(make_pair(i.body2, i.body1));
+        }
+
+        set<pair<Block *, Block *>> c1;
+        for(auto const &i : contact_list1) {
+            c1.insert(make_pair(i.body1, i.body2));
+            c1.insert(make_pair(i.body2, i.body1));
+        }
+
+        if(c != c1) {
+            cout << c.size() << " " << c1.size() <<  endl;
+            cout << "not equal" << endl;
+        }*/
+
+
         world.AddForces(deltaTime);
         //auto contact_list = vector<Contact>();
         world.Update(contact_list, deltaTime);

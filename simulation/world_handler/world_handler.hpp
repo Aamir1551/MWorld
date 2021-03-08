@@ -36,7 +36,9 @@ private:
     template<typename T>
     std::unordered_set<T> static VecToSetParallel(vector<T> v);
 
-    std::unordered_set<Octree*> GetBlockPositions();
+    std::unordered_set<Octree*> GetBlockPositionsParallel();
+    std::unordered_set<Octree*> GetBlockPositionsSerial();
+
     void MakeDAG(std::unordered_set<Octree *> &block_positions, std::vector<pair<Octree *, Octree *>> &edges, std::unordered_set<Octree *> &nodes);
     void GetDAGAtRoot(Octree *root, std::vector<pair<Octree *, Octree *>> &edges, std::unordered_set<Octree *> &nodes);
 
@@ -66,6 +68,7 @@ public:
     void Update(vector<Contact> &contact_list, real delta_time);
 
     vector<Contact> CollisionHandler();
+    vector<Contact> CollisionHandlerParallel();
 
     void AddForces(real deltatime);
 

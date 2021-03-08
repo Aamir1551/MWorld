@@ -242,7 +242,7 @@ vector<Contact> WorldHandler::CollisionHandler()
 
 
 
-#pragma omp parallel for
+/*#pragma omp parallel for
     for(auto const &collision_blocks : this->blocks) {
         Octree *coll_tree;
         vector<Octree *> neighbour_nodes;
@@ -269,16 +269,16 @@ vector<Contact> WorldHandler::CollisionHandler()
             }
         }
     }
-    return contact_list;
+    return contact_list;*/
 
-    /*vector<Contact> contact_list_test;
+    vector<Contact> contact_list_test;
 #pragma omp parallel for
     for(unsigned int i=0; i<blocks.size()-1; i++) {
         for(unsigned int j=i+1; j<blocks.size(); j++) {
             Cube::CollisionDetect(blocks.at(i), blocks.at(j), contact_list_test);
         }
     }
-    return contact_list_test;*/
+    return contact_list_test;
 
     /*
     // We are creating sets to test if both these methods return the same contacts, since we are interested in the
@@ -433,7 +433,7 @@ std::unordered_set<T> WorldHandler::VecToSetParallel(vector<T> v) {
 
 
 
-std::unordered_set<Octree *> WorldHandler::GetBlockPositions() {
+std::unordered_set<Octree *> WorldHandler::GetBlockPositionsParallel() {
     // A separate one has been made for getting positions, since blocks could be clustered close together, so we may be able to take advantage of some spacial structure of the blocks
     int p = min(omp_get_max_threads(), (int) this->blocks.size()); // need to ensure the data is more than the number of threads
     unordered_set<Octree*> local_set[p];
@@ -469,18 +469,81 @@ std::unordered_set<Octree *> WorldHandler::GetBlockPositions() {
 
 void WorldHandler::MakeDAG(std::unordered_set<Octree *> &block_positions, std::vector<pair<Octree *, Octree *>> &edges, std::unordered_set<Octree *> &nodes) {
     for(auto const pos: block_positions) {
-        GetDAGAtRoot(pos, edges, nodes);
+        if(nodes.find(pos) == nodes.end()) {
+            GetDAGAtRoot(pos, edges, nodes);
+        }
     }
 }
 
 void WorldHandler::GetDAGAtRoot(Octree *root, std::vector<pair<Octree *, Octree *>> &edges,
                                 std::unordered_set<Octree *> &nodes) {
+    if(nodes.find(root) != nodes.end()) {
+        return;
+    }
+
     auto children = this->tree->grid_elements_neighbours.at(root);
     nodes.insert(root);
     for(auto & child : children) {
-        if(nodes.find(child) == nodes.end()) {
+
+        if(!child->blocks_at_leaf.empty()){
             edges.emplace_back(root, child);
+        }
+
+        if(!child->blocks_at_leaf.empty() && nodes.find(child) == nodes.end()) {
+            //edges.emplace_back(root, child);
             GetDAGAtRoot(child, edges, nodes);
         }
     }
+}
+
+vector<Contact> WorldHandler::CollisionHandlerParallel() {
+
+    std::unordered_set<Octree *> pos = GetBlockPositionsParallel();
+    std::unordered_set<Octree *> pos1 = GetBlockPositionsSerial();
+    if(pos != pos1) {
+       cout << "not equalllllll" << endl;
+       cout << pos.size() << " " << pos1.size() << endl;
+    }
+
+
+    std::vector<pair<Octree *, Octree *>> edges;
+    std::unordered_set<Octree *> nodes;
+    MakeDAG(pos1, edges, nodes);
+
+    vector<Contact> collisions;
+
+#pragma omp parallel for
+    for(auto const &edge: edges) {
+        Octree *o1 = edge.first;
+        Octree *o2 = edge.second;
+        if(o1 == o2) {
+            continue;
+        }
+        for(auto const &b1: o1->blocks_at_leaf) {
+            for(auto const &b2: o2->blocks_at_leaf) {
+                Cube::CollisionDetect(b1, b2, collisions);
+            }
+        }
+    }
+
+    for(auto const p: pos) {
+        vector<Block *> v;
+        for(auto const &b : p->blocks_at_leaf) {
+            v.push_back(b);
+        }
+        for(int i=0; i<v.size()-1; i++) {
+            for(int j=i+1;j<v.size();j++) {
+                Cube::CollisionDetect(v.at(i), v.at(j), collisions);
+            }
+        }
+    }
+    return collisions;
+}
+
+std::unordered_set<Octree *> WorldHandler::GetBlockPositionsSerial() {
+    std::unordered_set<Octree *> r;
+    for(int i=0; i<this->blocks.size(); i++) {
+        r.insert(this->block_to_leaf[this->blocks.at(i)]);
+    }
+    return r;
 }
