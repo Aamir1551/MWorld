@@ -15,6 +15,7 @@
 #include <block_renderer.hpp>
 #include <world_handler.hpp>
 #include <omp.h>
+#include <chrono>
 
 using namespace std;
 
@@ -30,21 +31,26 @@ int main()
 
     WorldProperties *world_properties = WorldIntializer();
 
+#if defined(GLFW_ON)
     unsigned int vao, vbo, ebo;
     glGenVertexArrays(1, &vao);
     glGenBuffers(1, &vbo);
     glGenBuffers(1, &ebo);
+#endif
 
     real cube_length = 4.0f;
+
+#if defined(GLFW_ON)
     Camera camera = Camera(world_properties->window);
     camera.camera_pos = glm::vec3(0, 0, 250);
     BlockRenderer::InitialiseBlockRenderer(&camera, cube_length, vao, vbo, ebo, world_properties);
+#endif
 
     int num_blocks_same = 100;
     //WorldHandler world = WorldHandler(num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same); //WorldHandler world = WorldHandler(0, 0, 0, 0, 0, 0); //WorldHandler world = WorldHandler(10, 0, 0, 0, 0, 0);
     //WorldHandler world = WorldHandler(0, 0, 2, 0, 0, 0);
     // Test out with different collision elasticity value, so change scaling of velocity after collision, and see how world develops
-    WorldHandler world = WorldHandler(0, 0, 100, 0, 00, 0, -100, 100, 4);
+    WorldHandler world = WorldHandler(0, 0, 1000, 0, 00, 0, -100, 100, 4);
     
     // Testing with ZBLocks only -- Note we disabled the force's being applied, however, the forces are still being calculated
     // We shall have tests, with forces being applied and both not being applied
@@ -62,31 +68,46 @@ int main()
     //900 = 8fps
     //1000 = 6fps
 
+#if defined(GLFW_ON)
     glBindVertexArray(vao);
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
     glUseProgram(world_properties->shader_id);
     glClearColor(0.0f, 0.0f, 0.0f, 0.0f); //using black to clear the background
+#endif
     std::cout << "Entering Main Loop" << std::endl;
 
-    real deltaTime = 0.0f; // Time between current frame and last frame
-    real lastFrame = 0.0f; // Time of last frame
     real currentFrame;
+    real lastFrame = 0.0f; // Time of last frame
+    real deltaTime = 0.0f; // Time between current frame and last frame
 
     real frame_count = 0;
+
+#if defined(GLFW_ON)
     real prev_time = glfwGetTime(); // prev_time refers to the last time we printed the num of frames per seconds
-    while (!glfwWindowShouldClose(world_properties->window))
+#endif
+
+    while (
+#if defined(GLFW_ON)
+            !glfwWindowShouldClose(world_properties->window)
+#else
+true
+#endif
+    )
     {
 
+#if defined(GLFW_ON)
         currentFrame = glfwGetTime();
+#endif
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
 
+#if defined(GLFW_ON)
         camera.UpdateCamera(deltaTime);
-
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+#endif
 
-        //auto contact_list = world.CollisionHandlerSerial();
+        //auto contact_list = world.CollisionHandlerLoop();
         //auto contact_list1 = world.CollisionHandlerParallel();
 
         auto contact_list = world.CollisionHandlerParallel();
@@ -113,10 +134,12 @@ int main()
         //auto contact_list = vector<Contact>();
         world.Update(contact_list, deltaTime);
 
-        BlockRenderer::DrawAllBlocks(&world.iblocks, &world.zblocks, &world.eblocks, &world.mblocks);
 
+#if defined(GLFW_ON)
+        BlockRenderer::DrawAllBlocks(&world.iblocks, &world.zblocks, &world.eblocks, &world.mblocks);
         glfwSwapBuffers(world_properties->window);
         glfwPollEvents();
+#endif()
         frame_count++;
         if(currentFrame - prev_time >= 1.0) {
             cout << "FPS: " << frame_count << endl;
@@ -126,11 +149,15 @@ int main()
     }
 
     cout << "Terminating..." << endl;
+
+
+#if defined(GLFW_ON)
     glDeleteBuffers(1, &vao);
     glDeleteBuffers(1, &vbo);
     glDeleteBuffers(1, &ebo);
-
     glfwTerminate();
+#endif
+
     cout << "Terminated" << endl;
     return 0;
 }
