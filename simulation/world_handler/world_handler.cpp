@@ -228,82 +228,16 @@ void WorldHandler::Update(vector<Contact> &contact_list, real delta_time) {
     }
 };
 
-vector<Contact> WorldHandler::CollisionHandler()
+vector<Contact> WorldHandler::CollisionHandlerSerial()
 {
-
-
-    // Both methods not returning same results. Fix code
-
-    // When testing if both methods of calculating collisions return the same value,
-    // check CollisionDetect function and comment out if statement, if(dist==0), in CollisionDetect
-
     vector<Contact> contact_list;
-    set<pair<Block *, Block *>> collisions_checked;
-
-
-
-/*#pragma omp parallel for
-    for(auto const &collision_blocks : this->blocks) {
-        Octree *coll_tree;
-        vector<Octree *> neighbour_nodes;
-        coll_tree = this->block_to_leaf[collision_blocks];
-        neighbour_nodes = this->tree->grid_elements_neighbours[coll_tree];
-        for(auto const &n: neighbour_nodes) {
-            for(auto const &node_in_n: n->blocks_at_leaf) {
-                auto f1 = collisions_checked.find(make_pair(node_in_n, collision_blocks));
-                auto f2 = collisions_checked.find(make_pair(collision_blocks, node_in_n));
-
-                if(f1 == collisions_checked.end() && f2 == collisions_checked.end()) {
-                    if(collision_blocks == node_in_n) {
-                        continue;
-                    }
-
-#pragma omp critical
-                    // This code must be before the CollisionDetect code in order to avoid the contact list from
-                    // being filled twice
-                    {
-                        collisions_checked.insert(make_pair(collision_blocks, node_in_n));
-                    };
-                    Cube::CollisionDetect(collision_blocks, node_in_n,contact_list);
-                }
-            }
-        }
-    }
-    return contact_list;*/
-
-    vector<Contact> contact_list_test;
 #pragma omp parallel for
     for(unsigned int i=0; i<blocks.size()-1; i++) {
         for(unsigned int j=i+1; j<blocks.size(); j++) {
-            Cube::CollisionDetect(blocks.at(i), blocks.at(j), contact_list_test);
+            Cube::CollisionDetect(blocks.at(i), blocks.at(j), contact_list);
         }
     }
-    return contact_list_test;
-
-    /*
-    // We are creating sets to test if both these methods return the same contacts, since we are interested in the
-    // number of unique collisions, since we will be receiving many
-    set<pair<Block *, Block *>> c;
-    set<pair<Block *, Block *>> c1;
-
-    for(auto const &k : contact_list) {
-        c.insert(make_pair(k.body1, k.body2));
-        c.insert(make_pair(k.body2, k.body1));
-    }
-
-    for(auto const &k : contact_list_test) {
-        c1.insert(make_pair(k.body1, k.body2));
-        c1.insert(make_pair(k.body2, k.body1));
-    }
-
-
-    if(c != c1 || contact_list_test.size() != contact_list.size()) {
-        cout << c.size() << endl;
-        cout << c1.size() << endl;
-        cout << "not worked" << endl;
-    }
-
-    return contact_list;*/
+    return contact_list;
 }
 
 void WorldHandler::UpdateFlares(vector<Contact> &contact_list, real delta_time) {
@@ -399,8 +333,8 @@ WorldHandler::~WorldHandler() {
 template<typename T>
 std::unordered_set<T> WorldHandler::VecToSetParallel(vector<T> v) {
     // sort out this yellow stuff
-    int p = min(omp_get_max_threads(), (int) v.size()); // need to ensure the data is more than the number of threads
-    unordered_set<T> local_set[p];
+    float p = min(omp_get_max_threads(), (int) v.size()); // need to ensure the data is more than the number of threads
+    unordered_set<T> local_set[(int) p];
 
     int local_size = std::ceil(v.size()/p);
 #pragma omp parallel for
@@ -418,9 +352,9 @@ std::unordered_set<T> WorldHandler::VecToSetParallel(vector<T> v) {
             for(const auto&elem : local_set[((int) floor(num_threads_distributed_across/2)) + j]) {
                 local_set[j].insert(elem);
             }
-            if(j == floor(num_threads_distributed_across/2)){
+            if(j == floor(num_threads_distributed_across/2)-1){
                 if(num_threads_distributed_across % 2 == 1) {
-                    for(const auto&elem : local_set[p/2 + j + 1]) {
+                    for(const auto&elem : local_set[t + j + 1]) {
                         local_set[j].insert(elem);
                     }
                 }
@@ -435,12 +369,12 @@ std::unordered_set<T> WorldHandler::VecToSetParallel(vector<T> v) {
 
 std::unordered_set<Octree *> WorldHandler::GetBlockPositionsParallel() {
     // A separate one has been made for getting positions, since blocks could be clustered close together, so we may be able to take advantage of some spacial structure of the blocks
-    int p = min(omp_get_max_threads(), (int) this->blocks.size()); // need to ensure the data is more than the number of threads
-    unordered_set<Octree*> local_set[p];
+    float p = min(omp_get_max_threads(), (int) this->blocks.size()); // need to ensure the data is more than the number of threads
+    unordered_set<Octree*> local_set[(int) p];
 
     int local_size = std::ceil(this->blocks.size()/p);
 #pragma omp parallel for
-    for(int i=0; i<p; i++){
+    for(int i=0; i<(int) p; i++){
         for(int j=i*local_size; j<min(local_size * (i+1), (int) this->blocks.size()); j++) {
             local_set[i].insert(this->block_to_leaf.at(this->blocks.at(j)));
         }
@@ -454,9 +388,9 @@ std::unordered_set<Octree *> WorldHandler::GetBlockPositionsParallel() {
             for(const auto&elem : local_set[((int) floor(num_threads_distributed_across/2)) + j]) {
                 local_set[j].insert(elem);
             }
-            if(j == floor(num_threads_distributed_across/2)){
+            if(j == floor(num_threads_distributed_across/2)-1){
                 if(num_threads_distributed_across % 2 == 1) {
-                    for(const auto&elem : local_set[p/2 + j + 1]) {
+                    for(const auto&elem : local_set[t + j + 1]) {
                         local_set[j].insert(elem);
                     }
                 }
@@ -499,16 +433,16 @@ void WorldHandler::GetDAGAtRoot(Octree *root, std::vector<pair<Octree *, Octree 
 vector<Contact> WorldHandler::CollisionHandlerParallel() {
 
     std::unordered_set<Octree *> pos = GetBlockPositionsParallel();
-    std::unordered_set<Octree *> pos1 = GetBlockPositionsSerial();
-    if(pos != pos1) {
+    //std::unordered_set<Octree *> pos1 = GetBlockPositionsSerial();
+    /*if(pos != pos1) {
        cout << "not equalllllll" << endl;
        cout << pos.size() << " " << pos1.size() << endl;
-    }
+    }*/
 
 
     std::vector<pair<Octree *, Octree *>> edges;
     std::unordered_set<Octree *> nodes;
-    MakeDAG(pos1, edges, nodes);
+    MakeDAG(pos, edges, nodes);
 
     vector<Contact> collisions;
 
