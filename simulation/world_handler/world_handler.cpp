@@ -159,14 +159,14 @@ void WorldHandler::AddBlock(BlockTypes block_types, int num_blocks, bool state) 
 
 void WorldHandler::Update(vector<Contact> &contact_list, real delta_time) {
 
-#pragma omp parallel for
+#pragma omp parallel for default(none)
     for(auto const &world_block : this->blocks) {
         tree->RemoveBlock(world_block);
     }
 
     UpdateFlares(contact_list, delta_time);
 
-#pragma omp parallel for
+#pragma omp parallel for default(none) shared(contact_list)
     for(unsigned int i=0; i<contact_list.size(); i++) {
 #pragma omp critical
         {
@@ -174,7 +174,7 @@ void WorldHandler::Update(vector<Contact> &contact_list, real delta_time) {
         }
     }
 
-#pragma omp parallel for
+#pragma omp parallel for default(none) shared(delta_time)
     for(auto const &leaf_m_block: this->mblocks) {
         if(leaf_m_block->flare_value > MBlock::threshold) {
             forces_tree->RemoveMBlockPlus(leaf_m_block);
@@ -242,7 +242,7 @@ vector<Contact> WorldHandler::CollisionHandlerSerial()
 
 void WorldHandler::UpdateFlares(vector<Contact> &contact_list, real delta_time) {
     PassBlockFlares(contact_list, delta_time);
-#pragma omp parallel for
+#pragma omp parallel for default(none) shared(delta_time)
     for(auto const &world_block : this->blocks) {
         world_block->Decay(delta_time);
     }
@@ -252,7 +252,7 @@ void WorldHandler::UpdateFlares(vector<Contact> &contact_list, real delta_time) 
 
 void WorldHandler::AddForces(real delta_time) {
     this->forces_tree->CalculateCOMonTree();
-#pragma omp parallel for
+#pragma omp parallel for default(none) shared(delta_time)
     for(auto const &block : this->blocks) {
         if(!block->locked) {
             forces_tree->ApplyBarnesHutOnBlock(block, delta_time);
@@ -280,10 +280,10 @@ void WorldHandler::AddForces(real delta_time) {
     }*/
 }
 
-void WorldHandler::PassBlockFlares(vector<Contact> &contacts, real deltatime) {
-#pragma omp parallel for
+void WorldHandler::PassBlockFlares(vector<Contact> &contacts, real delta_time) {
+#pragma omp parallel for default(none) shared(contacts, delta_time)
     for(auto & contact : contacts) {
-        PassFlare(contact.body1, contact.body2, deltatime);
+        PassFlare(contact.body1, contact.body2, delta_time);
     }
 }
 
@@ -299,7 +299,7 @@ void WorldHandler::PassFlare(Block *a, Block *b, real deltatime) {
 }
 
 void WorldHandler::IncFlareValuesAndReset() {
-#pragma omp parallel for
+#pragma omp parallel for default(none)
    for(auto & block : this->blocks) {
         block->UpdateFlare();
         block->flare_inc = 0;
@@ -307,7 +307,7 @@ void WorldHandler::IncFlareValuesAndReset() {
 }
 
 void WorldHandler::AddSpin(vector<Block *> *block_list,  Matrix const &force_direction) {
-#pragma omp parallel for
+#pragma omp parallel for default(none) shared(block_list, force_direction)
     for(auto & i : *block_list) {
         i->spin(force_direction);
     }
@@ -373,7 +373,7 @@ std::unordered_set<Octree *> WorldHandler::GetBlockPositionsParallel() {
     unordered_set<Octree*> local_set[(int) p];
 
     int local_size = std::ceil(this->blocks.size()/p);
-#pragma omp parallel for
+#pragma omp parallel for default(none) shared(p, local_size, local_set)
     for(int i=0; i<(int) p; i++){
         for(int j=i*local_size; j<min(local_size * (i+1), (int) this->blocks.size()); j++) {
             local_set[i].insert(this->block_to_leaf.at(this->blocks.at(j)));
@@ -383,7 +383,7 @@ std::unordered_set<Octree *> WorldHandler::GetBlockPositionsParallel() {
     int num_threads_distributed_across = p; // p=4
     for(int i=0; i<ceil(log(p)); i++) { // 2 {0, 1}
         int t = floor(num_threads_distributed_across/2);
-#pragma omp parallel for
+#pragma omp parallel for default(none) shared(num_threads_distributed_across, local_set, t)
         for(int j=0; j<t; j++) { // 2 {0, 1}
             for(const auto&elem : local_set[((int) floor(num_threads_distributed_across/2)) + j]) {
                 local_set[j].insert(elem);
@@ -446,7 +446,7 @@ vector<Contact> WorldHandler::CollisionHandlerParallel() {
 
     vector<Contact> collisions;
 
-#pragma omp parallel for
+#pragma omp parallel for default(none) shared(edges, collisions)
     for(auto const &edge: edges) {
         Octree *o1 = edge.first;
         Octree *o2 = edge.second;
@@ -465,8 +465,8 @@ vector<Contact> WorldHandler::CollisionHandlerParallel() {
         for(auto const &b : p->blocks_at_leaf) {
             v.push_back(b);
         }
-        for(int i=0; i<v.size()-1; i++) {
-            for(int j=i+1;j<v.size();j++) {
+        for(unsigned int i=0; i<v.size()-1; i++) {
+            for(unsigned int j=i+1;j<v.size();j++) {
                 Cube::CollisionDetect(v.at(i), v.at(j), collisions);
             }
         }
@@ -476,7 +476,7 @@ vector<Contact> WorldHandler::CollisionHandlerParallel() {
 
 std::unordered_set<Octree *> WorldHandler::GetBlockPositionsSerial() {
     std::unordered_set<Octree *> r;
-    for(int i=0; i<this->blocks.size(); i++) {
+    for(unsigned int i=0; i<this->blocks.size(); i++) {
         r.insert(this->block_to_leaf[this->blocks.at(i)]);
     }
     return r;

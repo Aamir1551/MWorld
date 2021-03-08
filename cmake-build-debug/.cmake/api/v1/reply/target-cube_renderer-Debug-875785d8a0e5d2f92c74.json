@@ -62,7 +62,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : " -Wall -fopenmp -g  "
+					"fragment" : " -Wall -fopenmp -std=c++11 -g  "
 				},
 				{
 					"fragment" : "-std=gnu++11"
