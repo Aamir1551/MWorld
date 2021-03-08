@@ -12,6 +12,7 @@
 #include <camera.hpp>
 #include <block_renderer.hpp>
 #include <world_handler.hpp>
+#include <omp.h>
 
 using namespace std;
 
@@ -22,7 +23,8 @@ using namespace blocks;
 
 int main()
 {
-    cout << "Running MWorld Simulation" << endl;
+    cout << "Running MWorld Simulation with "  << omp_get_max_threads() << " threads" << endl;
+    //cout << "Running MWorld Simulation" << endl;
 
     WorldProperties *world_properties = WorldIntializer();
 

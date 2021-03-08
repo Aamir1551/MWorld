@@ -54,8 +54,6 @@ int main()
     CubeRenderer::InitializeCubes(cube_length, vao, vbo, ebo, &view, &projection, world_properties->shader_id);
     CubeRenderer::AddVerticesToBuffers();
 
-    CubeRenderer cubes;
-
     glBindVertexArray(vao);
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);

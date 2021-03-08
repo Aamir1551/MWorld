@@ -31,7 +31,7 @@ namespace blocks {
     real MBlock::capacity = 5;
 
     bool MBlock::ReactBarnesHut(ForceOctree *tree, real delta_time) {
-        // Attracted to only the ZBlock
+        // M+ blocks are attracted to the ZBlock
         if (tree->zblocks_at_cell_count == 0) {
             return false;
         }
@@ -48,7 +48,7 @@ namespace blocks {
     }
 
     void MBlock::ReactSerial(ZBlock *b, real delta_time) {
-        // Attracted to the MBlock
+        // M+ blocks are attracted to the ZBlock
         if(this->flare_value > blocks::MBlock::threshold) {
             Matrix dist_vect = b->position - this->position;
             real squared_dist = Matrix::SquaredNorm(dist_vect);

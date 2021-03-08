@@ -29,7 +29,7 @@ namespace blocks {
     }
 
     void ZBlock::Decay(real delta_time) {
-        this->flare_value = std::max(this->flare_value - delta_time * 0.02, 0.0);
+        this->flare_value = std::max(this->flare_value - 0.02 * delta_time , 0.0);
     }
 
     real ZBlock::ExtractFlareFromBlock(real delta_time) {
@@ -43,7 +43,7 @@ namespace blocks {
 
     void ZBlock::AddFlareToBlock(real flare_amount, Block *b) {
         if(b->block_type!=0) {
-            this->flare_inc += (flare_amount) * 3;
+            this->flare_inc += (flare_amount);
         }
     }
 

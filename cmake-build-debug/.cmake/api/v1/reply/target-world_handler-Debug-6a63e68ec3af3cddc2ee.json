@@ -1,0 +1,256 @@
+{
+	"archive" : {},
+	"artifacts" : 
+	[
+		{
+			"path" : "simulation/world_handler/libworld_handler.a"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_library",
+			"target_link_libraries",
+			"target_include_directories"
+		],
+		"files" : 
+		[
+			"simulation/world_handler/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 5,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 6,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 7,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : " -Wall -fopenmp -g  "
+				},
+				{
+					"fragment" : "-std=gnu++11"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 3,
+					"path" : "C:/Users/aamir/Documents/mworld/lib/glfw-3.3.2/include"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "C:/Users/aamir/Documents/mworld/lib/glm"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "C:/Users/aamir/Documents/mworld/simulation/world_handler"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "C:/Users/aamir/Documents/mworld/simulation/octree/."
+				},
+				{
+					"backtrace" : 2,
+					"path" : "C:/Users/aamir/Documents/mworld/numerics/linear_alg/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "C:/Users/aamir/Documents/mworld/utils/settings/."
+				},
+				{
+					"backtrace" : 2,
+					"path" : "C:/Users/aamir/Documents/mworld/simulation/blocks"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "C:/Users/aamir/Documents/mworld/simulation/blocks/../octree"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "C:/Users/aamir/Documents/mworld/numerics/quaternion/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "C:/Users/aamir/Documents/mworld/render/cube_renderer/../lib"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "C:/Users/aamir/Documents/mworld/render/cube_renderer/."
+				},
+				{
+					"backtrace" : 2,
+					"path" : "C:/Users/aamir/Documents/mworld/lib/glad/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "C:/Users/aamir/Documents/mworld/utils/util_functions/."
+				},
+				{
+					"backtrace" : 2,
+					"path" : "C:/Users/aamir/Documents/mworld/render/utils/."
+				},
+				{
+					"backtrace" : 2,
+					"path" : "C:/Users/aamir/Documents/mworld/render/shader"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "C:/Users/aamir/Documents/mworld/render/camera"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "C:/Users/aamir/Documents/mworld/render/block_renderer/../lib"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "C:/Users/aamir/Documents/mworld/render/block_renderer/."
+				}
+			],
+			"language" : "CXX",
+			"sourceIndexes" : 
+			[
+				0,
+				4
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 2,
+			"id" : "glad::@bf3af473941166e98053"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "utils::@c5cd9bcf8a2dc65dcb35"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "quaternion::@1ddfe99dd86582fd9c64"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "linear_alg::@b276e23674e4ab50d284"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "block_renderer::@20380dfbeeaf1beda5b3"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "mworld_render_utils::@c1c5e50b708af245b811"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "blocks::@6db65c1307d2a2a784c8"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "cube_renderer::@ef8ae11a8c6e57d14ca4"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "octree::@66c141f95c7ed784ad75"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "force_octree::@66c141f95c7ed784ad75"
+		}
+	],
+	"id" : "world_handler::@db5c5082507517693d46",
+	"name" : "world_handler",
+	"nameOnDisk" : "libworld_handler.a",
+	"paths" : 
+	{
+		"build" : "simulation/world_handler",
+		"source" : "simulation/world_handler"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0,
+				4
+			]
+		},
+		{
+			"name" : "Header Files",
+			"sourceIndexes" : 
+			[
+				1,
+				2,
+				3,
+				5,
+				6
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "simulation/world_handler/world_handler.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "simulation/world_handler/world_handler.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "utils/settings/settings.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "render/utils/world_initializer.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"compileGroupIndex" : 0,
+			"path" : "render/utils/world_initializer.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 2,
+			"path" : "render/shader/shader.hpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 2,
+			"path" : "render/camera/camera.hpp",
+			"sourceGroupIndex" : 1
+		}
+	],
+	"type" : "STATIC_LIBRARY"
+}
