@@ -44,9 +44,9 @@ ForceOctree* ForceOctree::AddIBlockNeg(IBlock *b) {
 
 
 ForceOctree* ForceOctree::AddMBlockPlus(MBlock *b) {
-#pragma omp critical
+#pragma omp atomic
     this->mblocks_at_cell_plus_count +=1;
-#pragma omp parallel
+#pragma omp critical
     {
         this->sum_m_plus += b->position;
     };
@@ -280,7 +280,7 @@ ForceOctree::ForceOctree(int grid_size, real min_x, real  max_x, real min_y, rea
         this->is_leaf = false;
 
 
-#pragma omp parallel for
+#pragma omp parallel for default(none) shared(min_x, max_x, min_y, max_y, min_z, max_z, avg_x, avg_y, avg_z, grid_size)
         for(int i=0; i<8; i++) {
             auto xx0 = (i % 2) ? avg_x : min_x;
             auto xx1 = (i % 2) ? max_x: avg_x;

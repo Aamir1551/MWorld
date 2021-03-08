@@ -167,10 +167,10 @@ void WorldHandler::Update(vector<Contact> &contact_list, real delta_time) {
     UpdateFlares(contact_list, delta_time);
 
 #pragma omp parallel for default(none) shared(contact_list)
-    for(unsigned int i=0; i<contact_list.size(); i++) {
+    for(auto & i : contact_list) {
 #pragma omp critical
         {
-            Cube::CollisionResolution(contact_list.at(i));
+            Cube::CollisionResolution(i);
         }
     }
 
@@ -192,7 +192,7 @@ void WorldHandler::Update(vector<Contact> &contact_list, real delta_time) {
 
     }
 
-#pragma omp parallel for
+#pragma omp parallel for default(none) shared(delta_time)
     for(auto const &leaf_i_block: this->iblocks) {
         if(leaf_i_block->state) {
             forces_tree->RemoveIBlockPlus(leaf_i_block);
@@ -209,7 +209,7 @@ void WorldHandler::Update(vector<Contact> &contact_list, real delta_time) {
         }
     }
 
-#pragma omp parallel for
+#pragma omp parallel for default(none) shared(delta_time)
     for(auto const &leaf_e_block: this->eblocks) {
         forces_tree->RemoveEBlock(leaf_e_block);
         leaf_e_block->Update(this->min_coord, this->max_coord, this->min_coord, this->max_coord, this->min_coord, this->max_coord, delta_time);
@@ -218,7 +218,7 @@ void WorldHandler::Update(vector<Contact> &contact_list, real delta_time) {
         forces_tree->AddEBlock(leaf_e_block);
     }
 
-#pragma omp parallel for
+#pragma omp parallel for default(none) shared(delta_time)
     for(auto const &leaf_z_block: this->zblocks) {
         forces_tree->RemoveZBlock(leaf_z_block);
         leaf_z_block->Update(this->min_coord, this->max_coord, this->min_coord, this->max_coord, this->min_coord, this->max_coord, delta_time);
@@ -228,10 +228,10 @@ void WorldHandler::Update(vector<Contact> &contact_list, real delta_time) {
     }
 };
 
-vector<Contact> WorldHandler::CollisionHandlerSerial()
+vector<Contact> WorldHandler::CollisionHandlerLoop()
 {
     vector<Contact> contact_list;
-#pragma omp parallel for
+#pragma omp parallel for default(none) shared(contact_list)
     for(unsigned int i=0; i<blocks.size()-1; i++) {
         for(unsigned int j=i+1; j<blocks.size(); j++) {
             Cube::CollisionDetect(blocks.at(i), blocks.at(j), contact_list);
@@ -460,7 +460,13 @@ vector<Contact> WorldHandler::CollisionHandlerParallel() {
         }
     }
 
-    for(auto const p: pos) {
+    vector<Octree *> bb;
+    for(auto const &p: pos) {
+        bb.push_back(p);
+    }
+
+#pragma omp parallel for default(none) shared(pos, collisions, bb)
+    for(auto const &p: bb) {
         vector<Block *> v;
         for(auto const &b : p->blocks_at_leaf) {
             v.push_back(b);

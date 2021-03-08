@@ -249,7 +249,7 @@ MWorld_SOURCE_DIR:STATIC=C:/Users/aamir/Documents/mworld
 block_renderer_BINARY_DIR:STATIC=C:/Users/aamir/Documents/mworld/cmake-build-debug/render/block_renderer
 
 //Dependencies for the target
-block_renderer_LIB_DEPENDS:STATIC=general;linear_alg;general;quaternion;general;cube_renderer;general;utils;general;glad;general;C:/Users/aamir/Documents/mworld/lib/glfw-3.3.2/build/src/libglfw3.a;general;mworld_render_utils;general;blocks;
+block_renderer_LIB_DEPENDS:STATIC=general;linear_alg;general;quaternion;general;cube_renderer;general;utils;general;glad;general;C:/Users/aamir/Documents/mworld/lib/glfw-3.3.2/build/src/libglfw3.a;general;settings;general;mworld_render_utils;general;blocks;
 
 //Value Computed by CMake
 block_renderer_SOURCE_DIR:STATIC=C:/Users/aamir/Documents/mworld/render/block_renderer
@@ -267,7 +267,7 @@ camera_SOURCE_DIR:STATIC=C:/Users/aamir/Documents/mworld/render/camera
 cube_renderer_BINARY_DIR:STATIC=C:/Users/aamir/Documents/mworld/cmake-build-debug/render/cube_renderer
 
 //Dependencies for the target
-cube_renderer_LIB_DEPENDS:STATIC=general;glad;general;C:/Users/aamir/Documents/mworld/lib/glfw-3.3.2/build/src/libglfw3.a;
+cube_renderer_LIB_DEPENDS:STATIC=general;glad;general;C:/Users/aamir/Documents/mworld/lib/glfw-3.3.2/build/src/libglfw3.a;general;settings;
 
 //Value Computed by CMake
 cube_renderer_SOURCE_DIR:STATIC=C:/Users/aamir/Documents/mworld/render/cube_renderer

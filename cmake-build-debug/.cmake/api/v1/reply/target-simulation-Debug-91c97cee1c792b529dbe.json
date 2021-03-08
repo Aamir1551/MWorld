@@ -15,6 +15,7 @@
 		[
 			"add_executable",
 			"target_link_libraries",
+			"target_compile_definitions",
 			"target_include_directories"
 		],
 		"files" : 
@@ -35,13 +36,25 @@
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 14,
+				"line" : 20,
 				"parent" : 0
 			},
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 22,
+				"line" : 16,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 18,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 26,
 				"parent" : 0
 			}
 		]
@@ -58,18 +71,29 @@
 					"fragment" : "-std=gnu++11"
 				}
 			],
-			"includes" : 
+			"defines" : 
 			[
 				{
 					"backtrace" : 3,
+					"define" : "GLFW_ON=1"
+				},
+				{
+					"backtrace" : 4,
+					"define" : "uu=1"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 5,
 					"path" : "C:/Users/aamir/Documents/mworld/lib/glfw-3.3.2/include"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 5,
 					"path" : "C:/Users/aamir/Documents/mworld/lib/glm"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 5,
 					"path" : "C:/Users/aamir/Documents/mworld/simulation/environment"
 				},
 				{
@@ -153,7 +177,23 @@
 		},
 		{
 			"backtrace" : 2,
+			"id" : "mworld_render_utils::@c1c5e50b708af245b811"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "cube_renderer::@ef8ae11a8c6e57d14ca4"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "block_renderer::@20380dfbeeaf1beda5b3"
+		},
+		{
+			"backtrace" : 2,
 			"id" : "utils::@c5cd9bcf8a2dc65dcb35"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "force_octree::@66c141f95c7ed784ad75"
 		},
 		{
 			"backtrace" : 2,
@@ -169,23 +209,7 @@
 		},
 		{
 			"backtrace" : 2,
-			"id" : "cube_renderer::@ef8ae11a8c6e57d14ca4"
-		},
-		{
-			"backtrace" : 2,
-			"id" : "force_octree::@66c141f95c7ed784ad75"
-		},
-		{
-			"backtrace" : 2,
-			"id" : "block_renderer::@20380dfbeeaf1beda5b3"
-		},
-		{
-			"backtrace" : 2,
 			"id" : "blocks::@6db65c1307d2a2a784c8"
-		},
-		{
-			"backtrace" : 2,
-			"id" : "mworld_render_utils::@c1c5e50b708af245b811"
 		},
 		{
 			"backtrace" : 2,

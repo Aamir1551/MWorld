@@ -25,11 +25,23 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -fopenmp -std=c++11")
 #SET (CMAKE_CXX_FLAGS_RELEASE_INIT        "-O3 -DNDEBUG")
 #SET (CMAKE_CXX_FLAGS_RELWITHDEBINFO_INIT "-O2 -g")
 
+
+
+set(compile_with_glfw ON)
+set(compile_prototypes ON)
+
 project(MWorld)
-#add_subdirectory(catch)
-add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/lib/glad")
+
+if(compile_with_glfw)
+    add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/lib/glad")
+    add_subdirectory(render)
+endif()
+
 add_subdirectory(utils)
 add_subdirectory(numerics)
-add_subdirectory(render)
-add_subdirectory(prototype)
+if(compile_prototypes)
+    add_subdirectory(prototype)
+endif()
+
+#add_subdirectory(catch)
 add_subdirectory(simulation)
