@@ -149,12 +149,12 @@ int main(int argc, char *argv[])
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 #endif
 
-        auto contact_list = world.CollisionHandlerLoop();
-        auto contact_list1 = world.CollisionHandlerParallel();
+        //auto contact_list = world.CollisionHandlerLoop();
+        //auto contact_list1 = world.CollisionHandlerParallel();
 
-        //auto contact_list = world.CollisionHandlerParallel();
+        auto contact_list = world.CollisionHandlerParallel();
 
-        set<pair<Block *, Block *>> c;
+        /*set<pair<Block *, Block *>> c;
         for(auto const &i : contact_list) {
            c.insert(make_pair(i.body1, i.body2));
            c.insert(make_pair(i.body2, i.body1));
@@ -169,7 +169,7 @@ int main(int argc, char *argv[])
         if(c != c1) {
             cout << c.size() << " " << c1.size() <<  endl;
             cout << "not equal" << endl;
-        }
+        }*/
 
 
 #if defined(GLFW_ON)
