@@ -70,7 +70,7 @@ int main(int argc, char *argv[])
     // Test out with different collision elasticity value, so change scaling of velocity after collision, and see how world develops
     WorldHandler world = WorldHandler((argc < 3) ? 0 : (int) atoi(argv[2]),
                                       (argc < 4) ? 0 : (int) atoi(argv[3]),
-                                      (argc < 5) ? 500 : (int) atoi(argv[4]),
+                                      (argc < 5) ? 700 : (int) atoi(argv[4]),
                                       (argc < 6) ? 0 : (int) atoi(argv[5]),
                                       (argc < 7) ? 0 : (int) atoi(argv[6]),
                                       (argc < 8) ? 0 : (int) atoi(argv[7]),
