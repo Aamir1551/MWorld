@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <omp.h>
 
 #include <matrix.hpp>
 #include <quaternion.hpp>
@@ -104,6 +105,10 @@ namespace blocks {
                                             real min_boundary_z, real max_boundary_z);
 
         void static CollisionResolution(Contact &contact);
+
+
+        void static CollisionDetectAndResolve(Block *c1, Block *c2, vector<omp_lock_t>);
+
         virtual ~Cube() = default;
     };
 };

@@ -17,20 +17,25 @@ namespace blocks {
 
     public:
 
+        int const block_id = 0; // block_id is useful for allowing us to make extra optimisations
+
         real flare_value = 0.0f;
         real flare_inc = 0.0f;
-        real static flare_capacity; // change this for the eblock, so we can have eblocks help us make or gates
+
+        real static flare_capacity;
         real static theta;
+        static int block_count;
+
         bool locked; // When a block is locked, then forces do not act on it
         int block_type = -1;
 
         Block(const Matrix& position, const Quaternion& initial_orientation, real initial_flare_amount, real cube_length = 4.0f) : Cube(cube_length, position,
                                                                                                  initial_orientation,
                                                                                                  1.0f,
-                                                                                                 1.0f) {
+                                                                                                 1.0f), block_id(block_count) {
             this->flare_value = initial_flare_amount;
             this->locked = false;
-
+            Block::block_count +=1;
         };
 
         bool ApplyForceFromBlock(ForceOctree* tree, int cell_count, const Matrix &com, Matrix &inc_force);

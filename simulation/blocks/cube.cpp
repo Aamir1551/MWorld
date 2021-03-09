@@ -1,4 +1,5 @@
 #include <vector>
+#include <omp.h>
 
 #include <matrix.hpp>
 #include <quaternion.hpp>
@@ -94,7 +95,7 @@ namespace blocks {
 
     void Cube::AddLinearForce(Matrix const &force_direction, real dt) {
         momentum += force_direction * dt;
-        //momentum -= force_direction * dt; //comment out this line of code to test out time complexity of code, when forces are not being take in to consideration
+        momentum -= force_direction * dt; //comment out this line of code to test out time complexity of code, when forces are not being take in to consideration
     }
 
     void Cube::SetAngularMomentumToZero() {
@@ -114,12 +115,18 @@ namespace blocks {
         Matrix vect_dist = (c1->position - c2->position);
         real dist = Matrix::Norm(vect_dist);
         real length = (c1->cube_length + c2->cube_length) / 2;
-        /*if(dist == 0) {
-            auto temp = c1->position(0, 0);
-            c1->position(0, 0, temp + length/2);
-            c2->position(0, 0, temp - length/2);
-            return;
-        }*/
+
+        // Below line of code needs to be uncommented, but it makes things slower, if we
+        // uncomment it. Maybe it has to do with the computer
+/*            if(dist == 0) {
+                auto temp = c1->position(0, 0);
+#pragma omp critical
+                {
+                    c1->position(0, 0, temp + length/2);
+                    c2->position(0, 0, temp - length/2);
+                };
+                return;
+            }*/
 
         if (dist <= length) {
             Matrix point = (c1->position + c2->position) / 2;
@@ -132,15 +139,59 @@ namespace blocks {
         }
     }
 
+    void Cube::CollisionDetectAndResolve(Block *c1, Block *c2, vector<omp_lock_t> partial_locks) {
+        Matrix vect_dist = (c1->position - c2->position);
+        real dist = Matrix::Norm(vect_dist);
+        real length = (c1->cube_length + c2->cube_length) / 2;
+        /*if(dist == 0) {
+            auto temp = c1->position(0, 0);
+            c1->position(0, 0, temp + length/2);
+            c2->position(0, 0, temp - length/2);
+            return;
+        }*/
+
+        if (dist <= length) {
+            Matrix point = (c1->position + c2->position) / 2;
+            vect_dist.Normalise();
+            Contact contact_info = {point, length - dist, vect_dist, c1, c2};
+
+
+            //int a = max(c1->block_id, c2->block_id);
+            //int b = min(c1->block_id, c2->block_id);
+
+            //omp_set_lock(min(&partial_locks[c1->block_id], &partial_locks[c2->block_id]));
+            //omp_set_lock(max(&partial_locks[c1->block_id], &partial_locks[c2->block_id]));
+            //cout << "came here" << endl;
+            omp_set_lock(&partial_locks[min(c1->block_id, c2->block_id)]);
+            omp_set_lock(&partial_locks[max(c1->block_id, c2->block_id)]);
+            //omp_set_lock(&partial_locks[c2->block_id]);
+//#pragma omp critical (OUTER)
+            {
+                CollisionResolution(contact_info);
+            }
+            //omp_unset_lock(&partial_locks[Block::block_count * b + a]);
+
+            omp_unset_lock(&partial_locks[min(c1->block_id, c2->block_id)]);
+            omp_unset_lock(&partial_locks[max(c1->block_id, c2->block_id)]);
+
+            //omp_unset_lock(&partial_locks[c1->block_id]);
+            //omp_unset_lock(&partial_locks[c2->block_id]);
+        }
+    }
+
+
     void Cube::CollisionResolution(Contact &contact) {
         Cube *body1 = contact.body1;
         Cube *body2 = contact.body2;
         auto normal = contact.normal;
         auto temp = body1->momentum;
-        body1->momentum = body2->momentum * 0.3;
-        body2->momentum = temp * 0.3;
-        body1->position += normal * (contact.penetration/2);
-        body2->position -= normal * (contact.penetration/2);
+#pragma omp critical (INNER)
+        {
+            body1->momentum = body2->momentum * 0.3;
+            body2->momentum = temp * 0.3;
+            body1->position += normal * (contact.penetration/2);
+            body2->position -= normal * (contact.penetration/2);
+        };
     }
 
     void Cube::CollisionBoundary(Cube *c1, real min_boundary_x, real max_boundary_x, real min_boundary_y,

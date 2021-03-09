@@ -51,8 +51,6 @@ namespace blocks {
         this->flare_value = std::max(std::min( (this->flare_inc + this->flare_value), Block::flare_capacity), 0.0f);
     };
 
-    real Block::flare_capacity = 1.0f;
-    real Block::theta = 0.5f;
 
     void Block::Decay(real delta_time) {};
 
@@ -61,5 +59,8 @@ namespace blocks {
     void Block::ReactSerial(ZBlock *b, real delta_time){};
     void Block::ReactSerial(EBlock *b, real delta_time){};
 
+    int Block::block_count = 0;
+    real Block::flare_capacity = 1.0f;
+    real Block::theta = 0.5f;
 }
 

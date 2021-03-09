@@ -9,6 +9,7 @@
 #include <set>
 #include <unordered_set>
 #include <utility>
+#include <omp.h>
 
 #include <matrix.hpp>
 
@@ -56,6 +57,8 @@ public:
     real min_coord;
     real max_coord;
     map<Block*, Octree*> block_to_leaf; // This type is only needed for when checking for collision in n^2 fashion
+    vector<omp_lock_t> collision_locks;
+
 
     enum BlockTypes {IBlockType, MBlockType, EBlockType, ZBlockType};
 

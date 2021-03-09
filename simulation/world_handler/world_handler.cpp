@@ -5,6 +5,7 @@
 #include <set>
 #include <omp.h>
 #include <cmath>
+#include <iostream>
 
 #include <matrix.hpp>
 
@@ -65,6 +66,11 @@ WorldHandler::WorldHandler(int num_i_blocks_plus, int num_i_blocks_neg, int num_
     AddBlock(EBlockType, num_e_blocks_1, true);
     AddBlock(EBlockType, num_e_blocks_1_2, false);
     AddBlock(ZBlockType, num_z_blocks, true);
+
+    for(unsigned int i=0; i<this->blocks.size(); i++) {
+       this->collision_locks.emplace_back(omp_lock_t());
+       omp_init_lock(&this->collision_locks.at(i));
+    }
 }
 
 void WorldHandler::GetProperties(int num_blocks, std::vector<Matrix> *&positions, std::vector<Matrix> * &linear_momentums, real min_coord, real max_coord) {
@@ -173,6 +179,7 @@ void WorldHandler::Update(vector<Contact> &contact_list, real delta_time) {
             Cube::CollisionResolution(i);
         }
     }
+
 
 #pragma omp parallel for default(none) shared(delta_time)
     for(auto const &leaf_m_block: this->mblocks) {
@@ -401,7 +408,9 @@ std::unordered_set<Octree *> WorldHandler::GetBlockPositionsParallel() {
     return local_set[0];
 }
 
-void WorldHandler::MakeDAG(std::unordered_set<Octree *> &block_positions, std::vector<pair<Octree *, Octree *>> &edges, std::unordered_set<Octree *> &nodes) {
+void WorldHandler::MakeDAG(std::unordered_set<Octree *> &block_positions,
+                           std::vector<pair<Octree *, Octree *>> &edges,
+                           std::unordered_set<Octree *> &nodes) {
     for(auto const pos: block_positions) {
         if(nodes.find(pos) == nodes.end()) {
             GetDAGAtRoot(pos, edges, nodes);
@@ -421,12 +430,10 @@ void WorldHandler::GetDAGAtRoot(Octree *root, std::vector<pair<Octree *, Octree 
     for(auto & child : children) {
         if (!child->blocks_at_leaf.empty() && nodes.find(child) == nodes.end()) {
             {
-
                 edges.emplace_back(root, child);
-        }
+            }
         }
     }
-
 
     for(auto & child : children) {
         if(!child->blocks_at_leaf.empty() && nodes.find(child) == nodes.end()) {
@@ -438,6 +445,7 @@ void WorldHandler::GetDAGAtRoot(Octree *root, std::vector<pair<Octree *, Octree 
 vector<Contact> WorldHandler::CollisionHandlerWithOctree() {
 
     std::unordered_set<Octree *> pos = GetBlockPositionsParallel();
+    //std::unordered_set<Octree *> pos = GetBlockPositionsSerial();
     /*std::unordered_set<Octree *> pos1 = GetBlockPositionsSerial();
     if(pos != pos1) {
        cout << "not equalllllll" << endl;
@@ -460,7 +468,9 @@ vector<Contact> WorldHandler::CollisionHandlerWithOctree() {
         }
         for(auto const &b1: o1->blocks_at_leaf) {
             for(auto const &b2: o2->blocks_at_leaf) {
+
                 Cube::CollisionDetect(b1, b2, collisions);
+                //Cube::CollisionDetectAndResolve(b1, b2, this->collision_locks);
             }
         }
     }
@@ -478,7 +488,8 @@ vector<Contact> WorldHandler::CollisionHandlerWithOctree() {
         }
         for(unsigned int i=0; i<v.size()-1; i++) {
             for(unsigned int j=i+1;j<v.size();j++) {
-                Cube::CollisionDetect(v.at(i), v.at(j), collisions);
+                //Cube::CollisionDetect(v.at(i), v.at(j), collisions);
+                Cube::CollisionDetectAndResolve(v.at(i), v.at(j), this->collision_locks);
             }
         }
     }
