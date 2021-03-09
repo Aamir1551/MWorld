@@ -25,10 +25,13 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -fopenmp -std=c++11")
 #SET (CMAKE_CXX_FLAGS_RELEASE_INIT        "-O3 -DNDEBUG")
 #SET (CMAKE_CXX_FLAGS_RELWITHDEBINFO_INIT "-O2 -g")
 
-
-
-set(compile_with_glfw ON)
+set(compile_with_glfw OFF)
 set(compile_prototypes ON)
+
+if(NOT compile_with_glfw)
+    set(compile_prototypes OFF)
+endif()
+
 
 project(MWorld)
 
