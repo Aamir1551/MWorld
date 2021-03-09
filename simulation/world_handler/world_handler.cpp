@@ -416,15 +416,16 @@ void WorldHandler::GetDAGAtRoot(Octree *root, std::vector<pair<Octree *, Octree 
     }
 
     auto children = this->tree->grid_elements_neighbours.at(root);
+    // error happens due to cycles
     nodes.insert(root);
     for(auto & child : children) {
 
-        if(!child->blocks_at_leaf.empty()){
+        /*if(!child->blocks_at_leaf.empty()){
             edges.emplace_back(root, child);
-        }
+        }*/
 
         if(!child->blocks_at_leaf.empty() && nodes.find(child) == nodes.end()) {
-            //edges.emplace_back(root, child);
+            edges.emplace_back(root, child);
             GetDAGAtRoot(child, edges, nodes);
         }
     }
