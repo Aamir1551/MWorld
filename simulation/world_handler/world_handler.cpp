@@ -228,7 +228,7 @@ void WorldHandler::Update(vector<Contact> &contact_list, real delta_time) {
     }
 };
 
-vector<Contact> WorldHandler::CollisionHandlerLoop()
+vector<Contact> WorldHandler::CollisionHandlerBruteForce()
 {
     vector<Contact> contact_list;
 #pragma omp parallel for default(none) shared(contact_list)
@@ -432,7 +432,7 @@ void WorldHandler::GetDAGAtRoot(Octree *root, std::vector<pair<Octree *, Octree 
     }
 }
 
-vector<Contact> WorldHandler::CollisionHandlerParallel() {
+vector<Contact> WorldHandler::CollisionHandlerWithOctree() {
 
     std::unordered_set<Octree *> pos = GetBlockPositionsParallel();
     /*std::unordered_set<Octree *> pos1 = GetBlockPositionsSerial();

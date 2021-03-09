@@ -67,8 +67,8 @@ public:
 
     void Update(vector<Contact> &contact_list, real delta_time);
 
-    vector<Contact> CollisionHandlerLoop();
-    vector<Contact> CollisionHandlerParallel();
+    vector<Contact> CollisionHandlerBruteForce();
+    vector<Contact> CollisionHandlerWithOctree();
 
     void AddForces(real deltatime);
 
