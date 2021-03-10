@@ -8,3 +8,8 @@ target_link_libraries(blocks PUBLIC linear_alg quaternion  utils  ${glfw} settin
 
 target_include_directories(blocks PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/" )
 target_include_directories(blocks PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/../octree/" )
+
+if(compile_with_openmp)
+    target_compile_definitions(blocks PUBLIC OPENMP=1)
+endif()
+

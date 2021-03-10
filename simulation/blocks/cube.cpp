@@ -162,20 +162,20 @@ namespace blocks {
             //omp_set_lock(min(&partial_locks[c1->block_id], &partial_locks[c2->block_id]));
             //omp_set_lock(max(&partial_locks[c1->block_id], &partial_locks[c2->block_id]));
             //cout << "came here" << endl;
+#if defined(OPENMP)
             omp_set_lock(&partial_locks[min(c1->block_id, c2->block_id)]);
             omp_set_lock(&partial_locks[max(c1->block_id, c2->block_id)]);
-            //omp_set_lock(&partial_locks[c2->block_id]);
-//#pragma omp critical (OUTER)
+#endif
+#pragma omp critical (OUTER)
             {
                 CollisionResolution(contact_info);
             }
-            //omp_unset_lock(&partial_locks[Block::block_count * b + a]);
 
+#if defined(OPENMP)
             omp_unset_lock(&partial_locks[min(c1->block_id, c2->block_id)]);
             omp_unset_lock(&partial_locks[max(c1->block_id, c2->block_id)]);
+#endif
 
-            //omp_unset_lock(&partial_locks[c1->block_id]);
-            //omp_unset_lock(&partial_locks[c2->block_id]);
         }
     }
 

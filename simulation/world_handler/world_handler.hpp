@@ -34,10 +34,13 @@ private:
     void static PassBlockFlares(vector<Contact> &contacts, real deltatime);
     void static PassFlare(Block *a, Block *b, real deltatime);
 
+
+#if defined(OPENMP)
     template<typename T>
     std::unordered_set<T> static VecToSetParallel(vector<T> v);
-
     std::unordered_set<Octree*> GetBlockPositionsParallel();
+#endif
+
     std::unordered_set<Octree*> GetBlockPositionsSerial();
 
     void MakeDAG(std::unordered_set<Octree *> &block_positions, std::vector<pair<Octree *, Octree *>> &edges, std::unordered_set<Octree *> &nodes);

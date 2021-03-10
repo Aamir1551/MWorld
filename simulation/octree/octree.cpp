@@ -50,9 +50,6 @@ Octree::Octree(int grid_size, real min_x, real  max_x, real min_y, real max_y, r
     } else {
         this->is_leaf = false;
 
-        // TODO:
-        // new statement in omp parallel, there is one "new" here, and another "new" in force_octree
-#pragma omp parallel for default(none) shared(min_x, max_x, min_y, max_y, min_z, max_z, avg_x, avg_y, avg_z, grid_size)
         for(int i=0; i<8; i++) {
             auto xx0 = (i % 2) ? avg_x : min_x;
             auto xx1 = (i % 2) ? max_x: avg_x;

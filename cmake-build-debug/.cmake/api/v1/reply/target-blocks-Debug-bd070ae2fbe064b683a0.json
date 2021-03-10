@@ -13,6 +13,7 @@
 		[
 			"add_library",
 			"target_link_libraries",
+			"target_compile_definitions",
 			"target_include_directories"
 		],
 		"files" : 
@@ -39,11 +40,17 @@
 			{
 				"command" : 2,
 				"file" : 0,
+				"line" : 13,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 0,
 				"line" : 9,
 				"parent" : 0
 			},
 			{
-				"command" : 2,
+				"command" : 3,
 				"file" : 0,
 				"line" : 10,
 				"parent" : 0
@@ -62,14 +69,21 @@
 					"fragment" : "-std=gnu++11"
 				}
 			],
-			"includes" : 
+			"defines" : 
 			[
 				{
 					"backtrace" : 3,
+					"define" : "OPENMP=1"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 4,
 					"path" : "C:/Users/aamir/Documents/mworld/simulation/blocks"
 				},
 				{
-					"backtrace" : 4,
+					"backtrace" : 5,
 					"path" : "C:/Users/aamir/Documents/mworld/simulation/blocks/../octree"
 				},
 				{
@@ -109,11 +123,11 @@
 		},
 		{
 			"backtrace" : 2,
-			"id" : "quaternion::@1ddfe99dd86582fd9c64"
+			"id" : "linear_alg::@b276e23674e4ab50d284"
 		},
 		{
 			"backtrace" : 2,
-			"id" : "linear_alg::@b276e23674e4ab50d284"
+			"id" : "quaternion::@1ddfe99dd86582fd9c64"
 		}
 	],
 	"id" : "blocks::@6db65c1307d2a2a784c8",

@@ -67,10 +67,12 @@ WorldHandler::WorldHandler(int num_i_blocks_plus, int num_i_blocks_neg, int num_
     AddBlock(EBlockType, num_e_blocks_1_2, false);
     AddBlock(ZBlockType, num_z_blocks, true);
 
+#if defined(OPENMP)
     for(unsigned int i=0; i<this->blocks.size(); i++) {
        this->collision_locks.emplace_back(omp_lock_t());
        omp_init_lock(&this->collision_locks.at(i));
     }
+#endif
 }
 
 void WorldHandler::GetProperties(int num_blocks, std::vector<Matrix> *&positions, std::vector<Matrix> * &linear_momentums, real min_coord, real max_coord) {
@@ -337,6 +339,7 @@ WorldHandler::~WorldHandler() {
 }
 
 
+#if defined(OPENMP)
 template<typename T>
 std::unordered_set<T> WorldHandler::VecToSetParallel(vector<T> v) {
     // sort out this yellow stuff
@@ -371,9 +374,11 @@ std::unordered_set<T> WorldHandler::VecToSetParallel(vector<T> v) {
     }
     return local_set[0];
 }
+#endif
 
 
 
+#if defined(OPENMP)
 std::unordered_set<Octree *> WorldHandler::GetBlockPositionsParallel() {
     // A separate one has been made for getting positions, since blocks could be clustered close together, so we may be able to take advantage of some spacial structure of the blocks
     float p = min(omp_get_max_threads(), (int) this->blocks.size()); // need to ensure the data is more than the number of threads
@@ -407,6 +412,7 @@ std::unordered_set<Octree *> WorldHandler::GetBlockPositionsParallel() {
     }
     return local_set[0];
 }
+#endif
 
 void WorldHandler::MakeDAG(std::unordered_set<Octree *> &block_positions,
                            std::vector<pair<Octree *, Octree *>> &edges,
@@ -444,14 +450,17 @@ void WorldHandler::GetDAGAtRoot(Octree *root, std::vector<pair<Octree *, Octree 
 
 vector<Contact> WorldHandler::CollisionHandlerWithOctree() {
 
+#if defined(OPENMP)
     std::unordered_set<Octree *> pos = GetBlockPositionsParallel();
-    //std::unordered_set<Octree *> pos = GetBlockPositionsSerial();
+
     /*std::unordered_set<Octree *> pos1 = GetBlockPositionsSerial();
     if(pos != pos1) {
        cout << "not equalllllll" << endl;
        cout << pos.size() << " " << pos1.size() << endl;
     }*/
-
+#else
+    std::unordered_set<Octree *> pos = GetBlockPositionsSerial();
+#endif
 
     std::vector<pair<Octree *, Octree *>> edges;
     std::unordered_set<Octree *> nodes;
@@ -488,8 +497,8 @@ vector<Contact> WorldHandler::CollisionHandlerWithOctree() {
         }
         for(unsigned int i=0; i<v.size()-1; i++) {
             for(unsigned int j=i+1;j<v.size();j++) {
-                //Cube::CollisionDetect(v.at(i), v.at(j), collisions);
-                Cube::CollisionDetectAndResolve(v.at(i), v.at(j), this->collision_locks);
+                Cube::CollisionDetect(v.at(i), v.at(j), collisions);
+                //Cube::CollisionDetectAndResolve(v.at(i), v.at(j), this->collision_locks);
             }
         }
     }
@@ -498,8 +507,8 @@ vector<Contact> WorldHandler::CollisionHandlerWithOctree() {
 
 std::unordered_set<Octree *> WorldHandler::GetBlockPositionsSerial() {
     std::unordered_set<Octree *> r;
-    for(unsigned int i=0; i<this->blocks.size(); i++) {
-        r.insert(this->block_to_leaf[this->blocks.at(i)]);
+    for(auto & block : this->blocks) {
+        r.insert(this->block_to_leaf[block]);
     }
     return r;
 }
