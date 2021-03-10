@@ -3,7 +3,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "numerics/linear_alg/liblinear_alg.a"
+			"path" : "numerics/quaternion/libquaternion.a"
 		}
 	],
 	"backtrace" : 1,
@@ -12,12 +12,12 @@
 		"commands" : 
 		[
 			"add_library",
-			"target_include_directories",
-			"target_link_libraries"
+			"target_link_libraries",
+			"target_include_directories"
 		],
 		"files" : 
 		[
-			"numerics/linear_alg/CMakeLists.txt"
+			"numerics/quaternion/CMakeLists.txt"
 		],
 		"nodes" : 
 		[
@@ -33,13 +33,13 @@
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 10,
+				"line" : 9,
 				"parent" : 0
 			},
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 9,
+				"line" : 8,
 				"parent" : 0
 			}
 		]
@@ -50,7 +50,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : " -Wall -fopenmp -std=c++11 -g  "
+					"fragment" : " -Wall -std=c++11 -g -g  "
 				},
 				{
 					"fragment" : "-std=gnu++11"
@@ -59,11 +59,15 @@
 			"includes" : 
 			[
 				{
+					"backtrace" : 3,
+					"path" : "C:/Users/aamir/Documents/mworld/numerics/quaternion/include"
+				},
+				{
 					"backtrace" : 2,
 					"path" : "C:/Users/aamir/Documents/mworld/numerics/linear_alg/include"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 2,
 					"path" : "C:/Users/aamir/Documents/mworld/utils/settings/."
 				}
 			],
@@ -74,13 +78,20 @@
 			]
 		}
 	],
-	"id" : "linear_alg::@b276e23674e4ab50d284",
-	"name" : "linear_alg",
-	"nameOnDisk" : "liblinear_alg.a",
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 2,
+			"id" : "linear_alg::@b276e23674e4ab50d284"
+		}
+	],
+	"id" : "quaternion::@1ddfe99dd86582fd9c64",
+	"name" : "quaternion",
+	"nameOnDisk" : "libquaternion.a",
 	"paths" : 
 	{
-		"build" : "numerics/linear_alg",
-		"source" : "numerics/linear_alg"
+		"build" : "numerics/quaternion",
+		"source" : "numerics/quaternion"
 	},
 	"sourceGroups" : 
 	[
@@ -104,17 +115,17 @@
 	[
 		{
 			"backtrace" : 1,
-			"path" : "numerics/linear_alg/include/matrix.hpp",
+			"path" : "numerics/quaternion/include/quaternion.hpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "numerics/linear_alg/src/matrix.cpp",
+			"path" : "numerics/quaternion/src/quaternion.cpp",
 			"sourceGroupIndex" : 1
 		},
 		{
-			"backtrace" : 3,
+			"backtrace" : 2,
 			"path" : "utils/settings/settings.hpp",
 			"sourceGroupIndex" : 0
 		}

@@ -50,17 +50,10 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : " -Wall -fopenmp -std=c++11 -g  "
+					"fragment" : " -Wall -std=c++11 -g -g  "
 				},
 				{
 					"fragment" : "-std=gnu++11"
-				}
-			],
-			"defines" : 
-			[
-				{
-					"backtrace" : 2,
-					"define" : "OPENMP=1"
 				}
 			],
 			"includes" : 
@@ -109,11 +102,11 @@
 		},
 		{
 			"backtrace" : 2,
-			"id" : "blocks::@6db65c1307d2a2a784c8"
+			"id" : "linear_alg::@b276e23674e4ab50d284"
 		},
 		{
 			"backtrace" : 2,
-			"id" : "linear_alg::@b276e23674e4ab50d284"
+			"id" : "blocks::@6db65c1307d2a2a784c8"
 		},
 		{
 			"backtrace" : 2,
