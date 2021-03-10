@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
     //cout << "Running MWorld Simulation with "  << omp_get_max_threads() << " threads" << endl;
 
     if(argc == 1 || strcmp(argv[1], "help")  == 0){
-        cout << "Pass parameters in order of: duration num_i_plus_blocks num_i_neg_blocks num_m_blocks "
+        cout << "Pass parameters in order of: duration num_i_plus_blocks num_i_neg_blocks num_z_blocks num_m_blocks "
                 "num_e_1_blocks num_e_1_2_blocks min_coord max_coord"<< endl;
         cout << "If a parameter is not given, we substitute it with zero. However, duration command line argument "
                 "must be specified." << endl;

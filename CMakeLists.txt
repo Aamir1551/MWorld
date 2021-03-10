@@ -26,6 +26,7 @@ if(add_debug_tag)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g")
 endif()
 
+set(CMAKE_BUILD_TYPE Debug)
 
 
 #SET (CMAKE_C_FLAGS_INIT                "-Wall -std=c99")
