@@ -70,12 +70,12 @@ int main(int argc, char *argv[])
     // Test out with different collision elasticity value, so change scaling of velocity after collision, and see how world develops
     WorldHandler world = WorldHandler((argc < 3) ? 0 : (int) atoi(argv[2]),
                                       (argc < 4) ? 0 : (int) atoi(argv[3]),
-                                      (argc < 5) ? 1000 : (int) atoi(argv[4]),
+                                      (argc < 5) ? 100 : (int) atoi(argv[4]),
                                       (argc < 6) ? 0 : (int) atoi(argv[5]),
                                       (argc < 7) ? 0 : (int) atoi(argv[6]),
                                       (argc < 8) ? 0 : (int) atoi(argv[7]),
-                                      (argc < 9) ? -200 : (int) atoi(argv[8]),
-                                      (argc < 10) ? 200 : (int) atoi(argv[9]),
+                                      (argc < 9) ? -100 : (int) atoi(argv[8]),
+                                      (argc < 10) ? 100 : (int) atoi(argv[9]),
     4);
     // Testing with ZBLocks only -- Note we disabled the force's being applied, however, the forces are still being calculated
     // We shall have tests, with forces being applied and both not being applied

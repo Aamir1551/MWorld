@@ -52,7 +52,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : " -Wall -std=c++11 -g -g  "
+					"fragment" : " -Wall -std=c++11 -g  "
 				},
 				{
 					"fragment" : "-std=gnu++11"
@@ -116,19 +116,11 @@
 	[
 		{
 			"backtrace" : 2,
-			"id" : "linear_alg::@b276e23674e4ab50d284"
-		},
-		{
-			"backtrace" : 2,
 			"id" : "utils::@c5cd9bcf8a2dc65dcb35"
 		},
 		{
 			"backtrace" : 2,
-			"id" : "force_octree::@66c141f95c7ed784ad75"
-		},
-		{
-			"backtrace" : 2,
-			"id" : "blocks::@6db65c1307d2a2a784c8"
+			"id" : "linear_alg::@b276e23674e4ab50d284"
 		},
 		{
 			"backtrace" : 2,
@@ -137,6 +129,14 @@
 		{
 			"backtrace" : 2,
 			"id" : "octree::@66c141f95c7ed784ad75"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "blocks::@6db65c1307d2a2a784c8"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "force_octree::@66c141f95c7ed784ad75"
 		},
 		{
 			"backtrace" : 2,
@@ -149,7 +149,7 @@
 		"commandFragments" : 
 		[
 			{
-				"fragment" : "-Wall -std=c++11 -g -g",
+				"fragment" : "-Wall -std=c++11 -g",
 				"role" : "flags"
 			},
 			{

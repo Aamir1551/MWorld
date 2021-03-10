@@ -14,7 +14,7 @@ set(catch_path ${CMAKE_CURRENT_SOURCE_DIR}/catch)
 set(compile_with_openmp OFF)
 set(compile_with_glfw OFF)
 set(compile_prototypes ON)
-set(add_debug_tag ON)
+set(add_debug_tag OFF)
 
 if(compile_with_openmp)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -fopenmp -std=c++11")
@@ -24,9 +24,9 @@ endif()
 
 if(add_debug_tag)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g")
+    set(CMAKE_BUILD_TYPE Debug)
 endif()
 
-set(CMAKE_BUILD_TYPE Debug)
 
 
 #SET (CMAKE_C_FLAGS_INIT                "-Wall -std=c99")
