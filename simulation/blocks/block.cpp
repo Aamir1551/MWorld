@@ -24,19 +24,15 @@ namespace blocks {
             real dist = std::sqrt(squared_dist);
 
             if(tree->is_leaf) {
-                if(squared_dist >= 5) {
-                    inc_force += (vec_to_tree_com) / squared_dist * ((real) cell_count);
-                }
+                inc_force += (vec_to_tree_com) / std::max(squared_dist, (real) 0.01) * ((real) cell_count);
                 return false;
             }
 
             real ratio =  tree->cell_partition_size / std::max(dist, (real) 0.0001);
-            if((ratio > Block::theta) && !tree->is_leaf) {
+            if(ratio > Block::theta) {
                 return true;
-            }
-
-            if(squared_dist >= 5) {
-                inc_force += (vec_to_tree_com) / squared_dist * ((real) cell_count);
+            } else {
+                inc_force += (vec_to_tree_com) / std::max(squared_dist, (real) 0.01) * ((real) cell_count);
             }
         }
         return false;

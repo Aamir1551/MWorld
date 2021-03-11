@@ -13,7 +13,6 @@
 		[
 			"add_library",
 			"target_link_libraries",
-			"target_compile_definitions",
 			"target_include_directories"
 		],
 		"files" : 
@@ -40,17 +39,11 @@
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 13,
-				"parent" : 0
-			},
-			{
-				"command" : 3,
-				"file" : 0,
 				"line" : 9,
 				"parent" : 0
 			},
 			{
-				"command" : 3,
+				"command" : 2,
 				"file" : 0,
 				"line" : 10,
 				"parent" : 0
@@ -63,27 +56,20 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : " -Wall -fopenmp -std=c++11 -g  "
+					"fragment" : " -Wall -std=c++11 -g  "
 				},
 				{
 					"fragment" : "-std=gnu++11"
 				}
 			],
-			"defines" : 
-			[
-				{
-					"backtrace" : 3,
-					"define" : "OPENMP=1"
-				}
-			],
 			"includes" : 
 			[
 				{
-					"backtrace" : 4,
+					"backtrace" : 3,
 					"path" : "C:/Users/aamir/Documents/mworld/simulation/blocks"
 				},
 				{
-					"backtrace" : 5,
+					"backtrace" : 4,
 					"path" : "C:/Users/aamir/Documents/mworld/simulation/blocks/../octree"
 				},
 				{

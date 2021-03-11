@@ -46,7 +46,7 @@ namespace blocks {
 
         bool static BlockInCorrectTree(Octree *tree, Block *b);
 
-        std::vector<Octree *> GenerateNeigbours(real x, real y, real z);
+        std::vector<Octree *> GenerateNeigbours(real x, real y, real z, real partition_min_x, real partition_min_y, real partition_min_z);
 
         void AddGridAtPosToVec(real x, real y, real z, vector<Octree *> &octree_list);
 

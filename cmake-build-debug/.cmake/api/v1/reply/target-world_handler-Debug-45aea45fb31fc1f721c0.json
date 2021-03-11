@@ -13,7 +13,6 @@
 		[
 			"add_library",
 			"target_link_libraries",
-			"target_compile_definitions",
 			"target_include_directories"
 		],
 		"files" : 
@@ -40,12 +39,6 @@
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 10,
-				"parent" : 0
-			},
-			{
-				"command" : 3,
-				"file" : 0,
 				"line" : 14,
 				"parent" : 0
 			}
@@ -57,31 +50,24 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : " -Wall -fopenmp -std=c++11 -g  "
+					"fragment" : " -Wall -std=c++11 -g  "
 				},
 				{
 					"fragment" : "-std=gnu++11"
 				}
 			],
-			"defines" : 
-			[
-				{
-					"backtrace" : 3,
-					"define" : "OPENMP=1"
-				}
-			],
 			"includes" : 
 			[
 				{
-					"backtrace" : 4,
+					"backtrace" : 3,
 					"path" : "C:/Users/aamir/Documents/mworld/lib/glfw-3.3.2/include"
 				},
 				{
-					"backtrace" : 4,
+					"backtrace" : 3,
 					"path" : "C:/Users/aamir/Documents/mworld/lib/glm"
 				},
 				{
-					"backtrace" : 4,
+					"backtrace" : 3,
 					"path" : "C:/Users/aamir/Documents/mworld/simulation/world_handler"
 				},
 				{
@@ -128,15 +114,15 @@
 		},
 		{
 			"backtrace" : 2,
-			"id" : "linear_alg::@b276e23674e4ab50d284"
-		},
-		{
-			"backtrace" : 2,
 			"id" : "octree::@66c141f95c7ed784ad75"
 		},
 		{
 			"backtrace" : 2,
 			"id" : "force_octree::@66c141f95c7ed784ad75"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "linear_alg::@b276e23674e4ab50d284"
 		},
 		{
 			"backtrace" : 2,

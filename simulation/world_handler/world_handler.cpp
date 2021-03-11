@@ -48,8 +48,8 @@ std::vector<Matrix> *WorldHandler::GenerateLinearMomentums(int num_cubes)
 
 WorldHandler::WorldHandler(int num_i_blocks_plus, int num_i_blocks_neg, int num_z_blocks, int num_m_blocks, int num_e_blocks_1, int num_e_blocks_1_2,
                            real min_coord, real max_coord, real cube_length) {
-    //srand((unsigned)time(0));
-    srand(0); // useful for testing purposes, to generate the same random numbers
+    srand((unsigned)time(0));
+    //srand(0); // useful for testing purposes, to generate the same random numbers
 
     cout << "Quad trees are being initialised" << endl;
     this->tree = new Octree((int)cube_length * 3, min_coord, max_coord, min_coord, max_coord, min_coord, max_coord, true);

@@ -95,7 +95,7 @@ namespace blocks {
 
     void Cube::AddLinearForce(Matrix const &force_direction, real dt) {
         momentum += force_direction * dt;
-        momentum -= force_direction * dt; //comment out this line of code to test out time complexity of code, when forces are not being take in to consideration
+        //momentum -= force_direction * dt; //comment out this line of code to test out time complexity of code, when forces are not being take in to consideration
     }
 
     void Cube::SetAngularMomentumToZero() {
@@ -118,6 +118,7 @@ namespace blocks {
 
         // Below line of code needs to be uncommented, but it makes things slower, if we
         // uncomment it. Maybe it has to do with the computer
+        // If the below code is commented, the forces will not appear to be working properly
 /*            if(dist == 0) {
                 auto temp = c1->position(0, 0);
 #pragma omp critical
