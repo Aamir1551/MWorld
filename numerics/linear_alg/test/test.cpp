@@ -367,7 +367,7 @@ TEST_CASE("Matrices can be operated with", "[Operations]")
         // do quaternion operators
         // check if (,) operation works too
         for(int i=0; i<da_row; i++) {
-            for(int j=0; j<da_row; j++) {
+            for(int j=0; j<da_col; j++) {
                 int sum_d = 0;
                 for(int k=0; k<d_col; k++) {
                     sum_d += d(i, k) * a(k, j);

@@ -5,6 +5,7 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #include <cube_renderer.hpp>
+#include <matrix.hpp>
 
 using namespace settings;
 namespace render_utils
@@ -39,13 +40,14 @@ namespace render_utils
 
     };
 
-    void CubeRenderer::ApplyUniforms(glm::mat4 &model_mat)
+    void CubeRenderer::ApplyUniforms(Matrix &model_mat)
     {
         int model_loc = glGetUniformLocation(CubeRenderer::shader_id, "model");
         int view_loc = glGetUniformLocation(CubeRenderer::shader_id, "view");
         int proj_loc = glGetUniformLocation(CubeRenderer::shader_id, "proj");
 
-        glUniformMatrix4fv(model_loc, 1, GL_FALSE, glm::value_ptr(model_mat));
+        //glUniformMatrix4fv(model_loc, 1, GL_FALSE, glm::value_ptr(model_mat));
+        glUniformMatrix4fv(model_loc, 1, GL_FALSE, model_mat.GetValues());
         glUniformMatrix4fv(view_loc, 1, GL_FALSE, glm::value_ptr(*CubeRenderer::view));
         glUniformMatrix4fv(proj_loc, 1, GL_FALSE, glm::value_ptr(*CubeRenderer::project));
     }

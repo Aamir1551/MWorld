@@ -270,7 +270,7 @@ namespace numerics
        * @param a Quaternion to convert
        * @return Quaternion& 
        */
-      Quaternion ConvertToQuaternion(const Matrix &a);
+      Quaternion static ConvertToQuaternion(const Matrix &a);
 
       /**
        * @brief Converts a real number to a quaternion
@@ -278,7 +278,7 @@ namespace numerics
        * @param real real number to convert
        * @return Quaternion& 
        */
-      Quaternion ConvertToQuaternion(settings::real real);
+      Quaternion static ConvertToQuaternion(settings::real real);
 
       /**
        * @brief Get the Matrix Transformation corresponding to given quaternion

@@ -15,6 +15,7 @@
 #include <utility>
 
 #include <settings.hpp>
+#include <immintrin.h>
 
 // TODO
 // 1) Why do inline functions need to be defined in header?
@@ -86,11 +87,21 @@ namespace numerics
         /**
          * @brief Construct a new Matrix object. Is a vector of 3 values.
          *
+         * @param val0
+         * @param val1
+         * @param val2
+         */
+        Matrix static CreateColumnVec(settings::real val0, settings::real val1, settings::real val2);
+
+        /**
+         * @brief Construct a new Matrix object. Is a vector of 3 values.
+         *
+         * @param val0
          * @param val1
          * @param val2
          * @param val3
          */
-        Matrix static CreateColumnVec(settings::real val0, settings::real val1, settings::real val2);
+        Matrix static CreateColumnVec(settings::real val0, settings::real val1, settings::real val2, settings::real val3);
 
 
         /**
@@ -269,6 +280,15 @@ namespace numerics
          * @return Matrix& 
          */
         Matrix static MatMul(Matrix const &a, Matrix const &b);
+
+        /**
+         * @brief Applies Matrix multiplication between two matrices. If multiplication fails, throws invalid_argument error.
+         *
+         * @param a
+         * @param b
+         * @return Matrix&
+         */
+        __m128 static MatMulAVX4v(__m128 &col0, __m128 &col1, __m128 &col2, __m128 &col3, __m128 &v);
 
         /**
          * @brief Transposes a given Matrix 

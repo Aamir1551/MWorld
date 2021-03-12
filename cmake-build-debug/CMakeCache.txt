@@ -249,13 +249,13 @@ MWorld_SOURCE_DIR:STATIC=C:/Users/aamir/Documents/mworld
 block_renderer_BINARY_DIR:STATIC=C:/Users/aamir/Documents/mworld/cmake-build-debug/render/block_renderer
 
 //Dependencies for the target
-block_renderer_LIB_DEPENDS:STATIC=general;linear_alg;general;quaternion;general;cube_renderer;general;utils;general;glad;general;C:/Users/aamir/Documents/mworld/lib/glfw-3.3.2/build/src/libglfw3.a;general;settings;general;mworld_render_utils;general;blocks;
+block_renderer_LIB_DEPENDS:STATIC=general;linear_alg;general;quaternion;general;linear_alg;general;quaternion;general;cube_renderer;general;utils;general;glad;general;C:/Users/aamir/Documents/mworld/lib/glfw-3.3.2/build/src/libglfw3.a;general;settings;general;mworld_render_utils;general;blocks;
 
 //Value Computed by CMake
 block_renderer_SOURCE_DIR:STATIC=C:/Users/aamir/Documents/mworld/render/block_renderer
 
 //Dependencies for the target
-blocks_LIB_DEPENDS:STATIC=general;linear_alg;general;quaternion;general;utils;general;C:/Users/aamir/Documents/mworld/lib/glfw-3.3.2/build/src/libglfw3.a;
+blocks_LIB_DEPENDS:STATIC=general;linear_alg;general;quaternion;general;linear_alg;general;quaternion;general;utils;general;C:/Users/aamir/Documents/mworld/lib/glfw-3.3.2/build/src/libglfw3.a;
 
 //Value Computed by CMake
 camera_BINARY_DIR:STATIC=C:/Users/aamir/Documents/mworld/cmake-build-debug/render/camera
@@ -267,22 +267,28 @@ camera_SOURCE_DIR:STATIC=C:/Users/aamir/Documents/mworld/render/camera
 cube_renderer_BINARY_DIR:STATIC=C:/Users/aamir/Documents/mworld/cmake-build-debug/render/cube_renderer
 
 //Dependencies for the target
-cube_renderer_LIB_DEPENDS:STATIC=general;glad;general;C:/Users/aamir/Documents/mworld/lib/glfw-3.3.2/build/src/libglfw3.a;general;settings;
+cube_renderer_LIB_DEPENDS:STATIC=general;linear_alg;general;quaternion;general;glad;general;C:/Users/aamir/Documents/mworld/lib/glfw-3.3.2/build/src/libglfw3.a;general;settings;
 
 //Value Computed by CMake
 cube_renderer_SOURCE_DIR:STATIC=C:/Users/aamir/Documents/mworld/render/cube_renderer
 
 //Dependencies for the target
-force_octree_LIB_DEPENDS:STATIC=general;linear_alg;general;blocks;
+force_octree_LIB_DEPENDS:STATIC=general;linear_alg;general;quaternion;general;linear_alg;general;blocks;
 
 //Value Computed by CMake
 glad_BINARY_DIR:STATIC=C:/Users/aamir/Documents/mworld/cmake-build-debug/lib/glad
+
+//Dependencies for the target
+glad_LIB_DEPENDS:STATIC=general;linear_alg;general;quaternion;
 
 //Value Computed by CMake
 glad_SOURCE_DIR:STATIC=C:/Users/aamir/Documents/mworld/lib/glad
 
 //Value Computed by CMake
 linear_alg_BINARY_DIR:STATIC=C:/Users/aamir/Documents/mworld/cmake-build-debug/numerics/linear_alg
+
+//Dependencies for the target
+linear_alg_LIB_DEPENDS:STATIC=general;settings;
 
 //Value Computed by CMake
 linear_alg_SOURCE_DIR:STATIC=C:/Users/aamir/Documents/mworld/numerics/linear_alg
@@ -297,7 +303,7 @@ linear_alg_test_SOURCE_DIR:STATIC=C:/Users/aamir/Documents/mworld/numerics/linea
 mworld_render_utils_BINARY_DIR:STATIC=C:/Users/aamir/Documents/mworld/cmake-build-debug/render/utils
 
 //Dependencies for the target
-mworld_render_utils_LIB_DEPENDS:STATIC=general;glad;general;C:/Users/aamir/Documents/mworld/lib/glfw-3.3.2/build/src/libglfw3.a;general;shader;
+mworld_render_utils_LIB_DEPENDS:STATIC=general;linear_alg;general;quaternion;general;glad;general;C:/Users/aamir/Documents/mworld/lib/glfw-3.3.2/build/src/libglfw3.a;general;shader;
 
 //Value Computed by CMake
 mworld_render_utils_SOURCE_DIR:STATIC=C:/Users/aamir/Documents/mworld/render/utils
@@ -309,7 +315,7 @@ numerics_BINARY_DIR:STATIC=C:/Users/aamir/Documents/mworld/cmake-build-debug/num
 numerics_SOURCE_DIR:STATIC=C:/Users/aamir/Documents/mworld/numerics
 
 //Dependencies for the target
-octree_LIB_DEPENDS:STATIC=general;linear_alg;general;blocks;
+octree_LIB_DEPENDS:STATIC=general;linear_alg;general;quaternion;general;linear_alg;general;blocks;
 
 //Value Computed by CMake
 prototype_one_BINARY_DIR:STATIC=C:/Users/aamir/Documents/mworld/cmake-build-debug/prototype/prototype_one
@@ -336,7 +342,7 @@ prototypes_BINARY_DIR:STATIC=C:/Users/aamir/Documents/mworld/cmake-build-debug/p
 prototypes_SOURCE_DIR:STATIC=C:/Users/aamir/Documents/mworld/prototype
 
 //Dependencies for the target
-quaternion_LIB_DEPENDS:STATIC=general;linear_alg;
+quaternion_LIB_DEPENDS:STATIC=general;linear_alg;general;settings;
 
 //Value Computed by CMake
 quaternion_lib_BINARY_DIR:STATIC=C:/Users/aamir/Documents/mworld/cmake-build-debug/simulation/octree
@@ -383,6 +389,9 @@ util_functions_SOURCE_DIR:STATIC=C:/Users/aamir/Documents/mworld/utils/util_func
 //Value Computed by CMake
 utils_BINARY_DIR:STATIC=C:/Users/aamir/Documents/mworld/cmake-build-debug/utils
 
+//Dependencies for the target
+utils_LIB_DEPENDS:STATIC=general;linear_alg;general;quaternion;
+
 //Value Computed by CMake
 utils_SOURCE_DIR:STATIC=C:/Users/aamir/Documents/mworld/utils
 
@@ -390,7 +399,7 @@ utils_SOURCE_DIR:STATIC=C:/Users/aamir/Documents/mworld/utils
 world_handler_BINARY_DIR:STATIC=C:/Users/aamir/Documents/mworld/cmake-build-debug/simulation/world_handler
 
 //Dependencies for the target
-world_handler_LIB_DEPENDS:STATIC=general;octree;general;force_octree;general;linear_alg;general;quaternion;general;utils;general;blocks;
+world_handler_LIB_DEPENDS:STATIC=general;linear_alg;general;quaternion;general;octree;general;force_octree;general;linear_alg;general;quaternion;general;utils;general;blocks;
 
 //Value Computed by CMake
 world_handler_SOURCE_DIR:STATIC=C:/Users/aamir/Documents/mworld/simulation/world_handler

@@ -42,6 +42,9 @@ endif()
 #SET (CMAKE_CXX_FLAGS_RELWITHDEBINFO_INIT "-O2 -g")
 
 
+add_subdirectory(numerics)
+link_libraries(linear_alg quaternion)
+
 if(NOT compile_with_glfw)
     set(compile_prototypes OFF)
 endif()
@@ -55,7 +58,6 @@ if(compile_with_glfw)
 endif()
 
 add_subdirectory(utils)
-add_subdirectory(numerics)
 if(compile_prototypes)
     add_subdirectory(prototype)
 endif()

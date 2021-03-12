@@ -226,7 +226,20 @@ namespace numerics
             throw std::invalid_argument(GenerateError("Multiplication", a, b));
         }
 
-        auto *new_values = new settings::real[a.rows * b.cols];
+        //auto *new_values = new settings::real[a.rows * b.cols];
+        Matrix res = Matrix(a.rows, b.cols);
+        for(int i=0; i<a.rows; i++) {
+            for(int j=0; j<b.cols; j++) {
+                settings::real s = 0;
+                // implement matrix multiplication the naive way here
+                for(int k=0; k<a.cols; k++) {
+                    s += a.values[i * a.cols + k] * b.values[k * b.cols + j];
+                }
+                res.values[i * res.cols + j] = s;
+            }
+        };
+
+        /*auto *new_values = new settings::real[a.rows * b.cols];
         for (int i = 0; i < a.rows * b.cols; i++)
         {
             new_values[i] = 0;
@@ -242,10 +255,8 @@ namespace numerics
                 new_values[c] += a.values[i * a.cols + k] *
                                  b.values[b.cols * k + j];
             }
-        };
+        };*/
 
-        auto res = Matrix(a.rows, b.cols, new_values);
-        delete[] new_values;
         return res;
     }
 
@@ -595,6 +606,29 @@ namespace numerics
         a.values[1] = val1;
         a.values[2] = val2;
         return a;
+    }
+
+    Matrix Matrix::CreateColumnVec(settings::real val0, settings::real val1, settings::real val2, settings::real val3) {
+        Matrix a = Matrix(4, 1);
+        a.values[0] = val0;
+        a.values[1] = val1;
+        a.values[2] = val2;
+        a.values[3] = val3;
+        return a;
+    }
+
+    __m128 Matrix::MatMulAVX4v(__m128 &col0, __m128 &col1, __m128 &col2, __m128 &col3, __m128 &v) {
+        __m128 v0 = _mm_permute_ps(v, 0);
+        __m128 v1 = _mm_permute_ps(v, 0b01010101);
+        __m128 v2 = _mm_permute_ps(v, 0b10101010);
+        __m128 v3 = _mm_permute_ps(v, 0b11111111);
+        __m128 prod0 = _mm_mul_ps(v0, col0);
+        __m128 prod1 = _mm_mul_ps(v1, col1);
+        __m128 s0 = _mm_add_ps(prod0, prod1);
+        __m128 prod2 = _mm_mul_ps(v2, col2);
+        __m128 prod3 = _mm_mul_ps(v3, col3);
+        __m128 s1 = _mm_add_ps(prod2, prod3);
+        __m128 out = _mm_add_ps(s0, s1);
     }
 
 

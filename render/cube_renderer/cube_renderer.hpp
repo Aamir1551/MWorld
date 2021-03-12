@@ -10,6 +10,10 @@
 #include <type_traits>
 
 #include <settings.hpp>
+#include <matrix.hpp>
+#include <quaternion.hpp>
+
+using namespace numerics;
 
 namespace render_utils
 {
@@ -48,7 +52,7 @@ namespace render_utils
             CubeRenderer::project = _project;
         }
 
-        void static ApplyUniforms(glm::mat4 &model_mat);
+        void static ApplyUniforms(Matrix &model_mat);
 
         void static AddVerticesToBuffers()
         {

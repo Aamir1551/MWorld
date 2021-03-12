@@ -226,7 +226,6 @@ namespace numerics
     {
         settings::real const *new_values = a.GetValues();
         Quaternion result = Quaternion(new_values[0], new_values[1], new_values[2], new_values[3]);
-        delete[] new_values;
         return result;
     }
 
