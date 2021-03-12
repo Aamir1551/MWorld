@@ -95,7 +95,7 @@ namespace blocks {
 
     void Cube::AddLinearForce(Matrix const &force_direction, real dt) {
         momentum += force_direction * dt;
-        //momentum -= force_direction * dt; //comment out this line of code to test out time complexity of code, when forces are not being take in to consideration
+        momentum -= force_direction * dt; //comment out this line of code to test out time complexity of code, when forces are not being take in to consideration
     }
 
     void Cube::SetAngularMomentumToZero() {
@@ -119,7 +119,7 @@ namespace blocks {
         // Below line of code needs to be uncommented, but it makes things slower, if we
         // uncomment it. Maybe it has to do with the computer
         // If the below code is commented, the forces will not appear to be working properly
-/*            if(dist == 0) {
+            /*if(dist == 0) {
                 auto temp = c1->position(0, 0);
 #pragma omp critical
                 {
@@ -188,8 +188,8 @@ namespace blocks {
         auto temp = body1->momentum;
 #pragma omp critical (INNER)
         {
-            body1->momentum = body2->momentum * 0.3;
-            body2->momentum = temp * 0.3;
+            body1->momentum = body2->momentum * 0.7;
+            body2->momentum = temp * 0.7;
             body1->position += normal * (contact.penetration/2);
             body2->position -= normal * (contact.penetration/2);
         };
@@ -200,9 +200,9 @@ namespace blocks {
         real x = c1->position(0, 0);
         real y = c1->position(1, 0);
         real z = c1->position(2, 0);
-        real mx = c1->momentum(0, 0);
-        real my = c1->momentum(1, 0);
-        real mz = c1->momentum(2, 0);
+        real mx = c1->momentum(0, 0) * 0.8;
+        real my = c1->momentum(1, 0) * 0.8;
+        real mz = c1->momentum(2, 0) * 0.8;
         if(x <= min_boundary_x) {
             c1->momentum(0, 0, abs(mx));
         } else if(x >= max_boundary_x) {

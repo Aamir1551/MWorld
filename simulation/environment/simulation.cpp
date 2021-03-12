@@ -70,7 +70,7 @@ int main(int argc, char *argv[])
     // Test out with different collision elasticity value, so change scaling of velocity after collision, and see how world develops
     WorldHandler world = WorldHandler((argc < 3) ? 0 : (int) atoi(argv[2]),
                                       (argc < 4) ? 0 : (int) atoi(argv[3]),
-                                      (argc < 5) ? 100 : (int) atoi(argv[4]),
+                                      (argc < 5) ? 1000 : (int) atoi(argv[4]),
                                       (argc < 6) ? 0 : (int) atoi(argv[5]),
                                       (argc < 7) ? 0 : (int) atoi(argv[6]),
                                       (argc < 8) ? 0 : (int) atoi(argv[7]),
@@ -149,12 +149,12 @@ int main(int argc, char *argv[])
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 #endif
 
-        auto contact_list = world.CollisionHandlerBruteForce();
-        auto contact_list1 = world.CollisionHandlerWithOctree();
+        //auto contact_list = world.CollisionHandlerBruteForce();
+        //auto contact_list1 = world.CollisionHandlerWithOctree();
 
-        //auto contact_list = world.CollisionHandlerWithOctree();
+        auto contact_list = world.CollisionHandlerWithOctree();
 
-        set<pair<Block *, Block *>> c;
+        /*set<pair<Block *, Block *>> c;
         for(auto const &i : contact_list) {
            c.insert(make_pair(i.body1, i.body2));
            c.insert(make_pair(i.body2, i.body1));
@@ -166,11 +166,10 @@ int main(int argc, char *argv[])
             c1.insert(make_pair(i.body2, i.body1));
         }
 
-        if(c != c1) {
+        if(c != c1 || contact_list.size() != contact_list1.size()) {
             cout << c.size() << " " << c1.size() <<  endl;
             cout << "not equal" << endl;
-        }
-
+        }*/
 
 #if defined(GLFW_ON)
         world.AddForces(deltaTime);

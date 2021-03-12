@@ -101,20 +101,16 @@ Octree::Octree(int grid_size, real min_x, real  max_x, real min_y, real max_y, r
 std::vector<Octree *> Octree::GenerateNeigbours(real x, real y, real z, real partition_min_x, real partition_min_y, real partition_min_z) {
     vector<Octree *> neighbours;
 
-    for(int i=0; i<12; i++) {
-        //int a = (i % 3) - 1; // -2, -1, 0, 1, 2
-        //int b = (((i - (i % 3))/3) % 3) - 1;
-        //int c = ((i - (i%9))/9) - 1;
+    for(int i=0; i<27; i++) {
+        int a = (i % 3) - 1; // -2, -1, 0, 1, 2
+        int b = (((i - (i % 3))/3) % 3) - 1;
+        int c = ((i - (i%9))/9) - 1;
 
-        int c = (i % 3) - 1;
+        /*int c = (i % 3) - 1;
         int c1 = (i - c) / 3;
         int b = c1 % 2;
         int b1 = (c1 - b) / 2;
-        int a = b1 % 2;
-
-        /*int c = (i % 3) -1; // 0, 1
-        int a = ((i - (i%4))/4);
-        int b = (((i - a)/2) % 2);*/
+        int a = b1 % 2;*/
 
         /*real partition_min_x = cell_partition_size;
         real partition_min_y = cell_partition_size;
