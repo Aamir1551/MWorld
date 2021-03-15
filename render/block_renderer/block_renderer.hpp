@@ -38,7 +38,9 @@ namespace render_utils {
         static Camera *camera;
         static real cube_length;
 
-        void static DrawBlocks(vector<Block *> *block_list,glm::vec3 colour);
+        //void static DrawBlocks(vector<Block *> *block_list,glm::vec3 colour);
+
+        void static DrawBlocks(vector<Block *> *block_list, Matrix &colour);
 
         void static DrawAllBlocks(vector<IBlock *> *iblocks, vector<ZBlock *> *zblocks, vector<EBlock *> *eblocks, vector<MBlock *> *mblocks);
 

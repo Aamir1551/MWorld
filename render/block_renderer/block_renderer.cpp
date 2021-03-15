@@ -1,8 +1,8 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
+//#include <glm/glm.hpp>
+//#include <glm/gtc/matrix_transform.hpp>
+//#include <glm/gtc/type_ptr.hpp>
 
 #include <block_renderer.hpp>
 #include <cube_renderer.hpp>
@@ -32,7 +32,7 @@ namespace render_utils {
 
     Camera *BlockRenderer::camera;
 
-        void BlockRenderer::DrawBlocks(vector<Block *> *block_list, glm::vec3 colour) {
+        void BlockRenderer::DrawBlocks(vector<Block *> *block_list, Matrix &colour) {
             for(auto & block_ptr : *block_list) {
                 /*glm::mat4 rotation_mat;
                 memcpy(glm::value_ptr(rotation_mat), block_ptr->GetOrientationMatrix().GetValues(), 16 * sizeof(real));
@@ -54,7 +54,8 @@ namespace render_utils {
                 CubeRenderer::ApplyUniforms(model);
 
                 int colour_loc = glGetUniformLocation(CubeRenderer::shader_id, "colour");
-                glUniform3fv(colour_loc, 1, glm::value_ptr(colour));
+                //glUniform3fv(colour_loc, 1, glm::value_ptr(colour));
+                glUniform3fv(colour_loc, 1, colour.GetValues());
                 //view = BlockRenderer::camera->CalculateView();
                 view = BlockRenderer::camera->CalculateViewMat();
                 glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
@@ -66,11 +67,15 @@ namespace render_utils {
             // Z blocks are coloured pink = (1, 0, 1)
             // E blocks are coloured blue = (0, 0, 1)
             // M blocks are coloured orange = (1, 0.5, 0)
+            static Matrix white = Matrix::CreateColumnVec(1, 1, 1);
+            static Matrix pink = Matrix::CreateColumnVec(1, 0, 1);
+            static Matrix blue = Matrix::CreateColumnVec(0, 0, 1);
+            static Matrix orange = Matrix::CreateColumnVec(1, (float) 0.5, 0);
 
-            DrawBlocks((vector<Block*> *) (iblocks), glm::vec3(1, 1, 1));
-            DrawBlocks((vector<Block*> *) (zblocks), glm::vec3(1, 0, 1));
-            DrawBlocks((vector<Block*> *) (eblocks), glm::vec3(0, 0, 1));
-            DrawBlocks((vector<Block*> *) (mblocks), glm::vec3(1, 0.5, 0));
+            DrawBlocks((vector<Block*> *) (iblocks), white);
+            DrawBlocks((vector<Block*> *) (zblocks), pink);
+            DrawBlocks((vector<Block*> *) (eblocks), blue);
+            DrawBlocks((vector<Block*> *) (mblocks), orange);
         }
 
 
@@ -81,7 +86,7 @@ namespace render_utils {
 
             BlockRenderer::id = Matrix(4, 4, 1);
             BlockRenderer::view = _camera->CalculateViewMat();
-            BlockRenderer::projection = Matrix::Perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 800.0f);
+            BlockRenderer::projection = Matrix::Perspective(Matrix::ConvertToRadians(45.0f), 800.0f / 600.0f, 0.1f, 800.0f);
 
             BlockRenderer::camera = _camera;
 

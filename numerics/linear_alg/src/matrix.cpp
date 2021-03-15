@@ -1,5 +1,5 @@
 #include <matrix.hpp>
-#include <math.h>
+#include <cmath>
 #include <iostream>
 #include <settings.hpp>
 
@@ -637,6 +637,7 @@ namespace numerics
         __m128 out = _mm_add_ps(s0, s1);
     }
 
+
     Matrix Matrix::LookAt(const Matrix &eye, const Matrix &center, const Matrix &up) {
 
         Matrix  f = center - eye;
@@ -678,6 +679,10 @@ namespace numerics
         Result(2, 3, -1.0);
         Result(3, 2, - (2.0 * zfar * znear) / (zfar - znear));
         return Result;
+    }
+
+    settings::real Matrix::ConvertToRadians(settings::real degrees) {
+        return degrees / (180.0) * M_PI;
     }
 
     /*__m128 Matrix::MatMulAVX4v(__m128 &col0, __m128 &col1, __m128 &col2, __m128 &col3, __m128 &v) {

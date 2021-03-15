@@ -293,6 +293,7 @@ namespace numerics
 
         Matrix static LookAt(Matrix const &eye, Matrix const &center, Matrix const &up);
         Matrix static Perspective(float fovy, float aspect, float znear, float zfar);
+        settings::real static ConvertToRadians(settings::real degrees);
 
         /**
          * @brief Transposes a given Matrix 
