@@ -292,6 +292,7 @@ namespace numerics
         __m128 static MatMulAVX4v(float c0[4], float c1[4], float c2[4], float c3[4], float vec[4]);
 
         Matrix static LookAt(Matrix const &eye, Matrix const &center, Matrix const &up);
+        Matrix static Perspective(float fovy, float aspect, float znear, float zfar);
 
         /**
          * @brief Transposes a given Matrix 

@@ -668,6 +668,20 @@ namespace numerics
         return Result;
     }
 
+    Matrix Matrix::Perspective(float fovy, float aspect, float znear, float zfar) {
+
+        float const tanHalfFovy = tan(fovy / ( (settings::real) 2.0));
+
+        Matrix Result(4, 4);
+        Result(0, 0,1/(aspect * tanHalfFovy));
+        Result(0, 0, 1/(aspect * tanHalfFovy));
+        Result(1, 1, (1) / (tanHalfFovy));
+        Result(2, 2, - (zfar + znear) / (zfar - znear));
+        Result(2, 3, -1);
+        Result(3, 2, - ((2) * zfar * znear) / (zfar - znear));
+        return Result;
+    }
+
     /*__m128 Matrix::MatMulAVX4v(__m128 &col0, __m128 &col1, __m128 &col2, __m128 &col3, __m128 &v) {
         __m128 col0 = _mm_loadu_ps();
         __m128 col1;

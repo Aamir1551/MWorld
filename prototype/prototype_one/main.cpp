@@ -51,7 +51,9 @@ int main()
     Matrix view_mat = camera.CalculateViewMat();
     cout << "Calculated view matrix" << endl;
 
-    glm::mat4 projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 400.0f);
+    //glm::mat4 projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 400.0f);
+
+    Matrix projection = Matrix::Perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 400.0f);
 
     int num_cubes = 1000;
     //std::vector<glm::vec3> *positions = GeneratePosition(num_cubes);
@@ -132,7 +134,7 @@ int main()
             view_mat = camera.CalculateViewMat();
 
             //model_final.Transpose();
-            cubes.ApplyUniforms(model_final);
+            CubeRenderer::ApplyUniforms(model_final);
 
             glm::vec3 colour = glm::vec3(1, 1, 1);
             int colour_loc = glGetUniformLocation(CubeRenderer::shader_id, "colour");

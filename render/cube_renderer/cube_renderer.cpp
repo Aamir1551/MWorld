@@ -52,8 +52,7 @@ namespace render_utils
         //glUniformMatrix4fv(model_loc, 1, GL_FALSE, glm::value_ptr(model_mat));
         glUniformMatrix4fv(model_loc, 1, GL_FALSE, model_mat.GetValues());
         glUniformMatrix4fv(view_loc, 1, GL_FALSE, CubeRenderer::view_mat->GetValues());
-        glUniformMatrix4fv(proj_loc, 1, GL_FALSE, glm::value_ptr(*CubeRenderer::project));
-        //glUniformMatrix4fv(proj_loc, 1, GL_FALSE, CubeRenderer::project_mat->GetValues());
+        glUniformMatrix4fv(proj_loc, 1, GL_FALSE, CubeRenderer::project_mat->GetValues());
     }
 
     void CubeRenderer::ApplyUniforms(glm::mat4 &model_mat)

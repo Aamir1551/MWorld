@@ -38,7 +38,7 @@ namespace render_utils
         CubeRenderer()= default;;
 
 
-        void static InitializeCubes(settings::real _cube_length, unsigned int _vao, unsigned int _vbo, unsigned int _ebo, Matrix *_view, glm::mat4 *_project, unsigned int _shader_id)
+        void static InitializeCubes(settings::real _cube_length, unsigned int _vao, unsigned int _vbo, unsigned int _ebo, Matrix *_view, Matrix *_project, unsigned int _shader_id)
         {
             CubeRenderer::shader_id = _shader_id;
             settings::real diff = _cube_length / 2;
@@ -54,7 +54,7 @@ namespace render_utils
             CubeRenderer::ebo = _ebo;
 
             CubeRenderer::view_mat = _view;
-            CubeRenderer::project = _project;
+            CubeRenderer::project_mat = _project;
         }
 
 

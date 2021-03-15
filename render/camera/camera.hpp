@@ -82,6 +82,7 @@ namespace render_utils
 
             Matrix dx_mat = Matrix::VectorProduct(this->camera_front_mat, this->camera_up_mat); // Matrix operation
             dx_mat.Normalise(); // Matrix operation
+            dx_mat *= keyboard_camera_speed;
 
             //glm::vec3 dy = keyboard_camera_speed * this->camera_front;
 
