@@ -17,7 +17,7 @@ namespace render_utils
 
     public:
         glm::vec3 camera_pos = glm::vec3(0.0f, 0.0f, 3.0f);
-        Matrix camera_pos_mat = Matrix(0, 0, 3);
+        Matrix camera_pos_mat = Matrix::CreateColumnVec(0, 0, 3);
 
     private:
         float camera_speed = 20.0f;
@@ -26,10 +26,10 @@ namespace render_utils
         float pitch = 0.0f;
 
         glm::vec3 camera_front = glm::vec3(0.0f, 0.0f, -1.0f);
-        Matrix camera_front_mat = Matrix(0.0f, 0.0f, -1.0f);
+        Matrix camera_front_mat = Matrix::CreateColumnVec(0.0f, 0.0f, -1.0f);
 
         glm::vec3 camera_up = glm::vec3(0.0f, 1.0f, 0.0f);
-        Matrix camera_up_mat = Matrix(0.0f, 1.0f, 0.0f);
+        Matrix camera_up_mat = Matrix::CreateColumnVec(0.0f, 1.0f, 0.0f);
 
         GLFWwindow *window;
 
@@ -68,28 +68,46 @@ namespace render_utils
             direction.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));*/
 
 
-            Matrix direction_mat = Matrix(cos(glm::radians(yaw)) * cos(glm::radians(pitch)), sin(glm::radians(pitch)), sin(glm::radians(yaw)) * cos(glm::radians(pitch)) );
+            Matrix direction_mat = Matrix(cos(glm::radians(yaw)) * cos(glm::radians(pitch)), sin(glm::radians(pitch)), sin(glm::radians(yaw)) * cos(glm::radians(pitch))); // matrix operation
+            direction_mat.Normalise(); // matrix operation
+            this->camera_front_mat = direction_mat; // matrix operation
 
-            this->camera_front = glm::normalize(direction);
+            //this->camera_front = glm::normalize(direction);
         }
 
         void ProcessKeyboardInput(float keyboard_camera_speed, float keyboard_sensitivity)
         {
 
-            glm::vec3 dx = glm::normalize(glm::cross(this->camera_front, this->camera_up)) * keyboard_camera_speed; // use right hand rule to figure this out;
-            glm::vec3 dy = keyboard_camera_speed * this->camera_front;
+            //glm::vec3 dx = glm::normalize(glm::cross(this->camera_front, this->camera_up)) * keyboard_camera_speed; // use right hand rule to figure this out;
+
+            Matrix dx_mat = Matrix::VectorProduct(this->camera_front_mat, this->camera_up_mat); // Matrix operation
+            dx_mat.Normalise(); // Matrix operation
+
+            //glm::vec3 dy = keyboard_camera_speed * this->camera_front;
+
+            Matrix dy_mat = this->camera_front_mat * keyboard_camera_speed;
 
             if (glfwGetKey(this->window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
                 glfwSetWindowShouldClose(this->window, true);
 
-            if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+            /*if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
                 this->camera_pos += dy;
             if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
                 this->camera_pos -= dy;
             if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
                 this->camera_pos += dx;
             if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-                this->camera_pos -= dx;
+                this->camera_pos -= dx;*/
+
+            if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+                this->camera_pos_mat += dy_mat;
+            if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+                this->camera_pos_mat -= dy_mat;
+            if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+                this->camera_pos_mat += dx_mat;
+            if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+                this->camera_pos_mat -= dx_mat;
+
         }
 
     public:
@@ -103,8 +121,14 @@ namespace render_utils
 
         glm::mat4 CalculateView()
         {
+
             return glm::lookAt(this->camera_pos, this->camera_pos + camera_front, camera_up);
             //camera position, camera target, world space up
+        }
+
+        Matrix CalculateViewMat() {
+            return Matrix::LookAt(this->camera_pos_mat, this->camera_pos_mat + this->camera_front_mat, this->camera_up_mat);
+
         }
 
         void UpdateCamera(float delta_time)

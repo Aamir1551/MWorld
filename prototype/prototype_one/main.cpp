@@ -46,7 +46,10 @@ int main()
     //glm::mat4 id = glm::mat4(1.0f);
 
     Camera camera(world_properties->window);
-    glm::mat4 view = camera.CalculateView();
+    //glm::mat4 view = camera.CalculateView();
+    cout << "calculating view matrix" << endl;
+    Matrix view_mat = camera.CalculateViewMat();
+    cout << "Calculated view matrix" << endl;
 
     glm::mat4 projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 400.0f);
 
@@ -55,7 +58,7 @@ int main()
     std::vector<Matrix> *positions = GeneratePosition(num_cubes);
     std::vector<Quaternion> *rotations = GenerateRotationsAxis(num_cubes);
 
-    CubeRenderer::InitializeCubes(4.0f, vao, vbo, ebo, &view, &projection, world_properties->shader_id);
+    CubeRenderer::InitializeCubes(4.0f, vao, vbo, ebo, &view_mat, &projection, world_properties->shader_id);
     CubeRenderer::AddVerticesToBuffers();
 
     CubeRenderer cubes;
@@ -125,7 +128,8 @@ int main()
             }*/
 
             //view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
-            view = camera.CalculateView();
+            //view = camera.CalculateView();
+            view_mat = camera.CalculateViewMat();
 
             //model_final.Transpose();
             cubes.ApplyUniforms(model_final);

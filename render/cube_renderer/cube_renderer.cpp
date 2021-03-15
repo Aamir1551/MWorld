@@ -19,6 +19,9 @@ namespace render_utils
     glm::mat4 *CubeRenderer::view;
     glm::mat4 *CubeRenderer::project;
 
+    Matrix *CubeRenderer::view_mat;
+    Matrix *CubeRenderer::project_mat;
+
     unsigned int CubeRenderer::indices[] = {
         6, 2, 3,
         6, 7, 3, //top square
@@ -48,8 +51,9 @@ namespace render_utils
 
         //glUniformMatrix4fv(model_loc, 1, GL_FALSE, glm::value_ptr(model_mat));
         glUniformMatrix4fv(model_loc, 1, GL_FALSE, model_mat.GetValues());
-        glUniformMatrix4fv(view_loc, 1, GL_FALSE, glm::value_ptr(*CubeRenderer::view));
+        glUniformMatrix4fv(view_loc, 1, GL_FALSE, CubeRenderer::view_mat->GetValues());
         glUniformMatrix4fv(proj_loc, 1, GL_FALSE, glm::value_ptr(*CubeRenderer::project));
+        //glUniformMatrix4fv(proj_loc, 1, GL_FALSE, CubeRenderer::project_mat->GetValues());
     }
 
     void CubeRenderer::ApplyUniforms(glm::mat4 &model_mat)

@@ -637,6 +637,37 @@ namespace numerics
         __m128 out = _mm_add_ps(s0, s1);
     }
 
+    Matrix Matrix::LookAt(const Matrix &eye, const Matrix &center, const Matrix &up) {
+
+
+        Matrix  f = center - eye;
+        f.Normalise();
+        Matrix u = up;
+        u.Normalise();
+
+
+        Matrix s = VectorProduct(f, u);
+        s.Normalise();
+
+        u = VectorProduct(s, f);
+
+        Matrix Result(4, 4, 1);
+        Result(0, 0, s(0, 0));
+        Result(1, 0, s(1, 0));
+        Result(2,0, s(2, 0));
+        Result(0,1, u(0, 0));
+        Result(1,1, u(1, 0));
+        Result(2,1, u(2, 0));
+        Result(0,2,-f(0, 0));
+        Result(1,2,-f(1, 0));
+        Result(2,2,-f(2, 0));
+
+        Result(3,0,-Matrix::Dot(s, eye));
+        Result(3,1,-Matrix::Dot(u, eye));
+        Result(3,2, Matrix::Dot(f, eye));
+        return Result;
+    }
+
     /*__m128 Matrix::MatMulAVX4v(__m128 &col0, __m128 &col1, __m128 &col2, __m128 &col3, __m128 &v) {
         __m128 col0 = _mm_loadu_ps();
         __m128 col1;
