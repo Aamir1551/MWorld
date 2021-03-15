@@ -317,27 +317,6 @@
 			"path" : "numerics/quaternion/test/CMakeLists.txt"
 		},
 		{
-			"path" : "lib/glad/CMakeLists.txt"
-		},
-		{
-			"path" : "render/CMakeLists.txt"
-		},
-		{
-			"path" : "render/camera/CMakeLists.txt"
-		},
-		{
-			"path" : "render/cube_renderer/CMakeLists.txt"
-		},
-		{
-			"path" : "render/utils/CMakeLists.txt"
-		},
-		{
-			"path" : "render/shader/CMakeLists.txt"
-		},
-		{
-			"path" : "render/block_renderer/CMakeLists.txt"
-		},
-		{
 			"path" : "utils/CMakeLists.txt"
 		},
 		{
@@ -345,18 +324,6 @@
 		},
 		{
 			"path" : "utils/settings/CMakeLists.txt"
-		},
-		{
-			"path" : "prototype/CMakeLists.txt"
-		},
-		{
-			"path" : "prototype/prototype_one/CMakeLists.txt"
-		},
-		{
-			"path" : "prototype/prototype_two/CMakeLists.txt"
-		},
-		{
-			"path" : "prototype/prototype_three/CMakeLists.txt"
 		},
 		{
 			"path" : "simulation/CMakeLists.txt"

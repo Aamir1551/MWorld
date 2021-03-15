@@ -12,11 +12,11 @@ set(catch_path ${CMAKE_CURRENT_SOURCE_DIR}/catch)
 #multithreading depends heavily on what applications are running in the background and such
 
 set(compile_with_openmp ON)
-set(compile_with_glfw ON)
+set(compile_with_glfw OFF)
 set(compile_prototypes ON)
 set(add_debug_tag OFF)
 
-#add_compile_options("-mavx" "-mavx2" "-pthread" "-O3" "-ftree-vectorize") -- make sure this adds these flags to all targets
+#add_compile_options("-mavx" "-mavx2" "-O3" "-ftree-vectorize") #-- make sure this adds these flags to all targets, rendering stops for some reason, if we use -O3 and -O2
 if(compile_with_openmp)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -fopenmp -std=c++11")
 else()
