@@ -6,8 +6,8 @@
     #include <glad/glad.h>
     #include <GLFW/glfw3.h>
 #endif
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
+//#include <glm/glm.hpp>
+//#include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
 #if defined(GLFW_ON)
@@ -60,7 +60,8 @@ int main(int argc, char *argv[])
 #if defined(GLFW_ON)
     real cube_length = 4.0f;
     Camera camera = Camera(world_properties->window);
-    camera.camera_pos = glm::vec3(0, 0, 250);
+    //camera.camera_pos = glm::vec3(0, 0, 250);
+    camera.camera_pos_mat = Matrix::CreateColumnVec(0, 0, 250);
     BlockRenderer::InitialiseBlockRenderer(&camera, cube_length, vao, vbo, ebo, world_properties);
 #endif
 
@@ -182,10 +183,6 @@ int main(int argc, char *argv[])
             cout << "not equal" << endl;
         }*/
 
-        cout << "first position: " << endl;
-        world.zblocks.at(0)->position.print();
-        world.zblocks.at(0)->momentum.print();
-        cout << endl;
 #if defined(GLFW_ON)
         world.AddForces(deltaTime);
         //auto contact_list = vector<Contact>();
