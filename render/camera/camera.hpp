@@ -38,27 +38,25 @@ namespace render_utils
             if (buttons[4] == 1)
                 glfwSetWindowShouldClose(window, true);
 
-            controller_camera_speed += controller_camera_speed * (axes[4] * 2 + 1) * 0.5; //Allow r1 to make it even faster
+            controller_camera_speed += controller_camera_speed * (axes[4] * 2 + 1) * 0.5;
 
-            //camera_pos -= controller_camera_speed * camera_front * axes[1];
-            camera_pos_mat -=  camera_front_mat * controller_camera_speed * axes[1]; // matrix operation
+            camera_pos_mat -=  camera_front_mat * controller_camera_speed * axes[1];
 
-
-            auto temp = (Matrix::VectorProduct(this->camera_front_mat, this->camera_up_mat)); // matrix operation
-            temp.Normalise(); // matrix operation
-            camera_pos_mat += temp * controller_camera_speed * axes[0];  // matrix operation
+            auto temp = (Matrix::VectorProduct(this->camera_front_mat, this->camera_up_mat));
+            temp.Normalise();
+            camera_pos_mat += temp * controller_camera_speed * axes[0];
 
             float xoffset = axes[2];
             float yoffset = -axes[3];
-            controller_sensitivity += controller_sensitivity * (axes[5] * 2 + 1) * 0.5; //Allow l1 to make it even faster
+            controller_sensitivity += controller_sensitivity * (axes[5] * 2 + 1) * 0.5;
             xoffset *= controller_sensitivity;
             yoffset *= controller_sensitivity;
             yaw += xoffset;
             pitch += yoffset;
 
-            Matrix direction_mat = Matrix(cos(Matrix::ConvertToRadians(yaw)) * cos(Matrix::ConvertToRadians(pitch)), sin(Matrix::ConvertToRadians(pitch)), sin(Matrix::ConvertToRadians(yaw)) * cos(Matrix::ConvertToRadians(pitch))); // matrix operation
-            direction_mat.Normalise(); // matrix operation
-            this->camera_front_mat = direction_mat; // matrix operation
+            Matrix direction_mat = Matrix::CreateColumnVec(cos(Matrix::ConvertToRadians(yaw)) * cos(Matrix::ConvertToRadians(pitch)), sin(Matrix::ConvertToRadians(pitch)), sin(Matrix::ConvertToRadians(yaw)) * cos(Matrix::ConvertToRadians(pitch)));
+            direction_mat.Normalise();
+            this->camera_front_mat = direction_mat;
 
         }
 
@@ -66,23 +64,14 @@ namespace render_utils
         {
 
 
-            Matrix dx_mat = Matrix::VectorProduct(this->camera_front_mat, this->camera_up_mat); // Matrix operation
-            dx_mat.Normalise(); // Matrix operation
+            Matrix dx_mat = Matrix::VectorProduct(this->camera_front_mat, this->camera_up_mat);
+            dx_mat.Normalise();
             dx_mat *= keyboard_camera_speed;
 
             Matrix dy_mat = this->camera_front_mat * keyboard_camera_speed;
 
             if (glfwGetKey(this->window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
                 glfwSetWindowShouldClose(this->window, true);
-
-            /*if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-                this->camera_pos += dy;
-            if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-                this->camera_pos -= dy;
-            if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-                this->camera_pos += dx;
-            if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-                this->camera_pos -= dx;*/
 
             if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
                 this->camera_pos_mat += dy_mat;
@@ -96,7 +85,7 @@ namespace render_utils
         }
 
     public:
-        explicit Camera(GLFWwindow *glfw_window, Matrix camera_pos = Matrix::CreateColumnVec(0.0f, 0.0f, 3.0f), Matrix camera_front = Matrix::CreateColumnVec(0.0f, 0.0f, -1.0f), Matrix camera_up = Matrix::CreateColumnVec(0.0f, 1.0f, 0.0f), float camera_speed = 15.0f)
+        explicit Camera(GLFWwindow *glfw_window, const Matrix& camera_pos = Matrix::CreateColumnVec(0.0f, 0.0f, 3.0f), const Matrix& camera_front = Matrix::CreateColumnVec(0.0f, 0.0f, -1.0f), const Matrix& camera_up = Matrix::CreateColumnVec(0.0f, 1.0f, 0.0f), float camera_speed = 15.0f)
         {
             this->window = glfw_window;
             this->camera_pos_mat = camera_pos;

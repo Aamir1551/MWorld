@@ -27,6 +27,9 @@ namespace numerics
 
     Matrix &Matrix::operator=(const Matrix &a)
     {
+        if(this == &a) {
+            return *this;
+        }
 
         this->rows = a.rows;
         this->cols = a.cols;
@@ -145,7 +148,7 @@ namespace numerics
     std::string Matrix::GenerateError(std::string const operation, Matrix const &a)
     {
         std::string msg = "Matrix shapes do not conform for " + operation + ".";
-        std::string a_shape = "This has shape=(" + std::to_string(a.rows) + "," +
+        std::string a_shape = "Argument has shape=(" + std::to_string(a.rows) + "," +
                               std::to_string(a.cols) + ").";
 
         return msg + " " + a_shape;
@@ -206,16 +209,14 @@ namespace numerics
 
     Matrix Matrix::Transpose(Matrix const &a)
     {
-        auto *new_values = new settings::real[a.cols * a.rows];
+        auto res = Matrix(a.cols, a.rows);
         for (int i = 0; i < a.rows; i++)
         {
             for (int j = 0; j < a.cols; j++)
             {
-                new_values[j * a.rows + i] = a.values[i * a.cols + j];
+                res.values[j * a.rows + i] = a.values[i * a.cols + j];
             }
         }
-        auto res = Matrix(a.cols, a.rows, new_values);
-        delete[] new_values;
         return res;
     }
 
@@ -226,7 +227,6 @@ namespace numerics
             throw std::invalid_argument(GenerateError("Multiplication", a, b));
         }
 
-        //auto *new_values = new settings::real[a.rows * b.cols];
         Matrix res = Matrix(a.rows, b.cols);
         for(int i=0; i<a.rows; i++) {
             for(int j=0; j<b.cols; j++) {
@@ -268,14 +268,11 @@ namespace numerics
             throw std::invalid_argument(GenerateError("Addition", *this, a));
         }
 
-        auto *new_values = new settings::real[a.cols * a.rows];
+        Matrix res = Matrix(this->rows, this->cols);
         for (int i = 0; i < a.cols * a.rows; i++)
         {
-            new_values[i] = this->values[i] + a.values[i];
+            res.values[i] = this->values[i] + a.values[i];
         }
-
-        Matrix res = Matrix(this->rows, this->cols, new_values);
-        delete[] new_values;
         return res;
     };
 
@@ -289,14 +286,13 @@ namespace numerics
             throw std::invalid_argument(GenerateError("Subtraction", *this, a));
         }
 
-        auto *new_values = new settings::real[a.cols * a.rows];
+        // here checkpiont
+        Matrix res = Matrix(this->rows, this->cols);
         for (int i = 0; i < a.cols * a.rows; i++)
         {
-            new_values[i] = this->values[i] - a.values[i];
+            res.values[i] = this->values[i] - a.values[i];
         }
 
-        Matrix res = Matrix(this->rows, this->cols, new_values);
-        delete[] new_values;
         return res;
     }
 
@@ -308,13 +304,11 @@ namespace numerics
                 GenerateError("Elementwise Multiplication", *this, a));
         }
 
-        auto *new_values = new settings::real[a.cols * a.rows];
+        auto res = Matrix(this->rows, this->cols);
         for (int i = 0; i < a.cols * a.rows; i++)
         {
-            new_values[i] = this->values[i] * a.values[i];
+            res.values[i] = this->values[i] * a.values[i];
         }
-        auto res = Matrix(this->rows, this->cols, new_values);
-        delete[] new_values;
         return res;
     }
 
@@ -325,17 +319,15 @@ namespace numerics
            throw std::invalid_argument(GenerateError("Division", *this, a));
         }
 
-        auto *new_values = new settings::real[a.cols * a.rows];
+        auto res = Matrix(this->rows, this->cols);
         for (int i = 0; i < a.cols * a.rows; i++)
         {
             if(a.values[i] == 0){
                 throw std::overflow_error("Division By Zero");
             }
 
-            new_values[i] = this->values[i] / a.values[i];
+            res.values[i] = this->values[i] / a.values[i];
         }
-        auto res = Matrix(this->rows, this->cols, new_values);
-        delete[] new_values;
         return res;
     };
 
@@ -417,12 +409,12 @@ namespace numerics
     {
         if (a.rows != 3 || a.cols != 1)
         {
-            throw std::invalid_argument(GenerateError("vector product", a));
+            throw std::invalid_argument(GenerateError("Vector product", a));
         }
 
         if (b.rows != 3 || b.cols != 1)
         {
-            throw std::invalid_argument(GenerateError("vector product", b));
+            throw std::invalid_argument(GenerateError("Vector product", b));
         }
 
         auto c = Matrix(3, 1);
@@ -534,23 +526,6 @@ namespace numerics
         }
     };
 
-    Matrix *Matrix::GetColumns() const
-    {
-        //check for mem leaks in this
-        auto *cols_list = new Matrix[this->cols];
-        for (int i = 0; i < this->cols; i++)
-        {
-            auto *vals = new settings::real[this->rows];
-            for (int j = 0; j < this->rows; j++)
-            {
-                vals[j] = this->values[j * this->cols + i];
-            }
-            cols_list[i] = Matrix(this->rows, 1,vals);
-            delete[] vals;
-        };
-        return cols_list;
-    }
-
     // This function does not throw an error, when we meet a zero vector. This has been done for performance purposes.
     void Matrix::Normalise() {
         settings::real norm = 0;
@@ -560,17 +535,6 @@ namespace numerics
         norm = sqrt(norm);
         for(int i=0; i<this->rows * this->cols; i++) {
             this->values[i] /= norm;
-        }
-    }
-
-    void Matrix::AddColumnVectorToMatrix(const Matrix &a) {
-        if(this->rows != a.rows || a.cols != 1) {
-            throw std::invalid_argument("Column Matrix is of incorrect size. Must have same number of rows as Matrix, and only 1 column.");
-        }
-        for(int i=0; i<this->rows; i++) {
-            for(int j=0; j<this->cols; j++) {
-                this->values[i * this->cols + j] += a.values[i];
-            }
         }
     }
 
@@ -635,6 +599,7 @@ namespace numerics
         __m128 prod3 = _mm_mul_ps(v3, col3);
         __m128 s1 = _mm_add_ps(prod2, prod3);
         __m128 out = _mm_add_ps(s0, s1);
+        return out;
     }
 
 
@@ -682,7 +647,13 @@ namespace numerics
     }
 
     settings::real Matrix::ConvertToRadians(settings::real degrees) {
-        return degrees * 0.01745329251994329576923690768489;
+        return degrees * 0.01745329251994329576923690768489; // PI/180 = 0.017
+    }
+
+    void Matrix::Translate4by4Matrix(const Matrix& translation_value) {
+        (*this)(3, 0, translation_value(0, 0));
+        (*this)(3, 1, translation_value(1, 0));
+        (*this)(3, 2, translation_value(2, 0));
     }
 
     /*__m128 Matrix::MatMulAVX4v(__m128 &col0, __m128 &col1, __m128 &col2, __m128 &col3, __m128 &v) {
@@ -703,6 +674,5 @@ namespace numerics
         __m128 s1 = _mm_add_ps(prod2, prod3);
         __m128 out = _mm_add_ps(s0, s1);
     }*/
-
 
 } // namespace numerics

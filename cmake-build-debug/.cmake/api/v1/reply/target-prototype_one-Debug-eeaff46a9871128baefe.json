@@ -74,7 +74,7 @@
 				},
 				{
 					"backtrace" : 3,
-					"path" : "C:/Users/aamir/Documents/mworld/prototype/prototype_one"
+					"path" : "C:/Users/aamir/Documents/mworld/lib/glm"
 				},
 				{
 					"backtrace" : 1,
@@ -98,23 +98,15 @@
 				},
 				{
 					"backtrace" : 2,
-					"path" : "C:/Users/aamir/Documents/mworld/render/cube_renderer/../lib"
-				},
-				{
-					"backtrace" : 2,
-					"path" : "C:/Users/aamir/Documents/mworld/render/cube_renderer"
-				},
-				{
-					"backtrace" : 2,
 					"path" : "C:/Users/aamir/Documents/mworld/render/cube_renderer/."
 				},
 				{
 					"backtrace" : 2,
-					"path" : "C:/Users/aamir/Documents/mworld/render/utils/."
+					"path" : "C:/Users/aamir/Documents/mworld/render/cube_renderer/../lib"
 				},
 				{
 					"backtrace" : 2,
-					"path" : "C:/Users/aamir/Documents/mworld/render/utils"
+					"path" : "C:/Users/aamir/Documents/mworld/render/utils/."
 				},
 				{
 					"backtrace" : 2,
@@ -145,15 +137,15 @@
 		},
 		{
 			"backtrace" : 2,
-			"id" : "cube_renderer::@ef8ae11a8c6e57d14ca4"
-		},
-		{
-			"backtrace" : 2,
 			"id" : "glad::@bf3af473941166e98053"
 		},
 		{
 			"backtrace" : 2,
 			"id" : "mworld_render_utils::@c1c5e50b708af245b811"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "cube_renderer::@ef8ae11a8c6e57d14ca4"
 		},
 		{
 			"backtrace" : 2,

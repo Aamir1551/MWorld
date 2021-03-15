@@ -52,7 +52,7 @@ namespace numerics
      * @param a The quaternion to value compare with
      * @return true or false
      */
-      bool operator==(const Quaternion &a);
+      bool operator==(const Quaternion &a) const;
 
       /**
      * @brief Adds two quaternion objects together
@@ -60,7 +60,7 @@ namespace numerics
      * @param a A quaternion to add. 
      * @return Quaternion& 
      */
-      Quaternion operator+(const Quaternion &a);
+      Quaternion operator+(const Quaternion &a) const;
 
       /**
      * @brief Subtracts two quaternion objects together
@@ -68,7 +68,7 @@ namespace numerics
      * @param a A quaternion to subtract. 
      * @return Quaternion& 
      */
-      Quaternion operator-(const Quaternion &a);
+      Quaternion operator-(const Quaternion &a) const;
 
       /**
      * @brief Multiplies two quaternion objects together
@@ -76,7 +76,7 @@ namespace numerics
      * @param a A quaternion to multiply 
      * @return Quaternion& 
      */
-      Quaternion operator*(const Quaternion &a);
+      Quaternion operator*(const Quaternion &a) const;
 
       /**
      * @brief Divides two quaternion objects
@@ -124,7 +124,7 @@ namespace numerics
      * @param a A settings::real number to add to quaternion
      * @return Quaternion& 
      */
-      Quaternion operator+(settings::real a);
+      Quaternion operator+(settings::real a) const;
 
       /**
      * @brief Subtracts quaternion from settings::real
@@ -132,7 +132,7 @@ namespace numerics
      * @param a A settings::real number to subtract quaternion by
      * @return Quaternion& 
      */
-      Quaternion operator-(settings::real a);
+      Quaternion operator-(settings::real a) const;
 
       /**
      * @brief Multiply quaternion with settings::real number 
@@ -140,7 +140,7 @@ namespace numerics
      * @param a A settings::real number to multiply quaternion by
      * @return Quaternion& 
      */
-      Quaternion operator*(settings::real a);
+      Quaternion operator*(settings::real a) const;
 
       /**
      * @brief Divide quaternion with settings::real number 
@@ -148,7 +148,7 @@ namespace numerics
      * @param a A settings::real number to divide quaternion with 
      * @return Quaternion& 
      */
-      Quaternion operator/(settings::real a);
+      Quaternion operator/(settings::real a) const;
 
       /**
      * @brief Add existing quaternion with settings::real number 

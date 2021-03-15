@@ -7,9 +7,6 @@
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
 
 #include <cube_renderer.hpp>
 #include <world_initializer.hpp>
@@ -36,11 +33,10 @@ int main()
     glGenBuffers(1, &vbo);
     glGenBuffers(1, &ebo);
 
-    glm::mat4 id = glm::mat4(1.0f);
-    Camera camera(world_properties->window, glm::vec3(-30.0f, 0.0f, 5.0f));
-    glm::mat4 view = camera.CalculateView();
+    Camera camera(world_properties->window, Matrix::CreateColumnVec(-30.0f, 0.0f, 5.0f));
+    Matrix view = camera.CalculateViewMat();
 
-    glm::mat4 projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 4000.0f);
+    Matrix projection = Matrix::Perspective(Matrix::ConvertToRadians(45.0f), 800.0f / 600.0f, 0.1f, 4000.0f);
 
     real cube_length = 4.0f;
     real position_coord1[] = {-35, -2.0f, -20}; //x, y, z. x is how much horizontal y is vertical. z is in/out
@@ -121,36 +117,46 @@ int main()
             Cube::CollisionResolution(i);
         }
 
-        glm::mat4 rotation_mat1;
-        memcpy(glm::value_ptr(rotation_mat1), c1.GetOrientationMatrix().GetValues(), 16 * sizeof(real));
+        /*glm::mat4 rotation_mat1;
+        memcpy(glm::value_ptr(rotation_mat1), c1.GetOrientationMatrix().GetValues(), 16 * sizeof(real));*/
 
-        glm::vec3 translation_mat1;
+
+        /*glm::vec3 translation_mat1;
         memcpy(glm::value_ptr(translation_mat1), c1.position.GetValues(), 3 * sizeof(real));
 
         glm::mat4 model1 = glm::translate(id, translation_mat1);
-        model1 = model1 * rotation_mat1;
+        model1 = model1 * rotation_mat1;*/
+        Matrix model1 = Matrix(4, 4, 1);
+        model1.Translate4by4Matrix(c1.position);
+        model1 = Matrix::MatMul(model1, c1.GetOrientationMatrix());
 
         render_utils::CubeRenderer::ApplyUniforms(model1);
-        glm::vec3 colour = glm::vec3(1, 1, 1);
+        //glm::vec3 colour = glm::vec3(1, 1, 1);
+        Matrix colour = Matrix::CreateColumnVec(1, 1, 1);
         int colour_loc = glGetUniformLocation(CubeRenderer::shader_id, "colour");
-        glUniform3fv(colour_loc, 1, glm::value_ptr(colour));
+        glUniform3fv(colour_loc, 1, colour.GetValues());
 
         glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 
-        glm::mat4 rotation_mat2;
+        /*glm::mat4 rotation_mat2;
         memcpy(glm::value_ptr(rotation_mat2), c2.GetOrientationMatrix().GetValues(), 16 * sizeof(real));
 
         glm::vec3 translation_mat2;
         memcpy(glm::value_ptr(translation_mat2), c2.position.GetValues(), 3 * sizeof(real));
 
         glm::mat4 model2 = glm::translate(id, translation_mat2);
-        model2 = model2 * rotation_mat2;
+        model2 = model2 * rotation_mat2;*/
 
-        view = camera.CalculateView();
+        Matrix model2 = Matrix(4, 4, 1);
+        model2.Translate4by4Matrix(c2.position);
+        model2 = Matrix::MatMul(model2, c2.GetOrientationMatrix());
+
+        //view = camera.CalculateView();
+        view = camera.CalculateViewMat();
         render_utils::CubeRenderer::ApplyUniforms(model2);
 
         colour_loc = glGetUniformLocation(CubeRenderer::shader_id, "colour");
-        glUniform3fv(colour_loc, 1, glm::value_ptr(colour));
+        glUniform3fv(colour_loc, 1, colour.GetValues());
 
         glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 

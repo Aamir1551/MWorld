@@ -28,10 +28,7 @@ namespace render_utils {
         void BlockRenderer::DrawBlocks(vector<Block *> *block_list, Matrix &colour) {
             for(auto & block_ptr : *block_list) {
                 Matrix model = Matrix(4, 4, 1);
-                model(0, 3, block_ptr->position(0, 0));
-                model(1, 3, block_ptr->position(1, 0));
-                model(2, 3, block_ptr->position(2, 0));
-                model.Transpose();
+                model.Translate4by4Matrix(block_ptr->position);
 
                 model = Matrix::MatMul(block_ptr->GetOrientationMatrix(), model); // maybe have a matrix function that applied the matmul inside of model
 

@@ -391,4 +391,7 @@ TEST_CASE("Matrices can be operated with", "[Operations]")
             }
         }
     }
+
+
+    // have a compare function, that compares glm function with matrix LookAt and Perspective function
 }

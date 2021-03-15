@@ -7,8 +7,8 @@
 #define EXPECT(x, y) (x)
 #endif
 
-#include <stdlib.h>
-#include <stdio.h>
+#include <cstdlib>
+#include <cstdio>
 
 #include <iostream>
 #include <string>
@@ -17,14 +17,9 @@
 #include <settings.hpp>
 #include <immintrin.h>
 
-// TODO
-// 1) Why do inline functions need to be defined in header?
-// 2) Add serialize function
-// 3) define implementation of inv function in .cpp file
-// 4) add to git in pre-push.sample file: cpplint.exe --filter=-legal/copyright,-whitespace/braces,-whitespace/newline matrix.cpp
-
 namespace numerics
 {
+    class Quaternion;
     class Matrix
     {
     protected:
@@ -82,7 +77,7 @@ namespace numerics
          * @param cols 
          * @param values The pointer to copy values from to set the initial values of the matrix.
          */
-        explicit Matrix(int rows, int cols, settings::real const *const values);
+        explicit Matrix(int rows, int cols, settings::real const *values);
 
         /**
          * @brief Construct a new Matrix object. Is a vector of 3 values.
@@ -170,7 +165,7 @@ namespace numerics
          * 
          * @return settings::real const* const 
          */
-        settings::real inline const *const GetValues() const
+        settings::real inline const *GetValues() const
         {
             return values;
         };
@@ -253,16 +248,9 @@ namespace numerics
          * @brief Add column vector to Matrix, along every column
          *
          */
-        void AddColumnVectorToMatrix(Matrix const &a);
-
-        /**
-         * @brief Add column vector to Matrix, along every column
-         *
-         */
         bool IsZero();
 
         void abs();
-
 
         /**
          * @brief Returns the squared euclidean norm of a matrix
@@ -291,8 +279,36 @@ namespace numerics
         //__m128 static MatMulAVX4v(__m128 &col0, __m128 &col1, __m128 &col2, __m128 &col3, __m128 &v);
         __m128 static MatMulAVX4v(float c0[4], float c1[4], float c2[4], float c3[4], float vec[4]);
 
+
+        /**
+         * @brief Returns the view matrix
+         *
+         * @param eye Position of the camera viewpoint
+         * @param center Position, from which we are looking at
+         * @param up Vector defining the the world Up direction
+         * @return Matrix representing the view matrix
+         */
         Matrix static LookAt(Matrix const &eye, Matrix const &center, Matrix const &up);
-        Matrix static Perspective(float fovy, float aspect, float znear, float zfar);
+
+
+        /**
+         * @brief Returns the perspective matrix
+         *
+         * @param fovy field of fiew y
+         * @param aspect
+         * @param znear The closest we can see
+         * @param zfar  The furthest we can see
+         * @return
+         */
+        Matrix static Perspective(settings::real fovy, settings::real aspect, settings::real znear, settings::real zfar);
+
+
+        /**
+         * @brief Converts a real number to radians
+         *
+         * @param degrees Angle in degrees
+         * @return
+         */
         settings::real static ConvertToRadians(settings::real degrees);
 
         /**
@@ -477,13 +493,6 @@ namespace numerics
         ~Matrix() { delete[](this->values); };
 
         /**
-         * @brief Get the Columns of the Matrix
-         * 
-         * @return Matrix* 
-         */
-        Matrix *GetColumns() const;
-
-        /**
          * @brief Applies the max function at each element in the 3d vector which each of the max elements given
          *
          * @param index
@@ -496,6 +505,16 @@ namespace numerics
          * @param index
          */
         void ApplyMinVector3(settings::real min_x, settings::real min_y, settings::real min_z);
+
+        /**
+         * @brief Translates the following 4x4 Matrix by translation_value
+         * Translates a 4x4 matrix. For performance purposes, we will not be testing if the matrix is of size 4x4
+         *
+         * @param Translates_value The amount to translate by
+         */
+        void Translate4by4Matrix(const Matrix& translation_value);
+
+        friend class Quaternion;
 
     };
 } // namespace numerics

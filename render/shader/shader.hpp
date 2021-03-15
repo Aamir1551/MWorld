@@ -7,6 +7,7 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <utility>
 #include <util_functions.h>
 
 namespace render_utils
@@ -61,8 +62,8 @@ namespace render_utils
             std::string vertex_shader_sourcecode;
             std::string frag_shader_sourcecode;
 
-            util_functions::read_from_file(vert_file, vertex_shader_sourcecode);
-            util_functions::read_from_file(frag_file, frag_shader_sourcecode);
+            util_functions::read_from_file(std::move(vert_file), vertex_shader_sourcecode);
+            util_functions::read_from_file(std::move(frag_file), frag_shader_sourcecode);
 
             unsigned int vertex_shader = glCreateShader(GL_VERTEX_SHADER);
             char const *vp = "vertex";
@@ -78,7 +79,7 @@ namespace render_utils
             glDeleteShader(frag_shader);
         };
 
-        void Use()
+        void Use() const
         {
             glUseProgram(shader_id);
         };
@@ -95,7 +96,7 @@ namespace render_utils
         {
             glUniform1f(glGetUniformLocation(shader_id, name.c_str()), a);
         };
-        void SetFloat3(const std::string &name, float a, float b, float c)
+        void SetFloat3(const std::string &name, float a, float b, float c) const
         {
             glUniform3f(glGetUniformLocation(shader_id, name.c_str()), a, b, c);
         }

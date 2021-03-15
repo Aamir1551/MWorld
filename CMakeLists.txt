@@ -6,7 +6,7 @@ cmake_minimum_required(VERSION 3.10)
 set(CMAKE_CXX_STANDARD 11)
 set(glfw "${CMAKE_CURRENT_SOURCE_DIR}/lib/glfw-3.3.2/build/src/libglfw3.a")
 set(glfw_include_path "${CMAKE_CURRENT_SOURCE_DIR}/lib/glfw-3.3.2/include/")
-#set(glm_include_path "${CMAKE_CURRENT_SOURCE_DIR}/lib/glm")
+set(glm_include_path "${CMAKE_CURRENT_SOURCE_DIR}/lib/glm") #Used for testing the matrix LookAt and Perspective function
 set(catch_path ${CMAKE_CURRENT_SOURCE_DIR}/catch)
 
 #multithreading depends heavily on what applications are running in the background and such
@@ -29,7 +29,6 @@ if(add_debug_tag)
 endif()
 
 
-
 #SET (CMAKE_C_FLAGS_INIT                "-Wall -std=c99")
 #SET (CMAKE_C_FLAGS_DEBUG_INIT          "-g")
 #SET (CMAKE_C_FLAGS_MINSIZEREL_INIT     "-Os -DNDEBUG")
@@ -41,8 +40,6 @@ endif()
 #SET (CMAKE_CXX_FLAGS_MINSIZEREL_INIT     "-Os -DNDEBUG")
 #SET (CMAKE_CXX_FLAGS_RELEASE_INIT        "-O3 -DNDEBUG")
 #SET (CMAKE_CXX_FLAGS_RELWITHDEBINFO_INIT "-O2 -g")
-
-
 
 if(NOT compile_with_glfw)
     set(compile_prototypes OFF)

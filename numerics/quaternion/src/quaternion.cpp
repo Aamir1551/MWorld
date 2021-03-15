@@ -11,27 +11,25 @@ namespace numerics
 
     Quaternion::Quaternion(const Quaternion &q)
     {
-
-        //why doesnt work if you do :r(r), i(i), j(j), k(k)
         this->r = q.r;
         this->i = q.i;
         this->j = q.j;
         this->k = q.k;
     };
 
-    Quaternion Quaternion::operator+(const Quaternion &a)
+    Quaternion Quaternion::operator+(const Quaternion &a) const
     {
         Quaternion result = Quaternion(this->r + a.r, this->i + a.i, this->j + a.j, this->k + a.k);
         return result;
     };
 
-    Quaternion Quaternion::operator-(const Quaternion &a)
+    Quaternion Quaternion::operator-(const Quaternion &a) const
     {
         Quaternion result = Quaternion(this->r - a.r, this->i - a.i, this->j - a.j, this->k - a.k);
         return result;
     };
 
-    Quaternion Quaternion::operator*(const Quaternion &a)
+    Quaternion Quaternion::operator*(const Quaternion &a) const
     {
         //should this be inline instead???
         settings::real r_component = this->r * a.r - this->i * a.i - this->j * a.j - this->k * a.k;
@@ -134,7 +132,7 @@ namespace numerics
         return *this;
     };
 
-    bool Quaternion::operator==(const Quaternion &a)
+    bool Quaternion::operator==(const Quaternion &a) const
     {
         return this->r == a.r && a.i == this->i && a.j == this->j && this->k == a.k;
     };
@@ -169,25 +167,25 @@ namespace numerics
         return *this;
     };
 
-    Quaternion Quaternion::operator*(settings::real a)
+    Quaternion Quaternion::operator*(settings::real a) const
     {
         Quaternion result = Quaternion(this->r * a, this->i * a, this->j * a, this->k * a);
         return result;
     }
 
-    Quaternion Quaternion::operator/(settings::real a)
+    Quaternion Quaternion::operator/(settings::real a) const
     {
         Quaternion result = Quaternion(this->r / a, this->i / a, this->j / a, this->k / a);
         return result;
     }
 
-    Quaternion Quaternion::operator+(settings::real a)
+    Quaternion Quaternion::operator+(settings::real a) const
     {
         Quaternion result = Quaternion(this->r + a, this->i, this->j, this->k);
         return result;
     }
 
-    Quaternion Quaternion::operator-(settings::real a)
+    Quaternion Quaternion::operator-(settings::real a) const
     {
         Quaternion result = Quaternion(this->r - a, this->i, this->j, this->k);
         return result;
@@ -212,13 +210,12 @@ namespace numerics
 
     Matrix Quaternion::ConvertToVector(const Quaternion &a)
     {
-        settings::real *new_values = new settings::real[4];
-        new_values[0] = a.r;
-        new_values[1] = a.i;
-        new_values[2] = a.j;
-        new_values[3] = a.k;
-        Matrix result = Matrix(4, 1, new_values);
-        delete[] new_values;
+        Matrix result = Matrix(4, 1);
+        auto v = result.values;
+        v[0] = a.r;
+        v[1] = a.i;
+        v[2] = a.j;
+        v[3] = a.k;
         return result;
     }
 
@@ -231,13 +228,14 @@ namespace numerics
 
     Matrix Quaternion::GetMatrixTransformation(const Quaternion &a)
     {
-
         settings::real qw = a.r;
         settings::real qx = a.i;
         settings::real qy = a.j;
         settings::real qz = a.k;
 
-        settings::real *values = new settings::real[16];
+        Matrix result = Matrix(4, 4);
+        auto values = result.values;
+
         values[0] = 1.0f - 2.0f * qy * qy - 2.0f * qz * qz;
         values[1] = 2.0f * qx * qy - 2.0f * qz * qw;
         values[2] = 2.0f * qx * qz + 2.0f * qy * qw;
@@ -258,8 +256,6 @@ namespace numerics
         values[14] = 0.0f;
         values[15] = 1.0f;
 
-        Matrix result = Matrix(4, 4, values);
-        delete[] values;
         return result;
     };
 
@@ -271,7 +267,9 @@ namespace numerics
         settings::real qy = a.j;
         settings::real qz = a.k;
 
-        settings::real *values = new settings::real[16];
+        Matrix result = Matrix(4, 4);
+        auto values = result.values;
+
         values[0] = 1.0f - 2.0f * qy * qy - 2.0f * qz * qz;
         values[4] = 2.0f * qx * qy - 2.0f * qz * qw;
         values[8] = 2.0f * qx * qz + 2.0f * qy * qw;
@@ -292,8 +290,6 @@ namespace numerics
         values[14] = 0.0f;
         values[15] = 1.0f;
 
-        Matrix result = Matrix(4, 4, values);
-        delete[] values;
         return result;
     };
 
@@ -310,7 +306,9 @@ namespace numerics
         settings::real qy = a.j;
         settings::real qz = a.k;
 
-        settings::real *values = new settings::real[9];
+        Matrix result = Matrix(3, 3);
+        auto values = result.values;
+
         values[0] = 1.0f - 2.0f * qy * qy - 2.0f * qz * qz;
         values[3] = 2.0f * qx * qy - 2.0f * qz * qw;
         values[6] = 2.0f * qx * qz + 2.0f * qy * qw;
@@ -323,8 +321,6 @@ namespace numerics
         values[5] = 2.0f * qy * qz + 2.0f * qx * qw;
         values[8] = 1.0f - 2.0f * qx * qx - 2.0f * qy * qy;
 
-        Matrix result = Matrix(3, 3, values);
-        delete[] values;
         return result;
     };
 
@@ -336,7 +332,9 @@ namespace numerics
         settings::real qy = a.j;
         settings::real qz = a.k;
 
-        auto *values = new settings::real[9];
+        Matrix result = Matrix(3, 3);
+        auto values = result.values;
+
         values[0] = 1.0f - 2.0f * qy * qy - 2.0f * qz * qz;
         values[1] = 2.0f * qx * qy - 2.0f * qz * qw;
         values[2] = 2.0f * qx * qz + 2.0f * qy * qw;
@@ -349,8 +347,6 @@ namespace numerics
         values[7] = 2.0f * qy * qz + 2.0f * qx * qw;
         values[8] = 1.0f - 2.0f * qx * qx - 2.0f * qy * qy;
 
-        Matrix result = Matrix(3, 3, values);
-        delete[] values;
         return result;
     };
 

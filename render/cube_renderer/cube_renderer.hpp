@@ -1,7 +1,7 @@
 #ifndef MWORLD_RENDER_CUBE_RENDER_H
 #define MWORLD_RENDER_CUBE_RENDER_H
 
-#include <math.h>
+#include <cmath>
 #include <vector>
 
 #include <glad/glad.h>

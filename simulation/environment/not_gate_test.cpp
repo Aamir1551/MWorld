@@ -2,9 +2,6 @@
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
 
 #include <world_initializer.hpp>
 #include <settings.hpp>
@@ -33,7 +30,7 @@ int main()
 
     real cube_length = 4.0f;
     Camera camera = Camera(world_properties->window);
-    camera.camera_pos =  glm::vec3(-20, 0, 20);
+    camera.camera_pos_mat =  Matrix::CreateColumnVec(-20, 0, 20);
     BlockRenderer::InitialiseBlockRenderer(&camera, cube_length, vao, vbo, ebo, world_properties);
 
     real down = -10;

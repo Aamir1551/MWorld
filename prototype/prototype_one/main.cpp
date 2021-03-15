@@ -46,10 +46,7 @@ int main()
     //glm::mat4 id = glm::mat4(1.0f);
 
     Camera camera(world_properties->window);
-    //glm::mat4 view = camera.CalculateView();
-    cout << "calculating view matrix" << endl;
     Matrix view_mat = camera.CalculateViewMat();
-    cout << "Calculated view matrix" << endl;
 
     //glm::mat4 projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 400.0f);
 
@@ -69,7 +66,7 @@ int main()
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
     glUseProgram(world_properties->shader_id);
-    // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     glClearColor(0.0f, 0.0f, 0.0f, 0.0f); //using black to clear the background
     std::cout << "Entering Main Loop" << std::endl;
 
