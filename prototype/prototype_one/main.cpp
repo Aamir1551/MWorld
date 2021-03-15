@@ -87,38 +87,48 @@ int main()
 
         for (int i = 0; i < num_cubes; i++)
         {
-            //glm::mat4 model = glm::translate(id, positions->at(i));
+            //glm::mat4 mode = glm::translate(id, positions->at(i));
             Matrix model = Matrix(4, 4, 1);
 
             model(0, 3, positions->at(i)(0, 0));
             model(1, 3, positions->at(i)(1, 0));
             model(2, 3, positions->at(i)(2, 0));
-
+            model.Transpose();
 
             //Matrix r = Quaternion::GetMatrixTransformation(Quaternion::ConvertToQuaternion(rotations->at(i)) * (float)glfwGetTime() * 20 * ((i + 1) % 20));
             //cout << "before" << endl;
-            //Matrix r = Quaternion::GetMatrixTransformation(rotations->at(i)); //normalise matrix??
-            //r.print_shape();
-            //Matrix model_final = Matrix::MatMul(model, r); // maybe have a matrix function that applied the matmul inside of model
+           // (rotations->at(i) * (float)glfwGetTime() * 20 * ((i + 1) % 20)).print();
+
+            rotations->at(i).Normalise();
+            Quaternion q(0, 1, 1, 1);
+            rotations->at(i) += q * (rotations->at(i) * 0.001);
+            rotations->at(i).Normalise();
+            Matrix r = Quaternion::GetMatrixTransformation(rotations->at(i)); //normalise matrix??
+            Matrix model_final = Matrix::MatMul(r, model); // maybe have a matrix function that applied the matmul inside of model
             //cout << "after" << endl;
 
             //glm::mat4 model_glm = glm::mat4(1);
             //glm::rotate(model_glm, glm::radians((float)glfwGetTime() * 20 * ((i + 1) % 20)), glm::vec3(1, 0, 0));
 
-            __m128 v_avx = _mm_setr_ps(rand(), rand(), rand(), rand());
+            /*__m128 v_avx = _mm_setr_ps((float) rand(), rand(), rand(), rand());
             __m128 col0 = _mm_setr_ps(rand(), rand(), rand(), rand());
             __m128 col1 = _mm_setr_ps(rand(), rand(), rand(), rand());
             __m128 col2 = _mm_setr_ps(rand(), rand(), rand(), rand());
-            __m128 col3 = _mm_setr_ps(rand(), rand(), rand(), rand());
+            __m128 col3 = _mm_setr_ps(rand(), rand(), rand(), rand());*/
+            /*float col0[4] = {(float) rand(), (float) rand(), (float) rand(), (float) rand()};
+            float col1[4] = {(float) rand(), (float) rand(), (float) rand(), (float) rand()};
+            float col2[4] = {(float) rand(), (float) rand(), (float) rand(), (float) rand()};
+            float col3[4] = {(float) rand(), (float) rand(), (float) rand(), (float) rand()};
+            float vec[4] = {(float) rand(), (float) rand(), (float) rand(), (float) rand()};
             for(int i=0; i<4; i++) {
-                Matrix::MatMulAVX4v(col0, col1, col2, col3, v_avx);
-            }
+                Matrix::MatMulAVX4v(col0, col1, col2, col3, vec);
+            }*/
 
             //view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
-            //view = camera.CalculateView();
+            view = camera.CalculateView();
 
-            model.Transpose();
-            cubes.ApplyUniforms(model);
+            //model_final.Transpose();
+            cubes.ApplyUniforms(model_final);
 
             glm::vec3 colour = glm::vec3(1, 1, 1);
             int colour_loc = glGetUniformLocation(CubeRenderer::shader_id, "colour");

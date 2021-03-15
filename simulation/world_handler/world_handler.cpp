@@ -343,7 +343,6 @@ WorldHandler::~WorldHandler() {
 #if defined(OPENMP)
 template<typename T>
 std::unordered_set<T> WorldHandler::VecToSetParallel(vector<T> v) {
-    // sort out this yellow stuff
     float p = min(omp_get_max_threads(), (int) v.size()); // need to ensure the data is more than the number of threads
     unordered_set<T> local_set[(int) p];
 

@@ -53,6 +53,7 @@ namespace render_utils
         }
 
         void static ApplyUniforms(Matrix &model_mat);
+        void static ApplyUniforms(glm::mat4 &model_mat);
 
         void static AddVerticesToBuffers()
         {

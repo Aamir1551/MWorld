@@ -5,6 +5,9 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include <matrix.hpp>
+
+using namespace numerics;
 
 namespace render_utils
 {
@@ -14,6 +17,7 @@ namespace render_utils
 
     public:
         glm::vec3 camera_pos = glm::vec3(0.0f, 0.0f, 3.0f);
+        Matrix camera_pos_mat = Matrix(0, 0, 3);
 
     private:
         float camera_speed = 20.0f;
@@ -22,7 +26,11 @@ namespace render_utils
         float pitch = 0.0f;
 
         glm::vec3 camera_front = glm::vec3(0.0f, 0.0f, -1.0f);
+        Matrix camera_front_mat = Matrix(0.0f, 0.0f, -1.0f);
+
         glm::vec3 camera_up = glm::vec3(0.0f, 1.0f, 0.0f);
+        Matrix camera_up_mat = Matrix(0.0f, 1.0f, 0.0f);
+
         GLFWwindow *window;
 
         void ProcessControllerInput(float controller_camera_speed, float controller_sensitivity = 0.05f)
@@ -36,8 +44,15 @@ namespace render_utils
                 glfwSetWindowShouldClose(window, true);
 
             controller_camera_speed += controller_camera_speed * (axes[4] * 2 + 1) * 0.5; //Allow r1 to make it even faster
-            camera_pos -= controller_camera_speed * camera_front * axes[1];
-            camera_pos += glm::normalize(glm::cross(this->camera_front, this->camera_up)) * controller_camera_speed * axes[0];
+
+            //camera_pos -= controller_camera_speed * camera_front * axes[1];
+            camera_pos_mat -=  camera_front_mat * controller_camera_speed * axes[1]; // matrix operation
+
+            //camera_pos += glm::normalize(glm::cross(this->camera_front, this->camera_up)) * controller_camera_speed * axes[0];
+
+            auto temp = (Matrix::VectorProduct(this->camera_front_mat, this->camera_up_mat)); // matrix operation
+            temp.Normalise(); // matrix operation
+            camera_pos_mat += temp * controller_camera_speed * axes[0];  // matrix operation
 
             float xoffset = axes[2];
             float yoffset = -axes[3];
@@ -47,10 +62,14 @@ namespace render_utils
             yaw += xoffset;
             pitch += yoffset;
 
-            glm::vec3 direction;
+            /*glm::vec3 direction;
             direction.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
             direction.y = sin(glm::radians(pitch));
-            direction.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
+            direction.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));*/
+
+
+            Matrix direction_mat = Matrix(cos(glm::radians(yaw)) * cos(glm::radians(pitch)), sin(glm::radians(pitch)), sin(glm::radians(yaw)) * cos(glm::radians(pitch)) );
+
             this->camera_front = glm::normalize(direction);
         }
 
