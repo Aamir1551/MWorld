@@ -6,7 +6,6 @@
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include <glm/glm.hpp>
 #include <type_traits>
 
 #include <settings.hpp>
@@ -21,10 +20,7 @@ namespace render_utils
     {
 
     public:
-        static glm::mat4 *view;
         static Matrix *view_mat;
-
-        static glm::mat4 *project;
         static Matrix *project_mat;
 
         static unsigned int vao;
@@ -57,28 +53,7 @@ namespace render_utils
             CubeRenderer::project_mat = _project;
         }
 
-
-        void static InitializeCubes(settings::real _cube_length, unsigned int _vao, unsigned int _vbo, unsigned int _ebo, glm::mat4 *_view, glm::mat4 *_project, unsigned int _shader_id)
-        {
-            CubeRenderer::shader_id = _shader_id;
-            settings::real diff = _cube_length / 2;
-            for (unsigned int i = 0; i < 8; i++)
-            {
-                CubeRenderer::vertices[i * 3] = (i % 2 == 0 ? -diff : diff);
-                CubeRenderer::vertices[i * 3 + 1] = (((int)std::floor(i / 2)) % 2 == 0 ? -diff : diff);
-                CubeRenderer::vertices[i * 3 + 2] = (((int)std::floor(i / 4)) % 2 == 0 ? -diff : diff);
-            }
-
-            CubeRenderer::vao = _vao;
-            CubeRenderer::vbo = _vbo;
-            CubeRenderer::ebo = _ebo;
-
-            CubeRenderer::view = _view;
-            CubeRenderer::project = _project;
-        }
-
         void static ApplyUniforms(Matrix &model_mat);
-        void static ApplyUniforms(glm::mat4 &model_mat);
 
         void static AddVerticesToBuffers()
         {

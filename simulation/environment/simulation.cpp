@@ -6,9 +6,6 @@
     #include <glad/glad.h>
     #include <GLFW/glfw3.h>
 #endif
-//#include <glm/glm.hpp>
-//#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
 
 #if defined(GLFW_ON)
     #include <world_initializer.hpp>
@@ -60,7 +57,6 @@ int main(int argc, char *argv[])
 #if defined(GLFW_ON)
     real cube_length = 4.0f;
     Camera camera = Camera(world_properties->window);
-    //camera.camera_pos = glm::vec3(0, 0, 250);
     camera.camera_pos_mat = Matrix::CreateColumnVec(0, 0, 250);
     BlockRenderer::InitialiseBlockRenderer(&camera, cube_length, vao, vbo, ebo, world_properties);
 #endif

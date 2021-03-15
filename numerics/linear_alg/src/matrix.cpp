@@ -682,7 +682,7 @@ namespace numerics
     }
 
     settings::real Matrix::ConvertToRadians(settings::real degrees) {
-        return degrees / (180.0) * M_PI;
+        return degrees * 0.01745329251994329576923690768489;
     }
 
     /*__m128 Matrix::MatMulAVX4v(__m128 &col0, __m128 &col1, __m128 &col2, __m128 &col3, __m128 &v) {

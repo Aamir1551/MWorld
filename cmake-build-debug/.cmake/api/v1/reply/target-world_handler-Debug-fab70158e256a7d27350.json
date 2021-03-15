@@ -86,10 +86,6 @@
 				},
 				{
 					"backtrace" : 4,
-					"path" : "C:/Users/aamir/Documents/mworld/lib/glm"
-				},
-				{
-					"backtrace" : 4,
 					"path" : "C:/Users/aamir/Documents/mworld/simulation/world_handler"
 				},
 				{
@@ -140,7 +136,7 @@
 		},
 		{
 			"backtrace" : 2,
-			"id" : "octree::@66c141f95c7ed784ad75"
+			"id" : "force_octree::@66c141f95c7ed784ad75"
 		},
 		{
 			"backtrace" : 2,
@@ -152,7 +148,7 @@
 		},
 		{
 			"backtrace" : 2,
-			"id" : "force_octree::@66c141f95c7ed784ad75"
+			"id" : "octree::@66c141f95c7ed784ad75"
 		}
 	],
 	"id" : "world_handler::@db5c5082507517693d46",

@@ -6,13 +6,13 @@ cmake_minimum_required(VERSION 3.10)
 set(CMAKE_CXX_STANDARD 11)
 set(glfw "${CMAKE_CURRENT_SOURCE_DIR}/lib/glfw-3.3.2/build/src/libglfw3.a")
 set(glfw_include_path "${CMAKE_CURRENT_SOURCE_DIR}/lib/glfw-3.3.2/include/")
-set(glm_include_path "${CMAKE_CURRENT_SOURCE_DIR}/lib/glm")
+#set(glm_include_path "${CMAKE_CURRENT_SOURCE_DIR}/lib/glm")
 set(catch_path ${CMAKE_CURRENT_SOURCE_DIR}/catch)
 
 #multithreading depends heavily on what applications are running in the background and such
 
 set(compile_with_openmp ON)
-set(compile_with_glfw OFF)
+set(compile_with_glfw ON)
 set(compile_prototypes ON)
 set(add_debug_tag OFF)
 
@@ -43,8 +43,6 @@ endif()
 #SET (CMAKE_CXX_FLAGS_RELWITHDEBINFO_INIT "-O2 -g")
 
 
-add_subdirectory(numerics)
-link_libraries(linear_alg quaternion)
 
 if(NOT compile_with_glfw)
     set(compile_prototypes OFF)
@@ -52,6 +50,9 @@ endif()
 
 
 project(MWorld)
+
+add_subdirectory(numerics)
+link_libraries(linear_alg quaternion)
 
 if(compile_with_glfw)
     add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/lib/glad")

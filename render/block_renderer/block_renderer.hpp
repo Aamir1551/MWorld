@@ -2,9 +2,6 @@
 #define MWORLD_RENDER_BLOCK_RENDERER_H
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
 
 #include <cube_renderer.hpp>
 #include <world_initializer.hpp>
@@ -27,18 +24,12 @@ namespace render_utils {
 
     public:
 
-        /*static glm::mat4 id;
-        static glm::mat4 view;
-        static glm::mat4 projection;*/
-
         static Matrix id;
         static Matrix view;
         static Matrix projection;
 
         static Camera *camera;
         static real cube_length;
-
-        //void static DrawBlocks(vector<Block *> *block_list,glm::vec3 colour);
 
         void static DrawBlocks(vector<Block *> *block_list, Matrix &colour);
 

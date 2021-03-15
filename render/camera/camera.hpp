@@ -2,10 +2,8 @@
 #define MWORLD_RENDER_CAMERA_H
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
 #include <matrix.hpp>
+#include <cmath>
 
 using namespace numerics;
 
@@ -16,7 +14,6 @@ namespace render_utils
     {
 
     public:
-        glm::vec3 camera_pos = glm::vec3(0.0f, 0.0f, 3.0f);
         Matrix camera_pos_mat = Matrix::CreateColumnVec(0, 0, 3);
 
     private:
@@ -25,10 +22,8 @@ namespace render_utils
         float yaw = -90.0f;
         float pitch = 0.0f;
 
-        glm::vec3 camera_front = glm::vec3(0.0f, 0.0f, -1.0f);
         Matrix camera_front_mat = Matrix::CreateColumnVec(0.0f, 0.0f, -1.0f);
 
-        glm::vec3 camera_up = glm::vec3(0.0f, 1.0f, 0.0f);
         Matrix camera_up_mat = Matrix::CreateColumnVec(0.0f, 1.0f, 0.0f);
 
         GLFWwindow *window;
@@ -48,7 +43,6 @@ namespace render_utils
             //camera_pos -= controller_camera_speed * camera_front * axes[1];
             camera_pos_mat -=  camera_front_mat * controller_camera_speed * axes[1]; // matrix operation
 
-            //camera_pos += glm::normalize(glm::cross(this->camera_front, this->camera_up)) * controller_camera_speed * axes[0];
 
             auto temp = (Matrix::VectorProduct(this->camera_front_mat, this->camera_up_mat)); // matrix operation
             temp.Normalise(); // matrix operation
@@ -62,29 +56,19 @@ namespace render_utils
             yaw += xoffset;
             pitch += yoffset;
 
-            /*glm::vec3 direction;
-            direction.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
-            direction.y = sin(glm::radians(pitch));
-            direction.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));*/
-
-
-            Matrix direction_mat = Matrix(cos(glm::radians(yaw)) * cos(glm::radians(pitch)), sin(glm::radians(pitch)), sin(glm::radians(yaw)) * cos(glm::radians(pitch))); // matrix operation
+            Matrix direction_mat = Matrix(cos(Matrix::ConvertToRadians(yaw)) * cos(Matrix::ConvertToRadians(pitch)), sin(Matrix::ConvertToRadians(pitch)), sin(Matrix::ConvertToRadians(yaw)) * cos(Matrix::ConvertToRadians(pitch))); // matrix operation
             direction_mat.Normalise(); // matrix operation
             this->camera_front_mat = direction_mat; // matrix operation
 
-            //this->camera_front = glm::normalize(direction);
         }
 
         void ProcessKeyboardInput(float keyboard_camera_speed, float keyboard_sensitivity)
         {
 
-            //glm::vec3 dx = glm::normalize(glm::cross(this->camera_front, this->camera_up)) * keyboard_camera_speed; // use right hand rule to figure this out;
 
             Matrix dx_mat = Matrix::VectorProduct(this->camera_front_mat, this->camera_up_mat); // Matrix operation
             dx_mat.Normalise(); // Matrix operation
             dx_mat *= keyboard_camera_speed;
-
-            //glm::vec3 dy = keyboard_camera_speed * this->camera_front;
 
             Matrix dy_mat = this->camera_front_mat * keyboard_camera_speed;
 
@@ -112,19 +96,12 @@ namespace render_utils
         }
 
     public:
-        explicit Camera(GLFWwindow *glfw_window, glm::vec3 camera_pos = glm::vec3(0.0f, 0.0f, 3.0f), glm::vec3 camera_front = glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3 camera_up = glm::vec3(0.0f, 1.0f, 0.0f), float camera_speed = 15.0f)
+        explicit Camera(GLFWwindow *glfw_window, Matrix camera_pos = Matrix::CreateColumnVec(0.0f, 0.0f, 3.0f), Matrix camera_front = Matrix::CreateColumnVec(0.0f, 0.0f, -1.0f), Matrix camera_up = Matrix::CreateColumnVec(0.0f, 1.0f, 0.0f), float camera_speed = 15.0f)
         {
             this->window = glfw_window;
-            this->camera_pos = camera_pos;
-            this->camera_front = camera_front;
-            this->camera_up = camera_up;
-        }
-
-        glm::mat4 CalculateView()
-        {
-
-            return glm::lookAt(this->camera_pos, this->camera_pos + camera_front, camera_up);
-            //camera position, camera target, world space up
+            this->camera_pos_mat = camera_pos;
+            this->camera_front_mat = camera_front;
+            this->camera_up_mat = camera_up;
         }
 
         Matrix CalculateViewMat() {

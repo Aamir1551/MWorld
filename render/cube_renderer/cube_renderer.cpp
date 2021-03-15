@@ -1,9 +1,3 @@
-#include <iostream>
-
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
-
 #include <cube_renderer.hpp>
 #include <matrix.hpp>
 
@@ -16,8 +10,6 @@ namespace render_utils
     unsigned int CubeRenderer::shader_id;
 
     real CubeRenderer::vertices[24];
-    glm::mat4 *CubeRenderer::view;
-    glm::mat4 *CubeRenderer::project;
 
     Matrix *CubeRenderer::view_mat;
     Matrix *CubeRenderer::project_mat;
@@ -49,22 +41,9 @@ namespace render_utils
         int view_loc = glGetUniformLocation(CubeRenderer::shader_id, "view");
         int proj_loc = glGetUniformLocation(CubeRenderer::shader_id, "proj");
 
-        //glUniformMatrix4fv(model_loc, 1, GL_FALSE, glm::value_ptr(model_mat));
         glUniformMatrix4fv(model_loc, 1, GL_FALSE, model_mat.GetValues());
         glUniformMatrix4fv(view_loc, 1, GL_FALSE, CubeRenderer::view_mat->GetValues());
         glUniformMatrix4fv(proj_loc, 1, GL_FALSE, CubeRenderer::project_mat->GetValues());
-    }
-
-    void CubeRenderer::ApplyUniforms(glm::mat4 &model_mat)
-    {
-        int model_loc = glGetUniformLocation(CubeRenderer::shader_id, "model");
-        int view_loc = glGetUniformLocation(CubeRenderer::shader_id, "view");
-        int proj_loc = glGetUniformLocation(CubeRenderer::shader_id, "proj");
-
-        //glUniformMatrix4fv(model_loc, 1, GL_FALSE, glm::value_ptr(model_mat));
-        glUniformMatrix4fv(model_loc, 1, GL_FALSE, glm::value_ptr(model_mat));
-        glUniformMatrix4fv(view_loc, 1, GL_FALSE, glm::value_ptr(*CubeRenderer::view));
-        glUniformMatrix4fv(proj_loc, 1, GL_FALSE, glm::value_ptr(*CubeRenderer::project));
     }
 
 } // namespace render_utils
