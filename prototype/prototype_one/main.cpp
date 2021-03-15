@@ -102,7 +102,7 @@ int main()
 
             //Matrix r = Quaternion::GetMatrixTransformation(Quaternion::ConvertToQuaternion(rotations->at(i)) * (float)glfwGetTime() * 20 * ((i + 1) % 20));
             //cout << "before" << endl;
-           // (rotations->at(i) * (float)glfwGetTime() * 20 * ((i + 1) % 20)).print();
+           //(rotations->at(i) * (float)glfwGetTime() * 20 * ((i + 1) % 20)).print();
 
             rotations->at(i).Normalise();
             Quaternion q(0, 1, 1, 1);
@@ -110,7 +110,6 @@ int main()
             rotations->at(i).Normalise();
             Matrix r = Quaternion::GetMatrixTransformation(rotations->at(i)); //normalise matrix??
             Matrix model_final = Matrix::MatMul(r, model); // maybe have a matrix function that applied the matmul inside of model
-            //cout << "after" << endl;
 
             //glm::mat4 model_glm = glm::mat4(1);
             //glm::rotate(model_glm, glm::radians((float)glfwGetTime() * 20 * ((i + 1) % 20)), glm::vec3(1, 0, 0));

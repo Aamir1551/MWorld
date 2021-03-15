@@ -639,12 +639,10 @@ namespace numerics
 
     Matrix Matrix::LookAt(const Matrix &eye, const Matrix &center, const Matrix &up) {
 
-
         Matrix  f = center - eye;
         f.Normalise();
         Matrix u = up;
         u.Normalise();
-
 
         Matrix s = VectorProduct(f, u);
         s.Normalise();
@@ -673,12 +671,12 @@ namespace numerics
         float const tanHalfFovy = tan(fovy / ( (settings::real) 2.0));
 
         Matrix Result(4, 4);
-        Result(0, 0,1/(aspect * tanHalfFovy));
-        Result(0, 0, 1/(aspect * tanHalfFovy));
-        Result(1, 1, (1) / (tanHalfFovy));
+        Result(0, 0,1.0/(aspect * tanHalfFovy));
+        Result(0, 0, 1.0/(aspect * tanHalfFovy));
+        Result(1, 1, 1.0 / (tanHalfFovy));
         Result(2, 2, - (zfar + znear) / (zfar - znear));
-        Result(2, 3, -1);
-        Result(3, 2, - ((2) * zfar * znear) / (zfar - znear));
+        Result(2, 3, -1.0);
+        Result(3, 2, - (2.0 * zfar * znear) / (zfar - znear));
         return Result;
     }
 

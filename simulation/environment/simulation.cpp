@@ -68,6 +68,16 @@ int main(int argc, char *argv[])
     //WorldHandler world = WorldHandler(num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same); //WorldHandler world = WorldHandler(0, 0, 0, 0, 0, 0); //WorldHandler world = WorldHandler(10, 0, 0, 0, 0, 0);
     //WorldHandler world = WorldHandler(0, 0, 2, 0, 0, 0);
     // Test out with different collision elasticity value, so change scaling of velocity after collision, and see how world develops
+    /*WorldHandler world = WorldHandler((argc < 3) ? 100 : (int) atoi(argv[2]),
+                                      (argc < 4) ? 100 : (int) atoi(argv[3]),
+                                      (argc < 5) ? 100 : (int) atoi(argv[4]),
+                                      (argc < 6) ? 100 : (int) atoi(argv[5]),
+                                      (argc < 7) ?100 : (int) atoi(argv[6]),
+                                      (argc < 8) ? 100 : (int) atoi(argv[7]),
+                                      (argc < 9) ? -100 : (int) atoi(argv[8]),
+                                      (argc < 10) ? 100 : (int) atoi(argv[9]),
+    4);*/
+
     WorldHandler world = WorldHandler((argc < 3) ? 0 : (int) atoi(argv[2]),
                                       (argc < 4) ? 0 : (int) atoi(argv[3]),
                                       (argc < 5) ? 1000 : (int) atoi(argv[4]),
@@ -77,6 +87,7 @@ int main(int argc, char *argv[])
                                       (argc < 9) ? -100 : (int) atoi(argv[8]),
                                       (argc < 10) ? 100 : (int) atoi(argv[9]),
     4);
+
     // Testing with ZBLocks only -- Note we disabled the force's being applied, however, the forces are still being calculated
     // We shall have tests, with forces being applied and both not being applied
     // When doing time tests, also disable all glfw functions
@@ -171,6 +182,10 @@ int main(int argc, char *argv[])
             cout << "not equal" << endl;
         }*/
 
+        cout << "first position: " << endl;
+        world.zblocks.at(0)->position.print();
+        world.zblocks.at(0)->momentum.print();
+        cout << endl;
 #if defined(GLFW_ON)
         world.AddForces(deltaTime);
         //auto contact_list = vector<Contact>();
@@ -203,6 +218,7 @@ int main(int argc, char *argv[])
 #endif
 
     }
+
 
     cout << "Terminating..." << endl;
 

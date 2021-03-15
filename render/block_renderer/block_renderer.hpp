@@ -27,11 +27,16 @@ namespace render_utils {
 
     public:
 
-        static glm::mat4 id;
+        /*static glm::mat4 id;
+        static glm::mat4 view;
+        static glm::mat4 projection;*/
+
+        static Matrix id;
+        static Matrix view;
+        static Matrix projection;
+
         static Camera *camera;
         static real cube_length;
-        static glm::mat4 view;
-        static glm::mat4 projection;
 
         void static DrawBlocks(vector<Block *> *block_list,glm::vec3 colour);
 

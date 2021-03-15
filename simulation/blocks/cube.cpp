@@ -95,7 +95,7 @@ namespace blocks {
 
     void Cube::AddLinearForce(Matrix const &force_direction, real dt) {
         momentum += force_direction * dt;
-        momentum -= force_direction * dt; //comment out this line of code to test out time complexity of code, when forces are not being take in to consideration
+        //momentum -= force_direction * dt; //comment out this line of code to test out time complexity of code, when forces are not being take in to consideration
     }
 
     void Cube::SetAngularMomentumToZero() {
@@ -119,7 +119,7 @@ namespace blocks {
         // Below line of code needs to be uncommented, but it makes things slower, if we
         // uncomment it. Maybe it has to do with the computer
         // If the below code is commented, the forces will not appear to be working properly
-            /*if(dist == 0) {
+            if(dist == 0) {
                 auto temp = c1->position(0, 0);
 #pragma omp critical
                 {
@@ -127,7 +127,7 @@ namespace blocks {
                     c2->position(0, 0, temp - length/2);
                 };
                 return;
-            }*/
+            }
 
         if (dist <= length) {
             Matrix point = (c1->position + c2->position) / 2;
@@ -144,12 +144,12 @@ namespace blocks {
         Matrix vect_dist = (c1->position - c2->position);
         real dist = Matrix::Norm(vect_dist);
         real length = (c1->cube_length + c2->cube_length) / 2;
-        /*if(dist == 0) {
+        if(dist == 0) {
             auto temp = c1->position(0, 0);
             c1->position(0, 0, temp + length/2);
             c2->position(0, 0, temp - length/2);
             return;
-        }*/
+        }
 
         if (dist <= length) {
             Matrix point = (c1->position + c2->position) / 2;
