@@ -137,3 +137,8 @@
 8	649	6375981430980469	simulation/environment/CMakeFiles/amplifier.dir/__/__/render/utils/world_initializer.cpp.obj	2a3743e7c8e3676d
 5	1487	6375981439575009	simulation/environment/CMakeFiles/amplifier.dir/amplifier.cpp.obj	853e8ecc40e74eb
 1488	2016	6375981444661970	simulation/environment/amplifier.exe	416dffde9d1d8407
+12	977	6375985681895943	simulation/environment/CMakeFiles/simulation.dir/__/__/render/utils/world_initializer.cpp.obj	89391eb4d84f37d9
+6	1579	6375985687974793	render/block_renderer/CMakeFiles/block_renderer.dir/block_renderer.cpp.obj	49cca46397544d7c
+1579	1677	6375985688948620	render/block_renderer/libblock_renderer.a	9ec3d1b2fbc05e8a
+10	1893	6375985691157914	simulation/environment/CMakeFiles/simulation.dir/simulation.cpp.obj	4ac92b500e21d08f
+1893	2428	6375985696302260	simulation/environment/simulation.exe	4c8301730e48ab67
