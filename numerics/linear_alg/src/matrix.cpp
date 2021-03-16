@@ -656,6 +656,31 @@ namespace numerics
         (*this)(3, 2, translation_value(2, 0));
     }
 
+    Matrix Matrix::CreateTranslationMatrix(const Matrix &translation_matrix) {
+        auto res = Matrix();
+        res.cols = 4;
+        res.rows = 4;
+        auto values = new settings::real[16];
+        values[0] = 1;
+        values[1] = 0;
+        values[2] = 0;
+        values[3] = 0;
+        values[4] = 0;
+        values[5] = 1;
+        values[6] = 0;
+        values[7] = 0;
+        values[8] = 0;
+        values[9] = 0;
+        values[10] = 1;
+        values[11] = 0;
+        values[12] = translation_matrix.values[0];
+        values[13] = translation_matrix.values[1];
+        values[14] = translation_matrix.values[2];
+        values[15] = 1;
+        res.values = values;
+        return res;
+    }
+
     /*__m128 Matrix::MatMulAVX4v(__m128 &col0, __m128 &col1, __m128 &col2, __m128 &col3, __m128 &v) {
         __m128 col0 = _mm_loadu_ps();
         __m128 col1;

@@ -510,9 +510,16 @@ namespace numerics
          * @brief Translates the following 4x4 Matrix by translation_value
          * Translates a 4x4 matrix. For performance purposes, we will not be testing if the matrix is of size 4x4
          *
-         * @param Translates_value The amount to translate by
+         * @param translation_matrix The amount to translate by
          */
-        void Translate4by4Matrix(const Matrix& translation_value);
+        void Translate4by4Matrix(const Matrix& translation_matrix);
+
+        /**
+         * @brief Creates a 4x4 Matrix representing the translation value
+         *
+         * @param translates_matrix The amount to translate by
+         */
+        Matrix static CreateTranslationMatrix(const Matrix& translation_matrix);
 
         friend class Quaternion;
 

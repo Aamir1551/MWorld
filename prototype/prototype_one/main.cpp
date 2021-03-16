@@ -6,9 +6,6 @@
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
 
 #include <cube_renderer.hpp>
 #include <camera.hpp>
@@ -16,15 +13,6 @@
 #include <matrix.hpp>
 #include <quaternion.hpp>
 
-
-// TODO:
-// 1) Go over mouse controls and understand properly how they work, also how cameraFront works
-// so read again from page 97
-// 2) Organise code layout properly, and sort out cmakelists files for the full render directory
-// 3) read over random numbers in c++
-// 4) statics and linking and why static variables should be in header file only, and why u'll get linking errors if you don't
-// 5) Learn to add a colour using element buffer objects
-// 6) Learn about cmake install and export and apply it to project if its useful
 using namespace render_utils;
 using namespace numerics;
 using namespace std;
@@ -43,24 +31,17 @@ int main()
     glGenBuffers(1, &vbo);
     glGenBuffers(1, &ebo);
 
-    //glm::mat4 id = glm::mat4(1.0f);
-
     Camera camera(world_properties->window);
     Matrix view_mat = camera.CalculateViewMat();
 
-    //glm::mat4 projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 400.0f);
-
-    Matrix projection = Matrix::Perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 400.0f);
+    Matrix projection = Matrix::Perspective(Matrix::ConvertToRadians(45.0f), 800.0f / 600.0f, 0.1f, 400.0f);
 
     int num_cubes = 1000;
-    //std::vector<glm::vec3> *positions = GeneratePosition(num_cubes);
     std::vector<Matrix> *positions = GeneratePosition(num_cubes);
     std::vector<Quaternion> *rotations = GenerateRotationsAxis(num_cubes);
 
     CubeRenderer::InitializeCubes(4.0f, vao, vbo, ebo, &view_mat, &projection, world_properties->shader_id);
     CubeRenderer::AddVerticesToBuffers();
-
-    CubeRenderer cubes;
 
     glBindVertexArray(vao);
     glEnable(GL_DEPTH_TEST);
@@ -89,27 +70,14 @@ int main()
 
         for (int i = 0; i < num_cubes; i++)
         {
-            //glm::mat4 mode = glm::translate(id, positions->at(i));
-            Matrix model = Matrix(4, 4, 1);
+            Matrix model = Matrix::CreateTranslationMatrix(positions->at(i));
 
-            model(0, 3, positions->at(i)(0, 0));
-            model(1, 3, positions->at(i)(1, 0));
-            model(2, 3, positions->at(i)(2, 0));
-            model.Transpose();
-
-            //Matrix r = Quaternion::GetMatrixTransformation(Quaternion::ConvertToQuaternion(rotations->at(i)) * (float)glfwGetTime() * 20 * ((i + 1) % 20));
-            //cout << "before" << endl;
-           //(rotations->at(i) * (float)glfwGetTime() * 20 * ((i + 1) % 20)).print();
-
-            rotations->at(i).Normalise();
             Quaternion q(0, 1, 1, 1);
             rotations->at(i) += q * (rotations->at(i) * 0.001);
             rotations->at(i).Normalise();
             Matrix r = Quaternion::GetMatrixTransformation(rotations->at(i)); //normalise matrix??
             Matrix model_final = Matrix::MatMul(r, model); // maybe have a matrix function that applied the matmul inside of model
 
-            //glm::mat4 model_glm = glm::mat4(1);
-            //glm::rotate(model_glm, glm::radians((float)glfwGetTime() * 20 * ((i + 1) % 20)), glm::vec3(1, 0, 0));
 
             /*__m128 v_avx = _mm_setr_ps((float) rand(), rand(), rand(), rand());
             __m128 col0 = _mm_setr_ps(rand(), rand(), rand(), rand());
@@ -125,16 +93,12 @@ int main()
                 Matrix::MatMulAVX4v(col0, col1, col2, col3, vec);
             }*/
 
-            //view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
-            //view = camera.CalculateView();
             view_mat = camera.CalculateViewMat();
-
-            //model_final.Transpose();
             CubeRenderer::ApplyUniforms(model_final);
 
-            glm::vec3 colour = glm::vec3(1, 1, 1);
+            Matrix colour = Matrix::CreateColumnVec(1, 1, 1);
             int colour_loc = glGetUniformLocation(CubeRenderer::shader_id, "colour");
-            glUniform3fv(colour_loc, 1, glm::value_ptr(colour));
+            glUniform3fv(colour_loc, 1, colour.GetValues());
 
             glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
         }
@@ -161,15 +125,14 @@ int main()
 
 std::vector<Matrix> *GeneratePosition(int num_cubes)
 {
-    srand((unsigned)time(NULL)); //NULL???
-    std::vector<Matrix> *positions = new std::vector<Matrix>;
-    float world_size = 100;
-    float const scale = world_size / ((float)RAND_MAX / 2.0);
-    auto get_coord = [scale, world_size]() -> float { return scale * (rand() - RAND_MAX / 2); };
+    srand((unsigned)time(NULL));
+    auto *positions = new std::vector<Matrix>;
+    float world_size = 100.0;
+    float const scale = world_size * 2 / (float)RAND_MAX;
+    auto get_coord = [scale]() -> float { return scale * (rand() - (float) RAND_MAX / 2); };
     for (int i = 0; i < num_cubes; i++)
     {
         positions->push_back(Matrix::CreateColumnVec(get_coord(), get_coord(), get_coord()));
-        //positions->push_back(glm::vec3(get_coord(), get_coord(), get_coord()));
     }
     return positions;
 }
@@ -180,9 +143,7 @@ std::vector<Quaternion> *GenerateRotationsAxis(int num_cubes)
     auto *rotations = new std::vector<Quaternion>;
     for (int i = 0; i < num_cubes; i++)
     {
-        //Quaternion::ConvertToQuaternion(rotations->at(i))
         rotations->push_back(Quaternion(0, (rand() % 5) - 2, (rand() % 5) - 2, (rand() % 5 - 2)));
-        //rotations->push_back(glm::vec3(rand() % 5 - 2, rand() % 5 - 2, rand() % 5 - 2)); //try this without a pointer to see if it'l work.
     }
     return rotations;
 }
