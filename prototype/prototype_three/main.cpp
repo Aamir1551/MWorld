@@ -1,9 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <time.h>
-#include <math.h>
-#include <cstdlib> //for the rand function
-#include <cstring>
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -74,23 +70,11 @@ int main()
     //real angular_momentum[] = {0.0000002, 0.0002, 0.0000002};
     //c1.angular_momentum = Matrix(3, 1, angular_momentum);
 
-    //bool paused = false;
+    int frame_count = 0;
+    float prev_time = glfwGetTime();
 
     while (!glfwWindowShouldClose(world_properties->window))
     { // render loop -- an iteration of this main render loop is called a frame
-
-        /*if (glfwGetKey(world_properties->window, GLFW_KEY_P) == GLFW_PRESS) {
-           paused = true;
-        }
-        cout << paused << endl;
-
-        while(paused) {
-            cout << "in pause" << endl;
-            if (glfwGetKey(world_properties->window, GLFW_KEY_A) == GLFW_PRESS) {
-                cout << "if" << endl;
-                paused = false;
-            }
-        }*/
 
         real currentFrame = glfwGetTime();
         deltaTime = currentFrame - lastFrame;
@@ -117,41 +101,21 @@ int main()
             Cube::CollisionResolution(i);
         }
 
-        /*glm::mat4 rotation_mat1;
-        memcpy(glm::value_ptr(rotation_mat1), c1.GetOrientationMatrix().GetValues(), 16 * sizeof(real));*/
-
-
-        /*glm::vec3 translation_mat1;
-        memcpy(glm::value_ptr(translation_mat1), c1.position.GetValues(), 3 * sizeof(real));
-
-        glm::mat4 model1 = glm::translate(id, translation_mat1);
-        model1 = model1 * rotation_mat1;*/
         Matrix model1 = Matrix(4, 4, 1);
         model1.Translate4by4Matrix(c1.position);
-        model1 = Matrix::MatMul(model1, c1.GetOrientationMatrix());
+        model1 = Matrix::MatMul(c1.GetOrientationMatrix(), model1); //should be get inverse orientation matrix
 
         render_utils::CubeRenderer::ApplyUniforms(model1);
-        //glm::vec3 colour = glm::vec3(1, 1, 1);
         Matrix colour = Matrix::CreateColumnVec(1, 1, 1);
         int colour_loc = glGetUniformLocation(CubeRenderer::shader_id, "colour");
         glUniform3fv(colour_loc, 1, colour.GetValues());
 
         glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 
-        /*glm::mat4 rotation_mat2;
-        memcpy(glm::value_ptr(rotation_mat2), c2.GetOrientationMatrix().GetValues(), 16 * sizeof(real));
-
-        glm::vec3 translation_mat2;
-        memcpy(glm::value_ptr(translation_mat2), c2.position.GetValues(), 3 * sizeof(real));
-
-        glm::mat4 model2 = glm::translate(id, translation_mat2);
-        model2 = model2 * rotation_mat2;*/
-
         Matrix model2 = Matrix(4, 4, 1);
         model2.Translate4by4Matrix(c2.position);
-        model2 = Matrix::MatMul(model2, c2.GetOrientationMatrix());
+        model2 = Matrix::MatMul(c2.GetOrientationMatrix(), model2);
 
-        //view = camera.CalculateView();
         view = camera.CalculateViewMat();
         render_utils::CubeRenderer::ApplyUniforms(model2);
 
@@ -162,6 +126,13 @@ int main()
 
         glfwSwapBuffers(world_properties->window);
         glfwPollEvents();
+
+        frame_count++;
+        if(currentFrame - prev_time >= 1.0) {
+            std::cout << "FPS: " << frame_count << std::endl;
+            frame_count = 0;
+            prev_time = currentFrame;
+        }
     }
 
     cout << "Terminating..." << endl;
