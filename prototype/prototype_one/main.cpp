@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
-#include <time.h>
-#include <math.h>
+#include <ctime>
 #include <cstdlib> //for the rand function
 
 #include <glad/glad.h>

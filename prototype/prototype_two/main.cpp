@@ -1,15 +1,7 @@
 #include <iostream>
-#include <vector>
-#include <time.h>
-#include <math.h>
-#include <cstdlib> //for the rand function
-#include <cstring>
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
 
 #include <cube_renderer.hpp>
 #include <world_initializer.hpp>
@@ -25,9 +17,6 @@ using namespace render_utils;
 using namespace numerics;
 using namespace settings;
 
-//TODO
-// 1) Try understanding how this works and if anything needs to be made more efficient please do
-// 2) Ask basim about world co-ordinates and stuff, cos why is it nor woking properly
 int main()
 {
     cout << "Running Prototype 2" << endl;
@@ -53,11 +42,10 @@ int main()
     glGenBuffers(1, &vbo);
     glGenBuffers(1, &ebo);
 
-    glm::mat4 id = glm::mat4(1.0f);
     Camera camera(world_properties->window);
-    glm::mat4 view = camera.CalculateView();
+    Matrix view = camera.CalculateViewMat();
 
-    glm::mat4 projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 400.0f);
+    Matrix projection = Matrix::Perspective(Matrix::ConvertToRadians(45.0f), 800.0f / 600.0f, 0.1f, 400.0f);
 
     real position_coord[] = {0, 0, -10};
     Matrix position(3, 1, position_coord);
@@ -65,8 +53,6 @@ int main()
 
     CubeRenderer::InitializeCubes(4.0f, vao, vbo, ebo, &view, &projection, world_properties->shader_id);
     CubeRenderer::AddVerticesToBuffers();
-
-    CubeRenderer cubes;
 
     glBindVertexArray(vao);
     glEnable(GL_DEPTH_TEST);
@@ -82,6 +68,9 @@ int main()
     down_force += c.position;
     right_force += c.position;
     left_force += c.position;
+
+    int frame_count = 0;
+    float prev_time = glfwGetTime();
 
     while (!glfwWindowShouldClose(world_properties->window))
     { // render loop -- an iteration of this main render loop is called a frame
@@ -109,25 +98,28 @@ int main()
             c.SetAngularMomentumToZero();
 
         c.Update();
-        glm::mat4 rotation_mat;
-        memcpy(glm::value_ptr(rotation_mat), c.GetInverseOrientationMatrix().GetValues(), 16 * sizeof(real));
 
-        glm::vec3 translation_mat;
-        memcpy(glm::value_ptr(translation_mat), c.position.GetValues(), 3 * sizeof(real));
+        Matrix model = Matrix::CreateTranslationMatrix(c.position);
+        model = Matrix::MatMul(c.GetInverseOrientationMatrix(), model);
+        view = camera.CalculateViewMat();
+        CubeRenderer::ApplyUniforms(model);
 
-        glm::mat4 model = glm::translate(id, translation_mat);
-        model = model * rotation_mat;
-        view = camera.CalculateView();
-        cubes.ApplyUniforms(model);
-
-        glm::vec3 colour = glm::vec3(1, 1, 1);
+        Matrix colour = Matrix::CreateColumnVec(1, 1, 1);
         int colour_loc = glGetUniformLocation(CubeRenderer::shader_id, "colour");
-        glUniform3fv(colour_loc, 1, glm::value_ptr(colour));
+        glUniform3fv(colour_loc, 1, colour.GetValues());
 
         glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 
         glfwSwapBuffers(world_properties->window);
         glfwPollEvents();
+
+        frame_count++;
+        if(currentFrame - prev_time >= 1.0) {
+            std::cout << "FPS: " << frame_count << std::endl;
+            frame_count = 0;
+            prev_time = currentFrame;
+        }
+
     }
 
     cout << "Terminating..." << endl;
