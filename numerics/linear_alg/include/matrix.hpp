@@ -16,7 +16,6 @@
 #include <stdexcept>
 
 #include <settings.hpp>
-#include <immintrin.h>
 
 namespace numerics
 {
@@ -278,7 +277,7 @@ namespace numerics
          * @return Matrix&
          */
         //__m128 static MatMulAVX4v(__m128 &col0, __m128 &col1, __m128 &col2, __m128 &col3, __m128 &v);
-        __m128 static MatMulAVX4v(float c0[4], float c1[4], float c2[4], float c3[4], float vec[4]);
+        //__m128 static MatMulAVX4v(float c0[4], float c1[4], float c2[4], float c3[4], float vec[4]);
 
 
         /**

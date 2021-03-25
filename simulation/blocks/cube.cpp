@@ -5,6 +5,7 @@
 #include <quaternion.hpp>
 #include <block.hpp>
 #include <cube.hpp>
+#include <cmath>
 
 using namespace numerics;
 using namespace settings;
@@ -204,7 +205,7 @@ namespace blocks {
         real my = c1->momentum(1, 0) * 0.8;
         real mz = c1->momentum(2, 0) * 0.8;
         if(x <= min_boundary_x) {
-            c1->momentum(0, 0, abs(mx));
+            c1->momentum(0, 0,  abs(mx));
         } else if(x >= max_boundary_x) {
             c1->momentum(0, 0, -abs(mx));
         }
