@@ -140,7 +140,7 @@ namespace blocks {
             };
         }
     }
-
+/*
     void Cube::CollisionDetectAndResolve(Block *c1, Block *c2, vector<omp_lock_t> partial_locks) {
         Matrix vect_dist = (c1->position - c2->position);
         real dist = Matrix::Norm(vect_dist);
@@ -181,7 +181,7 @@ namespace blocks {
         }
     }
 
-
+*/
     void Cube::CollisionResolution(Contact &contact) {
         Cube *body1 = contact.body1;
         Cube *body2 = contact.body2;
