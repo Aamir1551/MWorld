@@ -61,8 +61,8 @@ int main(int argc, char *argv[])
     BlockRenderer::InitialiseBlockRenderer(&camera, cube_length, vao, vbo, ebo, world_properties);
 #endif
 
-    //int num_blocks_same = 100;
-    //WorldHandler world = WorldHandler(num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same); //WorldHandler world = WorldHandler(0, 0, 0, 0, 0, 0); //WorldHandler world = WorldHandler(10, 0, 0, 0, 0, 0);
+    int num_blocks_same = 1;
+    WorldHandler world = WorldHandler(num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same); //WorldHandler world = WorldHandler(0, 0, 0, 0, 0, 0); //WorldHandler world = WorldHandler(10, 0, 0, 0, 0, 0);
     //WorldHandler world = WorldHandler(0, 0, 2, 0, 0, 0);
     // Test out with different collision elasticity value, so change scaling of velocity after collision, and see how world develops
     /*WorldHandler world = WorldHandler((argc < 3) ? 100 : (int) atoi(argv[2]),
@@ -75,15 +75,15 @@ int main(int argc, char *argv[])
                                       (argc < 10) ? 100 : (int) atoi(argv[9]),
     4);*/
 
-    WorldHandler world = WorldHandler((argc < 3) ? 0 : (int) atoi(argv[2]),
+    /*WorldHandler world = WorldHandler((argc < 3) ? 0 : (int) atoi(argv[2]),
                                       (argc < 4) ? 0 : (int) atoi(argv[3]),
-                                      (argc < 5) ? 400 : (int) atoi(argv[4]),
+                                      (argc < 5) ? 500 : (int) atoi(argv[4]),
                                       (argc < 6) ? 0 : (int) atoi(argv[5]),
                                       (argc < 7) ? 0 : (int) atoi(argv[6]),
                                       (argc < 8) ? 0 : (int) atoi(argv[7]),
                                       (argc < 9) ? -100 : (int) atoi(argv[8]),
                                       (argc < 10) ? 100 : (int) atoi(argv[9]),
-    4);
+    4);*/
 
     // Testing with ZBLocks only -- Note we disabled the force's being applied, however, the forces are still being calculated
     // We shall have tests, with forces being applied and both not being applied
