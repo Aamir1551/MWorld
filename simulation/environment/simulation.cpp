@@ -61,7 +61,8 @@ int main(int argc, char *argv[])
     BlockRenderer::InitialiseBlockRenderer(&camera, cube_length, vao, vbo, ebo, world_properties);
 #endif
 
-    int num_blocks_same = 1;
+    // run as ./simulation 60 1000
+    int num_blocks_same = (int) atoi(argv[2]);
     WorldHandler world = WorldHandler(num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same); //WorldHandler world = WorldHandler(0, 0, 0, 0, 0, 0); //WorldHandler world = WorldHandler(10, 0, 0, 0, 0, 0);
     //WorldHandler world = WorldHandler(0, 0, 2, 0, 0, 0);
     // Test out with different collision elasticity value, so change scaling of velocity after collision, and see how world develops
