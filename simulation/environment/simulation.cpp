@@ -139,7 +139,7 @@ int main(int argc, char *argv[])
        lastFrame = currentFrame;
 
 #if defined(GLFW_ON)
-        camera.UpdateCamera(deltaTime.count());
+        camera.UpdateCamera(deltaTime.count() /1000.0);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 #endif
 
