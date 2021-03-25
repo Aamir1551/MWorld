@@ -255,7 +255,7 @@ block_renderer_LIB_DEPENDS:STATIC=general;linear_alg;general;quaternion;general;
 block_renderer_SOURCE_DIR:STATIC=C:/Users/aamir/Documents/mworld/render/block_renderer
 
 //Dependencies for the target
-blocks_LIB_DEPENDS:STATIC=general;linear_alg;general;quaternion;general;linear_alg;general;quaternion;general;utils;general;C:/Users/aamir/Documents/mworld/lib/glfw-3.3.2/build/src/libglfw3.a;
+blocks_LIB_DEPENDS:STATIC=general;linear_alg;general;quaternion;general;linear_alg;general;quaternion;general;utils;
 
 //Value Computed by CMake
 camera_BINARY_DIR:STATIC=C:/Users/aamir/Documents/mworld/cmake-build-debug/render/camera
@@ -509,7 +509,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=25
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=14
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

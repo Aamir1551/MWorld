@@ -799,7 +799,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "25"
+			"value" : "14"
 		},
 		{
 			"name" : "CMAKE_OBJCOPY",
@@ -1327,7 +1327,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "general;linear_alg;general;quaternion;general;linear_alg;general;quaternion;general;utils;general;C:/Users/aamir/Documents/mworld/lib/glfw-3.3.2/build/src/libglfw3.a;"
+			"value" : "general;linear_alg;general;quaternion;general;linear_alg;general;quaternion;general;utils;"
 		},
 		{
 			"name" : "camera_BINARY_DIR",

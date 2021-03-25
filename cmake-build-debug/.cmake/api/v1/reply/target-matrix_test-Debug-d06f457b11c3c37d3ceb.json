@@ -55,14 +55,6 @@
 					"fragment" : " -Wall -fopenmp -std=c++11 -g  "
 				},
 				{
-					"backtrace" : 2,
-					"fragment" : "-mavx"
-				},
-				{
-					"backtrace" : 2,
-					"fragment" : "-mavx2"
-				},
-				{
 					"fragment" : "-std=gnu++11"
 				}
 			],

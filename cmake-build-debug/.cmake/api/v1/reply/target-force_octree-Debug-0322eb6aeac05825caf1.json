@@ -53,14 +53,6 @@
 					"fragment" : " -Wall -fopenmp -std=c++11 -g  "
 				},
 				{
-					"backtrace" : 1,
-					"fragment" : "-mavx"
-				},
-				{
-					"backtrace" : 1,
-					"fragment" : "-mavx2"
-				},
-				{
 					"fragment" : "-std=gnu++11"
 				}
 			],
@@ -113,11 +105,11 @@
 	[
 		{
 			"backtrace" : 1,
-			"id" : "linear_alg::@b276e23674e4ab50d284"
+			"id" : "quaternion::@1ddfe99dd86582fd9c64"
 		},
 		{
 			"backtrace" : 1,
-			"id" : "quaternion::@1ddfe99dd86582fd9c64"
+			"id" : "linear_alg::@b276e23674e4ab50d284"
 		},
 		{
 			"backtrace" : 2,
