@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
 
     WorldHandler world = WorldHandler((argc < 3) ? 0 : (int) atoi(argv[2]),
                                       (argc < 4) ? 0 : (int) atoi(argv[3]),
-                                      (argc < 5) ? 1000 : (int) atoi(argv[4]),
+                                      (argc < 5) ? 400 : (int) atoi(argv[4]),
                                       (argc < 6) ? 0 : (int) atoi(argv[5]),
                                       (argc < 7) ? 0 : (int) atoi(argv[6]),
                                       (argc < 8) ? 0 : (int) atoi(argv[7]),
@@ -114,46 +114,31 @@ int main(int argc, char *argv[])
     using std::chrono::duration_cast;
     using std::chrono::milliseconds;
 
-#if defined(GLFW_ON)
-    real currentFrame;
-    real lastFrame; // Time of last frame
-    real deltaTime; // Time between current frame and last frame
-#else
     auto start_time = high_resolution_clock::now();
     auto currentFrame = high_resolution_clock::now();
     auto lastFrame = high_resolution_clock::now(); // Time of last frame
     auto deltaTime = duration_cast<milliseconds>(currentFrame - lastFrame); // time between current frame and last frame
-#endif
 
     real frame_count = 0;
+    real total_frame_count = 0;
 
-#if defined(GLFW_ON)
-    real prev_time = glfwGetTime(); // prev_time refers to the last time we printed the num of frames per seconds
-#else
     auto prev_time =  high_resolution_clock::now();
-#endif
 
 
     while (
 #if defined(GLFW_ON)
-            !glfwWindowShouldClose(world_properties->window)
+         !glfwWindowShouldClose(world_properties->window)
 #else
             duration_cast<milliseconds>(currentFrame - start_time).count() < atoi(argv[1]) * 1000 // time between current frame and last frame
 #endif
     )
     {
-             #if defined(GLFW_ON)
-        currentFrame = glfwGetTime();
-        deltaTime = currentFrame - lastFrame;
-        lastFrame = currentFrame;
-#else
        currentFrame = high_resolution_clock::now();
        deltaTime = duration_cast<milliseconds>(currentFrame - lastFrame); // Time between current frame and last frame
        lastFrame = currentFrame;
-#endif
 
 #if defined(GLFW_ON)
-        camera.UpdateCamera(deltaTime);
+        camera.UpdateCamera(deltaTime.count());
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 #endif
 
@@ -179,16 +164,9 @@ int main(int argc, char *argv[])
             cout << "not equal" << endl;
         }*/
 
-#if defined(GLFW_ON)
-        world.AddForces(deltaTime);
-        //auto contact_list = vector<Contact>();
-        world.Update(contact_list, deltaTime);
-#else
         world.AddForces(deltaTime.count());
         //auto contact_list = vector<Contact>();
         world.Update(contact_list, deltaTime.count());
-#endif
-
 
 #if defined(GLFW_ON)
         BlockRenderer::DrawAllBlocks(&world.iblocks, &world.zblocks, &world.eblocks, &world.mblocks);
@@ -196,23 +174,16 @@ int main(int argc, char *argv[])
         glfwPollEvents();
 #endif
         frame_count++;
-#if defined(GLFW_ON)
-        if(currentFrame - prev_time >= 1.0) {
-            cout << "FPS: " << frame_count << endl;
-            frame_count = 0;
-            prev_time = currentFrame;
-        }
-#else
+        total_frame_count++;
         if(duration_cast<milliseconds>(currentFrame - prev_time).count()>= 1000.0) {
             cout << "FPS: " << frame_count << endl;
             frame_count = 0;
             prev_time = currentFrame;
         }
-#endif
-
     }
 
 
+    cout << "Average FPS: " << total_frame_count/(duration_cast<milliseconds>(high_resolution_clock::now() - start_time).count()) * 1000 << endl;
     cout << "Terminating..." << endl;
 
 

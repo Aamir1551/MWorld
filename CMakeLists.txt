@@ -1,4 +1,5 @@
-cmake_minimum_required(VERSION 3.10)
+set(using_cmake_version "3.7")
+cmake_minimum_required(VERSION ${using_cmake_version})
 
 #export CC=C:\Program Files\LLVM\bin\clang.exe
 #export CXX=C:\Program Files\LLVM\bin\clang++.exe
@@ -12,7 +13,7 @@ set(catch_path ${CMAKE_CURRENT_SOURCE_DIR}/catch)
 #multithreading depends heavily on what applications are running in the background and such
 
 set(compile_with_openmp ON)
-set(compile_with_glfw ON)
+set(compile_with_glfw OFF)
 set(compile_prototypes ON)
 set(add_debug_tag OFF)
 

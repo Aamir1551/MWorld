@@ -2,10 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "prototype/prototype_three/prototype_three.exe"
+			"path" : "simulation/environment/simulation.exe"
 		},
 		{
-			"path" : "prototype/prototype_three/prototype_three.pdb"
+			"path" : "simulation/environment/simulation.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -19,7 +19,7 @@
 		],
 		"files" : 
 		[
-			"prototype/prototype_three/CMakeLists.txt"
+			"simulation/environment/CMakeLists.txt"
 		],
 		"nodes" : 
 		[
@@ -35,13 +35,13 @@
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 6,
+				"line" : 33,
 				"parent" : 0
 			},
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 8,
+				"line" : 34,
 				"parent" : 0
 			}
 		]
@@ -66,6 +66,13 @@
 					"fragment" : "-std=gnu++11"
 				}
 			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 2,
+					"define" : "OPENMP=1"
+				}
+			],
 			"includes" : 
 			[
 				{
@@ -78,7 +85,7 @@
 				},
 				{
 					"backtrace" : 3,
-					"path" : "C:/Users/aamir/Documents/mworld/prototype/prototype_three"
+					"path" : "C:/Users/aamir/Documents/mworld/simulation/environment"
 				},
 				{
 					"backtrace" : 1,
@@ -94,39 +101,29 @@
 				},
 				{
 					"backtrace" : 2,
-					"path" : "C:/Users/aamir/Documents/mworld/render/cube_renderer/."
-				},
-				{
-					"backtrace" : 2,
-					"path" : "C:/Users/aamir/Documents/mworld/render/cube_renderer/../lib"
-				},
-				{
-					"backtrace" : 2,
-					"path" : "C:/Users/aamir/Documents/mworld/lib/glad/include"
-				},
-				{
-					"backtrace" : 2,
 					"path" : "C:/Users/aamir/Documents/mworld/utils/util_functions/."
 				},
 				{
 					"backtrace" : 2,
-					"path" : "C:/Users/aamir/Documents/mworld/render/utils/."
+					"path" : "C:/Users/aamir/Documents/mworld/simulation/blocks"
 				},
 				{
 					"backtrace" : 2,
-					"path" : "C:/Users/aamir/Documents/mworld/render/shader"
+					"path" : "C:/Users/aamir/Documents/mworld/simulation/blocks/../octree"
 				},
 				{
 					"backtrace" : 2,
-					"path" : "C:/Users/aamir/Documents/mworld/render/camera"
+					"path" : "C:/Users/aamir/Documents/mworld/simulation/world_handler"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "C:/Users/aamir/Documents/mworld/simulation/octree/."
 				}
 			],
 			"language" : "CXX",
 			"sourceIndexes" : 
 			[
-				0,
-				1,
-				4
+				0
 			]
 		}
 	],
@@ -142,22 +139,26 @@
 		},
 		{
 			"backtrace" : 2,
-			"id" : "mworld_render_utils::@c1c5e50b708af245b811"
+			"id" : "blocks::@6db65c1307d2a2a784c8"
 		},
 		{
 			"backtrace" : 2,
-			"id" : "glad::@bf3af473941166e98053"
+			"id" : "octree::@66c141f95c7ed784ad75"
 		},
 		{
 			"backtrace" : 2,
-			"id" : "cube_renderer::@ef8ae11a8c6e57d14ca4"
+			"id" : "force_octree::@66c141f95c7ed784ad75"
 		},
 		{
 			"backtrace" : 2,
 			"id" : "utils::@c5cd9bcf8a2dc65dcb35"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "world_handler::@db5c5082507517693d46"
 		}
 	],
-	"id" : "prototype_three::@2a17fa0eebb0697fdbb6",
+	"id" : "simulation::@847a59781e22ff560ae6",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -192,37 +193,30 @@
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "..\\..\\render\\cube_renderer\\libcube_renderer.a",
-				"role" : "libraries"
-			},
-			{
-				"backtrace" : 2,
 				"fragment" : "..\\..\\utils\\util_functions\\libutils.a",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "..\\..\\lib\\glad\\libglad.a",
+				"fragment" : "..\\blocks\\libblocks.a",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "..\\..\\..\\lib\\glfw-3.3.2\\build\\src\\libglfw3.a",
+				"fragment" : "..\\world_handler\\libworld_handler.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "..\\octree\\liboctree.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "..\\octree\\libforce_octree.a",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "..\\..\\render\\utils\\libmworld_render_utils.a",
-				"role" : "libraries"
-			},
-			{
-				"backtrace" : 2,
-				"fragment" : "..\\..\\lib\\glad\\libglad.a",
-				"role" : "libraries"
-			},
-			{
-				"backtrace" : 2,
-				"fragment" : "..\\..\\..\\lib\\glfw-3.3.2\\build\\src\\libglfw3.a",
+				"fragment" : "..\\blocks\\libblocks.a",
 				"role" : "libraries"
 			},
 			{
@@ -241,18 +235,22 @@
 				"role" : "libraries"
 			},
 			{
+				"fragment" : "..\\..\\..\\lib\\glfw-3.3.2\\build\\src\\libglfw3.a",
+				"role" : "libraries"
+			},
+			{
 				"fragment" : "-lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32",
 				"role" : "libraries"
 			}
 		],
 		"language" : "CXX"
 	},
-	"name" : "prototype_three",
-	"nameOnDisk" : "prototype_three.exe",
+	"name" : "simulation",
+	"nameOnDisk" : "simulation.exe",
 	"paths" : 
 	{
-		"build" : "prototype/prototype_three",
-		"source" : "prototype/prototype_three"
+		"build" : "simulation/environment",
+		"source" : "simulation/environment"
 	},
 	"sourceGroups" : 
 	[
@@ -260,19 +258,14 @@
 			"name" : "Source Files",
 			"sourceIndexes" : 
 			[
-				0,
-				1,
-				4
+				0
 			]
 		},
 		{
 			"name" : "Header Files",
 			"sourceIndexes" : 
 			[
-				2,
-				3,
-				5,
-				6
+				1
 			]
 		}
 	],
@@ -281,39 +274,12 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "prototype/prototype_three/cube.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "prototype/prototype_three/main.cpp",
+			"path" : "simulation/environment/simulation.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"path" : "utils/settings/settings.hpp",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 2,
-			"path" : "render/utils/world_initializer.hpp",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 2,
-			"compileGroupIndex" : 0,
-			"path" : "render/utils/world_initializer.cpp",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 2,
-			"path" : "render/shader/shader.hpp",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 2,
-			"path" : "render/camera/camera.hpp",
 			"sourceGroupIndex" : 1
 		}
 	],
