@@ -1,10 +1,10 @@
 #include <matrix.hpp>
 #include <cmath>
 #include <iostream>
+#include <stdexcept>
+
 #include <settings.hpp>
 
-// TODO
-// 1) pls add this to all generateError throw std::invalid_argument
 using namespace std;
 
 namespace numerics
