@@ -19,7 +19,7 @@ set(add_debug_tag OFF)
 
 #add_compile_options("-mavx" "-mavx2" "-O3" "-ftree-vectorize") #-- make sure this adds these flags to all targets, rendering stops for some reason, if we use -O3 and -O2
 if(compile_with_openmp)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -fopenmp -std=c++11")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -fopenmp -std=c++11 -qopenmp")
 else()
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -std=c++11")
 endif()
