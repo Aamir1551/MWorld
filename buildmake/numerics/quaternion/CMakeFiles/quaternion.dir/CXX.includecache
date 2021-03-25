@@ -1,0 +1,42 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../numerics/linear_alg/include/matrix.hpp
+cstdlib
+-
+cstdio
+-
+iostream
+-
+string
+-
+utility
+-
+settings.hpp
+-
+immintrin.h
+-
+
+../numerics/quaternion/include/quaternion.hpp
+matrix.hpp
+-
+settings.hpp
+-
+
+../utils/settings/settings.hpp
+
+C:/Users/aamir/Documents/mworld/numerics/quaternion/src/quaternion.cpp
+math.h
+-
+quaternion.hpp
+-
+settings.hpp
+-
+matrix.hpp
+-
+

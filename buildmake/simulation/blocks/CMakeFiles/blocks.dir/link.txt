@@ -1,0 +1,2 @@
+C:/MinGW/bin/ar.exe qc libblocks.a CMakeFiles/blocks.dir/cube.cpp.obj CMakeFiles/blocks.dir/block.cpp.obj CMakeFiles/blocks.dir/e_block.cpp.obj CMakeFiles/blocks.dir/i_block.cpp.obj CMakeFiles/blocks.dir/m_block.cpp.obj CMakeFiles/blocks.dir/z_block.cpp.obj
+C:/MinGW/bin/ranlib.exe libblocks.a

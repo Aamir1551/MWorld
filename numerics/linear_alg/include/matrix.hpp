@@ -13,6 +13,7 @@
 #include <iostream>
 #include <string>
 #include <utility>
+#include <stdexcept>
 
 #include <settings.hpp>
 #include <immintrin.h>

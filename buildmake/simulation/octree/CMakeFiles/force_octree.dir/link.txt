@@ -1,0 +1,2 @@
+C:/MinGW/bin/ar.exe qc libforce_octree.a CMakeFiles/force_octree.dir/force_octree.cpp.obj
+C:/MinGW/bin/ranlib.exe libforce_octree.a
