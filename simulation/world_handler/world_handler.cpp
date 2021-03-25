@@ -67,13 +67,14 @@ WorldHandler::WorldHandler(int num_i_blocks_plus, int num_i_blocks_neg, int num_
     AddBlock(EBlockType, num_e_blocks_1, true);
     AddBlock(EBlockType, num_e_blocks_1_2, false);
     AddBlock(ZBlockType, num_z_blocks, true);
-
+/*
 #if defined(OPENMP)
     for(unsigned int i=0; i<this->blocks.size(); i++) {
        this->collision_locks.emplace_back(omp_lock_t());
        omp_init_lock(&this->collision_locks.at(i));
     }
 #endif
+ */
 }
 
 void WorldHandler::GetProperties(int num_blocks, std::vector<Matrix> *&positions, std::vector<Matrix> * &linear_momentums, real min_coord, real max_coord) {
