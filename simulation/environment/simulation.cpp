@@ -62,7 +62,8 @@ int main(int argc, char *argv[])
 #endif
 
     // run as ./simulation 60 1000
-    int num_blocks_same = (int) atoi(argv[2]);
+    //int num_blocks_same = (int) atoi(argv[2]);
+    int num_blocks_same = 100;
     WorldHandler world = WorldHandler(num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same); //WorldHandler world = WorldHandler(0, 0, 0, 0, 0, 0); //WorldHandler world = WorldHandler(10, 0, 0, 0, 0, 0);
     //WorldHandler world = WorldHandler(0, 0, 2, 0, 0, 0);
     // Test out with different collision elasticity value, so change scaling of velocity after collision, and see how world develops
@@ -165,9 +166,9 @@ int main(int argc, char *argv[])
             cout << "not equal" << endl;
         }*/
 
-        world.AddForces(deltaTime.count());
+        world.AddForces(deltaTime.count()/1000.0);
         //auto contact_list = vector<Contact>();
-        world.Update(contact_list, deltaTime.count());
+        world.Update(contact_list, deltaTime.count()/1000.0);
 
 #if defined(GLFW_ON)
         BlockRenderer::DrawAllBlocks(&world.iblocks, &world.zblocks, &world.eblocks, &world.mblocks);

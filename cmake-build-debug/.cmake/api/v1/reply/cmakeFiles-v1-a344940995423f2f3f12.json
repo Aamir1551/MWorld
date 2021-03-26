@@ -201,18 +201,6 @@
 			"path" : "utils/settings/CMakeLists.txt"
 		},
 		{
-			"path" : "prototype/CMakeLists.txt"
-		},
-		{
-			"path" : "prototype/prototype_one/CMakeLists.txt"
-		},
-		{
-			"path" : "prototype/prototype_two/CMakeLists.txt"
-		},
-		{
-			"path" : "prototype/prototype_three/CMakeLists.txt"
-		},
-		{
 			"path" : "simulation/CMakeLists.txt"
 		},
 		{

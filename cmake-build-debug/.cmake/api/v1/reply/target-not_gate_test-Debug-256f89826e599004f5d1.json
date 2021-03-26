@@ -2,10 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "simulation/environment/simulation.exe"
+			"path" : "simulation/environment/not_gate_test.exe"
 		},
 		{
-			"path" : "simulation/environment/simulation.pdb"
+			"path" : "simulation/environment/not_gate_test.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -15,7 +15,6 @@
 		[
 			"add_executable",
 			"target_link_libraries",
-			"target_compile_definitions",
 			"target_include_directories"
 		],
 		"files" : 
@@ -30,25 +29,19 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 5,
+				"line" : 10,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 34,
+				"line" : 25,
 				"parent" : 0
 			},
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 22,
-				"parent" : 0
-			},
-			{
-				"command" : 3,
-				"file" : 0,
-				"line" : 35,
+				"line" : 30,
 				"parent" : 0
 			}
 		]
@@ -68,10 +61,6 @@
 			"defines" : 
 			[
 				{
-					"backtrace" : 3,
-					"define" : "GLFW_ON=1"
-				},
-				{
 					"backtrace" : 2,
 					"define" : "OPENMP=1"
 				}
@@ -79,11 +68,11 @@
 			"includes" : 
 			[
 				{
-					"backtrace" : 4,
+					"backtrace" : 3,
 					"path" : "C:/Users/aamir/Documents/mworld/lib/glfw-3.3.2/include"
 				},
 				{
-					"backtrace" : 4,
+					"backtrace" : 3,
 					"path" : "C:/Users/aamir/Documents/mworld/simulation/environment"
 				},
 				{
@@ -175,6 +164,10 @@
 		},
 		{
 			"backtrace" : 2,
+			"id" : "glad::@bf3af473941166e98053"
+		},
+		{
+			"backtrace" : 2,
 			"id" : "mworld_render_utils::@c1c5e50b708af245b811"
 		},
 		{
@@ -183,7 +176,11 @@
 		},
 		{
 			"backtrace" : 2,
-			"id" : "glad::@bf3af473941166e98053"
+			"id" : "force_octree::@66c141f95c7ed784ad75"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "block_renderer::@20380dfbeeaf1beda5b3"
 		},
 		{
 			"backtrace" : 2,
@@ -195,22 +192,14 @@
 		},
 		{
 			"backtrace" : 2,
-			"id" : "force_octree::@66c141f95c7ed784ad75"
+			"id" : "world_handler::@db5c5082507517693d46"
 		},
 		{
 			"backtrace" : 2,
 			"id" : "utils::@c5cd9bcf8a2dc65dcb35"
-		},
-		{
-			"backtrace" : 2,
-			"id" : "block_renderer::@20380dfbeeaf1beda5b3"
-		},
-		{
-			"backtrace" : 2,
-			"id" : "world_handler::@db5c5082507517693d46"
 		}
 	],
-	"id" : "simulation::@847a59781e22ff560ae6",
+	"id" : "not_gate_test::@847a59781e22ff560ae6",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -328,8 +317,8 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "simulation",
-	"nameOnDisk" : "simulation.exe",
+	"name" : "not_gate_test",
+	"nameOnDisk" : "not_gate_test.exe",
 	"paths" : 
 	{
 		"build" : "simulation/environment",
@@ -361,7 +350,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "simulation/environment/simulation.cpp",
+			"path" : "simulation/environment/not_gate_test.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{

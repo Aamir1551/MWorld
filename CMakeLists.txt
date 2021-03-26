@@ -5,8 +5,8 @@ cmake_minimum_required(VERSION ${using_cmake_version})
 #export CXX=C:\Program Files\LLVM\bin\clang++.exe
 
 set(CMAKE_CXX_STANDARD 11)
-#set(glfw "${CMAKE_CURRENT_SOURCE_DIR}/lib/glfw-3.3.2/build/src/libglfw3.a")
-#set(glfw_include_path "${CMAKE_CURRENT_SOURCE_DIR}/lib/glfw-3.3.2/include/")
+set(glfw "${CMAKE_CURRENT_SOURCE_DIR}/lib/glfw-3.3.2/build/src/libglfw3.a")
+set(glfw_include_path "${CMAKE_CURRENT_SOURCE_DIR}/lib/glfw-3.3.2/include/")
 set(glm_include_path "${CMAKE_CURRENT_SOURCE_DIR}/lib/glm") #Used for testing the matrix LookAt and Perspective function
 set(catch_path ${CMAKE_CURRENT_SOURCE_DIR}/catch)
 
@@ -14,7 +14,7 @@ set(catch_path ${CMAKE_CURRENT_SOURCE_DIR}/catch)
 
 set(compile_with_openmp ON)
 set(compile_with_glfw ON)
-set(compile_prototypes ON)
+set(compile_prototypes OFF)
 set(add_debug_tag OFF)
 
 #add_compile_options("-mavx" "-mavx2" "-O3" "-ftree-vectorize") #-- make sure this adds these flags to all targets, rendering stops for some reason, if we use -O3 and -O2
@@ -53,8 +53,8 @@ add_subdirectory(numerics)
 link_libraries(linear_alg quaternion)
 
 if(compile_with_glfw)
-    set(glfw "${CMAKE_CURRENT_SOURCE_DIR}/lib/glfw-3.3.2/build/src/libglfw3.a")
-    set(glfw_include_path "${CMAKE_CURRENT_SOURCE_DIR}/lib/glfw-3.3.2/include/")
+    #set(glfw "${CMAKE_CURRENT_SOURCE_DIR}/lib/glfw-3.3.2/build/src/libglfw3.a")
+    #set(glfw_include_path "${CMAKE_CURRENT_SOURCE_DIR}/lib/glfw-3.3.2/include/")
     add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/lib/glad")
     add_subdirectory(render)
 endif()
