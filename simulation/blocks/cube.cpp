@@ -189,8 +189,8 @@ namespace blocks {
         auto temp = body1->momentum;
 #pragma omp critical (INNER)
         {
-            body1->momentum = body2->momentum * 0.7;
-            body2->momentum = temp * 0.7;
+            body1->momentum = body2->momentum;
+            body2->momentum = temp;
             body1->position += normal * (contact.penetration/2);
             body2->position -= normal * (contact.penetration/2);
         };
@@ -201,9 +201,9 @@ namespace blocks {
         real x = c1->position(0, 0);
         real y = c1->position(1, 0);
         real z = c1->position(2, 0);
-        real mx = c1->momentum(0, 0) * 0.8;
-        real my = c1->momentum(1, 0) * 0.8;
-        real mz = c1->momentum(2, 0) * 0.8;
+        real mx = c1->momentum(0, 0);
+        real my = c1->momentum(1, 0);
+        real mz = c1->momentum(2, 0);
         if(x <= min_boundary_x) {
             c1->momentum(0, 0,  abs(mx));
         } else if(x >= max_boundary_x) {
