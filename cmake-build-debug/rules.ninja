@@ -96,6 +96,82 @@ rule CXX_EXECUTABLE_LINKER__quaternion_test_Debug
 
 
 #############################################
+# Rule for compiling C files.
+
+rule C_COMPILER__glad_Debug
+  depfile = $DEP_FILE
+  deps = gcc
+  command = C:\MinGW\bin\gcc.exe $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out   -c $in
+  description = Building C object $out
+
+
+#############################################
+# Rule for linking CXX static library.
+
+rule CXX_STATIC_LIBRARY_LINKER__glad_Debug
+  command = cmd.exe /C "$PRE_LINK && "C:\Program Files\JetBrains\CLion 2020.3.1\bin\cmake\win\bin\cmake.exe" -E rm -f $TARGET_FILE && C:\MinGW\bin\ar.exe qc $TARGET_FILE $LINK_FLAGS $in && C:\MinGW\bin\ranlib.exe $TARGET_FILE && $POST_BUILD"
+  description = Linking CXX static library $TARGET_FILE
+  restat = $RESTAT
+
+
+#############################################
+# Rule for compiling CXX files.
+
+rule CXX_COMPILER__cube_renderer_Debug
+  depfile = $DEP_FILE
+  deps = gcc
+  command = C:\MinGW\bin\c++.exe  $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  description = Building CXX object $out
+
+
+#############################################
+# Rule for linking CXX static library.
+
+rule CXX_STATIC_LIBRARY_LINKER__cube_renderer_Debug
+  command = cmd.exe /C "$PRE_LINK && "C:\Program Files\JetBrains\CLion 2020.3.1\bin\cmake\win\bin\cmake.exe" -E rm -f $TARGET_FILE && C:\MinGW\bin\ar.exe qc $TARGET_FILE $LINK_FLAGS $in && C:\MinGW\bin\ranlib.exe $TARGET_FILE && $POST_BUILD"
+  description = Linking CXX static library $TARGET_FILE
+  restat = $RESTAT
+
+
+#############################################
+# Rule for compiling CXX files.
+
+rule CXX_COMPILER__mworld_render_utils_Debug
+  depfile = $DEP_FILE
+  deps = gcc
+  command = C:\MinGW\bin\c++.exe  $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  description = Building CXX object $out
+
+
+#############################################
+# Rule for linking CXX static library.
+
+rule CXX_STATIC_LIBRARY_LINKER__mworld_render_utils_Debug
+  command = cmd.exe /C "$PRE_LINK && "C:\Program Files\JetBrains\CLion 2020.3.1\bin\cmake\win\bin\cmake.exe" -E rm -f $TARGET_FILE && C:\MinGW\bin\ar.exe qc $TARGET_FILE $LINK_FLAGS $in && C:\MinGW\bin\ranlib.exe $TARGET_FILE && $POST_BUILD"
+  description = Linking CXX static library $TARGET_FILE
+  restat = $RESTAT
+
+
+#############################################
+# Rule for compiling CXX files.
+
+rule CXX_COMPILER__block_renderer_Debug
+  depfile = $DEP_FILE
+  deps = gcc
+  command = C:\MinGW\bin\c++.exe  $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  description = Building CXX object $out
+
+
+#############################################
+# Rule for linking CXX static library.
+
+rule CXX_STATIC_LIBRARY_LINKER__block_renderer_Debug
+  command = cmd.exe /C "$PRE_LINK && "C:\Program Files\JetBrains\CLion 2020.3.1\bin\cmake\win\bin\cmake.exe" -E rm -f $TARGET_FILE && C:\MinGW\bin\ar.exe qc $TARGET_FILE $LINK_FLAGS $in && C:\MinGW\bin\ranlib.exe $TARGET_FILE && $POST_BUILD"
+  description = Linking CXX static library $TARGET_FILE
+  restat = $RESTAT
+
+
+#############################################
 # Rule for compiling CXX files.
 
 rule CXX_COMPILER__utils_Debug
@@ -204,6 +280,82 @@ rule CXX_COMPILER__simulation_Debug
 # Rule for linking CXX executable.
 
 rule CXX_EXECUTABLE_LINKER__simulation_Debug
+  command = cmd.exe /C "$PRE_LINK && C:\MinGW\bin\c++.exe $FLAGS  $LINK_FLAGS $in  -o $TARGET_FILE -Wl,--out-implib,$TARGET_IMPLIB -Wl,--major-image-version,0,--minor-image-version,0 $LINK_PATH $LINK_LIBRARIES && $POST_BUILD"
+  description = Linking CXX executable $TARGET_FILE
+  restat = $RESTAT
+
+
+#############################################
+# Rule for compiling CXX files.
+
+rule CXX_COMPILER__or_gate_test_Debug
+  depfile = $DEP_FILE
+  deps = gcc
+  command = C:\MinGW\bin\c++.exe  $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  description = Building CXX object $out
+
+
+#############################################
+# Rule for linking CXX executable.
+
+rule CXX_EXECUTABLE_LINKER__or_gate_test_Debug
+  command = cmd.exe /C "$PRE_LINK && C:\MinGW\bin\c++.exe $FLAGS  $LINK_FLAGS $in  -o $TARGET_FILE -Wl,--out-implib,$TARGET_IMPLIB -Wl,--major-image-version,0,--minor-image-version,0 $LINK_PATH $LINK_LIBRARIES && $POST_BUILD"
+  description = Linking CXX executable $TARGET_FILE
+  restat = $RESTAT
+
+
+#############################################
+# Rule for compiling CXX files.
+
+rule CXX_COMPILER__and_gate_test_Debug
+  depfile = $DEP_FILE
+  deps = gcc
+  command = C:\MinGW\bin\c++.exe  $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  description = Building CXX object $out
+
+
+#############################################
+# Rule for linking CXX executable.
+
+rule CXX_EXECUTABLE_LINKER__and_gate_test_Debug
+  command = cmd.exe /C "$PRE_LINK && C:\MinGW\bin\c++.exe $FLAGS  $LINK_FLAGS $in  -o $TARGET_FILE -Wl,--out-implib,$TARGET_IMPLIB -Wl,--major-image-version,0,--minor-image-version,0 $LINK_PATH $LINK_LIBRARIES && $POST_BUILD"
+  description = Linking CXX executable $TARGET_FILE
+  restat = $RESTAT
+
+
+#############################################
+# Rule for compiling CXX files.
+
+rule CXX_COMPILER__not_gate_test_Debug
+  depfile = $DEP_FILE
+  deps = gcc
+  command = C:\MinGW\bin\c++.exe  $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  description = Building CXX object $out
+
+
+#############################################
+# Rule for linking CXX executable.
+
+rule CXX_EXECUTABLE_LINKER__not_gate_test_Debug
+  command = cmd.exe /C "$PRE_LINK && C:\MinGW\bin\c++.exe $FLAGS  $LINK_FLAGS $in  -o $TARGET_FILE -Wl,--out-implib,$TARGET_IMPLIB -Wl,--major-image-version,0,--minor-image-version,0 $LINK_PATH $LINK_LIBRARIES && $POST_BUILD"
+  description = Linking CXX executable $TARGET_FILE
+  restat = $RESTAT
+
+
+#############################################
+# Rule for compiling CXX files.
+
+rule CXX_COMPILER__amplifier_Debug
+  depfile = $DEP_FILE
+  deps = gcc
+  command = C:\MinGW\bin\c++.exe  $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  description = Building CXX object $out
+
+
+#############################################
+# Rule for linking CXX executable.
+
+rule CXX_EXECUTABLE_LINKER__amplifier_Debug
   command = cmd.exe /C "$PRE_LINK && C:\MinGW\bin\c++.exe $FLAGS  $LINK_FLAGS $in  -o $TARGET_FILE -Wl,--out-implib,$TARGET_IMPLIB -Wl,--major-image-version,0,--minor-image-version,0 $LINK_PATH $LINK_LIBRARIES && $POST_BUILD"
   description = Linking CXX executable $TARGET_FILE
   restat = $RESTAT

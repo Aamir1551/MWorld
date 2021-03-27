@@ -169,16 +169,16 @@ int main(int argc, char *argv[])
         frame_count++;
         total_frame_count++;
         if(duration_cast<milliseconds>(currentFrame - prev_time).count()>= 1000.0) {
-            //cout << "FPS: " << frame_count << endl;
+            cout << "FPS: " << frame_count << endl;
             frame_count = 0;
             prev_time = currentFrame;
         }
     }
 
 
-    //cout << "Average FPS for " << total_frame_count/(duration_cast<milliseconds>(high_resolution_clock::now() - start_time).count()) * 1000 << endl;
-    cout << "Average FPS for " << (argv[2]) << " " << argv[3] << " " << argv[4] << " " << argv[5] << " " << argv[6] << " " << argv[7] << " " << argv[8] << " " << argv[9] << " " << argv[10] << " " << argv[11] << " " << argv[12] << " " << argv[13] << ": "
-    << total_frame_count/(duration_cast<milliseconds>(high_resolution_clock::now() - start_time).count()) * 1000 << endl;
+    cout << "Average FPS for " << total_frame_count/(duration_cast<milliseconds>(high_resolution_clock::now() - start_time).count()) * 1000 << endl;
+    //cout << "Average FPS for " << (argv[2]) << " " << argv[3] << " " << argv[4] << " " << argv[5] << " " << argv[6] << " " << argv[7] << " " << argv[8] << " " << argv[9] << " " << argv[10] << " " << argv[11] << " " << argv[12] << " " << argv[13] << ": "
+    //<< total_frame_count/(duration_cast<milliseconds>(high_resolution_clock::now() - start_time).count()) * 1000 << endl;
     //cout << "Terminating..." << endl;
 
 

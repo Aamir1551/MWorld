@@ -9,7 +9,7 @@ world_size_max_y = "100"
 world_size_min_z = "0"
 world_size_max_z = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
 
-"""
+
 f = open("TestTimings.txt", "a")
 for i in num_blocks:
     i = str(i)
@@ -18,8 +18,9 @@ for i in num_blocks:
                          str(world_size_max_z[0])], stdout=subprocess.PIPE).stdout.decode('utf-8')
     f.write(result)
 f.close()
-"""
 
+
+"""
 f = open("spaceTimings.txt", "a")
 for i in world_size_max_z:
     for j in num_blocks_space:
@@ -31,3 +32,4 @@ for i in world_size_max_z:
         f.write(result)
 
 f.close()
+"""
