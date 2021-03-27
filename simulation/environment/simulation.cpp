@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
 
     if(argc == 1 || strcmp(argv[1], "help")  == 0){
         cout << "Pass parameters in order of: duration num_i_plus_blocks num_i_neg_blocks num_z_blocks num_m_blocks "
-                "num_e_1_blocks num_e_1_2_blocks min_coord max_coord"<< endl;
+                "num_e_1_blocks num_e_1_2_blocks min_coord_x max_coord_x min_coord_y max_coord_y min_coord_z max_coord_z"<< endl;
         cout << "If a parameter is not given, we substitute it with zero. However, duration command line argument "
                 "must be specified." << endl;
         exit(0);
@@ -64,8 +64,7 @@ int main(int argc, char *argv[])
     // run as ./simulation 60 1000
     //int num_blocks_same = (int) atoi(argv[2]);
     int num_blocks_same = 100;
-    WorldHandler world = WorldHandler(num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same); //WorldHandler world = WorldHandler(0, 0, 0, 0, 0, 0); //WorldHandler world = WorldHandler(10, 0, 0, 0, 0, 0);
-    //WorldHandler world = WorldHandler(0, 0, 2, 0, 0, 0);
+    WorldHandler world = WorldHandler(num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, -100, 100, -50, 50, -50 ,50);
     // Test out with different collision elasticity value, so change scaling of velocity after collision, and see how world develops
     /*WorldHandler world = WorldHandler((argc < 3) ? 100 : (int) atoi(argv[2]),
                                       (argc < 4) ? 100 : (int) atoi(argv[3]),
@@ -90,18 +89,6 @@ int main(int argc, char *argv[])
     // Testing with ZBLocks only -- Note we disabled the force's being applied, however, the forces are still being calculated
     // We shall have tests, with forces being applied and both not being applied
     // When doing time tests, also disable all glfw functions
-
-
-    //100 = 170fps
-    //200 = 75fps
-    //300 = 38fps
-    //400 = 25fps
-    //500 = 20fps
-    //600 = 15fps
-    //700 = 12fps
-    //800 = 9fps
-    //900 = 8fps
-    //1000 = 6fps
 
 #if defined(GLFW_ON)
     glBindVertexArray(vao);

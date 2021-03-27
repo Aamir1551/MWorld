@@ -20,14 +20,24 @@
 
 using namespace blocks;
 
-std::vector<Matrix> *WorldHandler::GeneratePositions(int num_cubes, real min_coord, real max_coord)
+std::vector<Matrix> *WorldHandler::GeneratePositions(int num_cubes, real min_coord_x, real max_coord_x,
+                                                     real min_coord_y, real max_coord_y,
+                                                     real min_coord_z, real max_coord_z)
 {
     auto *positions = new std::vector<Matrix>;
-    int world_size = (int) (max_coord - min_coord);
-    auto get_coord = [world_size, min_coord]() -> real { return (rand()%( world_size + 1) + min_coord); };
+
+    int world_size_x = (int) (max_coord_x - min_coord_x);
+    auto get_coord_x = [world_size_x, min_coord_x]() -> real { return (rand()%( world_size_x + 1) + min_coord_x); };
+
+    int world_size_y = (int) (max_coord_y - min_coord_y);
+    auto get_coord_y = [world_size_y, min_coord_y]() -> real { return (rand()%( world_size_y + 1) + min_coord_y); };
+
+    int world_size_z = (int) (max_coord_z - min_coord_z);
+    auto get_coord_z = [world_size_z, min_coord_z]() -> real { return (rand()%( world_size_z + 1) + min_coord_z); };
+
     for (int i = 0; i < num_cubes; i++)
     {
-        real values[] = {get_coord(), get_coord(), get_coord()};
+        real values[] = {get_coord_x(), get_coord_y(), get_coord_z()};
         positions->push_back(Matrix(3, 1, values));
     }
     return positions;
@@ -47,19 +57,27 @@ std::vector<Matrix> *WorldHandler::GenerateLinearMomentums(int num_cubes)
 }
 
 WorldHandler::WorldHandler(int num_i_blocks_plus, int num_i_blocks_neg, int num_z_blocks, int num_m_blocks, int num_e_blocks_1, int num_e_blocks_1_2,
-                           real min_coord, real max_coord, real cube_length) {
+                           real min_coord_x, real max_coord_x,
+                           real min_coord_y, real max_coord_y,
+                           real min_coord_z, real max_coord_z,
+                           real cube_length) {
     srand((unsigned)time(0));
     //srand(0); // useful for testing purposes, to generate the same random numbers
 
     cout << "Quad trees are being initialised" << endl;
-    this->tree = new Octree((int)cube_length * 3, min_coord, max_coord, min_coord, max_coord, min_coord, max_coord, true);
-    this->forces_tree = new ForceOctree((int) cube_length * 5, min_coord, max_coord, min_coord, max_coord, min_coord, max_coord,
+    this->tree = new Octree((int)cube_length * 3, min_coord_x, max_coord_x, min_coord_y, max_coord_y, min_coord_z, max_coord_z, true);
+    this->forces_tree = new ForceOctree((int) cube_length * 5, min_coord_x, max_coord_x, min_coord_y, max_coord_y, min_coord_z, max_coord_z,
                                    false);
     cout << "Quad trees are initialised" << endl;
-    this->world_size = max_coord - min_coord;
-    this->max_coord = max_coord;
-    this->min_coord = min_coord;
     this->cube_length = cube_length;
+
+    this->min_coord_x = min_coord_x;
+    this->min_coord_y = min_coord_y;
+    this->min_coord_z = min_coord_z;
+
+    this->max_coord_x = max_coord_x;
+    this->max_coord_y = max_coord_y;
+    this->max_coord_z = max_coord_z;
 
     AddBlock(IBlockType, num_i_blocks_plus, true);
     AddBlock(IBlockType, num_i_blocks_neg, false);
@@ -77,17 +95,18 @@ WorldHandler::WorldHandler(int num_i_blocks_plus, int num_i_blocks_neg, int num_
  */
 }
 
-void WorldHandler::GetProperties(int num_blocks, std::vector<Matrix> *&positions, std::vector<Matrix> * &linear_momentums, real min_coord, real max_coord) {
-    positions = GeneratePositions(num_blocks, min_coord, max_coord);
+void WorldHandler::GetProperties(int num_blocks, std::vector<Matrix> *&positions, std::vector<Matrix> * &linear_momentums, real min_coord_x, real max_coord_x, real min_coord_y, real max_coord_y, real min_coord_z, real max_coord_z) {
+    positions = GeneratePositions(num_blocks, min_coord_x, max_coord_x,
+                                  min_coord_y, max_coord_y,
+                                  min_coord_z, max_coord_z);
     linear_momentums = GenerateLinearMomentums(num_blocks);
 }
 
 void WorldHandler::ResetTrees() {
     delete this->tree;
     delete this->forces_tree;
-    this->tree = new Octree(cube_length * 2, min_coord, max_coord, min_coord, max_coord, min_coord, max_coord, true);
-    this->forces_tree = new ForceOctree(cube_length * 5, min_coord, max_coord, min_coord, max_coord, min_coord, max_coord,
-                                        false);
+    this->tree = new Octree(cube_length * 2, min_coord_x, max_coord_x, min_coord_y, max_coord_y, min_coord_z, max_coord_z, true);
+    this->forces_tree = new ForceOctree(cube_length * 5, min_coord_x, max_coord_x, min_coord_y, max_coord_y, min_coord_z, max_coord_z,false);
 
     for(auto const &world_block : this->iblocks) {
         auto temp = this->tree->AddBlock(world_block);
@@ -125,7 +144,7 @@ void WorldHandler::ResetTrees() {
 
 void WorldHandler::AddBlock(BlockTypes block_types, int num_blocks, bool state) {
         std::vector<Matrix> *positions, *linear_momentums;
-        GetProperties(num_blocks, positions, linear_momentums, this->min_coord, this->max_coord);
+        GetProperties(num_blocks, positions, linear_momentums, this->min_coord_x, this->max_coord_x, this->min_coord_y, this->max_coord_y,  this->min_coord_z, this->max_coord_z);
         Octree * tree_occupied;
         for(int i=0; i<num_blocks; i++) {
             if(block_types == IBlockType) {
@@ -189,13 +208,13 @@ void WorldHandler::Update(vector<Contact> &contact_list, real delta_time) {
     for(auto const &leaf_m_block: this->mblocks) {
         if(leaf_m_block->flare_value > MBlock::threshold) {
             forces_tree->RemoveMBlockPlus(leaf_m_block);
-            leaf_m_block->Update(this->min_coord, this->max_coord, this->min_coord, this->max_coord, this->min_coord, this->max_coord, delta_time);
+            leaf_m_block->Update(this->min_coord_x, this->max_coord_x, this->min_coord_y, this->max_coord_y, this->min_coord_z, this->max_coord_z, delta_time);
             Octree * new_leaf = tree->AddBlock(leaf_m_block);
             block_to_leaf[leaf_m_block] = new_leaf;
             forces_tree->AddMBlockPlus(leaf_m_block);
         } else {
             forces_tree->RemoveMBlockNeg(leaf_m_block);
-            leaf_m_block->Update(this->min_coord, this->max_coord, this->min_coord, this->max_coord, this->min_coord, this->max_coord, delta_time);
+            leaf_m_block->Update(this->min_coord_x, this->max_coord_x, this->min_coord_y, this->max_coord_y, this->min_coord_z, this->max_coord_z, delta_time);
             Octree * new_leaf = tree->AddBlock(leaf_m_block);
             block_to_leaf[leaf_m_block] = new_leaf;
             forces_tree->AddMBlockNeg(leaf_m_block);
@@ -207,13 +226,13 @@ void WorldHandler::Update(vector<Contact> &contact_list, real delta_time) {
     for(auto const &leaf_i_block: this->iblocks) {
         if(leaf_i_block->state) {
             forces_tree->RemoveIBlockPlus(leaf_i_block);
-            leaf_i_block->Update(this->min_coord, this->max_coord, this->min_coord, this->max_coord, this->min_coord, this->max_coord, delta_time);
+            leaf_i_block->Update(this->min_coord_x, this->max_coord_x, this->min_coord_y, this->max_coord_y, this->min_coord_z, this->max_coord_z, delta_time);
             Octree * new_leaf = tree->AddBlock(leaf_i_block);
             block_to_leaf[leaf_i_block] = new_leaf;
             forces_tree->AddIBlockPlus(leaf_i_block);
         } else {
             forces_tree->RemoveIBlockNeg(leaf_i_block);
-            leaf_i_block->Update(this->min_coord, this->max_coord, this->min_coord, this->max_coord, this->min_coord, this->max_coord, delta_time);
+            leaf_i_block->Update(this->min_coord_x, this->max_coord_x, this->min_coord_y, this->max_coord_y, this->min_coord_z, this->max_coord_z, delta_time);
             Octree * new_leaf = tree->AddBlock(leaf_i_block);
             block_to_leaf[leaf_i_block] = new_leaf;
             forces_tree->AddIBlockNeg(leaf_i_block);
@@ -223,7 +242,7 @@ void WorldHandler::Update(vector<Contact> &contact_list, real delta_time) {
 #pragma omp parallel for default(none) shared(delta_time)
     for(auto const &leaf_e_block: this->eblocks) {
         forces_tree->RemoveEBlock(leaf_e_block);
-        leaf_e_block->Update(this->min_coord, this->max_coord, this->min_coord, this->max_coord, this->min_coord, this->max_coord, delta_time);
+        leaf_e_block->Update(this->min_coord_x, this->max_coord_x, this->min_coord_y, this->max_coord_y, this->min_coord_z, this->max_coord_z, delta_time);
         Octree * new_leaf = tree->AddBlock(leaf_e_block);
         block_to_leaf[leaf_e_block] = new_leaf;
         forces_tree->AddEBlock(leaf_e_block);
@@ -232,7 +251,7 @@ void WorldHandler::Update(vector<Contact> &contact_list, real delta_time) {
 #pragma omp parallel for default(none) shared(delta_time)
     for(auto const &leaf_z_block: this->zblocks) {
         forces_tree->RemoveZBlock(leaf_z_block);
-        leaf_z_block->Update(this->min_coord, this->max_coord, this->min_coord, this->max_coord, this->min_coord, this->max_coord, delta_time);
+        leaf_z_block->Update(this->min_coord_x, this->max_coord_x, this->min_coord_y, this->max_coord_y, this->min_coord_z, this->max_coord_z, delta_time);
         Octree * new_leaf = tree->AddBlock(leaf_z_block);
         block_to_leaf[leaf_z_block] = new_leaf;
         forces_tree->AddZBlock(leaf_z_block);

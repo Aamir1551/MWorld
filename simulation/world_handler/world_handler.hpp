@@ -28,8 +28,8 @@ using namespace blocks;
 class WorldHandler {
 
 private:
-    void static GetProperties(int num_blocks, std::vector<Matrix> *&positions, std::vector<Matrix> * &linear_momentums, real min_coord, real max_coord);
-    std::vector<Matrix> static *GeneratePositions(int num_cubes, real min_coord, real max_coord);
+    void static GetProperties(int num_blocks, std::vector<Matrix> *&positions, std::vector<Matrix> * &linear_momentums, real min_coord_x, real max_coord_x,  real min_coord_y, real max_coord_y,  real min_coord_z, real max_coord_z);
+    std::vector<Matrix> static *GeneratePositions(int num_cubes, real min_coord_x, real max_coord_x, real min_coord_y, real max_coord_y, real min_coord_z, real max_coord_z);
     std::vector<Matrix> static *GenerateLinearMomentums(int num_cubes);
     void static PassBlockFlares(vector<Contact> &contacts, real deltatime);
     void static PassFlare(Block *a, Block *b, real deltatime);
@@ -55,17 +55,19 @@ public:
     Octree *tree;
     ForceOctree *forces_tree;
     vector<Block *> blocks;
-    real world_size;
     real cube_length;
-    real min_coord;
-    real max_coord;
+    real min_coord_x;
+    real max_coord_x;
+    real min_coord_y;
+    real max_coord_y;
+    real min_coord_z;
+    real max_coord_z;
     map<Block*, Octree*> block_to_leaf; // This type is only needed for when checking for collision in n^2 fashion
     vector<omp_lock_t> collision_locks;
 
-
     enum BlockTypes {IBlockType, MBlockType, EBlockType, ZBlockType};
 
-    WorldHandler(int num_i_blocks_plus, int num_i_blocks_neg, int num_z_blocks, int num_m_blocks, int num_e_blocks_1, int num_e_blocks_1_2, real min_coord = - 50, real max_coord = 50, real cube_length = 4.0f);
+    WorldHandler(int num_i_blocks_plus, int num_i_blocks_neg, int num_z_blocks, int num_m_blocks, int num_e_blocks_1, int num_e_blocks_1_2, real min_coord_x = -50, real max_coord_x = 50, real min_coord_y = -50, real max_coord_y = 50, real min_coord_z = -50, real max_coord_z = 50, real cube_length = 4.0f);
 
     void ResetTrees();
 
