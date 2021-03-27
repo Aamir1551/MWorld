@@ -25,7 +25,7 @@ for i in world_size_max_z:
     for j in num_blocks_space:
         i = str(i)
         j = str(j)
-        result = subprocess.run(["valgrind", "--tool=massif", "./build/simulation/environment/simulation", "10", j, j, j, j, j, j,
+        result = subprocess.run(["valgrind", "--tool=massif", "--time-unit=B", "--stacks=yes", "./build/simulation/environment/simulation", "10", j, j, j, j, j, j,
                                  world_size_min_x, world_size_max_x, world_size_min_y, world_size_max_y, world_size_min_z,
                                  i], stdout=subprocess.PIPE).stdout.decode('utf-8')
         f.write(result)
