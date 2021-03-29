@@ -3,3 +3,4 @@ buildmake/
 .vscode/
 .out/
 .vs/
+cmake-build-debug/

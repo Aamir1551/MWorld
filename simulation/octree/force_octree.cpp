@@ -241,8 +241,8 @@ void ForceOctree::CalculateCOMonTree() {
     CalculateCOMS();
     int num_blocks_count = zblocks_at_cell_count + eblocks_at_cell_count + iblocks_at_cell_neg_count + iblocks_at_cell_plus_count + mblocks_at_cell_neg_count + mblocks_at_cell_plus_count;
     if(num_blocks_count > 0 && !this->is_leaf) {
-        for(int i=0; i<8; i++){
-            this->children[i]->CalculateCOMonTree();
+        for(auto & i : this->children){
+            i->CalculateCOMonTree();
         }
     }
 };
@@ -253,8 +253,8 @@ void ForceOctree::ApplyBarnesHutOnBlock(Block *b, real delta_time) {
     //this->count += 1;
     bool recurse = b->ReactBarnesHut(this, delta_time);
     if(recurse) {
-        for(int i=0; i<8; i++) {
-            this->children[i]->ApplyBarnesHutOnBlock(b, delta_time);
+        for(auto & i : this->children) {
+            i->ApplyBarnesHutOnBlock(b, delta_time);
         }
     }
 }
