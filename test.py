@@ -7,7 +7,8 @@ world_size_max_x = "100"
 world_size_min_y = "0"
 world_size_max_y = "100"
 world_size_min_z = "0"
-world_size_max_z = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
+world_size_max_z = "100"
+world_sizes = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
 
 
 f = open("TestTimings.txt", "a")
@@ -15,19 +16,19 @@ for i in num_blocks:
     i = str(i)
     result = subprocess.run(["./build/simulation/environment/simulation", "10", i, i, i, i, i, i,
                          world_size_min_x, world_size_max_x, world_size_min_y, world_size_max_y, world_size_min_z,
-                         str(world_size_max_z[0])], stdout=subprocess.PIPE).stdout.decode('utf-8')
+                         world_size_max_z], stdout=subprocess.PIPE).stdout.decode('utf-8')
     f.write(result)
 f.close()
 
 
 """
 f = open("spaceTimings.txt", "a")
-for i in world_size_max_z:
+for i in world_sizes:
     for j in num_blocks_space:
         i = str(i)
         j = str(j)
         result = subprocess.run(["valgrind", "--tool=massif", "--time-unit=B", "--stacks=yes", "./build/simulation/environment/simulation", "10", j, j, j, j, j, j,
-                                 world_size_min_x, world_size_max_x, world_size_min_y, world_size_max_y, world_size_min_z,
+                                 world_size_min_x, i, world_size_min_y, i, world_size_min_z,
                                  i], stdout=subprocess.PIPE).stdout.decode('utf-8')
         f.write(result)
 
