@@ -197,7 +197,7 @@ void WorldHandler::Update(vector<Contact> &contact_list, real delta_time) {
 
 #pragma omp parallel for default(none) shared(contact_list)
     for(auto & i : contact_list) {
-#pragma omp critical
+//#pragma omp critical -- this shouldn't really be here???
         {
             Cube::CollisionResolution(i);
         }
