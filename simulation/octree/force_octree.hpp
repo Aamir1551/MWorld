@@ -25,8 +25,6 @@ namespace blocks {
 
         int grid_size;
 
-        std::map<ForceOctree *, vector<ForceOctree *> > grid_elements_neighbours;
-
         real min_x = 0, max_x = 0, min_y = 0, max_y = 0, min_z = 0, max_z = 0;
         real avg_x = 0, avg_y = 0, avg_z = 0;
         Matrix sum_i_plus,  sum_i_neg, sum_z, sum_m_plus, sum_m_neg, sum_e;
