@@ -368,50 +368,12 @@ WorldHandler::~WorldHandler() {
 
 }
 
-
-#if defined(OPENMP)
-template<typename T>
-std::unordered_set<T> WorldHandler::VecToSetParallel(vector<T> v) {
-    float p = min(omp_get_max_threads(), (int) v.size()); // need to ensure the data is more than the number of threads
-    unordered_set<T> local_set[(int) p];
-
-    int local_size = std::ceil(v.size()/p);
-#pragma omp parallel for
-    for(int i=0; i<p; i++){
-        for(int j=i*local_size; j<min(local_size * (i+1), (int) v.size()); j++) {
-            local_set[i].insert(v.at(j));
-        }
-    }
-
-    int num_threads_distributed_across = p; // p=4
-    for(int i=0; i<ceil(log(p)); i++) { // 2 {0, 1}
-        int t = floor(num_threads_distributed_across/2);
-#pragma omp parallel for
-        for(int j=0; j<t; j++) { // 2 {0, 1}
-            for(const auto&elem : local_set[((int) floor(num_threads_distributed_across/2)) + j]) {
-                local_set[j].insert(elem);
-            }
-            if(j == floor(num_threads_distributed_across/2)-1){
-                if(num_threads_distributed_across % 2 == 1) {
-                    for(const auto&elem : local_set[t + j + 1]) {
-                        local_set[j].insert(elem);
-                    }
-                }
-            }
-        }
-        num_threads_distributed_across = floor(num_threads_distributed_across/2);
-    }
-    return local_set[0];
-}
-#endif
-
-
-
 #if defined(OPENMP)
 std::unordered_set<CollisionOctree *> WorldHandler::GetBlockPositionsParallel() {
     // A separate one has been made for getting positions, since blocks could be clustered close together, so we may be able to take advantage of some spacial structure of the blocks
     float p = min(omp_get_max_threads(), (int) this->blocks.size()); // need to ensure the data is more than the number of threads
-    unordered_set<CollisionOctree*> local_set[(int) p];
+
+    unordered_set<CollisionOctree*> local_set[(int) p]; // An array of sets, where each index in the array is the local_set of a single thread
 
     int local_size = std::ceil(this->blocks.size()/p);
 #pragma omp parallel for default(none) shared(p, local_size, local_set)
@@ -421,11 +383,13 @@ std::unordered_set<CollisionOctree *> WorldHandler::GetBlockPositionsParallel() 
         }
     }
 
-    int num_threads_distributed_across = p; // p=4
-    for(int i=0; i<ceil(log(p)); i++) { // 2 {0, 1}
+    int num_threads_distributed_across = p;
+
+    // We merge the sets together as we reduce to a single thread that will finally store every leaf.
+    for(int i=0; i<ceil(log(p)); i++) {
         int t = floor(num_threads_distributed_across/2);
 #pragma omp parallel for default(none) shared(num_threads_distributed_across, local_set, t)
-        for(int j=0; j<t; j++) { // 2 {0, 1}
+        for(int j=0; j<t; j++) {
             for(const auto&elem : local_set[((int) floor(num_threads_distributed_across/2)) + j]) {
                 local_set[j].insert(elem);
             }
@@ -497,6 +461,9 @@ vector<Contact> WorldHandler::CollisionHandlerWithOctree() {
 
     vector<Contact> collisions;
 
+    /* We loop edges of the DAG, where the edges of the DAG represent a tuple (N1, N2). We then
+    compute collisions of all blocks (A, B), such that A resides in the Node N1 and B resides in the node N2
+    */
 #pragma omp parallel for default(none) shared(edges, collisions)
     for(auto const &edge: edges) {
         CollisionOctree *o1 = edge.first;
@@ -513,13 +480,14 @@ vector<Contact> WorldHandler::CollisionHandlerWithOctree() {
         }
     }
 
-    vector<CollisionOctree *> bb;
+    // We now compute collisions of blocks with other blocks that share the same leaf
+    vector<CollisionOctree *> single_leaves;
     for(auto const &p: pos) {
-        bb.push_back(p);
+        single_leaves.push_back(p);
     }
 
-#pragma omp parallel for default(none) shared(pos, collisions, bb)
-    for(auto const &p: bb) {
+#pragma omp parallel for default(none) shared(pos, collisions, single_leaves)
+    for(auto const &p: single_leaves) {
         vector<Block *> v;
         for(auto const &b : p->blocks_at_leaf) {
             v.push_back(b);

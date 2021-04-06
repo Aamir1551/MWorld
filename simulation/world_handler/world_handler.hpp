@@ -58,9 +58,6 @@ private:
 
 
 #if defined(OPENMP)
-    template<typename T>
-    std::unordered_set<T> static VecToSetParallel(vector<T> v);
-
     // Returns a set of all the leaves that are currently preoccupied by the blocks in the world. This function
     // calculates this in parallel using multiple threads.
     std::unordered_set<CollisionOctree*> GetBlockPositionsParallel();
