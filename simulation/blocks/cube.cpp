@@ -154,15 +154,15 @@ namespace blocks {
             Contact contact_info = {point, length - dist, vect_dist, c1, c2};
 
 
-            //int a = max(c1->block_id, c2->block_id);
-            //int b = min(c1->block_id, c2->block_id);
+            //int a = max(c1->kBlockID, c2->kBlockID);
+            //int b = min(c1->kBlockID, c2->kBlockID);
 
-            //omp_set_lock(min(&partial_locks[c1->block_id], &partial_locks[c2->block_id]));
-            //omp_set_lock(max(&partial_locks[c1->block_id], &partial_locks[c2->block_id]));
+            //omp_set_lock(min(&partial_locks[c1->kBlockID], &partial_locks[c2->kBlockID]));
+            //omp_set_lock(max(&partial_locks[c1->kBlockID], &partial_locks[c2->kBlockID]));
             //cout << "came here" << endl;
 #if defined(OPENMP)
-            omp_set_lock(&partial_locks[min(c1->block_id, c2->block_id)]);
-            omp_set_lock(&partial_locks[max(c1->block_id, c2->block_id)]);
+            omp_set_lock(&partial_locks[min(c1->kBlockID, c2->kBlockID)]);
+            omp_set_lock(&partial_locks[max(c1->kBlockID, c2->kBlockID)]);
 #endif
 #pragma omp critical (OUTER)
             {
@@ -170,8 +170,8 @@ namespace blocks {
             }
 
 #if defined(OPENMP)
-            omp_unset_lock(&partial_locks[min(c1->block_id, c2->block_id)]);
-            omp_unset_lock(&partial_locks[max(c1->block_id, c2->block_id)]);
+            omp_unset_lock(&partial_locks[min(c1->kBlockID, c2->kBlockID)]);
+            omp_unset_lock(&partial_locks[max(c1->kBlockID, c2->kBlockID)]);
 #endif
 
         }

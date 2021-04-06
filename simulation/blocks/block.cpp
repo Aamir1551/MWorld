@@ -16,7 +16,7 @@ namespace blocks {
         this->angular_momentum = angular_momentum;
     }
 
-    bool Block::ApplyForceFromBlock(ForceOctree* tree, int cell_count, const Matrix &com, Matrix &inc_force) {
+    bool Block::ApplyForceFromTreeNode(ForceOctree* tree, int cell_count, const Matrix &com, Matrix &inc_force) {
 
         if(cell_count != 0) {
             Matrix vec_to_tree_com = com - this->position;

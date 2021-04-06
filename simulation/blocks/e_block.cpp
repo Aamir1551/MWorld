@@ -32,7 +32,7 @@ namespace blocks {
         }
 
         Matrix inc_force = Matrix(3, 1);
-        bool recurse = ApplyForceFromBlock(tree, tree->eblocks_at_cell_count, tree->com_e, inc_force);
+        bool recurse = ApplyForceFromTreeNode(tree, tree->eblocks_at_cell_count, tree->com_e, inc_force);
         if (recurse == false) {
             this->AddLinearForce(inc_force * 1 , delta_time);
             return false;

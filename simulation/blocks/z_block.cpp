@@ -15,10 +15,10 @@ namespace blocks {
         }
 
         Matrix inc_force = Matrix(3, 1);
-        bool recurse = ApplyForceFromBlock(tree, tree->zblocks_at_cell_count, tree->com_z, inc_force);
+        bool recurse = ApplyForceFromTreeNode(tree, tree->zblocks_at_cell_count, tree->com_z, inc_force);
         if (recurse == false) {
-            recurse = ApplyForceFromBlock(tree, tree->mblocks_at_cell_plus_count, tree->com_m_plus,
-                                          inc_force);
+            recurse = ApplyForceFromTreeNode(tree, tree->mblocks_at_cell_plus_count, tree->com_m_plus,
+                                             inc_force);
         }
         if (!recurse) {
             this->AddLinearForce(inc_force, delta_time);

@@ -32,7 +32,7 @@ namespace blocks {
               return false;
            }
            Matrix inc_force = Matrix(3, 1);
-           bool recurse = ApplyForceFromBlock(tree, tree->iblocks_at_cell_plus_count, tree->com_i_plus, inc_force);
+           bool recurse = ApplyForceFromTreeNode(tree, tree->iblocks_at_cell_plus_count, tree->com_i_plus, inc_force);
            if (!recurse) {
                this->AddLinearForce(inc_force * -1, delta_time);
                return false;
@@ -44,7 +44,7 @@ namespace blocks {
                 return false;
             }
             Matrix inc_force = Matrix(3, 1);
-            bool recurse = ApplyForceFromBlock(tree, tree->iblocks_at_cell_neg_count, tree->com_i_neg, inc_force);
+            bool recurse = ApplyForceFromTreeNode(tree, tree->iblocks_at_cell_neg_count, tree->com_i_neg, inc_force);
             if (!recurse) {
                 this->AddLinearForce(inc_force * -1, delta_time);
                 return false;
