@@ -19,7 +19,7 @@ namespace blocks {
     {
         numerics::Matrix point;     //collision point
         settings::real penetration; //The amount of penetration
-        Matrix normal;         // The contact normal // =-1
+        Matrix normal;              // The contact normal // =-1
         Block *body1;                //The body pointer of the first cube //=nullptr
         Block *body2;                //The body pointer of the second cube //=nullptr
     };
