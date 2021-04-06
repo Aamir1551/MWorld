@@ -38,10 +38,6 @@ class CollisionOctree : public Octree {
 
         static int count;
 
-        bool static BlockInCorrectTree(CollisionOctree *tree, Block *b);
-
-        std::vector<CollisionOctree *> GenerateNeigbours(real x, real y, real z, real partition_min_x, real partition_min_y, real partition_min_z);
-
         void AddGridAtPosToVec(real x, real y, real z, vector<CollisionOctree *> &octree_list);
 
         CollisionOctree *GetGridAtPos(real x, real y, real z);
@@ -49,6 +45,9 @@ class CollisionOctree : public Octree {
         bool LeafsAreNull();
         ~CollisionOctree();
 
-    };
+private:
+    std::vector<CollisionOctree *> GenerateNeigbours(real x, real y, real z, real partition_min_x, real partition_min_y, real partition_min_z);
+
+};
 }
 #endif

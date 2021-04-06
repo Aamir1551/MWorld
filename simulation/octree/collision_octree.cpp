@@ -178,17 +178,6 @@ bool CollisionOctree::LeafsAreNull() {
     return true;
 }
 
-bool CollisionOctree::BlockInCorrectTree(CollisionOctree *tree, Block *b) {
-
-    real x = b->position(0,0);
-    real y = b->position(1,0);
-    real z = b->position(2,0);
-    if(tree->min_x <= x && tree->max_x >= x && tree->min_y <= y && tree->max_y >= y && tree->min_z <= z && tree->max_z >= z) {
-        return true;
-    }
-    return false;
-}
-
 int CollisionOctree::count = 0;
 
 CollisionOctree::~CollisionOctree() {

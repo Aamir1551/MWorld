@@ -298,18 +298,6 @@ ForceOctree::ForceOctree(int grid_size, real min_x, real  max_x, real min_y, rea
     }
 }
 
-bool ForceOctree::BlockInCorrectTree(ForceOctree *tree, Block *b) {
-
-    real x = b->position(0,0);
-    real y = b->position(1,0);
-    real z = b->position(2,0);
-    if(tree->min_x <= x && tree->max_x >= x && tree->min_y <= y && tree->max_y >= y && tree->min_z <= z && tree->max_z >= z) {
-        return true;
-    }
-    return false;
-
-}
-
 ForceOctree::~ForceOctree() {
     if(!this->is_leaf) {
         for(auto & i : children) {
