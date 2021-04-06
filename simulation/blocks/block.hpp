@@ -11,6 +11,7 @@ namespace blocks {
     class ZBlock;
     class Cube;
     class Octree;
+    class CollisionOctree;
     class ForceOctree;
 
     class Block : public Cube {

@@ -2,7 +2,7 @@
  && ./simulation.exe 60 500 && ./simulation.exe 60 600 && ./simulation.exe 60 700 && ./simulation.exe 60 800 && ./simulation.exe 60 900 && ./simulation.exe 60 1000
 
 world size = -50 to 50
-Parallel with Octree + BarnesHut:
+Parallel with CollisionOctree + BarnesHut:
 blocks : FPS
 10     : 522.241
 20     : 292.554
@@ -19,7 +19,7 @@ blocks : FPS
 1000   : 2.90142
 
 
-Parallel without Octree:
+Parallel without CollisionOctree:
 10     : 675.111
 20     : 310.896
 50     : 103.499
@@ -51,7 +51,7 @@ Parallel without Barnes Hut:
 1000   : 0.638825
 
 
-Serial + Octree + barnesHut:
+Serial + CollisionOctree + barnesHut:
 blocks : FPS
 10     : 884.121
 20     : 300.518
@@ -67,7 +67,7 @@ blocks : FPS
 900    : 1.31109
 1000   : 1.14769
 
-Serial without Octree
+Serial without CollisionOctree
 10     : 865.49
 20     : 257.92
 50     : 51.6865

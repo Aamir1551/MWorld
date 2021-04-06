@@ -960,13 +960,46 @@ build simulation/octree/liboctree.a: CXX_STATIC_LIBRARY_LINKER__octree_Debug sim
   TARGET_PDB = octree.a.dbg
 
 # =============================================================================
+# Object build statements for STATIC_LIBRARY target collision_octree
+
+
+#############################################
+# Order-only phony target for collision_octree
+
+build cmake_object_order_depends_target_collision_octree: phony || cmake_object_order_depends_target_blocks cmake_object_order_depends_target_linear_alg cmake_object_order_depends_target_octree cmake_object_order_depends_target_quaternion cmake_object_order_depends_target_utils
+
+build simulation/octree/CMakeFiles/collision_octree.dir/collision_octree.cpp.obj: CXX_COMPILER__collision_octree_Debug ../simulation/octree/collision_octree.cpp || cmake_object_order_depends_target_collision_octree
+  DEFINES = -DOPENMP=1
+  DEP_FILE = simulation\octree\CMakeFiles\collision_octree.dir\collision_octree.cpp.obj.d
+  FLAGS = -Wall -fopenmp -std=c++11 -g   -std=gnu++11
+  INCLUDES = -I../simulation/octree/. -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../simulation/blocks -I../simulation/blocks/../octree -I../utils/util_functions/.
+  OBJECT_DIR = simulation\octree\CMakeFiles\collision_octree.dir
+  OBJECT_FILE_DIR = simulation\octree\CMakeFiles\collision_octree.dir
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target collision_octree
+
+
+#############################################
+# Link the static library simulation\octree\libcollision_octree.a
+
+build simulation/octree/libcollision_octree.a: CXX_STATIC_LIBRARY_LINKER__collision_octree_Debug simulation/octree/CMakeFiles/collision_octree.dir/collision_octree.cpp.obj || numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a simulation/blocks/libblocks.a simulation/octree/liboctree.a utils/util_functions/libutils.a
+  LANGUAGE_COMPILE_FLAGS = -Wall -fopenmp -std=c++11 -g
+  OBJECT_DIR = simulation\octree\CMakeFiles\collision_octree.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = simulation\octree\libcollision_octree.a
+  TARGET_PDB = collision_octree.a.dbg
+
+# =============================================================================
 # Object build statements for STATIC_LIBRARY target force_octree
 
 
 #############################################
 # Order-only phony target for force_octree
 
-build cmake_object_order_depends_target_force_octree: phony || cmake_object_order_depends_target_blocks cmake_object_order_depends_target_linear_alg cmake_object_order_depends_target_quaternion cmake_object_order_depends_target_utils
+build cmake_object_order_depends_target_force_octree: phony || cmake_object_order_depends_target_blocks cmake_object_order_depends_target_linear_alg cmake_object_order_depends_target_octree cmake_object_order_depends_target_quaternion cmake_object_order_depends_target_utils
 
 build simulation/octree/CMakeFiles/force_octree.dir/force_octree.cpp.obj: CXX_COMPILER__force_octree_Debug ../simulation/octree/force_octree.cpp || cmake_object_order_depends_target_force_octree
   DEFINES = -DOPENMP=1
@@ -984,7 +1017,7 @@ build simulation/octree/CMakeFiles/force_octree.dir/force_octree.cpp.obj: CXX_CO
 #############################################
 # Link the static library simulation\octree\libforce_octree.a
 
-build simulation/octree/libforce_octree.a: CXX_STATIC_LIBRARY_LINKER__force_octree_Debug simulation/octree/CMakeFiles/force_octree.dir/force_octree.cpp.obj || numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a simulation/blocks/libblocks.a utils/util_functions/libutils.a
+build simulation/octree/libforce_octree.a: CXX_STATIC_LIBRARY_LINKER__force_octree_Debug simulation/octree/CMakeFiles/force_octree.dir/force_octree.cpp.obj || numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a simulation/blocks/libblocks.a simulation/octree/liboctree.a utils/util_functions/libutils.a
   LANGUAGE_COMPILE_FLAGS = -Wall -fopenmp -std=c++11 -g
   OBJECT_DIR = simulation\octree\CMakeFiles\force_octree.dir
   POST_BUILD = cd .
@@ -1038,7 +1071,7 @@ build simulation/world_handler/edit_cache: phony simulation/world_handler/CMakeF
 #############################################
 # Order-only phony target for world_handler
 
-build cmake_object_order_depends_target_world_handler: phony || cmake_object_order_depends_target_blocks cmake_object_order_depends_target_force_octree cmake_object_order_depends_target_linear_alg cmake_object_order_depends_target_octree cmake_object_order_depends_target_quaternion cmake_object_order_depends_target_utils
+build cmake_object_order_depends_target_world_handler: phony || cmake_object_order_depends_target_blocks cmake_object_order_depends_target_collision_octree cmake_object_order_depends_target_force_octree cmake_object_order_depends_target_linear_alg cmake_object_order_depends_target_octree cmake_object_order_depends_target_quaternion cmake_object_order_depends_target_utils
 
 build simulation/world_handler/CMakeFiles/world_handler.dir/world_handler.cpp.obj: CXX_COMPILER__world_handler_Debug ../simulation/world_handler/world_handler.cpp || cmake_object_order_depends_target_world_handler
   DEFINES = -DOPENMP=1
@@ -1056,7 +1089,7 @@ build simulation/world_handler/CMakeFiles/world_handler.dir/world_handler.cpp.ob
 #############################################
 # Link the static library simulation\world_handler\libworld_handler.a
 
-build simulation/world_handler/libworld_handler.a: CXX_STATIC_LIBRARY_LINKER__world_handler_Debug simulation/world_handler/CMakeFiles/world_handler.dir/world_handler.cpp.obj || numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a simulation/blocks/libblocks.a simulation/octree/libforce_octree.a simulation/octree/liboctree.a utils/util_functions/libutils.a
+build simulation/world_handler/libworld_handler.a: CXX_STATIC_LIBRARY_LINKER__world_handler_Debug simulation/world_handler/CMakeFiles/world_handler.dir/world_handler.cpp.obj || numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a simulation/blocks/libblocks.a simulation/octree/libcollision_octree.a simulation/octree/libforce_octree.a simulation/octree/liboctree.a utils/util_functions/libutils.a
   LANGUAGE_COMPILE_FLAGS = -Wall -fopenmp -std=c++11 -g
   OBJECT_DIR = simulation\world_handler\CMakeFiles\world_handler.dir
   POST_BUILD = cd .
@@ -1088,7 +1121,7 @@ build simulation/world_handler/rebuild_cache: phony simulation/world_handler/CMa
 #############################################
 # Order-only phony target for simulation
 
-build cmake_object_order_depends_target_simulation: phony || cmake_object_order_depends_target_block_renderer cmake_object_order_depends_target_blocks cmake_object_order_depends_target_cube_renderer cmake_object_order_depends_target_force_octree cmake_object_order_depends_target_glad cmake_object_order_depends_target_linear_alg cmake_object_order_depends_target_mworld_render_utils cmake_object_order_depends_target_octree cmake_object_order_depends_target_quaternion cmake_object_order_depends_target_utils cmake_object_order_depends_target_world_handler
+build cmake_object_order_depends_target_simulation: phony || cmake_object_order_depends_target_block_renderer cmake_object_order_depends_target_blocks cmake_object_order_depends_target_collision_octree cmake_object_order_depends_target_cube_renderer cmake_object_order_depends_target_force_octree cmake_object_order_depends_target_glad cmake_object_order_depends_target_linear_alg cmake_object_order_depends_target_mworld_render_utils cmake_object_order_depends_target_octree cmake_object_order_depends_target_quaternion cmake_object_order_depends_target_utils cmake_object_order_depends_target_world_handler
 
 build simulation/environment/CMakeFiles/simulation.dir/simulation.cpp.obj: CXX_COMPILER__simulation_Debug ../simulation/environment/simulation.cpp || cmake_object_order_depends_target_simulation
   DEFINES = -DGLFW_ON=1 -DOPENMP=1
@@ -1114,9 +1147,9 @@ build simulation/environment/CMakeFiles/simulation.dir/__/__/render/utils/world_
 #############################################
 # Link the executable simulation\environment\simulation.exe
 
-build simulation/environment/simulation.exe: CXX_EXECUTABLE_LINKER__simulation_Debug simulation/environment/CMakeFiles/simulation.dir/simulation.cpp.obj simulation/environment/CMakeFiles/simulation.dir/__/__/render/utils/world_initializer.cpp.obj | numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a utils/util_functions/libutils.a simulation/blocks/libblocks.a simulation/world_handler/libworld_handler.a render/block_renderer/libblock_renderer.a render/cube_renderer/libcube_renderer.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a render/utils/libmworld_render_utils.a simulation/octree/liboctree.a simulation/octree/libforce_octree.a simulation/blocks/libblocks.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a utils/util_functions/libutils.a numerics/quaternion/libquaternion.a numerics/linear_alg/liblinear_alg.a || lib/glad/libglad.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/block_renderer/libblock_renderer.a render/cube_renderer/libcube_renderer.a render/utils/libmworld_render_utils.a simulation/blocks/libblocks.a simulation/octree/libforce_octree.a simulation/octree/liboctree.a simulation/world_handler/libworld_handler.a utils/util_functions/libutils.a
+build simulation/environment/simulation.exe: CXX_EXECUTABLE_LINKER__simulation_Debug simulation/environment/CMakeFiles/simulation.dir/simulation.cpp.obj simulation/environment/CMakeFiles/simulation.dir/__/__/render/utils/world_initializer.cpp.obj | numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a utils/util_functions/libutils.a simulation/blocks/libblocks.a simulation/world_handler/libworld_handler.a render/block_renderer/libblock_renderer.a render/cube_renderer/libcube_renderer.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a render/utils/libmworld_render_utils.a simulation/octree/libcollision_octree.a simulation/octree/libforce_octree.a simulation/octree/liboctree.a simulation/blocks/libblocks.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a utils/util_functions/libutils.a numerics/quaternion/libquaternion.a numerics/linear_alg/liblinear_alg.a || lib/glad/libglad.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/block_renderer/libblock_renderer.a render/cube_renderer/libcube_renderer.a render/utils/libmworld_render_utils.a simulation/blocks/libblocks.a simulation/octree/libcollision_octree.a simulation/octree/libforce_octree.a simulation/octree/liboctree.a simulation/world_handler/libworld_handler.a utils/util_functions/libutils.a
   FLAGS = -Wall -fopenmp -std=c++11 -g
-  LINK_LIBRARIES = numerics/linear_alg/liblinear_alg.a  numerics/quaternion/libquaternion.a  numerics/linear_alg/liblinear_alg.a  numerics/quaternion/libquaternion.a  utils/util_functions/libutils.a  simulation/blocks/libblocks.a  simulation/world_handler/libworld_handler.a  render/block_renderer/libblock_renderer.a  render/cube_renderer/libcube_renderer.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  render/utils/libmworld_render_utils.a  simulation/octree/liboctree.a  simulation/octree/libforce_octree.a  simulation/blocks/libblocks.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  utils/util_functions/libutils.a  numerics/quaternion/libquaternion.a  numerics/linear_alg/liblinear_alg.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  LINK_LIBRARIES = numerics/linear_alg/liblinear_alg.a  numerics/quaternion/libquaternion.a  numerics/linear_alg/liblinear_alg.a  numerics/quaternion/libquaternion.a  utils/util_functions/libutils.a  simulation/blocks/libblocks.a  simulation/world_handler/libworld_handler.a  render/block_renderer/libblock_renderer.a  render/cube_renderer/libcube_renderer.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  render/utils/libmworld_render_utils.a  simulation/octree/libcollision_octree.a  simulation/octree/libforce_octree.a  simulation/octree/liboctree.a  simulation/blocks/libblocks.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  utils/util_functions/libutils.a  numerics/quaternion/libquaternion.a  numerics/linear_alg/liblinear_alg.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = simulation\environment\CMakeFiles\simulation.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -1131,7 +1164,7 @@ build simulation/environment/simulation.exe: CXX_EXECUTABLE_LINKER__simulation_D
 #############################################
 # Order-only phony target for or_gate_test
 
-build cmake_object_order_depends_target_or_gate_test: phony || cmake_object_order_depends_target_block_renderer cmake_object_order_depends_target_blocks cmake_object_order_depends_target_cube_renderer cmake_object_order_depends_target_force_octree cmake_object_order_depends_target_glad cmake_object_order_depends_target_linear_alg cmake_object_order_depends_target_mworld_render_utils cmake_object_order_depends_target_octree cmake_object_order_depends_target_quaternion cmake_object_order_depends_target_utils cmake_object_order_depends_target_world_handler
+build cmake_object_order_depends_target_or_gate_test: phony || cmake_object_order_depends_target_block_renderer cmake_object_order_depends_target_blocks cmake_object_order_depends_target_collision_octree cmake_object_order_depends_target_cube_renderer cmake_object_order_depends_target_force_octree cmake_object_order_depends_target_glad cmake_object_order_depends_target_linear_alg cmake_object_order_depends_target_mworld_render_utils cmake_object_order_depends_target_octree cmake_object_order_depends_target_quaternion cmake_object_order_depends_target_utils cmake_object_order_depends_target_world_handler
 
 build simulation/environment/CMakeFiles/or_gate_test.dir/or_gate_test.cpp.obj: CXX_COMPILER__or_gate_test_Debug ../simulation/environment/or_gate_test.cpp || cmake_object_order_depends_target_or_gate_test
   DEFINES = -DOPENMP=1
@@ -1157,9 +1190,9 @@ build simulation/environment/CMakeFiles/or_gate_test.dir/__/__/render/utils/worl
 #############################################
 # Link the executable simulation\environment\or_gate_test.exe
 
-build simulation/environment/or_gate_test.exe: CXX_EXECUTABLE_LINKER__or_gate_test_Debug simulation/environment/CMakeFiles/or_gate_test.dir/or_gate_test.cpp.obj simulation/environment/CMakeFiles/or_gate_test.dir/__/__/render/utils/world_initializer.cpp.obj | numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a utils/util_functions/libutils.a simulation/blocks/libblocks.a simulation/world_handler/libworld_handler.a render/block_renderer/libblock_renderer.a render/cube_renderer/libcube_renderer.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a render/utils/libmworld_render_utils.a simulation/octree/liboctree.a simulation/octree/libforce_octree.a simulation/blocks/libblocks.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a utils/util_functions/libutils.a numerics/quaternion/libquaternion.a numerics/linear_alg/liblinear_alg.a || lib/glad/libglad.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/block_renderer/libblock_renderer.a render/cube_renderer/libcube_renderer.a render/utils/libmworld_render_utils.a simulation/blocks/libblocks.a simulation/octree/libforce_octree.a simulation/octree/liboctree.a simulation/world_handler/libworld_handler.a utils/util_functions/libutils.a
+build simulation/environment/or_gate_test.exe: CXX_EXECUTABLE_LINKER__or_gate_test_Debug simulation/environment/CMakeFiles/or_gate_test.dir/or_gate_test.cpp.obj simulation/environment/CMakeFiles/or_gate_test.dir/__/__/render/utils/world_initializer.cpp.obj | numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a utils/util_functions/libutils.a simulation/blocks/libblocks.a simulation/world_handler/libworld_handler.a render/block_renderer/libblock_renderer.a render/cube_renderer/libcube_renderer.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a render/utils/libmworld_render_utils.a simulation/octree/libcollision_octree.a simulation/octree/libforce_octree.a simulation/octree/liboctree.a simulation/blocks/libblocks.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a utils/util_functions/libutils.a numerics/quaternion/libquaternion.a numerics/linear_alg/liblinear_alg.a || lib/glad/libglad.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/block_renderer/libblock_renderer.a render/cube_renderer/libcube_renderer.a render/utils/libmworld_render_utils.a simulation/blocks/libblocks.a simulation/octree/libcollision_octree.a simulation/octree/libforce_octree.a simulation/octree/liboctree.a simulation/world_handler/libworld_handler.a utils/util_functions/libutils.a
   FLAGS = -Wall -fopenmp -std=c++11 -g
-  LINK_LIBRARIES = numerics/linear_alg/liblinear_alg.a  numerics/quaternion/libquaternion.a  numerics/linear_alg/liblinear_alg.a  numerics/quaternion/libquaternion.a  utils/util_functions/libutils.a  simulation/blocks/libblocks.a  simulation/world_handler/libworld_handler.a  render/block_renderer/libblock_renderer.a  render/cube_renderer/libcube_renderer.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  render/utils/libmworld_render_utils.a  simulation/octree/liboctree.a  simulation/octree/libforce_octree.a  simulation/blocks/libblocks.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  utils/util_functions/libutils.a  numerics/quaternion/libquaternion.a  numerics/linear_alg/liblinear_alg.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  LINK_LIBRARIES = numerics/linear_alg/liblinear_alg.a  numerics/quaternion/libquaternion.a  numerics/linear_alg/liblinear_alg.a  numerics/quaternion/libquaternion.a  utils/util_functions/libutils.a  simulation/blocks/libblocks.a  simulation/world_handler/libworld_handler.a  render/block_renderer/libblock_renderer.a  render/cube_renderer/libcube_renderer.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  render/utils/libmworld_render_utils.a  simulation/octree/libcollision_octree.a  simulation/octree/libforce_octree.a  simulation/octree/liboctree.a  simulation/blocks/libblocks.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  utils/util_functions/libutils.a  numerics/quaternion/libquaternion.a  numerics/linear_alg/liblinear_alg.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = simulation\environment\CMakeFiles\or_gate_test.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -1174,7 +1207,7 @@ build simulation/environment/or_gate_test.exe: CXX_EXECUTABLE_LINKER__or_gate_te
 #############################################
 # Order-only phony target for and_gate_test
 
-build cmake_object_order_depends_target_and_gate_test: phony || cmake_object_order_depends_target_block_renderer cmake_object_order_depends_target_blocks cmake_object_order_depends_target_cube_renderer cmake_object_order_depends_target_force_octree cmake_object_order_depends_target_glad cmake_object_order_depends_target_linear_alg cmake_object_order_depends_target_mworld_render_utils cmake_object_order_depends_target_octree cmake_object_order_depends_target_quaternion cmake_object_order_depends_target_utils cmake_object_order_depends_target_world_handler
+build cmake_object_order_depends_target_and_gate_test: phony || cmake_object_order_depends_target_block_renderer cmake_object_order_depends_target_blocks cmake_object_order_depends_target_collision_octree cmake_object_order_depends_target_cube_renderer cmake_object_order_depends_target_force_octree cmake_object_order_depends_target_glad cmake_object_order_depends_target_linear_alg cmake_object_order_depends_target_mworld_render_utils cmake_object_order_depends_target_octree cmake_object_order_depends_target_quaternion cmake_object_order_depends_target_utils cmake_object_order_depends_target_world_handler
 
 build simulation/environment/CMakeFiles/and_gate_test.dir/and_gate_test.cpp.obj: CXX_COMPILER__and_gate_test_Debug ../simulation/environment/and_gate_test.cpp || cmake_object_order_depends_target_and_gate_test
   DEFINES = -DOPENMP=1
@@ -1200,9 +1233,9 @@ build simulation/environment/CMakeFiles/and_gate_test.dir/__/__/render/utils/wor
 #############################################
 # Link the executable simulation\environment\and_gate_test.exe
 
-build simulation/environment/and_gate_test.exe: CXX_EXECUTABLE_LINKER__and_gate_test_Debug simulation/environment/CMakeFiles/and_gate_test.dir/and_gate_test.cpp.obj simulation/environment/CMakeFiles/and_gate_test.dir/__/__/render/utils/world_initializer.cpp.obj | numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a utils/util_functions/libutils.a simulation/blocks/libblocks.a simulation/world_handler/libworld_handler.a render/block_renderer/libblock_renderer.a render/cube_renderer/libcube_renderer.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a render/utils/libmworld_render_utils.a simulation/octree/liboctree.a simulation/octree/libforce_octree.a simulation/blocks/libblocks.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a utils/util_functions/libutils.a numerics/quaternion/libquaternion.a numerics/linear_alg/liblinear_alg.a || lib/glad/libglad.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/block_renderer/libblock_renderer.a render/cube_renderer/libcube_renderer.a render/utils/libmworld_render_utils.a simulation/blocks/libblocks.a simulation/octree/libforce_octree.a simulation/octree/liboctree.a simulation/world_handler/libworld_handler.a utils/util_functions/libutils.a
+build simulation/environment/and_gate_test.exe: CXX_EXECUTABLE_LINKER__and_gate_test_Debug simulation/environment/CMakeFiles/and_gate_test.dir/and_gate_test.cpp.obj simulation/environment/CMakeFiles/and_gate_test.dir/__/__/render/utils/world_initializer.cpp.obj | numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a utils/util_functions/libutils.a simulation/blocks/libblocks.a simulation/world_handler/libworld_handler.a render/block_renderer/libblock_renderer.a render/cube_renderer/libcube_renderer.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a render/utils/libmworld_render_utils.a simulation/octree/libcollision_octree.a simulation/octree/libforce_octree.a simulation/octree/liboctree.a simulation/blocks/libblocks.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a utils/util_functions/libutils.a numerics/quaternion/libquaternion.a numerics/linear_alg/liblinear_alg.a || lib/glad/libglad.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/block_renderer/libblock_renderer.a render/cube_renderer/libcube_renderer.a render/utils/libmworld_render_utils.a simulation/blocks/libblocks.a simulation/octree/libcollision_octree.a simulation/octree/libforce_octree.a simulation/octree/liboctree.a simulation/world_handler/libworld_handler.a utils/util_functions/libutils.a
   FLAGS = -Wall -fopenmp -std=c++11 -g
-  LINK_LIBRARIES = numerics/linear_alg/liblinear_alg.a  numerics/quaternion/libquaternion.a  numerics/linear_alg/liblinear_alg.a  numerics/quaternion/libquaternion.a  utils/util_functions/libutils.a  simulation/blocks/libblocks.a  simulation/world_handler/libworld_handler.a  render/block_renderer/libblock_renderer.a  render/cube_renderer/libcube_renderer.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  render/utils/libmworld_render_utils.a  simulation/octree/liboctree.a  simulation/octree/libforce_octree.a  simulation/blocks/libblocks.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  utils/util_functions/libutils.a  numerics/quaternion/libquaternion.a  numerics/linear_alg/liblinear_alg.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  LINK_LIBRARIES = numerics/linear_alg/liblinear_alg.a  numerics/quaternion/libquaternion.a  numerics/linear_alg/liblinear_alg.a  numerics/quaternion/libquaternion.a  utils/util_functions/libutils.a  simulation/blocks/libblocks.a  simulation/world_handler/libworld_handler.a  render/block_renderer/libblock_renderer.a  render/cube_renderer/libcube_renderer.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  render/utils/libmworld_render_utils.a  simulation/octree/libcollision_octree.a  simulation/octree/libforce_octree.a  simulation/octree/liboctree.a  simulation/blocks/libblocks.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  utils/util_functions/libutils.a  numerics/quaternion/libquaternion.a  numerics/linear_alg/liblinear_alg.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = simulation\environment\CMakeFiles\and_gate_test.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -1229,7 +1262,7 @@ build simulation/environment/rebuild_cache: phony simulation/environment/CMakeFi
 #############################################
 # Order-only phony target for not_gate_test
 
-build cmake_object_order_depends_target_not_gate_test: phony || cmake_object_order_depends_target_block_renderer cmake_object_order_depends_target_blocks cmake_object_order_depends_target_cube_renderer cmake_object_order_depends_target_force_octree cmake_object_order_depends_target_glad cmake_object_order_depends_target_linear_alg cmake_object_order_depends_target_mworld_render_utils cmake_object_order_depends_target_octree cmake_object_order_depends_target_quaternion cmake_object_order_depends_target_utils cmake_object_order_depends_target_world_handler
+build cmake_object_order_depends_target_not_gate_test: phony || cmake_object_order_depends_target_block_renderer cmake_object_order_depends_target_blocks cmake_object_order_depends_target_collision_octree cmake_object_order_depends_target_cube_renderer cmake_object_order_depends_target_force_octree cmake_object_order_depends_target_glad cmake_object_order_depends_target_linear_alg cmake_object_order_depends_target_mworld_render_utils cmake_object_order_depends_target_octree cmake_object_order_depends_target_quaternion cmake_object_order_depends_target_utils cmake_object_order_depends_target_world_handler
 
 build simulation/environment/CMakeFiles/not_gate_test.dir/not_gate_test.cpp.obj: CXX_COMPILER__not_gate_test_Debug ../simulation/environment/not_gate_test.cpp || cmake_object_order_depends_target_not_gate_test
   DEFINES = -DOPENMP=1
@@ -1255,9 +1288,9 @@ build simulation/environment/CMakeFiles/not_gate_test.dir/__/__/render/utils/wor
 #############################################
 # Link the executable simulation\environment\not_gate_test.exe
 
-build simulation/environment/not_gate_test.exe: CXX_EXECUTABLE_LINKER__not_gate_test_Debug simulation/environment/CMakeFiles/not_gate_test.dir/not_gate_test.cpp.obj simulation/environment/CMakeFiles/not_gate_test.dir/__/__/render/utils/world_initializer.cpp.obj | numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a utils/util_functions/libutils.a simulation/blocks/libblocks.a simulation/world_handler/libworld_handler.a render/block_renderer/libblock_renderer.a render/cube_renderer/libcube_renderer.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a render/utils/libmworld_render_utils.a simulation/octree/liboctree.a simulation/octree/libforce_octree.a simulation/blocks/libblocks.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a utils/util_functions/libutils.a numerics/quaternion/libquaternion.a numerics/linear_alg/liblinear_alg.a || lib/glad/libglad.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/block_renderer/libblock_renderer.a render/cube_renderer/libcube_renderer.a render/utils/libmworld_render_utils.a simulation/blocks/libblocks.a simulation/octree/libforce_octree.a simulation/octree/liboctree.a simulation/world_handler/libworld_handler.a utils/util_functions/libutils.a
+build simulation/environment/not_gate_test.exe: CXX_EXECUTABLE_LINKER__not_gate_test_Debug simulation/environment/CMakeFiles/not_gate_test.dir/not_gate_test.cpp.obj simulation/environment/CMakeFiles/not_gate_test.dir/__/__/render/utils/world_initializer.cpp.obj | numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a utils/util_functions/libutils.a simulation/blocks/libblocks.a simulation/world_handler/libworld_handler.a render/block_renderer/libblock_renderer.a render/cube_renderer/libcube_renderer.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a render/utils/libmworld_render_utils.a simulation/octree/libcollision_octree.a simulation/octree/libforce_octree.a simulation/octree/liboctree.a simulation/blocks/libblocks.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a utils/util_functions/libutils.a numerics/quaternion/libquaternion.a numerics/linear_alg/liblinear_alg.a || lib/glad/libglad.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/block_renderer/libblock_renderer.a render/cube_renderer/libcube_renderer.a render/utils/libmworld_render_utils.a simulation/blocks/libblocks.a simulation/octree/libcollision_octree.a simulation/octree/libforce_octree.a simulation/octree/liboctree.a simulation/world_handler/libworld_handler.a utils/util_functions/libutils.a
   FLAGS = -Wall -fopenmp -std=c++11 -g
-  LINK_LIBRARIES = numerics/linear_alg/liblinear_alg.a  numerics/quaternion/libquaternion.a  numerics/linear_alg/liblinear_alg.a  numerics/quaternion/libquaternion.a  utils/util_functions/libutils.a  simulation/blocks/libblocks.a  simulation/world_handler/libworld_handler.a  render/block_renderer/libblock_renderer.a  render/cube_renderer/libcube_renderer.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  render/utils/libmworld_render_utils.a  simulation/octree/liboctree.a  simulation/octree/libforce_octree.a  simulation/blocks/libblocks.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  utils/util_functions/libutils.a  numerics/quaternion/libquaternion.a  numerics/linear_alg/liblinear_alg.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  LINK_LIBRARIES = numerics/linear_alg/liblinear_alg.a  numerics/quaternion/libquaternion.a  numerics/linear_alg/liblinear_alg.a  numerics/quaternion/libquaternion.a  utils/util_functions/libutils.a  simulation/blocks/libblocks.a  simulation/world_handler/libworld_handler.a  render/block_renderer/libblock_renderer.a  render/cube_renderer/libcube_renderer.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  render/utils/libmworld_render_utils.a  simulation/octree/libcollision_octree.a  simulation/octree/libforce_octree.a  simulation/octree/liboctree.a  simulation/blocks/libblocks.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  utils/util_functions/libutils.a  numerics/quaternion/libquaternion.a  numerics/linear_alg/liblinear_alg.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = simulation\environment\CMakeFiles\not_gate_test.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -1272,7 +1305,7 @@ build simulation/environment/not_gate_test.exe: CXX_EXECUTABLE_LINKER__not_gate_
 #############################################
 # Order-only phony target for amplifier
 
-build cmake_object_order_depends_target_amplifier: phony || cmake_object_order_depends_target_block_renderer cmake_object_order_depends_target_blocks cmake_object_order_depends_target_cube_renderer cmake_object_order_depends_target_force_octree cmake_object_order_depends_target_glad cmake_object_order_depends_target_linear_alg cmake_object_order_depends_target_mworld_render_utils cmake_object_order_depends_target_octree cmake_object_order_depends_target_quaternion cmake_object_order_depends_target_utils cmake_object_order_depends_target_world_handler
+build cmake_object_order_depends_target_amplifier: phony || cmake_object_order_depends_target_block_renderer cmake_object_order_depends_target_blocks cmake_object_order_depends_target_collision_octree cmake_object_order_depends_target_cube_renderer cmake_object_order_depends_target_force_octree cmake_object_order_depends_target_glad cmake_object_order_depends_target_linear_alg cmake_object_order_depends_target_mworld_render_utils cmake_object_order_depends_target_octree cmake_object_order_depends_target_quaternion cmake_object_order_depends_target_utils cmake_object_order_depends_target_world_handler
 
 build simulation/environment/CMakeFiles/amplifier.dir/amplifier.cpp.obj: CXX_COMPILER__amplifier_Debug ../simulation/environment/amplifier.cpp || cmake_object_order_depends_target_amplifier
   DEFINES = -DOPENMP=1
@@ -1298,9 +1331,9 @@ build simulation/environment/CMakeFiles/amplifier.dir/__/__/render/utils/world_i
 #############################################
 # Link the executable simulation\environment\amplifier.exe
 
-build simulation/environment/amplifier.exe: CXX_EXECUTABLE_LINKER__amplifier_Debug simulation/environment/CMakeFiles/amplifier.dir/amplifier.cpp.obj simulation/environment/CMakeFiles/amplifier.dir/__/__/render/utils/world_initializer.cpp.obj | numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a utils/util_functions/libutils.a simulation/blocks/libblocks.a simulation/world_handler/libworld_handler.a render/block_renderer/libblock_renderer.a render/cube_renderer/libcube_renderer.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a render/utils/libmworld_render_utils.a simulation/octree/liboctree.a simulation/octree/libforce_octree.a simulation/blocks/libblocks.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a utils/util_functions/libutils.a numerics/quaternion/libquaternion.a numerics/linear_alg/liblinear_alg.a || lib/glad/libglad.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/block_renderer/libblock_renderer.a render/cube_renderer/libcube_renderer.a render/utils/libmworld_render_utils.a simulation/blocks/libblocks.a simulation/octree/libforce_octree.a simulation/octree/liboctree.a simulation/world_handler/libworld_handler.a utils/util_functions/libutils.a
+build simulation/environment/amplifier.exe: CXX_EXECUTABLE_LINKER__amplifier_Debug simulation/environment/CMakeFiles/amplifier.dir/amplifier.cpp.obj simulation/environment/CMakeFiles/amplifier.dir/__/__/render/utils/world_initializer.cpp.obj | numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a utils/util_functions/libutils.a simulation/blocks/libblocks.a simulation/world_handler/libworld_handler.a render/block_renderer/libblock_renderer.a render/cube_renderer/libcube_renderer.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a render/utils/libmworld_render_utils.a simulation/octree/libcollision_octree.a simulation/octree/libforce_octree.a simulation/octree/liboctree.a simulation/blocks/libblocks.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a utils/util_functions/libutils.a numerics/quaternion/libquaternion.a numerics/linear_alg/liblinear_alg.a || lib/glad/libglad.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/block_renderer/libblock_renderer.a render/cube_renderer/libcube_renderer.a render/utils/libmworld_render_utils.a simulation/blocks/libblocks.a simulation/octree/libcollision_octree.a simulation/octree/libforce_octree.a simulation/octree/liboctree.a simulation/world_handler/libworld_handler.a utils/util_functions/libutils.a
   FLAGS = -Wall -fopenmp -std=c++11 -g
-  LINK_LIBRARIES = numerics/linear_alg/liblinear_alg.a  numerics/quaternion/libquaternion.a  numerics/linear_alg/liblinear_alg.a  numerics/quaternion/libquaternion.a  utils/util_functions/libutils.a  simulation/blocks/libblocks.a  simulation/world_handler/libworld_handler.a  render/block_renderer/libblock_renderer.a  render/cube_renderer/libcube_renderer.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  render/utils/libmworld_render_utils.a  simulation/octree/liboctree.a  simulation/octree/libforce_octree.a  simulation/blocks/libblocks.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  utils/util_functions/libutils.a  numerics/quaternion/libquaternion.a  numerics/linear_alg/liblinear_alg.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  LINK_LIBRARIES = numerics/linear_alg/liblinear_alg.a  numerics/quaternion/libquaternion.a  numerics/linear_alg/liblinear_alg.a  numerics/quaternion/libquaternion.a  utils/util_functions/libutils.a  simulation/blocks/libblocks.a  simulation/world_handler/libworld_handler.a  render/block_renderer/libblock_renderer.a  render/cube_renderer/libcube_renderer.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  render/utils/libmworld_render_utils.a  simulation/octree/libcollision_octree.a  simulation/octree/libforce_octree.a  simulation/octree/liboctree.a  simulation/blocks/libblocks.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  utils/util_functions/libutils.a  numerics/quaternion/libquaternion.a  numerics/linear_alg/liblinear_alg.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = simulation\environment\CMakeFiles\amplifier.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -1334,6 +1367,8 @@ build block_renderer: phony render/block_renderer/libblock_renderer.a
 
 build blocks: phony simulation/blocks/libblocks.a
 
+build collision_octree: phony simulation/octree/libcollision_octree.a
+
 build cube_renderer: phony render/cube_renderer/libcube_renderer.a
 
 build force_octree: phony simulation/octree/libforce_octree.a
@@ -1343,6 +1378,8 @@ build glad: phony lib/glad/libglad.a
 build libblock_renderer.a: phony render/block_renderer/libblock_renderer.a
 
 build libblocks.a: phony simulation/blocks/libblocks.a
+
+build libcollision_octree.a: phony simulation/octree/libcollision_octree.a
 
 build libcube_renderer.a: phony render/cube_renderer/libcube_renderer.a
 
@@ -1514,7 +1551,7 @@ build simulation/environment/all: phony simulation/environment/simulation.exe si
 #############################################
 # Folder: C:/Users/aamir/Documents/mworld/cmake-build-debug/simulation/octree
 
-build simulation/octree/all: phony simulation/octree/liboctree.a simulation/octree/libforce_octree.a
+build simulation/octree/all: phony simulation/octree/liboctree.a simulation/octree/libcollision_octree.a simulation/octree/libforce_octree.a
 
 # =============================================================================
 

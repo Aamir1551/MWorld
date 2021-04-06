@@ -3,7 +3,7 @@
 #include <block.hpp>
 #include <m_block.hpp>
 #include <e_block.hpp>
-#include <octree.hpp>
+#include <collision_octree.hpp>
 
 namespace blocks {
 

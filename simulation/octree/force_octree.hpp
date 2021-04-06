@@ -1,5 +1,5 @@
-#ifndef MWORLD_SIMULATION_FORCE_OCTREE
-#define MWORLD_SIMULATION_FORCE_OCTREE
+#ifndef MWORLD_SIMULATION_OCTREE_FORCE_OCTREE
+#define MWORLD_SIMULATION_OCTREE_FORCE_OCTREE
 
 #include <map>
 #include <set>
@@ -20,13 +20,10 @@
 using namespace settings;
 
 namespace blocks {
-    class ForceOctree {
+    class ForceOctree : public Octree {
     public:
 
-        int grid_size;
 
-        real min_x = 0, max_x = 0, min_y = 0, max_y = 0, min_z = 0, max_z = 0;
-        real avg_x = 0, avg_y = 0, avg_z = 0;
         Matrix sum_i_plus,  sum_i_neg, sum_z, sum_m_plus, sum_m_neg, sum_e;
 
         Matrix com_i_plus = Matrix(3, 1);
@@ -36,9 +33,6 @@ namespace blocks {
         Matrix com_e = Matrix(3, 1);
         Matrix com_z = Matrix(3, 1);
 
-        real cell_partition_size;
-
-        bool is_leaf = false;
         //std::map<unsigned int, ForceOctree *> children;
         ForceOctree* children[8];
 

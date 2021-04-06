@@ -2,7 +2,7 @@
 #define MWORLD_SIMULATION_BLOCKS_Z_BLOCKS_H
 
 #include <block.hpp>
-#include <octree.hpp>
+#include <collision_octree.hpp>
 #include <force_octree.hpp>
 
 namespace blocks {

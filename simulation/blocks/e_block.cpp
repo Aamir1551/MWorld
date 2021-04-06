@@ -1,4 +1,4 @@
-#include <octree.hpp>
+#include <collision_octree.hpp>
 #include <force_octree.hpp>
 #include <block.hpp>
 #include <e_block.hpp>

@@ -2,7 +2,7 @@
 
 #include <block.hpp>
 #include <z_block.hpp>
-#include <octree.hpp>
+#include <collision_octree.hpp>
 #include <force_octree.hpp>
 
 namespace blocks {

@@ -20,7 +20,7 @@
 #include <e_block.hpp>
 #include <z_block.hpp>
 
-#include <octree.hpp>
+#include <collision_octree.hpp>
 #include <force_octree.hpp>
 
 using namespace blocks;
@@ -38,13 +38,13 @@ private:
 #if defined(OPENMP)
     template<typename T>
     std::unordered_set<T> static VecToSetParallel(vector<T> v);
-    std::unordered_set<Octree*> GetBlockPositionsParallel();
+    std::unordered_set<CollisionOctree*> GetBlockPositionsParallel();
 #endif
 
-    std::unordered_set<Octree*> GetBlockPositionsSerial();
+    std::unordered_set<CollisionOctree*> GetBlockPositionsSerial();
 
-    void MakeDAG(std::unordered_set<Octree *> &block_positions, std::vector<pair<Octree *, Octree *>> &edges, std::unordered_set<Octree *> &nodes);
-    void GetDAGAtRoot(Octree *root, std::vector<pair<Octree *, Octree *>> &edges, std::unordered_set<Octree *> &nodes);
+    void MakeDAG(std::unordered_set<CollisionOctree *> &block_positions, std::vector<pair<CollisionOctree *, CollisionOctree *>> &edges, std::unordered_set<CollisionOctree *> &nodes);
+    void GetDAGAtRoot(CollisionOctree *root, std::vector<pair<CollisionOctree *, CollisionOctree *>> &edges, std::unordered_set<CollisionOctree *> &nodes);
 
 public:
     vector<IBlock *> iblocks;
@@ -52,7 +52,7 @@ public:
     vector<EBlock *> eblocks;
     vector<ZBlock *> zblocks;
 
-    Octree *tree;
+    CollisionOctree *tree;
     ForceOctree *forces_tree;
     vector<Block *> blocks;
     real cube_length;
@@ -62,7 +62,7 @@ public:
     real max_coord_y;
     real min_coord_z;
     real max_coord_z;
-    map<Block*, Octree*> block_to_leaf; // This type is only needed for when checking for collision in n^2 fashion
+    map<Block*, CollisionOctree*> block_to_leaf; // This type is only needed for when checking for collision in n^2 fashion
     vector<omp_lock_t> collision_locks;
 
     enum BlockTypes {IBlockType, MBlockType, EBlockType, ZBlockType};

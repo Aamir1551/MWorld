@@ -65,9 +65,8 @@ WorldHandler::WorldHandler(int num_i_blocks_plus, int num_i_blocks_neg, int num_
     //srand(0); // useful for testing purposes, to generate the same random numbers
 
     //cout << "Quad trees are being initialised" << endl;
-    this->tree = new Octree((int)cube_length * 3, min_coord_x, max_coord_x, min_coord_y, max_coord_y, min_coord_z, max_coord_z, true);
-    this->forces_tree = new ForceOctree((int) cube_length * 5, min_coord_x, max_coord_x, min_coord_y, max_coord_y, min_coord_z, max_coord_z,
-                                   false);
+    this->tree = new CollisionOctree((int)cube_length * 3, min_coord_x, max_coord_x, min_coord_y, max_coord_y, min_coord_z, max_coord_z, true);
+    this->forces_tree = new ForceOctree((int) cube_length * 5, min_coord_x, max_coord_x, min_coord_y, max_coord_y, min_coord_z, max_coord_z);
     //cout << "Quad trees are initialised" << endl;
     this->cube_length = cube_length;
 
@@ -105,8 +104,8 @@ void WorldHandler::GetProperties(int num_blocks, std::vector<Matrix> *&positions
 void WorldHandler::ResetTrees() {
     delete this->tree;
     delete this->forces_tree;
-    this->tree = new Octree(cube_length * 2, min_coord_x, max_coord_x, min_coord_y, max_coord_y, min_coord_z, max_coord_z, true);
-    this->forces_tree = new ForceOctree(cube_length * 5, min_coord_x, max_coord_x, min_coord_y, max_coord_y, min_coord_z, max_coord_z,false);
+    this->tree = new CollisionOctree(cube_length * 2, min_coord_x, max_coord_x, min_coord_y, max_coord_y, min_coord_z, max_coord_z, true);
+    this->forces_tree = new ForceOctree(cube_length * 5, min_coord_x, max_coord_x, min_coord_y, max_coord_y, min_coord_z, max_coord_z);
 
     for(auto const &world_block : this->iblocks) {
         auto temp = this->tree->AddBlock(world_block);
@@ -145,7 +144,7 @@ void WorldHandler::ResetTrees() {
 void WorldHandler::AddBlock(BlockTypes block_types, int num_blocks, bool state) {
         std::vector<Matrix> *positions, *linear_momentums;
         GetProperties(num_blocks, positions, linear_momentums, this->min_coord_x, this->max_coord_x, this->min_coord_y, this->max_coord_y,  this->min_coord_z, this->max_coord_z);
-        Octree * tree_occupied;
+        CollisionOctree * tree_occupied;
         for(int i=0; i<num_blocks; i++) {
             if(block_types == IBlockType) {
                 auto *new_block = new IBlock(positions->at(i), Quaternion(1.0, 0.0, 0.0, 0.0)  ,state);
@@ -209,13 +208,13 @@ void WorldHandler::Update(vector<Contact> &contact_list, real delta_time) {
         if(leaf_m_block->flare_value > MBlock::threshold) {
             forces_tree->RemoveMBlockPlus(leaf_m_block);
             leaf_m_block->Update(this->min_coord_x, this->max_coord_x, this->min_coord_y, this->max_coord_y, this->min_coord_z, this->max_coord_z, delta_time);
-            Octree * new_leaf = tree->AddBlock(leaf_m_block);
+            CollisionOctree * new_leaf = tree->AddBlock(leaf_m_block);
             block_to_leaf[leaf_m_block] = new_leaf;
             forces_tree->AddMBlockPlus(leaf_m_block);
         } else {
             forces_tree->RemoveMBlockNeg(leaf_m_block);
             leaf_m_block->Update(this->min_coord_x, this->max_coord_x, this->min_coord_y, this->max_coord_y, this->min_coord_z, this->max_coord_z, delta_time);
-            Octree * new_leaf = tree->AddBlock(leaf_m_block);
+            CollisionOctree * new_leaf = tree->AddBlock(leaf_m_block);
             block_to_leaf[leaf_m_block] = new_leaf;
             forces_tree->AddMBlockNeg(leaf_m_block);
         }
@@ -227,13 +226,13 @@ void WorldHandler::Update(vector<Contact> &contact_list, real delta_time) {
         if(leaf_i_block->state) {
             forces_tree->RemoveIBlockPlus(leaf_i_block);
             leaf_i_block->Update(this->min_coord_x, this->max_coord_x, this->min_coord_y, this->max_coord_y, this->min_coord_z, this->max_coord_z, delta_time);
-            Octree * new_leaf = tree->AddBlock(leaf_i_block);
+            CollisionOctree * new_leaf = tree->AddBlock(leaf_i_block);
             block_to_leaf[leaf_i_block] = new_leaf;
             forces_tree->AddIBlockPlus(leaf_i_block);
         } else {
             forces_tree->RemoveIBlockNeg(leaf_i_block);
             leaf_i_block->Update(this->min_coord_x, this->max_coord_x, this->min_coord_y, this->max_coord_y, this->min_coord_z, this->max_coord_z, delta_time);
-            Octree * new_leaf = tree->AddBlock(leaf_i_block);
+            CollisionOctree * new_leaf = tree->AddBlock(leaf_i_block);
             block_to_leaf[leaf_i_block] = new_leaf;
             forces_tree->AddIBlockNeg(leaf_i_block);
         }
@@ -243,7 +242,7 @@ void WorldHandler::Update(vector<Contact> &contact_list, real delta_time) {
     for(auto const &leaf_e_block: this->eblocks) {
         forces_tree->RemoveEBlock(leaf_e_block);
         leaf_e_block->Update(this->min_coord_x, this->max_coord_x, this->min_coord_y, this->max_coord_y, this->min_coord_z, this->max_coord_z, delta_time);
-        Octree * new_leaf = tree->AddBlock(leaf_e_block);
+        CollisionOctree * new_leaf = tree->AddBlock(leaf_e_block);
         block_to_leaf[leaf_e_block] = new_leaf;
         forces_tree->AddEBlock(leaf_e_block);
     }
@@ -252,7 +251,7 @@ void WorldHandler::Update(vector<Contact> &contact_list, real delta_time) {
     for(auto const &leaf_z_block: this->zblocks) {
         forces_tree->RemoveZBlock(leaf_z_block);
         leaf_z_block->Update(this->min_coord_x, this->max_coord_x, this->min_coord_y, this->max_coord_y, this->min_coord_z, this->max_coord_z, delta_time);
-        Octree * new_leaf = tree->AddBlock(leaf_z_block);
+        CollisionOctree * new_leaf = tree->AddBlock(leaf_z_block);
         block_to_leaf[leaf_z_block] = new_leaf;
         forces_tree->AddZBlock(leaf_z_block);
     }
@@ -399,10 +398,10 @@ std::unordered_set<T> WorldHandler::VecToSetParallel(vector<T> v) {
 
 
 #if defined(OPENMP)
-std::unordered_set<Octree *> WorldHandler::GetBlockPositionsParallel() {
+std::unordered_set<CollisionOctree *> WorldHandler::GetBlockPositionsParallel() {
     // A separate one has been made for getting positions, since blocks could be clustered close together, so we may be able to take advantage of some spacial structure of the blocks
     float p = min(omp_get_max_threads(), (int) this->blocks.size()); // need to ensure the data is more than the number of threads
-    unordered_set<Octree*> local_set[(int) p];
+    unordered_set<CollisionOctree*> local_set[(int) p];
 
     int local_size = std::ceil(this->blocks.size()/p);
 #pragma omp parallel for default(none) shared(p, local_size, local_set)
@@ -434,9 +433,9 @@ std::unordered_set<Octree *> WorldHandler::GetBlockPositionsParallel() {
 }
 #endif
 
-void WorldHandler::MakeDAG(std::unordered_set<Octree *> &block_positions,
-                           std::vector<pair<Octree *, Octree *>> &edges,
-                           std::unordered_set<Octree *> &nodes) {
+void WorldHandler::MakeDAG(std::unordered_set<CollisionOctree *> &block_positions,
+                           std::vector<pair<CollisionOctree *, CollisionOctree *>> &edges,
+                           std::unordered_set<CollisionOctree *> &nodes) {
     for(auto const pos: block_positions) {
         if(nodes.find(pos) == nodes.end()) {
             GetDAGAtRoot(pos, edges, nodes);
@@ -444,8 +443,8 @@ void WorldHandler::MakeDAG(std::unordered_set<Octree *> &block_positions,
     }
 }
 
-void WorldHandler::GetDAGAtRoot(Octree *root, std::vector<pair<Octree *, Octree *>> &edges,
-                                std::unordered_set<Octree *> &nodes) {
+void WorldHandler::GetDAGAtRoot(CollisionOctree *root, std::vector<pair<CollisionOctree *, CollisionOctree *>> &edges,
+                                std::unordered_set<CollisionOctree *> &nodes) {
     if(nodes.find(root) != nodes.end()) {
         return;
     }
@@ -471,27 +470,27 @@ void WorldHandler::GetDAGAtRoot(Octree *root, std::vector<pair<Octree *, Octree 
 vector<Contact> WorldHandler::CollisionHandlerWithOctree() {
 
 #if defined(OPENMP)
-    std::unordered_set<Octree *> pos = GetBlockPositionsParallel();
+    std::unordered_set<CollisionOctree *> pos = GetBlockPositionsParallel();
 
-    /*std::unordered_set<Octree *> pos1 = GetBlockPositionsSerial();
+    /*std::unordered_set<CollisionOctree *> pos1 = GetBlockPositionsSerial();
     if(pos != pos1) {
        cout << "not equalllllll" << endl;
        cout << pos.size() << " " << pos1.size() << endl;
     }*/
 #else
-    std::unordered_set<Octree *> pos = GetBlockPositionsSerial();
+    std::unordered_set<CollisionOctree *> pos = GetBlockPositionsSerial();
 #endif
 
-    std::vector<pair<Octree *, Octree *>> edges;
-    std::unordered_set<Octree *> nodes;
+    std::vector<pair<CollisionOctree *, CollisionOctree *>> edges;
+    std::unordered_set<CollisionOctree *> nodes;
     MakeDAG(pos, edges, nodes);
 
     vector<Contact> collisions;
 
 #pragma omp parallel for default(none) shared(edges, collisions)
     for(auto const &edge: edges) {
-        Octree *o1 = edge.first;
-        Octree *o2 = edge.second;
+        CollisionOctree *o1 = edge.first;
+        CollisionOctree *o2 = edge.second;
         if(o1 == o2) {
             continue;
         }
@@ -504,7 +503,7 @@ vector<Contact> WorldHandler::CollisionHandlerWithOctree() {
         }
     }
 
-    vector<Octree *> bb;
+    vector<CollisionOctree *> bb;
     for(auto const &p: pos) {
         bb.push_back(p);
     }
@@ -525,8 +524,8 @@ vector<Contact> WorldHandler::CollisionHandlerWithOctree() {
     return collisions;
 }
 
-std::unordered_set<Octree *> WorldHandler::GetBlockPositionsSerial() {
-    std::unordered_set<Octree *> r;
+std::unordered_set<CollisionOctree *> WorldHandler::GetBlockPositionsSerial() {
+    std::unordered_set<CollisionOctree *> r;
     for(auto & block : this->blocks) {
         r.insert(this->block_to_leaf[block]);
     }

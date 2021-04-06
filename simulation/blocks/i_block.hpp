@@ -1,7 +1,7 @@
 #ifndef MWorld_SIMULATION_BLOCKS_I_BLOCKS
 #define MWorld_SIMULATION_BLOCKS_I_BLOCKS
 
-#include <octree.hpp>
+#include <collision_octree.hpp>
 #include <force_octree.hpp>
 #include <block.hpp>
 
