@@ -36,10 +36,10 @@ class CollisionOctree : public Octree {
         explicit CollisionOctree(int grid_sizes, real min_x, real max_x, real min_y, real max_y, real min_z, real max_z,
                                  bool initialise = false);
 
-        // Add a block to the octree. Traverses the tree using the position of the block to find the leaf node to store the block.
+        // Add a block to the octree. Traverses the collision_tree using the position of the block to find the leaf node to store the block.
         CollisionOctree *AddBlock(Block *b);
 
-        // Removes a block from the octree. Traverses the tree using the position of the block to find the leaf node storing the block.
+        // Removes a block from the octree. Traverses the collision_tree using the position of the block to find the leaf node storing the block.
         void RemoveBlock(Block *b);
 
         // Returns the leaf node at the coordinates given
@@ -51,7 +51,7 @@ private:
     // Function to generate the neighbours of each leaf node
     std::vector<CollisionOctree *> GenerateNeigbours(real x, real y, real z, real partition_min_x, real partition_min_y, real partition_min_z);
 
-    // Function used for testing purposes, to test if the tree does not contain any blocks at any cells in the octree
+    // Function used for testing purposes, to test if the collision_tree does not contain any blocks at any cells in the octree
     bool LeavesAreNull();
 
     // Auxiliary function used to set the neighbours of the octree.

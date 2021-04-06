@@ -12595,7 +12595,7 @@ namespace Catch {
                     // start (due to filters), and we shouldn't wait for them
                     auto* parent = m_parent;
                     // This is safe: there is always at least one section
-                    // tracker in a test case tracking tree
+                    // tracker in a test case tracking collision_tree
                     while ( !parent->isSectionTracker() ) {
                         parent = &( parent->parent() );
                     }

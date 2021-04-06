@@ -74,15 +74,8 @@ private:
     // Create a DAG using the "root" as the root of the DAG
     void GetDAGAtRoot(CollisionOctree *root, std::vector<pair<CollisionOctree *, CollisionOctree *>> &edges, std::unordered_set<CollisionOctree *> &nodes);
 
-public:
-    // Stores the different blocks in the world
-    vector<IBlock *> iblocks;
-    vector<MBlock *> mblocks;
-    vector<EBlock *> eblocks;
-    vector<ZBlock *> zblocks;
-
     // Octrees for collision handling and for applying Barnes-Hut algorithm
-    CollisionOctree *tree;
+    CollisionOctree *collision_tree;
     ForceOctree *forces_tree;
 
     // Stores all the blocks in the world
@@ -105,7 +98,6 @@ public:
 
     enum BlockTypes {IBlockType, MBlockType, EBlockType, ZBlockType};
 
-    WorldHandler(int num_i_blocks_plus, int num_i_blocks_neg, int num_z_blocks, int num_m_blocks, int num_e_blocks_1, int num_e_blocks_1_2, real min_coord_x = -50, real max_coord_x = 50, real min_coord_y = -50, real max_coord_y = 50, real min_coord_z = -50, real max_coord_z = 50, real cube_length = 4.0f);
 
     // Reset both the Octrees -- ForceOctree and CollisionOctree
     void ResetTrees();
@@ -119,22 +111,6 @@ public:
      * */
     void AddBlock(BlockTypes block_types, int num_blocks, bool state);
 
-    /**
-     * @brief Updates the world by one frame
-     *
-     * @param contact_list List of contacts that are currently in place
-     * @param delta_time The duration for which the update frame should by applied
-     * */
-    void Update(vector<Contact> &contact_list, real delta_time);
-
-
-    // Contact generation functions. Returns a list of contacts
-    vector<Contact> CollisionHandlerBruteForce();
-    vector<Contact> CollisionHandlerWithOctree();
-
-    // Add force to each cube
-    void AddForces(real delta_time);
-
     // Update Flare values of the cubes
     void IncFlareValuesAndReset();
 
@@ -146,6 +122,31 @@ public:
 
     // Adds a torque to the blocks
     void SpinWorldBlocks();
+
+public:
+
+    // Stores the different blocks in the world
+    vector<IBlock *> iblocks;
+    vector<MBlock *> mblocks;
+    vector<EBlock *> eblocks;
+    vector<ZBlock *> zblocks;
+
+    WorldHandler(int num_i_blocks_plus, int num_i_blocks_neg, int num_z_blocks, int num_m_blocks, int num_e_blocks_1, int num_e_blocks_1_2, real min_coord_x = -50, real max_coord_x = 50, real min_coord_y = -50, real max_coord_y = 50, real min_coord_z = -50, real max_coord_z = 50, real cube_length = 4.0f);
+
+    // Contact generation functions. Returns a list of contacts
+    vector<Contact> CollisionHandlerBruteForce();
+    vector<Contact> CollisionHandlerWithOctree();
+
+    // Add force to each cube
+    void AddForces(real delta_time);
+
+    /**
+     * @brief Updates the world by one frame
+     *
+     * @param contact_list List of contacts that are currently in place
+     * @param delta_time The duration for which the update frame should by applied
+     * */
+    void Update(vector<Contact> &contact_list, real delta_time);
 
     ~WorldHandler();
 };

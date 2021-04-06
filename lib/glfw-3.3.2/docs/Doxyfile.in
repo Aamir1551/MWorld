@@ -691,7 +691,7 @@ RECURSIVE              = NO
 
 # The EXCLUDE tag can be used to specify files and/or directories that should be
 # excluded from the INPUT source files. This way you can easily exclude a
-# subdirectory from a directory tree whose root is specified with the INPUT tag.
+# subdirectory from a directory collision_tree whose root is specified with the INPUT tag.
 # Note that relative paths are relative to the directory from which doxygen is
 # run.
 
@@ -973,13 +973,13 @@ HTML_TIMESTAMP         = YES
 HTML_DYNAMIC_SECTIONS  = NO
 
 # With HTML_INDEX_NUM_ENTRIES one can control the preferred number of
-# entries shown in the various tree structured indices initially; the user
+# entries shown in the various collision_tree structured indices initially; the user
 # can expand and collapse entries dynamically later on. Doxygen will expand
-# the tree to such a level that at most the specified number of entries are
-# visible (unless a fully collapsed tree already exceeds this amount).
-# So setting the number of entries 1 will produce a full collapsed tree by
+# the collision_tree to such a level that at most the specified number of entries are
+# visible (unless a fully collapsed collision_tree already exceeds this amount).
+# So setting the number of entries 1 will produce a full collapsed collision_tree by
 # default. 0 is a special value representing an infinite number of entries
-# and will result in a full expanded tree by default.
+# and will result in a full expanded collision_tree by default.
 
 HTML_INDEX_NUM_ENTRIES = 100
 
@@ -1060,7 +1060,7 @@ CHM_INDEX_ENCODING     =
 BINARY_TOC             = NO
 
 # The TOC_EXPAND flag can be set to YES to add extra items for group members
-# to the contents of the HTML help documentation and to the tree view.
+# to the contents of the HTML help documentation and to the collision_tree view.
 
 TOC_EXPAND             = NO
 
@@ -1137,19 +1137,19 @@ ECLIPSE_DOC_ID         = org.doxygen.Project
 # The DISABLE_INDEX tag can be used to turn on/off the condensed index (tabs)
 # at top of each HTML page. The value NO (the default) enables the index and
 # the value YES disables it. Since the tabs have the same information as the
-# navigation tree you can set this option to NO if you already set
+# navigation collision_tree you can set this option to NO if you already set
 # GENERATE_TREEVIEW to YES.
 
 DISABLE_INDEX          = NO
 
-# The GENERATE_TREEVIEW tag is used to specify whether a tree-like index
+# The GENERATE_TREEVIEW tag is used to specify whether a collision_tree-like index
 # structure should be generated to display hierarchical information.
 # If the tag value is set to YES, a side panel will be generated
-# containing a tree-like index structure (just like the one that
+# containing a collision_tree-like index structure (just like the one that
 # is generated for HTML Help). For this to work a browser that supports
 # JavaScript, DHTML, CSS and frames is required (i.e. any modern browser).
 # Windows users are probably better off using the HTML help feature.
-# Since the tree basically has the same information as the tab index you
+# Since the collision_tree basically has the same information as the tab index you
 # could consider to set DISABLE_INDEX to NO when enabling this option.
 
 GENERATE_TREEVIEW      = NO
@@ -1162,7 +1162,7 @@ GENERATE_TREEVIEW      = NO
 ENUM_VALUES_PER_LINE   = 4
 
 # If the treeview is enabled (see GENERATE_TREEVIEW) then this tag can be
-# used to set the initial width (in pixels) of the frame in which the tree
+# used to set the initial width (in pixels) of the frame in which the collision_tree
 # is shown.
 
 TREEVIEW_WIDTH         = 300

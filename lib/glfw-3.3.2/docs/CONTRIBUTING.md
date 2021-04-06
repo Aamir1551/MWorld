@@ -151,7 +151,7 @@ __Note:__ AMD only supports OpenGL ES on Windows via EGL.  See the
 hint for how to select EGL.
 
 Please verify that context creation also fails with the `glfwinfo` tool before
-reporting it as a bug.  This tool is included in the GLFW source tree as
+reporting it as a bug.  This tool is included in the GLFW source collision_tree as
 `tests/glfwinfo.c` and is built along with the library.  It has switches for all
 GLFW context and framebuffer hints.  Run `glfwinfo -h` for a complete list.
 
@@ -193,7 +193,7 @@ __Note:__ Some third-party tools report more video modes than are approved of
 by the OS.  For safety and compatibility, GLFW only reports video modes the OS
 wants programs to use.  This is not a bug.
 
-The `monitors` tool is included in the GLFW source tree as `tests/monitors.c`
+The `monitors` tool is included in the GLFW source collision_tree as `tests/monitors.c`
 and is built along with the library.  It lists all information GLFW provides
 about monitors it detects.
 
@@ -231,7 +231,7 @@ some platforms.  This is not a bug.  Set a [refresh
 callback](https://www.glfw.org/docs/latest/window.html#window_refresh) if you
 want to keep the window contents updated during a move or size operation.
 
-The `events` tool is included in the GLFW source tree as `tests/events.c` and is
+The `events` tool is included in the GLFW source collision_tree as `tests/events.c` and is
 built along with the library.  It prints all information provided to every
 callback supported by GLFW as events occur.  Each event is listed with the time
 and a unique number to make discussions about event logs easier.  The tool has

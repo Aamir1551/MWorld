@@ -48,7 +48,7 @@ namespace blocks {
         void SetLinearMomentum(Matrix &linear_momentum);
         void SetAngularMomentum(Matrix &angular_momentum);
 
-        // Applies Barnes-Hut algorithm to block from tree
+        // Applies Barnes-Hut algorithm to block from collision_tree
         virtual bool ReactBarnesHut(ForceOctree * tree, real delta_time) = 0;
 
         // Methods use to calculate the force the block experiences due to blocks of other types

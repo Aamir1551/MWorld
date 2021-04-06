@@ -62,7 +62,7 @@ namespace blocks {
         // Apply Barnes-Hut algorithm
         void ApplyBarnesHutOnBlock(Block *b, real delta_time);
 
-        // Traverse the entire tree from this node, and calculate the COM of each node
+        // Traverse the entire collision_tree from this node, and calculate the COM of each node
         void CalculateCOMonTree();
 
         ~ForceOctree();

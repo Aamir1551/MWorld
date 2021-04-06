@@ -128,22 +128,22 @@ Dependencies for Linux and OSMesa</h2>
 <p>Once you have installed the necessary packages, move on to <a class="el" href="compile_guide.html#compile_generate">Generating build files with CMake</a>.</p>
 <h2><a class="anchor" id="compile_generate"></a>
 Generating build files with CMake</h2>
-<p>Once you have all necessary dependencies it is time to generate the project files or makefiles for your development environment. CMake needs to know two paths for this: the path to the <em>root</em> directory of the GLFW source tree (i.e. <em>not</em> the <code>src</code> subdirectory) and the target path for the generated files and compiled binaries. If these are the same, it is called an in-tree build, otherwise it is called an out-of-tree build.</p>
-<p>One of several advantages of out-of-tree builds is that you can generate files and compile for different development environments using a single source tree.</p>
+<p>Once you have all necessary dependencies it is time to generate the project files or makefiles for your development environment. CMake needs to know two paths for this: the path to the <em>root</em> directory of the GLFW source collision_tree (i.e. <em>not</em> the <code>src</code> subdirectory) and the target path for the generated files and compiled binaries. If these are the same, it is called an in-collision_tree build, otherwise it is called an out-of-collision_tree build.</p>
+<p>One of several advantages of out-of-collision_tree builds is that you can generate files and compile for different development environments using a single source collision_tree.</p>
 <dl class="section note"><dt>Note</dt><dd>This section is about generating the project files or makefiles necessary to compile the GLFW library, not about compiling the actual library.</dd></dl>
 <h3><a class="anchor" id="compile_generate_cli"></a>
 Generating files with the CMake command-line tool</h3>
-<p>To make an in-tree build, enter the <em>root</em> directory of the GLFW source tree (i.e. <em>not</em> the <code>src</code> subdirectory) and run CMake. The current directory is used as target path, while the path provided as an argument is used to find the source tree.</p>
+<p>To make an in-collision_tree build, enter the <em>root</em> directory of the GLFW source collision_tree (i.e. <em>not</em> the <code>src</code> subdirectory) and run CMake. The current directory is used as target path, while the path provided as an argument is used to find the source collision_tree.</p>
 <div class="fragment"><div class="line">cd &lt;glfw-root-dir&gt;</div>
 <div class="line">cmake .</div>
-</div><!-- fragment --><p>To make an out-of-tree build, make a directory outside of the source tree, enter it and run CMake with the (relative or absolute) path to the root of the source tree as an argument.</p>
+</div><!-- fragment --><p>To make an out-of-collision_tree build, make a directory outside of the source collision_tree, enter it and run CMake with the (relative or absolute) path to the root of the source collision_tree as an argument.</p>
 <div class="fragment"><div class="line">mkdir glfw-build</div>
 <div class="line">cd glfw-build</div>
 <div class="line">cmake &lt;glfw-root-dir&gt;</div>
 </div><!-- fragment --><p>Once you have generated the project files or makefiles for your chosen development environment, move on to <a class="el" href="compile_guide.html#compile_compile">Compiling the library</a>.</p>
 <h3><a class="anchor" id="compile_generate_gui"></a>
 Generating files with the CMake GUI</h3>
-<p>If you are using the GUI version, choose the root of the GLFW source tree as source location and the same directory or another, empty directory as the destination for binaries. Choose <em>Configure</em>, change any options you wish to, <em>Configure</em> again to let the changes take effect and then <em>Generate</em>.</p>
+<p>If you are using the GUI version, choose the root of the GLFW source collision_tree as source location and the same directory or another, empty directory as the destination for binaries. Choose <em>Configure</em>, change any options you wish to, <em>Configure</em> again to let the changes take effect and then <em>Generate</em>.</p>
 <p>Once you have generated the project files or makefiles for your chosen development environment, move on to <a class="el" href="compile_guide.html#compile_compile">Compiling the library</a>.</p>
 <h2><a class="anchor" id="compile_compile"></a>
 Compiling the library</h2>

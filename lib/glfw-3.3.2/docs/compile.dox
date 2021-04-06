@@ -125,13 +125,13 @@ compile_generate.
 
 Once you have all necessary dependencies it is time to generate the project
 files or makefiles for your development environment.  CMake needs to know two
-paths for this: the path to the _root_ directory of the GLFW source tree (i.e.
+paths for this: the path to the _root_ directory of the GLFW source collision_tree (i.e.
 _not_ the `src` subdirectory) and the target path for the generated files and
-compiled binaries.  If these are the same, it is called an in-tree build,
-otherwise it is called an out-of-tree build.
+compiled binaries.  If these are the same, it is called an in-collision_tree build,
+otherwise it is called an out-of-collision_tree build.
 
-One of several advantages of out-of-tree builds is that you can generate files
-and compile for different development environments using a single source tree.
+One of several advantages of out-of-collision_tree builds is that you can generate files
+and compile for different development environments using a single source collision_tree.
 
 @note This section is about generating the project files or makefiles necessary
 to compile the GLFW library, not about compiling the actual library.
@@ -139,19 +139,19 @@ to compile the GLFW library, not about compiling the actual library.
 
 @subsubsection compile_generate_cli Generating files with the CMake command-line tool
 
-To make an in-tree build, enter the _root_ directory of the GLFW source tree
+To make an in-collision_tree build, enter the _root_ directory of the GLFW source collision_tree
 (i.e. _not_ the `src` subdirectory) and run CMake.  The current directory is
 used as target path, while the path provided as an argument is used to find the
-source tree.
+source collision_tree.
 
 @code{.sh}
 cd <glfw-root-dir>
 cmake .
 @endcode
 
-To make an out-of-tree build, make a directory outside of the source tree, enter
+To make an out-of-collision_tree build, make a directory outside of the source collision_tree, enter
 it and run CMake with the (relative or absolute) path to the root of the source
-tree as an argument.
+collision_tree as an argument.
 
 @code{.sh}
 mkdir glfw-build
@@ -165,7 +165,7 @@ development environment, move on to @ref compile_compile.
 
 @subsubsection compile_generate_gui Generating files with the CMake GUI
 
-If you are using the GUI version, choose the root of the GLFW source tree as
+If you are using the GUI version, choose the root of the GLFW source collision_tree as
 source location and the same directory or another, empty directory as the
 destination for binaries.  Choose _Configure_, change any options you wish to,
 _Configure_ again to let the changes take effect and then _Generate_.

@@ -179,12 +179,12 @@ This section is about using CMake to compile and link GLFW along with your
 application.  If you want to use an installed binary instead, see @ref
 build_link_cmake_package.
 
-With a few changes to your `CMakeLists.txt` you can have the GLFW source tree
+With a few changes to your `CMakeLists.txt` you can have the GLFW source collision_tree
 built along with your application.
 
 When including GLFW as part of your build, you probably don't want to build the
 GLFW tests, examples and documentation.  To disable these, set the corresponding
-cache variables before adding the GLFW source tree.
+cache variables before adding the GLFW source collision_tree.
 
 @code
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
@@ -192,7 +192,7 @@ set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 @endcode
 
-Add the root directory of the GLFW source tree to your project.  This will add
+Add the root directory of the GLFW source collision_tree to your project.  This will add
 the `glfw` target to your project.
 
 @code{.cmake}

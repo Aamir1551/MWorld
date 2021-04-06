@@ -65,7 +65,7 @@ WorldHandler::WorldHandler(int num_i_blocks_plus, int num_i_blocks_neg, int num_
     //srand(0); // useful for testing purposes, to generate the same random numbers
 
     //cout << "Quad trees are being initialised" << endl;
-    this->tree = new CollisionOctree((int)cube_length * 3, min_coord_x, max_coord_x, min_coord_y, max_coord_y, min_coord_z, max_coord_z, true);
+    this->collision_tree = new CollisionOctree((int)cube_length * 3, min_coord_x, max_coord_x, min_coord_y, max_coord_y, min_coord_z, max_coord_z, true);
     this->forces_tree = new ForceOctree((int) cube_length * 5, min_coord_x, max_coord_x, min_coord_y, max_coord_y, min_coord_z, max_coord_z);
     //cout << "Quad trees are initialised" << endl;
     this->cube_length = cube_length;
@@ -102,15 +102,15 @@ void WorldHandler::GetProperties(int num_blocks, std::vector<Matrix> *&positions
 }
 
 void WorldHandler::ResetTrees() {
-    delete this->tree;
+    delete this->collision_tree;
     delete this->forces_tree;
-    this->tree = new CollisionOctree(cube_length * 2, min_coord_x, max_coord_x, min_coord_y, max_coord_y, min_coord_z, max_coord_z, true);
+    this->collision_tree = new CollisionOctree(cube_length * 2, min_coord_x, max_coord_x, min_coord_y, max_coord_y, min_coord_z, max_coord_z, true);
     this->forces_tree = new ForceOctree(cube_length * 5, min_coord_x, max_coord_x, min_coord_y, max_coord_y, min_coord_z, max_coord_z);
 
     // Add all blocks to the trees and store the leaves they were placed in (in the case of the CollisionOctree)
 
     for(auto const &world_block : this->iblocks) {
-        auto temp = this->tree->AddBlock(world_block);
+        auto temp = this->collision_tree->AddBlock(world_block);
         this->block_to_leaf[world_block] = temp;
         if(world_block->state) {
             this->forces_tree->AddIBlockPlus(world_block);
@@ -120,7 +120,7 @@ void WorldHandler::ResetTrees() {
     }
 
     for(auto const &world_block : this->mblocks) {
-        auto temp = this->tree->AddBlock(world_block);
+        auto temp = this->collision_tree->AddBlock(world_block);
         this->block_to_leaf[world_block] = temp;
         if(world_block->flare_value > MBlock::threshold) {
             this->forces_tree->AddMBlockPlus(world_block);
@@ -130,13 +130,13 @@ void WorldHandler::ResetTrees() {
     }
 
     for(auto const &world_block : this->eblocks) {
-        auto temp = this->tree->AddBlock(world_block);
+        auto temp = this->collision_tree->AddBlock(world_block);
         this->block_to_leaf[world_block] = temp;
         this->forces_tree->AddEBlock(world_block);
     }
 
     for(auto const &world_block : this->zblocks) {
-        auto temp = this->tree->AddBlock(world_block);
+        auto temp = this->collision_tree->AddBlock(world_block);
         this->block_to_leaf[world_block] = temp;
         this->forces_tree->AddZBlock(world_block);
     }
@@ -152,29 +152,29 @@ void WorldHandler::AddBlock(BlockTypes block_types, int num_blocks, bool state) 
                 auto *new_block = new IBlock(positions->at(i), Quaternion(1.0, 0.0, 0.0, 0.0)  ,state);
                 iblocks.push_back(new_block);
                 if(state) {
-                    tree_occupied = this->tree->AddBlock(new_block);
+                    tree_occupied = this->collision_tree->AddBlock(new_block);
                     this->forces_tree->AddIBlockPlus(new_block);
                 } else {
-                    tree_occupied = this->tree->AddBlock(new_block);
+                    tree_occupied = this->collision_tree->AddBlock(new_block);
                     this->forces_tree->AddIBlockNeg(new_block);
                 }
                 blocks.push_back(new_block);
             } else if(block_types == ZBlockType) {
                 auto *new_block = new ZBlock(positions->at(i), Quaternion(1.0, 0.0, 0.0, 0.0));
                 zblocks.push_back(new_block);
-                tree_occupied = this->tree->AddBlock(new_block);
+                tree_occupied = this->collision_tree->AddBlock(new_block);
                 blocks.push_back(new_block);
                 this->forces_tree->AddZBlock(new_block);
             } else if(block_types == EBlockType) {
                 auto new_block = new EBlock(positions->at(i), Quaternion(1.0, 0.0, 0.0, 0.0), state);
                 eblocks.push_back(new_block);
-                tree_occupied = this->tree->AddBlock(new_block);
+                tree_occupied = this->collision_tree->AddBlock(new_block);
                 blocks.push_back(new_block);
                 this->forces_tree->AddEBlock(new_block);
             } else {
                 auto new_block = new MBlock(positions->at(i), Quaternion(1.0, 0.0, 0.0, 0.0));
                 mblocks.push_back(new_block);
-                tree_occupied = this->tree->AddBlock(new_block);
+                tree_occupied = this->collision_tree->AddBlock(new_block);
                 blocks.push_back(new_block);
                 this->forces_tree->AddMBlockNeg(new_block);
             }
@@ -198,7 +198,7 @@ void WorldHandler::Update(vector<Contact> &contact_list, real delta_time) {
 
 #pragma omp parallel for default(none)
     for(auto const &world_block : this->blocks) {
-        tree->RemoveBlock(world_block);
+        collision_tree->RemoveBlock(world_block);
     }
 
     UpdateFlares(contact_list, delta_time);
@@ -217,13 +217,13 @@ void WorldHandler::Update(vector<Contact> &contact_list, real delta_time) {
         if(leaf_m_block->flare_value > MBlock::threshold) {
             forces_tree->RemoveMBlockPlus(leaf_m_block);
             leaf_m_block->Update(this->min_coord_x, this->max_coord_x, this->min_coord_y, this->max_coord_y, this->min_coord_z, this->max_coord_z, delta_time);
-            CollisionOctree * new_leaf = tree->AddBlock(leaf_m_block);
+            CollisionOctree * new_leaf = collision_tree->AddBlock(leaf_m_block);
             block_to_leaf[leaf_m_block] = new_leaf;
             forces_tree->AddMBlockPlus(leaf_m_block);
         } else {
             forces_tree->RemoveMBlockNeg(leaf_m_block);
             leaf_m_block->Update(this->min_coord_x, this->max_coord_x, this->min_coord_y, this->max_coord_y, this->min_coord_z, this->max_coord_z, delta_time);
-            CollisionOctree * new_leaf = tree->AddBlock(leaf_m_block);
+            CollisionOctree * new_leaf = collision_tree->AddBlock(leaf_m_block);
             block_to_leaf[leaf_m_block] = new_leaf;
             forces_tree->AddMBlockNeg(leaf_m_block);
         }
@@ -235,13 +235,13 @@ void WorldHandler::Update(vector<Contact> &contact_list, real delta_time) {
         if(leaf_i_block->state) {
             forces_tree->RemoveIBlockPlus(leaf_i_block);
             leaf_i_block->Update(this->min_coord_x, this->max_coord_x, this->min_coord_y, this->max_coord_y, this->min_coord_z, this->max_coord_z, delta_time);
-            CollisionOctree * new_leaf = tree->AddBlock(leaf_i_block);
+            CollisionOctree * new_leaf = collision_tree->AddBlock(leaf_i_block);
             block_to_leaf[leaf_i_block] = new_leaf;
             forces_tree->AddIBlockPlus(leaf_i_block);
         } else {
             forces_tree->RemoveIBlockNeg(leaf_i_block);
             leaf_i_block->Update(this->min_coord_x, this->max_coord_x, this->min_coord_y, this->max_coord_y, this->min_coord_z, this->max_coord_z, delta_time);
-            CollisionOctree * new_leaf = tree->AddBlock(leaf_i_block);
+            CollisionOctree * new_leaf = collision_tree->AddBlock(leaf_i_block);
             block_to_leaf[leaf_i_block] = new_leaf;
             forces_tree->AddIBlockNeg(leaf_i_block);
         }
@@ -251,7 +251,7 @@ void WorldHandler::Update(vector<Contact> &contact_list, real delta_time) {
     for(auto const &leaf_e_block: this->eblocks) {
         forces_tree->RemoveEBlock(leaf_e_block);
         leaf_e_block->Update(this->min_coord_x, this->max_coord_x, this->min_coord_y, this->max_coord_y, this->min_coord_z, this->max_coord_z, delta_time);
-        CollisionOctree * new_leaf = tree->AddBlock(leaf_e_block);
+        CollisionOctree * new_leaf = collision_tree->AddBlock(leaf_e_block);
         block_to_leaf[leaf_e_block] = new_leaf;
         forces_tree->AddEBlock(leaf_e_block);
     }
@@ -260,7 +260,7 @@ void WorldHandler::Update(vector<Contact> &contact_list, real delta_time) {
     for(auto const &leaf_z_block: this->zblocks) {
         forces_tree->RemoveZBlock(leaf_z_block);
         leaf_z_block->Update(this->min_coord_x, this->max_coord_x, this->min_coord_y, this->max_coord_y, this->min_coord_z, this->max_coord_z, delta_time);
-        CollisionOctree * new_leaf = tree->AddBlock(leaf_z_block);
+        CollisionOctree * new_leaf = collision_tree->AddBlock(leaf_z_block);
         block_to_leaf[leaf_z_block] = new_leaf;
         forces_tree->AddZBlock(leaf_z_block);
     }
@@ -359,7 +359,7 @@ void WorldHandler::SpinWorldBlocks() {
 }
 
 WorldHandler::~WorldHandler() {
-    delete this->tree;
+    delete this->collision_tree;
     delete this->forces_tree;
 
     for(auto & b : this->blocks) {
@@ -423,7 +423,7 @@ void WorldHandler::GetDAGAtRoot(CollisionOctree *root, std::vector<pair<Collisio
         return;
     }
 
-    auto children = this->tree->grid_elements_neighbours.at(root);
+    auto children = this->collision_tree->grid_elements_neighbours.at(root);
     nodes.insert(root);
 
     for(auto & child : children) {

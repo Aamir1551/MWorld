@@ -132,12 +132,12 @@ With MinGW or Visual C++ on Windows</h2>
 <h2><a class="anchor" id="build_link_cmake_source"></a>
 With CMake and GLFW source</h2>
 <p>This section is about using CMake to compile and link GLFW along with your application. If you want to use an installed binary instead, see <a class="el" href="build_guide.html#build_link_cmake_package">With CMake and installed GLFW binaries</a>.</p>
-<p>With a few changes to your <code>CMakeLists.txt</code> you can have the GLFW source tree built along with your application.</p>
-<p>When including GLFW as part of your build, you probably don't want to build the GLFW tests, examples and documentation. To disable these, set the corresponding cache variables before adding the GLFW source tree.</p>
+<p>With a few changes to your <code>CMakeLists.txt</code> you can have the GLFW source collision_tree built along with your application.</p>
+<p>When including GLFW as part of your build, you probably don't want to build the GLFW tests, examples and documentation. To disable these, set the corresponding cache variables before adding the GLFW source collision_tree.</p>
 <div class="fragment"><div class="line">set(GLFW_BUILD_DOCS OFF CACHE BOOL <span class="stringliteral">&quot;&quot;</span> FORCE)</div>
 <div class="line">set(GLFW_BUILD_TESTS OFF CACHE BOOL <span class="stringliteral">&quot;&quot;</span> FORCE)</div>
 <div class="line">set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL <span class="stringliteral">&quot;&quot;</span> FORCE)</div>
-</div><!-- fragment --><p>Add the root directory of the GLFW source tree to your project. This will add the <code>glfw</code> target to your project.</p>
+</div><!-- fragment --><p>Add the root directory of the GLFW source collision_tree to your project. This will add the <code>glfw</code> target to your project.</p>
 <div class="fragment"><div class="line">add_subdirectory(path/to/glfw)</div>
 </div><!-- fragment --><p>Once GLFW has been added, link your application against the <code>glfw</code> target. This adds the GLFW library and its link-time dependencies as it is currently configured, the include directory for the GLFW header and, when applicable, the <a class="el" href="build_guide.html#GLFW_DLL">GLFW_DLL</a> macro.</p>
 <div class="fragment"><div class="line">target_link_libraries(myapp glfw)</div>

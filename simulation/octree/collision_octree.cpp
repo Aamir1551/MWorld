@@ -9,7 +9,7 @@
 using namespace settings;
 using namespace blocks;
 
-// To add a block we traverse the tree to find the leaf that the block should be placed in.
+// To add a block we traverse the collision_tree to find the leaf that the block should be placed in.
 CollisionOctree* CollisionOctree::AddBlock(Block *b) {
     if(this->is_leaf) {
 #pragma omp critical
@@ -26,7 +26,7 @@ CollisionOctree* CollisionOctree::AddBlock(Block *b) {
     }
 }
 
-// To remove a block, we traverse the tree to find the leaf that the block lives in
+// To remove a block, we traverse the collision_tree to find the leaf that the block lives in
 void CollisionOctree::RemoveBlock(Block *b) {
     if(!this->is_leaf) {
         auto t0 = b->position(0, 0) > avg_x;
@@ -174,7 +174,7 @@ CollisionOctree* CollisionOctree::GetGridAtPos(real x, real y, real z) {
 
 bool CollisionOctree::LeavesAreNull() {
 
-    // Traverse the tree, and if any leaf has a block, return true, Otherwise return false
+    // Traverse the collision_tree, and if any leaf has a block, return true, Otherwise return false
     if(this->is_leaf) {
         return this->blocks_at_leaf.empty();
     } else {
