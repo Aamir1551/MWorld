@@ -9,10 +9,12 @@
 using namespace settings;
 using namespace blocks;
 
+// To add a block we traverse the tree to find the leaf that the block should be placed in.
 CollisionOctree* CollisionOctree::AddBlock(Block *b) {
     if(this->is_leaf) {
 #pragma omp critical
         {
+            // Only one thread should be able to insert to the vector
             this->blocks_at_leaf.insert(b);
         }
         return this;
@@ -24,6 +26,7 @@ CollisionOctree* CollisionOctree::AddBlock(Block *b) {
     }
 }
 
+// To remove a block, we traverse the tree to find the leaf that the block lives in
 void CollisionOctree::RemoveBlock(Block *b) {
     if(!this->is_leaf) {
         auto t0 = b->position(0, 0) > avg_x;
@@ -40,11 +43,13 @@ void CollisionOctree::RemoveBlock(Block *b) {
 
 CollisionOctree::CollisionOctree(int grid_size, real min_x, real  max_x, real min_y, real max_y, real min_z, real max_z, bool initialise) : Octree(grid_size, min_x,  max_x, min_y, max_y, min_z, max_z) {
 
+    // If the space represented by the node is more than grid size, split the node into 8 equal parts
     if (this->cell_partition_size <= grid_size) {
         this->is_leaf = true;
     } else {
         this->is_leaf = false;
 
+        // Splitting space into 8 equal parts. Each part is represented by each children of the node
         for(int i=0; i<8; i++) {
             auto xx0 = (i % 2) ? avg_x : min_x;
             auto xx1 = (i % 2) ? max_x: avg_x;
@@ -54,10 +59,12 @@ CollisionOctree::CollisionOctree(int grid_size, real min_x, real  max_x, real mi
 
             auto zz0 = ((i/4) % 2) ? avg_z : min_z;
             auto zz1 = ((i/4) % 2) ? max_z : avg_z;
-            children[i] = new CollisionOctree(grid_size, xx0, xx1, yy0, yy1, zz0, zz1);
+            children[i] = new CollisionOctree(grid_size, xx0, xx1, yy0, yy1, zz0, zz1, false);
         }
     }
 
+    // Initialise is used to on the first construction of the octree only. On the first construction of the octree
+    // For each leaf node, we calculate its neighbours
     if (initialise) {
         real partition_min_x = cell_partition_size;
         real partition_min_y = cell_partition_size;
@@ -93,6 +100,9 @@ CollisionOctree::CollisionOctree(int grid_size, real min_x, real  max_x, real mi
     }
 }
 
+// Returns all 27 possible neighbours of the current leaf. For a given node
+// maximum number of nodes we can have surrounding it is 26, 9 above, 9 below, 8 surrounding it.
+// We return each of these neighbours along with a reference to the node itself
 std::vector<CollisionOctree *> CollisionOctree::GenerateNeigbours(real x, real y, real z, real partition_min_x, real partition_min_y, real partition_min_z) {
     vector<CollisionOctree *> neighbours;
 
@@ -164,6 +174,7 @@ CollisionOctree* CollisionOctree::GetGridAtPos(real x, real y, real z) {
 
 bool CollisionOctree::LeavesAreNull() {
 
+    // Traverse the tree, and if any leaf has a block, return true, Otherwise return false
     if(this->is_leaf) {
         return this->blocks_at_leaf.empty();
     } else {
