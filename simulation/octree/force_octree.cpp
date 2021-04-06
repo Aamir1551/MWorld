@@ -259,7 +259,7 @@ void ForceOctree::ApplyBarnesHutOnBlock(Block *b, real delta_time) {
     }
 }
 
-ForceOctree::ForceOctree(int grid_size, real min_x, real  max_x, real min_y, real max_y, real min_z, real max_z, bool initialise) : grid_size(grid_size), min_x(min_x), max_x(max_x), min_y(min_y), max_y(max_y), min_z(min_z), max_z(max_z) {
+ForceOctree::ForceOctree(int grid_size, real min_x, real  max_x, real min_y, real max_y, real min_z, real max_z) : grid_size(grid_size), min_x(min_x), max_x(max_x), min_y(min_y), max_y(max_y), min_z(min_z), max_z(max_z) {
     iblocks_at_cell_plus_count= iblocks_at_cell_neg_count= mblocks_at_cell_plus_count= mblocks_at_cell_neg_count= zblocks_at_cell_count= eblocks_at_cell_count = 0;
     this->sum_i_plus = Matrix(3, 1, 0);
     this->sum_i_neg = Matrix(3, 1, 0);

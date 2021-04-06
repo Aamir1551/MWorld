@@ -43,8 +43,7 @@ namespace blocks {
         ForceOctree* children[8];
 
 
-        explicit ForceOctree(int grid_sizes, real min_x, real max_x, real min_y, real max_y, real min_z, real max_z,
-                        bool initialise = false);
+        explicit ForceOctree(int grid_sizes, real min_x, real max_x, real min_y, real max_y, real min_z, real max_z);
 
         void CalculateCOMS();
 
