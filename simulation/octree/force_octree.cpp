@@ -8,6 +8,7 @@
 using namespace settings;
 using namespace blocks;
 
+// The Add block functions work similarly, by traversing the octree down, and incrementing the mass of the object at each node
 ForceOctree* ForceOctree::AddIBlockPlus(IBlock *b) {
 #pragma omp atomic
     this->iblocks_at_cell_plus_count +=1;
@@ -113,6 +114,7 @@ ForceOctree* ForceOctree::AddZBlock(ZBlock *b) {
     }
 }
 
+// The remove block functions work similarly, by traversing the octree down, and removing the mass of the object at each level
 void ForceOctree::RemoveIBlockPlus(IBlock *b) {
     if(!this->is_leaf) {
         auto t0 = b->position(0, 0) > avg_x;
@@ -212,6 +214,7 @@ void ForceOctree::RemoveMBlockNeg(MBlock *b) {
 
 void ForceOctree::CalculateCOMS() {
 
+    // Center of mass is given by sum of masses / number of blocks
     if(iblocks_at_cell_plus_count > 0) {
         this->com_i_plus = sum_i_plus / iblocks_at_cell_plus_count;
     }
@@ -239,6 +242,7 @@ void ForceOctree::CalculateCOMS() {
 
 void ForceOctree::CalculateCOMonTree() {
     CalculateCOMS();
+    // Calculating COM recursively
     int num_blocks_count = zblocks_at_cell_count + eblocks_at_cell_count + iblocks_at_cell_neg_count + iblocks_at_cell_plus_count + mblocks_at_cell_neg_count + mblocks_at_cell_plus_count;
     if(num_blocks_count > 0 && !this->is_leaf) {
         for(auto & i : this->children){
@@ -250,7 +254,6 @@ void ForceOctree::CalculateCOMonTree() {
 
 
 void ForceOctree::ApplyBarnesHutOnBlock(Block *b, real delta_time) {
-    //this->count += 1;
     bool recurse = b->ReactBarnesHut(this, delta_time);
     if(recurse) {
         for(auto & i : this->children) {
@@ -269,11 +272,11 @@ ForceOctree::ForceOctree(int grid_size, real min_x, real  max_x, real min_y, rea
     this->sum_e = Matrix(3, 1, 0);
 
 
+    // Creating children recursively, until the space represented by node is less than grid_size
     if (this->cell_partition_size <= grid_size) {
         this->is_leaf = true;
     } else {
         this->is_leaf = false;
-
 
         for(int i=0; i<8; i++) {
             auto xx0 = (i % 2) ? avg_x : min_x;
@@ -305,5 +308,3 @@ ForceOctree::~ForceOctree() {
         }
     }
 }
-
-int ForceOctree::count = 0;

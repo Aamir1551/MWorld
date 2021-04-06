@@ -162,14 +162,14 @@ CollisionOctree* CollisionOctree::GetGridAtPos(real x, real y, real z) {
     }
 }
 
-bool CollisionOctree::LeafsAreNull() {
+bool CollisionOctree::LeavesAreNull() {
 
     if(this->is_leaf) {
-        return this->blocks_at_leaf.size() == 0;
+        return this->blocks_at_leaf.empty();
     } else {
         bool cond = true;
-        for(unsigned int i=0; i<8; i++) {
-            cond &= this->children[i]->LeafsAreNull();
+        for(auto & i : this->children) {
+            cond &= i->LeavesAreNull();
             if(!cond) {
                 return false;
             }
@@ -177,8 +177,6 @@ bool CollisionOctree::LeafsAreNull() {
     }
     return true;
 }
-
-int CollisionOctree::count = 0;
 
 CollisionOctree::~CollisionOctree() {
     if(!this->is_leaf) {

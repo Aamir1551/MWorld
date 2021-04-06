@@ -24,8 +24,6 @@ namespace blocks {
     public:
 
 
-        // Storing the Center of Mass of each block that lives in the current cell
-        Matrix sum_i_plus,  sum_i_neg, sum_z, sum_m_plus, sum_m_neg, sum_e;
 
         // Center of mass of each block type at the current cell
         Matrix com_i_plus = Matrix(3, 1);
@@ -41,8 +39,6 @@ namespace blocks {
 
         explicit ForceOctree(int grid_sizes, real min_x, real max_x, real min_y, real max_y, real min_z, real max_z);
 
-        // Sets the com_* variables according to the objects currently living at the region represented by the octree
-        void CalculateCOMS();
 
         // Functions to add the different blocks to the octree
         ForceOctree *AddIBlockPlus(IBlock *b);
@@ -60,8 +56,6 @@ namespace blocks {
         void RemoveMBlockPlus(MBlock *b);
         void RemoveMBlockNeg(MBlock *b);
 
-        static int count;
-
         // Keep a count of the different blocks stored at region represented by current octree
         int iblocks_at_cell_plus_count, iblocks_at_cell_neg_count, mblocks_at_cell_plus_count, mblocks_at_cell_neg_count, zblocks_at_cell_count, eblocks_at_cell_count;
 
@@ -73,6 +67,12 @@ namespace blocks {
 
         ~ForceOctree();
 
+    private:
+        // Sets the com_* variables according to the objects currently living at the region represented by the octree
+        void CalculateCOMS();
+
+        // Storing the Center of Mass of each block that lives in the current cell
+        Matrix sum_i_plus,  sum_i_neg, sum_z, sum_m_plus, sum_m_neg, sum_e;
     };
 }
 #endif
