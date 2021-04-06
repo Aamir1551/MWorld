@@ -5,7 +5,6 @@
 #include <quaternion.hpp>
 #include <block.hpp>
 #include <cube.hpp>
-#include <cmath>
 
 using namespace numerics;
 using namespace settings;
@@ -43,8 +42,8 @@ namespace blocks {
 
             */
 
-            linear_velocity = momentum * inverse_mass;
-            angular_velocity = angular_momentum * inverse_inertia;
+            linear_velocity = momentum * kInverseMass;
+            angular_velocity = angular_momentum * kInverseInertia;
 
             Quaternion q(0, angular_velocity(0, 0), angular_velocity(1, 0), angular_velocity(2, 0));
             Quaternion spin = q * orientation;
@@ -94,9 +93,9 @@ namespace blocks {
         angular_momentum += Matrix::VectorProduct(r, force_direction) * dt;
     }
 
-    void Cube::AddLinearForce(Matrix const &force_direction, real dt) {
-        momentum += force_direction * dt;
-        momentum -= force_direction * dt; //comment out this line of code to test out time complexity of code, when forces are not being take in to consideration
+    void Cube::AddLinearForce(Matrix const &force, real dt) {
+        momentum += force * dt;
+        momentum -= force * dt; //comment out this line of code to test out time complexity of code, when forces are not being take in to consideration
     }
 
     void Cube::SetAngularMomentumToZero() {
@@ -115,11 +114,8 @@ namespace blocks {
     void Cube::CollisionDetect(Block *c1, Block *c2, vector<Contact> &contact_list) {
         Matrix vect_dist = (c1->position - c2->position);
         real dist = Matrix::Norm(vect_dist);
-        real length = (c1->cube_length + c2->cube_length) / 2;
+        real length = (c1->kCubeLength + c2->kCubeLength) / 2;
 
-        // Below line of code needs to be uncommented, but it makes things slower, if we
-        // uncomment it. Maybe it has to do with the computer
-        // If the below code is commented, the forces will not appear to be working properly
             if(dist == 0) {
                 auto temp = c1->position(0, 0);
 #pragma omp critical
@@ -144,7 +140,7 @@ namespace blocks {
     void Cube::CollisionDetectAndResolve(Block *c1, Block *c2, vector<omp_lock_t> partial_locks) {
         Matrix vect_dist = (c1->position - c2->position);
         real dist = Matrix::Norm(vect_dist);
-        real length = (c1->cube_length + c2->cube_length) / 2;
+        real length = (c1->kCubeLength + c2->kCubeLength) / 2;
         if(dist == 0) {
             auto temp = c1->position(0, 0);
             c1->position(0, 0, temp + length/2);
@@ -187,6 +183,8 @@ namespace blocks {
         Cube *body2 = contact.body2;
         auto normal = contact.normal;
         auto temp = body1->momentum;
+
+        // Below code is within a critical region since no two threads should have access to the same properties of a cube
 #pragma omp critical (INNER)
         {
             body1->momentum = body2->momentum;
@@ -204,6 +202,8 @@ namespace blocks {
         real mx = c1->momentum(0, 0);
         real my = c1->momentum(1, 0);
         real mz = c1->momentum(2, 0);
+
+        // Set the motion of the cube in the opposite direction to the boundary
         if(x <= min_boundary_x) {
             c1->momentum(0, 0,  abs(mx));
         } else if(x >= max_boundary_x) {

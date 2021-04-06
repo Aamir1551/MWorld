@@ -107,6 +107,8 @@ void WorldHandler::ResetTrees() {
     this->tree = new CollisionOctree(cube_length * 2, min_coord_x, max_coord_x, min_coord_y, max_coord_y, min_coord_z, max_coord_z, true);
     this->forces_tree = new ForceOctree(cube_length * 5, min_coord_x, max_coord_x, min_coord_y, max_coord_y, min_coord_z, max_coord_z);
 
+    // Add all blocks to the trees and store the leaves they were placed in (in the case of the CollisionOctree)
+
     for(auto const &world_block : this->iblocks) {
         auto temp = this->tree->AddBlock(world_block);
         this->block_to_leaf[world_block] = temp;
@@ -187,6 +189,13 @@ void WorldHandler::AddBlock(BlockTypes block_types, int num_blocks, bool state) 
 
 void WorldHandler::Update(vector<Contact> &contact_list, real delta_time) {
 
+    // We update the entire world
+    // 1) We remove the block from the CollisionOctree
+    // 2) We resolve all collisions that are currently taking place
+    // 3) We then update the position of the block in the ForceOctree
+    // 4) Update the position of the blocks
+
+
 #pragma omp parallel for default(none)
     for(auto const &world_block : this->blocks) {
         tree->RemoveBlock(world_block);
@@ -260,6 +269,7 @@ void WorldHandler::Update(vector<Contact> &contact_list, real delta_time) {
 vector<Contact> WorldHandler::CollisionHandlerBruteForce()
 {
     vector<Contact> contact_list;
+    // Loop over every possible pair of block and determine if they are in direct collision
 #pragma omp parallel for default(none) shared(contact_list)
     for(unsigned int i=0; i<blocks.size()-1; i++) {
         for(unsigned int j=i+1; j<blocks.size(); j++) {

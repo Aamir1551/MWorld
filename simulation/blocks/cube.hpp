@@ -27,21 +27,22 @@ namespace blocks {
     class Cube {
     public:
 
-        //primary
-        Matrix position = Matrix(3.0, 1.0);
-        Quaternion orientation = Quaternion(1.0f, 0.0f, 0.0f, 0.0f);
+        // Primary
+        Matrix position = Matrix(3.0, 1.0); // Position of the cube
+        Quaternion orientation = Quaternion(1.0f, 0.0f, 0.0f, 0.0f);  // Cube Orientation
 
+        // Cube Momentum's
         Matrix momentum = Matrix(3, 1);
         Matrix angular_momentum = Matrix(3, 1);
 
-        //secondary
+        // Secondary
         Matrix linear_velocity = Matrix(3, 1);
         Matrix angular_velocity = Matrix(3, 1);
 
-        //constants
-        real const inverse_inertia;
-        real const inverse_mass;
-        real const cube_length;
+        // constants
+        real const kInverseInertia;
+        real const kInverseMass;
+        real const kCubeLength;
 
         /**
          * @brief Construct a new Cube object.
@@ -53,7 +54,7 @@ namespace blocks {
          * @param inverse_inertia Inverse inertia of cube
          */
         Cube(real cube_length, const Matrix &position, const Quaternion& initial_orientation = Quaternion(1, 0, 0, 0), real inverse_mass = 1.0f, real inverse_inertia = 1.0f) :
-         inverse_inertia(inverse_inertia), inverse_mass(inverse_mass), cube_length(cube_length)
+                kInverseInertia(inverse_inertia), kInverseMass(inverse_mass), kCubeLength(cube_length)
         {
             this->position = position;
             this->orientation = initial_orientation;
@@ -75,14 +76,19 @@ namespace blocks {
          */
         void AddTorque(Matrix const &force, Matrix const &force_world_cooridinates, real const dt);
 
-        void AddLinearForce(Matrix const &force_direction, real dt);
+        /**
+         * @brief Applies a force to the cube. Only the linear motion of the Force is applied on the block
+         *
+         * @param force The force applied to the cube
+         * @param dt Duration force is applied for
+         */
+        void AddLinearForce(Matrix const &force, real dt);
 
         /**
          * @brief Set the Angular Momentum To Zero
          *
          */
         void SetAngularMomentumToZero();
-
 
         /**
          * @brief Set the Linear Momentum To Zero
@@ -98,12 +104,28 @@ namespace blocks {
          */
         Matrix GetOrientationMatrix() const;
 
+        /**
+         * @brief Detect if there is a collision between Block c1 and Block c2. If a collision exists
+         * then generate a contact and add to contact_list
+         *
+         * @param c1 Block in collision
+         * @param c2 Block in collision
+         * @param contact_list if collision exists, contact is added to list
+         */
         static void CollisionDetect(Block *c1, Block *c2, vector<Contact> &contact_list);
 
+        /**
+         * @brief Check if there is a collision between the Cube and the world boundary.
+         * If a collision exists, then resolve the collision, by bouncing the Cube in the opposite
+         * direction of the world boundary.
+         */
         static void CollisionBoundary(Cube *c1, real min_boundary_x, real max_boundary_x,
                                             real min_boundary_y, real max_boundary_y ,
                                             real min_boundary_z, real max_boundary_z);
 
+        /**
+         * @brief Resolves the contact given
+         */
         void static CollisionResolution(Contact &contact);
 
 
