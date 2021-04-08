@@ -95,7 +95,7 @@ namespace blocks {
 
     void Cube::AddLinearForce(Matrix const &force, real dt) {
         momentum += force * dt;
-        momentum -= force * dt; //comment out this line of code to test out time complexity of code, when forces are not being take in to consideration
+        //momentum -= force * dt; //comment out this line of code to test out time complexity of code, when forces are not being take in to consideration
     }
 
     void Cube::SetAngularMomentumToZero() {
@@ -187,8 +187,13 @@ namespace blocks {
         // Below code is within a critical region since no two threads should have access to the same properties of a cube
 #pragma omp critical (INNER)
         {
-            body1->momentum = body2->momentum;
-            body2->momentum = temp;
+
+            /* Currently no energy is lost in the collision, so it gives the impression that blocks
+             are just passing through each other. If on the other hand, we multiplied the momentum's by
+             a constant, c, less than 1, than the blocks would look like they are colliding*/
+
+            body1->momentum = body2->momentum * 0.4;
+            body2->momentum = temp * 0.4;
             body1->position += normal * (contact.penetration/2);
             body2->position -= normal * (contact.penetration/2);
         };

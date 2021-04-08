@@ -74,7 +74,11 @@ int main(int argc, char *argv[])
                                       (argc < 8) ? 100 : (int) atoi(argv[7]),
                                       (argc < 9) ? -100 : (int) atoi(argv[8]),
                                       (argc < 10) ? 100 : (int) atoi(argv[9]),
-    4);*/
+                                      (argc < 11) ? -100 : (int) atoi(argv[10]),
+                                      (argc < 12) ? 100 : (int) atoi(argv[11]),
+                                      (argc < 13) ? -100 : (int) atoi(argv[12]),
+                                      (argc < 14) ? 100 : (int) atoi(argv[13]),
+                                      4);*/
 
     WorldHandler world = WorldHandler((argc < 3) ? 0 : (int) atoi(argv[2]),
                                       (argc < 4) ? 0 : (int) atoi(argv[3]),
@@ -157,6 +161,7 @@ int main(int argc, char *argv[])
             cout << "not equal" << endl;
         }*/
 
+        //cout << contact_list.size() << endl;
         world.AddForces(deltaTime.count()/1000.0);
         //auto contact_list = vector<Contact>();
         world.Update(contact_list, deltaTime.count()/1000.0);

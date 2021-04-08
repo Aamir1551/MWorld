@@ -24,7 +24,7 @@ namespace blocks {
             real dist = std::sqrt(squared_dist);
 
             if(tree->is_leaf) {
-                inc_force += (vec_to_tree_com) / std::max(squared_dist, (real) 0.01) * ((real) cell_count);
+                inc_force += (vec_to_tree_com) / std::max(squared_dist, (real) 0.01)  * ((real) cell_count);
                 return false;
             }
 
