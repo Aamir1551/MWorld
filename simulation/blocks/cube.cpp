@@ -188,12 +188,14 @@ namespace blocks {
 #pragma omp critical (INNER)
         {
 
-            /* Currently no energy is lost in the collision, so it gives the impression that blocks
-             are just passing through each other. If on the other hand, we multiplied the momentum's by
-             a constant, c, less than 1, than the blocks would look like they are colliding*/
+            /* When c=1, no energy is being lost in the collision, so it will give the impression that
+             * blocks are passing through each other. On the other hand, if c<1, energy is being lsot in the
+             * collision, and it is easier to identify when blocks are colliding.
+             * */
+            real c = 1;
 
-            body1->momentum = body2->momentum * 0.4;
-            body2->momentum = temp * 0.4;
+            body1->momentum = body2->momentum * c;
+            body2->momentum = temp * c;
             body1->position += normal * (contact.penetration/2);
             body2->position -= normal * (contact.penetration/2);
         };
