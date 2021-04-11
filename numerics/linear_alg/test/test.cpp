@@ -5,6 +5,8 @@
 #include <matrix.hpp>
 #include <catch.hpp>
 #include <settings.hpp>
+#include <glm/matrix.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 
 using namespace numerics;
 //TODO
@@ -392,6 +394,36 @@ TEST_CASE("Matrices can be operated with", "[Operations]")
         }
     }
 
-
     // have a compare function, that compares glm function with matrix LookAt and Perspective function
+}
+
+TEST_CASE("Rendering Functions", "[rendering]") {
+
+    Matrix eye = Matrix::CreateColumnVec(3, 1, 2);
+    Matrix center = Matrix::CreateColumnVec(5, 1, 7);
+    Matrix up = Matrix::CreateColumnVec(0, 0, 1);
+    auto mat_a = Matrix::LookAt(eye, center, up);
+    auto glm_mat_a = glm::lookAt(glm::vec3(3, 1, 2), glm::vec3(5, 1, 7), glm::vec3(0, 0, 1));
+
+    auto mat_b = Matrix::Perspective(0.7, 0.4, 0.1, 100);
+    auto glm_mat_b = glm::perspective(0.7, 0.4, 0.1, 100.0);
+
+    SECTION("LookAt function Returns Correctly") {
+
+        for(int i=0; i<4; i++) {
+            for(int j=0; j<4; j++) {
+                REQUIRE(mat_a(i, j) == glm_mat_a[i][j]);
+            }
+        }
+    }
+
+
+    SECTION("Perspective function Returns Correctly") {
+        for(int i=0; i<4; i++) {
+            for(int j=0; j<4; j++) {
+                REQUIRE(mat_b(i, j) == Approx(glm_mat_b[i][j]));
+            }
+        }
+    }
+
 }

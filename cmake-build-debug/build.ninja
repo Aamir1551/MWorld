@@ -162,14 +162,14 @@ build cmake_object_order_depends_target_matrix_test: phony || cmake_object_order
 build numerics/linear_alg/test/CMakeFiles/matrix_test.dir/test.cpp.obj: CXX_COMPILER__matrix_test_Debug ../numerics/linear_alg/test/test.cpp || cmake_object_order_depends_target_matrix_test
   DEP_FILE = numerics\linear_alg\test\CMakeFiles\matrix_test.dir\test.cpp.obj.d
   FLAGS = -Wall -fopenmp -std=c++11 -g   -std=gnu++11
-  INCLUDES = -I../catch -I../numerics/linear_alg/include -I../utils/settings/.
+  INCLUDES = -I../catch -I../lib/glm -I../numerics/linear_alg/include -I../utils/settings/.
   OBJECT_DIR = numerics\linear_alg\test\CMakeFiles\matrix_test.dir
   OBJECT_FILE_DIR = numerics\linear_alg\test\CMakeFiles\matrix_test.dir
 
 build numerics/linear_alg/test/CMakeFiles/matrix_test.dir/test-main.cpp.obj: CXX_COMPILER__matrix_test_Debug ../numerics/linear_alg/test/test-main.cpp || cmake_object_order_depends_target_matrix_test
   DEP_FILE = numerics\linear_alg\test\CMakeFiles\matrix_test.dir\test-main.cpp.obj.d
   FLAGS = -Wall -fopenmp -std=c++11 -g   -std=gnu++11
-  INCLUDES = -I../catch -I../numerics/linear_alg/include -I../utils/settings/.
+  INCLUDES = -I../catch -I../lib/glm -I../numerics/linear_alg/include -I../utils/settings/.
   OBJECT_DIR = numerics\linear_alg\test\CMakeFiles\matrix_test.dir
   OBJECT_FILE_DIR = numerics\linear_alg\test\CMakeFiles\matrix_test.dir
 
@@ -801,6 +801,255 @@ build utils/settings/rebuild_cache: phony utils/settings/CMakeFiles/rebuild_cach
 #############################################
 # Utility command for edit_cache
 
+build prototype/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cmd.exe /C "cd /D C:\Users\aamir\Documents\mworld\cmake-build-debug\prototype && "C:\Program Files\JetBrains\CLion 2020.3.1\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build prototype/edit_cache: phony prototype/CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build prototype/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cmd.exe /C "cd /D C:\Users\aamir\Documents\mworld\cmake-build-debug\prototype && "C:\Program Files\JetBrains\CLion 2020.3.1\bin\cmake\win\bin\cmake.exe" --regenerate-during-build -SC:\Users\aamir\Documents\mworld -BC:\Users\aamir\Documents\mworld\cmake-build-debug"
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build prototype/rebuild_cache: phony prototype/CMakeFiles/rebuild_cache.util
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# C:/Users/aamir/Documents/mworld/prototype/CMakeLists.txt
+# =============================================================================
+
+# =============================================================================
+# Object build statements for EXECUTABLE target prototype_one
+
+
+#############################################
+# Order-only phony target for prototype_one
+
+build cmake_object_order_depends_target_prototype_one: phony || cmake_object_order_depends_target_cube_renderer cmake_object_order_depends_target_glad cmake_object_order_depends_target_linear_alg cmake_object_order_depends_target_mworld_render_utils cmake_object_order_depends_target_quaternion cmake_object_order_depends_target_utils
+
+build prototype/prototype_one/CMakeFiles/prototype_one.dir/main.cpp.obj: CXX_COMPILER__prototype_one_Debug ../prototype/prototype_one/main.cpp || cmake_object_order_depends_target_prototype_one
+  DEP_FILE = prototype\prototype_one\CMakeFiles\prototype_one.dir\main.cpp.obj.d
+  FLAGS = -Wall -fopenmp -std=c++11 -g   -std=gnu++11
+  INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../utils/util_functions/. -I../lib/glad/include -I../render/cube_renderer/. -I../render/cube_renderer/../lib -I../render/utils/. -I../render/shader -I../render/camera
+  OBJECT_DIR = prototype\prototype_one\CMakeFiles\prototype_one.dir
+  OBJECT_FILE_DIR = prototype\prototype_one\CMakeFiles\prototype_one.dir
+
+build prototype/prototype_one/CMakeFiles/prototype_one.dir/__/__/render/utils/world_initializer.cpp.obj: CXX_COMPILER__prototype_one_Debug ../render/utils/world_initializer.cpp || cmake_object_order_depends_target_prototype_one
+  DEP_FILE = prototype\prototype_one\CMakeFiles\prototype_one.dir\__\__\render\utils\world_initializer.cpp.obj.d
+  FLAGS = -Wall -fopenmp -std=c++11 -g   -std=gnu++11
+  INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../utils/util_functions/. -I../lib/glad/include -I../render/cube_renderer/. -I../render/cube_renderer/../lib -I../render/utils/. -I../render/shader -I../render/camera
+  OBJECT_DIR = prototype\prototype_one\CMakeFiles\prototype_one.dir
+  OBJECT_FILE_DIR = prototype\prototype_one\CMakeFiles\prototype_one.dir\__\__\render\utils
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target prototype_one
+
+
+#############################################
+# Link the executable prototype\prototype_one\prototype_one.exe
+
+build prototype/prototype_one/prototype_one.exe: CXX_EXECUTABLE_LINKER__prototype_one_Debug prototype/prototype_one/CMakeFiles/prototype_one.dir/main.cpp.obj prototype/prototype_one/CMakeFiles/prototype_one.dir/__/__/render/utils/world_initializer.cpp.obj | numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a utils/util_functions/libutils.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a render/cube_renderer/libcube_renderer.a render/utils/libmworld_render_utils.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a utils/util_functions/libutils.a numerics/quaternion/libquaternion.a numerics/linear_alg/liblinear_alg.a || lib/glad/libglad.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/cube_renderer/libcube_renderer.a render/utils/libmworld_render_utils.a utils/util_functions/libutils.a
+  FLAGS = -Wall -fopenmp -std=c++11 -g
+  LINK_LIBRARIES = numerics/linear_alg/liblinear_alg.a  numerics/quaternion/libquaternion.a  utils/util_functions/libutils.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  render/cube_renderer/libcube_renderer.a  render/utils/libmworld_render_utils.a  numerics/linear_alg/liblinear_alg.a  numerics/quaternion/libquaternion.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  utils/util_functions/libutils.a  numerics/quaternion/libquaternion.a  numerics/linear_alg/liblinear_alg.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = prototype\prototype_one\CMakeFiles\prototype_one.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = prototype\prototype_one\prototype_one.exe
+  TARGET_IMPLIB = prototype\prototype_one\libprototype_one.dll.a
+  TARGET_PDB = prototype_one.exe.dbg
+
+
+#############################################
+# Utility command for edit_cache
+
+build prototype/prototype_one/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cmd.exe /C "cd /D C:\Users\aamir\Documents\mworld\cmake-build-debug\prototype\prototype_one && "C:\Program Files\JetBrains\CLion 2020.3.1\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build prototype/prototype_one/edit_cache: phony prototype/prototype_one/CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build prototype/prototype_one/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cmd.exe /C "cd /D C:\Users\aamir\Documents\mworld\cmake-build-debug\prototype\prototype_one && "C:\Program Files\JetBrains\CLion 2020.3.1\bin\cmake\win\bin\cmake.exe" --regenerate-during-build -SC:\Users\aamir\Documents\mworld -BC:\Users\aamir\Documents\mworld\cmake-build-debug"
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build prototype/prototype_one/rebuild_cache: phony prototype/prototype_one/CMakeFiles/rebuild_cache.util
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# C:/Users/aamir/Documents/mworld/prototype/CMakeLists.txt
+# =============================================================================
+
+
+#############################################
+# Utility command for edit_cache
+
+build prototype/prototype_two/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cmd.exe /C "cd /D C:\Users\aamir\Documents\mworld\cmake-build-debug\prototype\prototype_two && "C:\Program Files\JetBrains\CLion 2020.3.1\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build prototype/prototype_two/edit_cache: phony prototype/prototype_two/CMakeFiles/edit_cache.util
+
+# =============================================================================
+# Object build statements for EXECUTABLE target prototype_two
+
+
+#############################################
+# Order-only phony target for prototype_two
+
+build cmake_object_order_depends_target_prototype_two: phony || cmake_object_order_depends_target_cube_renderer cmake_object_order_depends_target_glad cmake_object_order_depends_target_linear_alg cmake_object_order_depends_target_mworld_render_utils cmake_object_order_depends_target_quaternion cmake_object_order_depends_target_utils
+
+build prototype/prototype_two/CMakeFiles/prototype_two.dir/cube.cpp.obj: CXX_COMPILER__prototype_two_Debug ../prototype/prototype_two/cube.cpp || cmake_object_order_depends_target_prototype_two
+  DEP_FILE = prototype\prototype_two\CMakeFiles\prototype_two.dir\cube.cpp.obj.d
+  FLAGS = -Wall -fopenmp -std=c++11 -g   -std=gnu++11
+  INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../prototype/prototype_two -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/. -I../render/cube_renderer/../lib -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera
+  OBJECT_DIR = prototype\prototype_two\CMakeFiles\prototype_two.dir
+  OBJECT_FILE_DIR = prototype\prototype_two\CMakeFiles\prototype_two.dir
+
+build prototype/prototype_two/CMakeFiles/prototype_two.dir/main.cpp.obj: CXX_COMPILER__prototype_two_Debug ../prototype/prototype_two/main.cpp || cmake_object_order_depends_target_prototype_two
+  DEP_FILE = prototype\prototype_two\CMakeFiles\prototype_two.dir\main.cpp.obj.d
+  FLAGS = -Wall -fopenmp -std=c++11 -g   -std=gnu++11
+  INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../prototype/prototype_two -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/. -I../render/cube_renderer/../lib -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera
+  OBJECT_DIR = prototype\prototype_two\CMakeFiles\prototype_two.dir
+  OBJECT_FILE_DIR = prototype\prototype_two\CMakeFiles\prototype_two.dir
+
+build prototype/prototype_two/CMakeFiles/prototype_two.dir/__/__/render/utils/world_initializer.cpp.obj: CXX_COMPILER__prototype_two_Debug ../render/utils/world_initializer.cpp || cmake_object_order_depends_target_prototype_two
+  DEP_FILE = prototype\prototype_two\CMakeFiles\prototype_two.dir\__\__\render\utils\world_initializer.cpp.obj.d
+  FLAGS = -Wall -fopenmp -std=c++11 -g   -std=gnu++11
+  INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../prototype/prototype_two -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/. -I../render/cube_renderer/../lib -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera
+  OBJECT_DIR = prototype\prototype_two\CMakeFiles\prototype_two.dir
+  OBJECT_FILE_DIR = prototype\prototype_two\CMakeFiles\prototype_two.dir\__\__\render\utils
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target prototype_two
+
+
+#############################################
+# Link the executable prototype\prototype_two\prototype_two.exe
+
+build prototype/prototype_two/prototype_two.exe: CXX_EXECUTABLE_LINKER__prototype_two_Debug prototype/prototype_two/CMakeFiles/prototype_two.dir/cube.cpp.obj prototype/prototype_two/CMakeFiles/prototype_two.dir/main.cpp.obj prototype/prototype_two/CMakeFiles/prototype_two.dir/__/__/render/utils/world_initializer.cpp.obj | numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/cube_renderer/libcube_renderer.a utils/util_functions/libutils.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a render/utils/libmworld_render_utils.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a utils/util_functions/libutils.a numerics/quaternion/libquaternion.a numerics/linear_alg/liblinear_alg.a || lib/glad/libglad.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/cube_renderer/libcube_renderer.a render/utils/libmworld_render_utils.a utils/util_functions/libutils.a
+  FLAGS = -Wall -fopenmp -std=c++11 -g
+  LINK_LIBRARIES = numerics/linear_alg/liblinear_alg.a  numerics/quaternion/libquaternion.a  numerics/linear_alg/liblinear_alg.a  numerics/quaternion/libquaternion.a  render/cube_renderer/libcube_renderer.a  utils/util_functions/libutils.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  render/utils/libmworld_render_utils.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  utils/util_functions/libutils.a  numerics/quaternion/libquaternion.a  numerics/linear_alg/liblinear_alg.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = prototype\prototype_two\CMakeFiles\prototype_two.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = prototype\prototype_two\prototype_two.exe
+  TARGET_IMPLIB = prototype\prototype_two\libprototype_two.dll.a
+  TARGET_PDB = prototype_two.exe.dbg
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build prototype/prototype_two/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cmd.exe /C "cd /D C:\Users\aamir\Documents\mworld\cmake-build-debug\prototype\prototype_two && "C:\Program Files\JetBrains\CLion 2020.3.1\bin\cmake\win\bin\cmake.exe" --regenerate-during-build -SC:\Users\aamir\Documents\mworld -BC:\Users\aamir\Documents\mworld\cmake-build-debug"
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build prototype/prototype_two/rebuild_cache: phony prototype/prototype_two/CMakeFiles/rebuild_cache.util
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# C:/Users/aamir/Documents/mworld/prototype/CMakeLists.txt
+# =============================================================================
+
+# =============================================================================
+# Object build statements for EXECUTABLE target prototype_three
+
+
+#############################################
+# Order-only phony target for prototype_three
+
+build cmake_object_order_depends_target_prototype_three: phony || cmake_object_order_depends_target_cube_renderer cmake_object_order_depends_target_glad cmake_object_order_depends_target_linear_alg cmake_object_order_depends_target_mworld_render_utils cmake_object_order_depends_target_quaternion cmake_object_order_depends_target_utils
+
+build prototype/prototype_three/CMakeFiles/prototype_three.dir/cube.cpp.obj: CXX_COMPILER__prototype_three_Debug ../prototype/prototype_three/cube.cpp || cmake_object_order_depends_target_prototype_three
+  DEP_FILE = prototype\prototype_three\CMakeFiles\prototype_three.dir\cube.cpp.obj.d
+  FLAGS = -Wall -fopenmp -std=c++11 -g   -std=gnu++11
+  INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../prototype/prototype_three -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/. -I../render/cube_renderer/../lib -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera
+  OBJECT_DIR = prototype\prototype_three\CMakeFiles\prototype_three.dir
+  OBJECT_FILE_DIR = prototype\prototype_three\CMakeFiles\prototype_three.dir
+
+build prototype/prototype_three/CMakeFiles/prototype_three.dir/main.cpp.obj: CXX_COMPILER__prototype_three_Debug ../prototype/prototype_three/main.cpp || cmake_object_order_depends_target_prototype_three
+  DEP_FILE = prototype\prototype_three\CMakeFiles\prototype_three.dir\main.cpp.obj.d
+  FLAGS = -Wall -fopenmp -std=c++11 -g   -std=gnu++11
+  INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../prototype/prototype_three -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/. -I../render/cube_renderer/../lib -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera
+  OBJECT_DIR = prototype\prototype_three\CMakeFiles\prototype_three.dir
+  OBJECT_FILE_DIR = prototype\prototype_three\CMakeFiles\prototype_three.dir
+
+build prototype/prototype_three/CMakeFiles/prototype_three.dir/__/__/render/utils/world_initializer.cpp.obj: CXX_COMPILER__prototype_three_Debug ../render/utils/world_initializer.cpp || cmake_object_order_depends_target_prototype_three
+  DEP_FILE = prototype\prototype_three\CMakeFiles\prototype_three.dir\__\__\render\utils\world_initializer.cpp.obj.d
+  FLAGS = -Wall -fopenmp -std=c++11 -g   -std=gnu++11
+  INCLUDES = -I../lib/glfw-3.3.2/include -I../lib/glm -I../prototype/prototype_three -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../render/cube_renderer/. -I../render/cube_renderer/../lib -I../lib/glad/include -I../utils/util_functions/. -I../render/utils/. -I../render/shader -I../render/camera
+  OBJECT_DIR = prototype\prototype_three\CMakeFiles\prototype_three.dir
+  OBJECT_FILE_DIR = prototype\prototype_three\CMakeFiles\prototype_three.dir\__\__\render\utils
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target prototype_three
+
+
+#############################################
+# Link the executable prototype\prototype_three\prototype_three.exe
+
+build prototype/prototype_three/prototype_three.exe: CXX_EXECUTABLE_LINKER__prototype_three_Debug prototype/prototype_three/CMakeFiles/prototype_three.dir/cube.cpp.obj prototype/prototype_three/CMakeFiles/prototype_three.dir/main.cpp.obj prototype/prototype_three/CMakeFiles/prototype_three.dir/__/__/render/utils/world_initializer.cpp.obj | numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/cube_renderer/libcube_renderer.a utils/util_functions/libutils.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a render/utils/libmworld_render_utils.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a utils/util_functions/libutils.a numerics/quaternion/libquaternion.a numerics/linear_alg/liblinear_alg.a || lib/glad/libglad.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/cube_renderer/libcube_renderer.a render/utils/libmworld_render_utils.a utils/util_functions/libutils.a
+  FLAGS = -Wall -fopenmp -std=c++11 -g
+  LINK_LIBRARIES = numerics/linear_alg/liblinear_alg.a  numerics/quaternion/libquaternion.a  numerics/linear_alg/liblinear_alg.a  numerics/quaternion/libquaternion.a  render/cube_renderer/libcube_renderer.a  utils/util_functions/libutils.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  render/utils/libmworld_render_utils.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  utils/util_functions/libutils.a  numerics/quaternion/libquaternion.a  numerics/linear_alg/liblinear_alg.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = prototype\prototype_three\CMakeFiles\prototype_three.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = prototype\prototype_three\prototype_three.exe
+  TARGET_IMPLIB = prototype\prototype_three\libprototype_three.dll.a
+  TARGET_PDB = prototype_three.exe.dbg
+
+
+#############################################
+# Utility command for edit_cache
+
+build prototype/prototype_three/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cmd.exe /C "cd /D C:\Users\aamir\Documents\mworld\cmake-build-debug\prototype\prototype_three && "C:\Program Files\JetBrains\CLion 2020.3.1\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build prototype/prototype_three/edit_cache: phony prototype/prototype_three/CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build prototype/prototype_three/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cmd.exe /C "cd /D C:\Users\aamir\Documents\mworld\cmake-build-debug\prototype\prototype_three && "C:\Program Files\JetBrains\CLion 2020.3.1\bin\cmake\win\bin\cmake.exe" --regenerate-during-build -SC:\Users\aamir\Documents\mworld -BC:\Users\aamir\Documents\mworld\cmake-build-debug"
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build prototype/prototype_three/rebuild_cache: phony prototype/prototype_three/CMakeFiles/rebuild_cache.util
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# C:/Users/aamir/Documents/mworld/CMakeLists.txt
+# =============================================================================
+
+
+#############################################
+# Utility command for edit_cache
+
 build simulation/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
   COMMAND = cmd.exe /C "cd /D C:\Users\aamir\Documents\mworld\cmake-build-debug\simulation && "C:\Program Files\JetBrains\CLion 2020.3.1\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
   DESC = No interactive CMake dialog available...
@@ -1417,6 +1666,18 @@ build or_gate_test: phony simulation/environment/or_gate_test.exe
 
 build or_gate_test.exe: phony simulation/environment/or_gate_test.exe
 
+build prototype_one: phony prototype/prototype_one/prototype_one.exe
+
+build prototype_one.exe: phony prototype/prototype_one/prototype_one.exe
+
+build prototype_three: phony prototype/prototype_three/prototype_three.exe
+
+build prototype_three.exe: phony prototype/prototype_three/prototype_three.exe
+
+build prototype_two: phony prototype/prototype_two/prototype_two.exe
+
+build prototype_two.exe: phony prototype/prototype_two/prototype_two.exe
+
 build quaternion: phony numerics/quaternion/libquaternion.a
 
 build quaternion_test: phony numerics/quaternion/test/quaternion_test.exe
@@ -1439,7 +1700,7 @@ build world_handler: phony simulation/world_handler/libworld_handler.a
 #############################################
 # Folder: C:/Users/aamir/Documents/mworld/cmake-build-debug
 
-build all: phony numerics/all lib/glad/all render/all utils/all simulation/all
+build all: phony numerics/all lib/glad/all render/all utils/all prototype/all simulation/all
 
 # =============================================================================
 
@@ -1482,6 +1743,34 @@ build numerics/quaternion/all: phony numerics/quaternion/libquaternion.a numeric
 # Folder: C:/Users/aamir/Documents/mworld/cmake-build-debug/numerics/quaternion/test
 
 build numerics/quaternion/test/all: phony numerics/quaternion/test/quaternion_test.exe
+
+# =============================================================================
+
+#############################################
+# Folder: C:/Users/aamir/Documents/mworld/cmake-build-debug/prototype
+
+build prototype/all: phony prototype/prototype_one/all prototype/prototype_two/all prototype/prototype_three/all
+
+# =============================================================================
+
+#############################################
+# Folder: C:/Users/aamir/Documents/mworld/cmake-build-debug/prototype/prototype_one
+
+build prototype/prototype_one/all: phony prototype/prototype_one/prototype_one.exe
+
+# =============================================================================
+
+#############################################
+# Folder: C:/Users/aamir/Documents/mworld/cmake-build-debug/prototype/prototype_three
+
+build prototype/prototype_three/all: phony prototype/prototype_three/prototype_three.exe
+
+# =============================================================================
+
+#############################################
+# Folder: C:/Users/aamir/Documents/mworld/cmake-build-debug/prototype/prototype_two
+
+build prototype/prototype_two/all: phony prototype/prototype_two/prototype_two.exe
 
 # =============================================================================
 
@@ -1588,14 +1877,14 @@ build utils/util_functions/all: phony utils/util_functions/libutils.a
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | ../CMakeLists.txt ../lib/glad/CMakeLists.txt ../numerics/CMakeLists.txt ../numerics/linear_alg/CMakeLists.txt ../numerics/linear_alg/test/CMakeLists.txt ../numerics/quaternion/CMakeLists.txt ../numerics/quaternion/test/CMakeLists.txt ../render/CMakeLists.txt ../render/block_renderer/CMakeLists.txt ../render/camera/CMakeLists.txt ../render/cube_renderer/CMakeLists.txt ../render/shader/CMakeLists.txt ../render/utils/CMakeLists.txt ../simulation/CMakeLists.txt ../simulation/blocks/CMakeLists.txt ../simulation/environment/CMakeLists.txt ../simulation/octree/CMakeLists.txt ../simulation/world_handler/CMakeLists.txt ../utils/CMakeLists.txt ../utils/settings/CMakeLists.txt ../utils/util_functions/CMakeLists.txt C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Internal/CMakeCheckCompilerFlag.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/WindowsPaths.cmake CMakeCache.txt CMakeFiles/3.17.5/CMakeCCompiler.cmake CMakeFiles/3.17.5/CMakeCXXCompiler.cmake CMakeFiles/3.17.5/CMakeRCCompiler.cmake CMakeFiles/3.17.5/CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | ../CMakeLists.txt ../lib/glad/CMakeLists.txt ../numerics/CMakeLists.txt ../numerics/linear_alg/CMakeLists.txt ../numerics/linear_alg/test/CMakeLists.txt ../numerics/quaternion/CMakeLists.txt ../numerics/quaternion/test/CMakeLists.txt ../prototype/CMakeLists.txt ../prototype/prototype_one/CMakeLists.txt ../prototype/prototype_three/CMakeLists.txt ../prototype/prototype_two/CMakeLists.txt ../render/CMakeLists.txt ../render/block_renderer/CMakeLists.txt ../render/camera/CMakeLists.txt ../render/cube_renderer/CMakeLists.txt ../render/shader/CMakeLists.txt ../render/utils/CMakeLists.txt ../simulation/CMakeLists.txt ../simulation/blocks/CMakeLists.txt ../simulation/environment/CMakeLists.txt ../simulation/octree/CMakeLists.txt ../simulation/world_handler/CMakeLists.txt ../utils/CMakeLists.txt ../utils/settings/CMakeLists.txt ../utils/util_functions/CMakeLists.txt C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Internal/CMakeCheckCompilerFlag.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/WindowsPaths.cmake CMakeCache.txt CMakeFiles/3.17.5/CMakeCCompiler.cmake CMakeFiles/3.17.5/CMakeCXXCompiler.cmake CMakeFiles/3.17.5/CMakeRCCompiler.cmake CMakeFiles/3.17.5/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build ../CMakeLists.txt ../lib/glad/CMakeLists.txt ../numerics/CMakeLists.txt ../numerics/linear_alg/CMakeLists.txt ../numerics/linear_alg/test/CMakeLists.txt ../numerics/quaternion/CMakeLists.txt ../numerics/quaternion/test/CMakeLists.txt ../render/CMakeLists.txt ../render/block_renderer/CMakeLists.txt ../render/camera/CMakeLists.txt ../render/cube_renderer/CMakeLists.txt ../render/shader/CMakeLists.txt ../render/utils/CMakeLists.txt ../simulation/CMakeLists.txt ../simulation/blocks/CMakeLists.txt ../simulation/environment/CMakeLists.txt ../simulation/octree/CMakeLists.txt ../simulation/world_handler/CMakeLists.txt ../utils/CMakeLists.txt ../utils/settings/CMakeLists.txt ../utils/util_functions/CMakeLists.txt C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Internal/CMakeCheckCompilerFlag.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/WindowsPaths.cmake CMakeCache.txt CMakeFiles/3.17.5/CMakeCCompiler.cmake CMakeFiles/3.17.5/CMakeCXXCompiler.cmake CMakeFiles/3.17.5/CMakeRCCompiler.cmake CMakeFiles/3.17.5/CMakeSystem.cmake: phony
+build ../CMakeLists.txt ../lib/glad/CMakeLists.txt ../numerics/CMakeLists.txt ../numerics/linear_alg/CMakeLists.txt ../numerics/linear_alg/test/CMakeLists.txt ../numerics/quaternion/CMakeLists.txt ../numerics/quaternion/test/CMakeLists.txt ../prototype/CMakeLists.txt ../prototype/prototype_one/CMakeLists.txt ../prototype/prototype_three/CMakeLists.txt ../prototype/prototype_two/CMakeLists.txt ../render/CMakeLists.txt ../render/block_renderer/CMakeLists.txt ../render/camera/CMakeLists.txt ../render/cube_renderer/CMakeLists.txt ../render/shader/CMakeLists.txt ../render/utils/CMakeLists.txt ../simulation/CMakeLists.txt ../simulation/blocks/CMakeLists.txt ../simulation/environment/CMakeLists.txt ../simulation/octree/CMakeLists.txt ../simulation/world_handler/CMakeLists.txt ../utils/CMakeLists.txt ../utils/settings/CMakeLists.txt ../utils/util_functions/CMakeLists.txt C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Internal/CMakeCheckCompilerFlag.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2020.3.1/bin/cmake/win/share/cmake-3.17/Modules/Platform/WindowsPaths.cmake CMakeCache.txt CMakeFiles/3.17.5/CMakeCCompiler.cmake CMakeFiles/3.17.5/CMakeCXXCompiler.cmake CMakeFiles/3.17.5/CMakeRCCompiler.cmake CMakeFiles/3.17.5/CMakeSystem.cmake: phony
 
 
 #############################################
