@@ -95,7 +95,7 @@ namespace blocks {
 
     void Cube::AddLinearForce(Matrix const &force, real dt) {
         momentum += force * dt;
-        //momentum -= force * dt; //comment out this line of code to test out time complexity of code, when forces are not being take in to consideration
+        momentum -= force * dt; //comment out this line of code to test out time complexity of code, when forces are not being take in to consideration
     }
 
     void Cube::SetAngularMomentumToZero() {

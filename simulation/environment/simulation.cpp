@@ -62,9 +62,9 @@ int main(int argc, char *argv[])
 #endif
 
     // run as ./simulation 60 1000
-    //int num_blocks_same = (int) atoi(argv[2]);
-    //int num_blocks_same = 100;
-    //WorldHandler world = WorldHandler(num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, -100, 100, -50, 50, -50 ,50);
+    int num_blocks_same = (int) atoi(argv[2]);
+    //int num_blocks_same = 500;
+    WorldHandler world = WorldHandler(num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, -100, 100, -100, 100, -100 ,100);
     // Test out with different collision elasticity value, so change scaling of velocity after collision, and see how world develops
     /*WorldHandler world = WorldHandler((argc < 3) ? 100 : (int) atoi(argv[2]),
                                       (argc < 4) ? 100 : (int) atoi(argv[3]),
@@ -80,7 +80,7 @@ int main(int argc, char *argv[])
                                       (argc < 14) ? 100 : (int) atoi(argv[13]),
                                       4);*/
 
-    WorldHandler world = WorldHandler((argc < 3) ? 0 : (int) atoi(argv[2]),
+    /*WorldHandler world = WorldHandler((argc < 3) ? 0 : (int) atoi(argv[2]),
                                       (argc < 4) ? 0 : (int) atoi(argv[3]),
                                       (argc < 5) ? 500 : (int) atoi(argv[4]),
                                       (argc < 6) ? 0 : (int) atoi(argv[5]),
@@ -92,7 +92,7 @@ int main(int argc, char *argv[])
                                       (argc < 12) ? 100 : (int) atoi(argv[11]),
                                       (argc < 13) ? -100 : (int) atoi(argv[12]),
                                       (argc < 14) ? 100 : (int) atoi(argv[13]),
-    4);
+    4);*/
 
     // Testing with ZBLocks only -- Note we disabled the force's being applied, however, the forces are still being calculated
     // We shall have tests, with forces being applied and both not being applied
@@ -174,14 +174,15 @@ int main(int argc, char *argv[])
         frame_count++;
         total_frame_count++;
         if(duration_cast<milliseconds>(currentFrame - prev_time).count()>= 1000.0) {
-            cout << "FPS: " << frame_count << endl;
+            //cout << "FPS: " << frame_count << endl;
             frame_count = 0;
             prev_time = currentFrame;
         }
     }
 
 
-    cout << "Average FPS for " << total_frame_count/(duration_cast<milliseconds>(high_resolution_clock::now() - start_time).count()) * 1000 << endl;
+    cout << "Execution Time for " << num_blocks_same << " : " <<  (duration_cast<milliseconds>(high_resolution_clock::now() - start_time).count()) / total_frame_count / 1000 << endl;
+    //cout << "Average FPS for " << total_frame_count/(duration_cast<milliseconds>(high_resolution_clock::now() - start_time).count()) * 1000 << endl;
     //cout << "Average FPS for " << (argv[2]) << " " << argv[3] << " " << argv[4] << " " << argv[5] << " " << argv[6] << " " << argv[7] << " " << argv[8] << " " << argv[9] << " " << argv[10] << " " << argv[11] << " " << argv[12] << " " << argv[13] << ": "
     //<< total_frame_count/(duration_cast<milliseconds>(high_resolution_clock::now() - start_time).count()) * 1000 << endl;
     //cout << "Terminating..." << endl;

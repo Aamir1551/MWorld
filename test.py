@@ -11,10 +11,10 @@ world_size_max_z = "100"
 world_sizes = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
 
 
-f = open("TestTimings.txt", "a")
+f = open("TestTimings2par4threads.txt", "a")
 for i in num_blocks:
     i = str(i)
-    result = subprocess.run(["./build/simulation/environment/simulation", "10", i, i, i, i, i, i,
+    result = subprocess.run(["./build/simulation/environment/simulation", "60", i, i, i, i, i, i,
                          world_size_min_x, world_size_max_x, world_size_min_y, world_size_max_y, world_size_min_z,
                          world_size_max_z], stdout=subprocess.PIPE).stdout.decode('utf-8')
     f.write(result)
