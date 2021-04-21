@@ -6,14 +6,14 @@
 1382	2041	6384694012264559	numerics/linear_alg/liblinear_alg.a	6d1cd5b74ef1e4da
 2335	2504	6384694017899486	utils/util_functions/libutils.a	7c6b80c43ced5cc6
 4	2035	6407352575359527	simulation/world_handler/CMakeFiles/world_handler.dir/world_handler.cpp.obj	ee085958aa677793
-5	862	6407352563643244	simulation/environment/CMakeFiles/simulation.dir/simulation.cpp.obj	12ea9914eb0db5d6
+4	715	6407353816284015	simulation/environment/CMakeFiles/simulation.dir/simulation.cpp.obj	12ea9914eb0db5d6
 14	1329	6396226599272172	simulation/blocks/CMakeFiles/blocks.dir/i_block.cpp.obj	fe786cacb940e34d
 7	1041	6384694002884520	numerics/quaternion/CMakeFiles/quaternion.dir/src/quaternion.cpp.obj	8fbf7516d307bb53
 4	1381	6384694006360352	numerics/linear_alg/CMakeFiles/linear_alg.dir/src/matrix.cpp.obj	a39f79485d0adca7
 26	1482	6396226600839310	simulation/octree/CMakeFiles/force_octree.dir/force_octree.cpp.obj	13522ffa7222088f
-2189	2586	6407352580864553	simulation/environment/simulation.exe	1b686ed2fb73282
+715	1111	6407353820234810	simulation/environment/simulation.exe	1b686ed2fb73282
 3	819	6345126694833948	numerics/quaternion/test/CMakeFiles/quaternion_test.dir/test.cpp.obj	ff5bf361276e305c
-1	317	6407352588040152	build.ninja	86ad8b687f76afe4
+1	317	6407428449695948	build.ninja	86ad8b687f76afe4
 1177	1861	6394567448954268	simulation/octree/CMakeFiles/octree.dir/octree.cpp.obj	99dd2b3173c2a133
 7	727	6407347325553889	simulation/blocks/CMakeFiles/blocks.dir/cube.cpp.obj	3ee9a385408b5648
 11	1283	6396226598712169	simulation/blocks/CMakeFiles/blocks.dir/z_block.cpp.obj	b503259249ddd074
@@ -29,7 +29,3 @@
 1482	1591	6396226601895638	simulation/octree/libforce_octree.a	618018b37b644be3
 820	10031	6345126786579268	numerics/quaternion/test/quaternion_test.exe	27f353d0caa2c956
 1789	1886	6396226604924110	simulation/octree/libcollision_octree.a	c7758091dff64ae2
-3	826	6407352987868075	simulation/environment/CMakeFiles/simulation.dir/simulation.cpp.obj	12ea9914eb0db5d6
-827	1249	6407352992074367	simulation/environment/simulation.exe	1b686ed2fb73282
-4	715	6407353816284015	simulation/environment/CMakeFiles/simulation.dir/simulation.cpp.obj	12ea9914eb0db5d6
-715	1111	6407353820234810	simulation/environment/simulation.exe	1b686ed2fb73282

@@ -113,7 +113,7 @@ build cmake_object_order_depends_target_linear_alg: phony || numerics/linear_alg
 
 build numerics/linear_alg/CMakeFiles/linear_alg.dir/src/matrix.cpp.obj: CXX_COMPILER__linear_alg_Debug ../numerics/linear_alg/src/matrix.cpp || cmake_object_order_depends_target_linear_alg
   DEP_FILE = numerics\linear_alg\CMakeFiles\linear_alg.dir\src\matrix.cpp.obj.d
-  FLAGS = -Wall -fopenmp -std=c++11 -g   -std=gnu++11
+  FLAGS = -Wall -std=c++11 -g   -std=gnu++11
   INCLUDES = -I../numerics/linear_alg/include -I../utils/settings/.
   OBJECT_DIR = numerics\linear_alg\CMakeFiles\linear_alg.dir
   OBJECT_FILE_DIR = numerics\linear_alg\CMakeFiles\linear_alg.dir\src
@@ -127,7 +127,7 @@ build numerics/linear_alg/CMakeFiles/linear_alg.dir/src/matrix.cpp.obj: CXX_COMP
 # Link the static library numerics\linear_alg\liblinear_alg.a
 
 build numerics/linear_alg/liblinear_alg.a: CXX_STATIC_LIBRARY_LINKER__linear_alg_Debug numerics/linear_alg/CMakeFiles/linear_alg.dir/src/matrix.cpp.obj
-  LANGUAGE_COMPILE_FLAGS = -Wall -fopenmp -std=c++11 -g
+  LANGUAGE_COMPILE_FLAGS = -Wall -std=c++11 -g
   OBJECT_DIR = numerics\linear_alg\CMakeFiles\linear_alg.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -161,14 +161,14 @@ build cmake_object_order_depends_target_matrix_test: phony || cmake_object_order
 
 build numerics/linear_alg/test/CMakeFiles/matrix_test.dir/test.cpp.obj: CXX_COMPILER__matrix_test_Debug ../numerics/linear_alg/test/test.cpp || cmake_object_order_depends_target_matrix_test
   DEP_FILE = numerics\linear_alg\test\CMakeFiles\matrix_test.dir\test.cpp.obj.d
-  FLAGS = -Wall -fopenmp -std=c++11 -g   -std=gnu++11
+  FLAGS = -Wall -std=c++11 -g   -std=gnu++11
   INCLUDES = -I../catch -I../lib/glm -I../numerics/linear_alg/include -I../utils/settings/.
   OBJECT_DIR = numerics\linear_alg\test\CMakeFiles\matrix_test.dir
   OBJECT_FILE_DIR = numerics\linear_alg\test\CMakeFiles\matrix_test.dir
 
 build numerics/linear_alg/test/CMakeFiles/matrix_test.dir/test-main.cpp.obj: CXX_COMPILER__matrix_test_Debug ../numerics/linear_alg/test/test-main.cpp || cmake_object_order_depends_target_matrix_test
   DEP_FILE = numerics\linear_alg\test\CMakeFiles\matrix_test.dir\test-main.cpp.obj.d
-  FLAGS = -Wall -fopenmp -std=c++11 -g   -std=gnu++11
+  FLAGS = -Wall -std=c++11 -g   -std=gnu++11
   INCLUDES = -I../catch -I../lib/glm -I../numerics/linear_alg/include -I../utils/settings/.
   OBJECT_DIR = numerics\linear_alg\test\CMakeFiles\matrix_test.dir
   OBJECT_FILE_DIR = numerics\linear_alg\test\CMakeFiles\matrix_test.dir
@@ -182,7 +182,7 @@ build numerics/linear_alg/test/CMakeFiles/matrix_test.dir/test-main.cpp.obj: CXX
 # Link the executable numerics\linear_alg\test\matrix_test.exe
 
 build numerics/linear_alg/test/matrix_test.exe: CXX_EXECUTABLE_LINKER__matrix_test_Debug numerics/linear_alg/test/CMakeFiles/matrix_test.dir/test.cpp.obj numerics/linear_alg/test/CMakeFiles/matrix_test.dir/test-main.cpp.obj | numerics/linear_alg/liblinear_alg.a || numerics/linear_alg/liblinear_alg.a
-  FLAGS = -Wall -fopenmp -std=c++11 -g
+  FLAGS = -Wall -std=c++11 -g
   LINK_LIBRARIES = numerics/linear_alg/liblinear_alg.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = numerics\linear_alg\test\CMakeFiles\matrix_test.dir
   POST_BUILD = cd .
@@ -242,7 +242,7 @@ build cmake_object_order_depends_target_quaternion: phony || cmake_object_order_
 
 build numerics/quaternion/CMakeFiles/quaternion.dir/src/quaternion.cpp.obj: CXX_COMPILER__quaternion_Debug ../numerics/quaternion/src/quaternion.cpp || cmake_object_order_depends_target_quaternion
   DEP_FILE = numerics\quaternion\CMakeFiles\quaternion.dir\src\quaternion.cpp.obj.d
-  FLAGS = -Wall -fopenmp -std=c++11 -g   -std=gnu++11
+  FLAGS = -Wall -std=c++11 -g   -std=gnu++11
   INCLUDES = -I../numerics/quaternion/include -I../numerics/linear_alg/include -I../utils/settings/.
   OBJECT_DIR = numerics\quaternion\CMakeFiles\quaternion.dir
   OBJECT_FILE_DIR = numerics\quaternion\CMakeFiles\quaternion.dir\src
@@ -256,7 +256,7 @@ build numerics/quaternion/CMakeFiles/quaternion.dir/src/quaternion.cpp.obj: CXX_
 # Link the static library numerics\quaternion\libquaternion.a
 
 build numerics/quaternion/libquaternion.a: CXX_STATIC_LIBRARY_LINKER__quaternion_Debug numerics/quaternion/CMakeFiles/quaternion.dir/src/quaternion.cpp.obj || numerics/linear_alg/liblinear_alg.a
-  LANGUAGE_COMPILE_FLAGS = -Wall -fopenmp -std=c++11 -g
+  LANGUAGE_COMPILE_FLAGS = -Wall -std=c++11 -g
   OBJECT_DIR = numerics\quaternion\CMakeFiles\quaternion.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -290,14 +290,14 @@ build cmake_object_order_depends_target_quaternion_test: phony || cmake_object_o
 
 build numerics/quaternion/test/CMakeFiles/quaternion_test.dir/test.cpp.obj: CXX_COMPILER__quaternion_test_Debug ../numerics/quaternion/test/test.cpp || cmake_object_order_depends_target_quaternion_test
   DEP_FILE = numerics\quaternion\test\CMakeFiles\quaternion_test.dir\test.cpp.obj.d
-  FLAGS = -Wall -fopenmp -std=c++11 -g   -std=gnu++11
+  FLAGS = -Wall -std=c++11 -g   -std=gnu++11
   INCLUDES = -I../catch -I../numerics/quaternion/include -I../numerics/linear_alg/include -I../utils/settings/.
   OBJECT_DIR = numerics\quaternion\test\CMakeFiles\quaternion_test.dir
   OBJECT_FILE_DIR = numerics\quaternion\test\CMakeFiles\quaternion_test.dir
 
 build numerics/quaternion/test/CMakeFiles/quaternion_test.dir/test-main.cpp.obj: CXX_COMPILER__quaternion_test_Debug ../numerics/quaternion/test/test-main.cpp || cmake_object_order_depends_target_quaternion_test
   DEP_FILE = numerics\quaternion\test\CMakeFiles\quaternion_test.dir\test-main.cpp.obj.d
-  FLAGS = -Wall -fopenmp -std=c++11 -g   -std=gnu++11
+  FLAGS = -Wall -std=c++11 -g   -std=gnu++11
   INCLUDES = -I../catch -I../numerics/quaternion/include -I../numerics/linear_alg/include -I../utils/settings/.
   OBJECT_DIR = numerics\quaternion\test\CMakeFiles\quaternion_test.dir
   OBJECT_FILE_DIR = numerics\quaternion\test\CMakeFiles\quaternion_test.dir
@@ -311,7 +311,7 @@ build numerics/quaternion/test/CMakeFiles/quaternion_test.dir/test-main.cpp.obj:
 # Link the executable numerics\quaternion\test\quaternion_test.exe
 
 build numerics/quaternion/test/quaternion_test.exe: CXX_EXECUTABLE_LINKER__quaternion_test_Debug numerics/quaternion/test/CMakeFiles/quaternion_test.dir/test.cpp.obj numerics/quaternion/test/CMakeFiles/quaternion_test.dir/test-main.cpp.obj | numerics/quaternion/libquaternion.a numerics/linear_alg/liblinear_alg.a || numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a
-  FLAGS = -Wall -fopenmp -std=c++11 -g
+  FLAGS = -Wall -std=c++11 -g
   LINK_LIBRARIES = numerics/quaternion/libquaternion.a  numerics/linear_alg/liblinear_alg.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = numerics\quaternion\test\CMakeFiles\quaternion_test.dir
   POST_BUILD = cd .
@@ -387,7 +387,7 @@ build cmake_object_order_depends_target_utils: phony || cmake_object_order_depen
 
 build utils/util_functions/CMakeFiles/utils.dir/util_functions.cpp.obj: CXX_COMPILER__utils_Debug ../utils/util_functions/util_functions.cpp || cmake_object_order_depends_target_utils
   DEP_FILE = utils\util_functions\CMakeFiles\utils.dir\util_functions.cpp.obj.d
-  FLAGS = -Wall -fopenmp -std=c++11 -g   -std=gnu++11
+  FLAGS = -Wall -std=c++11 -g   -std=gnu++11
   INCLUDES = -I../utils/util_functions/. -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include
   OBJECT_DIR = utils\util_functions\CMakeFiles\utils.dir
   OBJECT_FILE_DIR = utils\util_functions\CMakeFiles\utils.dir
@@ -401,7 +401,7 @@ build utils/util_functions/CMakeFiles/utils.dir/util_functions.cpp.obj: CXX_COMP
 # Link the static library utils\util_functions\libutils.a
 
 build utils/util_functions/libutils.a: CXX_STATIC_LIBRARY_LINKER__utils_Debug utils/util_functions/CMakeFiles/utils.dir/util_functions.cpp.obj || numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a
-  LANGUAGE_COMPILE_FLAGS = -Wall -fopenmp -std=c++11 -g
+  LANGUAGE_COMPILE_FLAGS = -Wall -std=c++11 -g
   OBJECT_DIR = utils\util_functions\CMakeFiles\utils.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -502,49 +502,43 @@ build simulation/rebuild_cache: phony simulation/CMakeFiles/rebuild_cache.util
 build cmake_object_order_depends_target_blocks: phony || cmake_object_order_depends_target_linear_alg cmake_object_order_depends_target_quaternion cmake_object_order_depends_target_utils
 
 build simulation/blocks/CMakeFiles/blocks.dir/cube.cpp.obj: CXX_COMPILER__blocks_Debug ../simulation/blocks/cube.cpp || cmake_object_order_depends_target_blocks
-  DEFINES = -DOPENMP=1
   DEP_FILE = simulation\blocks\CMakeFiles\blocks.dir\cube.cpp.obj.d
-  FLAGS = -Wall -fopenmp -std=c++11 -g   -std=gnu++11
+  FLAGS = -Wall -std=c++11 -g   -std=gnu++11
   INCLUDES = -I../simulation/blocks -I../simulation/blocks/../octree -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../utils/util_functions/.
   OBJECT_DIR = simulation\blocks\CMakeFiles\blocks.dir
   OBJECT_FILE_DIR = simulation\blocks\CMakeFiles\blocks.dir
 
 build simulation/blocks/CMakeFiles/blocks.dir/block.cpp.obj: CXX_COMPILER__blocks_Debug ../simulation/blocks/block.cpp || cmake_object_order_depends_target_blocks
-  DEFINES = -DOPENMP=1
   DEP_FILE = simulation\blocks\CMakeFiles\blocks.dir\block.cpp.obj.d
-  FLAGS = -Wall -fopenmp -std=c++11 -g   -std=gnu++11
+  FLAGS = -Wall -std=c++11 -g   -std=gnu++11
   INCLUDES = -I../simulation/blocks -I../simulation/blocks/../octree -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../utils/util_functions/.
   OBJECT_DIR = simulation\blocks\CMakeFiles\blocks.dir
   OBJECT_FILE_DIR = simulation\blocks\CMakeFiles\blocks.dir
 
 build simulation/blocks/CMakeFiles/blocks.dir/e_block.cpp.obj: CXX_COMPILER__blocks_Debug ../simulation/blocks/e_block.cpp || cmake_object_order_depends_target_blocks
-  DEFINES = -DOPENMP=1
   DEP_FILE = simulation\blocks\CMakeFiles\blocks.dir\e_block.cpp.obj.d
-  FLAGS = -Wall -fopenmp -std=c++11 -g   -std=gnu++11
+  FLAGS = -Wall -std=c++11 -g   -std=gnu++11
   INCLUDES = -I../simulation/blocks -I../simulation/blocks/../octree -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../utils/util_functions/.
   OBJECT_DIR = simulation\blocks\CMakeFiles\blocks.dir
   OBJECT_FILE_DIR = simulation\blocks\CMakeFiles\blocks.dir
 
 build simulation/blocks/CMakeFiles/blocks.dir/i_block.cpp.obj: CXX_COMPILER__blocks_Debug ../simulation/blocks/i_block.cpp || cmake_object_order_depends_target_blocks
-  DEFINES = -DOPENMP=1
   DEP_FILE = simulation\blocks\CMakeFiles\blocks.dir\i_block.cpp.obj.d
-  FLAGS = -Wall -fopenmp -std=c++11 -g   -std=gnu++11
+  FLAGS = -Wall -std=c++11 -g   -std=gnu++11
   INCLUDES = -I../simulation/blocks -I../simulation/blocks/../octree -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../utils/util_functions/.
   OBJECT_DIR = simulation\blocks\CMakeFiles\blocks.dir
   OBJECT_FILE_DIR = simulation\blocks\CMakeFiles\blocks.dir
 
 build simulation/blocks/CMakeFiles/blocks.dir/m_block.cpp.obj: CXX_COMPILER__blocks_Debug ../simulation/blocks/m_block.cpp || cmake_object_order_depends_target_blocks
-  DEFINES = -DOPENMP=1
   DEP_FILE = simulation\blocks\CMakeFiles\blocks.dir\m_block.cpp.obj.d
-  FLAGS = -Wall -fopenmp -std=c++11 -g   -std=gnu++11
+  FLAGS = -Wall -std=c++11 -g   -std=gnu++11
   INCLUDES = -I../simulation/blocks -I../simulation/blocks/../octree -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../utils/util_functions/.
   OBJECT_DIR = simulation\blocks\CMakeFiles\blocks.dir
   OBJECT_FILE_DIR = simulation\blocks\CMakeFiles\blocks.dir
 
 build simulation/blocks/CMakeFiles/blocks.dir/z_block.cpp.obj: CXX_COMPILER__blocks_Debug ../simulation/blocks/z_block.cpp || cmake_object_order_depends_target_blocks
-  DEFINES = -DOPENMP=1
   DEP_FILE = simulation\blocks\CMakeFiles\blocks.dir\z_block.cpp.obj.d
-  FLAGS = -Wall -fopenmp -std=c++11 -g   -std=gnu++11
+  FLAGS = -Wall -std=c++11 -g   -std=gnu++11
   INCLUDES = -I../simulation/blocks -I../simulation/blocks/../octree -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../utils/util_functions/.
   OBJECT_DIR = simulation\blocks\CMakeFiles\blocks.dir
   OBJECT_FILE_DIR = simulation\blocks\CMakeFiles\blocks.dir
@@ -558,7 +552,7 @@ build simulation/blocks/CMakeFiles/blocks.dir/z_block.cpp.obj: CXX_COMPILER__blo
 # Link the static library simulation\blocks\libblocks.a
 
 build simulation/blocks/libblocks.a: CXX_STATIC_LIBRARY_LINKER__blocks_Debug simulation/blocks/CMakeFiles/blocks.dir/cube.cpp.obj simulation/blocks/CMakeFiles/blocks.dir/block.cpp.obj simulation/blocks/CMakeFiles/blocks.dir/e_block.cpp.obj simulation/blocks/CMakeFiles/blocks.dir/i_block.cpp.obj simulation/blocks/CMakeFiles/blocks.dir/m_block.cpp.obj simulation/blocks/CMakeFiles/blocks.dir/z_block.cpp.obj || numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a utils/util_functions/libutils.a
-  LANGUAGE_COMPILE_FLAGS = -Wall -fopenmp -std=c++11 -g
+  LANGUAGE_COMPILE_FLAGS = -Wall -std=c++11 -g
   OBJECT_DIR = simulation\blocks\CMakeFiles\blocks.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -603,9 +597,8 @@ build simulation/blocks/rebuild_cache: phony simulation/blocks/CMakeFiles/rebuil
 build cmake_object_order_depends_target_octree: phony || cmake_object_order_depends_target_blocks cmake_object_order_depends_target_linear_alg cmake_object_order_depends_target_quaternion cmake_object_order_depends_target_utils
 
 build simulation/octree/CMakeFiles/octree.dir/octree.cpp.obj: CXX_COMPILER__octree_Debug ../simulation/octree/octree.cpp || cmake_object_order_depends_target_octree
-  DEFINES = -DOPENMP=1
   DEP_FILE = simulation\octree\CMakeFiles\octree.dir\octree.cpp.obj.d
-  FLAGS = -Wall -fopenmp -std=c++11 -g   -std=gnu++11
+  FLAGS = -Wall -std=c++11 -g   -std=gnu++11
   INCLUDES = -I../simulation/octree/. -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../simulation/blocks -I../simulation/blocks/../octree -I../utils/util_functions/.
   OBJECT_DIR = simulation\octree\CMakeFiles\octree.dir
   OBJECT_FILE_DIR = simulation\octree\CMakeFiles\octree.dir
@@ -619,7 +612,7 @@ build simulation/octree/CMakeFiles/octree.dir/octree.cpp.obj: CXX_COMPILER__octr
 # Link the static library simulation\octree\liboctree.a
 
 build simulation/octree/liboctree.a: CXX_STATIC_LIBRARY_LINKER__octree_Debug simulation/octree/CMakeFiles/octree.dir/octree.cpp.obj || numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a simulation/blocks/libblocks.a utils/util_functions/libutils.a
-  LANGUAGE_COMPILE_FLAGS = -Wall -fopenmp -std=c++11 -g
+  LANGUAGE_COMPILE_FLAGS = -Wall -std=c++11 -g
   OBJECT_DIR = simulation\octree\CMakeFiles\octree.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -636,9 +629,8 @@ build simulation/octree/liboctree.a: CXX_STATIC_LIBRARY_LINKER__octree_Debug sim
 build cmake_object_order_depends_target_collision_octree: phony || cmake_object_order_depends_target_blocks cmake_object_order_depends_target_linear_alg cmake_object_order_depends_target_octree cmake_object_order_depends_target_quaternion cmake_object_order_depends_target_utils
 
 build simulation/octree/CMakeFiles/collision_octree.dir/collision_octree.cpp.obj: CXX_COMPILER__collision_octree_Debug ../simulation/octree/collision_octree.cpp || cmake_object_order_depends_target_collision_octree
-  DEFINES = -DOPENMP=1
   DEP_FILE = simulation\octree\CMakeFiles\collision_octree.dir\collision_octree.cpp.obj.d
-  FLAGS = -Wall -fopenmp -std=c++11 -g   -std=gnu++11
+  FLAGS = -Wall -std=c++11 -g   -std=gnu++11
   INCLUDES = -I../simulation/octree/. -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../simulation/blocks -I../simulation/blocks/../octree -I../utils/util_functions/.
   OBJECT_DIR = simulation\octree\CMakeFiles\collision_octree.dir
   OBJECT_FILE_DIR = simulation\octree\CMakeFiles\collision_octree.dir
@@ -652,7 +644,7 @@ build simulation/octree/CMakeFiles/collision_octree.dir/collision_octree.cpp.obj
 # Link the static library simulation\octree\libcollision_octree.a
 
 build simulation/octree/libcollision_octree.a: CXX_STATIC_LIBRARY_LINKER__collision_octree_Debug simulation/octree/CMakeFiles/collision_octree.dir/collision_octree.cpp.obj || numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a simulation/blocks/libblocks.a simulation/octree/liboctree.a utils/util_functions/libutils.a
-  LANGUAGE_COMPILE_FLAGS = -Wall -fopenmp -std=c++11 -g
+  LANGUAGE_COMPILE_FLAGS = -Wall -std=c++11 -g
   OBJECT_DIR = simulation\octree\CMakeFiles\collision_octree.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -669,9 +661,8 @@ build simulation/octree/libcollision_octree.a: CXX_STATIC_LIBRARY_LINKER__collis
 build cmake_object_order_depends_target_force_octree: phony || cmake_object_order_depends_target_blocks cmake_object_order_depends_target_linear_alg cmake_object_order_depends_target_octree cmake_object_order_depends_target_quaternion cmake_object_order_depends_target_utils
 
 build simulation/octree/CMakeFiles/force_octree.dir/force_octree.cpp.obj: CXX_COMPILER__force_octree_Debug ../simulation/octree/force_octree.cpp || cmake_object_order_depends_target_force_octree
-  DEFINES = -DOPENMP=1
   DEP_FILE = simulation\octree\CMakeFiles\force_octree.dir\force_octree.cpp.obj.d
-  FLAGS = -Wall -fopenmp -std=c++11 -g   -std=gnu++11
+  FLAGS = -Wall -std=c++11 -g   -std=gnu++11
   INCLUDES = -I../simulation/octree/. -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../simulation/blocks -I../simulation/blocks/../octree -I../utils/util_functions/.
   OBJECT_DIR = simulation\octree\CMakeFiles\force_octree.dir
   OBJECT_FILE_DIR = simulation\octree\CMakeFiles\force_octree.dir
@@ -685,7 +676,7 @@ build simulation/octree/CMakeFiles/force_octree.dir/force_octree.cpp.obj: CXX_CO
 # Link the static library simulation\octree\libforce_octree.a
 
 build simulation/octree/libforce_octree.a: CXX_STATIC_LIBRARY_LINKER__force_octree_Debug simulation/octree/CMakeFiles/force_octree.dir/force_octree.cpp.obj || numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a simulation/blocks/libblocks.a simulation/octree/liboctree.a utils/util_functions/libutils.a
-  LANGUAGE_COMPILE_FLAGS = -Wall -fopenmp -std=c++11 -g
+  LANGUAGE_COMPILE_FLAGS = -Wall -std=c++11 -g
   OBJECT_DIR = simulation\octree\CMakeFiles\force_octree.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -741,9 +732,8 @@ build simulation/world_handler/edit_cache: phony simulation/world_handler/CMakeF
 build cmake_object_order_depends_target_world_handler: phony || cmake_object_order_depends_target_blocks cmake_object_order_depends_target_collision_octree cmake_object_order_depends_target_force_octree cmake_object_order_depends_target_linear_alg cmake_object_order_depends_target_octree cmake_object_order_depends_target_quaternion cmake_object_order_depends_target_utils
 
 build simulation/world_handler/CMakeFiles/world_handler.dir/world_handler.cpp.obj: CXX_COMPILER__world_handler_Debug ../simulation/world_handler/world_handler.cpp || cmake_object_order_depends_target_world_handler
-  DEFINES = -DOPENMP=1
   DEP_FILE = simulation\world_handler\CMakeFiles\world_handler.dir\world_handler.cpp.obj.d
-  FLAGS = -Wall -fopenmp -std=c++11 -g   -std=gnu++11
+  FLAGS = -Wall -std=c++11 -g   -std=gnu++11
   INCLUDES = -I../simulation/world_handler -I../lib/glm -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../simulation/octree/. -I../simulation/blocks -I../simulation/blocks/../octree -I../utils/util_functions/.
   OBJECT_DIR = simulation\world_handler\CMakeFiles\world_handler.dir
   OBJECT_FILE_DIR = simulation\world_handler\CMakeFiles\world_handler.dir
@@ -757,7 +747,7 @@ build simulation/world_handler/CMakeFiles/world_handler.dir/world_handler.cpp.ob
 # Link the static library simulation\world_handler\libworld_handler.a
 
 build simulation/world_handler/libworld_handler.a: CXX_STATIC_LIBRARY_LINKER__world_handler_Debug simulation/world_handler/CMakeFiles/world_handler.dir/world_handler.cpp.obj || numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a simulation/blocks/libblocks.a simulation/octree/libcollision_octree.a simulation/octree/libforce_octree.a simulation/octree/liboctree.a utils/util_functions/libutils.a
-  LANGUAGE_COMPILE_FLAGS = -Wall -fopenmp -std=c++11 -g
+  LANGUAGE_COMPILE_FLAGS = -Wall -std=c++11 -g
   OBJECT_DIR = simulation\world_handler\CMakeFiles\world_handler.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -791,9 +781,8 @@ build simulation/world_handler/rebuild_cache: phony simulation/world_handler/CMa
 build cmake_object_order_depends_target_simulation: phony || cmake_object_order_depends_target_blocks cmake_object_order_depends_target_collision_octree cmake_object_order_depends_target_force_octree cmake_object_order_depends_target_linear_alg cmake_object_order_depends_target_octree cmake_object_order_depends_target_quaternion cmake_object_order_depends_target_utils cmake_object_order_depends_target_world_handler
 
 build simulation/environment/CMakeFiles/simulation.dir/simulation.cpp.obj: CXX_COMPILER__simulation_Debug ../simulation/environment/simulation.cpp || cmake_object_order_depends_target_simulation
-  DEFINES = -DOPENMP=1
   DEP_FILE = simulation\environment\CMakeFiles\simulation.dir\simulation.cpp.obj.d
-  FLAGS = -Wall -fopenmp -std=c++11 -g   -std=gnu++11
+  FLAGS = -Wall -std=c++11 -g   -std=gnu++11
   INCLUDES = -I../simulation/environment -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../utils/util_functions/. -I../simulation/blocks -I../simulation/blocks/../octree -I../simulation/world_handler -I../lib/glm -I../simulation/octree/.
   OBJECT_DIR = simulation\environment\CMakeFiles\simulation.dir
   OBJECT_FILE_DIR = simulation\environment\CMakeFiles\simulation.dir
@@ -807,7 +796,7 @@ build simulation/environment/CMakeFiles/simulation.dir/simulation.cpp.obj: CXX_C
 # Link the executable simulation\environment\simulation.exe
 
 build simulation/environment/simulation.exe: CXX_EXECUTABLE_LINKER__simulation_Debug simulation/environment/CMakeFiles/simulation.dir/simulation.cpp.obj | numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a utils/util_functions/libutils.a simulation/blocks/libblocks.a simulation/world_handler/libworld_handler.a simulation/octree/libcollision_octree.a simulation/octree/libforce_octree.a simulation/octree/liboctree.a simulation/blocks/libblocks.a utils/util_functions/libutils.a numerics/quaternion/libquaternion.a numerics/linear_alg/liblinear_alg.a || numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a simulation/blocks/libblocks.a simulation/octree/libcollision_octree.a simulation/octree/libforce_octree.a simulation/octree/liboctree.a simulation/world_handler/libworld_handler.a utils/util_functions/libutils.a
-  FLAGS = -Wall -fopenmp -std=c++11 -g
+  FLAGS = -Wall -std=c++11 -g
   LINK_LIBRARIES = numerics/linear_alg/liblinear_alg.a  numerics/quaternion/libquaternion.a  numerics/linear_alg/liblinear_alg.a  numerics/quaternion/libquaternion.a  utils/util_functions/libutils.a  simulation/blocks/libblocks.a  simulation/world_handler/libworld_handler.a  simulation/octree/libcollision_octree.a  simulation/octree/libforce_octree.a  simulation/octree/liboctree.a  simulation/blocks/libblocks.a  utils/util_functions/libutils.a  numerics/quaternion/libquaternion.a  numerics/linear_alg/liblinear_alg.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = simulation\environment\CMakeFiles\simulation.dir
   POST_BUILD = cd .
