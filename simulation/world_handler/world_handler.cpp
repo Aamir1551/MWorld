@@ -62,7 +62,7 @@ WorldHandler::WorldHandler(int num_i_blocks_plus, int num_i_blocks_neg, int num_
                            real min_coord_z, real max_coord_z,
                            real cube_length) {
 #if defined(OPENMP)
-    omp_set_num_threads(8);
+    omp_set_num_threads(4);
 #endif
     srand((unsigned)time(0));
     //srand(0); // useful for testing purposes, to generate the same random numbers

@@ -12,7 +12,7 @@ set(catch_path ${CMAKE_CURRENT_SOURCE_DIR}/catch)
 
 #multithreading depends heavily on what applications are running in the background and such
 
-set(compile_with_openmp OFF)
+set(compile_with_openmp ON)
 set(compile_with_glfw OFF)
 set(compile_prototypes ON)
 set(add_debug_tag OFF)
