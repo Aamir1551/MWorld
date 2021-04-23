@@ -11,7 +11,7 @@ world_size_max_z = "100"
 world_sizes = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
 
 
-f = open("TestTimingsSinglethreadsNoOctree.txt", "a")
+f = open("TestTimingsSinglethreadsNoBarnesHut.txt", "a")
 for i in num_blocks:
     i = str(i)
     result = subprocess.run(["./build/simulation/environment/simulation", "60", i, i, i, i, i, i,

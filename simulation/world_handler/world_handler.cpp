@@ -217,17 +217,17 @@ void WorldHandler::Update(vector<Contact> &contact_list, real delta_time) {
 #pragma omp parallel for default(none) shared(delta_time)
     for(auto const &leaf_m_block: this->mblocks) {
         if(leaf_m_block->flare_value > MBlock::threshold) {
-            forces_tree->RemoveMBlockPlus(leaf_m_block);
+            //forces_tree->RemoveMBlockPlus(leaf_m_block);
             leaf_m_block->Update(this->min_coord_x, this->max_coord_x, this->min_coord_y, this->max_coord_y, this->min_coord_z, this->max_coord_z, delta_time);
             CollisionOctree * new_leaf = collision_tree->AddBlock(leaf_m_block);
             block_to_leaf[leaf_m_block] = new_leaf;
-            forces_tree->AddMBlockPlus(leaf_m_block);
+            //forces_tree->AddMBlockPlus(leaf_m_block);
         } else {
-            forces_tree->RemoveMBlockNeg(leaf_m_block);
+            //forces_tree->RemoveMBlockNeg(leaf_m_block);
             leaf_m_block->Update(this->min_coord_x, this->max_coord_x, this->min_coord_y, this->max_coord_y, this->min_coord_z, this->max_coord_z, delta_time);
             CollisionOctree * new_leaf = collision_tree->AddBlock(leaf_m_block);
             block_to_leaf[leaf_m_block] = new_leaf;
-            forces_tree->AddMBlockNeg(leaf_m_block);
+            //forces_tree->AddMBlockNeg(leaf_m_block);
         }
 
     }
@@ -235,36 +235,36 @@ void WorldHandler::Update(vector<Contact> &contact_list, real delta_time) {
 #pragma omp parallel for default(none) shared(delta_time)
     for(auto const &leaf_i_block: this->iblocks) {
         if(leaf_i_block->state) {
-            forces_tree->RemoveIBlockPlus(leaf_i_block);
+            //forces_tree->RemoveIBlockPlus(leaf_i_block);
             leaf_i_block->Update(this->min_coord_x, this->max_coord_x, this->min_coord_y, this->max_coord_y, this->min_coord_z, this->max_coord_z, delta_time);
             CollisionOctree * new_leaf = collision_tree->AddBlock(leaf_i_block);
             block_to_leaf[leaf_i_block] = new_leaf;
-            forces_tree->AddIBlockPlus(leaf_i_block);
+            //forces_tree->AddIBlockPlus(leaf_i_block);
         } else {
-            forces_tree->RemoveIBlockNeg(leaf_i_block);
+            //forces_tree->RemoveIBlockNeg(leaf_i_block);
             leaf_i_block->Update(this->min_coord_x, this->max_coord_x, this->min_coord_y, this->max_coord_y, this->min_coord_z, this->max_coord_z, delta_time);
             CollisionOctree * new_leaf = collision_tree->AddBlock(leaf_i_block);
             block_to_leaf[leaf_i_block] = new_leaf;
-            forces_tree->AddIBlockNeg(leaf_i_block);
+            //forces_tree->AddIBlockNeg(leaf_i_block);
         }
     }
 
 #pragma omp parallel for default(none) shared(delta_time)
     for(auto const &leaf_e_block: this->eblocks) {
-        forces_tree->RemoveEBlock(leaf_e_block);
+        //forces_tree->RemoveEBlock(leaf_e_block);
         leaf_e_block->Update(this->min_coord_x, this->max_coord_x, this->min_coord_y, this->max_coord_y, this->min_coord_z, this->max_coord_z, delta_time);
         CollisionOctree * new_leaf = collision_tree->AddBlock(leaf_e_block);
         block_to_leaf[leaf_e_block] = new_leaf;
-        forces_tree->AddEBlock(leaf_e_block);
+        //forces_tree->AddEBlock(leaf_e_block);
     }
 
 #pragma omp parallel for default(none) shared(delta_time)
     for(auto const &leaf_z_block: this->zblocks) {
-        forces_tree->RemoveZBlock(leaf_z_block);
+        //forces_tree->RemoveZBlock(leaf_z_block);
         leaf_z_block->Update(this->min_coord_x, this->max_coord_x, this->min_coord_y, this->max_coord_y, this->min_coord_z, this->max_coord_z, delta_time);
         CollisionOctree * new_leaf = collision_tree->AddBlock(leaf_z_block);
         block_to_leaf[leaf_z_block] = new_leaf;
-        forces_tree->AddZBlock(leaf_z_block);
+        //forces_tree->AddZBlock(leaf_z_block);
     }
 };
 
@@ -292,17 +292,17 @@ void WorldHandler::UpdateFlares(vector<Contact> &contact_list, real delta_time) 
 }
 
 void WorldHandler::AddForces(real delta_time) {
-    this->forces_tree->CalculateCOMonTree();
+    /*this->forces_tree->CalculateCOMonTree();
 #pragma omp parallel for default(none) shared(delta_time)
     for(auto const &block : this->blocks) {
         if(!block->locked) {
             forces_tree->ApplyBarnesHutOnBlock(block, delta_time);
         }
-    }
+    }*/
     // The below code is for testing purposes; To see if the Barnes Hut algorithm, gives accurate results
     // It is important to note, that the Barnes hut alogirthm approximates as compared to the below algorithm
     // that gives accurate values
-/*#pragma omp parallel for
+#pragma omp parallel for
     for(auto &block0: this->blocks) {
         if (!block0->locked) {
             for (auto &block1: this->iblocks) {
@@ -318,7 +318,7 @@ void WorldHandler::AddForces(real delta_time) {
                 block0->ReactSerial(block1, delta_time);
             }
         }
-    }*/
+    }
 }
 
 void WorldHandler::PassBlockFlares(vector<Contact> &contacts, real delta_time) {

@@ -139,10 +139,10 @@ int main(int argc, char *argv[])
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 #endif
 
-        auto contact_list = world.CollisionHandlerBruteForce();
+        //auto contact_list = world.CollisionHandlerBruteForce();
         //auto contact_list1 = world.CollisionHandlerWithOctree();
 
-        //auto contact_list = world.CollisionHandlerWithOctree();
+        auto contact_list = world.CollisionHandlerWithOctree();
 
         /*set<pair<Block *, Block *>> c;
         for(auto const &i : contact_list) {
