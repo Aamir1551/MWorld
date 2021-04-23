@@ -1,22 +1,1 @@
-Execution Time for 1 : 0.00057419
-Execution Time for 10 : 0.00136338
-Execution Time for 20 : 0.00277206
-Execution Time for 30 : 0.00514674
-Execution Time for 40 : 0.00853249
-Execution Time for 50 : 0.0112721
-Execution Time for 60 : 0.015336
-Execution Time for 70 : 0.0186862
-Execution Time for 80 : 0.0229263
-Execution Time for 90 : 0.0281255
-Execution Time for 100 : 0.0324419
-Execution Time for 150 : 0.0642888
-Execution Time for 200 : 0.108558
-Execution Time for 250 : 0.150765
-Execution Time for 300 : 0.209316
-Execution Time for 400 : 0.349474
-Execution Time for 500 : 0.50905
-Execution Time for 600 : 0.717588
-Execution Time for 700 : 0.930288
-Execution Time for 800 : 1.21847
-Execution Time for 900 : 1.47733
-Execution Time for 1000 : 1.77489
+Execution Time for 1 : 0.00057419Execution Time for 10 : 0.00136338Execution Time for 20 : 0.00277206Execution Time for 30 : 0.00514674Execution Time for 40 : 0.00853249Execution Time for 50 : 0.0112721Execution Time for 60 : 0.015336Execution Time for 70 : 0.0186862Execution Time for 80 : 0.0229263Execution Time for 90 : 0.0281255Execution Time for 100 : 0.0324419Execution Time for 150 : 0.0642888Execution Time for 200 : 0.108558Execution Time for 250 : 0.150765Execution Time for 300 : 0.209316Execution Time for 400 : 0.349474Execution Time for 500 : 0.50905Execution Time for 600 : 0.717588Execution Time for 700 : 0.930288Execution Time for 800 : 1.21847Execution Time for 900 : 1.47733Execution Time for 1000 : 1.774890.00136338 & 0.0112721 & 0.0324419 & 0.108558 & 0.209316 & 0.50905 & 1.77489(1 , 0.00057419) (10 , 0.00136338) (20 , 0.00277206) (30 , 0.00514674) (40 , 0.00853249) (50 , 0.0112721) (60 , 0.015336) (70 , 0.0186862) (80 , 0.0229263) (90 , 0.0281255) (100 , 0.0324419) (150 , 0.0642888) (200 , 0.108558) (250 , 0.150765) (300 , 0.209316) (400 , 0.349474) (500 , 0.50905) (600 , 0.717588) (700 , 0.930288) (800 , 1.21847) (900 , 1.47733) (1000 , 1.77489)
