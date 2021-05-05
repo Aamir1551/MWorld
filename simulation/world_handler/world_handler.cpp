@@ -107,8 +107,8 @@ void WorldHandler::GetProperties(int num_blocks, std::vector<Matrix> *&positions
 void WorldHandler::ResetTrees() {
     delete this->collision_tree;
     delete this->forces_tree;
-    this->collision_tree = new CollisionOctree(cube_length * 2, min_coord_x, max_coord_x, min_coord_y, max_coord_y, min_coord_z, max_coord_z, true);
-    this->forces_tree = new ForceOctree(cube_length * 1, min_coord_x, max_coord_x, min_coord_y, max_coord_y, min_coord_z, max_coord_z);
+    this->collision_tree = new CollisionOctree(cube_length * 3, min_coord_x, max_coord_x, min_coord_y, max_coord_y, min_coord_z, max_coord_z, true);
+    this->forces_tree = new ForceOctree(cube_length * 5, min_coord_x, max_coord_x, min_coord_y, max_coord_y, min_coord_z, max_coord_z);
 
     // Add all blocks to the trees and store the leaves they were placed in (in the case of the CollisionOctree)
 

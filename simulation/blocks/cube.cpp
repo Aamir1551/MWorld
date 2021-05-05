@@ -182,22 +182,25 @@ namespace blocks {
         Cube *body1 = contact.body1;
         Cube *body2 = contact.body2;
         auto normal = contact.normal;
-        auto temp = body1->momentum;
+        auto body_inc_pos = normal * (contact.penetration/2);
 
         // Below code is within a critical region since no two threads should have access to the same properties of a cube
 #pragma omp critical (INNER)
         {
+            auto temp = body1->momentum;
 
             /* When c=1, no energy is being lost in the collision, so it will give the impression that
              * blocks are passing through each other. On the other hand, if c<1, energy is being lsot in the
              * collision, and it is easier to identify when blocks are colliding.
              * */
             real c = 1;
+            //body2->momentum.print();
+            //cout << contact.penetration << endl;
 
             body1->momentum = body2->momentum * c;
             body2->momentum = temp * c;
-            body1->position += normal * (contact.penetration/2);
-            body2->position -= normal * (contact.penetration/2);
+            body1->position += body_inc_pos;
+            body2->position -= body_inc_pos;
         };
     }
 

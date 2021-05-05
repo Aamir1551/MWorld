@@ -99,9 +99,6 @@ private:
     enum BlockTypes {IBlockType, MBlockType, EBlockType, ZBlockType};
 
 
-    // Reset both the Octrees -- ForceOctree and CollisionOctree
-    void ResetTrees();
-
     /**
      * @brief Adds a block to the world
      *
@@ -149,5 +146,8 @@ public:
     void Update(vector<Contact> &contact_list, real delta_time);
 
     ~WorldHandler();
+
+// Reset both the Octrees -- ForceOctree and CollisionOctree
+void ResetTrees();
 };
 #endif
