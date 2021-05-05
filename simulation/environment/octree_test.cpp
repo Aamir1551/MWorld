@@ -32,17 +32,6 @@ using namespace blocks;
 
 int main(int argc, char *argv[])
 {
-    //cout << "Running MWorld Simulation with "  << omp_get_max_threads() << " threads" << endl;
-
-    if(argc == 1 || strcmp(argv[1], "help")  == 0){
-        cout << "Pass parameters in order of: duration num_i_plus_blocks num_i_neg_blocks num_z_blocks num_m_blocks "
-                "num_e_1_blocks num_e_1_2_blocks min_coord_x max_coord_x min_coord_y max_coord_y min_coord_z max_coord_z"<< endl;
-        cout << "If a parameter is not given, we substitute it with zero. However, duration command line argument "
-                "must be specified." << endl;
-        exit(0);
-    }
-
-    //cout << "Running MWorld Simulation" << endl;
 
 
 #if defined(GLFW_ON)
@@ -61,38 +50,8 @@ int main(int argc, char *argv[])
     BlockRenderer::InitialiseBlockRenderer(&camera, cube_length, vao, vbo, ebo, world_properties);
 #endif
 
-    // run as ./simulation 60 1000
-    //int num_blocks_same = (int) atoi(argv[2]);
     int num_blocks_same = 100;
     WorldHandler world = WorldHandler(num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, -100, 100, -100, 100, -100 ,100);
-    // Test out with different collision elasticity value, so change scaling of velocity after collision, and see how world develops
-    /*WorldHandler world = WorldHandler((argc < 3) ? 100 : (int) atoi(argv[2]),
-                                      (argc < 4) ? 100 : (int) atoi(argv[3]),
-                                      (argc < 5) ? 100 : (int) atoi(argv[4]),
-                                      (argc < 6) ? 100 : (int) atoi(argv[5]),
-                                      (argc < 7) ?100 : (int) atoi(argv[6]),
-                                      (argc < 8) ? 100 : (int) atoi(argv[7]),
-                                      (argc < 9) ? -100 : (int) atoi(argv[8]),
-                                      (argc < 10) ? 100 : (int) atoi(argv[9]),
-                                      (argc < 11) ? -100 : (int) atoi(argv[10]),
-                                      (argc < 12) ? 100 : (int) atoi(argv[11]),
-                                      (argc < 13) ? -100 : (int) atoi(argv[12]),
-                                      (argc < 14) ? 100 : (int) atoi(argv[13]),
-                                      4);*/
-
-    /*WorldHandler world = WorldHandler((argc < 3) ? 0 : (int) atoi(argv[2]),
-                                      (argc < 4) ? 0 : (int) atoi(argv[3]),
-                                      (argc < 5) ? 500 : (int) atoi(argv[4]),
-                                      (argc < 6) ? 0 : (int) atoi(argv[5]),
-                                      (argc < 7) ? 0 : (int) atoi(argv[6]),
-                                      (argc < 8) ? 0 : (int) atoi(argv[7]),
-                                      (argc < 9) ? -100 : (int) atoi(argv[8]),
-                                      (argc < 10) ? 100 : (int) atoi(argv[9]),
-                                      (argc < 11) ? -100 : (int) atoi(argv[10]),
-                                      (argc < 12) ? 100 : (int) atoi(argv[11]),
-                                      (argc < 13) ? -100 : (int) atoi(argv[12]),
-                                      (argc < 14) ? 100 : (int) atoi(argv[13]),
-    4);*/
 
 #if defined(GLFW_ON)
     glBindVertexArray(vao);
@@ -101,7 +60,7 @@ int main(int argc, char *argv[])
     glUseProgram(world_properties->shader_id);
     glClearColor(0.0f, 0.0f, 0.0f, 0.0f); //using black to clear the background
 #endif
-    //std::cout << "Entering Main Loop" << std::endl;
+    std::cout << "Entering Main Loop" << std::endl;
 
     using std::chrono::high_resolution_clock;
     using std::chrono::duration_cast;
@@ -135,12 +94,10 @@ int main(int argc, char *argv[])
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 #endif
 
-        //auto contact_list = world.CollisionHandlerBruteForce();
-        //auto contact_list1 = world.CollisionHandlerWithOctree();
+        auto contact_list = world.CollisionHandlerBruteForce();
+        auto contact_list1 = world.CollisionHandlerWithOctree();
 
-        auto contact_list = world.CollisionHandlerWithOctree();
-
-        /*set<pair<Block *, Block *>> c;
+        set<pair<Block *, Block *>> c;
         for(auto const &i : contact_list) {
            c.insert(make_pair(i.body1, i.body2));
            c.insert(make_pair(i.body2, i.body1));
@@ -154,12 +111,10 @@ int main(int argc, char *argv[])
 
         if(c != c1 || contact_list.size() != contact_list1.size()) {
             cout << c.size() << " " << c1.size() <<  endl;
-            cout << "not equal" << endl;
-        }*/
+            cout << "Not Equal" << endl;
+        }
 
-        //cout << contact_list.size() << endl;
         world.AddForces(deltaTime.count()/1000.0);
-        //auto contact_list = vector<Contact>();
         world.Update(contact_list, deltaTime.count()/1000.0);
 
 #if defined(GLFW_ON)
@@ -170,7 +125,6 @@ int main(int argc, char *argv[])
         frame_count++;
         total_frame_count++;
         if(duration_cast<milliseconds>(currentFrame - prev_time).count()>= 1000.0) {
-            //cout << "FPS: " << frame_count << endl;
             frame_count = 0;
             prev_time = currentFrame;
         }
@@ -178,10 +132,7 @@ int main(int argc, char *argv[])
 
 
     cout << "Execution Time for " << num_blocks_same << " : " <<  (duration_cast<milliseconds>(high_resolution_clock::now() - start_time).count()) / total_frame_count / 1000 << endl;
-    //cout << "Average FPS for " << total_frame_count/(duration_cast<milliseconds>(high_resolution_clock::now() - start_time).count()) * 1000 << endl;
-    //cout << "Average FPS for " << (argv[2]) << " " << argv[3] << " " << argv[4] << " " << argv[5] << " " << argv[6] << " " << argv[7] << " " << argv[8] << " " << argv[9] << " " << argv[10] << " " << argv[11] << " " << argv[12] << " " << argv[13] << ": "
-    //<< total_frame_count/(duration_cast<milliseconds>(high_resolution_clock::now() - start_time).count()) * 1000 << endl;
-    //cout << "Terminating..." << endl;
+    cout << "Terminating..." << endl;
 
 
 #if defined(GLFW_ON)
@@ -191,6 +142,6 @@ int main(int argc, char *argv[])
     glfwTerminate();
 #endif
 
-    //cout << "Terminated" << endl;
+    cout << "Terminated" << endl;
     return 0;
 }
