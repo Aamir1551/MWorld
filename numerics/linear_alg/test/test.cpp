@@ -9,8 +9,6 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 using namespace numerics;
-//TODO
-//Do tests with actual numbers given instead of just using for loops and numbers
 
 TEST_CASE("Creating Matrices of different size", "[construction]")
 {
@@ -33,7 +31,7 @@ TEST_CASE("Creating Matrices of different size", "[construction]")
     std::vector<settings::real> d_test_values;
     for (int i = 0; i < d_total_elements; i++)
     {
-        d_test_values.push_back(rand() % 100); //make sure to change this so we can also test for floats, or for any settings::real
+        d_test_values.push_back(rand() % 100);
     }
 
     auto *a = new Matrix(a_row_test, a_col_test);
@@ -115,7 +113,7 @@ TEST_CASE("Matrices can be applied with", "[Auxiliary Operations]") {
 
         std::vector<settings::real> a_test_values;
         for(int i=0; i<a_total_elements; i++) {
-            a_test_values.push_back(rand() % 1000); //make sure to change this so we can also test for floats
+            a_test_values.push_back(rand() % 1000);
         }
 
         Matrix a = Matrix(a_row, a_col, &a_test_values[0]);
@@ -134,7 +132,7 @@ TEST_CASE("Matrices can be applied with", "[Auxiliary Operations]") {
 
         std::vector<settings::real> a_test_values;
         for(int i=0; i<a_total_elements; i++) {
-            a_test_values.push_back(rand() % 1000); //make sure to change this so we can also test for floats
+            a_test_values.push_back(rand() % 1000);
         }
 
         Matrix a = Matrix(a_row, a_col, &a_test_values[0]);
@@ -158,7 +156,7 @@ TEST_CASE("Matrices can be applied with", "[Auxiliary Operations]") {
 
         std::vector<settings::real> a_test_values;
         for(int i=0; i<a_total_elements; i++) {
-            a_test_values.push_back(rand() % 1000); //make sure to change this so we can also test for floats
+            a_test_values.push_back(rand() % 1000);
         }
 
         Matrix a = Matrix(a_row, a_col, &a_test_values[0]);
@@ -205,12 +203,12 @@ TEST_CASE("Matrices can be applied with", "[Auxiliary Operations]") {
         std::vector<settings::real> c_test_values;
 
         for(int i=0; i<a_total_elements; i++) {
-            a_test_values.push_back(rand() % 1000); //make sure to change this so we can also test for floats
-            b_test_values.push_back(rand() % 1000); //make sure to change this so we can also test for floats
+            a_test_values.push_back(rand() % 1000);
+            b_test_values.push_back(rand() % 1000);
         }
 
         for(int i=0; i<c_total_elements; i++) {
-            c_test_values.push_back(rand() % 1000); //make sure to change this so we can also test for floats
+            c_test_values.push_back(rand() % 1000);
         }
 
         Matrix a = Matrix(a_row, a_col, &a_test_values[0]);
@@ -274,8 +272,8 @@ TEST_CASE("Matrices can be operated with", "[Operations]")
 
     for (int i = 0; i < a_total_elements; i++)
     {
-        a_test_values.push_back(rand() % 1000); //make sure to change this so we can also test for floats
-        b_test_values.push_back((rand() % 1000) + 0.01); //make sure to change this so we can also test for floats //to avoid zero division
+        a_test_values.push_back(rand() % 1000);
+        b_test_values.push_back((rand() % 1000) + 0.01);
     }
 
     for (int i = 0; i < c_total_elements; i++)
@@ -366,8 +364,6 @@ TEST_CASE("Matrices can be operated with", "[Operations]")
         REQUIRE(da_row == d_row);
         REQUIRE(da_col == a_col);
 
-        // do quaternion operators
-        // check if (,) operation works too
         for(int i=0; i<da_row; i++) {
             for(int j=0; j<da_col; j++) {
                 int sum_d = 0;
@@ -394,7 +390,6 @@ TEST_CASE("Matrices can be operated with", "[Operations]")
         }
     }
 
-    // have a compare function, that compares glm function with matrix LookAt and Perspective function
 }
 
 TEST_CASE("Rendering Functions", "[rendering]") {

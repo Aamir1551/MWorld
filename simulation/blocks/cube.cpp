@@ -95,7 +95,7 @@ namespace blocks {
 
     void Cube::AddLinearForce(Matrix const &force, real dt) {
         momentum += force * dt;
-        momentum -= force * dt; //comment out this line of code to test out time complexity of code, when forces are not being take in to consideration
+        //momentum -= force * dt; //comment out this line of code to test out time complexity of code, when forces are not being take in to consideration
     }
 
     void Cube::SetAngularMomentumToZero() {
@@ -152,7 +152,7 @@ namespace blocks {
              * blocks are passing through each other. On the other hand, if c<1, energy is being lsot in the
              * collision, and it is easier to identify when blocks are colliding.
              * */
-            real c = 1;
+            real c = 0.6;
             //body2->momentum.print();
             //cout << contact.penetration << endl;
 
