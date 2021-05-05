@@ -16,6 +16,6 @@ Running the Project:
 2) Build the project as explained above
 3) Execute the executable made by the file simulation.cpp in the directory simulation/environment. If the project was compiled wihtout GLFW then provide a command line argument specifying the duration to run the simulation for. If the project was compiled with GLFW, then to escape the simulation, you may press ESC. 
 4) To run the simulations of the logic gates, execute files:
-  1) and_gate_test to run the simulation with the AND gate being simulated
-  2) not_gate_test to run the simulation with the NOT gate being simulated
-  3) or_gate_test to run the simulation with the OR gate being simulated
+    1) and_gate_test to run the simulation with the AND gate being simulated
+    2) not_gate_test to run the simulation with the NOT gate being simulated
+    3) or_gate_test to run the simulation with the OR gate being simulated
