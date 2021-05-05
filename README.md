@@ -24,8 +24,11 @@ Code Structure:
 1) The Matrix and Quaternion code is writtin in the numerics folder. 
 2) The three prototypes used can be found in the prototypes folder. 
 3) The render folder contains code specific to rendering using GLFW. 
-4) Finally, The simulation folder includes two more directories: 
+4) The simulation folder includes two more directories: 
     1) blocks - Contains code related to each the functionality to the blocks within the world
     2) octree - Contains code related to the ForceOctree (Used by the Barnes-Hut algorithm) and CollisionOctree used by the collision handler
     3) world_handler - Calls the methods that run at each frame in the physics engine. It is here, where we use make use of the Block and Octree classes in our simulation.
     4) environment - Contains the different environments we have simulated such as the logic gates and the final simulation of the world
+5) Util contains auxilary functions that we make use of. 
+6) Lib contains the libraries used throughout the project, which include GLFW/GLAD and glm, the latter which is used to test the matrix file, to see if its rendering functions are working correctly.
+7) Finally, we have the folder catch which includes the catch test library used to help us unit test our project.
