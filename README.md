@@ -15,4 +15,7 @@ Running the Project:
 1) The number of blocks used within the world and world size can be set in this file via the method WorldHandler. The argument signiture for this method is given by: (num I+ blocks, num I- blocks, num Z blocks, num MBlocks, num E+ blocks, num E- blocks, minimum x coordinate a block can take in the world = -50 by default, max x coordinate = 50 by default, min y coordinate = -50 by default, max y coordinate = 50 by default, min z coordinate = -50 by default, max z coordinate = 50 by default, length of cubes = 4 by default)
 2) Build the project as explained above
 3) Execute the executable made by the file simulation.cpp in the directory simulation/environment. If the project was compiled wihtout GLFW then provide a command line argument specifying the duration to run the simulation for. If the project was compiled with GLFW, then to escape the simulation, you may press ESC. 
-
+4) To run the simulations of the logic gates, execute files:
+  1) and_gate_test to run the simulation with the AND gate being simulated
+  2) not_gate_test to run the simulation with the NOT gate being simulated
+  3) or_gate_test to run the simulation with the OR gate being simulated
