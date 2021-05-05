@@ -10,5 +10,6 @@ Building the Project:
 6) To compile with prototypes, set line 17 in the root CMakeLists.txt file to: set(compile_prototypes ON). To compile without set line 17 to: set(compile_prototypes OFF)
 
 Running the Project:
-1) After building the project, execute the executable made by the file simulation.cpp in the directory simulation/environment. 
-2) The number of blocks used within the world can be changed in this file via the method WorldHandler. In the argument for this method, pass in the amount of different blocks that you would like to simulate in the order: 
+1) The number of blocks used within the world and world size can be set in this file via the method WorldHandler. The argument signiture for this method is given by: (num I+ blocks, num I- blocks, num Z blocks, num MBlocks, num E+ blocks, num E- blocks, minimum x coordinate a block can take in the world = -50 by default, max x coordinate = 50 by default, min y coordinate = -50 by default, max y coordinate = 50 by default, min z coordinate = -50 by default, max z coordinate = 50 by default, length of cubes = 4 by default)
+2) Build the project as explained above
+3) Execute the executable made by the file simulation.cpp in the directory simulation/environment. If the project was compiled wihtout GLFW then provide a command line argument specifying the duration to run the simulation for. If the project was compiled with GLFW, then to escape the simulation, you may press ESC. 
