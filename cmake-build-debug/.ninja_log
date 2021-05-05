@@ -65,3 +65,6 @@
 5	544	6419532830629242	simulation/blocks/CMakeFiles/blocks.dir/cube.cpp.obj	3ee9a385408b5648
 545	625	6419532831507198	simulation/blocks/libblocks.a	a84bbcff6572a6d7
 626	1127	6419532836472602	simulation/environment/and_gate_test.exe	a726a90666e6cba9
+5	2436	6419535984472262	simulation/world_handler/CMakeFiles/world_handler.dir/world_handler.cpp.obj	201ada76e13b52b4
+2436	2593	6419535986071876	simulation/world_handler/libworld_handler.a	25846b9b52b9e545
+2593	3081	6419535990910088	simulation/environment/not_gate_test.exe	ab77f4ca29b845e3

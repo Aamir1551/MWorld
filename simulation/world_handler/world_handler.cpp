@@ -105,6 +105,12 @@ void WorldHandler::GetProperties(int num_blocks, std::vector<Matrix> *&positions
 }
 
 void WorldHandler::ResetTrees() {
+
+    // 1) First we remove both trees
+    // 2) Reconstruct the trees
+    // 3) Insert blocks into the correct position within the tree
+
+
     delete this->collision_tree;
     delete this->forces_tree;
     this->collision_tree = new CollisionOctree(cube_length * 3, min_coord_x, max_coord_x, min_coord_y, max_coord_y, min_coord_z, max_coord_z, true);
