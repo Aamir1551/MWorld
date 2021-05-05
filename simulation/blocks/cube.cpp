@@ -136,48 +136,7 @@ namespace blocks {
             };
         }
     }
-/*
-    void Cube::CollisionDetectAndResolve(Block *c1, Block *c2, vector<omp_lock_t> partial_locks) {
-        Matrix vect_dist = (c1->position - c2->position);
-        real dist = Matrix::Norm(vect_dist);
-        real length = (c1->kCubeLength + c2->kCubeLength) / 2;
-        if(dist == 0) {
-            auto temp = c1->position(0, 0);
-            c1->position(0, 0, temp + length/2);
-            c2->position(0, 0, temp - length/2);
-            return;
-        }
 
-        if (dist <= length) {
-            Matrix point = (c1->position + c2->position) / 2;
-            vect_dist.Normalise();
-            Contact contact_info = {point, length - dist, vect_dist, c1, c2};
-
-
-            //int a = max(c1->kBlockID, c2->kBlockID);
-            //int b = min(c1->kBlockID, c2->kBlockID);
-
-            //omp_set_lock(min(&partial_locks[c1->kBlockID], &partial_locks[c2->kBlockID]));
-            //omp_set_lock(max(&partial_locks[c1->kBlockID], &partial_locks[c2->kBlockID]));
-            //cout << "came here" << endl;
-#if defined(OPENMP)
-            omp_set_lock(&partial_locks[min(c1->kBlockID, c2->kBlockID)]);
-            omp_set_lock(&partial_locks[max(c1->kBlockID, c2->kBlockID)]);
-#endif
-#pragma omp critical (OUTER)
-            {
-                CollisionResolution(contact_info);
-            }
-
-#if defined(OPENMP)
-            omp_unset_lock(&partial_locks[min(c1->kBlockID, c2->kBlockID)]);
-            omp_unset_lock(&partial_locks[max(c1->kBlockID, c2->kBlockID)]);
-#endif
-
-        }
-    }
-
-*/
     void Cube::CollisionResolution(Contact &contact) {
         Cube *body1 = contact.body1;
         Cube *body2 = contact.body2;

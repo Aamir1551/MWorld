@@ -127,9 +127,6 @@ namespace blocks {
          */
         void static CollisionResolution(Contact &contact);
 
-
-        void static CollisionDetectAndResolve(Block *c1, Block *c2, vector<omp_lock_t>);
-
         virtual ~Cube() = default;
     };
 };

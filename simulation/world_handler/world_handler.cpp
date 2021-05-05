@@ -503,7 +503,6 @@ vector<Contact> WorldHandler::CollisionHandlerWithOctree() {
         for(unsigned int i=0; i<v.size()-1; i++) {
             for(unsigned int j=i+1;j<v.size();j++) {
                 Cube::CollisionDetect(v.at(i), v.at(j), collisions);
-                //Cube::CollisionDetectAndResolve(v.at(i), v.at(j), this->collision_locks);
             }
         }
     }
