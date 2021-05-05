@@ -19,3 +19,10 @@ Running the Project:
     1) and_gate_test to run the simulation with the AND gate being simulated
     2) not_gate_test to run the simulation with the NOT gate being simulated
     3) or_gate_test to run the simulation with the OR gate being simulated
+
+Code Structure:
+The Matrix and Quaternion code is writtin in the numerics folder. The three prototypes used can be found in the prototypes folder. The render folder contains code specific to rendering using GLFW. The simulation folder includes two more directories: 
+    1) blocks - Contains code related to each the functionality to the blocks within the world
+    2) octree - Contains code related to the ForceOctree (Used by the Barnes-Hut algorithm) and CollisionOctree used by the collision handler
+    3) world_handler - Calls the methods that run at each frame in the physics engine. It is here, where we use make use of the Block and Octree classes in our simulation.
+    4) environment - Contains the different environments we have simulated such as the logic gates and the final simulation of the world
