@@ -46,7 +46,6 @@ int main()
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
     glUseProgram(world_properties->shader_id);
-    //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     glClearColor(0.0f, 0.0f, 0.0f, 0.0f); //using black to clear the background
     std::cout << "Entering Main Loop" << std::endl;
 
@@ -63,37 +62,22 @@ int main()
         lastFrame = currentFrame;
 
         camera.UpdateCamera(deltaTime);
-        //glfwSetCursorPosCallback(world_properties->window, mouse_callback);
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         for (int i = 0; i < num_cubes; i++)
         {
+
             Matrix model = Matrix::CreateTranslationMatrix(positions->at(i));
 
             Quaternion q(0, 1, 1, 1);
             rotations->at(i) += q * (rotations->at(i) * 0.001);
             rotations->at(i).Normalise();
-            Matrix r = Quaternion::GetMatrixTransformation(rotations->at(i)); //normalise matrix??
-            Matrix model_final = Matrix::MatMul(r, model); // maybe have a matrix function that applied the matmul inside of model
-
-
-            /*__m128 v_avx = _mm_setr_ps((float) rand(), rand(), rand(), rand());
-            __m128 col0 = _mm_setr_ps(rand(), rand(), rand(), rand());
-            __m128 col1 = _mm_setr_ps(rand(), rand(), rand(), rand());
-            __m128 col2 = _mm_setr_ps(rand(), rand(), rand(), rand());
-            __m128 col3 = _mm_setr_ps(rand(), rand(), rand(), rand());*/
-            /*float col0[4] = {(float) rand(), (float) rand(), (float) rand(), (float) rand()};
-            float col1[4] = {(float) rand(), (float) rand(), (float) rand(), (float) rand()};
-            float col2[4] = {(float) rand(), (float) rand(), (float) rand(), (float) rand()};
-            float col3[4] = {(float) rand(), (float) rand(), (float) rand(), (float) rand()};
-            float vec[4] = {(float) rand(), (float) rand(), (float) rand(), (float) rand()};
-            for(int i=0; i<4; i++) {
-                Matrix::MatMulAVX4v(col0, col1, col2, col3, vec);
-            }*/
+            Matrix r = Quaternion::GetMatrixTransformation(rotations->at(i));
+            Matrix model_final = Matrix::MatMul(r, model); // Create Model matrix of cube
 
             view_mat = camera.CalculateViewMat();
-            CubeRenderer::ApplyUniforms(model_final);
+            CubeRenderer::ApplyUniforms(model_final); // Apply the uniforms to be sent to the shaders
 
             Matrix colour = Matrix::CreateColumnVec(1, 1, 1);
             int colour_loc = glGetUniformLocation(CubeRenderer::shader_id, "colour");

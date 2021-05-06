@@ -41,7 +41,8 @@ int main()
     BlockRenderer::InitialiseBlockRenderer(&camera, cube_length, vao, vbo, ebo, world_properties);
 
     real down = -10;
-    // And Gate -- Given by 2 Inputs, Input 1 (A) = M block, Input 2 (B) = M block, Out (C) = M block :
+    // And Gate -- Given by 2 Inputs, Input 1 (A) = M block, Input 2 (B) = M block, Out (F) = M block :
+    //    F
     //    E
     //    D
     // E1 C E2

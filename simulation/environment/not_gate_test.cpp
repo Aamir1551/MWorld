@@ -37,12 +37,12 @@ int main()
 
     // Not Gate -- Given by 1 Input, Input 1 (A) = I block, Out (C) = M block :
     // I+
-    // M0
-    // Z
-    // I-
-    // M1
-    // M2
-    // C
+    // M (A)
+    // Z (T1)
+    // I- (T2)
+    // M (M1)
+    // M (M2)
+    // M (C)
     WorldHandler world = WorldHandler(1, 1, 1, 4, 0, 0);
 
     // I+
@@ -133,12 +133,12 @@ int main()
             prev_time = currentFrame;
 
             // NOT Gate
-            cout << "Flare value in M0 block: " << world.mblocks.at(0)->flare_value << endl;
-            cout << "Flare value in Z block: " << world.zblocks.at(0)->flare_value << endl;
-            cout << "Flare value in I- block: " << world.iblocks.at(1)->flare_value << endl;
-            cout << "Flare value in M1 block: " << world.mblocks.at(1)->flare_value << endl;
-            cout << "Flare value in M2 block: " << world.mblocks.at(2)->flare_value << endl;
-            cout << "Flare value in Out block: " << world.mblocks.at(3)->flare_value << endl;
+            cout << "Flare value in M (A) block: " << world.mblocks.at(0)->flare_value << endl;
+            cout << "Flare value in Z (T1) block: " << world.zblocks.at(0)->flare_value << endl;
+            cout << "Flare value in I- (T2) block: " << world.iblocks.at(1)->flare_value << endl;
+            cout << "Flare value in M (M1) block: " << world.mblocks.at(1)->flare_value << endl;
+            cout << "Flare value in M (M2) block: " << world.mblocks.at(2)->flare_value << endl;
+            cout << "Flare value in C (M3) block: " << world.mblocks.at(3)->flare_value << endl;
         }
     }
 

@@ -31,7 +31,6 @@ namespace numerics
 
     Quaternion Quaternion::operator*(const Quaternion &a) const
     {
-        //should this be inline instead???
         settings::real r_component = this->r * a.r - this->i * a.i - this->j * a.j - this->k * a.k;
         settings::real i_component = this->r * a.i + this->i * a.r + this->j * a.k - this->k * a.j;
         settings::real j_component = this->r * a.j - this->i * a.k + this->j * a.r + this->k * a.i;

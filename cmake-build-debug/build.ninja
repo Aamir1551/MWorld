@@ -1406,6 +1406,60 @@ build simulation/environment/simulation.exe: CXX_EXECUTABLE_LINKER__simulation_D
   TARGET_IMPLIB = simulation\environment\libsimulation.dll.a
   TARGET_PDB = simulation.exe.dbg
 
+
+#############################################
+# Utility command for edit_cache
+
+build simulation/environment/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cmd.exe /C "cd /D C:\Users\aamir\Documents\mworld\cmake-build-debug\simulation\environment && "C:\Program Files\JetBrains\CLion 2020.3.4\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build simulation/environment/edit_cache: phony simulation/environment/CMakeFiles/edit_cache.util
+
+# =============================================================================
+# Object build statements for EXECUTABLE target octree_test
+
+
+#############################################
+# Order-only phony target for octree_test
+
+build cmake_object_order_depends_target_octree_test: phony || cmake_object_order_depends_target_block_renderer cmake_object_order_depends_target_blocks cmake_object_order_depends_target_collision_octree cmake_object_order_depends_target_cube_renderer cmake_object_order_depends_target_force_octree cmake_object_order_depends_target_glad cmake_object_order_depends_target_linear_alg cmake_object_order_depends_target_mworld_render_utils cmake_object_order_depends_target_octree cmake_object_order_depends_target_quaternion cmake_object_order_depends_target_utils cmake_object_order_depends_target_world_handler
+
+build simulation/environment/CMakeFiles/octree_test.dir/octree_test.cpp.obj: CXX_COMPILER__octree_test_Debug ../simulation/environment/octree_test.cpp || cmake_object_order_depends_target_octree_test
+  DEFINES = -DGLFW_ON=1 -DOPENMP=1
+  DEP_FILE = simulation\environment\CMakeFiles\octree_test.dir\octree_test.cpp.obj.d
+  FLAGS = -Wall -fopenmp -std=c++11 -g   -std=gnu++11
+  INCLUDES = -I../lib/glfw-3.3.2/include -I../simulation/environment -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../utils/util_functions/. -I../simulation/blocks -I../simulation/blocks/../octree -I../lib/glm -I../simulation/world_handler -I../simulation/octree/. -I../render/block_renderer/../lib -I../render/block_renderer/. -I../render/cube_renderer/. -I../render/cube_renderer/../lib -I../lib/glad/include -I../render/utils/. -I../render/shader -I../render/camera
+  OBJECT_DIR = simulation\environment\CMakeFiles\octree_test.dir
+  OBJECT_FILE_DIR = simulation\environment\CMakeFiles\octree_test.dir
+
+build simulation/environment/CMakeFiles/octree_test.dir/__/__/render/utils/world_initializer.cpp.obj: CXX_COMPILER__octree_test_Debug ../render/utils/world_initializer.cpp || cmake_object_order_depends_target_octree_test
+  DEFINES = -DGLFW_ON=1 -DOPENMP=1
+  DEP_FILE = simulation\environment\CMakeFiles\octree_test.dir\__\__\render\utils\world_initializer.cpp.obj.d
+  FLAGS = -Wall -fopenmp -std=c++11 -g   -std=gnu++11
+  INCLUDES = -I../lib/glfw-3.3.2/include -I../simulation/environment -I../numerics/linear_alg/include -I../utils/settings/. -I../numerics/quaternion/include -I../utils/util_functions/. -I../simulation/blocks -I../simulation/blocks/../octree -I../lib/glm -I../simulation/world_handler -I../simulation/octree/. -I../render/block_renderer/../lib -I../render/block_renderer/. -I../render/cube_renderer/. -I../render/cube_renderer/../lib -I../lib/glad/include -I../render/utils/. -I../render/shader -I../render/camera
+  OBJECT_DIR = simulation\environment\CMakeFiles\octree_test.dir
+  OBJECT_FILE_DIR = simulation\environment\CMakeFiles\octree_test.dir\__\__\render\utils
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target octree_test
+
+
+#############################################
+# Link the executable simulation\environment\octree_test.exe
+
+build simulation/environment/octree_test.exe: CXX_EXECUTABLE_LINKER__octree_test_Debug simulation/environment/CMakeFiles/octree_test.dir/octree_test.cpp.obj simulation/environment/CMakeFiles/octree_test.dir/__/__/render/utils/world_initializer.cpp.obj | numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a utils/util_functions/libutils.a simulation/blocks/libblocks.a simulation/world_handler/libworld_handler.a render/block_renderer/libblock_renderer.a render/cube_renderer/libcube_renderer.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a render/utils/libmworld_render_utils.a simulation/octree/libcollision_octree.a simulation/octree/libforce_octree.a simulation/octree/liboctree.a simulation/blocks/libblocks.a lib/glad/libglad.a ../lib/glfw-3.3.2/build/src/libglfw3.a utils/util_functions/libutils.a numerics/quaternion/libquaternion.a numerics/linear_alg/liblinear_alg.a || lib/glad/libglad.a numerics/linear_alg/liblinear_alg.a numerics/quaternion/libquaternion.a render/block_renderer/libblock_renderer.a render/cube_renderer/libcube_renderer.a render/utils/libmworld_render_utils.a simulation/blocks/libblocks.a simulation/octree/libcollision_octree.a simulation/octree/libforce_octree.a simulation/octree/liboctree.a simulation/world_handler/libworld_handler.a utils/util_functions/libutils.a
+  FLAGS = -Wall -fopenmp -std=c++11 -g
+  LINK_LIBRARIES = numerics/linear_alg/liblinear_alg.a  numerics/quaternion/libquaternion.a  numerics/linear_alg/liblinear_alg.a  numerics/quaternion/libquaternion.a  utils/util_functions/libutils.a  simulation/blocks/libblocks.a  simulation/world_handler/libworld_handler.a  render/block_renderer/libblock_renderer.a  render/cube_renderer/libcube_renderer.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  render/utils/libmworld_render_utils.a  simulation/octree/libcollision_octree.a  simulation/octree/libforce_octree.a  simulation/octree/liboctree.a  simulation/blocks/libblocks.a  lib/glad/libglad.a  ../lib/glfw-3.3.2/build/src/libglfw3.a  utils/util_functions/libutils.a  numerics/quaternion/libquaternion.a  numerics/linear_alg/liblinear_alg.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = simulation\environment\CMakeFiles\octree_test.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = simulation\environment\octree_test.exe
+  TARGET_IMPLIB = simulation\environment\liboctree_test.dll.a
+  TARGET_PDB = octree_test.exe.dbg
+
 # =============================================================================
 # Object build statements for EXECUTABLE target or_gate_test
 
@@ -1590,17 +1644,6 @@ build simulation/environment/amplifier.exe: CXX_EXECUTABLE_LINKER__amplifier_Deb
   TARGET_IMPLIB = simulation\environment\libamplifier.dll.a
   TARGET_PDB = amplifier.exe.dbg
 
-
-#############################################
-# Utility command for edit_cache
-
-build simulation/environment/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\Users\aamir\Documents\mworld\cmake-build-debug\simulation\environment && "C:\Program Files\JetBrains\CLion 2020.3.4\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
-  DESC = No interactive CMake dialog available...
-  restat = 1
-
-build simulation/environment/edit_cache: phony simulation/environment/CMakeFiles/edit_cache.util
-
 # =============================================================================
 # Target aliases.
 
@@ -1661,6 +1704,10 @@ build not_gate_test: phony simulation/environment/not_gate_test.exe
 build not_gate_test.exe: phony simulation/environment/not_gate_test.exe
 
 build octree: phony simulation/octree/liboctree.a
+
+build octree_test: phony simulation/environment/octree_test.exe
+
+build octree_test.exe: phony simulation/environment/octree_test.exe
 
 build or_gate_test: phony simulation/environment/or_gate_test.exe
 
@@ -1833,7 +1880,7 @@ build simulation/blocks/all: phony simulation/blocks/libblocks.a
 #############################################
 # Folder: C:/Users/aamir/Documents/mworld/cmake-build-debug/simulation/environment
 
-build simulation/environment/all: phony simulation/environment/simulation.exe simulation/environment/or_gate_test.exe simulation/environment/and_gate_test.exe simulation/environment/not_gate_test.exe simulation/environment/amplifier.exe
+build simulation/environment/all: phony simulation/environment/simulation.exe simulation/environment/octree_test.exe simulation/environment/or_gate_test.exe simulation/environment/and_gate_test.exe simulation/environment/not_gate_test.exe simulation/environment/amplifier.exe
 
 # =============================================================================
 

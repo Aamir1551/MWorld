@@ -64,9 +64,10 @@ C:/Users/aamir/Documents/mworld/cmake-build-debug/simulation/world_handler/CMake
 C:/Users/aamir/Documents/mworld/cmake-build-debug/simulation/world_handler/CMakeFiles/world_handler.dir
 C:/Users/aamir/Documents/mworld/cmake-build-debug/simulation/world_handler/CMakeFiles/rebuild_cache.dir
 C:/Users/aamir/Documents/mworld/cmake-build-debug/simulation/environment/CMakeFiles/simulation.dir
+C:/Users/aamir/Documents/mworld/cmake-build-debug/simulation/environment/CMakeFiles/edit_cache.dir
+C:/Users/aamir/Documents/mworld/cmake-build-debug/simulation/environment/CMakeFiles/octree_test.dir
 C:/Users/aamir/Documents/mworld/cmake-build-debug/simulation/environment/CMakeFiles/or_gate_test.dir
 C:/Users/aamir/Documents/mworld/cmake-build-debug/simulation/environment/CMakeFiles/and_gate_test.dir
 C:/Users/aamir/Documents/mworld/cmake-build-debug/simulation/environment/CMakeFiles/rebuild_cache.dir
 C:/Users/aamir/Documents/mworld/cmake-build-debug/simulation/environment/CMakeFiles/not_gate_test.dir
 C:/Users/aamir/Documents/mworld/cmake-build-debug/simulation/environment/CMakeFiles/amplifier.dir
-C:/Users/aamir/Documents/mworld/cmake-build-debug/simulation/environment/CMakeFiles/edit_cache.dir

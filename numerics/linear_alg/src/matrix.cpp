@@ -582,26 +582,6 @@ namespace numerics
         return a;
     }
 
-    /*__m128 Matrix::MatMulAVX4v(float *c0, float *c1, float *c2, float *c3, float *vec) {
-        __m128 col0 = _mm_loadu_ps(c0);
-        __m128 col1 = _mm_load1_ps(c1);
-        __m128 col2 = _mm_load1_ps(c2);
-        __m128 col3 = _mm_load1_ps(c3);
-        __m128 v = _mm_load1_ps(vec);
-        __m128 v0 = _mm_permute_ps(v, 0);
-        __m128 v1 = _mm_permute_ps(v, 0b01010101);
-        __m128 v2 = _mm_permute_ps(v, 0b10101010);
-        __m128 v3 = _mm_permute_ps(v, 0b11111111);
-        __m128 prod0 = _mm_mul_ps(v0, col0);
-        __m128 prod1 = _mm_mul_ps(v1, col1);
-        __m128 s0 = _mm_add_ps(prod0, prod1);
-        __m128 prod2 = _mm_mul_ps(v2, col2);
-        __m128 prod3 = _mm_mul_ps(v3, col3);
-        __m128 s1 = _mm_add_ps(prod2, prod3);
-        __m128 out = _mm_add_ps(s0, s1);
-        return out;
-    }*/
-
 
     Matrix Matrix::LookAt(const Matrix &eye, const Matrix &center, const Matrix &up) {
 
@@ -681,26 +661,5 @@ namespace numerics
         res.values = values;
         return res;
     }
-
-    /*
-    __m128 Matrix::MatMulAVX4v(__m128 &col0, __m128 &col1, __m128 &col2, __m128 &col3, __m128 &v) {
-        __m128 col0 = _mm_loadu_ps();
-        __m128 col1;
-        __m128 col2;
-        __m128 col3;
-        __m128 v;
-        __m128 v0 = _mm_permute_ps(v, 0);
-        __m128 v1 = _mm_permute_ps(v, 0b01010101);
-        __m128 v2 = _mm_permute_ps(v, 0b10101010);
-        __m128 v3 = _mm_permute_ps(v, 0b11111111);
-        __m128 prod0 = _mm_mul_ps(v0, col0);
-        __m128 prod1 = _mm_mul_ps(v1, col1);
-        __m128 s0 = _mm_add_ps(prod0, prod1);
-        __m128 prod2 = _mm_mul_ps(v2, col2);
-        __m128 prod3 = _mm_mul_ps(v3, col3);
-        __m128 s1 = _mm_add_ps(prod2, prod3);
-        __m128 out = _mm_add_ps(s0, s1);
-    }
-    */
 
 } // namespace numerics

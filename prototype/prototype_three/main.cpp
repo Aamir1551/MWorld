@@ -35,11 +35,11 @@ int main()
     Matrix projection = Matrix::Perspective(Matrix::ConvertToRadians(45.0f), 800.0f / 600.0f, 0.1f, 4000.0f);
 
     real cube_length = 4.0f;
-    real position_coord1[] = {-35, -2.0f, -20}; //x, y, z. x is how much horizontal y is vertical. z is in/out
+    real position_coord1[] = {-35, -1.0f, -20}; //x, y, z. x is how much horizontal y is vertical. z is in/out
     Matrix position1(3, 1, position_coord1);
     Cube c1(cube_length, position1, Quaternion(1, 0, 0, 0), 1.0f, 1.0f);
 
-    real position_coord2[] = {-25, 0, -20};
+    real position_coord2[] = {-5, 0, -20};
     Matrix position2(3, 1, position_coord2);
     Cube c2(cube_length, position2, Quaternion(1, 0, 0, 0), 1.0f, 1.0f);
 
@@ -56,10 +56,10 @@ int main()
     real deltaTime = 0.0f; // Time between current frame and last frame
     real lastFrame = 0.0f; // Time of last frame
 
-    real initial_momentum1[] = {0.002, 0.002, 0.0};
+    real initial_momentum1[] = {0.002/4, 0.002/4, 0.0};
     c1.momentum = Matrix(3, 1, initial_momentum1);
 
-    real initial_momentum2[] = {-0.002, 0.001, 0};
+    real initial_momentum2[] = {-0.002/4, 0.0015/4, 0};
     c2.momentum = Matrix(3, 1, initial_momentum2);
 
     Quaternion q = Quaternion(0.0f, 2.0f, 2.0f, 0.0f);

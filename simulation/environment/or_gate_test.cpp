@@ -135,7 +135,8 @@ int main()
             // Or Gate
             cout << "Flare value in A block: " << world.mblocks.at(0)->flare_value << endl;
             cout << "Flare value in B block: " << world.mblocks.at(1)->flare_value << endl;
-            cout << "Flare value in C block: " << world.mblocks.at(3)->flare_value << endl;
+            cout << "Flare value in T1 block: " << world.mblocks.at(3)->flare_value << endl;
+            cout << "Flare value in D block: " << world.mblocks.at(3)->flare_value << endl;
         }
     }
 
