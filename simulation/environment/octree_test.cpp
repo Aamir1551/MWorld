@@ -131,7 +131,6 @@ int main(int argc, char *argv[])
     }
 
 
-    cout << "Execution Time for " << num_blocks_same << " : " <<  (duration_cast<milliseconds>(high_resolution_clock::now() - start_time).count()) / total_frame_count / 1000 << endl;
     cout << "Terminating..." << endl;
 
 

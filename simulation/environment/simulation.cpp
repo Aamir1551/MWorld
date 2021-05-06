@@ -101,7 +101,7 @@ int main(int argc, char *argv[])
     glUseProgram(world_properties->shader_id);
     glClearColor(0.0f, 0.0f, 0.0f, 0.0f); //using black to clear the background
 #endif
-    //std::cout << "Entering Main Loop" << std::endl;
+    std::cout << "Entering Main Loop" << std::endl;
 
     using std::chrono::high_resolution_clock;
     using std::chrono::duration_cast;
@@ -135,31 +135,10 @@ int main(int argc, char *argv[])
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 #endif
 
-        //auto contact_list = world.CollisionHandlerBruteForce();
-        //auto contact_list1 = world.CollisionHandlerWithOctree();
 
         auto contact_list = world.CollisionHandlerWithOctree();
 
-        /*set<pair<Block *, Block *>> c;
-        for(auto const &i : contact_list) {
-           c.insert(make_pair(i.body1, i.body2));
-           c.insert(make_pair(i.body2, i.body1));
-        }
-
-        set<pair<Block *, Block *>> c1;
-        for(auto const &i : contact_list1) {
-            c1.insert(make_pair(i.body1, i.body2));
-            c1.insert(make_pair(i.body2, i.body1));
-        }
-
-        if(c != c1 || contact_list.size() != contact_list1.size()) {
-            cout << c.size() << " " << c1.size() <<  endl;
-            cout << "not equal" << endl;
-        }*/
-
-        //cout << contact_list.size() << endl;
         world.AddForces(deltaTime.count()/1000.0);
-        //auto contact_list = vector<Contact>();
         world.Update(contact_list, deltaTime.count()/1000.0);
 
 #if defined(GLFW_ON)
@@ -170,19 +149,14 @@ int main(int argc, char *argv[])
         frame_count++;
         total_frame_count++;
         if(duration_cast<milliseconds>(currentFrame - prev_time).count()>= 1000.0) {
-            //cout << "FPS: " << frame_count << endl;
+            cout << "FPS: " << frame_count << endl;
             frame_count = 0;
             prev_time = currentFrame;
         }
     }
 
-
-    cout << "Execution Time for " << num_blocks_same << " : " <<  (duration_cast<milliseconds>(high_resolution_clock::now() - start_time).count()) / total_frame_count / 1000 << endl;
-    //cout << "Average FPS for " << total_frame_count/(duration_cast<milliseconds>(high_resolution_clock::now() - start_time).count()) * 1000 << endl;
-    //cout << "Average FPS for " << (argv[2]) << " " << argv[3] << " " << argv[4] << " " << argv[5] << " " << argv[6] << " " << argv[7] << " " << argv[8] << " " << argv[9] << " " << argv[10] << " " << argv[11] << " " << argv[12] << " " << argv[13] << ": "
-    //<< total_frame_count/(duration_cast<milliseconds>(high_resolution_clock::now() - start_time).count()) * 1000 << endl;
-    //cout << "Terminating..." << endl;
-
+    cout << "Average execution Time per frame when simulating " << num_blocks_same << " blocks of each type is" << " : " <<  (duration_cast<milliseconds>(high_resolution_clock::now() - start_time).count()) / total_frame_count / 1000 << endl;
+    cout << "Terminating..." << endl;
 
 #if defined(GLFW_ON)
     glDeleteBuffers(1, &vao);
@@ -191,6 +165,6 @@ int main(int argc, char *argv[])
     glfwTerminate();
 #endif
 
-    //cout << "Terminated" << endl;
+    cout << "Terminated" << endl;
     return 0;
 }
