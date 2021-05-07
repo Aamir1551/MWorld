@@ -49,8 +49,8 @@ std::vector<Matrix> *WorldHandler::GenerateLinearMomentums(int num_cubes)
     auto get_momentums = []() -> real { return ((rand() % 3) + -1) * 0.2;};
     for (int i = 0; i < num_cubes; i++)
     {
-        //real values[] = { get_momentums() , get_momentums() , get_momentums()};
-        real values[] = {0, 0, 0}; // Used for testing purposes
+        real values[] = { get_momentums() , get_momentums() , get_momentums()};
+        //real values[] = {0, 0, 0}; // Used for testing purposes
         linear_momentums->push_back(Matrix(3, 1, values));
     }
     return linear_momentums;
@@ -199,9 +199,9 @@ void WorldHandler::AddBlock(BlockTypes block_types, int num_blocks, bool state) 
 void WorldHandler::Update(vector<Contact> &contact_list, real delta_time) {
 
     // We update the entire world
-    // 1) We remove the block from the CollisionOctree
+    // 1) We remove blocks from the CollisionOctree and the force_tree
     // 2) We resolve all collisions that are currently taking place
-    // 3) We then update the position of the block in the ForceOctree
+    // 3) We then update the position of the blocks in the ForceOctree
     // 4) Update the position of the blocks
 
     forces_tree->RemoveAllBlocks();
@@ -299,7 +299,39 @@ void WorldHandler::UpdateFlares(vector<Contact> &contact_list, real delta_time) 
     IncFlareValuesAndReset();
 }
 
-void WorldHandler::AddForces(real delta_time) {
+void WorldHandler::AddForcesViaBruteForce(real delta_time) {
+#pragma omp parallel for default(none) shared(delta_time)
+    for(auto &block0: this->blocks) {
+        if (!block0->locked) {
+            for (auto &block1: this->iblocks) {
+                if(block0 == block1){
+                    continue;
+                }
+                block0->ReactSerial(block1, delta_time);
+            }
+            for (auto &block1: this->zblocks) {
+                if(block0 == block1){
+                    continue;
+                }
+                block0->ReactSerial(block1, delta_time);
+            }
+            for (auto &block1: this->mblocks) {
+                if(block0 == block1){
+                    continue;
+                }
+                block0->ReactSerial(block1, delta_time);
+            }
+            for (auto &block1: this->eblocks) {
+                if(block0 == block1){
+                    continue;
+                }
+                block0->ReactSerial(block1, delta_time);
+            }
+        }
+    }
+}
+
+void WorldHandler::AddForcesViaBarnesHut(real delta_time) {
     this->forces_tree->CalculateCOMonTree();
 #pragma omp parallel for default(none) shared(delta_time)
     for(auto const &block : this->blocks) {
@@ -307,45 +339,6 @@ void WorldHandler::AddForces(real delta_time) {
             forces_tree->ApplyBarnesHutOnBlock(block, delta_time);
         }
     }
-    // The below code is for testing purposes; To see if the Barnes Hut algorithm, gives accurate results
-    // It is important to note, that the Barnes hut alogirthm approximates as compared to the below algorithm
-    // that gives accurate values
-#pragma omp parallel for
-    for(auto &block0: this->blocks) {
-        if (!block0->locked) {
-            for (auto &block1: this->iblocks) {
-                if(block0 == block1){
-                    continue;
-                }
-                block0->ReactSerial(block1, delta_time * -1);
-            }
-            for (auto &block1: this->zblocks) {
-                if(block0 == block1){
-                    continue;
-                }
-                block0->ReactSerial(block1, delta_time * -1);
-            }
-            for (auto &block1: this->mblocks) {
-                if(block0 == block1){
-                    continue;
-                }
-                block0->ReactSerial(block1, delta_time * -1);
-            }
-            for (auto &block1: this->eblocks) {
-                if(block0 == block1){
-                    continue;
-                }
-                block0->ReactSerial(block1, delta_time * -1);
-            }
-        }
-    }
-
-    real total_diff = 0;
-    for(auto const i: blocks) {
-        total_diff += Matrix::SquaredNorm(i->momentum);
-        i->momentum = Matrix::CreateColumnVec(0, 0, 0);
-    }
-    cout << total_diff << endl;
 }
 
 void WorldHandler::PassBlockFlares(vector<Contact> &contacts, real delta_time) {

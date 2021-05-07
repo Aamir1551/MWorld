@@ -78,8 +78,6 @@ private:
     CollisionOctree *collision_tree;
     ForceOctree *forces_tree;
 
-    // Stores all the blocks in the world
-    vector<Block *> blocks;
 
     // Stores the length of the cube in the world
     real cube_length;
@@ -122,11 +120,17 @@ private:
 
 public:
 
+    // Stores all the blocks in the world
+    vector<Block *> blocks;
+
     // Stores the different blocks in the world
     vector<IBlock *> iblocks;
     vector<MBlock *> mblocks;
     vector<EBlock *> eblocks;
     vector<ZBlock *> zblocks;
+
+    // Reasoning for having different vectors for each block was due to speed improvement that we receive since we no longer
+    // need to use if/else statements and cast blocks to their respective types.
 
     WorldHandler(int num_i_blocks_plus, int num_i_blocks_neg, int num_z_blocks, int num_m_blocks, int num_e_blocks_1, int num_e_blocks_1_2, real min_coord_x = -50, real max_coord_x = 50, real min_coord_y = -50, real max_coord_y = 50, real min_coord_z = -50, real max_coord_z = 50, real cube_length = 4.0f);
 
@@ -134,8 +138,11 @@ public:
     vector<Contact> CollisionHandlerBruteForce();
     vector<Contact> CollisionHandlerWithOctree();
 
-    // Add force to each cube
-    void AddForces(real delta_time);
+    // Add force to each cube using the Barnes-Hut algorithm
+    void AddForcesViaBarnesHut(real delta_time);
+
+    // Add force to each cube via brute force algorithm
+    void AddForcesViaBruteForce(real delta_time);
 
     /**
      * @brief Updates the world by one frame
