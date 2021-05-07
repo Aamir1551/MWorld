@@ -114,7 +114,7 @@ int main(int argc, char *argv[])
             cout << "Not Equal" << endl;
         }
 
-        world.AddForces(deltaTime.count()/1000.0);
+        world.AddForcesViaBarnesHut(deltaTime.count() / 1000.0);
         world.Update(contact_list, deltaTime.count()/1000.0);
 
 #if defined(GLFW_ON)
