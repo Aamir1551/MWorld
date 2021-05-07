@@ -65,6 +65,9 @@ namespace blocks {
         // Traverse the entire collision_tree from this node, and calculate the COM of each node
         void CalculateCOMonTree();
 
+        // Removes all bocks from octree and sets octree to its initial state
+        void RemoveAllBlocks();
+
         ~ForceOctree();
 
     private:

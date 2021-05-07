@@ -116,7 +116,7 @@ namespace blocks {
         real dist = Matrix::Norm(vect_dist);
         real length = (c1->kCubeLength + c2->kCubeLength) / 2;
 
-            if(dist == 0) {
+            /*if(dist == 0) {
                 auto temp = c1->position(0, 0);
 #pragma omp critical
                 {
@@ -124,7 +124,7 @@ namespace blocks {
                     c2->position(0, 0, temp - length/2);
                 };
                 return;
-            }
+            }*/
 
         if (dist <= length) {
             Matrix point = (c1->position + c2->position) / 2;

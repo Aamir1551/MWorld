@@ -23,8 +23,15 @@ namespace blocks {
             real squared_dist = Matrix::SquaredNorm(vec_to_tree_com);
             real dist = std::sqrt(squared_dist);
 
+            if(squared_dist <=5){
+               return false;
+            }
+
             if(tree->is_leaf) {
-                inc_force += (vec_to_tree_com) / std::max(squared_dist, (real) 0.01)  * ((real) cell_count);
+                if (cell_count > 900) {
+                    cout << cell_count << endl;
+                }
+                inc_force += (vec_to_tree_com) / std::max(squared_dist, (real) 0.2)  * ((real) cell_count);
                 return false;
             }
 
@@ -32,7 +39,7 @@ namespace blocks {
             if(ratio > Block::theta) {
                 return true;
             } else {
-                inc_force += (vec_to_tree_com) / std::max(squared_dist, (real) 0.01) * ((real) cell_count);
+                inc_force += (vec_to_tree_com) / std::max(squared_dist, (real) 0.2) * ((real) cell_count);
             }
         }
         return false;
@@ -57,6 +64,6 @@ namespace blocks {
 
     int Block::block_count = 0;
     real Block::flare_capacity = 1.0f;
-    real Block::theta = 0.5f;
+    real Block::theta = 1.5f;
 }
 

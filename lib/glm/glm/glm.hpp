@@ -9,7 +9,7 @@
 /// C++ functions that mirror the GLSL functions.
 ///
 /// The best documentation for GLM Core is the current GLSL specification,
-/// <a href="http://www.opengl.org/registry/doc/GLSLangSpec.4.20.8.clean.pdf">version 4.2
+/// <a href="http://www.opengl.org/registry/doc/GLSLangSpec.4.20.8.RemoveAllBlocks.pdf">version 4.2
 /// (pdf file)</a>.
 ///
 /// GLM core functionalities require <glm/glm.hpp> to be included to be used.

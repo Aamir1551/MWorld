@@ -27,30 +27,22 @@ namespace blocks {
 
     bool IBlock::ReactBarnesHut(ForceOctree *tree, real delta_time) {
         // Repels both the I+ and I- block
-        if(this->state) {
-           if(tree->iblocks_at_cell_plus_count == 0) {
-              return false;
-           }
-           Matrix inc_force = Matrix(3, 1);
-           bool recurse = ApplyForceFromTreeNode(tree, tree->iblocks_at_cell_plus_count, tree->com_i_plus, inc_force);
-           if (!recurse) {
-               this->AddLinearForce(inc_force * -1, delta_time);
-               return false;
-           } else {
-               return true;
-           }
-        }  else {
-            if(tree->iblocks_at_cell_neg_count == 0) {
-                return false;
-            }
-            Matrix inc_force = Matrix(3, 1);
-            bool recurse = ApplyForceFromTreeNode(tree, tree->iblocks_at_cell_neg_count, tree->com_i_neg, inc_force);
-            if (!recurse) {
-                this->AddLinearForce(inc_force * -1, delta_time);
-                return false;
-            } else {
-                return true;
-            }
+
+        if (tree->iblocks_at_cell_neg_count == 0 && tree->iblocks_at_cell_plus_count == 0) {
+            return false;
+        }
+
+        Matrix inc_force = Matrix(3, 1);
+        bool recurse = ApplyForceFromTreeNode(tree, tree->iblocks_at_cell_plus_count, tree->com_i_plus, inc_force);
+        if (recurse == false) {
+            recurse = ApplyForceFromTreeNode(tree, tree->iblocks_at_cell_neg_count, tree->com_i_neg,
+                                             inc_force);
+        }
+        if (!recurse) {
+            this->AddLinearForce(inc_force * -1, delta_time);
+            return false;
+        } else {
+            return true;
         }
     }
 
@@ -59,7 +51,7 @@ namespace blocks {
         Matrix dist_vect = bl->position - this->position;
         real squared_dist = Matrix::SquaredNorm(dist_vect);
         if(squared_dist >= 5) {
-                this->AddLinearForce(dist_vect/squared_dist, delta_time);
+                this->AddLinearForce(dist_vect/squared_dist * -1, delta_time);
         }
     }
 };

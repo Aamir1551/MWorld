@@ -289,15 +289,6 @@ ForceOctree::ForceOctree(int grid_size, real min_x, real  max_x, real min_y, rea
             auto zz1 = ((i/4) % 2) ? max_z : avg_z;
             children[i] =  new ForceOctree(grid_size, xx0, xx1, yy0, yy1, zz0, zz1);
         }
-
-        /*children[0] = new ForceOctree(grid_size, min_x, avg_x, min_y, avg_y, min_z, avg_z);
-        children[1] = new ForceOctree(grid_size, avg_x, max_x, min_y, avg_y, min_z, avg_z);
-        children[2] = new ForceOctree(grid_size, min_x, avg_x, avg_y, max_y, min_z, avg_z);
-        children[3] = new ForceOctree(grid_size, avg_x, max_x, avg_y, max_y, min_z, avg_z);
-        children[4] = new ForceOctree(grid_size, min_x, avg_x, min_y, avg_y, avg_z, max_z);
-        children[5] = new ForceOctree(grid_size, avg_x, max_x, min_y, avg_y, avg_z, max_z);
-        children[6] = new ForceOctree(grid_size, min_x, avg_x, avg_y, max_y, avg_z, max_z);
-        children[7] = new ForceOctree(grid_size, avg_x, max_x, avg_y, max_y, avg_z, max_z);*/
     }
 }
 
@@ -305,6 +296,29 @@ ForceOctree::~ForceOctree() {
     if(!this->is_leaf) {
         for(auto & i : children) {
             delete i;
+        }
+    }
+}
+
+void ForceOctree::RemoveAllBlocks() {
+
+    int s = iblocks_at_cell_plus_count + iblocks_at_cell_neg_count + mblocks_at_cell_plus_count + mblocks_at_cell_neg_count + zblocks_at_cell_count + eblocks_at_cell_count;
+    sum_m_plus = Matrix::CreateColumnVec(0, 0, 0);
+    sum_m_neg = Matrix::CreateColumnVec(0, 0, 0);
+    sum_i_plus = Matrix::CreateColumnVec(0, 0, 0);
+    sum_i_neg = Matrix::CreateColumnVec(0, 0, 0);
+    sum_e = Matrix::CreateColumnVec(0, 0, 0);
+    sum_z = Matrix::CreateColumnVec(0, 0, 0);
+    iblocks_at_cell_plus_count = 0;
+    iblocks_at_cell_neg_count = 0;
+    mblocks_at_cell_plus_count =0;
+    mblocks_at_cell_neg_count =0;
+    zblocks_at_cell_count =0;
+    eblocks_at_cell_count = 0;
+
+    if(!this->is_leaf && s > 0) {
+        for(int i =0; i<8; i++) {
+            this->children[i]->RemoveAllBlocks();
         }
     }
 }

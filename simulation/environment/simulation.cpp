@@ -65,6 +65,8 @@ int main(int argc, char *argv[])
     //int num_blocks_same = (int) atoi(argv[2]);
     int num_blocks_same = 150;
     WorldHandler world = WorldHandler(num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, -100, 100, -100, 100, -100 ,100);
+    //WorldHandler world = WorldHandler(100, 100, 300, 100, 100, 100, -100, 100, -100, 100, -100 ,100);
+    //WorldHandler world = WorldHandler(0, 0, 500, 0, 0, 0, -100, 100, -100, 100, -100 ,100);
     // Test out with different collision elasticity value, so change scaling of velocity after collision, and see how world develops
     /*WorldHandler world = WorldHandler((argc < 3) ? 100 : (int) atoi(argv[2]),
                                       (argc < 4) ? 100 : (int) atoi(argv[3]),
