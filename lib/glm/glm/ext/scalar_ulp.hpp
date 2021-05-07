@@ -5,7 +5,7 @@
 /// @ingroup ext
 ///
 /// Allow the measurement of the accuracy of a function against a reference
-/// implementation. This extension works on floating-point data and provide results
+/// implementation. This extension works on floating-point data and provide execution_results
 /// in ULP.
 ///
 /// Include <glm/ext/scalar_ulp.hpp> to use the features of this extension.

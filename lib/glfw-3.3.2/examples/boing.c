@@ -14,7 +14,7 @@
  *            of the grid.
  *
  *          - [Marcus] Changed timing scheme from interval driven to frame-
- *            time based animation steps (which results in much smoother
+ *            time based animation steps (which execution_results in much smoother
  *            movement)
  *
  * History of Amiga Boing:

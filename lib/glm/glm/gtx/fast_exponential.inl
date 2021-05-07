@@ -34,7 +34,7 @@ namespace glm
 	}
 
 	// fastExp
-	// Note: This function provides accurate results only for value between -1 and 1, else avoid it.
+	// Note: This function provides accurate execution_results only for value between -1 and 1, else avoid it.
 	template<typename T>
 	GLM_FUNC_QUALIFIER T fastExp(T x)
 	{

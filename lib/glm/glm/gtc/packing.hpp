@@ -27,7 +27,7 @@ namespace glm
 	/// @{
 
 	/// First, converts the normalized floating-point value v into a 8-bit integer value.
-	/// Then, the results are packed into the returned 8-bit unsigned integer.
+	/// Then, the execution_results are packed into the returned 8-bit unsigned integer.
 	///
 	/// The conversion for component c of v to fixed point is done as follows:
 	/// packUnorm1x8:	round(clamp(c, 0, +1) * 255.0)
@@ -52,7 +52,7 @@ namespace glm
 	GLM_FUNC_DECL float unpackUnorm1x8(uint8 p);
 
 	/// First, converts each component of the normalized floating-point value v into 8-bit integer values.
-	/// Then, the results are packed into the returned 16-bit unsigned integer.
+	/// Then, the execution_results are packed into the returned 16-bit unsigned integer.
 	///
 	/// The conversion for component c of v to fixed point is done as follows:
 	/// packUnorm2x8:	round(clamp(c, 0, +1) * 255.0)
@@ -84,7 +84,7 @@ namespace glm
 	GLM_FUNC_DECL vec2 unpackUnorm2x8(uint16 p);
 
 	/// First, converts the normalized floating-point value v into 8-bit integer value.
-	/// Then, the results are packed into the returned 8-bit unsigned integer.
+	/// Then, the execution_results are packed into the returned 8-bit unsigned integer.
 	///
 	/// The conversion to fixed point is done as follows:
 	/// packSnorm1x8:	round(clamp(s, -1, +1) * 127.0)
@@ -110,7 +110,7 @@ namespace glm
 	GLM_FUNC_DECL float unpackSnorm1x8(uint8 p);
 
 	/// First, converts each component of the normalized floating-point value v into 8-bit integer values.
-	/// Then, the results are packed into the returned 16-bit unsigned integer.
+	/// Then, the execution_results are packed into the returned 16-bit unsigned integer.
 	///
 	/// The conversion for component c of v to fixed point is done as follows:
 	/// packSnorm2x8:	round(clamp(c, -1, +1) * 127.0)
@@ -142,7 +142,7 @@ namespace glm
 	GLM_FUNC_DECL vec2 unpackSnorm2x8(uint16 p);
 
 	/// First, converts the normalized floating-point value v into a 16-bit integer value.
-	/// Then, the results are packed into the returned 16-bit unsigned integer.
+	/// Then, the execution_results are packed into the returned 16-bit unsigned integer.
 	///
 	/// The conversion for component c of v to fixed point is done as follows:
 	/// packUnorm1x16:	round(clamp(c, 0, +1) * 65535.0)
@@ -168,7 +168,7 @@ namespace glm
 	GLM_FUNC_DECL float unpackUnorm1x16(uint16 p);
 
 	/// First, converts each component of the normalized floating-point value v into 16-bit integer values.
-	/// Then, the results are packed into the returned 64-bit unsigned integer.
+	/// Then, the execution_results are packed into the returned 64-bit unsigned integer.
 	///
 	/// The conversion for component c of v to fixed point is done as follows:
 	/// packUnorm4x16:	round(clamp(c, 0, +1) * 65535.0)
@@ -200,7 +200,7 @@ namespace glm
 	GLM_FUNC_DECL vec4 unpackUnorm4x16(uint64 p);
 
 	/// First, converts the normalized floating-point value v into 16-bit integer value.
-	/// Then, the results are packed into the returned 16-bit unsigned integer.
+	/// Then, the execution_results are packed into the returned 16-bit unsigned integer.
 	///
 	/// The conversion to fixed point is done as follows:
 	/// packSnorm1x8:	round(clamp(s, -1, +1) * 32767.0)
@@ -226,7 +226,7 @@ namespace glm
 	GLM_FUNC_DECL float unpackSnorm1x16(uint16 p);
 
 	/// First, converts each component of the normalized floating-point value v into 16-bit integer values.
-	/// Then, the results are packed into the returned 64-bit unsigned integer.
+	/// Then, the execution_results are packed into the returned 64-bit unsigned integer.
 	///
 	/// The conversion for component c of v to fixed point is done as follows:
 	/// packSnorm2x8:	round(clamp(c, -1, +1) * 32767.0)
@@ -355,7 +355,7 @@ namespace glm
 
 	/// First, converts the first three components of the normalized floating-point value v into 10-bit signed integer values.
 	/// Then, converts the forth component of the normalized floating-point value v into 2-bit signed integer values.
-	/// Then, the results are packed into the returned 32-bit unsigned integer.
+	/// Then, the execution_results are packed into the returned 32-bit unsigned integer.
 	///
 	/// The conversion for component c of v to fixed point is done as follows:
 	/// packSnorm3x10_1x2(xyz):	round(clamp(c, -1, +1) * 511.0)
@@ -390,7 +390,7 @@ namespace glm
 
 	/// First, converts the first three components of the normalized floating-point value v into 10-bit unsigned integer values.
 	/// Then, converts the forth component of the normalized floating-point value v into 2-bit signed uninteger values.
-	/// Then, the results are packed into the returned 32-bit unsigned integer.
+	/// Then, the execution_results are packed into the returned 32-bit unsigned integer.
 	///
 	/// The conversion for component c of v to fixed point is done as follows:
 	/// packUnorm3x10_1x2(xyz):	round(clamp(c, 0, +1) * 1023.0)
@@ -425,7 +425,7 @@ namespace glm
 
 	/// First, converts the first two components of the normalized floating-point value v into 11-bit signless floating-point values.
 	/// Then, converts the third component of the normalized floating-point value v into a 10-bit signless floating-point value.
-	/// Then, the results are packed into the returned 32-bit unsigned integer.
+	/// Then, the execution_results are packed into the returned 32-bit unsigned integer.
 	///
 	/// The first vector component specifies the 11 least-significant bits of the result;
 	/// the last component specifies the 10 most-significant bits.
@@ -447,7 +447,7 @@ namespace glm
 
 	/// First, converts the first two components of the normalized floating-point value v into 11-bit signless floating-point values.
 	/// Then, converts the third component of the normalized floating-point value v into a 10-bit signless floating-point value.
-	/// Then, the results are packed into the returned 32-bit unsigned integer.
+	/// Then, the execution_results are packed into the returned 32-bit unsigned integer.
 	///
 	/// The first vector component specifies the 11 least-significant bits of the result;
 	/// the last component specifies the 10 most-significant bits.

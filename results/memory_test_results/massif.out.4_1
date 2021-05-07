@@ -1,0 +1,1040 @@
+desc: --time-unit=B --stacks=yes --massif-out-file=massif.out.4_1
+cmd: ./build/simulation/environment/simulation 10 1 1 1 1 1 1 0 4 0 4 0 4
+time_unit: B
+#-----------
+snapshot=0
+#-----------
+time=0
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=1
+#-----------
+time=220160
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=2880
+heap_tree=empty
+#-----------
+snapshot=2
+#-----------
+time=474016
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=2880
+heap_tree=empty
+#-----------
+snapshot=3
+#-----------
+time=640032
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=2880
+heap_tree=empty
+#-----------
+snapshot=4
+#-----------
+time=755168
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=2880
+heap_tree=empty
+#-----------
+snapshot=5
+#-----------
+time=904064
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=2880
+heap_tree=empty
+#-----------
+snapshot=6
+#-----------
+time=1059712
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=2880
+heap_tree=empty
+#-----------
+snapshot=7
+#-----------
+time=1215360
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=2880
+heap_tree=empty
+#-----------
+snapshot=8
+#-----------
+time=1462208
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=2880
+heap_tree=detailed
+n0: 0 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+#-----------
+snapshot=9
+#-----------
+time=1600832
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=2880
+heap_tree=empty
+#-----------
+snapshot=10
+#-----------
+time=1739456
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=2880
+heap_tree=empty
+#-----------
+snapshot=11
+#-----------
+time=1878080
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=2880
+heap_tree=empty
+#-----------
+snapshot=12
+#-----------
+time=2016704
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=2880
+heap_tree=empty
+#-----------
+snapshot=13
+#-----------
+time=2173024
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=2880
+heap_tree=detailed
+n0: 0 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+#-----------
+snapshot=14
+#-----------
+time=2277600
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=2880
+heap_tree=empty
+#-----------
+snapshot=15
+#-----------
+time=2486624
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=2880
+heap_tree=empty
+#-----------
+snapshot=16
+#-----------
+time=2617456
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=3152
+heap_tree=empty
+#-----------
+snapshot=17
+#-----------
+time=2826480
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=3152
+heap_tree=empty
+#-----------
+snapshot=18
+#-----------
+time=3068816
+mem_heap_B=72712
+mem_heap_extra_B=24
+mem_stacks_B=256
+heap_tree=empty
+#-----------
+snapshot=19
+#-----------
+time=3184256
+mem_heap_B=72712
+mem_heap_extra_B=24
+mem_stacks_B=1168
+heap_tree=empty
+#-----------
+snapshot=20
+#-----------
+time=3340640
+mem_heap_B=72712
+mem_heap_extra_B=24
+mem_stacks_B=752
+heap_tree=detailed
+n2: 72712 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 72704 0x490F2E3: ??? (in /usr/lib/aarch64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x400ECEB: call_init.part.0 (dl-init.c:74)
+   n1: 72704 0x400EDE3: call_init (dl-init.c:37)
+    n1: 72704 0x400EDE3: _dl_init (dl-init.c:121)
+     n0: 72704 0x4001087: ??? (in /usr/lib/aarch64-linux-gnu/ld-2.32.so)
+ n0: 8 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=21
+#-----------
+time=3542960
+mem_heap_B=74872
+mem_heap_extra_B=728
+mem_stacks_B=1760
+heap_tree=empty
+#-----------
+snapshot=22
+#-----------
+time=3682976
+mem_heap_B=78760
+mem_heap_extra_B=920
+mem_stacks_B=5184
+heap_tree=detailed
+n4: 78760 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 72704 0x490F2E3: ??? (in /usr/lib/aarch64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x400ECEB: call_init.part.0 (dl-init.c:74)
+   n1: 72704 0x400EDE3: call_init (dl-init.c:37)
+    n1: 72704 0x400EDE3: _dl_init (dl-init.c:121)
+     n0: 72704 0x4001087: ??? (in /usr/lib/aarch64-linux-gnu/ld-2.32.so)
+ n0: 2736 in 26 places, all below massif's threshold (1.00%)
+ n2: 2408 0x4B12BF3: ??? (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+  n1: 2208 0x4B2061F: ??? (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+   n1: 2208 0x4B196FF: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+    n1: 2208 0x10D8BF: WorldHandler::GetBlockPositionsParallel() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 2208 0x10DE33: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n0: 2208 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n0: 200 in 2 places, all below massif's threshold (1.00%)
+ n1: 912 0x4011BD3: calloc (rtld-malloc.h:44)
+  n1: 912 0x4011BD3: allocate_dtv (dl-tls.c:366)
+   n1: 912 0x4011BD3: _dl_allocate_tls (dl-tls.c:612)
+    n1: 912 0x4D10B43: allocate_stack (allocatestack.c:624)
+     n1: 912 0x4D10B43: pthread_create@@GLIBC_2.17 (pthread_create.c:634)
+      n1: 912 0x4B20A43: ??? (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+       n1: 912 0x4B1971B: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+        n1: 912 0x10D8BF: WorldHandler::GetBlockPositionsParallel() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n1: 912 0x10DE33: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n0: 912 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+#-----------
+snapshot=23
+#-----------
+time=3916584
+mem_heap_B=79684
+mem_heap_extra_B=1204
+mem_stacks_B=2912
+heap_tree=empty
+#-----------
+snapshot=24
+#-----------
+time=4072288
+mem_heap_B=79144
+mem_heap_extra_B=1016
+mem_stacks_B=2688
+heap_tree=detailed
+n4: 79144 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 72704 0x490F2E3: ??? (in /usr/lib/aarch64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x400ECEB: call_init.part.0 (dl-init.c:74)
+   n1: 72704 0x400EDE3: call_init (dl-init.c:37)
+    n1: 72704 0x400EDE3: _dl_init (dl-init.c:121)
+     n0: 72704 0x4001087: ??? (in /usr/lib/aarch64-linux-gnu/ld-2.32.so)
+ n0: 3120 in 28 places, all below massif's threshold (1.00%)
+ n2: 2408 0x4B12BF3: ??? (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+  n1: 2208 0x4B2061F: ??? (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+   n1: 2208 0x4B196FF: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+    n1: 2208 0x10D8BF: WorldHandler::GetBlockPositionsParallel() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 2208 0x10DE33: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n0: 2208 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n0: 200 in 2 places, all below massif's threshold (1.00%)
+ n1: 912 0x4011BD3: calloc (rtld-malloc.h:44)
+  n1: 912 0x4011BD3: allocate_dtv (dl-tls.c:366)
+   n1: 912 0x4011BD3: _dl_allocate_tls (dl-tls.c:612)
+    n1: 912 0x4D10B43: allocate_stack (allocatestack.c:624)
+     n1: 912 0x4D10B43: pthread_create@@GLIBC_2.17 (pthread_create.c:634)
+      n1: 912 0x4B20A43: ??? (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+       n1: 912 0x4B1971B: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+        n1: 912 0x10D8BF: WorldHandler::GetBlockPositionsParallel() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n1: 912 0x10DE33: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n0: 912 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+#-----------
+snapshot=25
+#-----------
+time=4267016
+mem_heap_B=78984
+mem_heap_extra_B=1040
+mem_stacks_B=3200
+heap_tree=empty
+#-----------
+snapshot=26
+#-----------
+time=4422736
+mem_heap_B=79376
+mem_heap_extra_B=1152
+mem_stacks_B=2992
+heap_tree=empty
+#-----------
+snapshot=27
+#-----------
+time=4578480
+mem_heap_B=79144
+mem_heap_extra_B=1032
+mem_stacks_B=2928
+heap_tree=empty
+#-----------
+snapshot=28
+#-----------
+time=4773216
+mem_heap_B=79336
+mem_heap_extra_B=1096
+mem_stacks_B=2400
+heap_tree=empty
+#-----------
+snapshot=29
+#-----------
+time=4967904
+mem_heap_B=79376
+mem_heap_extra_B=1136
+mem_stacks_B=3008
+heap_tree=empty
+#-----------
+snapshot=30
+#-----------
+time=5084872
+mem_heap_B=79216
+mem_heap_extra_B=1048
+mem_stacks_B=2768
+heap_tree=empty
+#-----------
+snapshot=31
+#-----------
+time=5329000
+mem_heap_B=83432
+mem_heap_extra_B=1120
+mem_stacks_B=5408
+heap_tree=peak
+n5: 83432 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 72704 0x490F2E3: ??? (in /usr/lib/aarch64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x400ECEB: call_init.part.0 (dl-init.c:74)
+   n1: 72704 0x400EDE3: call_init (dl-init.c:37)
+    n1: 72704 0x400EDE3: _dl_init (dl-init.c:121)
+     n0: 72704 0x4001087: ??? (in /usr/lib/aarch64-linux-gnu/ld-2.32.so)
+ n1: 4096 0x4BE17D7: _IO_file_doallocate (filedoalloc.c:101)
+  n1: 4096 0x4BF089F: _IO_doallocbuf (genops.c:347)
+   n1: 4096 0x4BF089F: _IO_doallocbuf (genops.c:342)
+    n1: 4096 0x4BEFB87: _IO_file_overflow@@GLIBC_2.17 (fileops.c:745)
+     n1: 4096 0x4BEECB7: _IO_new_file_xsputn (fileops.c:1244)
+      n1: 4096 0x4BEECB7: _IO_file_xsputn@@GLIBC_2.17 (fileops.c:1197)
+       n1: 4096 0x4BE2E7F: fwrite (iofwrite.c:39)
+        n1: 4096 0x499F26F: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/aarch64-linux-gnu/libstdc++.so.6.0.28)
+         n1: 4096 0x499F5FF: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/aarch64-linux-gnu/libstdc++.so.6.0.28)
+          n0: 4096 0x10B787: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+ n0: 3312 in 28 places, all below massif's threshold (1.00%)
+ n2: 2408 0x4B12BF3: ??? (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+  n1: 2208 0x4B2061F: ??? (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+   n1: 2208 0x4B196FF: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+    n1: 2208 0x10D8BF: WorldHandler::GetBlockPositionsParallel() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 2208 0x10DE33: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n0: 2208 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n0: 200 in 2 places, all below massif's threshold (1.00%)
+ n1: 912 0x4011BD3: calloc (rtld-malloc.h:44)
+  n1: 912 0x4011BD3: allocate_dtv (dl-tls.c:366)
+   n1: 912 0x4011BD3: _dl_allocate_tls (dl-tls.c:612)
+    n1: 912 0x4D10B43: allocate_stack (allocatestack.c:624)
+     n1: 912 0x4D10B43: pthread_create@@GLIBC_2.17 (pthread_create.c:634)
+      n1: 912 0x4B20A43: ??? (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+       n1: 912 0x4B1971B: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+        n1: 912 0x10D8BF: WorldHandler::GetBlockPositionsParallel() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n1: 912 0x10DE33: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n0: 912 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+#-----------
+snapshot=32
+#-----------
+time=5584528
+mem_heap_B=83420
+mem_heap_extra_B=1124
+mem_stacks_B=2512
+heap_tree=empty
+#-----------
+snapshot=33
+#-----------
+time=5712280
+mem_heap_B=83168
+mem_heap_extra_B=1000
+mem_stacks_B=2880
+heap_tree=empty
+#-----------
+snapshot=34
+#-----------
+time=5840144
+mem_heap_B=83368
+mem_heap_extra_B=1064
+mem_stacks_B=2320
+heap_tree=empty
+#-----------
+snapshot=35
+#-----------
+time=6031856
+mem_heap_B=83416
+mem_heap_extra_B=1160
+mem_stacks_B=3232
+heap_tree=empty
+#-----------
+snapshot=36
+#-----------
+time=6159656
+mem_heap_B=83456
+mem_heap_extra_B=1144
+mem_stacks_B=3024
+heap_tree=empty
+#-----------
+snapshot=37
+#-----------
+time=6287456
+mem_heap_B=83256
+mem_heap_extra_B=1048
+mem_stacks_B=2768
+heap_tree=empty
+#-----------
+snapshot=38
+#-----------
+time=6415312
+mem_heap_B=82840
+mem_heap_extra_B=952
+mem_stacks_B=3376
+heap_tree=empty
+#-----------
+snapshot=39
+#-----------
+time=6543088
+mem_heap_B=83104
+mem_heap_extra_B=1040
+mem_stacks_B=3056
+heap_tree=empty
+#-----------
+snapshot=40
+#-----------
+time=6670848
+mem_heap_B=83468
+mem_heap_extra_B=1156
+mem_stacks_B=3152
+heap_tree=empty
+#-----------
+snapshot=41
+#-----------
+time=6798672
+mem_heap_B=83228
+mem_heap_extra_B=1044
+mem_stacks_B=3008
+heap_tree=empty
+#-----------
+snapshot=42
+#-----------
+time=6926464
+mem_heap_B=83420
+mem_heap_extra_B=1108
+mem_stacks_B=2416
+heap_tree=empty
+#-----------
+snapshot=43
+#-----------
+time=7054344
+mem_heap_B=83088
+mem_heap_extra_B=1032
+mem_stacks_B=2976
+heap_tree=empty
+#-----------
+snapshot=44
+#-----------
+time=7182112
+mem_heap_B=83444
+mem_heap_extra_B=1132
+mem_stacks_B=3200
+heap_tree=empty
+#-----------
+snapshot=45
+#-----------
+time=7373792
+mem_heap_B=83288
+mem_heap_extra_B=1032
+mem_stacks_B=3008
+heap_tree=empty
+#-----------
+snapshot=46
+#-----------
+time=7629320
+mem_heap_B=83428
+mem_heap_extra_B=1172
+mem_stacks_B=3168
+heap_tree=empty
+#-----------
+snapshot=47
+#-----------
+time=7757096
+mem_heap_B=82896
+mem_heap_extra_B=936
+mem_stacks_B=2800
+heap_tree=empty
+#-----------
+snapshot=48
+#-----------
+time=7948872
+mem_heap_B=82856
+mem_heap_extra_B=976
+mem_stacks_B=3840
+heap_tree=empty
+#-----------
+snapshot=49
+#-----------
+time=8140568
+mem_heap_B=83472
+mem_heap_extra_B=1144
+mem_stacks_B=2880
+heap_tree=empty
+#-----------
+snapshot=50
+#-----------
+time=8245144
+mem_heap_B=82920
+mem_heap_extra_B=960
+mem_stacks_B=2672
+heap_tree=empty
+#-----------
+snapshot=51
+#-----------
+time=8349728
+mem_heap_B=83012
+mem_heap_extra_B=1020
+mem_stacks_B=2640
+heap_tree=empty
+#-----------
+snapshot=52
+#-----------
+time=8454352
+mem_heap_B=82960
+mem_heap_extra_B=992
+mem_stacks_B=3376
+heap_tree=empty
+#-----------
+snapshot=53
+#-----------
+time=8558936
+mem_heap_B=83088
+mem_heap_extra_B=1032
+mem_stacks_B=2720
+heap_tree=empty
+#-----------
+snapshot=54
+#-----------
+time=8663536
+mem_heap_B=83656
+mem_heap_extra_B=1176
+mem_stacks_B=2672
+heap_tree=empty
+#-----------
+snapshot=55
+#-----------
+time=8768152
+mem_heap_B=83168
+mem_heap_extra_B=1000
+mem_stacks_B=2560
+heap_tree=detailed
+n5: 83168 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 72704 0x490F2E3: ??? (in /usr/lib/aarch64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x400ECEB: call_init.part.0 (dl-init.c:74)
+   n1: 72704 0x400EDE3: call_init (dl-init.c:37)
+    n1: 72704 0x400EDE3: _dl_init (dl-init.c:121)
+     n0: 72704 0x4001087: ??? (in /usr/lib/aarch64-linux-gnu/ld-2.32.so)
+ n1: 4096 0x4BE17D7: _IO_file_doallocate (filedoalloc.c:101)
+  n1: 4096 0x4BF089F: _IO_doallocbuf (genops.c:347)
+   n1: 4096 0x4BF089F: _IO_doallocbuf (genops.c:342)
+    n1: 4096 0x4BEFB87: _IO_file_overflow@@GLIBC_2.17 (fileops.c:745)
+     n1: 4096 0x4BEECB7: _IO_new_file_xsputn (fileops.c:1244)
+      n1: 4096 0x4BEECB7: _IO_file_xsputn@@GLIBC_2.17 (fileops.c:1197)
+       n1: 4096 0x4BE2E7F: fwrite (iofwrite.c:39)
+        n1: 4096 0x499F26F: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/aarch64-linux-gnu/libstdc++.so.6.0.28)
+         n1: 4096 0x499F5FF: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/aarch64-linux-gnu/libstdc++.so.6.0.28)
+          n0: 4096 0x10B787: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+ n0: 3048 in 28 places, all below massif's threshold (1.00%)
+ n2: 2408 0x4B12BF3: ??? (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+  n1: 2208 0x4B2061F: ??? (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+   n1: 2208 0x4B196FF: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+    n1: 2208 0x10D8BF: WorldHandler::GetBlockPositionsParallel() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 2208 0x10DE33: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n0: 2208 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n0: 200 in 2 places, all below massif's threshold (1.00%)
+ n1: 912 0x4011BD3: calloc (rtld-malloc.h:44)
+  n1: 912 0x4011BD3: allocate_dtv (dl-tls.c:366)
+   n1: 912 0x4011BD3: _dl_allocate_tls (dl-tls.c:612)
+    n1: 912 0x4D10B43: allocate_stack (allocatestack.c:624)
+     n1: 912 0x4D10B43: pthread_create@@GLIBC_2.17 (pthread_create.c:634)
+      n1: 912 0x4B20A43: ??? (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+       n1: 912 0x4B1971B: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+        n1: 912 0x10D8BF: WorldHandler::GetBlockPositionsParallel() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n1: 912 0x10DE33: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n0: 912 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+#-----------
+snapshot=56
+#-----------
+time=8872840
+mem_heap_B=83248
+mem_heap_extra_B=1016
+mem_stacks_B=2640
+heap_tree=empty
+#-----------
+snapshot=57
+#-----------
+time=8977440
+mem_heap_B=82960
+mem_heap_extra_B=976
+mem_stacks_B=3680
+heap_tree=empty
+#-----------
+snapshot=58
+#-----------
+time=9082048
+mem_heap_B=83096
+mem_heap_extra_B=1032
+mem_stacks_B=3056
+heap_tree=empty
+#-----------
+snapshot=59
+#-----------
+time=9186744
+mem_heap_B=83208
+mem_heap_extra_B=1104
+mem_stacks_B=3216
+heap_tree=empty
+#-----------
+snapshot=60
+#-----------
+time=9291344
+mem_heap_B=82932
+mem_heap_extra_B=956
+mem_stacks_B=2704
+heap_tree=empty
+#-----------
+snapshot=61
+#-----------
+time=9395928
+mem_heap_B=83080
+mem_heap_extra_B=1024
+mem_stacks_B=2976
+heap_tree=empty
+#-----------
+snapshot=62
+#-----------
+time=9500512
+mem_heap_B=83200
+mem_heap_extra_B=1024
+mem_stacks_B=3136
+heap_tree=empty
+#-----------
+snapshot=63
+#-----------
+time=9605088
+mem_heap_B=83152
+mem_heap_extra_B=1024
+mem_stacks_B=3088
+heap_tree=empty
+#-----------
+snapshot=64
+#-----------
+time=9709712
+mem_heap_B=83420
+mem_heap_extra_B=1092
+mem_stacks_B=2752
+heap_tree=empty
+#-----------
+snapshot=65
+#-----------
+time=9814312
+mem_heap_B=83168
+mem_heap_extra_B=968
+mem_stacks_B=2432
+heap_tree=detailed
+n5: 83168 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 72704 0x490F2E3: ??? (in /usr/lib/aarch64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x400ECEB: call_init.part.0 (dl-init.c:74)
+   n1: 72704 0x400EDE3: call_init (dl-init.c:37)
+    n1: 72704 0x400EDE3: _dl_init (dl-init.c:121)
+     n0: 72704 0x4001087: ??? (in /usr/lib/aarch64-linux-gnu/ld-2.32.so)
+ n1: 4096 0x4BE17D7: _IO_file_doallocate (filedoalloc.c:101)
+  n1: 4096 0x4BF089F: _IO_doallocbuf (genops.c:347)
+   n1: 4096 0x4BF089F: _IO_doallocbuf (genops.c:342)
+    n1: 4096 0x4BEFB87: _IO_file_overflow@@GLIBC_2.17 (fileops.c:745)
+     n1: 4096 0x4BEECB7: _IO_new_file_xsputn (fileops.c:1244)
+      n1: 4096 0x4BEECB7: _IO_file_xsputn@@GLIBC_2.17 (fileops.c:1197)
+       n1: 4096 0x4BE2E7F: fwrite (iofwrite.c:39)
+        n1: 4096 0x499F26F: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/aarch64-linux-gnu/libstdc++.so.6.0.28)
+         n1: 4096 0x499F5FF: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/aarch64-linux-gnu/libstdc++.so.6.0.28)
+          n0: 4096 0x10B787: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+ n0: 3048 in 28 places, all below massif's threshold (1.00%)
+ n2: 2408 0x4B12BF3: ??? (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+  n1: 2208 0x4B2061F: ??? (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+   n1: 2208 0x4B196FF: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+    n1: 2208 0x10D8BF: WorldHandler::GetBlockPositionsParallel() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 2208 0x10DE33: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n0: 2208 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n0: 200 in 2 places, all below massif's threshold (1.00%)
+ n1: 912 0x4011BD3: calloc (rtld-malloc.h:44)
+  n1: 912 0x4011BD3: allocate_dtv (dl-tls.c:366)
+   n1: 912 0x4011BD3: _dl_allocate_tls (dl-tls.c:612)
+    n1: 912 0x4D10B43: allocate_stack (allocatestack.c:624)
+     n1: 912 0x4D10B43: pthread_create@@GLIBC_2.17 (pthread_create.c:634)
+      n1: 912 0x4B20A43: ??? (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+       n1: 912 0x4B1971B: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+        n1: 912 0x10D8BF: WorldHandler::GetBlockPositionsParallel() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n1: 912 0x10DE33: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n0: 912 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+#-----------
+snapshot=66
+#-----------
+time=9919016
+mem_heap_B=83328
+mem_heap_extra_B=1032
+mem_stacks_B=2272
+heap_tree=empty
+#-----------
+snapshot=67
+#-----------
+time=10023632
+mem_heap_B=83200
+mem_heap_extra_B=1008
+mem_stacks_B=3184
+heap_tree=empty
+#-----------
+snapshot=68
+#-----------
+time=10128216
+mem_heap_B=83280
+mem_heap_extra_B=1096
+mem_stacks_B=3072
+heap_tree=empty
+#-----------
+snapshot=69
+#-----------
+time=10232824
+mem_heap_B=83184
+mem_heap_extra_B=1064
+mem_stacks_B=2624
+heap_tree=empty
+#-----------
+snapshot=70
+#-----------
+time=10337416
+mem_heap_B=82944
+mem_heap_extra_B=968
+mem_stacks_B=2768
+heap_tree=empty
+#-----------
+snapshot=71
+#-----------
+time=10442080
+mem_heap_B=83120
+mem_heap_extra_B=1024
+mem_stacks_B=2832
+heap_tree=empty
+#-----------
+snapshot=72
+#-----------
+time=10546672
+mem_heap_B=83320
+mem_heap_extra_B=1048
+mem_stacks_B=3280
+heap_tree=empty
+#-----------
+snapshot=73
+#-----------
+time=10651288
+mem_heap_B=83312
+mem_heap_extra_B=1064
+mem_stacks_B=2864
+heap_tree=empty
+#-----------
+snapshot=74
+#-----------
+time=10755880
+mem_heap_B=82760
+mem_heap_extra_B=896
+mem_stacks_B=2736
+heap_tree=empty
+#-----------
+snapshot=75
+#-----------
+time=10860464
+mem_heap_B=82852
+mem_heap_extra_B=940
+mem_stacks_B=2768
+heap_tree=detailed
+n5: 82852 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 72704 0x490F2E3: ??? (in /usr/lib/aarch64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x400ECEB: call_init.part.0 (dl-init.c:74)
+   n1: 72704 0x400EDE3: call_init (dl-init.c:37)
+    n1: 72704 0x400EDE3: _dl_init (dl-init.c:121)
+     n0: 72704 0x4001087: ??? (in /usr/lib/aarch64-linux-gnu/ld-2.32.so)
+ n1: 4096 0x4BE17D7: _IO_file_doallocate (filedoalloc.c:101)
+  n1: 4096 0x4BF089F: _IO_doallocbuf (genops.c:347)
+   n1: 4096 0x4BF089F: _IO_doallocbuf (genops.c:342)
+    n1: 4096 0x4BEFB87: _IO_file_overflow@@GLIBC_2.17 (fileops.c:745)
+     n1: 4096 0x4BEECB7: _IO_new_file_xsputn (fileops.c:1244)
+      n1: 4096 0x4BEECB7: _IO_file_xsputn@@GLIBC_2.17 (fileops.c:1197)
+       n1: 4096 0x4BE2E7F: fwrite (iofwrite.c:39)
+        n1: 4096 0x499F26F: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/aarch64-linux-gnu/libstdc++.so.6.0.28)
+         n1: 4096 0x499F5FF: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/aarch64-linux-gnu/libstdc++.so.6.0.28)
+          n0: 4096 0x10B787: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+ n0: 2732 in 28 places, all below massif's threshold (1.00%)
+ n2: 2408 0x4B12BF3: ??? (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+  n1: 2208 0x4B2061F: ??? (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+   n1: 2208 0x4B196FF: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+    n1: 2208 0x10D8BF: WorldHandler::GetBlockPositionsParallel() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 2208 0x10DE33: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n0: 2208 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n0: 200 in 2 places, all below massif's threshold (1.00%)
+ n1: 912 0x4011BD3: calloc (rtld-malloc.h:44)
+  n1: 912 0x4011BD3: allocate_dtv (dl-tls.c:366)
+   n1: 912 0x4011BD3: _dl_allocate_tls (dl-tls.c:612)
+    n1: 912 0x4D10B43: allocate_stack (allocatestack.c:624)
+     n1: 912 0x4D10B43: pthread_create@@GLIBC_2.17 (pthread_create.c:634)
+      n1: 912 0x4B20A43: ??? (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+       n1: 912 0x4B1971B: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+        n1: 912 0x10D8BF: WorldHandler::GetBlockPositionsParallel() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n1: 912 0x10DE33: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n0: 912 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+#-----------
+snapshot=76
+#-----------
+time=10965080
+mem_heap_B=82976
+mem_heap_extra_B=984
+mem_stacks_B=3680
+heap_tree=empty
+#-----------
+snapshot=77
+#-----------
+time=11069656
+mem_heap_B=83112
+mem_heap_extra_B=1040
+mem_stacks_B=2928
+heap_tree=empty
+#-----------
+snapshot=78
+#-----------
+time=11174256
+mem_heap_B=83172
+mem_heap_extra_B=1068
+mem_stacks_B=2816
+heap_tree=empty
+#-----------
+snapshot=79
+#-----------
+time=11278840
+mem_heap_B=82896
+mem_heap_extra_B=936
+mem_stacks_B=2896
+heap_tree=empty
+#-----------
+snapshot=80
+#-----------
+time=11383448
+mem_heap_B=83056
+mem_heap_extra_B=1000
+mem_stacks_B=2480
+heap_tree=empty
+#-----------
+snapshot=81
+#-----------
+time=11488032
+mem_heap_B=83200
+mem_heap_extra_B=1008
+mem_stacks_B=3504
+heap_tree=empty
+#-----------
+snapshot=82
+#-----------
+time=11592656
+mem_heap_B=83244
+mem_heap_extra_B=1060
+mem_stacks_B=2800
+heap_tree=empty
+#-----------
+snapshot=83
+#-----------
+time=11697256
+mem_heap_B=83160
+mem_heap_extra_B=1040
+mem_stacks_B=2320
+heap_tree=empty
+#-----------
+snapshot=84
+#-----------
+time=11801840
+mem_heap_B=82932
+mem_heap_extra_B=956
+mem_stacks_B=2688
+heap_tree=empty
+#-----------
+snapshot=85
+#-----------
+time=11906416
+mem_heap_B=83120
+mem_heap_extra_B=1056
+mem_stacks_B=2896
+heap_tree=detailed
+n5: 83120 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 72704 0x490F2E3: ??? (in /usr/lib/aarch64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x400ECEB: call_init.part.0 (dl-init.c:74)
+   n1: 72704 0x400EDE3: call_init (dl-init.c:37)
+    n1: 72704 0x400EDE3: _dl_init (dl-init.c:121)
+     n0: 72704 0x4001087: ??? (in /usr/lib/aarch64-linux-gnu/ld-2.32.so)
+ n1: 4096 0x4BE17D7: _IO_file_doallocate (filedoalloc.c:101)
+  n1: 4096 0x4BF089F: _IO_doallocbuf (genops.c:347)
+   n1: 4096 0x4BF089F: _IO_doallocbuf (genops.c:342)
+    n1: 4096 0x4BEFB87: _IO_file_overflow@@GLIBC_2.17 (fileops.c:745)
+     n1: 4096 0x4BEECB7: _IO_new_file_xsputn (fileops.c:1244)
+      n1: 4096 0x4BEECB7: _IO_file_xsputn@@GLIBC_2.17 (fileops.c:1197)
+       n1: 4096 0x4BE2E7F: fwrite (iofwrite.c:39)
+        n1: 4096 0x499F26F: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/aarch64-linux-gnu/libstdc++.so.6.0.28)
+         n1: 4096 0x499F5FF: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/aarch64-linux-gnu/libstdc++.so.6.0.28)
+          n0: 4096 0x10B787: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+ n0: 3000 in 28 places, all below massif's threshold (1.00%)
+ n2: 2408 0x4B12BF3: ??? (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+  n1: 2208 0x4B2061F: ??? (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+   n1: 2208 0x4B196FF: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+    n1: 2208 0x10D8BF: WorldHandler::GetBlockPositionsParallel() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 2208 0x10DE33: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n0: 2208 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n0: 200 in 2 places, all below massif's threshold (1.00%)
+ n1: 912 0x4011BD3: calloc (rtld-malloc.h:44)
+  n1: 912 0x4011BD3: allocate_dtv (dl-tls.c:366)
+   n1: 912 0x4011BD3: _dl_allocate_tls (dl-tls.c:612)
+    n1: 912 0x4D10B43: allocate_stack (allocatestack.c:624)
+     n1: 912 0x4D10B43: pthread_create@@GLIBC_2.17 (pthread_create.c:634)
+      n1: 912 0x4B20A43: ??? (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+       n1: 912 0x4B1971B: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+        n1: 912 0x10D8BF: WorldHandler::GetBlockPositionsParallel() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n1: 912 0x10DE33: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n0: 912 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+#-----------
+snapshot=86
+#-----------
+time=12010992
+mem_heap_B=82960
+mem_heap_extra_B=992
+mem_stacks_B=3072
+heap_tree=empty
+#-----------
+snapshot=87
+#-----------
+time=12115576
+mem_heap_B=83496
+mem_heap_extra_B=1168
+mem_stacks_B=2944
+heap_tree=empty
+#-----------
+snapshot=88
+#-----------
+time=12220152
+mem_heap_B=83352
+mem_heap_extra_B=1088
+mem_stacks_B=3168
+heap_tree=empty
+#-----------
+snapshot=89
+#-----------
+time=12324840
+mem_heap_B=83192
+mem_heap_extra_B=992
+mem_stacks_B=2768
+heap_tree=empty
+#-----------
+snapshot=90
+#-----------
+time=12429432
+mem_heap_B=83432
+mem_heap_extra_B=1104
+mem_stacks_B=2752
+heap_tree=empty
+#-----------
+snapshot=91
+#-----------
+time=12534008
+mem_heap_B=83184
+mem_heap_extra_B=1032
+mem_stacks_B=3200
+heap_tree=empty
+#-----------
+snapshot=92
+#-----------
+time=12638624
+mem_heap_B=83324
+mem_heap_extra_B=1108
+mem_stacks_B=2896
+heap_tree=empty
+#-----------
+snapshot=93
+#-----------
+time=12743200
+mem_heap_B=83040
+mem_heap_extra_B=992
+mem_stacks_B=3088
+heap_tree=empty
+#-----------
+snapshot=94
+#-----------
+time=12848096
+mem_heap_B=82960
+mem_heap_extra_B=960
+mem_stacks_B=2640
+heap_tree=empty
+#-----------
+snapshot=95
+#-----------
+time=12952720
+mem_heap_B=82840
+mem_heap_extra_B=952
+mem_stacks_B=5168
+heap_tree=detailed
+n5: 82840 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 72704 0x490F2E3: ??? (in /usr/lib/aarch64-linux-gnu/libstdc++.so.6.0.28)
+  n1: 72704 0x400ECEB: call_init.part.0 (dl-init.c:74)
+   n1: 72704 0x400EDE3: call_init (dl-init.c:37)
+    n1: 72704 0x400EDE3: _dl_init (dl-init.c:121)
+     n0: 72704 0x4001087: ??? (in /usr/lib/aarch64-linux-gnu/ld-2.32.so)
+ n1: 4096 0x4BE17D7: _IO_file_doallocate (filedoalloc.c:101)
+  n1: 4096 0x4BF089F: _IO_doallocbuf (genops.c:347)
+   n1: 4096 0x4BF089F: _IO_doallocbuf (genops.c:342)
+    n1: 4096 0x4BEFB87: _IO_file_overflow@@GLIBC_2.17 (fileops.c:745)
+     n1: 4096 0x4BEECB7: _IO_new_file_xsputn (fileops.c:1244)
+      n1: 4096 0x4BEECB7: _IO_file_xsputn@@GLIBC_2.17 (fileops.c:1197)
+       n1: 4096 0x4BE2E7F: fwrite (iofwrite.c:39)
+        n1: 4096 0x499F26F: std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long) (in /usr/lib/aarch64-linux-gnu/libstdc++.so.6.0.28)
+         n1: 4096 0x499F5FF: std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*) (in /usr/lib/aarch64-linux-gnu/libstdc++.so.6.0.28)
+          n0: 4096 0x10B787: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+ n0: 2720 in 28 places, all below massif's threshold (1.00%)
+ n2: 2408 0x4B12BF3: ??? (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+  n1: 2208 0x4B2061F: ??? (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+   n1: 2208 0x4B196FF: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+    n1: 2208 0x10D8BF: WorldHandler::GetBlockPositionsParallel() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 2208 0x10DE33: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n0: 2208 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n0: 200 in 2 places, all below massif's threshold (1.00%)
+ n1: 912 0x4011BD3: calloc (rtld-malloc.h:44)
+  n1: 912 0x4011BD3: allocate_dtv (dl-tls.c:366)
+   n1: 912 0x4011BD3: _dl_allocate_tls (dl-tls.c:612)
+    n1: 912 0x4D10B43: allocate_stack (allocatestack.c:624)
+     n1: 912 0x4D10B43: pthread_create@@GLIBC_2.17 (pthread_create.c:634)
+      n1: 912 0x4B20A43: ??? (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+       n1: 912 0x4B1971B: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+        n1: 912 0x10D8BF: WorldHandler::GetBlockPositionsParallel() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n1: 912 0x10DE33: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n0: 912 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+#-----------
+snapshot=96
+#-----------
+time=13105552
+mem_heap_B=7456
+mem_heap_extra_B=80
+mem_stacks_B=2032
+heap_tree=empty

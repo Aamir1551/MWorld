@@ -1,0 +1,1138 @@
+desc: --time-unit=B --stacks=yes --massif-out-file=massif.out.256_300
+cmd: ./build/simulation/environment/simulation 10 300 300 300 300 300 300 0 256 0 256 0 256
+time_unit: B
+#-----------
+snapshot=0
+#-----------
+time=0
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=1
+#-----------
+time=130712200
+mem_heap_B=8461472
+mem_heap_extra_B=614856
+mem_stacks_B=1648
+heap_tree=empty
+#-----------
+snapshot=2
+#-----------
+time=238939080
+mem_heap_B=8888928
+mem_heap_extra_B=636488
+mem_stacks_B=1648
+heap_tree=empty
+#-----------
+snapshot=3
+#-----------
+time=417012584
+mem_heap_B=9585568
+mem_heap_extra_B=671368
+mem_stacks_B=1952
+heap_tree=empty
+#-----------
+snapshot=4
+#-----------
+time=633165496
+mem_heap_B=10423904
+mem_heap_extra_B=713336
+mem_stacks_B=1328
+heap_tree=empty
+#-----------
+snapshot=5
+#-----------
+time=764339728
+mem_heap_B=10933520
+mem_heap_extra_B=738896
+mem_stacks_B=1904
+heap_tree=empty
+#-----------
+snapshot=6
+#-----------
+time=901407656
+mem_heap_B=11465184
+mem_heap_extra_B=765496
+mem_stacks_B=1328
+heap_tree=empty
+#-----------
+snapshot=7
+#-----------
+time=1118725192
+mem_heap_B=12300832
+mem_heap_extra_B=807336
+mem_stacks_B=1728
+heap_tree=empty
+#-----------
+snapshot=8
+#-----------
+time=1271901712
+mem_heap_B=12890784
+mem_heap_extra_B=836880
+mem_stacks_B=2048
+heap_tree=detailed
+n4: 12890784 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n2: 8088768 0x11E6FF: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n2: 8087040 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n2: 8073216 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n2: 7962624 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 7077888 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 7077888 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n0: 7077888 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 884736 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n0: 884736 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n0: 110592 in 1 place, below massif's threshold (1.00%)
+   n0: 13824 in 1 place, below massif's threshold (1.00%)
+  n0: 1728 in 1 place, below massif's threshold (1.00%)
+ n1: 3778688 0x11BDD7: __gnu_cxx::new_allocator<blocks::Octree*>::allocate(unsigned long, void const*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n1: 3778688 0x11AA03: std::allocator_traits<std::allocator<blocks::Octree*> >::allocate(std::allocator<blocks::Octree*>&, unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 3778688 0x11897F: std::_Vector_base<blocks::Octree*, std::allocator<blocks::Octree*> >::_M_allocate(unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 3778688 0x120CCB: void std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >::_M_realloc_insert<blocks::Octree*>(__gnu_cxx::__normal_iterator<blocks::Octree**, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, blocks::Octree*&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 3778688 0x11FE3B: void std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >::emplace_back<blocks::Octree*>(blocks::Octree*&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 3778688 0x11F7CF: std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >::push_back(blocks::Octree*&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 3778688 0x11EC77: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 3778688 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n1: 3778688 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n1: 3778688 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+           n1: 3778688 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+            n1: 3778688 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+             n1: 3778688 0x11EBE7: blocks::Octree::GenerateNeigbours(float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+              n1: 3778688 0x11E8DF: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+               n1: 3778688 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+                n0: 3778688 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+ n1: 950400 0x121E87: __gnu_cxx::new_allocator<std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::allocate(unsigned long, void const*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n1: 950400 0x121BB7: std::allocator_traits<std::allocator<std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > > >::allocate(std::allocator<std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >&, unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 950400 0x1215D7: std::_Rb_tree<blocks::Octree*, std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, std::_Select1st<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::_M_get_node() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 950400 0x120617: std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >* std::_Rb_tree<blocks::Octree*, std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, std::_Select1st<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::_M_create_node<std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>, std::tuple<> >(std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>&&, std::tuple<>&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 950400 0x11FC17: std::_Rb_tree_iterator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > std::_Rb_tree<blocks::Octree*, std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, std::_Select1st<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::_M_emplace_hint_unique<std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>, std::tuple<> >(std::_Rb_tree_const_iterator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>&&, std::tuple<>&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 950400 0x11F723: std::map<blocks::Octree*, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::operator[](blocks::Octree* const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 950400 0x11E8B3: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 950400 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n0: 950400 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+ n0: 72928 in 4 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=9
+#-----------
+time=1375228096
+mem_heap_B=13287072
+mem_heap_extra_B=856720
+mem_stacks_B=2096
+heap_tree=detailed
+n4: 13287072 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n2: 8088768 0x11E6FF: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n2: 8087040 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n2: 8073216 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n2: 7962624 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 7077888 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 7077888 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n0: 7077888 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 884736 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n0: 884736 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n0: 110592 in 1 place, below massif's threshold (1.00%)
+   n0: 13824 in 1 place, below massif's threshold (1.00%)
+  n0: 1728 in 1 place, below massif's threshold (1.00%)
+ n1: 4095616 0x11BDD7: __gnu_cxx::new_allocator<blocks::Octree*>::allocate(unsigned long, void const*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n1: 4095616 0x11AA03: std::allocator_traits<std::allocator<blocks::Octree*> >::allocate(std::allocator<blocks::Octree*>&, unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 4095616 0x11897F: std::_Vector_base<blocks::Octree*, std::allocator<blocks::Octree*> >::_M_allocate(unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 4095616 0x120CCB: void std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >::_M_realloc_insert<blocks::Octree*>(__gnu_cxx::__normal_iterator<blocks::Octree**, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, blocks::Octree*&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 4095616 0x11FE3B: void std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >::emplace_back<blocks::Octree*>(blocks::Octree*&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 4095616 0x11F7CF: std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >::push_back(blocks::Octree*&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 4095616 0x11EC77: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 4095616 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n1: 4095616 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n1: 4095616 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+           n1: 4095616 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+            n1: 4095616 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+             n1: 4095616 0x11EBE7: blocks::Octree::GenerateNeigbours(float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+              n1: 4095616 0x11E8DF: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+               n1: 4095616 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+                n0: 4095616 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+ n1: 1029760 0x121E87: __gnu_cxx::new_allocator<std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::allocate(unsigned long, void const*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n1: 1029760 0x121BB7: std::allocator_traits<std::allocator<std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > > >::allocate(std::allocator<std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >&, unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 1029760 0x1215D7: std::_Rb_tree<blocks::Octree*, std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, std::_Select1st<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::_M_get_node() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 1029760 0x120617: std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >* std::_Rb_tree<blocks::Octree*, std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, std::_Select1st<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::_M_create_node<std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>, std::tuple<> >(std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>&&, std::tuple<>&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 1029760 0x11FC17: std::_Rb_tree_iterator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > std::_Rb_tree<blocks::Octree*, std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, std::_Select1st<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::_M_emplace_hint_unique<std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>, std::tuple<> >(std::_Rb_tree_const_iterator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>&&, std::tuple<>&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 1029760 0x11F723: std::map<blocks::Octree*, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::operator[](blocks::Octree* const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 1029760 0x11E8B3: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 1029760 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n0: 1029760 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+ n0: 72928 in 4 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=10
+#-----------
+time=1554325264
+mem_heap_B=13974496
+mem_heap_extra_B=891152
+mem_stacks_B=2096
+heap_tree=detailed
+n4: 13974496 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n2: 8088768 0x11E6FF: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n2: 8087040 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n2: 8073216 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n2: 7962624 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 7077888 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 7077888 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n0: 7077888 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 884736 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n0: 884736 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n0: 110592 in 1 place, below massif's threshold (1.00%)
+   n0: 13824 in 1 place, below massif's threshold (1.00%)
+  n0: 1728 in 1 place, below massif's threshold (1.00%)
+ n1: 4645312 0x11BDD7: __gnu_cxx::new_allocator<blocks::Octree*>::allocate(unsigned long, void const*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n1: 4645312 0x11AA03: std::allocator_traits<std::allocator<blocks::Octree*> >::allocate(std::allocator<blocks::Octree*>&, unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 4645312 0x11897F: std::_Vector_base<blocks::Octree*, std::allocator<blocks::Octree*> >::_M_allocate(unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 4645312 0x120CCB: void std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >::_M_realloc_insert<blocks::Octree*>(__gnu_cxx::__normal_iterator<blocks::Octree**, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, blocks::Octree*&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 4645312 0x11FE3B: void std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >::emplace_back<blocks::Octree*>(blocks::Octree*&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 4645312 0x11F7CF: std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >::push_back(blocks::Octree*&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 4645312 0x11EC77: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 4645312 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n1: 4645312 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n1: 4645312 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+           n1: 4645312 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+            n1: 4645312 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+             n1: 4645312 0x11EBE7: blocks::Octree::GenerateNeigbours(float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+              n1: 4645312 0x11E8DF: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+               n1: 4645312 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+                n0: 4645312 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+ n1: 1167488 0x121E87: __gnu_cxx::new_allocator<std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::allocate(unsigned long, void const*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n1: 1167488 0x121BB7: std::allocator_traits<std::allocator<std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > > >::allocate(std::allocator<std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >&, unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 1167488 0x1215D7: std::_Rb_tree<blocks::Octree*, std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, std::_Select1st<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::_M_get_node() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 1167488 0x120617: std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >* std::_Rb_tree<blocks::Octree*, std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, std::_Select1st<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::_M_create_node<std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>, std::tuple<> >(std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>&&, std::tuple<>&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 1167488 0x11FC17: std::_Rb_tree_iterator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > std::_Rb_tree<blocks::Octree*, std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, std::_Select1st<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::_M_emplace_hint_unique<std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>, std::tuple<> >(std::_Rb_tree_const_iterator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>&&, std::tuple<>&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 1167488 0x11F723: std::map<blocks::Octree*, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::operator[](blocks::Octree* const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 1167488 0x11E8B3: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 1167488 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n0: 1167488 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+ n0: 72928 in 4 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=11
+#-----------
+time=1742302272
+mem_heap_B=14697120
+mem_heap_extra_B=927344
+mem_stacks_B=2048
+heap_tree=detailed
+n4: 14697120 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n2: 8088768 0x11E6FF: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n2: 8087040 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n2: 8073216 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n2: 7962624 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 7077888 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 7077888 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n0: 7077888 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 884736 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n0: 884736 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n0: 110592 in 1 place, below massif's threshold (1.00%)
+   n0: 13824 in 1 place, below massif's threshold (1.00%)
+  n0: 1728 in 1 place, below massif's threshold (1.00%)
+ n1: 5223168 0x11BDD7: __gnu_cxx::new_allocator<blocks::Octree*>::allocate(unsigned long, void const*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n1: 5223168 0x11AA03: std::allocator_traits<std::allocator<blocks::Octree*> >::allocate(std::allocator<blocks::Octree*>&, unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 5223168 0x11897F: std::_Vector_base<blocks::Octree*, std::allocator<blocks::Octree*> >::_M_allocate(unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 5223168 0x120CCB: void std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >::_M_realloc_insert<blocks::Octree*>(__gnu_cxx::__normal_iterator<blocks::Octree**, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, blocks::Octree*&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 5223168 0x11FE3B: void std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >::emplace_back<blocks::Octree*>(blocks::Octree*&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 5223168 0x11F7CF: std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >::push_back(blocks::Octree*&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 5223168 0x11EC77: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 5223168 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n1: 5223168 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n1: 5223168 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+           n1: 5223168 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+            n1: 5223168 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+             n1: 5223168 0x11EBE7: blocks::Octree::GenerateNeigbours(float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+              n1: 5223168 0x11E8DF: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+               n1: 5223168 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+                n0: 5223168 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+ n1: 1312256 0x121E87: __gnu_cxx::new_allocator<std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::allocate(unsigned long, void const*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n1: 1312256 0x121BB7: std::allocator_traits<std::allocator<std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > > >::allocate(std::allocator<std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >&, unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 1312256 0x1215D7: std::_Rb_tree<blocks::Octree*, std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, std::_Select1st<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::_M_get_node() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 1312256 0x120617: std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >* std::_Rb_tree<blocks::Octree*, std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, std::_Select1st<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::_M_create_node<std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>, std::tuple<> >(std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>&&, std::tuple<>&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 1312256 0x11FC17: std::_Rb_tree_iterator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > std::_Rb_tree<blocks::Octree*, std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, std::_Select1st<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::_M_emplace_hint_unique<std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>, std::tuple<> >(std::_Rb_tree_const_iterator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>&&, std::tuple<>&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 1312256 0x11F723: std::map<blocks::Octree*, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::operator[](blocks::Octree* const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 1312256 0x11E8B3: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 1312256 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n0: 1312256 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+ n0: 72928 in 4 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=12
+#-----------
+time=1965380840
+mem_heap_B=15547776
+mem_heap_extra_B=969944
+mem_stacks_B=1248
+heap_tree=empty
+#-----------
+snapshot=13
+#-----------
+time=2150714576
+mem_heap_B=16254624
+mem_heap_extra_B=1005328
+mem_stacks_B=2048
+heap_tree=detailed
+n4: 16254624 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n2: 8088768 0x11E6FF: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n2: 8087040 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n2: 8073216 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n2: 7962624 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 7077888 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 7077888 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n0: 7077888 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 884736 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n0: 884736 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n0: 110592 in 1 place, below massif's threshold (1.00%)
+   n0: 13824 in 1 place, below massif's threshold (1.00%)
+  n0: 1728 in 1 place, below massif's threshold (1.00%)
+ n1: 6468736 0x11BDD7: __gnu_cxx::new_allocator<blocks::Octree*>::allocate(unsigned long, void const*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n1: 6468736 0x11AA03: std::allocator_traits<std::allocator<blocks::Octree*> >::allocate(std::allocator<blocks::Octree*>&, unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 6468736 0x11897F: std::_Vector_base<blocks::Octree*, std::allocator<blocks::Octree*> >::_M_allocate(unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 6468736 0x120CCB: void std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >::_M_realloc_insert<blocks::Octree*>(__gnu_cxx::__normal_iterator<blocks::Octree**, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, blocks::Octree*&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 6468736 0x11FE3B: void std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >::emplace_back<blocks::Octree*>(blocks::Octree*&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 6468736 0x11F7CF: std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >::push_back(blocks::Octree*&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 6468736 0x11EC77: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 6468736 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n1: 6468736 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n1: 6468736 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+           n1: 6468736 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+            n1: 6468736 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+             n1: 6468736 0x11EBE7: blocks::Octree::GenerateNeigbours(float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+              n1: 6468736 0x11E8DF: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+               n1: 6468736 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+                n0: 6468736 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+ n1: 1624192 0x121E87: __gnu_cxx::new_allocator<std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::allocate(unsigned long, void const*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n1: 1624192 0x121BB7: std::allocator_traits<std::allocator<std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > > >::allocate(std::allocator<std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >&, unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 1624192 0x1215D7: std::_Rb_tree<blocks::Octree*, std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, std::_Select1st<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::_M_get_node() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 1624192 0x120617: std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >* std::_Rb_tree<blocks::Octree*, std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, std::_Select1st<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::_M_create_node<std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>, std::tuple<> >(std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>&&, std::tuple<>&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 1624192 0x11FC17: std::_Rb_tree_iterator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > std::_Rb_tree<blocks::Octree*, std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, std::_Select1st<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::_M_emplace_hint_unique<std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>, std::tuple<> >(std::_Rb_tree_const_iterator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>&&, std::tuple<>&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 1624192 0x11F723: std::map<blocks::Octree*, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::operator[](blocks::Octree* const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 1624192 0x11E8B3: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 1624192 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n0: 1624192 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+ n0: 72928 in 4 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=14
+#-----------
+time=2325925600
+mem_heap_B=16922208
+mem_heap_extra_B=1038768
+mem_stacks_B=2048
+heap_tree=detailed
+n4: 16922208 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n2: 8088768 0x11E6FF: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n2: 8087040 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n2: 8073216 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n2: 7962624 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 7077888 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 7077888 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n0: 7077888 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 884736 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n0: 884736 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n0: 110592 in 1 place, below massif's threshold (1.00%)
+   n0: 13824 in 1 place, below massif's threshold (1.00%)
+  n0: 1728 in 1 place, below massif's threshold (1.00%)
+ n1: 7002560 0x11BDD7: __gnu_cxx::new_allocator<blocks::Octree*>::allocate(unsigned long, void const*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n1: 7002560 0x11AA03: std::allocator_traits<std::allocator<blocks::Octree*> >::allocate(std::allocator<blocks::Octree*>&, unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 7002560 0x11897F: std::_Vector_base<blocks::Octree*, std::allocator<blocks::Octree*> >::_M_allocate(unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 7002560 0x120CCB: void std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >::_M_realloc_insert<blocks::Octree*>(__gnu_cxx::__normal_iterator<blocks::Octree**, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, blocks::Octree*&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 7002560 0x11FE3B: void std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >::emplace_back<blocks::Octree*>(blocks::Octree*&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 7002560 0x11F7CF: std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >::push_back(blocks::Octree*&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 7002560 0x11EC77: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 7002560 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n1: 7002560 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n1: 7002560 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+           n1: 7002560 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+            n1: 7002560 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+             n1: 7002560 0x11EBE7: blocks::Octree::GenerateNeigbours(float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+              n1: 7002560 0x11E8DF: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+               n1: 7002560 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+                n0: 7002560 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+ n1: 1757952 0x121E87: __gnu_cxx::new_allocator<std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::allocate(unsigned long, void const*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n1: 1757952 0x121BB7: std::allocator_traits<std::allocator<std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > > >::allocate(std::allocator<std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >&, unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 1757952 0x1215D7: std::_Rb_tree<blocks::Octree*, std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, std::_Select1st<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::_M_get_node() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 1757952 0x120617: std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >* std::_Rb_tree<blocks::Octree*, std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, std::_Select1st<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::_M_create_node<std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>, std::tuple<> >(std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>&&, std::tuple<>&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 1757952 0x11FC17: std::_Rb_tree_iterator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > std::_Rb_tree<blocks::Octree*, std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, std::_Select1st<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::_M_emplace_hint_unique<std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>, std::tuple<> >(std::_Rb_tree_const_iterator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>&&, std::tuple<>&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 1757952 0x11F723: std::map<blocks::Octree*, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::operator[](blocks::Octree* const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 1757952 0x11E8B3: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 1757952 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n0: 1757952 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+ n0: 72928 in 4 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=15
+#-----------
+time=2440438968
+mem_heap_B=17360096
+mem_heap_extra_B=1060712
+mem_stacks_B=2080
+heap_tree=empty
+#-----------
+snapshot=16
+#-----------
+time=2579159128
+mem_heap_B=17886368
+mem_heap_extra_B=1087048
+mem_stacks_B=1648
+heap_tree=empty
+#-----------
+snapshot=17
+#-----------
+time=2778844576
+mem_heap_B=19928672
+mem_heap_extra_B=1989056
+mem_stacks_B=1616
+heap_tree=detailed
+n5: 19928672 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 8340992 0x11BDD7: __gnu_cxx::new_allocator<blocks::Octree*>::allocate(unsigned long, void const*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n1: 8340992 0x11AA03: std::allocator_traits<std::allocator<blocks::Octree*> >::allocate(std::allocator<blocks::Octree*>&, unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 8340992 0x11897F: std::_Vector_base<blocks::Octree*, std::allocator<blocks::Octree*> >::_M_allocate(unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 8340992 0x120CCB: void std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >::_M_realloc_insert<blocks::Octree*>(__gnu_cxx::__normal_iterator<blocks::Octree**, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, blocks::Octree*&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 8340992 0x11FE3B: void std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >::emplace_back<blocks::Octree*>(blocks::Octree*&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 8340992 0x11F7CF: std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >::push_back(blocks::Octree*&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 8340992 0x11EC77: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 8340992 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n1: 8340992 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n1: 8340992 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+           n1: 8340992 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+            n1: 8340992 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+             n1: 8340992 0x11EBE7: blocks::Octree::GenerateNeigbours(float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+              n1: 8340992 0x11E8DF: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+               n1: 8340992 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+                n0: 8340992 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+ n2: 8088768 0x11E6FF: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n2: 8087040 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n2: 8073216 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n2: 7962624 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 7077888 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 7077888 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n0: 7077888 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 884736 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n0: 884736 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n0: 110592 in 1 place, below massif's threshold (1.00%)
+   n0: 13824 in 1 place, below massif's threshold (1.00%)
+  n0: 1728 in 1 place, below massif's threshold (1.00%)
+ n1: 2097152 0x121E87: __gnu_cxx::new_allocator<std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::allocate(unsigned long, void const*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n1: 2097152 0x121BB7: std::allocator_traits<std::allocator<std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > > >::allocate(std::allocator<std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >&, unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 2097152 0x1215D7: std::_Rb_tree<blocks::Octree*, std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, std::_Select1st<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::_M_get_node() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 2097152 0x120617: std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >* std::_Rb_tree<blocks::Octree*, std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, std::_Select1st<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::_M_create_node<std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>, std::tuple<> >(std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>&&, std::tuple<>&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 2097152 0x11FC17: std::_Rb_tree_iterator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > std::_Rb_tree<blocks::Octree*, std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, std::_Select1st<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::_M_emplace_hint_unique<std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>, std::tuple<> >(std::_Rb_tree_const_iterator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>&&, std::tuple<>&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 2097152 0x11F723: std::map<blocks::Octree*, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::operator[](blocks::Octree* const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 2097152 0x11E8B3: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 2097152 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n0: 2097152 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+ n2: 966144 0x12397F: blocks::ForceOctree::ForceOctree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n2: 964224 0x1239AB: blocks::ForceOctree::ForceOctree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n2: 950784 0x1239AB: blocks::ForceOctree::ForceOctree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 844800 0x1239AB: blocks::ForceOctree::ForceOctree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 844800 0x10C357: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n0: 844800 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n0: 105984 in 1 place, below massif's threshold (1.00%)
+   n0: 13440 in 1 place, below massif's threshold (1.00%)
+  n0: 1920 in 1 place, below massif's threshold (1.00%)
+ n0: 435616 in 8 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=18
+#-----------
+time=2883420888
+mem_heap_B=21674792
+mem_heap_extra_B=2538592
+mem_stacks_B=3952
+heap_tree=peak
+n7: 21674792 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 8340992 0x11BDD7: __gnu_cxx::new_allocator<blocks::Octree*>::allocate(unsigned long, void const*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n1: 8340992 0x11AA03: std::allocator_traits<std::allocator<blocks::Octree*> >::allocate(std::allocator<blocks::Octree*>&, unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 8340992 0x11897F: std::_Vector_base<blocks::Octree*, std::allocator<blocks::Octree*> >::_M_allocate(unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 8340992 0x120CCB: void std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >::_M_realloc_insert<blocks::Octree*>(__gnu_cxx::__normal_iterator<blocks::Octree**, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, blocks::Octree*&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 8340992 0x11FE3B: void std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >::emplace_back<blocks::Octree*>(blocks::Octree*&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 8340992 0x11F7CF: std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >::push_back(blocks::Octree*&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 8340992 0x11EC77: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 8340992 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n1: 8340992 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n1: 8340992 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+           n1: 8340992 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+            n1: 8340992 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+             n1: 8340992 0x11EBE7: blocks::Octree::GenerateNeigbours(float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+              n1: 8340992 0x11E8DF: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+               n1: 8340992 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+                n0: 8340992 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+ n2: 8088768 0x11E6FF: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n2: 8087040 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n2: 8073216 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n2: 7962624 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 7077888 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 7077888 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n0: 7077888 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 884736 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n0: 884736 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n0: 110592 in 1 place, below massif's threshold (1.00%)
+   n0: 13824 in 1 place, below massif's threshold (1.00%)
+  n0: 1728 in 1 place, below massif's threshold (1.00%)
+ n1: 2097152 0x121E87: __gnu_cxx::new_allocator<std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::allocate(unsigned long, void const*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n1: 2097152 0x121BB7: std::allocator_traits<std::allocator<std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > > >::allocate(std::allocator<std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >&, unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 2097152 0x1215D7: std::_Rb_tree<blocks::Octree*, std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, std::_Select1st<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::_M_get_node() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 2097152 0x120617: std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >* std::_Rb_tree<blocks::Octree*, std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, std::_Select1st<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::_M_create_node<std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>, std::tuple<> >(std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>&&, std::tuple<>&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 2097152 0x11FC17: std::_Rb_tree_iterator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > std::_Rb_tree<blocks::Octree*, std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, std::_Select1st<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::_M_emplace_hint_unique<std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>, std::tuple<> >(std::_Rb_tree_const_iterator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>&&, std::tuple<>&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 2097152 0x11F723: std::map<blocks::Octree*, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::operator[](blocks::Octree* const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 2097152 0x11E8B3: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 2097152 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n0: 2097152 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+ n2: 1797120 0x12397F: blocks::ForceOctree::ForceOctree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n2: 1794048 0x1239AB: blocks::ForceOctree::ForceOctree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n2: 1769472 0x1239AB: blocks::ForceOctree::ForceOctree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 1572864 0x1239AB: blocks::ForceOctree::ForceOctree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 1572864 0x10C357: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n0: 1572864 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n0: 196608 in 1 place, below massif's threshold (1.00%)
+   n0: 24576 in 1 place, below massif's threshold (1.00%)
+  n0: 3072 in 1 place, below massif's threshold (1.00%)
+ n0: 568696 in 26 places, all below massif's threshold (1.00%)
+ n1: 401832 0x12952B: numerics::Matrix::Matrix(int, int) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n0: 401832 in 11 places, all below massif's threshold (1.00%)
+ n1: 380232 0x12961F: numerics::Matrix::operator=(numerics::Matrix const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n0: 380232 in 8 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=19
+#-----------
+time=3067556184
+mem_heap_B=21643772
+mem_heap_extra_B=2529900
+mem_stacks_B=3616
+heap_tree=empty
+#-----------
+snapshot=20
+#-----------
+time=3214864432
+mem_heap_B=21643880
+mem_heap_extra_B=2530040
+mem_stacks_B=4736
+heap_tree=empty
+#-----------
+snapshot=21
+#-----------
+time=3398999864
+mem_heap_B=21643820
+mem_heap_extra_B=2529980
+mem_stacks_B=4672
+heap_tree=empty
+#-----------
+snapshot=22
+#-----------
+time=3619962168
+mem_heap_B=21643868
+mem_heap_extra_B=2530012
+mem_stacks_B=4816
+heap_tree=detailed
+n7: 21643868 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 8340992 0x11BDD7: __gnu_cxx::new_allocator<blocks::Octree*>::allocate(unsigned long, void const*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n1: 8340992 0x11AA03: std::allocator_traits<std::allocator<blocks::Octree*> >::allocate(std::allocator<blocks::Octree*>&, unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n2: 8340992 0x11897F: std::_Vector_base<blocks::Octree*, std::allocator<blocks::Octree*> >::_M_allocate(unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 8340992 0x120CCB: void std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >::_M_realloc_insert<blocks::Octree*>(__gnu_cxx::__normal_iterator<blocks::Octree**, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, blocks::Octree*&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 8340992 0x11FE3B: void std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >::emplace_back<blocks::Octree*>(blocks::Octree*&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 8340992 0x11F7CF: std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >::push_back(blocks::Octree*&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 8340992 0x11EC77: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 8340992 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n1: 8340992 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n1: 8340992 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+           n1: 8340992 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+            n1: 8340992 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+             n1: 8340992 0x11EBE7: blocks::Octree::GenerateNeigbours(float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+              n1: 8340992 0x11E8DF: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+               n1: 8340992 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+                n0: 8340992 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n0: 0 in 2 places, all below massif's threshold (1.00%)
+ n2: 8088768 0x11E6FF: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n2: 8087040 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n2: 8073216 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n2: 7962624 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 7077888 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 7077888 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n0: 7077888 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 884736 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n0: 884736 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n0: 110592 in 1 place, below massif's threshold (1.00%)
+   n0: 13824 in 1 place, below massif's threshold (1.00%)
+  n0: 1728 in 1 place, below massif's threshold (1.00%)
+ n1: 2097152 0x121E87: __gnu_cxx::new_allocator<std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::allocate(unsigned long, void const*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n1: 2097152 0x121BB7: std::allocator_traits<std::allocator<std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > > >::allocate(std::allocator<std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >&, unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 2097152 0x1215D7: std::_Rb_tree<blocks::Octree*, std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, std::_Select1st<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::_M_get_node() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 2097152 0x120617: std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >* std::_Rb_tree<blocks::Octree*, std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, std::_Select1st<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::_M_create_node<std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>, std::tuple<> >(std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>&&, std::tuple<>&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 2097152 0x11FC17: std::_Rb_tree_iterator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > std::_Rb_tree<blocks::Octree*, std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, std::_Select1st<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::_M_emplace_hint_unique<std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>, std::tuple<> >(std::_Rb_tree_const_iterator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>&&, std::tuple<>&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 2097152 0x11F723: std::map<blocks::Octree*, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::operator[](blocks::Octree* const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 2097152 0x11E8B3: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 2097152 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n0: 2097152 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+ n2: 1797120 0x12397F: blocks::ForceOctree::ForceOctree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n2: 1794048 0x1239AB: blocks::ForceOctree::ForceOctree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n2: 1769472 0x1239AB: blocks::ForceOctree::ForceOctree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 1572864 0x1239AB: blocks::ForceOctree::ForceOctree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 1572864 0x10C357: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n0: 1572864 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n0: 196608 in 1 place, below massif's threshold (1.00%)
+   n0: 24576 in 1 place, below massif's threshold (1.00%)
+  n0: 3072 in 1 place, below massif's threshold (1.00%)
+ n0: 537640 in 28 places, all below massif's threshold (1.00%)
+ n1: 420420 0x12961F: numerics::Matrix::operator=(numerics::Matrix const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n0: 420420 in 13 places, all below massif's threshold (1.00%)
+ n1: 361776 0x12952B: numerics::Matrix::Matrix(int, int) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n0: 361776 in 18 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=23
+#-----------
+time=3767270424
+mem_heap_B=21643820
+mem_heap_extra_B=2529964
+mem_stacks_B=4544
+heap_tree=empty
+#-----------
+snapshot=24
+#-----------
+time=3988232864
+mem_heap_B=21643904
+mem_heap_extra_B=2530064
+mem_stacks_B=4992
+heap_tree=detailed
+n7: 21643904 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 8340992 0x11BDD7: __gnu_cxx::new_allocator<blocks::Octree*>::allocate(unsigned long, void const*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n1: 8340992 0x11AA03: std::allocator_traits<std::allocator<blocks::Octree*> >::allocate(std::allocator<blocks::Octree*>&, unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n2: 8340992 0x11897F: std::_Vector_base<blocks::Octree*, std::allocator<blocks::Octree*> >::_M_allocate(unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 8340992 0x120CCB: void std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >::_M_realloc_insert<blocks::Octree*>(__gnu_cxx::__normal_iterator<blocks::Octree**, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, blocks::Octree*&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 8340992 0x11FE3B: void std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >::emplace_back<blocks::Octree*>(blocks::Octree*&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 8340992 0x11F7CF: std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >::push_back(blocks::Octree*&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 8340992 0x11EC77: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 8340992 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n1: 8340992 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n1: 8340992 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+           n1: 8340992 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+            n1: 8340992 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+             n1: 8340992 0x11EBE7: blocks::Octree::GenerateNeigbours(float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+              n1: 8340992 0x11E8DF: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+               n1: 8340992 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+                n0: 8340992 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n0: 0 in 2 places, all below massif's threshold (1.00%)
+ n2: 8088768 0x11E6FF: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n2: 8087040 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n2: 8073216 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n2: 7962624 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 7077888 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 7077888 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n0: 7077888 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 884736 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n0: 884736 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n0: 110592 in 1 place, below massif's threshold (1.00%)
+   n0: 13824 in 1 place, below massif's threshold (1.00%)
+  n0: 1728 in 1 place, below massif's threshold (1.00%)
+ n1: 2097152 0x121E87: __gnu_cxx::new_allocator<std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::allocate(unsigned long, void const*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n1: 2097152 0x121BB7: std::allocator_traits<std::allocator<std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > > >::allocate(std::allocator<std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >&, unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 2097152 0x1215D7: std::_Rb_tree<blocks::Octree*, std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, std::_Select1st<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::_M_get_node() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 2097152 0x120617: std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >* std::_Rb_tree<blocks::Octree*, std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, std::_Select1st<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::_M_create_node<std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>, std::tuple<> >(std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>&&, std::tuple<>&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 2097152 0x11FC17: std::_Rb_tree_iterator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > std::_Rb_tree<blocks::Octree*, std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, std::_Select1st<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::_M_emplace_hint_unique<std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>, std::tuple<> >(std::_Rb_tree_const_iterator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>&&, std::tuple<>&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 2097152 0x11F723: std::map<blocks::Octree*, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::operator[](blocks::Octree* const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 2097152 0x11E8B3: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 2097152 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n0: 2097152 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+ n2: 1797120 0x12397F: blocks::ForceOctree::ForceOctree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n2: 1794048 0x1239AB: blocks::ForceOctree::ForceOctree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n2: 1769472 0x1239AB: blocks::ForceOctree::ForceOctree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 1572864 0x1239AB: blocks::ForceOctree::ForceOctree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 1572864 0x10C357: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n0: 1572864 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n0: 196608 in 1 place, below massif's threshold (1.00%)
+   n0: 24576 in 1 place, below massif's threshold (1.00%)
+  n0: 3072 in 1 place, below massif's threshold (1.00%)
+ n0: 537640 in 28 places, all below massif's threshold (1.00%)
+ n1: 420420 0x12961F: numerics::Matrix::operator=(numerics::Matrix const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n0: 420420 in 13 places, all below massif's threshold (1.00%)
+ n1: 361812 0x12952B: numerics::Matrix::Matrix(int, int) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n0: 361812 in 19 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=25
+#-----------
+time=4172368152
+mem_heap_B=21643820
+mem_heap_extra_B=2529948
+mem_stacks_B=4288
+heap_tree=empty
+#-----------
+snapshot=26
+#-----------
+time=4282849360
+mem_heap_B=21643808
+mem_heap_extra_B=2529952
+mem_stacks_B=4048
+heap_tree=empty
+#-----------
+snapshot=27
+#-----------
+time=4412525704
+mem_heap_B=21643820
+mem_heap_extra_B=2529980
+mem_stacks_B=4144
+heap_tree=empty
+#-----------
+snapshot=28
+#-----------
+time=4524570144
+mem_heap_B=21643784
+mem_heap_extra_B=2529896
+mem_stacks_B=3664
+heap_tree=empty
+#-----------
+snapshot=29
+#-----------
+time=4636614584
+mem_heap_B=21643796
+mem_heap_extra_B=2529908
+mem_stacks_B=3648
+heap_tree=empty
+#-----------
+snapshot=30
+#-----------
+time=4748659024
+mem_heap_B=21643760
+mem_heap_extra_B=2529872
+mem_stacks_B=3296
+heap_tree=empty
+#-----------
+snapshot=31
+#-----------
+time=4860703536
+mem_heap_B=21670728
+mem_heap_extra_B=2539656
+mem_stacks_B=4384
+heap_tree=empty
+#-----------
+snapshot=32
+#-----------
+time=5028770216
+mem_heap_B=21642516
+mem_heap_extra_B=2530916
+mem_stacks_B=3040
+heap_tree=empty
+#-----------
+snapshot=33
+#-----------
+time=5140814704
+mem_heap_B=21642552
+mem_heap_extra_B=2531000
+mem_stacks_B=4400
+heap_tree=empty
+#-----------
+snapshot=34
+#-----------
+time=5252859224
+mem_heap_B=21642564
+mem_heap_extra_B=2531028
+mem_stacks_B=4464
+heap_tree=empty
+#-----------
+snapshot=35
+#-----------
+time=5420925904
+mem_heap_B=21642552
+mem_heap_extra_B=2531000
+mem_stacks_B=4560
+heap_tree=empty
+#-----------
+snapshot=36
+#-----------
+time=5532970352
+mem_heap_B=21642552
+mem_heap_extra_B=2531000
+mem_stacks_B=4880
+heap_tree=empty
+#-----------
+snapshot=37
+#-----------
+time=5645014800
+mem_heap_B=21642600
+mem_heap_extra_B=2531112
+mem_stacks_B=4688
+heap_tree=empty
+#-----------
+snapshot=38
+#-----------
+time=5757059280
+mem_heap_B=21642576
+mem_heap_extra_B=2531056
+mem_stacks_B=4432
+heap_tree=empty
+#-----------
+snapshot=39
+#-----------
+time=5869103800
+mem_heap_B=21642588
+mem_heap_extra_B=2531084
+mem_stacks_B=4320
+heap_tree=empty
+#-----------
+snapshot=40
+#-----------
+time=6037170512
+mem_heap_B=21642600
+mem_heap_extra_B=2531112
+mem_stacks_B=4800
+heap_tree=detailed
+n7: 21642600 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 8340992 0x11BDD7: __gnu_cxx::new_allocator<blocks::Octree*>::allocate(unsigned long, void const*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n1: 8340992 0x11AA03: std::allocator_traits<std::allocator<blocks::Octree*> >::allocate(std::allocator<blocks::Octree*>&, unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n2: 8340992 0x11897F: std::_Vector_base<blocks::Octree*, std::allocator<blocks::Octree*> >::_M_allocate(unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 8340992 0x120CCB: void std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >::_M_realloc_insert<blocks::Octree*>(__gnu_cxx::__normal_iterator<blocks::Octree**, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, blocks::Octree*&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 8340992 0x11FE3B: void std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >::emplace_back<blocks::Octree*>(blocks::Octree*&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 8340992 0x11F7CF: std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >::push_back(blocks::Octree*&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 8340992 0x11EC77: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 8340992 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n1: 8340992 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n1: 8340992 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+           n1: 8340992 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+            n1: 8340992 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+             n1: 8340992 0x11EBE7: blocks::Octree::GenerateNeigbours(float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+              n1: 8340992 0x11E8DF: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+               n1: 8340992 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+                n0: 8340992 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n0: 0 in 2 places, all below massif's threshold (1.00%)
+ n2: 8088768 0x11E6FF: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n2: 8087040 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n2: 8073216 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n2: 7962624 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 7077888 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 7077888 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n0: 7077888 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 884736 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n0: 884736 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n0: 110592 in 1 place, below massif's threshold (1.00%)
+   n0: 13824 in 1 place, below massif's threshold (1.00%)
+  n0: 1728 in 1 place, below massif's threshold (1.00%)
+ n1: 2097152 0x121E87: __gnu_cxx::new_allocator<std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::allocate(unsigned long, void const*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n1: 2097152 0x121BB7: std::allocator_traits<std::allocator<std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > > >::allocate(std::allocator<std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >&, unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 2097152 0x1215D7: std::_Rb_tree<blocks::Octree*, std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, std::_Select1st<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::_M_get_node() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 2097152 0x120617: std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >* std::_Rb_tree<blocks::Octree*, std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, std::_Select1st<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::_M_create_node<std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>, std::tuple<> >(std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>&&, std::tuple<>&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 2097152 0x11FC17: std::_Rb_tree_iterator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > std::_Rb_tree<blocks::Octree*, std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, std::_Select1st<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::_M_emplace_hint_unique<std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>, std::tuple<> >(std::_Rb_tree_const_iterator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>&&, std::tuple<>&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 2097152 0x11F723: std::map<blocks::Octree*, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::operator[](blocks::Octree* const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 2097152 0x11E8B3: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 2097152 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n0: 2097152 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+ n2: 1797120 0x12397F: blocks::ForceOctree::ForceOctree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n2: 1794048 0x1239AB: blocks::ForceOctree::ForceOctree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n2: 1769472 0x1239AB: blocks::ForceOctree::ForceOctree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 1572864 0x1239AB: blocks::ForceOctree::ForceOctree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 1572864 0x10C357: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n0: 1572864 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n0: 196608 in 1 place, below massif's threshold (1.00%)
+   n0: 24576 in 1 place, below massif's threshold (1.00%)
+  n0: 3072 in 1 place, below massif's threshold (1.00%)
+ n0: 536384 in 28 places, all below massif's threshold (1.00%)
+ n1: 483108 0x12961F: numerics::Matrix::operator=(numerics::Matrix const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n0: 483108 in 19 places, all below massif's threshold (1.00%)
+ n1: 299076 0x12952B: numerics::Matrix::Matrix(int, int) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n0: 299076 in 21 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=41
+#-----------
+time=6149214968
+mem_heap_B=21642564
+mem_heap_extra_B=2531028
+mem_stacks_B=4720
+heap_tree=empty
+#-----------
+snapshot=42
+#-----------
+time=6317281664
+mem_heap_B=21642552
+mem_heap_extra_B=2531000
+mem_stacks_B=4544
+heap_tree=empty
+#-----------
+snapshot=43
+#-----------
+time=6429326160
+mem_heap_B=21642600
+mem_heap_extra_B=2531096
+mem_stacks_B=5072
+heap_tree=empty
+#-----------
+snapshot=44
+#-----------
+time=6541370608
+mem_heap_B=21642624
+mem_heap_extra_B=2531136
+mem_stacks_B=4832
+heap_tree=empty
+#-----------
+snapshot=45
+#-----------
+time=6653415208
+mem_heap_B=21642540
+mem_heap_extra_B=2530972
+mem_stacks_B=4096
+heap_tree=empty
+#-----------
+snapshot=46
+#-----------
+time=6821481912
+mem_heap_B=21607000
+mem_heap_extra_B=2515248
+mem_stacks_B=2960
+heap_tree=empty
+#-----------
+snapshot=47
+#-----------
+time=6933526360
+mem_heap_B=21729296
+mem_heap_extra_B=2551880
+mem_stacks_B=3040
+heap_tree=empty
+#-----------
+snapshot=48
+#-----------
+time=7045570776
+mem_heap_B=21645760
+mem_heap_extra_B=2531320
+mem_stacks_B=3136
+heap_tree=empty
+#-----------
+snapshot=49
+#-----------
+time=7157615216
+mem_heap_B=21645772
+mem_heap_extra_B=2531332
+mem_stacks_B=3856
+heap_tree=detailed
+n7: 21645772 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 8340992 0x11BDD7: __gnu_cxx::new_allocator<blocks::Octree*>::allocate(unsigned long, void const*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n1: 8340992 0x11AA03: std::allocator_traits<std::allocator<blocks::Octree*> >::allocate(std::allocator<blocks::Octree*>&, unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n2: 8340992 0x11897F: std::_Vector_base<blocks::Octree*, std::allocator<blocks::Octree*> >::_M_allocate(unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 8340992 0x120CCB: void std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >::_M_realloc_insert<blocks::Octree*>(__gnu_cxx::__normal_iterator<blocks::Octree**, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, blocks::Octree*&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 8340992 0x11FE3B: void std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >::emplace_back<blocks::Octree*>(blocks::Octree*&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 8340992 0x11F7CF: std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >::push_back(blocks::Octree*&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 8340992 0x11EC77: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 8340992 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n1: 8340992 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n1: 8340992 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+           n1: 8340992 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+            n1: 8340992 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+             n1: 8340992 0x11EBE7: blocks::Octree::GenerateNeigbours(float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+              n1: 8340992 0x11E8DF: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+               n1: 8340992 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+                n0: 8340992 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n0: 0 in 2 places, all below massif's threshold (1.00%)
+ n2: 8088768 0x11E6FF: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n2: 8087040 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n2: 8073216 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n2: 7962624 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 7077888 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 7077888 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n0: 7077888 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 884736 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n0: 884736 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n0: 110592 in 1 place, below massif's threshold (1.00%)
+   n0: 13824 in 1 place, below massif's threshold (1.00%)
+  n0: 1728 in 1 place, below massif's threshold (1.00%)
+ n1: 2097152 0x121E87: __gnu_cxx::new_allocator<std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::allocate(unsigned long, void const*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n1: 2097152 0x121BB7: std::allocator_traits<std::allocator<std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > > >::allocate(std::allocator<std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >&, unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 2097152 0x1215D7: std::_Rb_tree<blocks::Octree*, std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, std::_Select1st<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::_M_get_node() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 2097152 0x120617: std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >* std::_Rb_tree<blocks::Octree*, std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, std::_Select1st<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::_M_create_node<std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>, std::tuple<> >(std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>&&, std::tuple<>&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 2097152 0x11FC17: std::_Rb_tree_iterator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > std::_Rb_tree<blocks::Octree*, std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, std::_Select1st<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::_M_emplace_hint_unique<std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>, std::tuple<> >(std::_Rb_tree_const_iterator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>&&, std::tuple<>&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 2097152 0x11F723: std::map<blocks::Octree*, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::operator[](blocks::Octree* const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 2097152 0x11E8B3: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 2097152 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n0: 2097152 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+ n2: 1797120 0x12397F: blocks::ForceOctree::ForceOctree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n2: 1794048 0x1239AB: blocks::ForceOctree::ForceOctree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n2: 1769472 0x1239AB: blocks::ForceOctree::ForceOctree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 1572864 0x1239AB: blocks::ForceOctree::ForceOctree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 1572864 0x10C357: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n0: 1572864 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n0: 196608 in 1 place, below massif's threshold (1.00%)
+   n0: 24576 in 1 place, below massif's threshold (1.00%)
+  n0: 3072 in 1 place, below massif's threshold (1.00%)
+ n0: 539640 in 29 places, all below massif's threshold (1.00%)
+ n1: 483108 0x12961F: numerics::Matrix::operator=(numerics::Matrix const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n0: 483108 in 19 places, all below massif's threshold (1.00%)
+ n1: 298992 0x12952B: numerics::Matrix::Matrix(int, int) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n0: 298992 in 21 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=50
+#-----------
+time=7260941608
+mem_heap_B=21645784
+mem_heap_extra_B=2531344
+mem_stacks_B=3552
+heap_tree=empty
+#-----------
+snapshot=51
+#-----------
+time=7364268008
+mem_heap_B=21645808
+mem_heap_extra_B=2531368
+mem_stacks_B=3888
+heap_tree=empty
+#-----------
+snapshot=52
+#-----------
+time=7467594440
+mem_heap_B=21645808
+mem_heap_extra_B=2531368
+mem_stacks_B=4192
+heap_tree=empty
+#-----------
+snapshot=53
+#-----------
+time=7570920824
+mem_heap_B=21645832
+mem_heap_extra_B=2531392
+mem_stacks_B=4304
+heap_tree=empty
+#-----------
+snapshot=54
+#-----------
+time=7674247296
+mem_heap_B=21645820
+mem_heap_extra_B=2531380
+mem_stacks_B=4160
+heap_tree=empty
+#-----------
+snapshot=55
+#-----------
+time=7777573696
+mem_heap_B=21645820
+mem_heap_extra_B=2531380
+mem_stacks_B=4656
+heap_tree=empty
+#-----------
+snapshot=56
+#-----------
+time=7880900080
+mem_heap_B=21645796
+mem_heap_extra_B=2531356
+mem_stacks_B=4256
+heap_tree=empty
+#-----------
+snapshot=57
+#-----------
+time=7984226472
+mem_heap_B=21645832
+mem_heap_extra_B=2531392
+mem_stacks_B=4544
+heap_tree=empty
+#-----------
+snapshot=58
+#-----------
+time=8087552920
+mem_heap_B=21645832
+mem_heap_extra_B=2531392
+mem_stacks_B=4176
+heap_tree=empty
+#-----------
+snapshot=59
+#-----------
+time=8190879360
+mem_heap_B=21645796
+mem_heap_extra_B=2531356
+mem_stacks_B=4064
+heap_tree=detailed
+n7: 21645796 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 8340992 0x11BDD7: __gnu_cxx::new_allocator<blocks::Octree*>::allocate(unsigned long, void const*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n1: 8340992 0x11AA03: std::allocator_traits<std::allocator<blocks::Octree*> >::allocate(std::allocator<blocks::Octree*>&, unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n2: 8340992 0x11897F: std::_Vector_base<blocks::Octree*, std::allocator<blocks::Octree*> >::_M_allocate(unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 8340992 0x120CCB: void std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >::_M_realloc_insert<blocks::Octree*>(__gnu_cxx::__normal_iterator<blocks::Octree**, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, blocks::Octree*&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 8340992 0x11FE3B: void std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >::emplace_back<blocks::Octree*>(blocks::Octree*&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 8340992 0x11F7CF: std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >::push_back(blocks::Octree*&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 8340992 0x11EC77: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 8340992 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n1: 8340992 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n1: 8340992 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+           n1: 8340992 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+            n1: 8340992 0x11ED0B: blocks::Octree::AddGridAtPosToVec(float, float, float, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+             n1: 8340992 0x11EBE7: blocks::Octree::GenerateNeigbours(float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+              n1: 8340992 0x11E8DF: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+               n1: 8340992 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+                n0: 8340992 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n0: 0 in 2 places, all below massif's threshold (1.00%)
+ n2: 8088768 0x11E6FF: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n2: 8087040 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n2: 8073216 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n2: 7962624 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 7077888 0x11E72B: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 7077888 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n0: 7077888 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 884736 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n0: 884736 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n0: 110592 in 1 place, below massif's threshold (1.00%)
+   n0: 13824 in 1 place, below massif's threshold (1.00%)
+  n0: 1728 in 1 place, below massif's threshold (1.00%)
+ n1: 2097152 0x121E87: __gnu_cxx::new_allocator<std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::allocate(unsigned long, void const*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n1: 2097152 0x121BB7: std::allocator_traits<std::allocator<std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > > >::allocate(std::allocator<std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >&, unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 2097152 0x1215D7: std::_Rb_tree<blocks::Octree*, std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, std::_Select1st<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::_M_get_node() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 2097152 0x120617: std::_Rb_tree_node<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >* std::_Rb_tree<blocks::Octree*, std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, std::_Select1st<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::_M_create_node<std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>, std::tuple<> >(std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>&&, std::tuple<>&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 2097152 0x11FC17: std::_Rb_tree_iterator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > std::_Rb_tree<blocks::Octree*, std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > >, std::_Select1st<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::_M_emplace_hint_unique<std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>, std::tuple<> >(std::_Rb_tree_const_iterator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > >, std::piecewise_construct_t const&, std::tuple<blocks::Octree* const&>&&, std::tuple<>&&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 2097152 0x11F723: std::map<blocks::Octree*, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> >, std::less<blocks::Octree*>, std::allocator<std::pair<blocks::Octree* const, std::vector<blocks::Octree*, std::allocator<blocks::Octree*> > > > >::operator[](blocks::Octree* const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 2097152 0x11E8B3: blocks::Octree::Octree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 2097152 0x10C303: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n0: 2097152 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+ n2: 1797120 0x12397F: blocks::ForceOctree::ForceOctree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n2: 1794048 0x1239AB: blocks::ForceOctree::ForceOctree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n2: 1769472 0x1239AB: blocks::ForceOctree::ForceOctree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 1572864 0x1239AB: blocks::ForceOctree::ForceOctree(int, float, float, float, float, float, float, bool) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 1572864 0x10C357: WorldHandler::WorldHandler(int, int, int, int, int, int, float, float, float, float, float, float, float) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n0: 1572864 0x10B5DB: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n0: 196608 in 1 place, below massif's threshold (1.00%)
+   n0: 24576 in 1 place, below massif's threshold (1.00%)
+  n0: 3072 in 1 place, below massif's threshold (1.00%)
+ n0: 539640 in 29 places, all below massif's threshold (1.00%)
+ n1: 483108 0x12961F: numerics::Matrix::operator=(numerics::Matrix const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n0: 483108 in 19 places, all below massif's threshold (1.00%)
+ n1: 299016 0x12952B: numerics::Matrix::Matrix(int, int) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n0: 299016 in 21 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=60
+#-----------
+time=8294205864
+mem_heap_B=21645784
+mem_heap_extra_B=2531344
+mem_stacks_B=3872
+heap_tree=empty
+#-----------
+snapshot=61
+#-----------
+time=8397532272
+mem_heap_B=21645748
+mem_heap_extra_B=2531308
+mem_stacks_B=3328
+heap_tree=empty
+#-----------
+snapshot=62
+#-----------
+time=8500858704
+mem_heap_B=21645820
+mem_heap_extra_B=2531380
+mem_stacks_B=4224
+heap_tree=empty
+#-----------
+snapshot=63
+#-----------
+time=8604185096
+mem_heap_B=21645784
+mem_heap_extra_B=2531344
+mem_stacks_B=3472
+heap_tree=empty
+#-----------
+snapshot=64
+#-----------
+time=8707511480
+mem_heap_B=21645760
+mem_heap_extra_B=2531320
+mem_stacks_B=2864
+heap_tree=empty
+#-----------
+snapshot=65
+#-----------
+time=8810837936
+mem_heap_B=21203784
+mem_heap_extra_B=2498232
+mem_stacks_B=2560
+heap_tree=empty
+#-----------
+snapshot=66
+#-----------
+time=8914164360
+mem_heap_B=6748904
+mem_heap_extra_B=1563840
+mem_stacks_B=2784
+heap_tree=empty

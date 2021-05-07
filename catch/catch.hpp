@@ -148,7 +148,7 @@ namespace Catch {
 #    define CATCH_INTERNAL_STOP_WARNINGS_SUPPRESSION  _Pragma( "clang diagnostic pop" )
 
 // As of this writing, IBM XL's implementation of __builtin_constant_p has a bug
-// which results in calls to destructors being emitted for each temporary,
+// which execution_results in calls to destructors being emitted for each temporary,
 // without a matching initialization. In practice, this can result in something
 // like `std::string::~string` being called on an uninitialized value.
 //
@@ -722,7 +722,7 @@ constexpr auto operator "" _catch_sr( char const* rawChars, std::size_t size ) n
 #define CATCH_REC_LIST1_UD(f, userdata, x, peek, ...) , f(userdata, x) CATCH_DEFER ( CATCH_REC_NEXT(peek, CATCH_REC_LIST0_UD) ) ( f, userdata, peek, __VA_ARGS__ )
 #define CATCH_REC_LIST2_UD(f, userdata, x, peek, ...)   f(userdata, x) CATCH_DEFER ( CATCH_REC_NEXT(peek, CATCH_REC_LIST1_UD) ) ( f, userdata, peek, __VA_ARGS__ )
 
-// Applies the function macro `f` to each of the remaining parameters, inserts commas between the results,
+// Applies the function macro `f` to each of the remaining parameters, inserts commas between the execution_results,
 // and passes userdata as the first parameter to each invocation,
 // e.g. CATCH_REC_LIST_UD(f, x, a, b, c) evaluates to f(x, a), f(x, b), f(x, c)
 #define CATCH_REC_LIST_UD(f, userdata, ...) CATCH_RECURSE(CATCH_REC_LIST2_UD(f, userdata, __VA_ARGS__, ()()(), ()()(), ()()(), 0))
@@ -7001,15 +7001,15 @@ namespace Catch {
             sample jackknife(Estimator&& estimator, Iterator first, Iterator last) {
                 auto n = last - first;
                 auto second = std::next(first);
-                sample results;
-                results.reserve(n);
+                sample execution_results;
+                execution_results.reserve(n);
 
                 for (auto it = first; it != last; ++it) {
                     std::iter_swap(it, first);
-                    results.push_back(estimator(second, last));
+                    execution_results.push_back(estimator(second, last));
                 }
 
-                return results;
+                return execution_results;
             }
 
             inline double normal_cdf(double x) {
@@ -7174,7 +7174,7 @@ namespace Catch {
 
 // start catch_sample_analysis.hpp
 
-// Benchmark results
+// Benchmark execution_results
 
 
 #include <algorithm>
@@ -15992,7 +15992,7 @@ private:
 } // anon namespace
 
         std::string CompactReporter::getDescription() {
-            return "Reports test results on a single line, suitable for IDEs";
+            return "Reports test execution_results on a single line, suitable for IDEs";
         }
 
         void CompactReporter::noMatchingTestCases( std::string const& spec ) {
@@ -16397,7 +16397,7 @@ ConsoleReporter::ConsoleReporter(ReporterConfig const& config)
 ConsoleReporter::~ConsoleReporter() = default;
 
 std::string ConsoleReporter::getDescription() {
-    return "Reports test results as plain lines of text";
+    return "Reports test execution_results as plain lines of text";
 }
 
 void ConsoleReporter::noMatchingTestCases(std::string const& spec) {
@@ -16780,7 +16780,7 @@ namespace Catch {
     JunitReporter::~JunitReporter() {}
 
     std::string JunitReporter::getDescription() {
-        return "Reports test results in an XML format that looks like Ant's junitreport target";
+        return "Reports test execution_results in an XML format that looks like Ant's junitreport target";
     }
 
     void JunitReporter::noMatchingTestCases( std::string const& /*spec*/ ) {}
@@ -17167,7 +17167,7 @@ namespace Catch {
     XmlReporter::~XmlReporter() = default;
 
     std::string XmlReporter::getDescription() {
-        return "Reports test results as an XML document";
+        return "Reports test execution_results as an XML document";
     }
 
     std::string XmlReporter::getStylesheetRef() const {

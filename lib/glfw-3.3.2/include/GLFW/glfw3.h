@@ -2922,7 +2922,7 @@ GLFWAPI void glfwGetWindowSize(GLFWwindow* window, int* width, int* height);
  *  GLFW_INVALID_VALUE and @ref GLFW_PLATFORM_ERROR.
  *
  *  @remark If you set size limits and an aspect ratio that conflict, the
- *  results are undefined.
+ *  execution_results are undefined.
  *
  *  @remark @wayland The size limits will not be applied until the window is
  *  actually resized, either by the user or by the compositor.
@@ -2965,7 +2965,7 @@ GLFWAPI void glfwSetWindowSizeLimits(GLFWwindow* window, int minwidth, int minhe
  *  GLFW_INVALID_VALUE and @ref GLFW_PLATFORM_ERROR.
  *
  *  @remark If you set size limits and an aspect ratio that conflict, the
- *  results are undefined.
+ *  execution_results are undefined.
  *
  *  @remark @wayland The aspect ratio will not be applied until the window is
  *  actually resized, either by the user or by the compositor.
@@ -3158,7 +3158,7 @@ GLFWAPI float glfwGetWindowOpacity(GLFWwindow* window);
  *  The initial opacity value for newly created windows is one.
  *
  *  A window created with framebuffer transparency may not use whole window
- *  transparency.  The results of doing this are undefined.
+ *  transparency.  The execution_results of doing this are undefined.
  *
  *  @param[in] window The window to set the opacity for.
  *  @param[in] opacity The desired opacity of the specified window.
@@ -5551,7 +5551,7 @@ GLFWAPI void glfwSwapInterval(int interval);
  *  without a current context will cause a @ref GLFW_NO_CURRENT_CONTEXT error.
  *
  *  As this functions retrieves and searches one or more extension strings each
- *  call, it is recommended that you cache its results if it is going to be used
+ *  call, it is recommended that you cache its execution_results if it is going to be used
  *  frequently.  The extension strings will not change during the lifetime of
  *  a context, so there is no danger in doing this.
  *

@@ -1,0 +1,1369 @@
+desc: --time-unit=B --stacks=yes --massif-out-file=massif.out.1_300
+cmd: ./build/simulation/environment/simulation 10 300 300 300 300 300 300 0 1 0 1 0 1
+time_unit: B
+#-----------
+snapshot=0
+#-----------
+time=0
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=1
+#-----------
+time=792573184
+mem_heap_B=10033024
+mem_heap_extra_B=2213120
+mem_stacks_B=2848
+heap_tree=empty
+#-----------
+snapshot=2
+#-----------
+time=1213278952
+mem_heap_B=28002528
+mem_heap_extra_B=5506600
+mem_stacks_B=3296
+heap_tree=empty
+#-----------
+snapshot=3
+#-----------
+time=1813359432
+mem_heap_B=20732180
+mem_heap_extra_B=5572244
+mem_stacks_B=2928
+heap_tree=empty
+#-----------
+snapshot=4
+#-----------
+time=2275524352
+mem_heap_B=56971812
+mem_heap_extra_B=12455788
+mem_stacks_B=3504
+heap_tree=detailed
+n3: 56971812 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 44040192 0x125B0B: __gnu_cxx::new_allocator<blocks::Contact>::allocate(unsigned long, void const*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n1: 44040192 0x12598F: std::allocator_traits<std::allocator<blocks::Contact> >::allocate(std::allocator<blocks::Contact>&, unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 44040192 0x125857: std::_Vector_base<blocks::Contact, std::allocator<blocks::Contact> >::_M_allocate(unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 44040192 0x125387: void std::vector<blocks::Contact, std::allocator<blocks::Contact> >::_M_realloc_insert<blocks::Contact const&>(__gnu_cxx::__normal_iterator<blocks::Contact*, std::vector<blocks::Contact, std::allocator<blocks::Contact> > >, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 44040192 0x125253: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 44040192 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 44040192 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 44040192 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+         n1: 44040192 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n0: 44040192 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+ n3: 12271524 0x1299EB: numerics::Matrix::Matrix(numerics::Matrix const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n2: 6135756 0x125643: blocks::Contact::Contact(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 4562880 0x125C77: void std::_Construct<blocks::Contact, blocks::Contact const&>(blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 4562880 0x125BC3: blocks::Contact* std::__uninitialized_copy<false>::__uninit_copy<blocks::Contact const*, blocks::Contact*>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 4562880 0x125B3F: blocks::Contact* std::uninitialized_copy<blocks::Contact const*, blocks::Contact*>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 4562880 0x1259F7: blocks::Contact* std::__uninitialized_copy_a<blocks::Contact const*, blocks::Contact*, blocks::Contact>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*, std::allocator<blocks::Contact>&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 4562880 0x1258DF: blocks::Contact* std::__uninitialized_move_if_noexcept_a<blocks::Contact*, blocks::Contact*, std::allocator<blocks::Contact> >(blocks::Contact*, blocks::Contact*, blocks::Contact*, std::allocator<blocks::Contact>&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 4562880 0x125473: void std::vector<blocks::Contact, std::allocator<blocks::Contact> >::_M_realloc_insert<blocks::Contact const&>(__gnu_cxx::__normal_iterator<blocks::Contact*, std::vector<blocks::Contact, std::allocator<blocks::Contact> > >, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n1: 4562880 0x125253: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n1: 4562880 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+           n1: 4562880 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+            n1: 4562880 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+             n1: 4562880 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+              n0: 4562880 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 1572876 0x1256FB: void __gnu_cxx::new_allocator<blocks::Contact>::construct<blocks::Contact, blocks::Contact const&>(blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n2: 1572876 0x12528B: void std::allocator_traits<std::allocator<blocks::Contact> >::construct<blocks::Contact, blocks::Contact const&>(std::allocator<blocks::Contact>&, blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 1572852 0x125223: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 1572852 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 1572852 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 1572852 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+         n1: 1572852 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n0: 1572852 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n0: 24 in 1 place, below massif's threshold (1.00%)
+  n2: 6135744 0x12566F: blocks::Contact::Contact(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 4562868 0x125C77: void std::_Construct<blocks::Contact, blocks::Contact const&>(blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 4562868 0x125BC3: blocks::Contact* std::__uninitialized_copy<false>::__uninit_copy<blocks::Contact const*, blocks::Contact*>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 4562868 0x125B3F: blocks::Contact* std::uninitialized_copy<blocks::Contact const*, blocks::Contact*>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 4562868 0x1259F7: blocks::Contact* std::__uninitialized_copy_a<blocks::Contact const*, blocks::Contact*, blocks::Contact>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*, std::allocator<blocks::Contact>&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 4562868 0x1258DF: blocks::Contact* std::__uninitialized_move_if_noexcept_a<blocks::Contact*, blocks::Contact*, std::allocator<blocks::Contact> >(blocks::Contact*, blocks::Contact*, blocks::Contact*, std::allocator<blocks::Contact>&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 4562868 0x125473: void std::vector<blocks::Contact, std::allocator<blocks::Contact> >::_M_realloc_insert<blocks::Contact const&>(__gnu_cxx::__normal_iterator<blocks::Contact*, std::vector<blocks::Contact, std::allocator<blocks::Contact> > >, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n1: 4562868 0x125253: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n1: 4562868 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+           n1: 4562868 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+            n1: 4562868 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+             n1: 4562868 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+              n0: 4562868 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 1572876 0x1256FB: void __gnu_cxx::new_allocator<blocks::Contact>::construct<blocks::Contact, blocks::Contact const&>(blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n2: 1572876 0x12528B: void std::allocator_traits<std::allocator<blocks::Contact> >::construct<blocks::Contact, blocks::Contact const&>(std::allocator<blocks::Contact>&, blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 1572852 0x125223: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 1572852 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 1572852 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 1572852 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+         n1: 1572852 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n0: 1572852 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n0: 24 in 1 place, below massif's threshold (1.00%)
+  n0: 24 in 4 places, all below massif's threshold (1.00%)
+ n0: 660096 in 29 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=5
+#-----------
+time=3023990352
+mem_heap_B=38630128
+mem_heap_extra_B=8790128
+mem_stacks_B=2928
+heap_tree=empty
+#-----------
+snapshot=6
+#-----------
+time=3496312160
+mem_heap_B=40619704
+mem_heap_extra_B=10779704
+mem_stacks_B=2960
+heap_tree=empty
+#-----------
+snapshot=7
+#-----------
+time=4110847888
+mem_heap_B=103639620
+mem_heap_extra_B=15083404
+mem_stacks_B=3504
+heap_tree=detailed
+n3: 103639620 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 88080384 0x125B0B: __gnu_cxx::new_allocator<blocks::Contact>::allocate(unsigned long, void const*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n1: 88080384 0x12598F: std::allocator_traits<std::allocator<blocks::Contact> >::allocate(std::allocator<blocks::Contact>&, unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 88080384 0x125857: std::_Vector_base<blocks::Contact, std::allocator<blocks::Contact> >::_M_allocate(unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 88080384 0x125387: void std::vector<blocks::Contact, std::allocator<blocks::Contact> >::_M_realloc_insert<blocks::Contact const&>(__gnu_cxx::__normal_iterator<blocks::Contact*, std::vector<blocks::Contact, std::allocator<blocks::Contact> > >, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 88080384 0x125253: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 88080384 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 88080384 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 88080384 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+         n1: 88080384 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n0: 88080384 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+ n3: 14899140 0x1299EB: numerics::Matrix::Matrix(numerics::Matrix const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n2: 7449564 0x125643: blocks::Contact::Contact(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 4303824 0x125C77: void std::_Construct<blocks::Contact, blocks::Contact const&>(blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 4303824 0x125BC3: blocks::Contact* std::__uninitialized_copy<false>::__uninit_copy<blocks::Contact const*, blocks::Contact*>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 4303824 0x125B3F: blocks::Contact* std::uninitialized_copy<blocks::Contact const*, blocks::Contact*>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 4303824 0x1259F7: blocks::Contact* std::__uninitialized_copy_a<blocks::Contact const*, blocks::Contact*, blocks::Contact>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*, std::allocator<blocks::Contact>&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 4303824 0x1258DF: blocks::Contact* std::__uninitialized_move_if_noexcept_a<blocks::Contact*, blocks::Contact*, std::allocator<blocks::Contact> >(blocks::Contact*, blocks::Contact*, blocks::Contact*, std::allocator<blocks::Contact>&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 4303824 0x125473: void std::vector<blocks::Contact, std::allocator<blocks::Contact> >::_M_realloc_insert<blocks::Contact const&>(__gnu_cxx::__normal_iterator<blocks::Contact*, std::vector<blocks::Contact, std::allocator<blocks::Contact> > >, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n1: 4303824 0x125253: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n1: 4303824 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+           n1: 4303824 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+            n1: 4303824 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+             n1: 4303824 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+              n0: 4303824 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 3145740 0x1256FB: void __gnu_cxx::new_allocator<blocks::Contact>::construct<blocks::Contact, blocks::Contact const&>(blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n2: 3145740 0x12528B: void std::allocator_traits<std::allocator<blocks::Contact> >::construct<blocks::Contact, blocks::Contact const&>(std::allocator<blocks::Contact>&, blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 3145716 0x125223: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 3145716 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 3145716 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 3145716 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+         n1: 3145716 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n0: 3145716 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n0: 24 in 1 place, below massif's threshold (1.00%)
+  n2: 7449552 0x12566F: blocks::Contact::Contact(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 4303812 0x125C77: void std::_Construct<blocks::Contact, blocks::Contact const&>(blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 4303812 0x125BC3: blocks::Contact* std::__uninitialized_copy<false>::__uninit_copy<blocks::Contact const*, blocks::Contact*>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 4303812 0x125B3F: blocks::Contact* std::uninitialized_copy<blocks::Contact const*, blocks::Contact*>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 4303812 0x1259F7: blocks::Contact* std::__uninitialized_copy_a<blocks::Contact const*, blocks::Contact*, blocks::Contact>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*, std::allocator<blocks::Contact>&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 4303812 0x1258DF: blocks::Contact* std::__uninitialized_move_if_noexcept_a<blocks::Contact*, blocks::Contact*, std::allocator<blocks::Contact> >(blocks::Contact*, blocks::Contact*, blocks::Contact*, std::allocator<blocks::Contact>&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 4303812 0x125473: void std::vector<blocks::Contact, std::allocator<blocks::Contact> >::_M_realloc_insert<blocks::Contact const&>(__gnu_cxx::__normal_iterator<blocks::Contact*, std::vector<blocks::Contact, std::allocator<blocks::Contact> > >, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n1: 4303812 0x125253: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n1: 4303812 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+           n1: 4303812 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+            n1: 4303812 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+             n1: 4303812 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+              n0: 4303812 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 3145740 0x1256FB: void __gnu_cxx::new_allocator<blocks::Contact>::construct<blocks::Contact, blocks::Contact const&>(blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n2: 3145740 0x12528B: void std::allocator_traits<std::allocator<blocks::Contact> >::construct<blocks::Contact, blocks::Contact const&>(std::allocator<blocks::Contact>&, blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 3145716 0x125223: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 3145716 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 3145716 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 3145716 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+         n1: 3145716 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n0: 3145716 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n0: 24 in 1 place, below massif's threshold (1.00%)
+  n0: 24 in 4 places, all below massif's threshold (1.00%)
+ n0: 660096 in 29 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=8
+#-----------
+time=4752419000
+mem_heap_B=104206728
+mem_heap_extra_B=15650448
+mem_stacks_B=3184
+heap_tree=empty
+#-----------
+snapshot=9
+#-----------
+time=5146378360
+mem_heap_B=73167068
+mem_heap_extra_B=13966940
+mem_stacks_B=2880
+heap_tree=empty
+#-----------
+snapshot=10
+#-----------
+time=5718744656
+mem_heap_B=75577928
+mem_heap_extra_B=16377800
+mem_stacks_B=2928
+heap_tree=empty
+#-----------
+snapshot=11
+#-----------
+time=6163918352
+mem_heap_B=77453024
+mem_heap_extra_B=18252896
+mem_stacks_B=2976
+heap_tree=detailed
+n3: 77453024 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 58720256 0x125B0B: __gnu_cxx::new_allocator<blocks::Contact>::allocate(unsigned long, void const*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n1: 58720256 0x12598F: std::allocator_traits<std::allocator<blocks::Contact> >::allocate(std::allocator<blocks::Contact>&, unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 58720256 0x125857: std::_Vector_base<blocks::Contact, std::allocator<blocks::Contact> >::_M_allocate(unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 58720256 0x125387: void std::vector<blocks::Contact, std::allocator<blocks::Contact> >::_M_realloc_insert<blocks::Contact const&>(__gnu_cxx::__normal_iterator<blocks::Contact*, std::vector<blocks::Contact, std::allocator<blocks::Contact> > >, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 58720256 0x125253: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 58720256 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 58720256 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 58720256 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+         n1: 58720256 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n0: 58720256 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+ n3: 18072696 0x1299EB: numerics::Matrix::Matrix(numerics::Matrix const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n2: 9036348 0x125643: blocks::Contact::Contact(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 6291456 0x125C77: void std::_Construct<blocks::Contact, blocks::Contact const&>(blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 6291456 0x125BC3: blocks::Contact* std::__uninitialized_copy<false>::__uninit_copy<blocks::Contact const*, blocks::Contact*>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 6291456 0x125B3F: blocks::Contact* std::uninitialized_copy<blocks::Contact const*, blocks::Contact*>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 6291456 0x1259F7: blocks::Contact* std::__uninitialized_copy_a<blocks::Contact const*, blocks::Contact*, blocks::Contact>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*, std::allocator<blocks::Contact>&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 6291456 0x1258DF: blocks::Contact* std::__uninitialized_move_if_noexcept_a<blocks::Contact*, blocks::Contact*, std::allocator<blocks::Contact> >(blocks::Contact*, blocks::Contact*, blocks::Contact*, std::allocator<blocks::Contact>&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 6291456 0x125473: void std::vector<blocks::Contact, std::allocator<blocks::Contact> >::_M_realloc_insert<blocks::Contact const&>(__gnu_cxx::__normal_iterator<blocks::Contact*, std::vector<blocks::Contact, std::allocator<blocks::Contact> > >, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n1: 6291456 0x125253: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n1: 6291456 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+           n1: 6291456 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+            n1: 6291456 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+             n1: 6291456 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+              n0: 6291456 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 2744892 0x1256FB: void __gnu_cxx::new_allocator<blocks::Contact>::construct<blocks::Contact, blocks::Contact const&>(blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n2: 2744892 0x12528B: void std::allocator_traits<std::allocator<blocks::Contact> >::construct<blocks::Contact, blocks::Contact const&>(std::allocator<blocks::Contact>&, blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 2744880 0x125223: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 2744880 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 2744880 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 2744880 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+         n1: 2744880 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n0: 2744880 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n0: 12 in 1 place, below massif's threshold (1.00%)
+  n2: 9036348 0x12566F: blocks::Contact::Contact(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 6291456 0x125C77: void std::_Construct<blocks::Contact, blocks::Contact const&>(blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 6291456 0x125BC3: blocks::Contact* std::__uninitialized_copy<false>::__uninit_copy<blocks::Contact const*, blocks::Contact*>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 6291456 0x125B3F: blocks::Contact* std::uninitialized_copy<blocks::Contact const*, blocks::Contact*>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 6291456 0x1259F7: blocks::Contact* std::__uninitialized_copy_a<blocks::Contact const*, blocks::Contact*, blocks::Contact>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*, std::allocator<blocks::Contact>&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 6291456 0x1258DF: blocks::Contact* std::__uninitialized_move_if_noexcept_a<blocks::Contact*, blocks::Contact*, std::allocator<blocks::Contact> >(blocks::Contact*, blocks::Contact*, blocks::Contact*, std::allocator<blocks::Contact>&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 6291456 0x125473: void std::vector<blocks::Contact, std::allocator<blocks::Contact> >::_M_realloc_insert<blocks::Contact const&>(__gnu_cxx::__normal_iterator<blocks::Contact*, std::vector<blocks::Contact, std::allocator<blocks::Contact> > >, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n1: 6291456 0x125253: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n1: 6291456 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+           n1: 6291456 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+            n1: 6291456 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+             n1: 6291456 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+              n0: 6291456 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 2744892 0x1256FB: void __gnu_cxx::new_allocator<blocks::Contact>::construct<blocks::Contact, blocks::Contact const&>(blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n2: 2744892 0x12528B: void std::allocator_traits<std::allocator<blocks::Contact> >::construct<blocks::Contact, blocks::Contact const&>(std::allocator<blocks::Contact>&, blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 2744880 0x125223: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 2744880 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 2744880 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 2744880 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+         n1: 2744880 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n0: 2744880 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n0: 12 in 1 place, below massif's threshold (1.00%)
+  n0: 0 in 4 places, all below massif's threshold (1.00%)
+ n0: 660072 in 29 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=12
+#-----------
+time=7054265792
+mem_heap_B=81203288
+mem_heap_extra_B=22003160
+mem_stacks_B=2928
+heap_tree=empty
+#-----------
+snapshot=13
+#-----------
+time=7563035792
+mem_heap_B=83346080
+mem_heap_extra_B=24145952
+mem_stacks_B=2960
+heap_tree=empty
+#-----------
+snapshot=14
+#-----------
+time=8355892792
+mem_heap_B=212635824
+mem_heap_extra_B=35999224
+mem_stacks_B=3504
+heap_tree=detailed
+n3: 212635824 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 176160768 0x125B0B: __gnu_cxx::new_allocator<blocks::Contact>::allocate(unsigned long, void const*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n1: 176160768 0x12598F: std::allocator_traits<std::allocator<blocks::Contact> >::allocate(std::allocator<blocks::Contact>&, unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 176160768 0x125857: std::_Vector_base<blocks::Contact, std::allocator<blocks::Contact> >::_M_allocate(unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 176160768 0x125387: void std::vector<blocks::Contact, std::allocator<blocks::Contact> >::_M_realloc_insert<blocks::Contact const&>(__gnu_cxx::__normal_iterator<blocks::Contact*, std::vector<blocks::Contact, std::allocator<blocks::Contact> > >, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 176160768 0x125253: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 176160768 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 176160768 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 176160768 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+         n1: 176160768 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n0: 176160768 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+ n3: 35814960 0x1299EB: numerics::Matrix::Matrix(numerics::Matrix const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n2: 17907468 0x125643: blocks::Contact::Contact(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 11616000 0x125C77: void std::_Construct<blocks::Contact, blocks::Contact const&>(blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 11616000 0x125BC3: blocks::Contact* std::__uninitialized_copy<false>::__uninit_copy<blocks::Contact const*, blocks::Contact*>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 11616000 0x125B3F: blocks::Contact* std::uninitialized_copy<blocks::Contact const*, blocks::Contact*>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 11616000 0x1259F7: blocks::Contact* std::__uninitialized_copy_a<blocks::Contact const*, blocks::Contact*, blocks::Contact>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*, std::allocator<blocks::Contact>&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 11616000 0x1258DF: blocks::Contact* std::__uninitialized_move_if_noexcept_a<blocks::Contact*, blocks::Contact*, std::allocator<blocks::Contact> >(blocks::Contact*, blocks::Contact*, blocks::Contact*, std::allocator<blocks::Contact>&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 11616000 0x125473: void std::vector<blocks::Contact, std::allocator<blocks::Contact> >::_M_realloc_insert<blocks::Contact const&>(__gnu_cxx::__normal_iterator<blocks::Contact*, std::vector<blocks::Contact, std::allocator<blocks::Contact> > >, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n1: 11616000 0x125253: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n1: 11616000 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+           n1: 11616000 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+            n1: 11616000 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+             n1: 11616000 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+              n0: 11616000 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 6291468 0x1256FB: void __gnu_cxx::new_allocator<blocks::Contact>::construct<blocks::Contact, blocks::Contact const&>(blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n2: 6291468 0x12528B: void std::allocator_traits<std::allocator<blocks::Contact> >::construct<blocks::Contact, blocks::Contact const&>(std::allocator<blocks::Contact>&, blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 6291444 0x125223: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 6291444 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 6291444 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 6291444 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+         n1: 6291444 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n0: 6291444 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n0: 24 in 1 place, below massif's threshold (1.00%)
+  n2: 17907468 0x12566F: blocks::Contact::Contact(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 11616000 0x125C77: void std::_Construct<blocks::Contact, blocks::Contact const&>(blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 11616000 0x125BC3: blocks::Contact* std::__uninitialized_copy<false>::__uninit_copy<blocks::Contact const*, blocks::Contact*>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 11616000 0x125B3F: blocks::Contact* std::uninitialized_copy<blocks::Contact const*, blocks::Contact*>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 11616000 0x1259F7: blocks::Contact* std::__uninitialized_copy_a<blocks::Contact const*, blocks::Contact*, blocks::Contact>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*, std::allocator<blocks::Contact>&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 11616000 0x1258DF: blocks::Contact* std::__uninitialized_move_if_noexcept_a<blocks::Contact*, blocks::Contact*, std::allocator<blocks::Contact> >(blocks::Contact*, blocks::Contact*, blocks::Contact*, std::allocator<blocks::Contact>&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 11616000 0x125473: void std::vector<blocks::Contact, std::allocator<blocks::Contact> >::_M_realloc_insert<blocks::Contact const&>(__gnu_cxx::__normal_iterator<blocks::Contact*, std::vector<blocks::Contact, std::allocator<blocks::Contact> > >, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n1: 11616000 0x125253: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n1: 11616000 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+           n1: 11616000 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+            n1: 11616000 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+             n1: 11616000 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+              n0: 11616000 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 6291468 0x1256FB: void __gnu_cxx::new_allocator<blocks::Contact>::construct<blocks::Contact, blocks::Contact const&>(blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n2: 6291468 0x12528B: void std::allocator_traits<std::allocator<blocks::Contact> >::construct<blocks::Contact, blocks::Contact const&>(std::allocator<blocks::Contact>&, blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 6291444 0x125223: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 6291444 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 6291444 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 6291444 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+         n1: 6291444 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n0: 6291444 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n0: 24 in 1 place, below massif's threshold (1.00%)
+  n0: 24 in 4 places, all below massif's threshold (1.00%)
+ n0: 660096 in 29 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=15
+#-----------
+time=8883155072
+mem_heap_B=227015700
+mem_heap_extra_B=50379100
+mem_stacks_B=3504
+heap_tree=peak
+n3: 227015700 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 176160768 0x125B0B: __gnu_cxx::new_allocator<blocks::Contact>::allocate(unsigned long, void const*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n1: 176160768 0x12598F: std::allocator_traits<std::allocator<blocks::Contact> >::allocate(std::allocator<blocks::Contact>&, unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 176160768 0x125857: std::_Vector_base<blocks::Contact, std::allocator<blocks::Contact> >::_M_allocate(unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 176160768 0x125387: void std::vector<blocks::Contact, std::allocator<blocks::Contact> >::_M_realloc_insert<blocks::Contact const&>(__gnu_cxx::__normal_iterator<blocks::Contact*, std::vector<blocks::Contact, std::allocator<blocks::Contact> > >, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 176160768 0x125253: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 176160768 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 176160768 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 176160768 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+         n1: 176160768 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n0: 176160768 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+ n3: 50194836 0x1299EB: numerics::Matrix::Matrix(numerics::Matrix const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n2: 25097412 0x125643: blocks::Contact::Contact(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 18805944 0x125C77: void std::_Construct<blocks::Contact, blocks::Contact const&>(blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 18805944 0x125BC3: blocks::Contact* std::__uninitialized_copy<false>::__uninit_copy<blocks::Contact const*, blocks::Contact*>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 18805944 0x125B3F: blocks::Contact* std::uninitialized_copy<blocks::Contact const*, blocks::Contact*>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 18805944 0x1259F7: blocks::Contact* std::__uninitialized_copy_a<blocks::Contact const*, blocks::Contact*, blocks::Contact>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*, std::allocator<blocks::Contact>&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 18805944 0x1258DF: blocks::Contact* std::__uninitialized_move_if_noexcept_a<blocks::Contact*, blocks::Contact*, std::allocator<blocks::Contact> >(blocks::Contact*, blocks::Contact*, blocks::Contact*, std::allocator<blocks::Contact>&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 18805944 0x125473: void std::vector<blocks::Contact, std::allocator<blocks::Contact> >::_M_realloc_insert<blocks::Contact const&>(__gnu_cxx::__normal_iterator<blocks::Contact*, std::vector<blocks::Contact, std::allocator<blocks::Contact> > >, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n1: 18805944 0x125253: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n1: 18805944 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+           n1: 18805944 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+            n1: 18805944 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+             n1: 18805944 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+              n0: 18805944 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 6291468 0x1256FB: void __gnu_cxx::new_allocator<blocks::Contact>::construct<blocks::Contact, blocks::Contact const&>(blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n2: 6291468 0x12528B: void std::allocator_traits<std::allocator<blocks::Contact> >::construct<blocks::Contact, blocks::Contact const&>(std::allocator<blocks::Contact>&, blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 6291444 0x125223: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 6291444 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 6291444 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 6291444 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+         n1: 6291444 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n0: 6291444 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n0: 24 in 1 place, below massif's threshold (1.00%)
+  n2: 25097400 0x12566F: blocks::Contact::Contact(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 18805932 0x125C77: void std::_Construct<blocks::Contact, blocks::Contact const&>(blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 18805932 0x125BC3: blocks::Contact* std::__uninitialized_copy<false>::__uninit_copy<blocks::Contact const*, blocks::Contact*>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 18805932 0x125B3F: blocks::Contact* std::uninitialized_copy<blocks::Contact const*, blocks::Contact*>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 18805932 0x1259F7: blocks::Contact* std::__uninitialized_copy_a<blocks::Contact const*, blocks::Contact*, blocks::Contact>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*, std::allocator<blocks::Contact>&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 18805932 0x1258DF: blocks::Contact* std::__uninitialized_move_if_noexcept_a<blocks::Contact*, blocks::Contact*, std::allocator<blocks::Contact> >(blocks::Contact*, blocks::Contact*, blocks::Contact*, std::allocator<blocks::Contact>&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 18805932 0x125473: void std::vector<blocks::Contact, std::allocator<blocks::Contact> >::_M_realloc_insert<blocks::Contact const&>(__gnu_cxx::__normal_iterator<blocks::Contact*, std::vector<blocks::Contact, std::allocator<blocks::Contact> > >, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n1: 18805932 0x125253: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n1: 18805932 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+           n1: 18805932 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+            n1: 18805932 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+             n1: 18805932 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+              n0: 18805932 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 6291468 0x1256FB: void __gnu_cxx::new_allocator<blocks::Contact>::construct<blocks::Contact, blocks::Contact const&>(blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n2: 6291468 0x12528B: void std::allocator_traits<std::allocator<blocks::Contact> >::construct<blocks::Contact, blocks::Contact const&>(std::allocator<blocks::Contact>&, blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 6291444 0x125223: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 6291444 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 6291444 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 6291444 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+         n1: 6291444 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n0: 6291444 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n0: 24 in 1 place, below massif's threshold (1.00%)
+  n0: 24 in 4 places, all below massif's threshold (1.00%)
+ n0: 660096 in 29 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=16
+#-----------
+time=9452991896
+mem_heap_B=206488512
+mem_heap_extra_B=29851848
+mem_stacks_B=3120
+heap_tree=empty
+#-----------
+snapshot=17
+#-----------
+time=10136796264
+mem_heap_B=145380820
+mem_heap_extra_B=27460436
+mem_stacks_B=2912
+heap_tree=empty
+#-----------
+snapshot=18
+#-----------
+time=10934568000
+mem_heap_B=148740424
+mem_heap_extra_B=30820040
+mem_stacks_B=2960
+heap_tree=empty
+#-----------
+snapshot=19
+#-----------
+time=11276470176
+mem_heap_B=150180184
+mem_heap_extra_B=32259800
+mem_stacks_B=2848
+heap_tree=empty
+#-----------
+snapshot=20
+#-----------
+time=11846307096
+mem_heap_B=152579644
+mem_heap_extra_B=34659260
+mem_stacks_B=2896
+heap_tree=empty
+#-----------
+snapshot=21
+#-----------
+time=12688023512
+mem_heap_B=156122452
+mem_heap_extra_B=38202068
+mem_stacks_B=3024
+heap_tree=empty
+#-----------
+snapshot=22
+#-----------
+time=13367722016
+mem_heap_B=156820480
+mem_heap_extra_B=38959744
+mem_stacks_B=2928
+heap_tree=empty
+#-----------
+snapshot=23
+#-----------
+time=14047420568
+mem_heap_B=156820516
+mem_heap_extra_B=38959780
+mem_stacks_B=2800
+heap_tree=empty
+#-----------
+snapshot=24
+#-----------
+time=14591179512
+mem_heap_B=156820492
+mem_heap_extra_B=38959756
+mem_stacks_B=2832
+heap_tree=empty
+#-----------
+snapshot=25
+#-----------
+time=15406818008
+mem_heap_B=156820516
+mem_heap_extra_B=38959780
+mem_stacks_B=2896
+heap_tree=empty
+#-----------
+snapshot=26
+#-----------
+time=15950576848
+mem_heap_B=156820504
+mem_heap_extra_B=38959768
+mem_stacks_B=2960
+heap_tree=empty
+#-----------
+snapshot=27
+#-----------
+time=16630275400
+mem_heap_B=156820492
+mem_heap_extra_B=38959740
+mem_stacks_B=2720
+heap_tree=empty
+#-----------
+snapshot=28
+#-----------
+time=17309974072
+mem_heap_B=156820492
+mem_heap_extra_B=38959740
+mem_stacks_B=2832
+heap_tree=empty
+#-----------
+snapshot=29
+#-----------
+time=17989672592
+mem_heap_B=156820504
+mem_heap_extra_B=38959768
+mem_stacks_B=2688
+heap_tree=empty
+#-----------
+snapshot=30
+#-----------
+time=18533431432
+mem_heap_B=156820516
+mem_heap_extra_B=38959780
+mem_stacks_B=2816
+heap_tree=empty
+#-----------
+snapshot=31
+#-----------
+time=18941250576
+mem_heap_B=156820504
+mem_heap_extra_B=38959768
+mem_stacks_B=2752
+heap_tree=empty
+#-----------
+snapshot=32
+#-----------
+time=19433319512
+mem_heap_B=156820516
+mem_heap_extra_B=38959780
+mem_stacks_B=2832
+heap_tree=empty
+#-----------
+snapshot=33
+#-----------
+time=20314077624
+mem_heap_B=156820516
+mem_heap_extra_B=38959780
+mem_stacks_B=2704
+heap_tree=empty
+#-----------
+snapshot=34
+#-----------
+time=20974646224
+mem_heap_B=156820504
+mem_heap_extra_B=38959768
+mem_stacks_B=2672
+heap_tree=empty
+#-----------
+snapshot=35
+#-----------
+time=21415025296
+mem_heap_B=145075504
+mem_heap_extra_B=27173168
+mem_stacks_B=2480
+heap_tree=empty
+#-----------
+snapshot=36
+#-----------
+time=22075593888
+mem_heap_B=120908368
+mem_heap_extra_B=3005968
+mem_stacks_B=2336
+heap_tree=empty
+#-----------
+snapshot=37
+#-----------
+time=22515973040
+mem_heap_B=3214408
+mem_heap_extra_B=897096
+mem_stacks_B=3024
+heap_tree=empty
+#-----------
+snapshot=38
+#-----------
+time=23396731208
+mem_heap_B=28945416
+mem_heap_extra_B=6451152
+mem_stacks_B=3136
+heap_tree=detailed
+n3: 28945416 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 22020096 0x125B0B: __gnu_cxx::new_allocator<blocks::Contact>::allocate(unsigned long, void const*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n1: 22020096 0x12598F: std::allocator_traits<std::allocator<blocks::Contact> >::allocate(std::allocator<blocks::Contact>&, unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 22020096 0x125857: std::_Vector_base<blocks::Contact, std::allocator<blocks::Contact> >::_M_allocate(unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 22020096 0x125387: void std::vector<blocks::Contact, std::allocator<blocks::Contact> >::_M_realloc_insert<blocks::Contact const&>(__gnu_cxx::__normal_iterator<blocks::Contact*, std::vector<blocks::Contact, std::allocator<blocks::Contact> > >, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 22020096 0x125253: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 22020096 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 22020096 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 22020096 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+         n1: 22020096 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n0: 22020096 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+ n3: 6265224 0x1299EB: numerics::Matrix::Matrix(numerics::Matrix const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n2: 3132600 0x125643: blocks::Contact::Contact(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 2346156 0x125C77: void std::_Construct<blocks::Contact, blocks::Contact const&>(blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 2346156 0x125BC3: blocks::Contact* std::__uninitialized_copy<false>::__uninit_copy<blocks::Contact const*, blocks::Contact*>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 2346156 0x125B3F: blocks::Contact* std::uninitialized_copy<blocks::Contact const*, blocks::Contact*>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 2346156 0x1259F7: blocks::Contact* std::__uninitialized_copy_a<blocks::Contact const*, blocks::Contact*, blocks::Contact>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*, std::allocator<blocks::Contact>&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 2346156 0x1258DF: blocks::Contact* std::__uninitialized_move_if_noexcept_a<blocks::Contact*, blocks::Contact*, std::allocator<blocks::Contact> >(blocks::Contact*, blocks::Contact*, blocks::Contact*, std::allocator<blocks::Contact>&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 2346156 0x125473: void std::vector<blocks::Contact, std::allocator<blocks::Contact> >::_M_realloc_insert<blocks::Contact const&>(__gnu_cxx::__normal_iterator<blocks::Contact*, std::vector<blocks::Contact, std::allocator<blocks::Contact> > >, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n1: 2346156 0x125253: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n1: 2346156 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+           n1: 2346156 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+            n1: 2346156 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+             n1: 2346156 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+              n0: 2346156 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 786444 0x1256FB: void __gnu_cxx::new_allocator<blocks::Contact>::construct<blocks::Contact, blocks::Contact const&>(blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n2: 786444 0x12528B: void std::allocator_traits<std::allocator<blocks::Contact> >::construct<blocks::Contact, blocks::Contact const&>(std::allocator<blocks::Contact>&, blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 786420 0x125223: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 786420 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 786420 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 786420 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+         n1: 786420 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n0: 786420 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n0: 24 in 1 place, below massif's threshold (1.00%)
+  n2: 3132600 0x12566F: blocks::Contact::Contact(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 2346156 0x125C77: void std::_Construct<blocks::Contact, blocks::Contact const&>(blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 2346156 0x125BC3: blocks::Contact* std::__uninitialized_copy<false>::__uninit_copy<blocks::Contact const*, blocks::Contact*>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 2346156 0x125B3F: blocks::Contact* std::uninitialized_copy<blocks::Contact const*, blocks::Contact*>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 2346156 0x1259F7: blocks::Contact* std::__uninitialized_copy_a<blocks::Contact const*, blocks::Contact*, blocks::Contact>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*, std::allocator<blocks::Contact>&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 2346156 0x1258DF: blocks::Contact* std::__uninitialized_move_if_noexcept_a<blocks::Contact*, blocks::Contact*, std::allocator<blocks::Contact> >(blocks::Contact*, blocks::Contact*, blocks::Contact*, std::allocator<blocks::Contact>&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 2346156 0x125473: void std::vector<blocks::Contact, std::allocator<blocks::Contact> >::_M_realloc_insert<blocks::Contact const&>(__gnu_cxx::__normal_iterator<blocks::Contact*, std::vector<blocks::Contact, std::allocator<blocks::Contact> > >, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n1: 2346156 0x125253: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n1: 2346156 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+           n1: 2346156 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+            n1: 2346156 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+             n1: 2346156 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+              n0: 2346156 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 786444 0x1256FB: void __gnu_cxx::new_allocator<blocks::Contact>::construct<blocks::Contact, blocks::Contact const&>(blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n2: 786444 0x12528B: void std::allocator_traits<std::allocator<blocks::Contact> >::construct<blocks::Contact, blocks::Contact const&>(std::allocator<blocks::Contact>&, blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 786420 0x125223: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 786420 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 786420 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 786420 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+         n1: 786420 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n0: 786420 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n0: 24 in 1 place, below massif's threshold (1.00%)
+  n0: 24 in 6 places, all below massif's threshold (1.00%)
+ n0: 660096 in 29 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=39
+#-----------
+time=24057299816
+mem_heap_B=20863508
+mem_heap_extra_B=5705204
+mem_stacks_B=3104
+heap_tree=empty
+#-----------
+snapshot=40
+#-----------
+time=24717868416
+mem_heap_B=36443032
+mem_heap_extra_B=6604664
+mem_stacks_B=2992
+heap_tree=empty
+#-----------
+snapshot=41
+#-----------
+time=25158247488
+mem_heap_B=38277472
+mem_heap_extra_B=8439088
+mem_stacks_B=2976
+heap_tree=empty
+#-----------
+snapshot=42
+#-----------
+time=25818816112
+mem_heap_B=41029144
+mem_heap_extra_B=11190776
+mem_stacks_B=2992
+heap_tree=empty
+#-----------
+snapshot=43
+#-----------
+time=26259195256
+mem_heap_B=101426760
+mem_heap_extra_B=12872176
+mem_stacks_B=3424
+heap_tree=empty
+#-----------
+snapshot=44
+#-----------
+time=27139953376
+mem_heap_B=72170960
+mem_heap_extra_B=12972432
+mem_stacks_B=2848
+heap_tree=empty
+#-----------
+snapshot=45
+#-----------
+time=27800521984
+mem_heap_B=74922560
+mem_heap_extra_B=15724032
+mem_stacks_B=2672
+heap_tree=detailed
+n3: 74922560 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 58720256 0x125B0B: __gnu_cxx::new_allocator<blocks::Contact>::allocate(unsigned long, void const*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n1: 58720256 0x12598F: std::allocator_traits<std::allocator<blocks::Contact> >::allocate(std::allocator<blocks::Contact>&, unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 58720256 0x125857: std::_Vector_base<blocks::Contact, std::allocator<blocks::Contact> >::_M_allocate(unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 58720256 0x125387: void std::vector<blocks::Contact, std::allocator<blocks::Contact> >::_M_realloc_insert<blocks::Contact const&>(__gnu_cxx::__normal_iterator<blocks::Contact*, std::vector<blocks::Contact, std::allocator<blocks::Contact> > >, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 58720256 0x125253: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 58720256 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 58720256 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 58720256 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+         n1: 58720256 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n0: 58720256 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+ n3: 15542232 0x1299EB: numerics::Matrix::Matrix(numerics::Matrix const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n2: 7771116 0x125643: blocks::Contact::Contact(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 6291456 0x125C77: void std::_Construct<blocks::Contact, blocks::Contact const&>(blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 6291456 0x125BC3: blocks::Contact* std::__uninitialized_copy<false>::__uninit_copy<blocks::Contact const*, blocks::Contact*>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 6291456 0x125B3F: blocks::Contact* std::uninitialized_copy<blocks::Contact const*, blocks::Contact*>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 6291456 0x1259F7: blocks::Contact* std::__uninitialized_copy_a<blocks::Contact const*, blocks::Contact*, blocks::Contact>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*, std::allocator<blocks::Contact>&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 6291456 0x1258DF: blocks::Contact* std::__uninitialized_move_if_noexcept_a<blocks::Contact*, blocks::Contact*, std::allocator<blocks::Contact> >(blocks::Contact*, blocks::Contact*, blocks::Contact*, std::allocator<blocks::Contact>&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 6291456 0x125473: void std::vector<blocks::Contact, std::allocator<blocks::Contact> >::_M_realloc_insert<blocks::Contact const&>(__gnu_cxx::__normal_iterator<blocks::Contact*, std::vector<blocks::Contact, std::allocator<blocks::Contact> > >, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n1: 6291456 0x125253: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n1: 6291456 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+           n1: 6291456 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+            n1: 6291456 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+             n1: 6291456 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+              n0: 6291456 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 1479660 0x1256FB: void __gnu_cxx::new_allocator<blocks::Contact>::construct<blocks::Contact, blocks::Contact const&>(blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n2: 1479660 0x12528B: void std::allocator_traits<std::allocator<blocks::Contact> >::construct<blocks::Contact, blocks::Contact const&>(std::allocator<blocks::Contact>&, blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 1479648 0x125223: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 1479648 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 1479648 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 1479648 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+         n1: 1479648 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n0: 1479648 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n0: 12 in 1 place, below massif's threshold (1.00%)
+  n2: 7771116 0x12566F: blocks::Contact::Contact(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 6291456 0x125C77: void std::_Construct<blocks::Contact, blocks::Contact const&>(blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 6291456 0x125BC3: blocks::Contact* std::__uninitialized_copy<false>::__uninit_copy<blocks::Contact const*, blocks::Contact*>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 6291456 0x125B3F: blocks::Contact* std::uninitialized_copy<blocks::Contact const*, blocks::Contact*>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 6291456 0x1259F7: blocks::Contact* std::__uninitialized_copy_a<blocks::Contact const*, blocks::Contact*, blocks::Contact>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*, std::allocator<blocks::Contact>&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 6291456 0x1258DF: blocks::Contact* std::__uninitialized_move_if_noexcept_a<blocks::Contact*, blocks::Contact*, std::allocator<blocks::Contact> >(blocks::Contact*, blocks::Contact*, blocks::Contact*, std::allocator<blocks::Contact>&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 6291456 0x125473: void std::vector<blocks::Contact, std::allocator<blocks::Contact> >::_M_realloc_insert<blocks::Contact const&>(__gnu_cxx::__normal_iterator<blocks::Contact*, std::vector<blocks::Contact, std::allocator<blocks::Contact> > >, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n1: 6291456 0x125253: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n1: 6291456 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+           n1: 6291456 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+            n1: 6291456 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+             n1: 6291456 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+              n0: 6291456 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 1479660 0x1256FB: void __gnu_cxx::new_allocator<blocks::Contact>::construct<blocks::Contact, blocks::Contact const&>(blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n2: 1479660 0x12528B: void std::allocator_traits<std::allocator<blocks::Contact> >::construct<blocks::Contact, blocks::Contact const&>(std::allocator<blocks::Contact>&, blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 1479648 0x125223: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 1479648 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 1479648 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 1479648 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+         n1: 1479648 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n0: 1479648 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n0: 12 in 1 place, below massif's threshold (1.00%)
+  n0: 0 in 6 places, all below massif's threshold (1.00%)
+ n0: 660072 in 29 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=46
+#-----------
+time=28240901096
+mem_heap_B=76756892
+mem_heap_extra_B=17558364
+mem_stacks_B=2960
+heap_tree=empty
+#-----------
+snapshot=47
+#-----------
+time=29121659264
+mem_heap_B=80425616
+mem_heap_extra_B=21227088
+mem_stacks_B=2848
+heap_tree=empty
+#-----------
+snapshot=48
+#-----------
+time=29562038424
+mem_heap_B=82259924
+mem_heap_extra_B=23061396
+mem_stacks_B=2976
+heap_tree=empty
+#-----------
+snapshot=49
+#-----------
+time=30228361032
+mem_heap_B=201986712
+mem_heap_extra_B=25351744
+mem_stacks_B=3200
+heap_tree=empty
+#-----------
+snapshot=50
+#-----------
+time=30570263240
+mem_heap_B=211311288
+mem_heap_extra_B=34676320
+mem_stacks_B=3424
+heap_tree=empty
+#-----------
+snapshot=51
+#-----------
+time=30912165424
+mem_heap_B=220635900
+mem_heap_extra_B=44000932
+mem_stacks_B=3424
+heap_tree=empty
+#-----------
+snapshot=52
+#-----------
+time=31254067648
+mem_heap_B=223385844
+mem_heap_extra_B=46750876
+mem_stacks_B=3216
+heap_tree=empty
+#-----------
+snapshot=53
+#-----------
+time=31595969872
+mem_heap_B=210877236
+mem_heap_extra_B=34242140
+mem_stacks_B=3296
+heap_tree=empty
+#-----------
+snapshot=54
+#-----------
+time=31937872048
+mem_heap_B=143433664
+mem_heap_extra_B=25514880
+mem_stacks_B=2672
+heap_tree=empty
+#-----------
+snapshot=55
+#-----------
+time=32279774296
+mem_heap_B=144857788
+mem_heap_extra_B=26939004
+mem_stacks_B=2880
+heap_tree=empty
+#-----------
+snapshot=56
+#-----------
+time=32621676520
+mem_heap_B=146281900
+mem_heap_extra_B=28363132
+mem_stacks_B=2912
+heap_tree=empty
+#-----------
+snapshot=57
+#-----------
+time=32963578712
+mem_heap_B=147705820
+mem_heap_extra_B=29787036
+mem_stacks_B=3024
+heap_tree=empty
+#-----------
+snapshot=58
+#-----------
+time=33305480960
+mem_heap_B=149129848
+mem_heap_extra_B=31211064
+mem_stacks_B=3040
+heap_tree=detailed
+n3: 149129848 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 117440512 0x125B0B: __gnu_cxx::new_allocator<blocks::Contact>::allocate(unsigned long, void const*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n1: 117440512 0x12598F: std::allocator_traits<std::allocator<blocks::Contact> >::allocate(std::allocator<blocks::Contact>&, unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 117440512 0x125857: std::_Vector_base<blocks::Contact, std::allocator<blocks::Contact> >::_M_allocate(unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 117440512 0x125387: void std::vector<blocks::Contact, std::allocator<blocks::Contact> >::_M_realloc_insert<blocks::Contact const&>(__gnu_cxx::__normal_iterator<blocks::Contact*, std::vector<blocks::Contact, std::allocator<blocks::Contact> > >, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 117440512 0x125253: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 117440512 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 117440512 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 117440512 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+         n1: 117440512 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n0: 117440512 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+ n3: 31029240 0x1299EB: numerics::Matrix::Matrix(numerics::Matrix const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n2: 15514620 0x125643: blocks::Contact::Contact(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 12582912 0x125C77: void std::_Construct<blocks::Contact, blocks::Contact const&>(blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 12582912 0x125BC3: blocks::Contact* std::__uninitialized_copy<false>::__uninit_copy<blocks::Contact const*, blocks::Contact*>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 12582912 0x125B3F: blocks::Contact* std::uninitialized_copy<blocks::Contact const*, blocks::Contact*>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 12582912 0x1259F7: blocks::Contact* std::__uninitialized_copy_a<blocks::Contact const*, blocks::Contact*, blocks::Contact>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*, std::allocator<blocks::Contact>&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 12582912 0x1258DF: blocks::Contact* std::__uninitialized_move_if_noexcept_a<blocks::Contact*, blocks::Contact*, std::allocator<blocks::Contact> >(blocks::Contact*, blocks::Contact*, blocks::Contact*, std::allocator<blocks::Contact>&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 12582912 0x125473: void std::vector<blocks::Contact, std::allocator<blocks::Contact> >::_M_realloc_insert<blocks::Contact const&>(__gnu_cxx::__normal_iterator<blocks::Contact*, std::vector<blocks::Contact, std::allocator<blocks::Contact> > >, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n1: 12582912 0x125253: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n1: 12582912 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+           n1: 12582912 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+            n1: 12582912 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+             n1: 12582912 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+              n0: 12582912 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 2931708 0x1256FB: void __gnu_cxx::new_allocator<blocks::Contact>::construct<blocks::Contact, blocks::Contact const&>(blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n2: 2931708 0x12528B: void std::allocator_traits<std::allocator<blocks::Contact> >::construct<blocks::Contact, blocks::Contact const&>(std::allocator<blocks::Contact>&, blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 2931696 0x125223: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 2931696 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 2931696 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 2931696 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+         n1: 2931696 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n0: 2931696 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n0: 12 in 1 place, below massif's threshold (1.00%)
+  n2: 15514620 0x12566F: blocks::Contact::Contact(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 12582912 0x125C77: void std::_Construct<blocks::Contact, blocks::Contact const&>(blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 12582912 0x125BC3: blocks::Contact* std::__uninitialized_copy<false>::__uninit_copy<blocks::Contact const*, blocks::Contact*>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 12582912 0x125B3F: blocks::Contact* std::uninitialized_copy<blocks::Contact const*, blocks::Contact*>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 12582912 0x1259F7: blocks::Contact* std::__uninitialized_copy_a<blocks::Contact const*, blocks::Contact*, blocks::Contact>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*, std::allocator<blocks::Contact>&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 12582912 0x1258DF: blocks::Contact* std::__uninitialized_move_if_noexcept_a<blocks::Contact*, blocks::Contact*, std::allocator<blocks::Contact> >(blocks::Contact*, blocks::Contact*, blocks::Contact*, std::allocator<blocks::Contact>&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 12582912 0x125473: void std::vector<blocks::Contact, std::allocator<blocks::Contact> >::_M_realloc_insert<blocks::Contact const&>(__gnu_cxx::__normal_iterator<blocks::Contact*, std::vector<blocks::Contact, std::allocator<blocks::Contact> > >, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n1: 12582912 0x125253: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n1: 12582912 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+           n1: 12582912 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+            n1: 12582912 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+             n1: 12582912 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+              n0: 12582912 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 2931708 0x1256FB: void __gnu_cxx::new_allocator<blocks::Contact>::construct<blocks::Contact, blocks::Contact const&>(blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n2: 2931708 0x12528B: void std::allocator_traits<std::allocator<blocks::Contact> >::construct<blocks::Contact, blocks::Contact const&>(std::allocator<blocks::Contact>&, blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 2931696 0x125223: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 2931696 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 2931696 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 2931696 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+         n1: 2931696 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n0: 2931696 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n0: 12 in 1 place, below massif's threshold (1.00%)
+  n0: 0 in 6 places, all below massif's threshold (1.00%)
+ n0: 660096 in 29 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=59
+#-----------
+time=33647383184
+mem_heap_B=150553672
+mem_heap_extra_B=32634888
+mem_stacks_B=2848
+heap_tree=empty
+#-----------
+snapshot=60
+#-----------
+time=33989285368
+mem_heap_B=151977460
+mem_heap_extra_B=34058676
+mem_stacks_B=2848
+heap_tree=empty
+#-----------
+snapshot=61
+#-----------
+time=34331187584
+mem_heap_B=153401152
+mem_heap_extra_B=35482400
+mem_stacks_B=2896
+heap_tree=empty
+#-----------
+snapshot=62
+#-----------
+time=34673089760
+mem_heap_B=154824592
+mem_heap_extra_B=36905824
+mem_stacks_B=2848
+heap_tree=empty
+#-----------
+snapshot=63
+#-----------
+time=35014992000
+mem_heap_B=156247144
+mem_heap_extra_B=38328392
+mem_stacks_B=2896
+heap_tree=empty
+#-----------
+snapshot=64
+#-----------
+time=35356894176
+mem_heap_B=156827032
+mem_heap_extra_B=38966344
+mem_stacks_B=3072
+heap_tree=empty
+#-----------
+snapshot=65
+#-----------
+time=35698796384
+mem_heap_B=156827032
+mem_heap_extra_B=38966344
+mem_stacks_B=3040
+heap_tree=empty
+#-----------
+snapshot=66
+#-----------
+time=36040698560
+mem_heap_B=156827032
+mem_heap_extra_B=38966344
+mem_stacks_B=2656
+heap_tree=empty
+#-----------
+snapshot=67
+#-----------
+time=36382600768
+mem_heap_B=156827056
+mem_heap_extra_B=38966368
+mem_stacks_B=2976
+heap_tree=empty
+#-----------
+snapshot=68
+#-----------
+time=36724503056
+mem_heap_B=156827032
+mem_heap_extra_B=38966344
+mem_stacks_B=2784
+heap_tree=detailed
+n3: 156827032 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 117440512 0x125B0B: __gnu_cxx::new_allocator<blocks::Contact>::allocate(unsigned long, void const*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n1: 117440512 0x12598F: std::allocator_traits<std::allocator<blocks::Contact> >::allocate(std::allocator<blocks::Contact>&, unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 117440512 0x125857: std::_Vector_base<blocks::Contact, std::allocator<blocks::Contact> >::_M_allocate(unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 117440512 0x125387: void std::vector<blocks::Contact, std::allocator<blocks::Contact> >::_M_realloc_insert<blocks::Contact const&>(__gnu_cxx::__normal_iterator<blocks::Contact*, std::vector<blocks::Contact, std::allocator<blocks::Contact> > >, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 117440512 0x125253: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 117440512 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 117440512 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 117440512 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+         n1: 117440512 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n0: 117440512 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+ n3: 38815080 0x1299EB: numerics::Matrix::Matrix(numerics::Matrix const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n2: 19407540 0x125643: blocks::Contact::Contact(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 12582912 0x125C77: void std::_Construct<blocks::Contact, blocks::Contact const&>(blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 12582912 0x125BC3: blocks::Contact* std::__uninitialized_copy<false>::__uninit_copy<blocks::Contact const*, blocks::Contact*>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 12582912 0x125B3F: blocks::Contact* std::uninitialized_copy<blocks::Contact const*, blocks::Contact*>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 12582912 0x1259F7: blocks::Contact* std::__uninitialized_copy_a<blocks::Contact const*, blocks::Contact*, blocks::Contact>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*, std::allocator<blocks::Contact>&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 12582912 0x1258DF: blocks::Contact* std::__uninitialized_move_if_noexcept_a<blocks::Contact*, blocks::Contact*, std::allocator<blocks::Contact> >(blocks::Contact*, blocks::Contact*, blocks::Contact*, std::allocator<blocks::Contact>&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 12582912 0x125473: void std::vector<blocks::Contact, std::allocator<blocks::Contact> >::_M_realloc_insert<blocks::Contact const&>(__gnu_cxx::__normal_iterator<blocks::Contact*, std::vector<blocks::Contact, std::allocator<blocks::Contact> > >, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n1: 12582912 0x125253: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n1: 12582912 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+           n1: 12582912 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+            n1: 12582912 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+             n1: 12582912 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+              n0: 12582912 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 6824628 0x1256FB: void __gnu_cxx::new_allocator<blocks::Contact>::construct<blocks::Contact, blocks::Contact const&>(blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n2: 6824628 0x12528B: void std::allocator_traits<std::allocator<blocks::Contact> >::construct<blocks::Contact, blocks::Contact const&>(std::allocator<blocks::Contact>&, blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 6824616 0x125223: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 6824616 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 6824616 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 6824616 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+         n1: 6824616 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n0: 6824616 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n0: 12 in 1 place, below massif's threshold (1.00%)
+  n2: 19407540 0x12566F: blocks::Contact::Contact(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 12582912 0x125C77: void std::_Construct<blocks::Contact, blocks::Contact const&>(blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 12582912 0x125BC3: blocks::Contact* std::__uninitialized_copy<false>::__uninit_copy<blocks::Contact const*, blocks::Contact*>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 12582912 0x125B3F: blocks::Contact* std::uninitialized_copy<blocks::Contact const*, blocks::Contact*>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 12582912 0x1259F7: blocks::Contact* std::__uninitialized_copy_a<blocks::Contact const*, blocks::Contact*, blocks::Contact>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*, std::allocator<blocks::Contact>&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 12582912 0x1258DF: blocks::Contact* std::__uninitialized_move_if_noexcept_a<blocks::Contact*, blocks::Contact*, std::allocator<blocks::Contact> >(blocks::Contact*, blocks::Contact*, blocks::Contact*, std::allocator<blocks::Contact>&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 12582912 0x125473: void std::vector<blocks::Contact, std::allocator<blocks::Contact> >::_M_realloc_insert<blocks::Contact const&>(__gnu_cxx::__normal_iterator<blocks::Contact*, std::vector<blocks::Contact, std::allocator<blocks::Contact> > >, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n1: 12582912 0x125253: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n1: 12582912 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+           n1: 12582912 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+            n1: 12582912 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+             n1: 12582912 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+              n0: 12582912 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 6824628 0x1256FB: void __gnu_cxx::new_allocator<blocks::Contact>::construct<blocks::Contact, blocks::Contact const&>(blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n2: 6824628 0x12528B: void std::allocator_traits<std::allocator<blocks::Contact> >::construct<blocks::Contact, blocks::Contact const&>(std::allocator<blocks::Contact>&, blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 6824616 0x125223: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 6824616 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 6824616 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 6824616 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+         n1: 6824616 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n0: 6824616 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n0: 12 in 1 place, below massif's threshold (1.00%)
+  n0: 0 in 6 places, all below massif's threshold (1.00%)
+ n0: 571440 in 29 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=69
+#-----------
+time=37066405256
+mem_heap_B=156827044
+mem_heap_extra_B=38966356
+mem_stacks_B=2800
+heap_tree=empty
+#-----------
+snapshot=70
+#-----------
+time=37408307456
+mem_heap_B=156827056
+mem_heap_extra_B=38966368
+mem_stacks_B=2976
+heap_tree=empty
+#-----------
+snapshot=71
+#-----------
+time=37750209648
+mem_heap_B=156827056
+mem_heap_extra_B=38966368
+mem_stacks_B=2800
+heap_tree=empty
+#-----------
+snapshot=72
+#-----------
+time=38092111824
+mem_heap_B=156827056
+mem_heap_extra_B=38966368
+mem_stacks_B=2800
+heap_tree=empty
+#-----------
+snapshot=73
+#-----------
+time=38434014056
+mem_heap_B=156827068
+mem_heap_extra_B=38966380
+mem_stacks_B=2880
+heap_tree=empty
+#-----------
+snapshot=74
+#-----------
+time=38775916280
+mem_heap_B=156827068
+mem_heap_extra_B=38966380
+mem_stacks_B=2768
+heap_tree=empty
+#-----------
+snapshot=75
+#-----------
+time=39117818552
+mem_heap_B=156827068
+mem_heap_extra_B=38966380
+mem_stacks_B=2832
+heap_tree=empty
+#-----------
+snapshot=76
+#-----------
+time=39459720728
+mem_heap_B=156827068
+mem_heap_extra_B=38966380
+mem_stacks_B=2816
+heap_tree=empty
+#-----------
+snapshot=77
+#-----------
+time=39801622928
+mem_heap_B=156827056
+mem_heap_extra_B=38966368
+mem_stacks_B=2736
+heap_tree=empty
+#-----------
+snapshot=78
+#-----------
+time=40143525120
+mem_heap_B=156827056
+mem_heap_extra_B=38966368
+mem_stacks_B=2704
+heap_tree=detailed
+n3: 156827056 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 117440512 0x125B0B: __gnu_cxx::new_allocator<blocks::Contact>::allocate(unsigned long, void const*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n1: 117440512 0x12598F: std::allocator_traits<std::allocator<blocks::Contact> >::allocate(std::allocator<blocks::Contact>&, unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 117440512 0x125857: std::_Vector_base<blocks::Contact, std::allocator<blocks::Contact> >::_M_allocate(unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 117440512 0x125387: void std::vector<blocks::Contact, std::allocator<blocks::Contact> >::_M_realloc_insert<blocks::Contact const&>(__gnu_cxx::__normal_iterator<blocks::Contact*, std::vector<blocks::Contact, std::allocator<blocks::Contact> > >, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 117440512 0x125253: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 117440512 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 117440512 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 117440512 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+         n1: 117440512 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n0: 117440512 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+ n3: 38815104 0x1299EB: numerics::Matrix::Matrix(numerics::Matrix const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n2: 19407540 0x125643: blocks::Contact::Contact(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 12582912 0x125C77: void std::_Construct<blocks::Contact, blocks::Contact const&>(blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 12582912 0x125BC3: blocks::Contact* std::__uninitialized_copy<false>::__uninit_copy<blocks::Contact const*, blocks::Contact*>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 12582912 0x125B3F: blocks::Contact* std::uninitialized_copy<blocks::Contact const*, blocks::Contact*>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 12582912 0x1259F7: blocks::Contact* std::__uninitialized_copy_a<blocks::Contact const*, blocks::Contact*, blocks::Contact>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*, std::allocator<blocks::Contact>&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 12582912 0x1258DF: blocks::Contact* std::__uninitialized_move_if_noexcept_a<blocks::Contact*, blocks::Contact*, std::allocator<blocks::Contact> >(blocks::Contact*, blocks::Contact*, blocks::Contact*, std::allocator<blocks::Contact>&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 12582912 0x125473: void std::vector<blocks::Contact, std::allocator<blocks::Contact> >::_M_realloc_insert<blocks::Contact const&>(__gnu_cxx::__normal_iterator<blocks::Contact*, std::vector<blocks::Contact, std::allocator<blocks::Contact> > >, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n1: 12582912 0x125253: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n1: 12582912 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+           n1: 12582912 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+            n1: 12582912 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+             n1: 12582912 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+              n0: 12582912 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 6824628 0x1256FB: void __gnu_cxx::new_allocator<blocks::Contact>::construct<blocks::Contact, blocks::Contact const&>(blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n2: 6824628 0x12528B: void std::allocator_traits<std::allocator<blocks::Contact> >::construct<blocks::Contact, blocks::Contact const&>(std::allocator<blocks::Contact>&, blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 6824616 0x125223: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 6824616 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 6824616 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 6824616 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+         n1: 6824616 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n0: 6824616 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n0: 12 in 1 place, below massif's threshold (1.00%)
+  n2: 19407540 0x12566F: blocks::Contact::Contact(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 12582912 0x125C77: void std::_Construct<blocks::Contact, blocks::Contact const&>(blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 12582912 0x125BC3: blocks::Contact* std::__uninitialized_copy<false>::__uninit_copy<blocks::Contact const*, blocks::Contact*>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 12582912 0x125B3F: blocks::Contact* std::uninitialized_copy<blocks::Contact const*, blocks::Contact*>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 12582912 0x1259F7: blocks::Contact* std::__uninitialized_copy_a<blocks::Contact const*, blocks::Contact*, blocks::Contact>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*, std::allocator<blocks::Contact>&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 12582912 0x1258DF: blocks::Contact* std::__uninitialized_move_if_noexcept_a<blocks::Contact*, blocks::Contact*, std::allocator<blocks::Contact> >(blocks::Contact*, blocks::Contact*, blocks::Contact*, std::allocator<blocks::Contact>&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 12582912 0x125473: void std::vector<blocks::Contact, std::allocator<blocks::Contact> >::_M_realloc_insert<blocks::Contact const&>(__gnu_cxx::__normal_iterator<blocks::Contact*, std::vector<blocks::Contact, std::allocator<blocks::Contact> > >, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n1: 12582912 0x125253: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n1: 12582912 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+           n1: 12582912 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+            n1: 12582912 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+             n1: 12582912 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+              n0: 12582912 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 6824628 0x1256FB: void __gnu_cxx::new_allocator<blocks::Contact>::construct<blocks::Contact, blocks::Contact const&>(blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n2: 6824628 0x12528B: void std::allocator_traits<std::allocator<blocks::Contact> >::construct<blocks::Contact, blocks::Contact const&>(std::allocator<blocks::Contact>&, blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 6824616 0x125223: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 6824616 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 6824616 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 6824616 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+         n1: 6824616 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n0: 6824616 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n0: 12 in 1 place, below massif's threshold (1.00%)
+  n0: 24 in 6 places, all below massif's threshold (1.00%)
+ n0: 571440 in 29 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=79
+#-----------
+time=40485427360
+mem_heap_B=156827056
+mem_heap_extra_B=38966368
+mem_stacks_B=2896
+heap_tree=empty
+#-----------
+snapshot=80
+#-----------
+time=40827329576
+mem_heap_B=156827044
+mem_heap_extra_B=38966356
+mem_stacks_B=2752
+heap_tree=empty
+#-----------
+snapshot=81
+#-----------
+time=41169231784
+mem_heap_B=156827068
+mem_heap_extra_B=38966380
+mem_stacks_B=2816
+heap_tree=empty
+#-----------
+snapshot=82
+#-----------
+time=41511133960
+mem_heap_B=156827044
+mem_heap_extra_B=38966356
+mem_stacks_B=2848
+heap_tree=empty
+#-----------
+snapshot=83
+#-----------
+time=41853036184
+mem_heap_B=156827068
+mem_heap_extra_B=38966380
+mem_stacks_B=2704
+heap_tree=empty
+#-----------
+snapshot=84
+#-----------
+time=42194938384
+mem_heap_B=156827056
+mem_heap_extra_B=38966368
+mem_stacks_B=2688
+heap_tree=empty
+#-----------
+snapshot=85
+#-----------
+time=42536840576
+mem_heap_B=156827032
+mem_heap_extra_B=38966344
+mem_stacks_B=2512
+heap_tree=empty
+#-----------
+snapshot=86
+#-----------
+time=42878742784
+mem_heap_B=156827032
+mem_heap_extra_B=38966344
+mem_stacks_B=2448
+heap_tree=empty
+#-----------
+snapshot=87
+#-----------
+time=43220644968
+mem_heap_B=156827068
+mem_heap_extra_B=38966380
+mem_stacks_B=2640
+heap_tree=empty
+#-----------
+snapshot=88
+#-----------
+time=43562547216
+mem_heap_B=148842932
+mem_heap_extra_B=30936524
+mem_stacks_B=2480
+heap_tree=detailed
+n3: 148842932 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 117440512 0x125B0B: __gnu_cxx::new_allocator<blocks::Contact>::allocate(unsigned long, void const*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n1: 117440512 0x12598F: std::allocator_traits<std::allocator<blocks::Contact> >::allocate(std::allocator<blocks::Contact>&, unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 117440512 0x125857: std::_Vector_base<blocks::Contact, std::allocator<blocks::Contact> >::_M_allocate(unsigned long) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 117440512 0x125387: void std::vector<blocks::Contact, std::allocator<blocks::Contact> >::_M_realloc_insert<blocks::Contact const&>(__gnu_cxx::__normal_iterator<blocks::Contact*, std::vector<blocks::Contact, std::allocator<blocks::Contact> > >, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 117440512 0x125253: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 117440512 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 117440512 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 117440512 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+         n1: 117440512 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n0: 117440512 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+ n3: 30754884 0x1299EB: numerics::Matrix::Matrix(numerics::Matrix const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+  n2: 15377448 0x125643: blocks::Contact::Contact(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 8552820 0x125C77: void std::_Construct<blocks::Contact, blocks::Contact const&>(blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 8552820 0x125BC3: blocks::Contact* std::__uninitialized_copy<false>::__uninit_copy<blocks::Contact const*, blocks::Contact*>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 8552820 0x125B3F: blocks::Contact* std::uninitialized_copy<blocks::Contact const*, blocks::Contact*>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 8552820 0x1259F7: blocks::Contact* std::__uninitialized_copy_a<blocks::Contact const*, blocks::Contact*, blocks::Contact>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*, std::allocator<blocks::Contact>&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 8552820 0x1258DF: blocks::Contact* std::__uninitialized_move_if_noexcept_a<blocks::Contact*, blocks::Contact*, std::allocator<blocks::Contact> >(blocks::Contact*, blocks::Contact*, blocks::Contact*, std::allocator<blocks::Contact>&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 8552820 0x125473: void std::vector<blocks::Contact, std::allocator<blocks::Contact> >::_M_realloc_insert<blocks::Contact const&>(__gnu_cxx::__normal_iterator<blocks::Contact*, std::vector<blocks::Contact, std::allocator<blocks::Contact> > >, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n1: 8552820 0x125253: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n1: 8552820 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+           n1: 8552820 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+            n1: 8552820 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+             n1: 8552820 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+              n0: 8552820 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 6824628 0x1256FB: void __gnu_cxx::new_allocator<blocks::Contact>::construct<blocks::Contact, blocks::Contact const&>(blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n2: 6824628 0x12528B: void std::allocator_traits<std::allocator<blocks::Contact> >::construct<blocks::Contact, blocks::Contact const&>(std::allocator<blocks::Contact>&, blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 6824616 0x125223: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 6824616 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 6824616 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 6824616 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+         n1: 6824616 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n0: 6824616 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n0: 12 in 1 place, below massif's threshold (1.00%)
+  n2: 15377436 0x12566F: blocks::Contact::Contact(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 8552808 0x125C77: void std::_Construct<blocks::Contact, blocks::Contact const&>(blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n1: 8552808 0x125BC3: blocks::Contact* std::__uninitialized_copy<false>::__uninit_copy<blocks::Contact const*, blocks::Contact*>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 8552808 0x125B3F: blocks::Contact* std::uninitialized_copy<blocks::Contact const*, blocks::Contact*>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 8552808 0x1259F7: blocks::Contact* std::__uninitialized_copy_a<blocks::Contact const*, blocks::Contact*, blocks::Contact>(blocks::Contact const*, blocks::Contact const*, blocks::Contact*, std::allocator<blocks::Contact>&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 8552808 0x1258DF: blocks::Contact* std::__uninitialized_move_if_noexcept_a<blocks::Contact*, blocks::Contact*, std::allocator<blocks::Contact> >(blocks::Contact*, blocks::Contact*, blocks::Contact*, std::allocator<blocks::Contact>&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 8552808 0x125473: void std::vector<blocks::Contact, std::allocator<blocks::Contact> >::_M_realloc_insert<blocks::Contact const&>(__gnu_cxx::__normal_iterator<blocks::Contact*, std::vector<blocks::Contact, std::allocator<blocks::Contact> > >, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+         n1: 8552808 0x125253: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n1: 8552808 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+           n1: 8552808 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+            n1: 8552808 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+             n1: 8552808 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+              n0: 8552808 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+   n1: 6824628 0x1256FB: void __gnu_cxx::new_allocator<blocks::Contact>::construct<blocks::Contact, blocks::Contact const&>(blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+    n2: 6824628 0x12528B: void std::allocator_traits<std::allocator<blocks::Contact> >::construct<blocks::Contact, blocks::Contact const&>(std::allocator<blocks::Contact>&, blocks::Contact*, blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n1: 6824616 0x125223: std::vector<blocks::Contact, std::allocator<blocks::Contact> >::push_back(blocks::Contact const&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+      n1: 6824616 0x124B8B: blocks::Cube::CollisionDetect(blocks::Block*, blocks::Block*, std::vector<blocks::Contact, std::allocator<blocks::Contact> >&) (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+       n1: 6824616 0x10FC4F: WorldHandler::CollisionHandlerWithOctree() [clone ._omp_fn.1] (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+        n1: 6824616 0x4B19723: GOMP_parallel (in /usr/lib/aarch64-linux-gnu/libgomp.so.1.0.0)
+         n1: 6824616 0x10DF1F: WorldHandler::CollisionHandlerWithOctree() (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+          n0: 6824616 0x10B6B7: main (in /home/aamir/Documents/MWorld/build/simulation/environment/simulation)
+     n0: 12 in 1 place, below massif's threshold (1.00%)
+  n0: 0 in 6 places, all below massif's threshold (1.00%)
+ n0: 647536 in 30 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=89
+#-----------
+time=43904449400
+mem_heap_B=136334312
+mem_heap_extra_B=18427904
+mem_stacks_B=2304
+heap_tree=empty
+#-----------
+snapshot=90
+#-----------
+time=44246351576
+mem_heap_B=123825704
+mem_heap_extra_B=5919168
+mem_stacks_B=2400
+heap_tree=empty

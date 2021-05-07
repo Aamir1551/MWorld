@@ -8,7 +8,7 @@
 ///
 /// Function parameters specified as angle are assumed to be in units of radians.
 /// In no case will any of these functions result in a divide by zero error. If
-/// the divisor of a ratio is 0, then results will be undefined.
+/// the divisor of a ratio is 0, then execution_results will be undefined.
 ///
 /// These all operate component-wise. The description is per component.
 ///

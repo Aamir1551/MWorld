@@ -25,7 +25,7 @@ namespace glm
 	/// @{
 
 	/// First, converts each component of the normalized floating-point value v into 8- or 16-bit integer values.
-	/// Then, the results are packed into the returned 32-bit unsigned integer.
+	/// Then, the execution_results are packed into the returned 32-bit unsigned integer.
 	///
 	/// The conversion for component c of v to fixed point is done as follows:
 	/// packUnorm2x16: round(clamp(c, 0, +1) * 65535.0)
@@ -38,7 +38,7 @@ namespace glm
 	GLM_FUNC_DECL uint packUnorm2x16(vec2 const& v);
 
 	/// First, converts each component of the normalized floating-point value v into 8- or 16-bit integer values.
-	/// Then, the results are packed into the returned 32-bit unsigned integer.
+	/// Then, the execution_results are packed into the returned 32-bit unsigned integer.
 	///
 	/// The conversion for component c of v to fixed point is done as follows:
 	/// packSnorm2x16: round(clamp(v, -1, +1) * 32767.0)
@@ -51,7 +51,7 @@ namespace glm
 	GLM_FUNC_DECL uint packSnorm2x16(vec2 const& v);
 
 	/// First, converts each component of the normalized floating-point value v into 8- or 16-bit integer values.
-	/// Then, the results are packed into the returned 32-bit unsigned integer.
+	/// Then, the execution_results are packed into the returned 32-bit unsigned integer.
 	///
 	/// The conversion for component c of v to fixed point is done as follows:
 	/// packUnorm4x8:	round(clamp(c, 0, +1) * 255.0)
@@ -64,7 +64,7 @@ namespace glm
 	GLM_FUNC_DECL uint packUnorm4x8(vec4 const& v);
 
 	/// First, converts each component of the normalized floating-point value v into 8- or 16-bit integer values.
-	/// Then, the results are packed into the returned 32-bit unsigned integer.
+	/// Then, the execution_results are packed into the returned 32-bit unsigned integer.
 	///
 	/// The conversion for component c of v to fixed point is done as follows:
 	/// packSnorm4x8:	round(clamp(c, -1, +1) * 127.0)

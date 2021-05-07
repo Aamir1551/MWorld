@@ -151,7 +151,7 @@ a.SelectItem:hover {
     display: block;
 }
 
-/*---------------- Search results window */
+/*---------------- Search execution_results window */
 
 iframe#MSearchResults {
     width: 60ex;
@@ -237,7 +237,7 @@ DIV.searchresults {
     margin-right: 10px;
 }
 
-/*---------------- External search page results */
+/*---------------- External search page execution_results */
 
 .searchresult {
     background-color: #F0F3F8;

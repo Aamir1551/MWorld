@@ -7,7 +7,7 @@
 /// @ingroup core
 ///
 /// Relational and equality operators (<, <=, >, >=, ==, !=) are defined to
-/// operate on scalars and produce scalar Boolean results. For vector results,
+/// operate on scalars and produce scalar Boolean execution_results. For vector execution_results,
 /// use the following built-in functions.
 ///
 /// In all cases, the sizes of all the input and return vectors for any particular

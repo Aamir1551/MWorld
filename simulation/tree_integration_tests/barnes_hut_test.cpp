@@ -1,17 +1,9 @@
 #include <cstring>
 #include <unordered_set>
 #include <set>
+#include <iostream>
 
-#if defined(GLFW_ON)
-    #include <glad/glad.h>
-    #include <GLFW/glfw3.h>
-#endif
 
-#if defined(GLFW_ON)
-    #include <world_initializer.hpp>
-    #include <camera.hpp>
-    #include <block_renderer.hpp>
-#endif
 
 #include <world_handler.hpp>
 #include <settings.hpp>
@@ -19,13 +11,8 @@
 #include <omp.h>
 #include <chrono>
 
+
 using namespace std;
-
-
-#if defined(GLFW_ON)
-    using namespace render_utils;
-#endif
-
 using namespace numerics;
 using namespace settings;
 using namespace blocks;
@@ -35,33 +22,34 @@ int main(int argc, char *argv[])
 
 
 #if defined(GLFW_ON)
-    WorldProperties *world_properties = WorldIntializer();
-    unsigned int vao, vbo, ebo;
-    glGenVertexArrays(1, &vao);
-    glGenBuffers(1, &vbo);
-    glGenBuffers(1, &ebo);
+    cout << "GLFW needs to be turned off for testing BarnesHut" << endl;
+    exit(0);
 #endif
 
+    if(argc < 15) {
+       cout << "Insufficient Parameters for barnes_hut_test.cpp file" << endl;
+       exit(0);
+    }
 
-#if defined(GLFW_ON)
-    real cube_length = 4.0f;
-    Camera camera = Camera(world_properties->window);
-    camera.camera_pos_mat = Matrix::CreateColumnVec(0, 0, 250);
-    BlockRenderer::InitialiseBlockRenderer(&camera, cube_length, vao, vbo, ebo, world_properties);
-#endif
+    Block::theta = atoi(argv[14]);
+    real total_num_blocks = atoi(argv[2]) + atoi(argv[3])+ atoi(argv[4])+ atoi(argv[5])+ atoi(argv[6])+ atoi(argv[7])+ atoi(argv[8]);
 
-    int num_blocks_same = 100;
-    WorldHandler world = WorldHandler(num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, -100, 100, -100, 100, -100 ,100);
+    WorldHandler world = WorldHandler( atoi(argv[2]),
+                                       atoi(argv[3]),
+                                       atoi(argv[4]),
+                                       atoi(argv[5]),
+                                       atoi(argv[6]),
+                                       atoi(argv[7]),
+                                      atoi(argv[8]),
+                                      atoi(argv[9]),
+                                       atoi(argv[10]),
+                                       atoi(argv[11]),
+                                      atoi(argv[12]),
+                                      atoi(argv[13]),
+                                      4);
 
-#if defined(GLFW_ON)
-    glBindVertexArray(vao);
-    glEnable(GL_DEPTH_TEST);
-    glDepthFunc(GL_LESS);
-    glUseProgram(world_properties->shader_id);
-    glClearColor(0.0f, 0.0f, 0.0f, 0.0f); //using black to clear the background
-#endif
-    std::cout << "Entering Main Loop" << std::endl;
 
+    // Initialising time functions
     using std::chrono::high_resolution_clock;
     using std::chrono::duration_cast;
     using std::chrono::milliseconds;
@@ -76,24 +64,16 @@ int main(int argc, char *argv[])
 
     auto prev_time =  high_resolution_clock::now();
 
-
+    real total_diff = 0;
     while (
-#if defined(GLFW_ON)
-         !glfwWindowShouldClose(world_properties->window)
-#else
-            duration_cast<milliseconds>(currentFrame - start_time).count() < atoi(argv[1]) * 1000 // time between current frame and last frame
-#endif
+duration_cast<milliseconds>(currentFrame - start_time).count() < atoi(argv[1]) * 1000 // Running for 10 seconds only
     )
     {
        currentFrame = high_resolution_clock::now();
        deltaTime = duration_cast<milliseconds>(currentFrame - lastFrame); // Time between current frame and last frame
        lastFrame = currentFrame;
 
-#if defined(GLFW_ON)
-        camera.UpdateCamera(deltaTime.count() /1000.0);
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-#endif
-
+        // Get all forces generated via brute force
         auto contact_list = world.CollisionHandlerBruteForce();
 
         vector<Matrix> new_brute_moms;
@@ -103,6 +83,7 @@ int main(int argc, char *argv[])
         }
         world.AddForcesViaBruteForce(deltaTime.count() / 1000.0 * -1);
 
+        // Get all forces generated via Barnes-Hut algorithm
         vector<Matrix> new_barnes_moms;
         world.AddForcesViaBarnesHut(deltaTime.count() / 1000.0);
         for(auto const i: world.blocks) {
@@ -110,22 +91,16 @@ int main(int argc, char *argv[])
         }
         world.AddForcesViaBarnesHut(deltaTime.count() / 1000.0 * -1);
 
+        // Calculate the MSE of the forces produces by the Barnes-Hut algorithm compared to the forces produces via brue force
         float diff = 0;
-        for(int i=0; i<new_barnes_moms.size(); i++) {
-           diff += Matrix::SquaredNorm(new_brute_moms.at(i) - new_barnes_moms.at(i));
+        for(unsigned int i=0; i<new_barnes_moms.size(); i++) {
+           diff += Matrix::Norm(new_brute_moms.at(i) - new_barnes_moms.at(i));
         }
+        total_diff += diff/total_num_blocks;
+
         world.AddForcesViaBruteForce(deltaTime.count() / 1000.0);
-
-
-        cout << diff/(num_blocks_same * 600.0) << endl;
-
         world.Update(contact_list, deltaTime.count()/1000.0);
 
-#if defined(GLFW_ON)
-        BlockRenderer::DrawAllBlocks(&world.iblocks, &world.zblocks, &world.eblocks, &world.mblocks);
-        glfwSwapBuffers(world_properties->window);
-        glfwPollEvents();
-#endif
         frame_count++;
         total_frame_count++;
         if(duration_cast<milliseconds>(currentFrame - prev_time).count()>= 1000.0) {
@@ -134,17 +109,7 @@ int main(int argc, char *argv[])
         }
     }
 
+    cout << "Average Error across frames: " << total_diff / total_frame_count << endl;
 
-    cout << "Terminating..." << endl;
-
-
-#if defined(GLFW_ON)
-    glDeleteBuffers(1, &vao);
-    glDeleteBuffers(1, &vbo);
-    glDeleteBuffers(1, &ebo);
-    glfwTerminate();
-#endif
-
-    cout << "Terminated" << endl;
     return 0;
 }

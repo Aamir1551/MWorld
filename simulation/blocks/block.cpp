@@ -64,6 +64,6 @@ namespace blocks {
 
     int Block::block_count = 0;
     real Block::flare_capacity = 1.0f;
-    real Block::theta = 1.0f;
+    real Block::theta = 0.7f;
 }
 
