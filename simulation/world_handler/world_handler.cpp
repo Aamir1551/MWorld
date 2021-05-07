@@ -497,7 +497,6 @@ vector<Contact> WorldHandler::CollisionHandlerWithOctree() {
             for(auto const &b2: o2->blocks_at_leaf) {
 
                 Cube::CollisionDetect(b1, b2, collisions);
-                //Cube::CollisionDetectAndResolve(b1, b2, this->collision_locks);
             }
         }
     }
