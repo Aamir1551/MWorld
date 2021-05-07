@@ -96,22 +96,28 @@ int main(int argc, char *argv[])
 
         auto contact_list = world.CollisionHandlerBruteForce();
 
-        real d_mom_brute = 0;
+        vector<Matrix> new_brute_moms;
         world.AddForcesViaBruteForce(deltaTime.count() / 1000.0);
         for(auto const i: world.blocks) {
-            d_mom_brute += Matrix::SquaredNorm(i->momentum);
+             new_brute_moms.push_back(i->momentum);
         }
         world.AddForcesViaBruteForce(deltaTime.count() / 1000.0 * -1);
 
-        real d_mom_barnes = 0;
+        vector<Matrix> new_barnes_moms;
         world.AddForcesViaBarnesHut(deltaTime.count() / 1000.0);
         for(auto const i: world.blocks) {
-            d_mom_barnes += Matrix::SquaredNorm(i->momentum);
+            new_barnes_moms.push_back(i->momentum);
         }
         world.AddForcesViaBarnesHut(deltaTime.count() / 1000.0 * -1);
 
-        real total_diff = d_mom_brute - d_mom_barnes;
-        cout << total_diff << endl;
+        float diff = 0;
+        for(int i=0; i<new_barnes_moms.size(); i++) {
+           diff += Matrix::SquaredNorm(new_brute_moms.at(i) - new_barnes_moms.at(i));
+        }
+        world.AddForcesViaBruteForce(deltaTime.count() / 1000.0);
+
+
+        cout << diff/(num_blocks_same * 600.0) << endl;
 
         world.Update(contact_list, deltaTime.count()/1000.0);
 
