@@ -1,40 +1,1 @@
-Result with parameters (n, world_size) = (10, 100): SUCCESS
-Result with parameters (n, world_size) = (10, 200): SUCCESS
-Result with parameters (n, world_size) = (10, 300): SUCCESS
-Result with parameters (n, world_size) = (10, 400): SUCCESS
-Result with parameters (n, world_size) = (20, 100): SUCCESS
-Result with parameters (n, world_size) = (20, 200): SUCCESS
-Result with parameters (n, world_size) = (20, 300): SUCCESS
-Result with parameters (n, world_size) = (20, 400): SUCCESS
-Result with parameters (n, world_size) = (30, 100): SUCCESS
-Result with parameters (n, world_size) = (30, 200): SUCCESS
-Result with parameters (n, world_size) = (30, 300): SUCCESS
-Result with parameters (n, world_size) = (30, 400): SUCCESS
-Result with parameters (n, world_size) = (40, 100): SUCCESS
-Result with parameters (n, world_size) = (40, 200): SUCCESS
-Result with parameters (n, world_size) = (40, 300): SUCCESS
-Result with parameters (n, world_size) = (40, 400): SUCCESS
-Result with parameters (n, world_size) = (50, 100): SUCCESS
-Result with parameters (n, world_size) = (50, 200): SUCCESS
-Result with parameters (n, world_size) = (50, 300): SUCCESS
-Result with parameters (n, world_size) = (50, 400): SUCCESS
-Result with parameters (n, world_size) = (60, 100): SUCCESS
-Result with parameters (n, world_size) = (60, 200): SUCCESS
-Result with parameters (n, world_size) = (60, 300): SUCCESS
-Result with parameters (n, world_size) = (60, 400): SUCCESS
-Result with parameters (n, world_size) = (70, 100): SUCCESS
-Result with parameters (n, world_size) = (70, 200): SUCCESS
-Result with parameters (n, world_size) = (70, 300): SUCCESS
-Result with parameters (n, world_size) = (70, 400): SUCCESS
-Result with parameters (n, world_size) = (80, 100): SUCCESS
-Result with parameters (n, world_size) = (80, 200): SUCCESS
-Result with parameters (n, world_size) = (80, 300): SUCCESS
-Result with parameters (n, world_size) = (80, 400): SUCCESS
-Result with parameters (n, world_size) = (90, 100): SUCCESS
-Result with parameters (n, world_size) = (90, 200): SUCCESS
-Result with parameters (n, world_size) = (90, 300): SUCCESS
-Result with parameters (n, world_size) = (90, 400): SUCCESS
-Result with parameters (n, world_size) = (100, 100): SUCCESS
-Result with parameters (n, world_size) = (100, 200): SUCCESS
-Result with parameters (n, world_size) = (100, 300): SUCCESS
-Result with parameters (n, world_size) = (100, 400): SUCCESS
+Result with parameters (n, world_size) = (10, 100): SUCCESSResult with parameters (n, world_size) = (10, 200): SUCCESSResult with parameters (n, world_size) = (10, 300): SUCCESSResult with parameters (n, world_size) = (10, 400): SUCCESSResult with parameters (n, world_size) = (20, 100): SUCCESSResult with parameters (n, world_size) = (20, 200): SUCCESSResult with parameters (n, world_size) = (20, 300): SUCCESSResult with parameters (n, world_size) = (20, 400): SUCCESSResult with parameters (n, world_size) = (30, 100): SUCCESSResult with parameters (n, world_size) = (30, 200): SUCCESSResult with parameters (n, world_size) = (30, 300): SUCCESSResult with parameters (n, world_size) = (30, 400): SUCCESSResult with parameters (n, world_size) = (40, 100): SUCCESSResult with parameters (n, world_size) = (40, 200): SUCCESSResult with parameters (n, world_size) = (40, 300): SUCCESSResult with parameters (n, world_size) = (40, 400): SUCCESSResult with parameters (n, world_size) = (50, 100): SUCCESSResult with parameters (n, world_size) = (50, 200): SUCCESSResult with parameters (n, world_size) = (50, 300): SUCCESSResult with parameters (n, world_size) = (50, 400): SUCCESSResult with parameters (n, world_size) = (60, 100): SUCCESSResult with parameters (n, world_size) = (60, 200): SUCCESSResult with parameters (n, world_size) = (60, 300): SUCCESSResult with parameters (n, world_size) = (60, 400): SUCCESSResult with parameters (n, world_size) = (70, 100): SUCCESSResult with parameters (n, world_size) = (70, 200): SUCCESSResult with parameters (n, world_size) = (70, 300): SUCCESSResult with parameters (n, world_size) = (70, 400): SUCCESSResult with parameters (n, world_size) = (80, 100): SUCCESSResult with parameters (n, world_size) = (80, 200): SUCCESSResult with parameters (n, world_size) = (80, 300): SUCCESSResult with parameters (n, world_size) = (80, 400): SUCCESSResult with parameters (n, world_size) = (90, 100): SUCCESSResult with parameters (n, world_size) = (90, 200): SUCCESSResult with parameters (n, world_size) = (90, 300): SUCCESSResult with parameters (n, world_size) = (90, 400): SUCCESSResult with parameters (n, world_size) = (100, 100): SUCCESSResult with parameters (n, world_size) = (100, 200): SUCCESSResult with parameters (n, world_size) = (100, 300): SUCCESSResult with parameters (n, world_size) = (100, 400): SUCCESS

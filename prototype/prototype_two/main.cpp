@@ -49,7 +49,7 @@ int main()
 
     real position_coord[] = {0, 0, -10};
     Matrix position(3, 1, position_coord);
-    Cube c(position, Quaternion(1, 0, 0, 0), 0.0000000005f);
+    Cube c(position, Quaternion(1, 0, 0, 0), 0.5f);
 
     CubeRenderer::InitializeCubes(4.0f, vao, vbo, ebo, &view, &projection, world_properties->shader_id);
     CubeRenderer::AddVerticesToBuffers();

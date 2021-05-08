@@ -62,12 +62,12 @@ int main(int argc, char *argv[])
 
     // run as ./simulation 60 1000
     //int num_blocks_same = (int) atoi(argv[2]);
-    int num_blocks_same = 150;
-    WorldHandler world = WorldHandler(num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, -100, 100, -100, 100, -100 ,100);
+    //int num_blocks_same = 150;
+    //WorldHandler world = WorldHandler(num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, num_blocks_same, -100, 100, -100, 100, -100 ,100);
     //WorldHandler world = WorldHandler(100, 100, 300, 100, 100, 100, -100, 100, -100, 100, -100 ,100);
     //WorldHandler world = WorldHandler(0, 0, 500, 0, 0, 0, -100, 100, -100, 100, -100 ,100);
     // Test out with different collision elasticity value, so change scaling of velocity after collision, and see how world develops
-    /*WorldHandler world = WorldHandler((argc < 3) ? 100 : (int) atoi(argv[2]),
+    WorldHandler world = WorldHandler((argc < 3) ? 100 : (int) atoi(argv[2]),
                                       (argc < 4) ? 100 : (int) atoi(argv[3]),
                                       (argc < 5) ? 100 : (int) atoi(argv[4]),
                                       (argc < 6) ? 100 : (int) atoi(argv[5]),
@@ -79,7 +79,7 @@ int main(int argc, char *argv[])
                                       (argc < 12) ? 100 : (int) atoi(argv[11]),
                                       (argc < 13) ? -100 : (int) atoi(argv[12]),
                                       (argc < 14) ? 100 : (int) atoi(argv[13]),
-                                      4);*/
+                                      4);
 
 #if defined(GLFW_ON)
     glBindVertexArray(vao);
@@ -107,7 +107,7 @@ int main(int argc, char *argv[])
 
     while (
 #if defined(GLFW_ON)
-         !glfwWindowShouldClose(world_properties->window)
+         !glfwWindowShouldClose(world_properties->window) && duration_cast<milliseconds>(currentFrame - start_time).count() < atoi(argv[1]) * 1000
 #else
             duration_cast<milliseconds>(currentFrame - start_time).count() < atoi(argv[1]) * 1000 // time between current frame and last frame is less than 1st argument given
 #endif
@@ -147,7 +147,14 @@ int main(int argc, char *argv[])
         }
     }
 
-    cout << "Average execution Time per frame when simulating " << num_blocks_same << " blocks of each type is" << " : " <<  (duration_cast<milliseconds>(high_resolution_clock::now() - start_time).count()) / total_frame_count / 1000 << endl;
+    //cout << "Average execution Time per frame when simulating " << num_blocks_same << " blocks of each type is" << " : " <<  (duration_cast<milliseconds>(high_resolution_clock::now() - start_time).count()) / total_frame_count / 1000 << endl;
+    cout << "Average execution Time per frame when simulating with block tuple ("
+    <<  ((argc < 3) ? "100" : argv[2]) << ", " << ((argc < 4) ? "100" : argv[3]) << ", " << ((argc < 5) ? "100" : argv[4]) << ", " << ((argc < 6) ? "100" : argv[5]) << ", "
+    <<  ((argc < 7) ? "100" : argv[6]) << ", " << ((argc < 8) ? "100" : argv[7]) << "), and world dimension tuple: (x_min: "
+    <<  ((argc < 9) ? "-100" : argv[8]) << ", x_max: " << ((argc < 10) ? "100" : argv[9]) << ", y_min: "
+    <<  ((argc < 11) ? "-100" : argv[10]) << ", y_max: " << ((argc < 12) ? "100" : argv[11]) << ", z_min: "
+    <<  ((argc < 13) ? "-100" : argv[12]) << ", z_max: " << ((argc < 14) ? "100" : argv[13]) << ") is: " <<
+    (duration_cast<milliseconds>(high_resolution_clock::now() - start_time).count()) / total_frame_count / 1000 << endl;
 
 #if defined(GLFW_ON)
     glDeleteBuffers(1, &vao);
