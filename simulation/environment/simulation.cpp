@@ -72,7 +72,7 @@ int main(int argc, char *argv[])
                                       (argc < 12) ? 100 : (int) atoi(argv[11]),
                                       (argc < 13) ? -100 : (int) atoi(argv[12]),
                                       (argc < 14) ? 100 : (int) atoi(argv[13]),
-                                      8,4);
+                                      (argc < 15) ? 1 : (int) atoi(argv[14]),4);
 
 #if defined(GLFW_ON)
     glBindVertexArray(vao);

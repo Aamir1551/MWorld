@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
                                        atoi(argv[11]),
                                        atoi(argv[12]),
                                        atoi(argv[13]),
-                                       4);
+                                       8, 4);
 
 
     using std::chrono::high_resolution_clock;
