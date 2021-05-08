@@ -20,8 +20,7 @@ Running the Project:
 4) To run the simulations of the logic gates, execute files:
     1) and_gate_test to run the simulation with the AND gate being simulated
     2) not_gate_test to run the simulation with the NOT gate being simulated
-    3) or_gate_test to run the simulation with the OR gate being simulated
-GLFW must be enabled and linked to the build system in order to build these files.
+    3) or_gate_test to run the simulation with the OR gate being simulated. Noote that GLFW must be enabled and linked to the build system in order to build these files.
 5) Unit test files for the Matrix and Quaternion class should be located in: numerics/linear_alg/test/test.cpp, numerics/quaternion/test/test.cpp. These files can be executed without the need to pass in command line arguments, and their corresponding executables after being compiled should be located in build/numerics/linear_alg/test/matrix_test and build/numerics/quaternion/test/quaternion_test
 6) Finally, tests for octree and BH algorithm are located in the folder simulation/tree_integration_tests. For these tests, passing in command line arguments is similar to that of passing in arguments to the ./simulation executable, however in this case all parameters are required. In addition, for these tests, we do not specify the number of threads used (that can be changed in the .cpp file itself). Finally, the file barnes_hut_test requires an additional final parameter specifying the value of θ to be used as a hyper-parameter. Ensure that when running these tests, GLFW is turned off, i.e line 16 of root CMakeLists.txt file should be set to set(compile_with_glfw OFF).
 
