@@ -116,16 +116,16 @@ int main(int argc, char *argv[])
 #endif
 
 
-        // Get all world contacts using the octree
+        // Get all world contacts using the octree. Comment below line, if you would like to use Brute force approach instead.
         auto contact_list = world.CollisionHandlerWithOctree();
 
-        // Get all world contacts using the brute force algorithm
+        // Get all world contacts using the brute force algorithm. Uncomment this line, to use brute force algorithm instead.
         // auto contact_list = world.CollisionHandlerBruteForce();
 
-        // Apply forces to blocks
+        // Apply forces to blocks using the BH algorithm. Comment this line, if you would like to use Brute force approach instead.
         world.AddForcesViaBarnesHut(deltaTime.count() / 1000.0);
 
-        // Uncomment out below line of code, to use the brute force approach
+        // Uncomment out below line of code, to use the brute force approach to calculate the forces between blocks.
         //world.AddForcesViaBruteForce(deltaTime.count() / 1000.0);
 
         // Update block positions
