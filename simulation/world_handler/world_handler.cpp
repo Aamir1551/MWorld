@@ -60,9 +60,9 @@ WorldHandler::WorldHandler(int num_i_blocks_plus, int num_i_blocks_neg, int num_
                            real min_coord_x, real max_coord_x,
                            real min_coord_y, real max_coord_y,
                            real min_coord_z, real max_coord_z,
-                           real cube_length) {
+                           int threads_used, real cube_length) {
 #if defined(OPENMP)
-    omp_set_num_threads(8);
+    omp_set_num_threads(threads_used);
 #endif
     srand((unsigned)time(0));
     //srand(0); // useful for testing purposes, to generate the same random numbers
@@ -87,14 +87,6 @@ WorldHandler::WorldHandler(int num_i_blocks_plus, int num_i_blocks_neg, int num_
     AddBlock(EBlockType, num_e_blocks_1, true);
     AddBlock(EBlockType, num_e_blocks_1_2, false);
     AddBlock(ZBlockType, num_z_blocks, true);
-/*
-#if defined(OPENMP)
-    for(unsigned int i=0; i<this->blocks.size(); i++) {
-       this->collision_locks.emplace_back(omp_lock_t());
-       omp_init_lock(&this->collision_locks.at(i));
-    }
-#endif
- */
 }
 
 void WorldHandler::GetProperties(int num_blocks, std::vector<Matrix> *&positions, std::vector<Matrix> * &linear_momentums, real min_coord_x, real max_coord_x, real min_coord_y, real max_coord_y, real min_coord_z, real max_coord_z) {

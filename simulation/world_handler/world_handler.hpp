@@ -132,7 +132,8 @@ public:
     // Reasoning for having different vectors for each block was due to speed improvement that we receive since we no longer
     // need to use if/else statements and cast blocks to their respective types.
 
-    WorldHandler(int num_i_blocks_plus, int num_i_blocks_neg, int num_z_blocks, int num_m_blocks, int num_e_blocks_1, int num_e_blocks_1_2, real min_coord_x = -50, real max_coord_x = 50, real min_coord_y = -50, real max_coord_y = 50, real min_coord_z = -50, real max_coord_z = 50, real cube_length = 4.0f);
+    WorldHandler(int num_i_blocks_plus, int num_i_blocks_neg, int num_z_blocks, int num_m_blocks, int num_e_blocks_1, int num_e_blocks_1_2, real min_coord_x = -50, real max_coord_x = 50, real min_coord_y = -50, real max_coord_y = 50, real min_coord_z = -50, real max_coord_z = 50,
+                  int threads_used = 1, real cube_length = 4.0f);
 
     // Contact generation functions. Returns a list of contacts
     vector<Contact> CollisionHandlerBruteForce();
