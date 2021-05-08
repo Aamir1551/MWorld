@@ -10,7 +10,7 @@ Building the Project via command line:
 5) Finally, run the command ```ninja```, in the build directory, to build the project. If another generator was used by cmake instead of ninja, use that instead to build the project.
 6) To render the virtual world ensure that you have GLFW and Glad installed on your system, with file paths linked correctly with the program. File paths for GLFW and Glad should be provided on lines 55-58 on the root CMakelists.txt file.
 7) To compile with OpenMP, set line 15 in the root CMakeLists.txt file to: ```set(compile_with_openmp ON)```. To compile without set line 15 to: ```set(compile_with_openmp OFF)```
-8) To compile with GLFW, set line 16 in the root CMakeLists.txt file to: ```set(compile_with_glfw OFF)```. To compile without set line 16 to: ```set(compile_with_glfw OFF)```
+8) To compile with GLFW, set line 16 in the root CMakeLists.txt file to: ```set(compile_with_glfw ON)```. To compile without set line 16 to: ```set(compile_with_glfw OFF)```
 9) To compile with prototypes, set line 17 in the root CMakeLists.txt file to: ```set(compile_prototypes ON)```. To compile without set line 17 to: ```set(compile_prototypes OFF)```. In addition, ensure that GLFW has also been enabled, since prototypes will only be compiled if line 16 is set to ```set(compile_with_glfw ON)```.
 
 Running the Project:
