@@ -7,7 +7,7 @@ Video evidence of the project compiling and being ran is provided here:
 
 Note that the video evidence was produced on the machine specified in Appendix E.
 
-When referencing the root CMakefile, we are specifically talking about the file ```CMakefile.txt``` in the MWorld folder.
+When referring to the root CMakefile, we are specifically talking about the file ```CMakefile.txt``` in the MWorld folder.
 
 More indepth detail regarding how to build this project is specified on Appendix D of the report.
 Building the Project via command line:
