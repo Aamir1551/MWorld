@@ -4,7 +4,9 @@ A simulation of M world, as described in the report in the MWorld section.
 Versions 3.3 of GLFW is required for this project. Ensure that you have version 9 of GCC installed on your machine - so that you may use OpenMP (since version OpenMP 5.0 has been used for this project). Depending upon machine being used, you may need to use additional libraries and flags to ensure GLFW works correctly. This can be done via inserting the line of code ```set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Flag -Lib")}``` in the root CMakeLists.txt file. Finally, minimum CMake version required for this project is 3.10 
 
 Video evidence of the project being compiled and being ran provided here:
+
 Part 1: https://youtu.be/SX48JWTQWpU
+
 Part 2: https://youtu.be/RHrN4ANO-4I
 
 Note that the video evidence was produced on the machine specified in Appendix E.
