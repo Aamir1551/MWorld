@@ -1,5 +1,6 @@
 #include <vector>
 #include <omp.h>
+#include <cmath>
 
 #include <matrix.hpp>
 #include <quaternion.hpp>
